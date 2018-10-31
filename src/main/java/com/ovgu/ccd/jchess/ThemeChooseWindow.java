@@ -45,10 +45,12 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
     ThemeChooseWindow(Frame parent) throws Exception
     {
         super(parent);
+        
+        System.out.println("Loading theme path");
 
-        File dir = new File(GUI.getJarPath() + File.separator + "jchess" +  File.separator + "theme" + File.separator);
+        File dir = new File(JChessApp.class.getResource("/theme").getPath());
 
-        System.out.println("Theme path: "+dir.getPath());
+        System.out.println("Theme path: " + dir.getPath());
 
         File[] files = dir.listFiles();
         if (files != null && dir.exists())
@@ -109,9 +111,9 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
     public void valueChanged(ListSelectionEvent event)
     {
         String element = this.themesList.getModel().getElementAt(this.themesList.getSelectedIndex()).toString();
-        String path = GUI.getJarPath() + "/jchess" +  File.separator + "theme/";
-        System.out.println(path + element + "/images/Preview.png");
-        this.themePreview = new ImageIcon(path + element + "/images/Preview.png");
+        String path = JChessApp.class.getResource("/theme").getPath();
+        System.out.println(path + "/" + element + "/images/Preview.png");
+        this.themePreview = new ImageIcon(path + "/" + element + "/images/Preview.png");
         this.themePreviewButton.setIcon(this.themePreview);
     }
 
@@ -131,13 +133,15 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
                 prp.setProperty("THEME", name);
                 try
                 {
-                    FileOutputStream fOutStr = new FileOutputStream(GUI.CONFIG_FILE_PATH);
+                	ClassLoader loader = Thread.currentThread().getContextClassLoader();
+                	FileOutputStream fOutStr = new FileOutputStream(loader.getResource(GUI.CONFIG_FILE_PATH).getPath());
                     prp.store(fOutStr, null);
                     fOutStr.flush();
                     fOutStr.close();
                 }
                 catch (java.io.IOException exc)
                 {
+                    exc.printStackTrace();
                 }
                 JOptionPane.showMessageDialog(this, Settings.lang("changes_visible_after_restart"));
                 this.setVisible(false);

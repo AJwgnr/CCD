@@ -40,7 +40,7 @@ public class GUI
 {
 
     public Game game;
-    static final public String CONFIG_FILE_PATH = GUI.getJarPath() + File.separator + "resources" + File.separator+"config.txt";
+    static final public String CONFIG_FILE_PATH = "config.txt";
     static final String CONFIG_NAME = "config.txt";
     static final public Properties configFile = GUI.getConfigFile();
 
@@ -63,9 +63,11 @@ public class GUI
         Toolkit tk = Toolkit.getDefaultToolkit();
         try
         {
-            String imageLink =  "/jchess/theme/" + configFile.getProperty("THEME", "default") + "/images/" + name;
-            url = JChessApp.class.getResource(imageLink);
-            img = tk.getImage(url);
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            System.out.println(configFile.getProperty("THEME"));
+            URL imageLink =  loader.getResource("theme/" + configFile.getProperty("THEME", "default") + "/images/" + name);
+            System.out.println(imageLink);
+            img = tk.getImage(imageLink);
 
         }
         catch (Exception e)
@@ -110,18 +112,6 @@ public class GUI
             e.printStackTrace();
             System.out.println("Error loading config file.");
         }
-
-        /*System.out.println(CONFIG_FILE_PATH);
-        try {
-        	System.out.println("Loading config file...");
-            properties.load(new FileInputStream(CONFIG_FILE_PATH));
-		} catch (FileNotFoundException e) {
-			System.out.println("Config file not found.");
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println("Error loading config file.");
-		}*/
         System.out.println("Config File Loaded!");
         return configProperty;
     }
