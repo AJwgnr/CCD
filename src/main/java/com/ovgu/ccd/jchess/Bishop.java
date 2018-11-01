@@ -21,8 +21,6 @@
 package com.ovgu.ccd.jchess;
 
 import java.util.ArrayList;
-import java.awt.Graphics;
-import java.awt.Image;
 
 /**
  * Class to represent a chess pawn bishop
@@ -38,34 +36,21 @@ import java.awt.Image;
 |X|_|_|_|_|_|X|_|0
 0 1 2 3 4 5 6 7
  */
+
 public class Bishop extends Piece
 {
 
     public static short value = 3;
-    protected static final Image imageWhite = GUI.loadImage("Bishop-W.png");
-    protected static final Image imageBlack = GUI.loadImage("Bishop-B.png");
 
-    Bishop(Chessboard chessboard, Player player)
+    public Bishop(Chessboard chessboard, Player player)
     {
-        super(chessboard, player);      //call initializer of super type: Piece
-        //this.setImages("Bishop-W.png", "Bishop-B.png");
+        super(chessboard, player);
         this.symbol = "B";
+        imageWhite = GUI.loadImage("Bishop-W.png");
+        imageBlack = GUI.loadImage("Bishop-B.png");
         this.setImage();
     }
 
-    @Override
-    void setImage()
-    {
-        if (this.player.color == this.player.color.black)
-        {
-            image = imageBlack;
-        }
-        else
-        {
-            image = imageWhite;
-        }
-        orgImage = image;
-    }
 
     /**
      * Annotation to superclass Piece changing pawns location
