@@ -1,69 +1,69 @@
-<!-- Maven POM file (Project Object Model) -->
-<!-- According to ref.: https://maven.apache.org/pom.html -->
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.ovgu.ccd</groupId>
+  <artifactId>jchess</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
 
-<!-- XML Basics -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
-	<!-- POM model version (always 4.0.0). -->
-	<modelVersion>4.0.0</modelVersion>
-  	
-  	<!-- Group or organization that the project belongs to. -->
-  	<groupId>ccd_deepblue</groupId>
-  	
-  	<!-- Name to be given to the project’s library artifact (JAR-file) -->
-  	<artifactId>DeepBlueChess</artifactId>
-  	
-  	<!-- Current Project Version. -->
-  	<version>0.0.1-SNAPSHOT</version>
-  	
-  	<!-- How the project should be packaged. -->
-  	<packaging>jar</packaging>
-  	
-  	<name>CCD DeepBlue Maven</name>
-  
-  	<properties>
-  		<maven.compiler.source>1.8</maven.compiler.source>
-    	<maven.compiler.target>1.8</maven.compiler.target>
-  	</properties>
-    
-    <!-- Build properties -->
-  	<build>
-  		<!-- This is the directory where the build will dump its files or, in Maven parlance, the build's target. -->
-    	<directory>${basedir}/target</directory>
-    	
-    	<!-- This is the name of the bundled project when it is finally built. -->
-  		<finalName>${project.artifactId}-${project.version}</finalName>
-  		
-  		<!-- Source directory. -->
-    	<sourceDirectory>s${basedir}/src</sourceDirectory>
-    	
-    	<!-- Is a list of resource elements that each describe what and where to include files associated with this project. -->
-    	<resources>
-      		<resource>
-      			<!-- This element's value defines where the resources are to be found. -->
-        		<directory>${basedir}/src</directory>
-        		
-        		<!-- Specifies which files to ignore. -->
-        		<excludes>
-          			<exclude>**/*.java</exclude>
-        		</excludes>
-      		</resource>
-    	</resources>
-    	
-    	<!-- Plugins -->
-    	<plugins>
-      		<plugin>
-        		<artifactId>maven-compiler-plugin</artifactId>
-        		<version>3.8.0</version>
-        		<configuration>
-          			<source>1.8</source>
-          			<target>1.8</target>
-        		</configuration>
-      		</plugin>
-    	</plugins>
-  	</build>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+  <build>
+      <plugins>
+          <plugin>
+              <artifactId>maven-assembly-plugin</artifactId>
+              <executions>
+                  <execution>
+                      <phase>package</phase>
+                      <goals>
+                          <goal>single</goal>
+                      </goals>
+                  </execution>
+              </executions>
+              <configuration>
+                  <archive>
+                      <manifest>
+                          <mainClass>com.ovgu.ccd.jchess.JChessApp</mainClass>
+                      </manifest>
+                  </archive>
+                  <descriptorRefs>
+                      <descriptorRef>jar-with-dependencies</descriptorRef>
+                  </descriptorRefs>
+              </configuration>
+          </plugin>
+          <plugin>
+          	<groupId>org.codehaus.mojo</groupId>
+          	<artifactId>exec-maven-plugin</artifactId>
+          	<version>1.6.0</version>
+          </plugin>
+          <plugin>
+          	<groupId>org.apache.maven.plugins</groupId>
+          	<artifactId>maven-resources-plugin</artifactId>
+          	<version>3.1.0</version>
+          </plugin>
+      </plugins>
+  </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jdesktop</groupId>
+            <artifactId>appframework</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>
