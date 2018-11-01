@@ -38,38 +38,21 @@ package com.ovgu.ccd.jchess;
         0 1 2 3 4 5 6 7
  */
 import java.util.ArrayList;
-import java.awt.Image;
 
 public class King extends Piece
 {
 
-    public boolean wasMotion = false;//maybe change to: 'wasMotioned'
-    //public boolean checked     = false;
+    public boolean wasMotion = false;
     public static short value = 99;
-    private static final Image imageWhite = GUI.loadImage("King-W.png");
-    private static final Image imageBlack = GUI.loadImage("King-B.png");
 
-    King(Chessboard chessboard, Player player)
+    public King(Chessboard chessboard, Player player)
     {
         super(chessboard, player);
-        //this.setImages("King-W.png", "King-B.png");
         this.symbol = "K";
+        imageWhite = GUI.loadImage("King-W.png");
+        imageBlack = GUI.loadImage("King-B.png");
         this.setImage();
-        //this.image = imageWhite;
-    }
 
-    @Override
-    void setImage()
-    {
-        if (this.player.color == this.player.color.black)
-        {
-            image = imageBlack;
-        }
-        else
-        {
-            image = imageWhite;
-        }
-        orgImage = image;
     }
 
     /**
