@@ -551,11 +551,13 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
             Game activeGame = this.getActiveTabGame();
             if( !activeGame.rewindToEnd() )
             {
+                // TODO change
                 JOptionPane.showMessageDialog(null, "W pamieci brak ruchow wstecz!");
             }
         }   
         catch( ArrayIndexOutOfBoundsException exc )
         {
+            // TODO change
             JOptionPane.showMessageDialog(null, "Brak aktywnej karty!");
         }
         catch( UnsupportedOperationException exc )

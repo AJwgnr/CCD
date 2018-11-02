@@ -26,14 +26,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URI;
 import java.net.URL;
 import java.nio.file.*;
 import java.util.*;
-import java.io.FileOutputStream;
 import java.util.stream.Stream;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
@@ -150,30 +147,11 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
     {
         if (evt.getSource() == this.okButton)
         {
-            Properties prp = GUI.getConfigFile();
             int element = this.themesList.getSelectedIndex();
             String name = this.themesList.getModel().getElementAt(element).toString();
-            System.out.println("theme:" + name);
-            if (GUI.themeIsValid(name))
-            {
-                prp.setProperty("THEME", name);
-                /*try
-                {
-                    ClassLoader loader = Thread.currentThread().getContextClassLoader();
-                    FileOutputStream fOutStr = new FileOutputStream(loader.getResource(GUI.CONFIG_FILE_PATH).getPath());
-                    prp.store(fOutStr, null);
-                    fOutStr.flush();
-                    fOutStr.close();
-                }
-                catch (java.io.IOException exc)
-                {
-                    exc.printStackTrace();
-                }*/
-                JOptionPane.showMessageDialog(this, Settings.lang("changes_visible_after_restart"));
-                this.setVisible(false);
-
-            }
-            System.out.print(prp.getProperty("THEME"));
+            GUI.setConfigFile("THEME", name);
+            JOptionPane.showMessageDialog(this, Settings.lang("Changes will be visible after a restart!"));
+            this.setVisible(false);
         }
     }
 }
