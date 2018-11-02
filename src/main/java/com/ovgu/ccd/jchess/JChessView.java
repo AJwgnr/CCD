@@ -28,9 +28,9 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.File;
+import java.io.*;
 import java.applet.*;
-import java.io.IOException;
+import java.io.FileInputStream;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.PropertyResourceBundle;
@@ -139,31 +139,37 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
         }
     }
 
- 
-    ///--endOf- don't delete, becouse they're interfaces for MouseEvent
-        
 
-    public JChessView(SingleFrameApplication app) {
+    ///--endOf- don't delete, because they're interfaces for MouseEvent
+    public JChessView(SingleFrameApplication app)
+    {
         super(app);
         initComponents();
-        // status bar initialization - message timeout, idle icon and busy animation, etc
-        //old: ResourceMap resourceMap = getResourceMap();
-        ResourceBundle resourceMap = ResourceBundle.getBundle("JChessView");
 
-        //old: int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
-        int messageTimeout = Integer.valueOf(resourceMap.getString("StatusBar.messageTimeout"));
+        InputStream inputStream = JChessView.class.getClassLoader().getResourceAsStream("JChessView.properties");
+        Properties properties = new Properties();
+        try
+        {
+            properties.load(inputStream);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        // status bar initialization - message timeout, idle icon and busy animation, etc
+        int messageTimeout = Integer.valueOf(properties.getProperty("StatusBar.busyAnimationRate"));
         messageTimer = new Timer(messageTimeout, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 statusMessageLabel.setText("");
             }
         });
         messageTimer.setRepeats(false);
-        //old: int busyAnimationRate = resourceMap.getInteger("StatusBar.busyAnimationRate");
-        int busyAnimationRate = Integer.valueOf(resourceMap.getString("StatusBar.busyAnimationRate"));
 
-        for (int i = 0; i < busyIcons.length; i++) {
-            busyIcons[i] = new ImageIcon(resourceMap.getString("StatusBar.busyIcons[" + i + "]"));
-            //old: busyIcons[i] = resourceMap.getIcon("StatusBar.busyIcons[" + i + "]");
+        int busyAnimationRate = Integer.valueOf(properties.getProperty("StatusBar.messageTimeout"));
+        for (int i = 0; i < busyIcons.length; i++)
+        {
+            busyIcons[i] = new ImageIcon(properties.getProperty("StatusBar.busyIcons[" + i + "]"));
         }
         busyIconTimer = new Timer(busyAnimationRate, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -171,8 +177,7 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
                 statusAnimationLabel.setIcon(busyIcons[busyIconIndex]);
             }
         });
-        //old: idleIcon = resourceMap.getIcon("StatusBar.idleIcon");
-        idleIcon = new ImageIcon(resourceMap.getString("StatusBar.idleIcon"));
+        idleIcon = new ImageIcon(properties.getProperty("StatusBar.idleIcon"));
         statusAnimationLabel.setIcon(idleIcon);
         progressBar.setVisible(false);
 
@@ -458,11 +463,13 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
                 Game activeGame = this.getActiveTabGame();
                 if( !activeGame.undo() )
                 {
+                    // TODO change
                     JOptionPane.showMessageDialog(null, "Nie da sie cofnac!");
                 }
             } 
             catch( java.lang.ArrayIndexOutOfBoundsException exc )
             {
+                // TODO change
                 JOptionPane.showMessageDialog(null, "Brak aktywnej karty!");
             }
             catch( UnsupportedOperationException exc )
@@ -499,11 +506,13 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
                 Game activeGame = this.getActiveTabGame();
                 if( !activeGame.redo() )
                 {
+                    // TODO change
                     JOptionPane.showMessageDialog(null, "W pamieci brak ruchow do przodu!");
                 }
             } 
             catch( java.lang.ArrayIndexOutOfBoundsException exc )
             {
+                // TODO change
                 JOptionPane.showMessageDialog(null, "Brak aktywnej karty!");
             }
             catch( UnsupportedOperationException exc )
@@ -520,11 +529,13 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
             Game activeGame = this.getActiveTabGame();
             if( !activeGame.rewindToBegin() )
             {
+                // TODO change
                 JOptionPane.showMessageDialog(null, "W pamieci brak ruchow do przodu!");
             }
         }   
         catch(ArrayIndexOutOfBoundsException exc)
         {
+            // TODO change
             JOptionPane.showMessageDialog(null, "Brak aktywnej karty!");
         }
         catch( UnsupportedOperationException exc )

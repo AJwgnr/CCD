@@ -100,7 +100,6 @@ public class GUI
 
     static Properties getConfigFile()
     {
-
     	Properties configProperty = new Properties();
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         try(InputStream resourceStream = loader.getResourceAsStream(CONFIG_NAME)) {
