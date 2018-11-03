@@ -57,7 +57,6 @@ public class GUI
 
     static Image loadImage(String name)
     {
-        //if (configFile == null) { return null; }
         Image img = null;
         URL url = null;
         Toolkit tk = Toolkit.getDefaultToolkit();
@@ -115,13 +114,13 @@ public class GUI
         catch (Exception e)
         {
             System.out.println("External config file not found.");
-            e.printStackTrace();
 
             // load jar intern config.txt instead
             // (not feasible to store in-game adjustments in jar)
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             try(InputStream resourceStream = loader.getResourceAsStream(CONFIG_NAME)) {
                 configProperty.load(resourceStream);
+                System.out.println("Internal config-file successfully loaded!");
             }catch (FileNotFoundException ex) {
                 System.out.println("Config file not found.");
                 ex.printStackTrace();
@@ -129,7 +128,6 @@ public class GUI
                 ex.printStackTrace();
                 System.out.println("Error loading config file.");
             }
-            System.out.println("Internal config-file successfully loaded!");
         }
         return configProperty;
     }
@@ -140,7 +138,6 @@ public class GUI
             configFile.setProperty(propertyName, value);
             try {
                 File file = new File("config.txt"); // externally, not in jar
-                //file.createNewFile(); // only if not created yet
                 FileOutputStream fileOutputStream = new FileOutputStream(file);
 
                 if (fileOutputStream != null && file.exists()) {
