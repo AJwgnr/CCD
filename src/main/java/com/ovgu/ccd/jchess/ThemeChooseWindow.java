@@ -55,28 +55,17 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
         try
         {
             // extract names of sub-directories in /theme
-            FileSystem fileSystem = null;
             URI uri = JChessApp.class.getResource("/theme").toURI();
-            Path myPath;
-            if (uri.getScheme().equals("jar"))
-            {
-                fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
-                myPath = fileSystem.getPath("/theme");
-            }
-            else
-                myPath = Paths.get(uri);
+            FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+            Path myPath = fileSystem.getPath("/theme");
 
-            Stream<Path> walk = Files.walk(myPath, 1);
-            for (Iterator<Path> it = walk.iterator(); it.hasNext();)
-            {
-                // TODO : Is this clean code? Well, i dont think so.
-                // filter '/' and 'theme'
-                String themeName = it.next().getFileName().toString();
-                if (themeName != null && themeName.length() > 0 && themeName.charAt(themeName.length() - 1) == '/')
-                    themeName = themeName.substring(0, themeName.length() - 1);
+            // filter '/' and 'theme'
+            Files.list(myPath).forEach(path -> {
+                String folderName = path.getFileName().toString();
+                String themeName = folderName.substring(0, folderName.length() - 1);
                 if (!themeName.equals("theme"))
                     themeNames.add(themeName);
-            }
+            });
             fileSystem.close();
 
         }
