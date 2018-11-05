@@ -21,8 +21,6 @@
 package com.ovgu.ccd.jchess;
 
 import java.util.ArrayList;
-import java.awt.Graphics;
-import java.awt.Image;
 
 /**
  * Class to represent a queen piece
@@ -37,33 +35,19 @@ import java.awt.Image;
     |X|_|_|X|_|_|X|_|0
     0 1 2 3 4 5 6 7
  */
+
 public class Queen extends Piece
 {
 
     public static short value = 9;
-    protected static final Image imageWhite = GUI.loadImage("Queen-W.png");
-    protected static final Image imageBlack = GUI.loadImage("Queen-B.png");
 
-    Queen(Chessboard chessboard, Player player)
+    public Queen(Chessboard chessboard, Player player)
     {
-        super(chessboard, player);//call initializer of super type: Piece
-        //this.setImages("Queen-W.png", "Queen-B.png");
+        super(chessboard, player);
         this.symbol = "Q";
+        imageWhite = GUI.loadImage("Queen-W.png");
+        imageBlack = GUI.loadImage("Queen-B.png");
         this.setImage();
-    }
-
-    @Override
-    void setImage()
-    {
-        if (this.player.color == this.player.color.black)
-        {
-            image = imageBlack;
-        }
-        else
-        {
-            image = imageWhite;
-        }
-        orgImage = image;
     }
 
     /**

@@ -21,8 +21,6 @@
 package com.ovgu.ccd.jchess;
 
 import java.util.ArrayList;
-import java.awt.Graphics;
-import java.awt.Image;
 
 /**
  * Class to represent a chess pawn knight
@@ -31,29 +29,15 @@ public class Knight extends Piece
 {
 
     public static short value = 3;
-    protected static final Image imageWhite = GUI.loadImage("Knight-W.png");
-    protected static final Image imageBlack = GUI.loadImage("Knight-B.png");
 
-    Knight(Chessboard chessboard, Player player)
+
+    public Knight(Chessboard chessboard, Player player)
     {
-        super(chessboard, player);//call initializer of super type: Piece
-        //this.setImages("Knight-W.png", "Knight-B.png");
+        super(chessboard, player);
         this.symbol = "N";
+        imageWhite = GUI.loadImage("Knight-W.png");
+        imageBlack = GUI.loadImage("Knight-B.png");
         this.setImage();
-    }
-
-    @Override
-    void setImage()
-    {
-        if (this.player.color == this.player.color.black)
-        {
-            image = imageBlack;
-        }
-        else
-        {
-            image = imageWhite;
-        }
-        orgImage = image;
     }
 
     /**

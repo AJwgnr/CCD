@@ -21,8 +21,6 @@
 package com.ovgu.ccd.jchess;
 
 import java.util.ArrayList;
-import java.awt.Graphics;
-import java.awt.Image;
 
 /**
  * Class to represent a pawn piece
@@ -62,34 +60,20 @@ import java.awt.Image;
 |_|_|_|_|_|_|_|_|0
 0 1 2 3 4 5 6 7
  */
+
 public class Pawn extends Piece
 {
 
     boolean down;
-    protected static final Image imageWhite = GUI.loadImage("Pawn-W.png");
-    protected static final Image imageBlack = GUI.loadImage("Pawn-B.png");
     public static short value = 1;
 
-    Pawn(Chessboard chessboard, Player player)
+    public Pawn(Chessboard chessboard, Player player)
     {
         super(chessboard, player);
-        //this.setImages("Pawn-W.png", "Pawn-B.png");
         this.symbol = "";
+        imageWhite = GUI.loadImage("Pawn-W.png");
+        imageBlack = GUI.loadImage("Pawn-B.png");
         this.setImage();
-    }
-
-    @Override
-    void setImage()
-    {
-        if (this.player.color == this.player.color.black)
-        {
-            image = imageBlack;
-        }
-        else
-        {
-            image = imageWhite;
-        }
-        orgImage = image;
     }
 
     /**

@@ -41,8 +41,8 @@ public abstract class Piece
     public Player player;
     String name;
     protected String symbol;
-    protected static Image imageBlack;// = null;
-    protected static Image imageWhite;// = null;
+    public static Image imageBlack;
+    public static Image imageWhite;
     public Image orgImage;
     public Image image;
     public static short value = 0;
@@ -51,14 +51,6 @@ public abstract class Piece
     {
         this.chessboard = chessboard;
         this.player = player;
-        if (player.color == player.color.black)
-        {
-            image = imageBlack;
-        }
-        else
-        {
-            image = imageWhite;
-        }
         this.name = this.getClass().getSimpleName();
 
     }
@@ -124,6 +116,7 @@ public abstract class Piece
         return false;//if not, piece cannot move
     }
 
+
     void setImage()
     {
         if (this.player.color == this.player.color.black)
@@ -134,20 +127,9 @@ public abstract class Piece
         {
             image = imageWhite;
         }
+        orgImage = image;
     }
-    //void setImages(String white, String black) {
-        /* method set image to black or white (depends on player color)
-     * @white: String with name of image with white piece
-     * @black: String with name of image with black piece
-     * */
-    //    this.imageBlack = black;
-    //     this.imageWhite = white;
-    //     if(player.color == player.color.black) {
-    //         this.image = GUI.loadImage(imageBlack);
-    //     } else {
-    //          this.image = GUI.loadImage(imageWhite);
-    //     }
-    //  }/*--endOf-setImages(String white, String black)--*/
+
 
     abstract public ArrayList allMoves();
 
@@ -165,7 +147,7 @@ public abstract class Piece
         return false;
     }
 
-    /** 
+    /**
      * @param x y position on chessboard
      * @param y  y position on chessboard
      * @return true if can move, false otherwise

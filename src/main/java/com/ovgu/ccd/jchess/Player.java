@@ -31,7 +31,7 @@ public class Player implements Serializable
 
     String name;
 
-    enum colors
+    public enum colors
     {
 
         white, black
