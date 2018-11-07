@@ -861,4 +861,23 @@ public class Chessboard extends JPanel
     {
         //throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    public void printBoard() {
+        for (int y = 7; y >= 0; y--) //drawPiecesOnSquares
+        {
+            System.out.print(y + "|");
+            for (int i = 0; i < 8; i++)
+            {
+                if (this.squares[i][y].piece != null)
+                {
+                    System.out.print("P");
+                } else {
+                    System.out.print("_");
+                }
+                System.out.print("|");
+            }
+            System.out.println();
+        }//--endOf--drawPiecesOnSquares
+        System.out.println(" |0|1|2|3|4|5|6|7|");
+    }
 }

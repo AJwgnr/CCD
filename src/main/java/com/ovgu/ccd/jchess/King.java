@@ -626,16 +626,16 @@ public class King extends Piece
     /** Method to check will the king be safe when move
      *  @return bool true if king is save, else returns false
      */
-    public boolean willBeSafeWhenMoveOtherPiece(Square sqIsHere, Square sqWillBeThere) //long name ;)
+    public boolean willBeSafeWhenMoveOtherPiece(Square currentPosition, Square nextPosition) //long name ;)
     {
-        Piece tmp = sqWillBeThere.piece;
-        sqWillBeThere.piece = sqIsHere.piece; // move without redraw
-        sqIsHere.piece = null;
+        Piece tmp = nextPosition.piece;
+        nextPosition.piece = currentPosition.piece; // move without redraw
+        currentPosition.piece = null;
 
         boolean ret = isSafe(this.square);
 
-        sqIsHere.piece = sqWillBeThere.piece;
-        sqWillBeThere.piece = tmp;
+        currentPosition.piece = nextPosition.piece;
+        nextPosition.piece = tmp;
 
         return ret;
     }
