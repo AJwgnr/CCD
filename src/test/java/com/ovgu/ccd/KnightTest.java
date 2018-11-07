@@ -1,21 +1,39 @@
 package com.ovgu.ccd;
 
 
-import com.ovgu.ccd.jchess.Knight;
-import com.ovgu.ccd.jchess.Chessboard;
-import com.ovgu.ccd.jchess.Player;
+import com.ovgu.ccd.jchess.*;
+
+import org.hamcrest.MatcherAssert;
+import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class KnightTest {
 
+    Chessboard board = new Chessboard(new Settings(), new Moves(mock(Game.class)));
+    Player whitePlayer = new Player("John", Player.colors.white.name());
+    Player blackPlayer = new Player("John", Player.colors.black.name());
+    King whiteKing = new King(board, whitePlayer);
+    King blackKing = new King(board, blackPlayer);
+
+    @Before
+    public void setup() {
+        board.kingWhite = whiteKing;
+        board.kingBlack = blackKing;
+        board.squares[4][0].setPiece(whiteKing);
+        board.squares[4][7].setPiece(blackKing);
+    }
+
     @Test
     public void testWhitePlayerImage() {
-        Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.colors.white.name());
-        Knight knight = new Knight(board, player);
+        Knight knight = new Knight(board, whitePlayer);
 
         assertEquals(Knight.imageWhite, knight.image);
         assertEquals(Knight.imageWhite, knight.orgImage);
@@ -24,9 +42,7 @@ public class KnightTest {
 
     @Test
     public void testBlackPlayerImage() {
-        Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.colors.black.name());
-        Knight knight = new Knight(board, player);
+        Knight knight = new Knight(board, blackPlayer);
 
         assertEquals(Knight.imageBlack, knight.image);
         assertEquals(Knight.imageBlack, knight.orgImage);
@@ -34,10 +50,113 @@ public class KnightTest {
 
     @Test
     public void testSymbol() {
-        Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.colors.black.name());
-        Knight knight = new Knight(board, player);
+        Knight knight = new Knight(board, blackPlayer);
 
         assertEquals("N", knight.getSymbol());
+    }
+
+    @Test
+    public void testAllMoves() {
+        Knight knight = new Knight(board, whitePlayer);
+        board.squares[3][3].setPiece(knight);
+        List<Square> moves = knight.allMoves();
+
+        assertEquals(8, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(1,4, null),
+                        new Square(2,5, null),
+                        new Square(4,5, null),
+                        new Square(5,4, null),
+                        new Square(5,2, null),
+                        new Square(4,1, null),
+                        new Square(2,1, null),
+                        new Square(1,2, null)
+                )
+        );
+    }
+
+    @Test
+    public void testAllMovesBottomLeftCorner() {
+        Knight knight = new Knight(board, whitePlayer);
+        board.squares[0][0].setPiece(knight);
+        List<Square> moves = knight.allMoves();
+
+        assertEquals(2, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(1,2, null),
+                        new Square(2,1, null)
+                )
+        );
+    }
+
+    @Test
+    public void testAllMovesTopLeftCorner() {
+        Knight knight = new Knight(board, whitePlayer);
+        board.squares[0][7].setPiece(knight);
+        List<Square> moves = knight.allMoves();
+
+        assertEquals(2, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(1,5, null),
+                        new Square(2,6, null)
+                )
+        );
+    }
+
+    @Test
+    public void testAllMovesTopRightCorner() {
+        Knight knight = new Knight(board, whitePlayer);
+        board.squares[7][7].setPiece(knight);
+        List<Square> moves = knight.allMoves();
+
+        assertEquals(2, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(5,6, null),
+                        new Square(6,5, null)
+                )
+        );
+    }
+
+    @Test
+    public void testAllMovesBottomRightCorner() {
+        Knight knight = new Knight(board, whitePlayer);
+        board.squares[7][0].setPiece(knight);
+        List<Square> moves = knight.allMoves();
+
+        assertEquals(2, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(6,2, null),
+                        new Square(5,1, null)
+                )
+        );
+    }
+
+    @Test
+    public void testAllMovesWithOtherPiece() {
+        Knight knight = new Knight(board, whitePlayer);
+        board.squares[2][1].setPiece(knight);
+        List<Square> moves = knight.allMoves();
+
+        assertEquals(5, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(0,0, null),
+                        new Square(0,2, null),
+                        new Square(1,3, null),
+                        new Square(3,3, null),
+                        new Square(4,2, null)
+                )
+        );
     }
 }

@@ -59,7 +59,7 @@ public class Moves extends AbstractTableModel
         none, shortCastling, longCastling
     }
 
-    Moves(Game game)
+    public Moves(Game game)
     {
         super();
         this.tableModel = new MyDefaultTableModel();
