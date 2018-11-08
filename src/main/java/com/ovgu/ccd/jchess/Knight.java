@@ -47,7 +47,7 @@ public class Knight extends Piece
     @Override
     public ArrayList allMoves()
     {
-        ArrayList<Square> list = new ArrayList();
+        ArrayList moves = new ArrayList();
 
         // knight all moves
         //  _______________ Y:
@@ -66,30 +66,30 @@ public class Knight extends Piece
         int newY;
 
         if (validMove(newX = this.square.pozX - 2, newY = this.square.pozY + 1))
-            list.add(chessboard.squares[newX][newY]);
+            moves.add(chessboard.squares[newX][newY]);
 
         if (validMove(newX = this.square.pozX - 1, newY = this.square.pozY + 2))
-            list.add(chessboard.squares[newX][newY]);
+            moves.add(chessboard.squares[newX][newY]);
 
         if (validMove(newX = this.square.pozX + 1, newY = this.square.pozY + 2))
-            list.add(chessboard.squares[newX][newY]);
+            moves.add(chessboard.squares[newX][newY]);
 
         if (validMove(newX = this.square.pozX + 2, newY = this.square.pozY + 1))
-            list.add(chessboard.squares[newX][newY]);
+            moves.add(chessboard.squares[newX][newY]);
 
         if (validMove(newX = this.square.pozX + 2, newY = this.square.pozY - 1))
-            list.add(chessboard.squares[newX][newY]);
+            moves.add(chessboard.squares[newX][newY]);
 
         if (validMove(newX = this.square.pozX + 1, newY = this.square.pozY - 2))
-            list.add(chessboard.squares[newX][newY]);
+            moves.add(chessboard.squares[newX][newY]);
 
         if (validMove(newX = this.square.pozX - 1, newY = this.square.pozY - 2))
-            list.add(chessboard.squares[newX][newY]);
+            moves.add(chessboard.squares[newX][newY]);
 
         if (validMove(newX = this.square.pozX - 2, newY = this.square.pozY - 1))
-            list.add(chessboard.squares[newX][newY]);
+            moves.add(chessboard.squares[newX][newY]);
 
-        return list;
+        return moves;
     }
 
     private boolean validMove(int newX, int newY) {

@@ -23,7 +23,6 @@ package com.ovgu.ccd.jchess;
 import java.awt.*;
 import java.awt.Graphics;
 import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -165,7 +164,7 @@ public class Chessboard extends JPanel
         }
         else if (i == 0)
         {
-            player.goDown = true;
+            player.setGoDown(true);
         }
 
         this.squares[0][i].setPiece(new Rook(this, player));

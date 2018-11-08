@@ -59,13 +59,13 @@ public class Bishop extends Piece
     @Override
     public ArrayList allMoves()
     {
-        ArrayList list = new ArrayList();
+        ArrayList moves = new ArrayList();
 
         // Top left
         for (int h = this.square.pozX - 1, i = this.square.pozY + 1; !isout(h, i); --h, ++i)
         {
-            if (addMove(h, i)) {
-                list.add(chessboard.squares[h][i]);
+            if (validMove(h, i)) {
+                moves.add(chessboard.squares[h][i]);
             } else {
                 break;
             }
@@ -74,8 +74,8 @@ public class Bishop extends Piece
         // Bottom left
         for (int h = this.square.pozX - 1, i = this.square.pozY - 1; !isout(h, i); --h, --i)
         {
-            if (addMove(h, i)) {
-                list.add(chessboard.squares[h][i]);
+            if (validMove(h, i)) {
+                moves.add(chessboard.squares[h][i]);
             } else {
                 break;
             }
@@ -84,8 +84,8 @@ public class Bishop extends Piece
         // Top right
         for (int h = this.square.pozX + 1, i = this.square.pozY + 1; !isout(h, i); ++h, ++i)
         {
-            if (addMove(h, i)) {
-                list.add(chessboard.squares[h][i]);
+            if (validMove(h, i)) {
+                moves.add(chessboard.squares[h][i]);
             } else {
                 break;
             }
@@ -94,17 +94,17 @@ public class Bishop extends Piece
         // Bottom right
         for (int h = this.square.pozX + 1, i = this.square.pozY - 1; !isout(h, i); ++h, --i)
         {
-            if (addMove(h, i)) {
-                list.add(chessboard.squares[h][i]);
+            if (validMove(h, i)) {
+                moves.add(chessboard.squares[h][i]);
             } else {
                 break;
             }
         }
 
-        return list;
+        return moves;
     }
 
-    private boolean addMove(int posX, int posY)
+    private boolean validMove(int posX, int posY)
     {
 
         if (!checkPiece(posX, posY)) return false;

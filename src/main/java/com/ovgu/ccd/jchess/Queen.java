@@ -57,7 +57,7 @@ public class Queen extends Piece
     @Override
     public ArrayList allMoves()
     {
-        ArrayList list = new ArrayList();
+        ArrayList moves = new ArrayList();
 
         // ------------- as Rook --------------
         for (int i = this.square.pozY + 1; i <= 7; ++i)
@@ -71,7 +71,7 @@ public class Queen extends Piece
 
                     if (this.chessboard.kingWhite.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[this.square.pozX][i]))
                     {
-                        list.add(chessboard.squares[this.square.pozX][i]);
+                        moves.add(chessboard.squares[this.square.pozX][i]);
                     }
                 }
                 else
@@ -79,7 +79,7 @@ public class Queen extends Piece
 
                     if (this.chessboard.kingBlack.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[this.square.pozX][i]))
                     {
-                        list.add(chessboard.squares[this.square.pozX][i]);
+                        moves.add(chessboard.squares[this.square.pozX][i]);
                     }
                 }
 
@@ -105,7 +105,7 @@ public class Queen extends Piece
 
                     if (this.chessboard.kingWhite.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[this.square.pozX][i]))
                     {
-                        list.add(chessboard.squares[this.square.pozX][i]);
+                        moves.add(chessboard.squares[this.square.pozX][i]);
                     }
                 }
                 else
@@ -113,7 +113,7 @@ public class Queen extends Piece
 
                     if (this.chessboard.kingBlack.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[this.square.pozX][i]))
                     {
-                        list.add(chessboard.squares[this.square.pozX][i]);
+                        moves.add(chessboard.squares[this.square.pozX][i]);
                     }
                 }
 
@@ -140,7 +140,7 @@ public class Queen extends Piece
 
                     if (this.chessboard.kingWhite.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[i][this.square.pozY]))
                     {
-                        list.add(chessboard.squares[i][this.square.pozY]);
+                        moves.add(chessboard.squares[i][this.square.pozY]);
                     }
                 }
                 else
@@ -148,7 +148,7 @@ public class Queen extends Piece
 
                     if (this.chessboard.kingBlack.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[i][this.square.pozY]))
                     {
-                        list.add(chessboard.squares[i][this.square.pozY]);
+                        moves.add(chessboard.squares[i][this.square.pozY]);
                     }
                 }
 
@@ -175,7 +175,7 @@ public class Queen extends Piece
 
                     if (this.chessboard.kingWhite.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[i][this.square.pozY]))
                     {
-                        list.add(chessboard.squares[i][this.square.pozY]);
+                        moves.add(chessboard.squares[i][this.square.pozY]);
                     }
                 }
                 else
@@ -183,7 +183,7 @@ public class Queen extends Piece
 
                     if (this.chessboard.kingBlack.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[i][this.square.pozY]))
                     {
-                        list.add(chessboard.squares[i][this.square.pozY]);
+                        moves.add(chessboard.squares[i][this.square.pozY]);
                     }
                 }
 
@@ -211,14 +211,14 @@ public class Queen extends Piece
 
                     if (this.chessboard.kingWhite.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[h][i]))
                     {
-                        list.add(chessboard.squares[h][i]);
+                        moves.add(chessboard.squares[h][i]);
                     }
                 }
                 else
                 {//or black
                     if (this.chessboard.kingBlack.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[h][i]))
                     {
-                        list.add(chessboard.squares[h][i]);
+                        moves.add(chessboard.squares[h][i]);
                     }
                 }
 
@@ -245,7 +245,7 @@ public class Queen extends Piece
 
                     if (this.chessboard.kingWhite.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[h][i]))
                     {
-                        list.add(chessboard.squares[h][i]);
+                        moves.add(chessboard.squares[h][i]);
                     }
                 }
                 else
@@ -253,7 +253,7 @@ public class Queen extends Piece
 
                     if (this.chessboard.kingBlack.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[h][i]))
                     {
-                        list.add(chessboard.squares[h][i]);
+                        moves.add(chessboard.squares[h][i]);
                     }
                 }
 
@@ -280,7 +280,7 @@ public class Queen extends Piece
 
                     if (this.chessboard.kingWhite.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[h][i]))
                     {
-                        list.add(chessboard.squares[h][i]);
+                        moves.add(chessboard.squares[h][i]);
                     }
                 }
                 else
@@ -288,7 +288,7 @@ public class Queen extends Piece
 
                     if (this.chessboard.kingBlack.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[h][i]))
                     {
-                        list.add(chessboard.squares[h][i]);
+                        moves.add(chessboard.squares[h][i]);
                     }
                 }
 
@@ -315,7 +315,7 @@ public class Queen extends Piece
 
                     if (this.chessboard.kingWhite.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[h][i]))
                     {
-                        list.add(chessboard.squares[h][i]);
+                        moves.add(chessboard.squares[h][i]);
                     }
                 }
                 else
@@ -323,7 +323,7 @@ public class Queen extends Piece
 
                     if (this.chessboard.kingBlack.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[h][i]))
                     {
-                        list.add(chessboard.squares[h][i]);
+                        moves.add(chessboard.squares[h][i]);
                     }
                 }
 
@@ -340,6 +340,6 @@ public class Queen extends Piece
         }
         // ------------------------------------
 
-        return list;
+        return moves;
     }
 }

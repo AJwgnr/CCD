@@ -83,9 +83,9 @@ public class Pawn extends Piece {
     public ArrayList allMoves() {
         int immediateYCoordinate;
         int twoPositionsYCoordinate;
-        ArrayList list = new ArrayList();
+        ArrayList moves = new ArrayList();
 
-        if (player.goDown) {
+        if (player.isGoDown()) {
             immediateYCoordinate = square.pozY + 1;
             twoPositionsYCoordinate = square.pozY + 2;
         } else {
@@ -94,28 +94,28 @@ public class Pawn extends Piece {
         }
 
         if (isout(immediateYCoordinate, immediateYCoordinate)) {
-            return list;
+            return moves;
         }
 
-        list.addAll(regularMove(immediateYCoordinate));
-        if (player.goDown && square.pozY == 1 || !player.goDown && square.pozY == 6)
+        moves.addAll(regularMove(immediateYCoordinate));
+        if (player.isGoDown() && square.pozY == 1 || !player.isGoDown() && square.pozY == 6)
         {
-            list.addAll(regularMove(twoPositionsYCoordinate));
+            moves.addAll(regularMove(twoPositionsYCoordinate));
         }
 
         // Capture left
-        list.addAll(captureMove(square.pozX - 1, immediateYCoordinate));
+        moves.addAll(captureMove(square.pozX - 1, immediateYCoordinate));
 
         // Capture right
-        list.addAll(captureMove(square.pozX + 1, immediateYCoordinate));
+        moves.addAll(captureMove(square.pozX + 1, immediateYCoordinate));
 
         // EnPassant left
-        list.addAll(enPassantMove(square.pozX - 1, immediateYCoordinate));
+        moves.addAll(enPassantMove(square.pozX - 1, immediateYCoordinate));
 
         // EnPassant right
-        list.addAll(enPassantMove(square.pozX + 1, immediateYCoordinate));
+        moves.addAll(enPassantMove(square.pozX + 1, immediateYCoordinate));
 
-        return list;
+        return moves;
     }
 
     void promote(Piece newPiece) {

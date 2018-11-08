@@ -483,7 +483,7 @@ public class King extends Piece
         }
 
         // Pawn
-        if (this.player.goDown) //check if player "go" down or up
+        if (this.player.isGoDown()) //check if player "go" down or up
         {//System.out.println("go down");
             newX = s.pozX - 1;
             newY = s.pozY + 1;
@@ -572,7 +572,7 @@ public class King extends Piece
     private ArrayList immediateMoves()
     {
         Square possibleNewPosition;
-        ArrayList list = new ArrayList();
+        ArrayList moves = new ArrayList();
 
         for (int x = this.square.pozX - 1; x <= this.square.pozX + 1; x++)
         {
@@ -586,12 +586,12 @@ public class King extends Piece
 
                     if (this.checkPiece(x, y) && isSafe(possibleNewPosition))
                     {
-                        list.add(possibleNewPosition);
+                        moves.add(possibleNewPosition);
                     }
                 }
             }
         }
-        return list;
+        return moves;
     }
 
     private ArrayList possibleCastlings()

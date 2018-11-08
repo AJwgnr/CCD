@@ -61,7 +61,7 @@ public class Rook extends Piece
     @Override
     public ArrayList allMoves()
     {
-        ArrayList list = new ArrayList();
+        ArrayList moves = new ArrayList();
 
         for (int i = this.square.pozY + 1; i <= 7; ++i)
         {//up
@@ -74,7 +74,7 @@ public class Rook extends Piece
 
                     if (this.chessboard.kingWhite.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[this.square.pozX][i]))
                     {
-                        list.add(chessboard.squares[this.square.pozX][i]);
+                        moves.add(chessboard.squares[this.square.pozX][i]);
                     }
                 }
                 else
@@ -82,7 +82,7 @@ public class Rook extends Piece
 
                     if (this.chessboard.kingBlack.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[this.square.pozX][i]))
                     {
-                        list.add(chessboard.squares[this.square.pozX][i]);
+                        moves.add(chessboard.squares[this.square.pozX][i]);
                     }
                 }
 
@@ -109,7 +109,7 @@ public class Rook extends Piece
 
                     if (this.chessboard.kingWhite.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[this.square.pozX][i]))
                     {
-                        list.add(chessboard.squares[this.square.pozX][i]);
+                        moves.add(chessboard.squares[this.square.pozX][i]);
                     }
                 }
                 else
@@ -117,7 +117,7 @@ public class Rook extends Piece
 
                     if (this.chessboard.kingBlack.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[this.square.pozX][i]))
                     {
-                        list.add(chessboard.squares[this.square.pozX][i]);
+                        moves.add(chessboard.squares[this.square.pozX][i]);
                     }
                 }
 
@@ -143,7 +143,7 @@ public class Rook extends Piece
 
                     if (this.chessboard.kingWhite.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[i][this.square.pozY]))
                     {
-                        list.add(chessboard.squares[i][this.square.pozY]);
+                        moves.add(chessboard.squares[i][this.square.pozY]);
                     }
                 }
                 else
@@ -151,7 +151,7 @@ public class Rook extends Piece
 
                     if (this.chessboard.kingBlack.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[i][this.square.pozY]))
                     {
-                        list.add(chessboard.squares[i][this.square.pozY]);
+                        moves.add(chessboard.squares[i][this.square.pozY]);
                     }
                 }
 
@@ -177,7 +177,7 @@ public class Rook extends Piece
 
                     if (this.chessboard.kingWhite.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[i][this.square.pozY]))
                     {
-                        list.add(chessboard.squares[i][this.square.pozY]);
+                        moves.add(chessboard.squares[i][this.square.pozY]);
                     }
                 }
                 else
@@ -185,7 +185,7 @@ public class Rook extends Piece
 
                     if (this.chessboard.kingBlack.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[i][this.square.pozY]))
                     {
-                        list.add(chessboard.squares[i][this.square.pozY]);
+                        moves.add(chessboard.squares[i][this.square.pozY]);
                     }
                 }
 
@@ -200,6 +200,6 @@ public class Rook extends Piece
             }
         }
 
-        return list;
+        return moves;
     }
 }
