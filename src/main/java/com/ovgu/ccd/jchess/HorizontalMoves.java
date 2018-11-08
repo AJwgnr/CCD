@@ -24,7 +24,7 @@ public class HorizontalMoves {
             Square nextPosition = board.squares[i][square.pozY];
             if (!piece.canMoveTo(nextPosition)) { break; }
             if (validMove(nextPosition)) { moves.add(nextPosition); }
-            if (piece.otherOwner(i, square.pozY)) { break; }
+            if (piece.otherOwner(nextPosition.piece)) { break; }
         }
 
         //right
@@ -33,7 +33,7 @@ public class HorizontalMoves {
             Square nextPosition = board.squares[i][square.pozY];
             if (!piece.canMoveTo(nextPosition)) { break; }
             if (validMove(nextPosition)) { moves.add(nextPosition); }
-            if (piece.otherOwner(i, square.pozY)) { break; }
+            if (piece.otherOwner(nextPosition.piece)) { break; }
         }
         return moves;
     }

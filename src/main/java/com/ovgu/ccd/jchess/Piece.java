@@ -161,23 +161,10 @@ public abstract class Piece
         return false;
     }
 
-    /** Method check if piece has other owner than calling piece
-     * @param x x position on chessboard
-     * @param y y position on chessboard
-     * @return true if owner(player) is different
-     * */
-    protected boolean otherOwner(int x, int y)
+    protected boolean otherOwner(Piece otherPiece)
     {
-        Square sq = chessboard.squares[x][y];
-        if (sq.piece == null)
-        {
-            return false;
-        }
-        if (this.getPlayer() != sq.piece.getPlayer())
-        {
-            return true;
-        }
-        return false;
+        if (otherPiece == null) { return false; }
+        return player != otherPiece.getPlayer();
     }
 
     public String getSymbol()

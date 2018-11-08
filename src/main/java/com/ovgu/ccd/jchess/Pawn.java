@@ -141,7 +141,7 @@ public class Pawn extends Piece {
         if (isout(nextXCoordinate, nextYCoordinate)) { return list; }
 
         Square nextPosition = chessboard.squares[nextXCoordinate][nextYCoordinate];
-        if (canMoveTo(nextPosition) && otherOwner(nextXCoordinate, nextYCoordinate)
+        if (canMoveTo(nextPosition) && otherOwner(nextPosition.piece)
             && chessboard.myKing(getPlayer().color).willBeSafeWhenMoveOtherPiece(square, nextPosition))
         {
             list.add(nextPosition);
@@ -157,7 +157,7 @@ public class Pawn extends Piece {
 
         Square nextPosition = chessboard.squares[nextXCoordinate][nextYCoordinate];
         Square otherPiecePosition = chessboard.squares[nextXCoordinate][square.pozY];
-        if (otherPiecePosition.piece != null && otherOwner(otherPiecePosition.pozX, otherPiecePosition.pozY)
+        if (otherPiecePosition.piece != null && otherOwner(otherPiecePosition.piece)
                 && !otherPiecePosition.piece.name.equals("King")
                 && chessboard.myKing(getPlayer().color).willBeSafeWhenMoveOtherPiece(square, nextPosition)
                 && chessboard.twoSquareMovedPawn != null
