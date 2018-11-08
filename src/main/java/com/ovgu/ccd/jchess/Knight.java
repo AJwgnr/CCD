@@ -93,7 +93,9 @@ public class Knight extends Piece
     }
 
     private boolean validMove(int newX, int newY) {
-        return (!isout(newX, newY) && canMoveTo(newX, newY)
-                && (chessboard.myKing(getPlayer().color).willBeSafeWhenMoveOtherPiece(square, chessboard.squares[newX][newY])));
+        if (isout(newX, newY)) { return false; }
+
+        Square nextPosition = chessboard.squares[newX][newY];
+        return (canMoveTo(nextPosition) && (chessboard.myKing(getPlayer().color).willBeSafeWhenMoveOtherPiece(square, nextPosition)));
     }
 }

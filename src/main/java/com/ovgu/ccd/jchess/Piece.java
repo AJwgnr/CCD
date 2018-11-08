@@ -147,14 +147,9 @@ public abstract class Piece
         return false;
     }
 
-    /**
-     * @param x y position on chessboard
-     * @param y  y position on chessboard
-     * @return true if can move, false otherwise
-     * */
-    protected boolean canMoveTo(int x, int y)
+    protected boolean canMoveTo(Square position)
     {
-        Piece piece = chessboard.squares[x][y].piece;
+        Piece piece = position.piece;
         if (piece != null && piece.name.equals("King"))
         {
             return false;

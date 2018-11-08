@@ -584,7 +584,7 @@ public class King extends Piece
 
                     if (this.square == possibleNewPosition) { continue; }
 
-                    if (this.canMoveTo(x, y) && isSafe(possibleNewPosition))
+                    if (this.canMoveTo(possibleNewPosition) && isSafe(possibleNewPosition))
                     {
                         moves.add(possibleNewPosition);
                     }
