@@ -15,16 +15,15 @@
 
 package com.ovgu.ccd.jchess;
 
+import com.ovgu.ccd.view.JChessView;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
-
-import java.util.ResourceBundle;
 
 /**
  * The main class of the application.
  */
 public class JChessApp extends SingleFrameApplication {
-     static JChessView jcv;
+     public static JChessView jcv;
     /**
      * At startup create and show the main frame of the application.
      */

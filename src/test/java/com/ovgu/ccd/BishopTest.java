@@ -1,8 +1,8 @@
 package com.ovgu.ccd;
 
-import com.ovgu.ccd.jchess.Bishop;
-import com.ovgu.ccd.jchess.Chessboard;
-import com.ovgu.ccd.jchess.Player;
+import com.ovgu.ccd.pieces.Bishop;
+import com.ovgu.ccd.view.Chessboard;
+import com.ovgu.ccd.view.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
