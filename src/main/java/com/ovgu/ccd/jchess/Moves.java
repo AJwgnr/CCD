@@ -556,7 +556,7 @@ public class Moves extends AbstractTableModel
             boolean pieceFound = false;
             if(locMove.length() <= 3)
             {
-                Square[][] squares = this.game.chessboard.squares;
+                Square[][] squares = this.game.chessboard.getSquares();
                 xTo = locMove.charAt(from) - 97;//from ASCII
                 yTo = Chessboard.bottom - (locMove.charAt(from + 1) - 49);//from ASCII    
                 for(int i=0; i<squares.length && !pieceFound; i++)

@@ -22,11 +22,11 @@ public class RookTest {
         King blackKing = new King(board, blackPlayer);
         King whiteKing = new King(board, whitePlayer);
 
-        board.squares[4][7].setPiece(blackKing);
+        board.getSquare(4,7).setPiece(blackKing);
         board.kingBlack = blackKing;
 
         board.kingWhite = whiteKing;
-        board.squares[4][0].setPiece(whiteKing);
+        board.getSquare(4, 0).setPiece(whiteKing);
     }
 
     @Test
@@ -57,7 +57,7 @@ public class RookTest {
     @Test
     public void testAllMovesBottomLeftCorner() {
         Rook rook = new Rook(board, whitePlayer);
-        board.squares[0][0].setPiece(rook);
+        board.getSquare(0,0).setPiece(rook);
         List<Square> moves = rook.allMoves();
 
         assertEquals(10, moves.size());
@@ -102,15 +102,15 @@ public class RookTest {
         Pawn bottomPiece = new Pawn(board, blackPlayer);
         Pawn topPiece = new Pawn(board, blackPlayer);
 
-        board.squares[3][3].setPiece(rook);
-        board.squares[2][3].setPiece(leftMiddlePiece);
-        board.squares[2][2].setPiece(leftBottomPiece);
-        board.squares[2][4].setPiece(leftTopPiece);
-        board.squares[4][3].setPiece(rightMiddlePiece);
-        board.squares[4][2].setPiece(rightBottomPiece);
-        board.squares[4][4].setPiece(rightTopPiece);
-        board.squares[3][2].setPiece(bottomPiece);
-        board.squares[3][4].setPiece(topPiece);
+        board.getSquare(3, 3).setPiece(rook);
+        board.getSquare(2, 3).setPiece(leftMiddlePiece);
+        board.getSquare(2, 2).setPiece(leftBottomPiece);
+        board.getSquare(2, 4).setPiece(leftTopPiece);
+        board.getSquare(4, 3).setPiece(rightMiddlePiece);
+        board.getSquare(4, 2).setPiece(rightBottomPiece);
+        board.getSquare(4, 4).setPiece(rightTopPiece);
+        board.getSquare(3, 2).setPiece(bottomPiece);
+        board.getSquare(3, 4).setPiece(topPiece);
 
         List<Square> moves = rook.allMoves();
         assertEquals(4, moves.size());
@@ -139,7 +139,7 @@ public class RookTest {
                  0 1 2 3 4 5 6 7
         */
         Rook rook = new Rook(board, whitePlayer);
-        board.squares[3][3].setPiece(rook);
+        board.getSquare(3, 3).setPiece(rook);
         List<Square> moves = rook.allMoves();
 
         assertEquals(14, moves.size());

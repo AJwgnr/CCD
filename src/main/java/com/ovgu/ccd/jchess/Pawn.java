@@ -124,13 +124,13 @@ public class Pawn extends Piece {
 
     private ArrayList regularMove(Integer nextYCoordinate) {
         ArrayList list = new ArrayList();
-        Square nextPosition = chessboard.squares[square.pozX][nextYCoordinate];
+        Square nextPosition = chessboard.getSquare(square.pozX, nextYCoordinate);
 
         if (nextPosition.piece != null) {
             return list;
         }
-        if (chessboard.myKing(getPlayer().color).willBeSafeWhenMoveOtherPiece(square, chessboard.squares[square.pozX][nextYCoordinate])) {
-            list.add(chessboard.squares[square.pozX][nextYCoordinate]);
+        if (chessboard.myKing(getPlayer().color).willBeSafeWhenMoveOtherPiece(square, nextPosition)) {
+            list.add(nextPosition);
         }
         return list;
     }
@@ -140,7 +140,7 @@ public class Pawn extends Piece {
         ArrayList list = new ArrayList();
         if (outsideOfBoard(nextXCoordinate, nextYCoordinate)) { return list; }
 
-        Square nextPosition = chessboard.squares[nextXCoordinate][nextYCoordinate];
+        Square nextPosition = chessboard.getSquare(nextXCoordinate, nextYCoordinate);
         if (canMoveTo(nextPosition) && otherOwner(nextPosition.piece)
             && chessboard.myKing(getPlayer().color).willBeSafeWhenMoveOtherPiece(square, nextPosition))
         {
@@ -155,8 +155,8 @@ public class Pawn extends Piece {
         ArrayList list = new ArrayList();
         if (outsideOfBoard(nextXCoordinate, nextYCoordinate)) { return list; }
 
-        Square nextPosition = chessboard.squares[nextXCoordinate][nextYCoordinate];
-        Square otherPiecePosition = chessboard.squares[nextXCoordinate][square.pozY];
+        Square nextPosition = chessboard.getSquare(nextXCoordinate, nextYCoordinate);
+        Square otherPiecePosition = chessboard.getSquare(nextXCoordinate, square.pozY);
         if (otherPiecePosition.piece != null && otherOwner(otherPiecePosition.piece)
                 && !otherPiecePosition.piece.name.equals("King")
                 && chessboard.myKing(getPlayer().color).willBeSafeWhenMoveOtherPiece(square, nextPosition)

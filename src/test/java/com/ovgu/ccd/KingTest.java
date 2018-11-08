@@ -20,7 +20,7 @@ public class KingTest {
     @Before
     public void setup() {
         King blackKing = new King(board, blackPlayer);
-        board.squares[4][7].setPiece(blackKing);
+        board.getSquare(4, 7).setPiece(blackKing);
         board.kingBlack = blackKing;
     }
 
@@ -52,7 +52,7 @@ public class KingTest {
     public void testAllMovesMiddleBoard() {
         King whiteKing = new King(board, whitePlayer);
         board.kingWhite = whiteKing;
-        board.squares[3][3].setPiece(whiteKing);
+        board.getSquare(3, 3).setPiece(whiteKing);
         List<Square> moves = whiteKing.allMoves();
 
         assertEquals(8, moves.size());
@@ -76,7 +76,7 @@ public class KingTest {
     public void testAllMovesTopLeftCorner() {
         King whiteKing = new King(board, whitePlayer);
         board.kingWhite = whiteKing;
-        board.squares[0][7].setPiece(whiteKing);
+        board.getSquare(0, 7).setPiece(whiteKing);
         List<Square> moves = whiteKing.allMoves();
 
         assertEquals(3, moves.size());
@@ -109,13 +109,13 @@ public class KingTest {
         Bishop topPiece = new Bishop(board, whitePlayer);
         Knight bottomPiece = new Knight(board, whitePlayer);
         board.kingWhite = whiteKing;
-        board.squares[0][7].setPiece(whiteKing);
+        board.getSquare(0, 7).setPiece(whiteKing);
 
-        board.squares[3][3].setPiece(whiteKing);
-        board.squares[2][3].setPiece(leftPiece);
-        board.squares[3][4].setPiece(topPiece);
-        board.squares[4][3].setPiece(rightPiece);
-        board.squares[3][2].setPiece(bottomPiece);
+        board.getSquare(3, 3).setPiece(whiteKing);
+        board.getSquare(2, 3).setPiece(leftPiece);
+        board.getSquare(3, 4).setPiece(topPiece);
+        board.getSquare(4, 3).setPiece(rightPiece);
+        board.getSquare(3, 2).setPiece(bottomPiece);
 
         List<Square> moves = whiteKing.allMoves();
 

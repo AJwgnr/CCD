@@ -22,8 +22,8 @@ public class KnightTest {
     public void setup() {
         board.kingWhite = whiteKing;
         board.kingBlack = blackKing;
-        board.squares[4][0].setPiece(whiteKing);
-        board.squares[4][7].setPiece(blackKing);
+        board.getSquare(4, 0).setPiece(whiteKing);
+        board.getSquare(4, 7).setPiece(blackKing);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class KnightTest {
     @Test
     public void testAllMoves() {
         Knight knight = new Knight(board, whitePlayer);
-        board.squares[3][3].setPiece(knight);
+        board.getSquare(3, 3).setPiece(knight);
         List<Square> moves = knight.allMoves();
 
         assertEquals(8, moves.size());
@@ -75,7 +75,7 @@ public class KnightTest {
     @Test
     public void testAllMovesBottomLeftCorner() {
         Knight knight = new Knight(board, whitePlayer);
-        board.squares[0][0].setPiece(knight);
+        board.getSquare(0, 0).setPiece(knight);
         List<Square> moves = knight.allMoves();
 
         assertEquals(2, moves.size());
@@ -91,7 +91,7 @@ public class KnightTest {
     @Test
     public void testAllMovesTopLeftCorner() {
         Knight knight = new Knight(board, whitePlayer);
-        board.squares[0][7].setPiece(knight);
+        board.getSquare(0, 7).setPiece(knight);
         List<Square> moves = knight.allMoves();
 
         assertEquals(2, moves.size());
@@ -107,7 +107,7 @@ public class KnightTest {
     @Test
     public void testAllMovesTopRightCorner() {
         Knight knight = new Knight(board, whitePlayer);
-        board.squares[7][7].setPiece(knight);
+        board.getSquare(7, 7).setPiece(knight);
         List<Square> moves = knight.allMoves();
 
         assertEquals(2, moves.size());
@@ -123,7 +123,7 @@ public class KnightTest {
     @Test
     public void testAllMovesBottomRightCorner() {
         Knight knight = new Knight(board, whitePlayer);
-        board.squares[7][0].setPiece(knight);
+        board.getSquare(7, 0).setPiece(knight);
         List<Square> moves = knight.allMoves();
 
         assertEquals(2, moves.size());
@@ -139,7 +139,7 @@ public class KnightTest {
     @Test
     public void testAllMovesWithOtherPiece() {
         Knight knight = new Knight(board, whitePlayer);
-        board.squares[2][1].setPiece(knight);
+        board.getSquare(2, 1).setPiece(knight);
         List<Square> moves = knight.allMoves();
 
         assertEquals(5, moves.size());

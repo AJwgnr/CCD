@@ -23,8 +23,8 @@ public class BishopTest {
     public void setup() {
         board.kingWhite = whiteKing;
         board.kingBlack = blackKing;
-        board.squares[4][0].setPiece(whiteKing);
-        board.squares[4][7].setPiece(blackKing);
+        board.getSquare(4, 0).setPiece(whiteKing);
+        board.getSquare(4, 7).setPiece(blackKing);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class BishopTest {
     @Test
     public void testAllMovesMiddleBoard() {
         Bishop bishop = new Bishop(board, whitePlayer);
-        board.squares[3][3].setPiece(bishop);
+        board.getSquare(3, 3).setPiece(bishop);
         List<Square> moves = bishop.allMoves();
 
         assertEquals(13, moves.size());
@@ -82,7 +82,7 @@ public class BishopTest {
     @Test
     public void testAllMovesTopLeftCorner() {
         Bishop bishop = new Bishop(board, whitePlayer);
-        board.squares[0][7].setPiece(bishop);
+        board.getSquare(0, 7).setPiece(bishop);
         List<Square> moves = bishop.allMoves();
 
         assertEquals(7, moves.size());
@@ -119,11 +119,11 @@ public class BishopTest {
         Bishop bottomRightPiece = new Bishop(board, whitePlayer);
         Knight bottomLeftPiece = new Knight(board, whitePlayer);
 
-        board.squares[3][3].setPiece(bishop);
-        board.squares[1][5].setPiece(topLeftPiece);
-        board.squares[5][5].setPiece(topRightPiece);
-        board.squares[5][1].setPiece(bottomRightPiece);
-        board.squares[1][1].setPiece(bottomLeftPiece);
+        board.getSquare(3, 3).setPiece(bishop);
+        board.getSquare(1, 5).setPiece(topLeftPiece);
+        board.getSquare(5, 5).setPiece(topRightPiece);
+        board.getSquare(5, 1).setPiece(bottomRightPiece);
+        board.getSquare(1, 1).setPiece(bottomLeftPiece);
 
         List<Square> moves = bishop.allMoves();
 

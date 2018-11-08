@@ -21,7 +21,7 @@ public class VerticalMoves {
         //up
         for (int i = square.pozY + 1; i <= 7; ++i)
         {
-            Square nextPosition = board.squares[square.pozX][i];
+            Square nextPosition = board.getSquare(square.pozX, i);
             if (!piece.canMoveTo(nextPosition)) { break; }
             if (validMove(nextPosition)) { moves.add(nextPosition); }
             if (piece.otherOwner(nextPosition.piece)) { break; }
@@ -30,7 +30,7 @@ public class VerticalMoves {
         //down
         for (int i = square.pozY - 1; i >= 0; --i)
         {
-            Square nextPosition = board.squares[square.pozX][i];
+            Square nextPosition = board.getSquare(square.pozX, i);
             if (!piece.canMoveTo(nextPosition)) { break; }
             if (validMove(nextPosition)) { moves.add(nextPosition); }
             if (piece.otherOwner(nextPosition.piece)) { break; }

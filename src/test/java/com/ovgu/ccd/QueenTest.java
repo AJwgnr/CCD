@@ -22,11 +22,11 @@ public class QueenTest {
         King blackKing = new King(board, blackPlayer);
         King whiteKing = new King(board, whitePlayer);
 
-        board.squares[4][7].setPiece(blackKing);
+        board.getSquare(4, 7).setPiece(blackKing);
         board.kingBlack = blackKing;
 
         board.kingWhite = whiteKing;
-        board.squares[4][0].setPiece(whiteKing);
+        board.getSquare(4, 0).setPiece(whiteKing);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class QueenTest {
                  0 1 2 3 4 5 6 7
         */
         Queen queen = new Queen(board, whitePlayer);
-        board.squares[3][3].setPiece(queen);
+        board.getSquare(3, 3).setPiece(queen);
         List<Square> moves = queen.allMoves();
 
         assertEquals(27, moves.size());
@@ -108,7 +108,7 @@ public class QueenTest {
     @Test
     public void testAllMovesBottomLeftCorner() {
         Queen queen = new Queen(board, whitePlayer);
-        board.squares[0][0].setPiece(queen);
+        board.getSquare(0, 0).setPiece(queen);
         List<Square> moves = queen.allMoves();
 
         assertEquals(17, moves.size());
@@ -160,15 +160,15 @@ public class QueenTest {
         Pawn bottomPiece = new Pawn(board, blackPlayer);
         Pawn topPiece = new Pawn(board, blackPlayer);
 
-        board.squares[3][3].setPiece(queen);
-        board.squares[2][3].setPiece(leftMiddlePiece);
-        board.squares[2][2].setPiece(leftBottomPiece);
-        board.squares[2][4].setPiece(leftTopPiece);
-        board.squares[4][3].setPiece(rightMiddlePiece);
-        board.squares[4][2].setPiece(rightBottomPiece);
-        board.squares[4][4].setPiece(rightTopPiece);
-        board.squares[3][2].setPiece(bottomPiece);
-        board.squares[3][4].setPiece(topPiece);
+        board.getSquare(3, 3).setPiece(queen);
+        board.getSquare(2, 3).setPiece(leftMiddlePiece);
+        board.getSquare(2, 2).setPiece(leftBottomPiece);
+        board.getSquare(2, 4).setPiece(leftTopPiece);
+        board.getSquare(4, 3).setPiece(rightMiddlePiece);
+        board.getSquare(4, 2).setPiece(rightBottomPiece);
+        board.getSquare(4, 4).setPiece(rightTopPiece);
+        board.getSquare(3, 2).setPiece(bottomPiece);
+        board.getSquare(3, 4).setPiece(topPiece);
 
         List<Square> moves = queen.allMoves();
         assertEquals(8, moves.size());

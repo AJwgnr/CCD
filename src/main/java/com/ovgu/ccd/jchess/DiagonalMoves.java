@@ -21,7 +21,7 @@ public class DiagonalMoves {
         //left
         for (int x = square.pozX - 1, y = square.pozY + 1; !piece.outsideOfBoard(x, y); --x, ++y)
         {
-            Square nextPosition = board.squares[x][y];
+            Square nextPosition = board.getSquare(x, y);
             if (!piece.canMoveTo(nextPosition)) { break; }
             if (validMove(nextPosition)) { moves.add(nextPosition); }
             if (piece.otherOwner(nextPosition.piece)) { break; }
@@ -29,7 +29,7 @@ public class DiagonalMoves {
 
         for (int x = square.pozX - 1, y = square.pozY - 1; !piece.outsideOfBoard(x, y); --x, --y)
         {
-            Square nextPosition = board.squares[x][y];
+            Square nextPosition = board.getSquare(x, y);
             if (!piece.canMoveTo(nextPosition)) { break; }
             if (validMove(nextPosition)) { moves.add(nextPosition); }
             if (piece.otherOwner(nextPosition.piece)) { break; }
@@ -38,7 +38,7 @@ public class DiagonalMoves {
         //right
         for (int x = square.pozX + 1, y = square.pozY + 1; !piece.outsideOfBoard(x, y); ++x, ++y)
         {
-            Square nextPosition = board.squares[x][y];
+            Square nextPosition = board.getSquare(x, y);
             if (!piece.canMoveTo(nextPosition)) { break; }
             if (validMove(nextPosition)) { moves.add(nextPosition); }
             if (piece.otherOwner(nextPosition.piece)) { break; }
@@ -46,7 +46,7 @@ public class DiagonalMoves {
 
         for (int x = square.pozX + 1, y = square.pozY - 1; !piece.outsideOfBoard(x, y); ++x, --y)
         {
-            Square nextPosition = board.squares[x][y];
+            Square nextPosition = board.getSquare(x, y);
             if (!piece.canMoveTo(nextPosition)) { break; }
             if (validMove(nextPosition)) { moves.add(nextPosition); }
             if (piece.otherOwner(nextPosition.piece)) { break; }

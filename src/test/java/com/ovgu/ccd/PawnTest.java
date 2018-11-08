@@ -23,8 +23,8 @@ public class PawnTest {
     public void setup() {
         board.kingWhite = whiteKing;
         board.kingBlack = blackKing;
-        board.squares[4][0].setPiece(whiteKing);
-        board.squares[4][7].setPiece(blackKing);
+        board.getSquare(4, 0).setPiece(whiteKing);
+        board.getSquare(4, 7).setPiece(blackKing);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class PawnTest {
     @Test
     public void testAllMovesMiddleBoard() {
         Pawn pawn = new Pawn(board, whitePlayer);
-        board.squares[3][3].setPiece(pawn);
+        board.getSquare(3, 3).setPiece(pawn);
 
         List<Square> moves = pawn.allMoves();
 
@@ -72,8 +72,8 @@ public class PawnTest {
         Pawn pawn = new Pawn(board, whitePlayer);
         Pawn blockingPawn = new Pawn(board, whitePlayer);
 
-        board.squares[3][3].setPiece(pawn);
-        board.squares[3][2].setPiece(blockingPawn);
+        board.getSquare(3, 3).setPiece(pawn);
+        board.getSquare(3, 2).setPiece(blockingPawn);
 
         List<Square> moves = pawn.allMoves();
 
@@ -86,9 +86,9 @@ public class PawnTest {
         Pawn blockingPawnLeft = new Pawn(board, blackPlayer);
         Pawn blockingPawnRight = new Pawn(board, blackPlayer);
 
-        board.squares[3][3].setPiece(pawn);
-        board.squares[2][2].setPiece(blockingPawnLeft);
-        board.squares[4][2].setPiece(blockingPawnRight);
+        board.getSquare(3, 3).setPiece(pawn);
+        board.getSquare(2, 2).setPiece(blockingPawnLeft);
+        board.getSquare(4, 2).setPiece(blockingPawnRight);
 
         List<Square> moves = pawn.allMoves();
 
@@ -107,7 +107,7 @@ public class PawnTest {
     @Test
     public void testAllMovesInBorderLeft() {
         Pawn pawn = new Pawn(board, whitePlayer);;
-        board.squares[0][3].setPiece(pawn);
+        board.getSquare(0, 3).setPiece(pawn);
 
         List<Square> moves = pawn.allMoves();
 
@@ -121,7 +121,7 @@ public class PawnTest {
     @Test
     public void testAllMovesInBorderRight() {
         Pawn pawn = new Pawn(board, whitePlayer);;
-        board.squares[7][3].setPiece(pawn);
+        board.getSquare(7, 3).setPiece(pawn);
 
         List<Square> moves = pawn.allMoves();
 
@@ -135,7 +135,7 @@ public class PawnTest {
     @Test
     public void testAllMovesTwoJump() {
         Pawn pawn = new Pawn(board, whitePlayer);;
-        board.squares[3][6].setPiece(pawn);
+        board.getSquare(3, 6).setPiece(pawn);
 
         List<Square> moves = pawn.allMoves();
 
@@ -165,12 +165,12 @@ public class PawnTest {
         Pawn pawn = new Pawn(board, whitePlayer);;
         Pawn rightPawn = new Pawn(board, blackPlayer);;
 
-        board.squares[3][3].setPiece(pawn);
-        board.squares[4][1].setPiece(rightPawn);
+        board.getSquare(3, 3).setPiece(pawn);
+        board.getSquare(4, 1).setPiece(rightPawn);
 
         game.chessboard = board;
 
-        board.move(board.squares[4][1], board.squares[4][3]);
+        board.move(board.getSquare(4, 1), board.getSquare(4, 3));
         List<Square> moves = pawn.allMoves();
 
         assertEquals(2, moves.size());

@@ -65,29 +65,29 @@ public class Knight extends Piece
         int newX;
         int newY;
 
-        if (validMove(newX = this.square.pozX - 2, newY = this.square.pozY + 1))
-            moves.add(chessboard.squares[newX][newY]);
+        if (validMove(newX = square.pozX - 2, newY = square.pozY + 1))
+            moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = this.square.pozX - 1, newY = this.square.pozY + 2))
-            moves.add(chessboard.squares[newX][newY]);
+        if (validMove(newX = square.pozX - 1, newY = square.pozY + 2))
+            moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = this.square.pozX + 1, newY = this.square.pozY + 2))
-            moves.add(chessboard.squares[newX][newY]);
+        if (validMove(newX = square.pozX + 1, newY = square.pozY + 2))
+            moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = this.square.pozX + 2, newY = this.square.pozY + 1))
-            moves.add(chessboard.squares[newX][newY]);
+        if (validMove(newX = square.pozX + 2, newY = square.pozY + 1))
+            moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = this.square.pozX + 2, newY = this.square.pozY - 1))
-            moves.add(chessboard.squares[newX][newY]);
+        if (validMove(newX = square.pozX + 2, newY = square.pozY - 1))
+            moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = this.square.pozX + 1, newY = this.square.pozY - 2))
-            moves.add(chessboard.squares[newX][newY]);
+        if (validMove(newX = square.pozX + 1, newY = square.pozY - 2))
+            moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = this.square.pozX - 1, newY = this.square.pozY - 2))
-            moves.add(chessboard.squares[newX][newY]);
+        if (validMove(newX = square.pozX - 1, newY = square.pozY - 2))
+            moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = this.square.pozX - 2, newY = this.square.pozY - 1))
-            moves.add(chessboard.squares[newX][newY]);
+        if (validMove(newX = square.pozX - 2, newY = square.pozY - 1))
+            moves.add(chessboard.getSquare(newX, newY));
 
         return moves;
     }
@@ -95,7 +95,7 @@ public class Knight extends Piece
     private boolean validMove(int newX, int newY) {
         if (outsideOfBoard(newX, newY)) { return false; }
 
-        Square nextPosition = chessboard.squares[newX][newY];
+        Square nextPosition = chessboard.getSquare(newX, newY);
         return (canMoveTo(nextPosition) && (chessboard.myKing(getPlayer().color).willBeSafeWhenMoveOtherPiece(square, nextPosition)));
     }
 }
