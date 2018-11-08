@@ -93,13 +93,7 @@ public class Knight extends Piece
     }
 
     private boolean validMove(int newX, int newY) {
-        if (!isout(newX, newY) && checkPiece(newX, newY))
-        {
-            if (this.player.color == Player.colors.white && this.chessboard.kingWhite.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[newX][newY]))
-                return true;
-            if (this.player.color == Player.colors.black &&  this.chessboard.kingBlack.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[newX][newY]))
-                return true;
-        }
-        return false;
+        return (!isout(newX, newY) && checkPiece(newX, newY)
+                && (chessboard.myKing(player.color).willBeSafeWhenMoveOtherPiece(square, chessboard.squares[newX][newY])));
     }
 }

@@ -125,7 +125,7 @@ public class King extends Piece
         // Rook & Queen
         for (int i = s.pozY + 1; i <= 7; ++i) //up
         {
-            if (this.chessboard.squares[s.pozX][i].piece == null || this.chessboard.squares[s.pozX][i].piece == this) //if on this sqhuare isn't piece
+            if (chessboard.squares[s.pozX][i].piece == null || this.chessboard.squares[s.pozX][i].piece == this) //if on this sqhuare isn't piece
             {
                 continue;
             }

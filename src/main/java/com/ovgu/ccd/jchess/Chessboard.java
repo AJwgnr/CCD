@@ -880,4 +880,13 @@ public class Chessboard extends JPanel
         }//--endOf--drawPiecesOnSquares
         System.out.println(" |0|1|2|3|4|5|6|7|");
     }
+
+    public King myKing(Player.colors color)
+    {
+        if (color == Player.colors.white) {
+            return kingWhite;
+        } else {
+            return  kingBlack;
+        }
+    }
 }

@@ -107,15 +107,14 @@ public class Bishop extends Piece
     private boolean addMove(int posX, int posY)
     {
 
-        if (!this.checkPiece(posX, posY)) return false;
+        if (!checkPiece(posX, posY)) return false;
 
-        if (this.player.color == Player.colors.white && this.chessboard.kingWhite.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[posX][posY])
-                || this.player.color == Player.colors.black && this.chessboard.kingBlack.willBeSafeWhenMoveOtherPiece(this.square, chessboard.squares[posX][posY]))
+        if (chessboard.myKing(player.color).willBeSafeWhenMoveOtherPiece(square, chessboard.squares[posX][posY]))
         {
             return true;
         }
 
-        if (this.otherOwner(posX, posY)) return false;
+        if (otherOwner(posX, posY)) return false;
 
         return true;
     }
