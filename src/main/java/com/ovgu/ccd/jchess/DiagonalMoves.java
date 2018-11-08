@@ -1,5 +1,9 @@
 package com.ovgu.ccd.jchess;
 
+import com.ovgu.ccd.pieces.Piece;
+import com.ovgu.ccd.pieces.Square;
+import com.ovgu.ccd.view.Chessboard;
+
 import java.util.ArrayList;
 
 public class DiagonalMoves {
@@ -19,37 +23,37 @@ public class DiagonalMoves {
         Square square = piece.square;
 
         //left
-        for (int x = square.pozX - 1, y = square.pozY + 1; !piece.outsideOfBoard(x, y); --x, ++y)
+        for (int x = square.getPozX() - 1, y = square.getPozY() + 1; !piece.outsideOfBoard(x, y); --x, ++y)
         {
             Square nextPosition = board.getSquare(x, y);
             if (!piece.canMoveTo(nextPosition)) { break; }
             if (validMove(nextPosition)) { moves.add(nextPosition); }
-            if (piece.otherOwner(nextPosition.piece)) { break; }
+            if (piece.otherOwner(nextPosition.getPiece())) { break; }
         }
 
-        for (int x = square.pozX - 1, y = square.pozY - 1; !piece.outsideOfBoard(x, y); --x, --y)
+        for (int x = square.getPozX() - 1, y = square.getPozY() - 1; !piece.outsideOfBoard(x, y); --x, --y)
         {
             Square nextPosition = board.getSquare(x, y);
             if (!piece.canMoveTo(nextPosition)) { break; }
             if (validMove(nextPosition)) { moves.add(nextPosition); }
-            if (piece.otherOwner(nextPosition.piece)) { break; }
+            if (piece.otherOwner(nextPosition.getPiece())) { break; }
         }
 
         //right
-        for (int x = square.pozX + 1, y = square.pozY + 1; !piece.outsideOfBoard(x, y); ++x, ++y)
+        for (int x = square.getPozX() + 1, y = square.getPozY() + 1; !piece.outsideOfBoard(x, y); ++x, ++y)
         {
             Square nextPosition = board.getSquare(x, y);
             if (!piece.canMoveTo(nextPosition)) { break; }
             if (validMove(nextPosition)) { moves.add(nextPosition); }
-            if (piece.otherOwner(nextPosition.piece)) { break; }
+            if (piece.otherOwner(nextPosition.getPiece())) { break; }
         }
 
-        for (int x = square.pozX + 1, y = square.pozY - 1; !piece.outsideOfBoard(x, y); ++x, --y)
+        for (int x = square.getPozX() + 1, y = square.getPozY() - 1; !piece.outsideOfBoard(x, y); ++x, --y)
         {
             Square nextPosition = board.getSquare(x, y);
             if (!piece.canMoveTo(nextPosition)) { break; }
             if (validMove(nextPosition)) { moves.add(nextPosition); }
-            if (piece.otherOwner(nextPosition.piece)) { break; }
+            if (piece.otherOwner(nextPosition.getPiece())) { break; }
         }
 
         return moves;
