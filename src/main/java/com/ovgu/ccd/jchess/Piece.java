@@ -93,30 +93,6 @@ public abstract class Piece
         }
     }
 
-    void clean()
-    {
-    }
-
-    /** method check if Piece can move to given square
-     * @param square square where piece want to move (Square object)
-     * @param allmoves  all moves which can piece do
-     * */
-    boolean canMove(Square square, ArrayList allmoves)
-    {
-        //throw new UnsupportedOperationException("Not supported yet.");
-        ArrayList moves = allmoves;
-        for (Iterator it = moves.iterator(); it.hasNext();)
-        {
-            Square sq = (Square) it.next();//get next from iterator
-            if (sq == square)
-            {//if adress is the same
-                return true; //piece canMove
-            }
-        }
-        return false;//if not, piece cannot move
-    }
-
-
     void setImage()
     {
         if (this.getPlayer().color == this.getPlayer().color.black)
@@ -138,13 +114,9 @@ public abstract class Piece
      * @param y y position on chessboard
      * @return true if parameters are out of bounds (array)
      * */
-    protected boolean isout(int x, int y)
+    protected boolean outsideOfBoard(int x, int y)
     {
-        if (x < 0 || x > 7 || y < 0 || y > 7)
-        {
-            return true;
-        }
-        return false;
+        return (x < 0 || x > 7 || y < 0 || y > 7);
     }
 
     protected boolean canMoveTo(Square position)

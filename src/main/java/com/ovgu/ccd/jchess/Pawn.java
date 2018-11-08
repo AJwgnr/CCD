@@ -93,7 +93,7 @@ public class Pawn extends Piece {
             twoPositionsYCoordinate = square.pozY - 2;
         }
 
-        if (isout(immediateYCoordinate, immediateYCoordinate)) {
+        if (outsideOfBoard(immediateYCoordinate, immediateYCoordinate)) {
             return moves;
         }
 
@@ -138,7 +138,7 @@ public class Pawn extends Piece {
     private ArrayList captureMove(Integer nextXCoordinate, Integer nextYCoordinate)
     {
         ArrayList list = new ArrayList();
-        if (isout(nextXCoordinate, nextYCoordinate)) { return list; }
+        if (outsideOfBoard(nextXCoordinate, nextYCoordinate)) { return list; }
 
         Square nextPosition = chessboard.squares[nextXCoordinate][nextYCoordinate];
         if (canMoveTo(nextPosition) && otherOwner(nextPosition.piece)
@@ -153,7 +153,7 @@ public class Pawn extends Piece {
     private ArrayList enPassantMove(Integer nextXCoordinate, Integer nextYCoordinate)
     {
         ArrayList list = new ArrayList();
-        if (isout(nextXCoordinate, nextYCoordinate)) { return list; }
+        if (outsideOfBoard(nextXCoordinate, nextYCoordinate)) { return list; }
 
         Square nextPosition = chessboard.squares[nextXCoordinate][nextYCoordinate];
         Square otherPiecePosition = chessboard.squares[nextXCoordinate][square.pozY];
