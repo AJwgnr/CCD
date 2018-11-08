@@ -449,7 +449,7 @@ public class Chessboard extends JPanel
                 if (clearForwardHistory)
                 {
                     String color;
-                    if (end.piece.player.color == Player.colors.white)
+                    if (end.piece.getPlayer().color == Player.colors.white)
                     {
                         color = "W"; // promotionWindow was show with pieces in this color
                     }
@@ -462,33 +462,33 @@ public class Chessboard extends JPanel
 
                     if (newPiece.equals("Queen")) // transform pawn to queen
                     {
-                        Queen queen = new Queen(this, end.piece.player);
+                        Queen queen = new Queen(this, end.piece.getPlayer());
                         queen.chessboard = end.piece.chessboard;
-                        queen.player = end.piece.player;
+                        queen.setPlayer(end.piece.getPlayer());
                         queen.square = end.piece.square;
                         end.piece = queen;
                     }
                     else if (newPiece.equals("Rook")) // transform pawn to rook
                     {
-                        Rook rook = new Rook(this, end.piece.player);
+                        Rook rook = new Rook(this, end.piece.getPlayer());
                         rook.chessboard = end.piece.chessboard;
-                        rook.player = end.piece.player;
+                        rook.setPlayer(end.piece.getPlayer());
                         rook.square = end.piece.square;
                         end.piece = rook;
                     }
                     else if (newPiece.equals("Bishop")) // transform pawn to bishop
                     {
-                        Bishop bishop = new Bishop(this, end.piece.player);
+                        Bishop bishop = new Bishop(this, end.piece.getPlayer());
                         bishop.chessboard = end.piece.chessboard;
-                        bishop.player = end.piece.player;
+                        bishop.setPlayer(end.piece.getPlayer());
                         bishop.square = end.piece.square;
                         end.piece = bishop;
                     }
                     else // transform pawn to knight
                     {
-                        Knight knight = new Knight(this, end.piece.player);
+                        Knight knight = new Knight(this, end.piece.getPlayer());
                         knight.chessboard = end.piece.chessboard;
-                        knight.player = end.piece.player;
+                        knight.setPlayer(end.piece.getPlayer());
                         knight.square = end.piece.square;
                         end.piece = knight;
                     }

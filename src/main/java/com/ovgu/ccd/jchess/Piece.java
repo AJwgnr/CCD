@@ -38,7 +38,7 @@ public abstract class Piece
 
     Chessboard chessboard; // <-- this relations isn't in class diagram, but it's necessary :/
     public Square square;
-    public Player player;
+    private Player player;
     String name;
     protected String symbol;
     public static Image imageBlack;
@@ -50,7 +50,7 @@ public abstract class Piece
     Piece(Chessboard chessboard, Player player)
     {
         this.chessboard = chessboard;
-        this.player = player;
+        this.setPlayer(player);
         this.name = this.getClass().getSimpleName();
 
     }
@@ -119,7 +119,7 @@ public abstract class Piece
 
     void setImage()
     {
-        if (this.player.color == this.player.color.black)
+        if (this.getPlayer().color == this.getPlayer().color.black)
         {
             image = imageBlack;
         }
@@ -161,7 +161,7 @@ public abstract class Piece
         }
         Piece piece = chessboard.squares[x][y].piece;
         if (piece == null || //if this sqhuare is empty
-                piece.player != this.player) //or piece is another player
+                piece.getPlayer() != this.getPlayer()) //or piece is another player
         {
             return true;
         }
@@ -180,7 +180,7 @@ public abstract class Piece
         {
             return false;
         }
-        if (this.player != sq.piece.player)
+        if (this.getPlayer() != sq.piece.getPlayer())
         {
             return true;
         }
@@ -190,5 +190,18 @@ public abstract class Piece
     public String getSymbol()
     {
         return this.symbol;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Player.colors getColor()
+    {
+        return player.color;
     }
 }

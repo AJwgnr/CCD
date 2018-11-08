@@ -54,69 +54,14 @@ public class Bishop extends Piece
 
     /**
      * Annotation to superclass Piece changing pawns location
-     * @return  ArrayList with new possition of piece
+     * @return  ArrayList with new position of piece
      */
     @Override
-    public ArrayList allMoves()
-    {
+    public ArrayList allMoves() {
         ArrayList moves = new ArrayList();
-
-        // Top left
-        for (int h = this.square.pozX - 1, i = this.square.pozY + 1; !isout(h, i); --h, ++i)
-        {
-            if (validMove(h, i)) {
-                moves.add(chessboard.squares[h][i]);
-            } else {
-                break;
-            }
-        }
-
-        // Bottom left
-        for (int h = this.square.pozX - 1, i = this.square.pozY - 1; !isout(h, i); --h, --i)
-        {
-            if (validMove(h, i)) {
-                moves.add(chessboard.squares[h][i]);
-            } else {
-                break;
-            }
-        }
-
-        // Top right
-        for (int h = this.square.pozX + 1, i = this.square.pozY + 1; !isout(h, i); ++h, ++i)
-        {
-            if (validMove(h, i)) {
-                moves.add(chessboard.squares[h][i]);
-            } else {
-                break;
-            }
-        }
-
-        // Bottom right
-        for (int h = this.square.pozX + 1, i = this.square.pozY - 1; !isout(h, i); ++h, --i)
-        {
-            if (validMove(h, i)) {
-                moves.add(chessboard.squares[h][i]);
-            } else {
-                break;
-            }
-        }
+        moves.addAll(new DiagonalMoves(this, chessboard).all());
 
         return moves;
-    }
-
-    private boolean validMove(int posX, int posY)
-    {
-
-        if (!checkPiece(posX, posY)) return false;
-
-        if (chessboard.myKing(player.color).willBeSafeWhenMoveOtherPiece(square, chessboard.squares[posX][posY]))
-        {
-            return true;
-        }
-
-        if (otherOwner(posX, posY)) return false;
-
-        return true;
     }
 
 }

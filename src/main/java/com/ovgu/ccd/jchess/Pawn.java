@@ -85,7 +85,7 @@ public class Pawn extends Piece {
         int twoPositionsYCoordinate;
         ArrayList moves = new ArrayList();
 
-        if (player.isGoDown()) {
+        if (getPlayer().isGoDown()) {
             immediateYCoordinate = square.pozY + 1;
             twoPositionsYCoordinate = square.pozY + 2;
         } else {
@@ -98,7 +98,7 @@ public class Pawn extends Piece {
         }
 
         moves.addAll(regularMove(immediateYCoordinate));
-        if (player.isGoDown() && square.pozY == 1 || !player.isGoDown() && square.pozY == 6)
+        if (getPlayer().isGoDown() && square.pozY == 1 || !getPlayer().isGoDown() && square.pozY == 6)
         {
             moves.addAll(regularMove(twoPositionsYCoordinate));
         }
@@ -129,7 +129,7 @@ public class Pawn extends Piece {
         if (nextPosition.piece != null) {
             return list;
         }
-        if (chessboard.myKing(player.color).willBeSafeWhenMoveOtherPiece(square, chessboard.squares[square.pozX][nextYCoordinate])) {
+        if (chessboard.myKing(getPlayer().color).willBeSafeWhenMoveOtherPiece(square, chessboard.squares[square.pozX][nextYCoordinate])) {
             list.add(chessboard.squares[square.pozX][nextYCoordinate]);
         }
         return list;
@@ -142,7 +142,7 @@ public class Pawn extends Piece {
 
         Square nextPosition = chessboard.squares[nextXCoordinate][nextYCoordinate];
         if (checkPiece(nextXCoordinate, nextYCoordinate) && otherOwner(nextXCoordinate, nextYCoordinate)
-            && chessboard.myKing(player.color).willBeSafeWhenMoveOtherPiece(square, nextPosition))
+            && chessboard.myKing(getPlayer().color).willBeSafeWhenMoveOtherPiece(square, nextPosition))
         {
             list.add(nextPosition);
         }
@@ -159,7 +159,7 @@ public class Pawn extends Piece {
         Square otherPiecePosition = chessboard.squares[nextXCoordinate][square.pozY];
         if (otherPiecePosition.piece != null && otherOwner(otherPiecePosition.pozX, otherPiecePosition.pozY)
                 && !otherPiecePosition.piece.name.equals("King")
-                && chessboard.myKing(player.color).willBeSafeWhenMoveOtherPiece(square, nextPosition)
+                && chessboard.myKing(getPlayer().color).willBeSafeWhenMoveOtherPiece(square, nextPosition)
                 && chessboard.twoSquareMovedPawn != null
                 && otherPiecePosition == chessboard.twoSquareMovedPawn.square)
         {

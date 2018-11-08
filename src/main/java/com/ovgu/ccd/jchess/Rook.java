@@ -63,68 +63,8 @@ public class Rook extends Piece
     {
         ArrayList moves = new ArrayList();
 
-        moves.addAll(horizontalMoves());
-        moves.addAll(verticalMoves());
-
-        return moves;
-    }
-
-    private ArrayList horizontalMoves()
-    {
-        ArrayList moves = new ArrayList();
-        //left
-        for (int i = square.pozX - 1; i >= 0; --i)
-        {
-            if (!checkPiece(i, square.pozY)) { break; }
-            Square nextPosition = chessboard.squares[i][square.pozY];
-            if (chessboard.myKing(player.color).willBeSafeWhenMoveOtherPiece(square, nextPosition))
-            {
-                moves.add(nextPosition);
-            }
-            if (otherOwner(i, square.pozY)) { break; }
-        }
-
-        //right
-        for (int i = square.pozX + 1; i <= 7; ++i)
-        {
-            if (!checkPiece(i, square.pozY)) { break; }
-            Square nextPosition = chessboard.squares[i][square.pozY];
-            if (chessboard.myKing(player.color).willBeSafeWhenMoveOtherPiece(square, nextPosition))
-            {
-                moves.add(nextPosition);
-            }
-            if (otherOwner(i, square.pozY)) { break; }
-        }
-        return moves;
-    }
-
-    private ArrayList verticalMoves()
-    {
-        ArrayList moves = new ArrayList();
-
-        //up
-        for (int i = square.pozY + 1; i <= 7; ++i)
-        {
-            if (!checkPiece(square.pozX, i)) { break; }
-            Square nextPosition = chessboard.squares[square.pozX][i];
-            if (chessboard.myKing(player.color).willBeSafeWhenMoveOtherPiece(square, nextPosition))
-            {
-                moves.add(nextPosition);
-            }
-            if (otherOwner(square.pozX, i)) { break; }
-        }
-
-        //down
-        for (int i = square.pozY - 1; i >= 0; --i)
-        {
-            if (!checkPiece(square.pozX, i)) { break; }
-            Square nextPosition = chessboard.squares[square.pozX][i];
-            if (chessboard.myKing(player.color).willBeSafeWhenMoveOtherPiece(square, nextPosition))
-            {
-                moves.add(nextPosition);
-            }
-            if (otherOwner(square.pozX, i)) { break; }
-        }
+        moves.addAll(new HorizontalMoves(this, chessboard).all());
+        moves.addAll(new VerticalMoves(this, chessboard).all());
 
         return moves;
     }
