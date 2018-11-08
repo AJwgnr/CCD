@@ -21,7 +21,7 @@ public class DiagonalMoves {
         //left
         for (int x = square.pozX - 1, y = square.pozY + 1; !piece.isout(x, y); --x, ++y)
         {
-            if (!piece.checkPiece(x, y)) { break; }
+            if (!piece.canMoveTo(x, y)) { break; }
 
             Square nextPosition = board.squares[x][y];
             if (validMove(nextPosition)) { moves.add(nextPosition); }
@@ -30,7 +30,7 @@ public class DiagonalMoves {
 
         for (int x = square.pozX - 1, y = square.pozY - 1; !piece.isout(x, y); --x, --y)
         {
-            if (!piece.checkPiece(x, y)) { break; }
+            if (!piece.canMoveTo(x, y)) { break; }
 
             Square nextPosition = board.squares[x][y];
             if (validMove(nextPosition)) { moves.add(nextPosition); }
@@ -40,7 +40,7 @@ public class DiagonalMoves {
         //right
         for (int x = square.pozX + 1, y = square.pozY + 1; !piece.isout(x, y); ++x, ++y)
         {
-            if (!piece.checkPiece(x, y)) { break; }
+            if (!piece.canMoveTo(x, y)) { break; }
 
             Square nextPosition = board.squares[x][y];
             if (validMove(nextPosition)) { moves.add(nextPosition); }
@@ -49,7 +49,7 @@ public class DiagonalMoves {
 
         for (int x = square.pozX + 1, y = square.pozY - 1; !piece.isout(x, y); ++x, --y)
         {
-            if (!piece.checkPiece(x, y)) { break; }
+            if (!piece.canMoveTo(x, y)) { break; }
 
             Square nextPosition = board.squares[x][y];
             if (validMove(nextPosition)) { moves.add(nextPosition); }

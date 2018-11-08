@@ -141,7 +141,7 @@ public class Pawn extends Piece {
         if (isout(nextXCoordinate, nextYCoordinate)) { return list; }
 
         Square nextPosition = chessboard.squares[nextXCoordinate][nextYCoordinate];
-        if (checkPiece(nextXCoordinate, nextYCoordinate) && otherOwner(nextXCoordinate, nextYCoordinate)
+        if (canMoveTo(nextXCoordinate, nextYCoordinate) && otherOwner(nextXCoordinate, nextYCoordinate)
             && chessboard.myKing(getPlayer().color).willBeSafeWhenMoveOtherPiece(square, nextPosition))
         {
             list.add(nextPosition);

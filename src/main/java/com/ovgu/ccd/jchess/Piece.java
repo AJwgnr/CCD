@@ -152,16 +152,14 @@ public abstract class Piece
      * @param y  y position on chessboard
      * @return true if can move, false otherwise
      * */
-    protected boolean checkPiece(int x, int y)
+    protected boolean canMoveTo(int x, int y)
     {
-        if (chessboard.squares[x][y].piece != null
-                && chessboard.squares[x][y].piece.name.equals("King"))
+        Piece piece = chessboard.squares[x][y].piece;
+        if (piece != null && piece.name.equals("King"))
         {
             return false;
         }
-        Piece piece = chessboard.squares[x][y].piece;
-        if (piece == null || //if this sqhuare is empty
-                piece.getPlayer() != this.getPlayer()) //or piece is another player
+        if (piece == null || piece.getPlayer() != this.getPlayer())
         {
             return true;
         }

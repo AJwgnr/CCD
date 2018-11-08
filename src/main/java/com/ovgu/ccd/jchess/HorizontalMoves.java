@@ -21,7 +21,7 @@ public class HorizontalMoves {
         //left
         for (int i = square.pozX - 1; i >= 0; --i)
         {
-            if (!piece.checkPiece(i, square.pozY)) { break; }
+            if (!piece.canMoveTo(i, square.pozY)) { break; }
 
             Square nextPosition = board.squares[i][square.pozY];
             if (validMove(nextPosition)) { moves.add(nextPosition); }
@@ -31,7 +31,7 @@ public class HorizontalMoves {
         //right
         for (int i = square.pozX + 1; i <= 7; ++i)
         {
-            if (!piece.checkPiece(i, square.pozY)) { break; }
+            if (!piece.canMoveTo(i, square.pozY)) { break; }
 
             Square nextPosition = board.squares[i][square.pozY];
             if (validMove(nextPosition)) { moves.add(nextPosition); }
