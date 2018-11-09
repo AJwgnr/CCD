@@ -51,7 +51,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
     public Moves moves;
     public Chat chat;
 
-    Game()
+    public Game()
     {
         this.setLayout(null);
         this.moves = new Moves(this);
@@ -334,10 +334,10 @@ public class Game extends JPanel implements MouseListener, ComponentListener
     {
         try 
         {
-            chessboard.select(chessboard.squares[beginX][beginY]);
-            if (chessboard.activeSquare.piece.allMoves().indexOf(chessboard.squares[endX][endY]) != -1) //move
+            chessboard.select(chessboard.getSquare(beginX, beginY));
+            if (chessboard.activeSquare.piece.allMoves().indexOf(chessboard.getSquare(endX, endY)) != -1) //move
             {
-                chessboard.move(chessboard.squares[beginX][beginY], chessboard.squares[endX][endY]);
+                chessboard.move(chessboard.getSquare(beginX, beginY), chessboard.getSquare(endX, endY));
             }
             else
             {
@@ -478,14 +478,14 @@ public class Game extends JPanel implements MouseListener, ComponentListener
                     int x = event.getX();//get X position of mouse
                     int y = event.getY();//get Y position of mouse
 
-                    Square sq = chessboard.getSquare(x, y);
+                    Square sq = chessboard.getSquareConsideringLabels(x, y);
                     if ((sq == null && sq.piece == null && chessboard.activeSquare == null)
-                            || (this.chessboard.activeSquare == null && sq.piece != null && sq.piece.player != this.activePlayer))
+                            || (this.chessboard.activeSquare == null && sq.piece != null && sq.piece.getPlayer() != this.activePlayer))
                     {
                         return;
                     }
 
-                    if (sq.piece != null && sq.piece.player == this.activePlayer && sq != chessboard.activeSquare)
+                    if (sq.piece != null && sq.piece.getPlayer() == this.activePlayer && sq != chessboard.activeSquare)
                     {
                         chessboard.unselect();
                         chessboard.select(sq);
@@ -526,7 +526,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
                         switch (king.isCheckmatedOrStalemated())
                         {
                             case 1:
-                                this.endGame("Checkmate! " + king.player.color.toString() + " player lose!");
+                                this.endGame("Checkmate! " + king.getPlayer().color.toString() + " player lose!");
                                 break;
                             case 2:
                                 this.endGame("Stalemate! Draw!");
@@ -588,6 +588,11 @@ public class Game extends JPanel implements MouseListener, ComponentListener
 
     public void componentHidden(ComponentEvent e)
     {
+    }
+
+    public void setSettings(Settings settings)
+    {
+        this.settings = settings;
     }
 }
 
