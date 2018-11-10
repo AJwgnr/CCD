@@ -17,7 +17,7 @@
  * Authors:
  * Mateusz Sławomir Lach ( matlak, msl )
  */
-package com.ovgu.ccd.settings;
+package com.ovgu.ccd.applogic;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -37,11 +37,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import com.ovgu.ccd.jchess.JChessApp;
 import com.ovgu.ccd.server.Server;
-import com.ovgu.ccd.features.Client;
-import com.ovgu.ccd.view.Game;
-import com.ovgu.ccd.encryption.MD5;
+import com.ovgu.ccd.gui.Game;
 
 /**
  * Class responible for drawing Network Settings, when player want to start

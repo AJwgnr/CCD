@@ -18,7 +18,7 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.view;
+package com.ovgu.ccd.gui;
 
 import java.awt.*;
 import java.awt.Graphics;
@@ -28,10 +28,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JPanel;
 
-import com.ovgu.ccd.jchess.JChessApp;
+import com.ovgu.ccd.applogic.JChessApp;
 import com.ovgu.ccd.pieces.*;
-import com.ovgu.ccd.settings.Settings;
-import com.ovgu.ccd.view.Moves.castling;
+import com.ovgu.ccd.applogic.Settings;
+import com.ovgu.ccd.gui.Moves.castling;
 
 /** Class to represent chessboard. Chessboard is made from squares.
  * It is setting the squers of chessboard and sets the pieces(pawns)

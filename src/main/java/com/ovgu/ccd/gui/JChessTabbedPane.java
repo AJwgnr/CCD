@@ -18,10 +18,9 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.view;
+package com.ovgu.ccd.gui;
 
-import com.ovgu.ccd.jchess.JChessApp;
-import com.ovgu.ccd.windows.NewGameWindow;
+import com.ovgu.ccd.applogic.JChessApp;
 
 import javax.swing.*;
 import java.awt.*;

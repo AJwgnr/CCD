@@ -20,7 +20,7 @@
  */
 package com.ovgu.ccd.server;
 
-import com.ovgu.ccd.encryption.MD5;
+import com.ovgu.ccd.applogic.MD5;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

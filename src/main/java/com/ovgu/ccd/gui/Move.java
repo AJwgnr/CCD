@@ -16,11 +16,11 @@
 /*
  * Author: Mateusz Sławomir Lach ( matlak, msl )
  */
-package com.ovgu.ccd.view;
+package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
-import com.ovgu.ccd.view.Moves.castling;
+import com.ovgu.ccd.gui.Moves.castling;
 
 class Move
 {

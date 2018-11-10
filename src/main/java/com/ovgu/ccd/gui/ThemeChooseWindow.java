@@ -18,13 +18,10 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.windows;
+package com.ovgu.ccd.gui;
 
-import com.ovgu.ccd.Utilities.GlobalVariables;
-import com.ovgu.ccd.Utilities.Utility;
-import com.ovgu.ccd.jchess.JChessApp;
-import com.ovgu.ccd.settings.Settings;
-import com.ovgu.ccd.view.GUI;
+import com.ovgu.ccd.applogic.JChessApp;
+import com.ovgu.ccd.applogic.Settings;
 
 import java.awt.*;
 import javax.swing.*;
@@ -93,8 +90,7 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
         this.add(this.themesList);
         this.themesList.setSelectionMode(0);
         this.themesList.addListSelectionListener(this);
-        //Properties prp = GUI.getConfigFile();
-        Properties prp = GlobalVariables.CONFIG_FILE;
+        Properties prp = GUI.getConfigFile();
 
         this.gbl = new GridBagLayout();
         this.gbc = new GridBagConstraints();
@@ -141,8 +137,7 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
         {
             int element = this.themesList.getSelectedIndex();
             String name = this.themesList.getModel().getElementAt(element).toString();
-            //GUI.setConfigFile("THEME", name);
-            Utility.setConfigFile("THEME", name);
+            GUI.setConfigFile("THEME", name);
             System.out.println("HI 1 :: " + name);
             JOptionPane.showMessageDialog(this, Settings.lang("Changes will be visible after a restart!"));
             this.setVisible(false);

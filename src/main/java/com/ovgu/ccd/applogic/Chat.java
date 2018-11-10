@@ -18,7 +18,7 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.features;
+package com.ovgu.ccd.applogic;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

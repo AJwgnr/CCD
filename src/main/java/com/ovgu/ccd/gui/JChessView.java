@@ -13,14 +13,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ovgu.ccd.view;
+package com.ovgu.ccd.gui;
 
-import com.ovgu.ccd.features.JChessAboutBox;
-import com.ovgu.ccd.jchess.*;
-import com.ovgu.ccd.settings.Settings;
-import com.ovgu.ccd.windows.NewGameWindow;
-import com.ovgu.ccd.windows.PawnPromotionWindow;
-import com.ovgu.ccd.windows.ThemeChooseWindow;
+import com.ovgu.ccd.applogic.JChessApp;
+import com.ovgu.ccd.applogic.Settings;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
@@ -328,7 +324,7 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
         saveGameItem.addActionListener(this);
 
         //Doesnt Work -> TODO: Maybe this needs be changed
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(com.ovgu.ccd.jchess.JChessApp.class).getContext().getActionMap(JChessView.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(JChessApp.class).getContext().getActionMap(JChessView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);

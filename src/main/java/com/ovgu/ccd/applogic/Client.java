@@ -18,7 +18,7 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.features;
+package com.ovgu.ccd.applogic;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -30,8 +30,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import com.ovgu.ccd.server.Connection_info;
-import com.ovgu.ccd.settings.Settings;
-import com.ovgu.ccd.view.Game;
+import com.ovgu.ccd.gui.Game;
 
 /**
  * Class responsible for clients references:

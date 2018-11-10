@@ -13,8 +13,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ovgu.ccd.features;
+package com.ovgu.ccd.gui;
 
+import com.ovgu.ccd.applogic.JChessApp;
 import org.jdesktop.application.Action;
 
 import javax.swing.*;
@@ -57,13 +58,13 @@ public class JChessAboutBox extends JDialog {
         javax.swing.JLabel appHomepageLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(com.ovgu.ccd.jchess.JChessApp.class).getContext().getResourceMap(JChessAboutBox.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(JChessApp.class).getContext().getResourceMap(JChessAboutBox.class);
         setTitle(resourceMap.getString("title")); // NOI18N
         setModal(true);
         setName("aboutBox"); // NOI18N
         setResizable(false);
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(com.ovgu.ccd.jchess.JChessApp.class).getContext().getActionMap(JChessAboutBox.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(JChessApp.class).getContext().getActionMap(JChessAboutBox.class, this);
         closeButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
         closeButton.setName("closeButton"); // NOI18N
 

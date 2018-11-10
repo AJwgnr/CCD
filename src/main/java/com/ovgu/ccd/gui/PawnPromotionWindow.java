@@ -18,9 +18,7 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.windows;
-
-import com.ovgu.ccd.view.GUI;
+package com.ovgu.ccd.gui;
 
 import java.awt.*;
 import javax.swing.*;

@@ -18,11 +18,10 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.features;
+package com.ovgu.ccd.applogic;
 
-import com.ovgu.ccd.settings.Settings;
-import com.ovgu.ccd.view.Game;
-import com.ovgu.ccd.view.Player;
+import com.ovgu.ccd.gui.Game;
+import com.ovgu.ccd.gui.Player;
 
 import java.awt.*;
 import java.awt.image.*;

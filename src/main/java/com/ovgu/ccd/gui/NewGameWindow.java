@@ -18,11 +18,11 @@
  *
  * Created on 2009-10-20, 15:11:49
  */
-package com.ovgu.ccd.windows;
+package com.ovgu.ccd.gui;
 
-import com.ovgu.ccd.settings.DrawLocalSettings;
-import com.ovgu.ccd.settings.DrawNetworkSettings;
-import com.ovgu.ccd.settings.Settings;
+import com.ovgu.ccd.applogic.DrawLocalSettings;
+import com.ovgu.ccd.applogic.DrawNetworkSettings;
+import com.ovgu.ccd.applogic.Settings;
 
 import javax.swing.*;
 

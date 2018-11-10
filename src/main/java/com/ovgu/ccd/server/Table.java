@@ -22,8 +22,8 @@ package com.ovgu.ccd.server;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import com.ovgu.ccd.view.Player;
-import com.ovgu.ccd.settings.Settings;
+import com.ovgu.ccd.gui.Player;
+import com.ovgu.ccd.applogic.Settings;
 
 public class Table
 {//Table: {two player, one chessboard and x observers}

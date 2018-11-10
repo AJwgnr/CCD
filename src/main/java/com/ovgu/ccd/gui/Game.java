@@ -18,15 +18,11 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.view;
+package com.ovgu.ccd.gui;
 
-import com.ovgu.ccd.features.Chat;
-import com.ovgu.ccd.features.Client;
-import com.ovgu.ccd.features.GameClock;
-import com.ovgu.ccd.jchess.*;
+import com.ovgu.ccd.applogic.*;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Square;
-import com.ovgu.ccd.settings.Settings;
 
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
