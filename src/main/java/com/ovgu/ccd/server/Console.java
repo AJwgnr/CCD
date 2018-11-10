@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.ovgu.ccd.encryption.MD5;
+import com.ovgu.ccd.applogic.MD5;
 
 public class Console
 {

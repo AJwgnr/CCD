@@ -17,11 +17,10 @@
  * Authors:
  * Mateusz Sławomir Lach ( matlak, msl )
  */
-package com.ovgu.ccd.settings;
+package com.ovgu.ccd.applogic;
 
-import com.ovgu.ccd.jchess.JChessApp;
-import com.ovgu.ccd.view.Game;
-import com.ovgu.ccd.view.Player;
+import com.ovgu.ccd.gui.Game;
+import com.ovgu.ccd.gui.Player;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;

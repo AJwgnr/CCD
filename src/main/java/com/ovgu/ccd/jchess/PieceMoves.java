@@ -1,8 +1,8 @@
 package com.ovgu.ccd.jchess;
 
+import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
-import com.ovgu.ccd.view.Chessboard;
 
 public class PieceMoves {
 

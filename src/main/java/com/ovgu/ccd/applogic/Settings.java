@@ -18,9 +18,9 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.settings;
+package com.ovgu.ccd.applogic;
 
-import com.ovgu.ccd.view.Player;
+import com.ovgu.ccd.gui.Player;
 
 import java.io.Serializable;
 import java.util.Locale;

@@ -13,9 +13,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ovgu.ccd.jchess;
+package com.ovgu.ccd.applogic;
 
-import com.ovgu.ccd.view.JChessView;
+import com.ovgu.ccd.gui.JChessView;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 

@@ -18,7 +18,7 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.view;
+package com.ovgu.ccd.gui;
 
 import java.io.Serializable;
 

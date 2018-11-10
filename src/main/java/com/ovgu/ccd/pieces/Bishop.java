@@ -20,10 +20,11 @@
  */
 package com.ovgu.ccd.pieces;
 
+import com.ovgu.ccd.gui.Chessboard;
+import com.ovgu.ccd.gui.GUI;
+import com.ovgu.ccd.gui.Player;
 import com.ovgu.ccd.jchess.DiagonalMoves;
-import com.ovgu.ccd.view.Chessboard;
-import com.ovgu.ccd.view.GUI;
-import com.ovgu.ccd.view.Player;
+
 
 import java.util.ArrayList;
 

@@ -13,7 +13,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ovgu.ccd.settings;
+package com.ovgu.ccd.applogic;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.ovgu.ccd.view.Player.playerTypes;
+import com.ovgu.ccd.gui.Player.playerTypes;
 
 /**
  * Class responsible for server references: For running the server,

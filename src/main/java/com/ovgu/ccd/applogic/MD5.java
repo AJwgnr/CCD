@@ -18,7 +18,7 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.encryption;
+package com.ovgu.ccd.applogic;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

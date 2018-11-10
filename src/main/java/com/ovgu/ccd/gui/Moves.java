@@ -18,11 +18,11 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.view;
+package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
-import com.ovgu.ccd.settings.Settings;
+import com.ovgu.ccd.applogic.Settings;
 
 import java.util.ArrayList;
 import java.util.Stack;
