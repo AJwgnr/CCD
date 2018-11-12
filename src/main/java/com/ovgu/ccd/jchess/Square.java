@@ -26,16 +26,16 @@ package com.ovgu.ccd.jchess;
 public class Square
 {
 
-    int pozX; // 0-7, becouse 8 squares for row/column
-    int pozY; // 0-7, becouse 8 squares for row/column
-    public Piece piece = null;//object Piece on square (and extending Piecie)
+    public int pozX;
+    public int pozY;
+    public Piece piece = null;
 
-    Square(int pozX, int pozY, Piece piece)
+    public Square(int pozX, int pozY, Piece piece)
     {
         this.pozX = pozX;
         this.pozY = pozY;
         this.piece = piece;
-    }/*--endOf-Square--*/
+    }
 
 
     Square(Square square)
@@ -50,9 +50,19 @@ public class Square
         return new Square(square);
     }
 
-    void setPiece(Piece piece)
+    public void setPiece(Piece piece)
     {
         this.piece = piece;
         this.piece.square = this;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (!(o instanceof Square)) return false;
+
+        Square square = (Square) o;
+        return square.pozX == pozX && square.pozY == pozY && square.piece == piece;
+    }
+
 }
