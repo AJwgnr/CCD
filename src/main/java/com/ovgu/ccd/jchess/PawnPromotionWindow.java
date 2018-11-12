@@ -28,8 +28,6 @@ import java.awt.event.ActionEvent;
 /** Class responsible for promotion of a pawn.
  * When pawn reach the end of the chessboard it can be change to rook,
  * bishop, queen or knight. For what pawn is promoted decideds player.
- * @param parent Information about the current piece
- * @param color The player color
  */
 public class PawnPromotionWindow extends JDialog implements ActionListener
 {
@@ -42,6 +40,10 @@ public class PawnPromotionWindow extends JDialog implements ActionListener
     public String result;
     GridBagConstraints gbc;
 
+    /**
+     * @param parent Information about the current piece
+     * @param color The player color
+     */
     PawnPromotionWindow(Frame parent, String color)
     {
         super(parent);

@@ -26,7 +26,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /** Class to representing the full game time
- * @param game The current game
  */
 public class GameClock extends JPanel implements Runnable
 {
@@ -42,6 +41,9 @@ public class GameClock extends JPanel implements Runnable
     private BufferedImage background;
     private Graphics bufferedGraphics;
 
+    /**
+     * @param game The current game
+     */
     GameClock(Game game)
     {
         super();
