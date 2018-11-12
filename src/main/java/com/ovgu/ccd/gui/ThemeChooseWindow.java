@@ -23,36 +23,39 @@ package com.ovgu.ccd.gui;
 import com.ovgu.ccd.applogic.JChessApp;
 import com.ovgu.ccd.applogic.Settings;
 
-import java.awt.*;
 import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URI;
 import java.net.URL;
-import java.nio.file.*;
-import java.util.*;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Collections;
+import java.util.Properties;
+import java.util.Vector;
 
-public class ThemeChooseWindow extends JDialog implements ActionListener, ListSelectionListener
-{
+@SuppressWarnings("ALL")
+public class ThemeChooseWindow extends JDialog implements ActionListener, ListSelectionListener {
 
+    public String result;
     JList themesList;
     ImageIcon themePreview;
     GridBagLayout gbl;
-    public String result;
     GridBagConstraints gbc;
     JButton themePreviewButton;
     JButton okButton;
 
 
-    public ThemeChooseWindow(Frame parent) throws Exception
-    {
+    public ThemeChooseWindow(Frame parent) throws Exception {
         super(parent);
 
         Vector<String> themeNames = new Vector<String>();
-        try
-        {
+        try {
             // extract names of sub-directories in /theme
             URI uri = JChessApp.class.getResource("/theme").toURI();
             FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
@@ -67,9 +70,7 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
             });
             fileSystem.close();
 
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(Settings.lang("ERROR while loading the themes!"));
         }
@@ -94,12 +95,9 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
 
         this.gbl = new GridBagLayout();
         this.gbc = new GridBagConstraints();
-        try
-        {
+        try {
             this.themePreview = new ImageIcon(GUI.loadImage("Preview.png"));
-        }
-        catch (java.lang.NullPointerException exc)
-        {
+        } catch (java.lang.NullPointerException exc) {
             System.out.println("Cannot find preview image: " + exc);
             this.themePreview = new ImageIcon(JChessApp.class.getResource("theme/noPreview.png"));
             return;
@@ -119,8 +117,7 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
     }
 
     @Override
-    public void valueChanged(ListSelectionEvent event)
-    {
+    public void valueChanged(ListSelectionEvent event) {
         String element = this.themesList.getModel().getElementAt(this.themesList.getSelectedIndex()).toString();
         URL iconUrl = this.getClass().getResource("/theme" + "/" + element + "/images/Preview.png");
         Toolkit tk = this.getToolkit();
@@ -128,13 +125,12 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
         this.themePreviewButton.setIcon(this.themePreview);
     }
 
+
     /** Method which is changing a pawn into queen, rook, bishop or knight
      * @param evt Capt information about performed action
      */
-    public void actionPerformed(ActionEvent evt)
-    {
-        if (evt.getSource() == this.okButton)
-        {
+    public void actionPerformed(ActionEvent evt) {
+        if (evt.getSource() == this.okButton) {
             int element = this.themesList.getSelectedIndex();
             String name = this.themesList.getModel().getElementAt(element).toString();
             GUI.setConfigFile("THEME", name);

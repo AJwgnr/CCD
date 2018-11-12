@@ -20,15 +20,17 @@
  */
 package com.ovgu.ccd.gui;
 
-import java.awt.*;
 import javax.swing.*;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /** Class responsible for promotion of a pawn.
  * When pawn reach the end of the chessboard it can be change to rook,
  * bishop, queen or knight. For what pawn is promoted decideds player.
  */
+
+@SuppressWarnings("ALL")
 public class PawnPromotionWindow extends JDialog implements ActionListener
 {
 

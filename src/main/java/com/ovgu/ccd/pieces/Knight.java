@@ -29,14 +29,12 @@ import java.util.ArrayList;
 /**
  * Class to represent a chess pawn knight
  */
-public class Knight extends Piece
-{
+public class Knight extends Piece {
 
     public static short value = 3;
 
 
-    public Knight(Chessboard chessboard, Player player)
-    {
+    public Knight(Chessboard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "N";
         imageWhite = GUI.loadImage("Knight-W.png");
@@ -45,8 +43,9 @@ public class Knight extends Piece
     }
 
     /**
-     *  Annotation to superclass Piece changing pawns location
-     * @return  ArrayList with new possition of pawn
+     * Annotation to superclass Piece changing pawns location
+     *
+     * @return ArrayList with new possition of pawn
      */
     @Override
     public ArrayList allMoves()

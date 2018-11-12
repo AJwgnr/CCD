@@ -33,26 +33,23 @@ import java.util.ArrayList;
 /**
  * Class to represent a chess pawn rook
  * Rook can move:
- *       |_|_|_|X|_|_|_|_|7
-|_|_|_|X|_|_|_|_|6
-|_|_|_|X|_|_|_|_|5
-|_|_|_|X|_|_|_|_|4
-|X|X|X|B|X|X|X|X|3
-|_|_|_|X|_|_|_|_|2
-|_|_|_|X|_|_|_|_|1
-|_|_|_|X|_|_|_|_|0
-0 1 2 3 4 5 6 7
- *
+ * |_|_|_|X|_|_|_|_|7
+ * |_|_|_|X|_|_|_|_|6
+ * |_|_|_|X|_|_|_|_|5
+ * |_|_|_|X|_|_|_|_|4
+ * |X|X|X|B|X|X|X|X|3
+ * |_|_|_|X|_|_|_|_|2
+ * |_|_|_|X|_|_|_|_|1
+ * |_|_|_|X|_|_|_|_|0
+ * 0 1 2 3 4 5 6 7
  */
 
-public class Rook extends Piece
-{
+public class Rook extends Piece {
 
-    boolean wasMotion = false;
     public static short value = 5;
+    boolean wasMotion = false;
 
-    public Rook(Chessboard chessboard, Player player)
-    {
+    public Rook(Chessboard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "R";
         imageWhite = GUI.loadImage("Rook-W.png");
@@ -79,11 +76,11 @@ public class Rook extends Piece
 
     // --changes
 
-    public void setWasMotion(boolean wasMotion) {
-        this.wasMotion = wasMotion;
-    }
-
     public boolean isWasMotion() {
         return wasMotion;
+    }
+
+    public void setWasMotion(boolean wasMotion) {
+        this.wasMotion = wasMotion;
     }
 }

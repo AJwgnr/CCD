@@ -22,23 +22,21 @@ package com.ovgu.ccd.gui;
 
 import java.awt.*;
 import java.io.*;
-import java.net.*;
-
+import java.net.URL;
 import java.util.Properties;
 
-/** Class representing the game interface which is seen by a player and
+/**
+ * Class representing the game interface which is seen by a player and
  * where are located available for player options, current games and where
  * can he start a new game (load it or save it)
  */
-public class GUI
-{
+public class GUI {
 
-    public Game game;
     static final public String CONFIG_FILE_PATH = "config.txt";
     static final public Properties CONFIG_FILE = GUI.getConfigFile();
+    public Game game;
 
-    public GUI()
-    {
+    public GUI() {
         this.game = new Game();
         //this.drawGUI();
     }
@@ -48,22 +46,18 @@ public class GUI
      * @returns  : image or null if cannot load
      * */
 
-    public static Image loadImage(String name)
-    {
+    public static Image loadImage(String name) {
         Image img = null;
         URL url = null;
         Toolkit tk = Toolkit.getDefaultToolkit();
-        try
-        {
+        try {
             Properties prop = GUI.getConfigFile();
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
             System.out.println("Load Image from Theme: " + prop.getProperty("THEME"));
-            URL imageLink =  loader.getResource("theme/" + prop.getProperty("THEME", "default") + "/images/" + name);
+            URL imageLink = loader.getResource("theme/" + prop.getProperty("THEME", "default") + "/images/" + name);
             img = tk.getImage(imageLink);
 
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("some error loading image!");
             e.printStackTrace();
         }
@@ -72,18 +66,17 @@ public class GUI
 
 
     // TODO : Add Validity check
-    static boolean themeIsValid(String name)
-    {
+    static boolean themeIsValid(String name) {
         return true;
     }
 
     public static Properties getConfigFile() {
         Properties prop = new Properties();
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        try(InputStream resourceStream = loader.getResourceAsStream(CONFIG_FILE_PATH)) {
+        try (InputStream resourceStream = loader.getResourceAsStream(CONFIG_FILE_PATH)) {
             prop.load(resourceStream);
             System.out.println("Main Config File Loaded!");
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("Main properties file not found.");
             e.printStackTrace();
         } catch (IOException e) {

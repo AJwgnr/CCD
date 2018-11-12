@@ -24,8 +24,6 @@ package com.ovgu.ccd.pieces;
  * Class to represent a chessboard square
  */
 public class Square {
-
-
     int pozX;
     int pozY;
     Piece piece = null;
@@ -55,7 +53,6 @@ public class Square {
             this.piece.square = this;
         }
     }
-
 
     @Override
     public boolean equals(Object o) {

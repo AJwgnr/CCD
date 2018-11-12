@@ -26,16 +26,16 @@ package com.ovgu.ccd.pieces;
  * When king is in danger by the opponent then it's a Checked, and when have
  * no other escape then stay on a square "in danger" by the opponent
  * then it's a CheckedMate, and the game is over.
- *
- *       |_|_|_|_|_|_|_|_|7
-        |_|_|_|_|_|_|_|_|6
-        |_|_|_|_|_|_|_|_|5
-        |_|_|X|X|X|_|_|_|4
-        |_|_|X|K|X|_|_|_|3
-        |_|_|X|X|X|_|_|_|2
-        |_|_|_|_|_|_|_|_|1
-        |_|_|_|_|_|_|_|_|0
-        0 1 2 3 4 5 6 7
+ * <p>
+ * |_|_|_|_|_|_|_|_|7
+ * |_|_|_|_|_|_|_|_|6
+ * |_|_|_|_|_|_|_|_|5
+ * |_|_|X|X|X|_|_|_|4
+ * |_|_|X|K|X|_|_|_|3
+ * |_|_|X|X|X|_|_|_|2
+ * |_|_|_|_|_|_|_|_|1
+ * |_|_|_|_|_|_|_|_|0
+ * 0 1 2 3 4 5 6 7
  */
 
 import com.ovgu.ccd.gui.Chessboard;
@@ -72,7 +72,7 @@ public class King extends Piece
         list.addAll(immediateMoves());
         list.addAll(possibleCastlings());
 
-       return list;
+        return list;
     }
 
     /** Method to check is the king is checked
@@ -573,6 +573,7 @@ public class King extends Piece
         return ret;
     }
 
+
     private ArrayList immediateMoves()
     {
         Square possibleNewPosition;
@@ -614,7 +615,7 @@ public class King extends Piece
     private boolean leftCastlingPossible()
     {
         if (chessboard.getSquare(0, square.pozY).piece == null ||
-            !chessboard.getSquare(0, square.pozY).piece.name.equals("Rook")) { return false; }
+                !chessboard.getSquare(0, square.pozY).piece.name.equals("Rook")) { return false; }
 
         Rook rook = (Rook) chessboard.getSquare(0, square.pozY).piece;
         if (!rook.wasMotion)
@@ -631,18 +632,17 @@ public class King extends Piece
         return true;
     }
 
-    private boolean rightCastlingPossible() {
+    private boolean rightCastlingPossible()
+    {
         if (chessboard.getSquare(7, square.pozY).piece == null ||
-                !chessboard.getSquare(7, square.pozY).piece.name.equals("Rook")) {
-            return false;
-        }
+                !chessboard.getSquare(7, square.pozY).piece.name.equals("Rook")) { return false; }
 
         Rook rook = (Rook) chessboard.getSquare(7, square.pozY).piece;
-        if (!rook.wasMotion) {
-            for (int i = square.pozX + 1; i < 7; i++) {
-                if (chessboard.getSquare(i, square.pozY).piece != null) {
-                    return false;
-                }
+        if (!rook.wasMotion)
+        {
+            for (int i = square.pozX + 1; i < 7; i++)
+            {
+                if (chessboard.getSquare(i, square.pozY).piece != null) { return false; }
             }
 
             Square kingsNextPosition = chessboard.getSquare(square.pozX + 2, square.pozY);
@@ -653,11 +653,10 @@ public class King extends Piece
         return true;
     }
 
-    public void setWasMotion(boolean wasMotion) {
-        this.wasMotion = wasMotion;
-    }
-
     public boolean isWasMotion() {
         return wasMotion;
+    }
+    public void setWasMotion(boolean wasMotion) {
+        this.wasMotion = wasMotion;
     }
 }

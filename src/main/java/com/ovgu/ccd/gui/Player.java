@@ -32,8 +32,12 @@ public class Player implements Serializable
     String name;
 
 
-    public void setGoDown(boolean goDown) {
-        this.goDown = goDown;
+    public colors getColor() {
+        return color;
+    }
+
+    public void setColor(colors color) {
+        this.color = color;
     }
 
     public enum colors
@@ -41,7 +45,7 @@ public class Player implements Serializable
 
         white, black
     }
-    public colors color;
+    private colors color;
 
     public enum playerTypes
     {
@@ -52,6 +56,14 @@ public class Player implements Serializable
 
     private boolean goDown;
 
+    public boolean isGoDown() {
+        return goDown;
+    }
+
+    public void setGoDown(boolean goDown) {
+        this.goDown = goDown;
+    }
+
     public Player()
     {
     }
@@ -59,7 +71,7 @@ public class Player implements Serializable
     public Player(String name, String color)
     {
         this.name = name;
-        this.color = colors.valueOf(color);
+        this.setColor(colors.valueOf(color));
         this.setGoDown(false);
     }
 
@@ -85,15 +97,5 @@ public class Player implements Serializable
     public void setType(playerTypes type)
     {
         this.playerType = type;
-    }
-
-    // modification
-
-    public colors getColor() {
-        return color;
-    }
-
-    public boolean isGoDown() {
-        return goDown;
     }
 }

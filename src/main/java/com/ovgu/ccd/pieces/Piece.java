@@ -24,34 +24,28 @@ package com.ovgu.ccd.pieces;
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.Player;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.awt.Point;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
 
 /**
-Class to represent a piece (any kind) - this class should be extended to represent pawn, bishop etc.
+ * Class to represent a piece (any kind) - this class should be extended to represent pawn, bishop etc.
  */
-public abstract class Piece
-{
+public abstract class Piece {
 
-    Chessboard chessboard; // <-- this relations isn't in class diagram, but it's necessary :/
+    public static Image imageBlack;
+    public static Image imageWhite;
+    public static short value = 0;
     public Square square;
     public Player player;
     public String name;
-    protected String symbol;
-    public static Image imageBlack;
-    public static Image imageWhite;
     public Image orgImage;
     public Image image;
-    public static short value = 0;
+    protected String symbol;
+    Chessboard chessboard; // <-- this relations isn't in class diagram, but it's necessary :/
 
-    Piece(Chessboard chessboard, Player player)
-    {
+    Piece(Chessboard chessboard, Player player) {
         this.chessboard = chessboard;
         this.setPlayer(player);
         this.name = this.getClass().getSimpleName();
@@ -61,10 +55,8 @@ public abstract class Piece
      * @graph : where to draw
      */
 
-    final public void draw(Graphics g)
-    {
-        try
-        {
+    final public void draw(Graphics g) {
+        try {
             Graphics2D g2d = (Graphics2D) g;
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             Point topLeft = this.chessboard.getTopLeftPoint();
@@ -73,37 +65,31 @@ public abstract class Piece
             int y = (this.square.pozY * height) + topLeft.y;
             float addX = (height - image.getWidth(null)) / 2;
             float addY = (height - image.getHeight(null)) / 2;
-            if (image != null && g != null)
-            {
+            if (image != null && g != null) {
                 Image tempImage = orgImage;
                 BufferedImage resized = new BufferedImage(height, height, BufferedImage.TYPE_INT_ARGB_PRE);
-                Graphics2D imageGr = (Graphics2D) resized.createGraphics();
+                Graphics2D imageGr = resized.createGraphics();
                 imageGr.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 imageGr.drawImage(tempImage, 0, 0, height, height, null);
                 imageGr.dispose();
                 image = resized.getScaledInstance(height, height, 0);
                 g2d.drawImage(image, x, y, null);
-            }
-            else
-            {
+            } else {
                 System.out.println("image is null!");
             }
 
-        }
-        catch (java.lang.NullPointerException exc)
-        {
+        } catch (java.lang.NullPointerException exc) {
             System.out.println("Something wrong when painting piece: " + exc.getMessage());
         }
     }
 
     void setImage()
     {
-        if (this.getPlayer().getColor() == this.getPlayer().color.black)
+        if (this.getPlayer().getColor() == this.getPlayer().getColor().black)
         {
+
             image = imageBlack;
-        }
-        else
-        {
+        } else {
             image = imageWhite;
         }
         orgImage = image;
@@ -112,8 +98,10 @@ public abstract class Piece
 
     abstract public ArrayList allMoves();
 
-    /** Method is useful for out of bounds protection
-     * @param x  x position on chessboard
+    /**
+     * Method is useful for out of bounds protection
+     *
+     * @param x x position on chessboard
      * @param y y position on chessboard
      * @return true if parameters are out of bounds (array)
      * */
@@ -142,8 +130,8 @@ public abstract class Piece
         return player != otherPiece.getPlayer();
     }
 
-    public String getSymbol()
-    {
+
+    public String getSymbol() {
         return this.symbol;
     }
 

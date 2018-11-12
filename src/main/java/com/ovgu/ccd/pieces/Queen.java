@@ -35,23 +35,21 @@ import java.util.ArrayList;
  * Class to represent a queen piece
  * Queen can move almost in every way:
  * |_|_|_|X|_|_|_|X|7
-    |X|_|_|X|_|_|X|_|6
-    |_|X|_|X|_|X|_|_|5
-    |_|_|X|X|x|_|_|_|4
-    |X|X|X|Q|X|X|X|X|3
-    |_|_|X|X|X|_|_|_|2
-    |_|X|_|X|_|X|_|_|1
-    |X|_|_|X|_|_|X|_|0
-    0 1 2 3 4 5 6 7
+ * |X|_|_|X|_|_|X|_|6
+ * |_|X|_|X|_|X|_|_|5
+ * |_|_|X|X|x|_|_|_|4
+ * |X|X|X|Q|X|X|X|X|3
+ * |_|_|X|X|X|_|_|_|2
+ * |_|X|_|X|_|X|_|_|1
+ * |X|_|_|X|_|_|X|_|0
+ * 0 1 2 3 4 5 6 7
  */
 
-public class Queen extends Piece
-{
+public class Queen extends Piece {
 
     public static short value = 9;
 
-    public Queen(Chessboard chessboard, Player player)
-    {
+    public Queen(Chessboard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "Q";
         imageWhite = GUI.loadImage("Queen-W.png");
@@ -61,11 +59,12 @@ public class Queen extends Piece
 
     /**
      * Annotation to superclass Piece changing pawns location
+
      * @return  ArrayList with new position of piece
      */
+
     @Override
-    public ArrayList allMoves()
-    {
+    public ArrayList allMoves() {
         ArrayList moves = new ArrayList();
 
         moves.addAll(new VerticalMoves(this, chessboard).all());

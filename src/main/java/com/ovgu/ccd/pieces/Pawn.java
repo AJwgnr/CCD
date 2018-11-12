@@ -33,42 +33,42 @@ import java.util.ArrayList;
  * pawn can be upgreade to rook, knight, bishop, Queen if it's in the
  * squers nearest the side where opponent is lockated
  * Firat move of pawn:
- *       |_|_|_|_|_|_|_|_|7
-|_|_|_|_|_|_|_|_|6
-|_|_|_|X|_|_|_|_|5
-|_|_|_|X|_|_|_|_|4
-|_|_|_|P|_|_|_|_|3
-|_|_|_|_|_|_|_|_|2
-|_|_|_|_|_|_|_|_|1
-|_|_|_|_|_|_|_|_|0
-0 1 2 3 4 5 6 7
- *
+ * |_|_|_|_|_|_|_|_|7
+ * |_|_|_|_|_|_|_|_|6
+ * |_|_|_|X|_|_|_|_|5
+ * |_|_|_|X|_|_|_|_|4
+ * |_|_|_|P|_|_|_|_|3
+ * |_|_|_|_|_|_|_|_|2
+ * |_|_|_|_|_|_|_|_|1
+ * |_|_|_|_|_|_|_|_|0
+ * 0 1 2 3 4 5 6 7
+ * <p>
  * Move of a pawn:
- *       |_|_|_|_|_|_|_|_|7
-|_|_|_|_|_|_|_|_|6
-|_|_|_|_|_|_|_|_|5
-|_|_|_|X|_|_|_|_|4
-|_|_|_|P|_|_|_|_|3
-|_|_|_|_|_|_|_|_|2
-|_|_|_|_|_|_|_|_|1
-|_|_|_|_|_|_|_|_|0
-0 1 2 3 4 5 6 7
+ * |_|_|_|_|_|_|_|_|7
+ * |_|_|_|_|_|_|_|_|6
+ * |_|_|_|_|_|_|_|_|5
+ * |_|_|_|X|_|_|_|_|4
+ * |_|_|_|P|_|_|_|_|3
+ * |_|_|_|_|_|_|_|_|2
+ * |_|_|_|_|_|_|_|_|1
+ * |_|_|_|_|_|_|_|_|0
+ * 0 1 2 3 4 5 6 7
  * Beats with can take pawn:
- *       |_|_|_|_|_|_|_|_|7
-|_|_|_|_|_|_|_|_|6
-|_|_|_|_|_|_|_|_|5
-|_|_|X|_|X|_|_|_|4
-|_|_|_|P|_|_|_|_|3
-|_|_|_|_|_|_|_|_|2
-|_|_|_|_|_|_|_|_|1
-|_|_|_|_|_|_|_|_|0
-0 1 2 3 4 5 6 7
+ * |_|_|_|_|_|_|_|_|7
+ * |_|_|_|_|_|_|_|_|6
+ * |_|_|_|_|_|_|_|_|5
+ * |_|_|X|_|X|_|_|_|4
+ * |_|_|_|P|_|_|_|_|3
+ * |_|_|_|_|_|_|_|_|2
+ * |_|_|_|_|_|_|_|_|1
+ * |_|_|_|_|_|_|_|_|0
+ * 0 1 2 3 4 5 6 7
  */
 
 public class Pawn extends Piece {
 
-    boolean down;
     public static short value = 1;
+    boolean down;
 
     public Pawn(Chessboard chessboard, Player player) {
         super(chessboard, player);
@@ -122,9 +122,6 @@ public class Pawn extends Piece {
         return moves;
     }
 
-    void promote(Piece newPiece) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     private ArrayList regularMove(Integer nextYCoordinate) {
         ArrayList list = new ArrayList();
@@ -154,10 +151,12 @@ public class Pawn extends Piece {
         return list;
     }
 
-    private ArrayList enPassantMove(Integer nextXCoordinate, Integer nextYCoordinate)
-    {
+
+    private ArrayList enPassantMove(Integer nextXCoordinate, Integer nextYCoordinate) {
         ArrayList list = new ArrayList();
-        if (outsideOfBoard(nextXCoordinate, nextYCoordinate)) { return list; }
+        if (outsideOfBoard(nextXCoordinate, nextYCoordinate)) {
+            return list;
+        }
 
         Square nextPosition = chessboard.getSquare(nextXCoordinate, nextYCoordinate);
         Square otherPiecePosition = chessboard.getSquare(nextXCoordinate, square.pozY);
@@ -165,11 +164,15 @@ public class Pawn extends Piece {
                 && !otherPiecePosition.piece.name.equals("King")
                 && chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(square, nextPosition)
                 && chessboard.twoSquareMovedPawn != null
-                && otherPiecePosition == chessboard.twoSquareMovedPawn.square)
-        {
+                && otherPiecePosition == chessboard.twoSquareMovedPawn.square) {
             list.add(nextPosition);
         }
 
         return list;
+    }
+
+
+    void promote(Piece newPiece) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
