@@ -22,7 +22,6 @@ package com.ovgu.ccd.jchess;
 
 import java.util.ArrayList;
 import java.util.Stack;
-import java.awt.Point;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.*;
@@ -59,7 +58,7 @@ public class Moves extends AbstractTableModel
         none, shortCastling, longCastling
     }
 
-    Moves(Game game)
+    public Moves(Game game)
     {
         super();
         this.tableModel = new MyDefaultTableModel();
@@ -557,14 +556,14 @@ public class Moves extends AbstractTableModel
             boolean pieceFound = false;
             if(locMove.length() <= 3)
             {
-                Square[][] squares = this.game.chessboard.squares;
+                Square[][] squares = this.game.chessboard.getSquares();
                 xTo = locMove.charAt(from) - 97;//from ASCII
                 yTo = Chessboard.bottom - (locMove.charAt(from + 1) - 49);//from ASCII    
                 for(int i=0; i<squares.length && !pieceFound; i++)
                 {
                     for(int j=0; j<squares[i].length && !pieceFound; j++)
                     {
-                        if(squares[i][j].piece == null || this.game.getActivePlayer().color != squares[i][j].piece.player.color)
+                        if(squares[i][j].piece == null || this.game.getActivePlayer().color != squares[i][j].piece.getPlayer().color)
                         {
                             continue;
                         }
