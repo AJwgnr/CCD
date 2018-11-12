@@ -8,7 +8,8 @@ Please stick to the following project Rules:
 
 ## Organization:
 The implementation is done in weekly sprints. Releases are created every week. Meaning that the changes in the development branch are merged into the master branch and a tagged released is created from this.
-Issues: 
+
+## Issues: 
 Use the [Jira](https://ccd.ovgu.de/jira/secure/Dashboard.jspa) system for reporting any bugs or ideas for the features. Every implementation should relate to a jira issue/bug.
 
 ## Branching: 
