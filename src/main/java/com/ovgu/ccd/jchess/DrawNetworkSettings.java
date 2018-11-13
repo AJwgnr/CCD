@@ -41,7 +41,6 @@ import com.ovgu.ccd.server.Server;
 /**
  * Class responible for drawing Network Settings, when player want to start
  * a game on a network
- * @param parent Where are saved default settings
  */
 public class DrawNetworkSettings extends JPanel implements ActionListener
 {
@@ -64,6 +63,9 @@ public class DrawNetworkSettings extends JPanel implements ActionListener
     private ServOptionsPanel servOptions;
     private ClientOptionsPanel clientOptions;
 
+    /**
+     * @param parent Where are saved default settings
+     */
     DrawNetworkSettings(JDialog parent)
     {
         super();
