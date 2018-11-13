@@ -31,7 +31,15 @@ public class Player implements Serializable
 
     String name;
 
-    enum colors
+    public boolean isGoDown() {
+        return goDown;
+    }
+
+    public void setGoDown(boolean goDown) {
+        this.goDown = goDown;
+    }
+
+    public enum colors
     {
 
         white, black
@@ -44,7 +52,8 @@ public class Player implements Serializable
         localUser, networkUser, computer
     }
     public playerTypes playerType;
-    boolean goDown;
+
+    private boolean goDown;
 
     public Player()
     {
@@ -54,7 +63,7 @@ public class Player implements Serializable
     {
         this.name = name;
         this.color = colors.valueOf(color);
-        this.goDown = false;
+        this.setGoDown(false);
     }
 
     /** Method setting the players name

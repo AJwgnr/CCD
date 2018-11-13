@@ -38,11 +38,11 @@ public abstract class Piece
 
     Chessboard chessboard; // <-- this relations isn't in class diagram, but it's necessary :/
     public Square square;
-    public Player player;
+    private Player player;
     String name;
     protected String symbol;
-    protected static Image imageBlack;// = null;
-    protected static Image imageWhite;// = null;
+    public static Image imageBlack;
+    public static Image imageWhite;
     public Image orgImage;
     public Image image;
     public static short value = 0;
@@ -50,15 +50,7 @@ public abstract class Piece
     Piece(Chessboard chessboard, Player player)
     {
         this.chessboard = chessboard;
-        this.player = player;
-        if (player.color == player.color.black)
-        {
-            image = imageBlack;
-        }
-        else
-        {
-            image = imageWhite;
-        }
+        this.setPlayer(player);
         this.name = this.getClass().getSimpleName();
 
     }
@@ -101,32 +93,9 @@ public abstract class Piece
         }
     }
 
-    void clean()
-    {
-    }
-
-    /** method check if Piece can move to given square
-     * @param square square where piece want to move (Square object)
-     * @param allmoves  all moves which can piece do
-     * */
-    boolean canMove(Square square, ArrayList allmoves)
-    {
-        //throw new UnsupportedOperationException("Not supported yet.");
-        ArrayList moves = allmoves;
-        for (Iterator it = moves.iterator(); it.hasNext();)
-        {
-            Square sq = (Square) it.next();//get next from iterator
-            if (sq == square)
-            {//if adress is the same
-                return true; //piece canMove
-            }
-        }
-        return false;//if not, piece cannot move
-    }
-
     void setImage()
     {
-        if (this.player.color == this.player.color.black)
+        if (this.getPlayer().color == this.getPlayer().color.black)
         {
             image = imageBlack;
         }
@@ -134,20 +103,9 @@ public abstract class Piece
         {
             image = imageWhite;
         }
+        orgImage = image;
     }
-    //void setImages(String white, String black) {
-        /* method set image to black or white (depends on player color)
-     * @white: String with name of image with white piece
-     * @black: String with name of image with black piece
-     * */
-    //    this.imageBlack = black;
-    //     this.imageWhite = white;
-    //     if(player.color == player.color.black) {
-    //         this.image = GUI.loadImage(imageBlack);
-    //     } else {
-    //          this.image = GUI.loadImage(imageWhite);
-    //     }
-    //  }/*--endOf-setImages(String white, String black)--*/
+
 
     abstract public ArrayList allMoves();
 
@@ -156,57 +114,46 @@ public abstract class Piece
      * @param y y position on chessboard
      * @return true if parameters are out of bounds (array)
      * */
-    protected boolean isout(int x, int y)
+    protected boolean outsideOfBoard(int x, int y)
     {
-        if (x < 0 || x > 7 || y < 0 || y > 7)
+        return (x < 0 || x > 7 || y < 0 || y > 7);
+    }
+
+    protected boolean canMoveTo(Square position)
+    {
+        Piece piece = position.piece;
+        if (piece != null && piece.name.equals("King"))
+        {
+            return false;
+        }
+        if (piece == null || piece.getPlayer() != this.getPlayer())
         {
             return true;
         }
         return false;
     }
 
-    /** 
-     * @param x y position on chessboard
-     * @param y  y position on chessboard
-     * @return true if can move, false otherwise
-     * */
-    protected boolean checkPiece(int x, int y)
+    protected boolean otherOwner(Piece otherPiece)
     {
-        if (chessboard.squares[x][y].piece != null
-                && chessboard.squares[x][y].piece.name.equals("King"))
-        {
-            return false;
-        }
-        Piece piece = chessboard.squares[x][y].piece;
-        if (piece == null || //if this sqhuare is empty
-                piece.player != this.player) //or piece is another player
-        {
-            return true;
-        }
-        return false;
-    }
-
-    /** Method check if piece has other owner than calling piece
-     * @param x x position on chessboard
-     * @param y y position on chessboard
-     * @return true if owner(player) is different
-     * */
-    protected boolean otherOwner(int x, int y)
-    {
-        Square sq = chessboard.squares[x][y];
-        if (sq.piece == null)
-        {
-            return false;
-        }
-        if (this.player != sq.piece.player)
-        {
-            return true;
-        }
-        return false;
+        if (otherPiece == null) { return false; }
+        return player != otherPiece.getPlayer();
     }
 
     public String getSymbol()
     {
         return this.symbol;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Player.colors getColor()
+    {
+        return player.color;
     }
 }
