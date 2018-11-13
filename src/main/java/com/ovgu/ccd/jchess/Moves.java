@@ -33,7 +33,6 @@ import javax.swing.JOptionPane;
  * that the moves taken by player are correct.
  * All moves which was taken by current player are saving as List of Strings
  * The history of moves is printing in a table
- * @param game The current game
  */
 public class Moves extends AbstractTableModel
 {
@@ -58,6 +57,9 @@ public class Moves extends AbstractTableModel
         none, shortCastling, longCastling
     }
 
+    /**
+     * @param game The current game
+     */
     public Moves(Game game)
     {
         super();
