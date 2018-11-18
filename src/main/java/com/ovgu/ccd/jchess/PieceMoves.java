@@ -1,5 +1,9 @@
 package com.ovgu.ccd.jchess;
 
+import com.ovgu.ccd.gui.Chessboard;
+import com.ovgu.ccd.pieces.Piece;
+import com.ovgu.ccd.pieces.Square;
+
 public class PieceMoves {
 
     protected Piece piece;

@@ -1,5 +1,9 @@
 package com.ovgu.ccd.jchess;
 
+import com.ovgu.ccd.gui.Chessboard;
+import com.ovgu.ccd.pieces.Piece;
+import com.ovgu.ccd.pieces.Square;
+
 import java.util.ArrayList;
 
 public class VerticalMoves {
@@ -19,21 +23,21 @@ public class VerticalMoves {
         Square square = piece.square;
 
         //up
-        for (int i = square.pozY + 1; i <= 7; ++i)
+        for (int i = square.getPozY() + 1; i <= 7; ++i)
         {
-            Square nextPosition = board.getSquare(square.pozX, i);
+            Square nextPosition = board.getSquare(square.getPozX(), i);
             if (!piece.canMoveTo(nextPosition)) { break; }
             if (validMove(nextPosition)) { moves.add(nextPosition); }
-            if (piece.otherOwner(nextPosition.piece)) { break; }
+            if (piece.otherOwner(nextPosition.getPiece())) { break; }
         }
 
         //down
-        for (int i = square.pozY - 1; i >= 0; --i)
+        for (int i = square.getPozY() - 1; i >= 0; --i)
         {
-            Square nextPosition = board.getSquare(square.pozX, i);
+            Square nextPosition = board.getSquare(square.getPozX(), i);
             if (!piece.canMoveTo(nextPosition)) { break; }
             if (validMove(nextPosition)) { moves.add(nextPosition); }
-            if (piece.otherOwner(nextPosition.piece)) { break; }
+            if (piece.otherOwner(nextPosition.getPiece())) { break; }
         }
 
         return moves;
