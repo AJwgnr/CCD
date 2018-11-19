@@ -26,7 +26,9 @@ package com.ovgu.ccd.pieces;
 public class Square {
     int pozX;
     int pozY;
-    Piece piece = null;
+
+    private boolean invalid = false;
+    public Piece piece = null;
 
     public Square(int pozX, int pozY, Piece piece)
     {
@@ -76,4 +78,13 @@ public class Square {
         return piece;
     }
 
+    public boolean isEmpty() { return piece == null; }
+
+    public boolean isInvalid() {
+        return invalid;
+    }
+
+    public void setInvalid(boolean invalid) {
+        this.invalid = invalid;
+    }
 }
