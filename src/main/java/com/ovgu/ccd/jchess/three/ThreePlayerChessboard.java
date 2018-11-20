@@ -192,7 +192,7 @@ public class ThreePlayerChessboard implements IBoard {
         throw new Exception("Invalid square");
     }
 
-    public Square getRightCuadrantTile(Square square) throws Exception {
+    public Square getRightCuadrantSquare(Square square) throws Exception {
         if (9 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 12) {
             if (square.getPozY() == E) {
                 return new Square(square.getPozX() + 1, I, null);
@@ -230,7 +230,6 @@ public class ThreePlayerChessboard implements IBoard {
                 if (diagonal.contains(new Square(9, E, null))) { return new Square(8, I, null); }
                 if (diagonal.contains(new Square(3, F, null))) { return new Square(3, E, null); }
             }
-            throw new Exception("Imposible square");
         }
 
         if ((A <= square.getPozY()) && (square.getPozY() <= D)) {
@@ -242,7 +241,6 @@ public class ThreePlayerChessboard implements IBoard {
                 if (diagonal.contains(new Square(4, C, null))) { return new Square(3, D, null); }
                 if (diagonal.contains(new Square(5, D, null))) { return new Square(4, I, null); }
             }
-            throw new Exception("Imposible square");
         }
 
 
@@ -255,7 +253,6 @@ public class ThreePlayerChessboard implements IBoard {
                 if (diagonal.contains(new Square(8, J, null))) { return new Square(3, D, null);  }
                 if (diagonal.contains(new Square(9, I, null))) { return new Square(8, E, null); }
             }
-            throw new Exception("Imposible square");
         }
         throw new Exception("Imposible square");
     }

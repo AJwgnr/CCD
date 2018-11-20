@@ -23,6 +23,7 @@ package com.ovgu.ccd.pieces;
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.GUI;
 import com.ovgu.ccd.gui.Player;
+import com.ovgu.ccd.jchess.IBoard;
 
 import java.util.ArrayList;
 
@@ -70,7 +71,7 @@ public class Pawn extends Piece {
     public static short value = 1;
     boolean down;
 
-    public Pawn(Chessboard chessboard, Player player) {
+    public Pawn(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "";
         imageWhite = GUI.loadImage("Pawn-W.png");

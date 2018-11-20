@@ -20,6 +20,8 @@
  */
 package com.ovgu.ccd.pieces;
 
+import java.util.Objects;
+
 /**
  * Class to represent a chessboard square
  */
@@ -62,7 +64,12 @@ public class Square {
         if (!(o instanceof Square)) return false;
 
         Square square = (Square) o;
-        return square.getPozX() == pozX && square.getPozY() == pozY && square.getPiece() == piece;
+        return square.getPozX() == pozX && square.getPozY() == pozY;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pozX, pozY);
     }
 
     // modification

@@ -147,7 +147,6 @@ public abstract class Piece {
         return player.getColor();
     }
 
-    // modification
     public IBoard getChessboard() {
         return chessboard;
     }
@@ -162,5 +161,13 @@ public abstract class Piece {
 
     public void setSquare(Square square) {
         this.square = square;
+    }
+
+    public int getPozX() {
+        return square.getPozX();
+    }
+
+    public int getPozY() {
+        return square.getPozY();
     }
 }

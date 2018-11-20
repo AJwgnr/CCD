@@ -1,0 +1,228 @@
+package com.ovgu.ccd.jchess.three;
+
+import com.ovgu.ccd.jchess.IBoard;
+import com.ovgu.ccd.jchess.IMove;
+import com.ovgu.ccd.pieces.Piece;
+import com.ovgu.ccd.pieces.Square;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class DiagonalMove implements IMove {
+
+    private Piece piece;
+    private ThreePlayerChessboard board;
+
+    DiagonalMove(Piece piece, IBoard board) {
+        this.piece = piece;
+        this.board = (ThreePlayerChessboard) board;
+    }
+
+    @Override
+    public ArrayList<Square> moves() throws Exception {
+        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+
+        if (!getSameSixtantMoves(piece.getSquare()).isEmpty()) {
+            possibleMoves.addAll(getSameSixtantMoves(piece.getSquare()));
+        }
+        Square currentRosette = board.getCurrentRosette(piece.getSquare());
+
+        // check if rousette is amongst my moves
+        if (possibleMoves.contains(currentRosette) || piece.getSquare().equals(currentRosette)) {
+            possibleMoves.addAll(oppositeRosetteDiagonalMoves(currentRosette));
+        } else {
+            // We don't reach the rosette, get reachable rosette, its neighbors and the diagonal moves
+            //also, for the reachable rosette, get left or right neighbors
+            Square side = board.getSideRosetteTile(piece.getSquare(), diagonal(piece.getSquare()));
+            possibleMoves.addAll(oppositeRosetteDiagonalMoves(side));
+
+            // Here it's ok to check both ways, we are adding redundant moves but it's ok.
+            Square leftSide = board.getLeftCuadrantSquare(side);
+            if (board.validMove(leftSide)) {
+                possibleMoves.addAll(neighborSixtantMoves(leftSide));
+            }
+
+            Square rightSide = board.getRightCuadrantSquare(side);
+            if (board.validMove(rightSide)){
+                possibleMoves.addAll(neighborSixtantMoves(rightSide));
+            }
+        }
+
+
+        // check sixtants on both sides and ask for their diagonals...
+        Square leftSide = null;
+        ArrayList<Square> leftSquares = left(piece.getSquare());
+        if (!leftSquares.isEmpty() && leftSquares.get(leftSquares.size() - 1) != null) {
+            leftSide = board.getLeftCuadrantSquare(leftSquares.get(leftSquares.size() - 1));
+        } else {
+            leftSide = board.getLeftCuadrantSquare(piece.getSquare());
+        }
+        possibleMoves.addAll(neighborSixtantMoves(leftSide));
+
+        Square rightSide = null;
+        ArrayList<Square> rightSquares = right(piece.getSquare());
+        if (!rightSquares.isEmpty() && (rightSquares.get(rightSquares.size() - 1)) != null) {
+            rightSide = board.getRightCuadrantSquare(rightSquares.get(rightSquares.size() - 1));
+        } else {
+            rightSide = board.getRightCuadrantSquare(piece.getSquare());
+        }
+        possibleMoves.addAll(neighborSixtantMoves(rightSide));
+
+        return new ArrayList<Square>(Arrays.asList(possibleMoves.stream().distinct().toArray(Square[]::new)));
+    }
+
+    public boolean perfectDiagonal() {
+        // white diagonals first, black diagonals second
+        return (
+                ((piece.getPozX() + 1) + (piece.getPozY() + 1) == 9) ||
+                (piece.getPozX() == piece.getPozY()) ||
+                (Math.abs((piece.getPozX() + 1) - (piece.getPozY() + 1)) == 4)
+        );
+    }
+
+    public ArrayList<Square> getSameSixtantMoves(Square square) {
+        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        possibleMoves.addAll(left(square));
+        possibleMoves.addAll(right(square));
+        possibleMoves.addAll(diagonal(square));
+
+        return new ArrayList<Square>(Arrays.asList(possibleMoves.stream().distinct().toArray(Square[]::new)));
+    }
+
+    private ArrayList<Square> left(Square square) {
+        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+
+        for(int i = 1; i <= 3; i++) {
+            int xCoord = square.getPozX();
+            int yCoord = square.getPozY();
+
+            if (((1 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 4)) && (ThreePlayerChessboard.E <= square.getPozY() && square.getPozY() <= ThreePlayerChessboard.H)) ||
+                ((5 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 8)) && (ThreePlayerChessboard.I <= square.getPozY() && square.getPozY() <= ThreePlayerChessboard.L)) ||
+                ((9 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 12)) && (ThreePlayerChessboard.E <= square.getPozY() && square.getPozY() <= ThreePlayerChessboard.H))) {
+                xCoord -= i;
+            } else {
+                xCoord += i;
+            }
+
+
+            if ((1 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 4)) ||
+                ((9 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 12)) && (ThreePlayerChessboard.I <= square.getPozY() && square.getPozY() <= ThreePlayerChessboard.L))) {
+                yCoord -= i;
+            } else {
+                yCoord += i;
+            }
+
+            Square nextMove = new Square(xCoord, yCoord, null);
+            if (board.validMove(nextMove) && board.inSixtant(square, xCoord, yCoord)) {
+                possibleMoves.add(nextMove);
+            }
+        }
+
+        return possibleMoves;
+    }
+
+    private ArrayList<Square> right(Square square) {
+        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+
+        for(int i = 1; i <= 3; i++) {
+            int xCoord = square.getPozX();
+            int yCoord = square.getPozY();
+
+            if ((ThreePlayerChessboard.A <= square.getPozY() && square.getPozY() <= ThreePlayerChessboard.D) || ((9 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 12)) && (ThreePlayerChessboard.I <= square.getPozY() && square.getPozY() <= ThreePlayerChessboard.L))) {
+                xCoord -= i;
+            } else {
+                xCoord += i;
+            }
+
+            if (((5 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 8)) || ((9 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 12)) && (ThreePlayerChessboard.E <= square.getPozY() && square.getPozY() <= ThreePlayerChessboard.H)))) {
+                yCoord -= i;
+            } else {
+                yCoord += i;
+            }
+            
+            Square nextMove = new Square(xCoord, yCoord, null);
+            if (board.validMove(nextMove) && board.inSixtant(square, xCoord, yCoord)) {
+                possibleMoves.add(nextMove);
+            }
+        }
+
+        return possibleMoves;
+    }
+
+    private ArrayList<Square> diagonal(Square square) {
+        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+
+        // going outside in the same diagonal, same sixtant
+        for(int i = 1; i <= 3; i++) {
+            int xCoord = square.getPozX();
+            int yCoord = square.getPozY();
+
+            if ((square.getPozX() + 1) >= 5) {
+                xCoord += i;
+            } else {
+                xCoord -= i;
+            }
+
+            if ((ThreePlayerChessboard.A <= square.getPozY()) && (square.getPozY() <= ThreePlayerChessboard.D)) {
+                yCoord -= i;
+            } else {
+                yCoord += i;
+            }
+
+            Square nextMove = new Square(xCoord, yCoord, null);
+            if (board.validMove(nextMove) && board.inSixtant(square, xCoord, yCoord)) {
+                possibleMoves.add(nextMove);
+            }
+        }
+
+        // going inside in the same diagonal, same sixtant
+        for(int i = 1; i <= 3; i++) {
+            int xCoord = square.getPozX();
+            int yCoord = square.getPozY();
+
+            if ((1 <= square.getPozX() + 1) && (square.getPozX() + 1 <= 4)) {
+                xCoord += i;
+            } else {
+                xCoord -= i;
+            }
+
+            if ((ThreePlayerChessboard.A <= square.getPozY()) && (square.getPozY() <= ThreePlayerChessboard.D)) {
+                yCoord += i;
+            } else {
+                yCoord -= i;
+            }
+            
+            Square nextMove = new Square(xCoord, yCoord, null);
+            if (board.validMove(nextMove) && board.inSixtant(square, xCoord, yCoord)) {
+                possibleMoves.add(nextMove);
+            }
+        }
+
+        return possibleMoves;
+    }
+
+    private ArrayList<Square> oppositeRosetteDiagonalMoves(Square currentRosette) throws Exception {
+        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+
+        ArrayList<Square> squares = board.getDiagonalCenterPositions(currentRosette);
+        for (Square square : squares) {
+            if (board.validMove(square)) {
+                possibleMoves.add(square);
+                possibleMoves.addAll(diagonal(square));
+            }
+        }
+
+        return possibleMoves;
+    }
+
+    private ArrayList<Square> neighborSixtantMoves(Square square) {
+        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+
+        if (board.validMove(square)) {
+            possibleMoves.add(square);
+            possibleMoves.addAll(diagonal(square));
+        }
+
+        return possibleMoves;
+    }
+}
