@@ -1,6 +1,5 @@
 package com.ovgu.ccd.jchess;
 
-import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
@@ -9,9 +8,9 @@ import java.util.ArrayList;
 public class VerticalMoves {
 
     private Piece piece;
-    private Chessboard board;
+    private IBoard board;
 
-    public VerticalMoves(Piece piece, Chessboard board)
+    public VerticalMoves(Piece piece, IBoard board)
     {
         this.piece = piece;
         this.board = board;
@@ -20,7 +19,7 @@ public class VerticalMoves {
     public ArrayList all()
     {
         ArrayList moves = new ArrayList();
-        Square square = piece.square;
+        Square square = piece.getSquare();
 
         //up
         for (int i = square.getPozY() + 1; i <= 7; ++i)
@@ -45,6 +44,6 @@ public class VerticalMoves {
 
     private boolean validMove(Square nextPosition)
     {
-        return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(piece.square, nextPosition);
+        return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(piece.getSquare(), nextPosition);
     }
 }

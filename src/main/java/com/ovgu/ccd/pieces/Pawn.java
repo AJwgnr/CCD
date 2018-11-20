@@ -90,11 +90,11 @@ public class Pawn extends Piece {
         ArrayList moves = new ArrayList();
 
         if (getPlayer().isGoDown()) {
-            immediateYCoordinate = square.pozY + 1;
-            twoPositionsYCoordinate = square.pozY + 2;
+            immediateYCoordinate = getSquare().pozY + 1;
+            twoPositionsYCoordinate = getSquare().pozY + 2;
         } else {
-            immediateYCoordinate = square.pozY - 1;
-            twoPositionsYCoordinate = square.pozY - 2;
+            immediateYCoordinate = getSquare().pozY - 1;
+            twoPositionsYCoordinate = getSquare().pozY - 2;
         }
 
         if (outsideOfBoard(immediateYCoordinate, immediateYCoordinate)) {
@@ -102,22 +102,22 @@ public class Pawn extends Piece {
         }
 
         moves.addAll(regularMove(immediateYCoordinate));
-        if (getPlayer().isGoDown() && square.pozY == 1 || !getPlayer().isGoDown() && square.pozY == 6)
+        if (getPlayer().isGoDown() && getSquare().pozY == 1 || !getPlayer().isGoDown() && getSquare().pozY == 6)
         {
             moves.addAll(regularMove(twoPositionsYCoordinate));
         }
 
         // Capture left
-        moves.addAll(captureMove(square.pozX - 1, immediateYCoordinate));
+        moves.addAll(captureMove(getSquare().pozX - 1, immediateYCoordinate));
 
         // Capture right
-        moves.addAll(captureMove(square.pozX + 1, immediateYCoordinate));
+        moves.addAll(captureMove(getSquare().pozX + 1, immediateYCoordinate));
 
         // EnPassant left
-        moves.addAll(enPassantMove(square.pozX - 1, immediateYCoordinate));
+        moves.addAll(enPassantMove(getSquare().pozX - 1, immediateYCoordinate));
 
         // EnPassant right
-        moves.addAll(enPassantMove(square.pozX + 1, immediateYCoordinate));
+        moves.addAll(enPassantMove(getSquare().pozX + 1, immediateYCoordinate));
 
         return moves;
     }
@@ -125,12 +125,12 @@ public class Pawn extends Piece {
 
     private ArrayList regularMove(Integer nextYCoordinate) {
         ArrayList list = new ArrayList();
-        Square nextPosition = chessboard.getSquare(square.pozX, nextYCoordinate);
+        Square nextPosition = chessboard.getSquare(getSquare().pozX, nextYCoordinate);
 
         if (nextPosition.piece != null) {
             return list;
         }
-        if (chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(square, nextPosition)) {
+        if (chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(getSquare(), nextPosition)) {
             list.add(nextPosition);
         }
         return list;
@@ -143,7 +143,7 @@ public class Pawn extends Piece {
 
         Square nextPosition = chessboard.getSquare(nextXCoordinate, nextYCoordinate);
         if (canMoveTo(nextPosition) && otherOwner(nextPosition.piece)
-            && chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(square, nextPosition))
+            && chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(getSquare(), nextPosition))
         {
             list.add(nextPosition);
         }
@@ -159,12 +159,12 @@ public class Pawn extends Piece {
         }
 
         Square nextPosition = chessboard.getSquare(nextXCoordinate, nextYCoordinate);
-        Square otherPiecePosition = chessboard.getSquare(nextXCoordinate, square.pozY);
+        Square otherPiecePosition = chessboard.getSquare(nextXCoordinate, getSquare().pozY);
         if (otherPiecePosition.piece != null && otherOwner(otherPiecePosition.piece)
                 && !otherPiecePosition.piece.name.equals("King")
-                && chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(square, nextPosition)
-                && chessboard.twoSquareMovedPawn != null
-                && otherPiecePosition == chessboard.twoSquareMovedPawn.square) {
+                && chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(getSquare(), nextPosition)
+                && chessboard.getTwoSquareMovedPawn() != null
+                && otherPiecePosition == chessboard.getTwoSquareMovedPawn().getSquare()) {
             list.add(nextPosition);
         }
 

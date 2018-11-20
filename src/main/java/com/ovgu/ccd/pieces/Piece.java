@@ -23,11 +23,11 @@ package com.ovgu.ccd.pieces;
 
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.Player;
+import com.ovgu.ccd.jchess.IBoard;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Class to represent a piece (any kind) - this class should be extended to represent pawn, bishop etc.
@@ -37,15 +37,15 @@ public abstract class Piece {
     public static Image imageBlack;
     public static Image imageWhite;
     public static short value = 0;
-    public Square square;
+    private Square square;
     public Player player;
     public String name;
     public Image orgImage;
     public Image image;
     protected String symbol;
-    Chessboard chessboard; // <-- this relations isn't in class diagram, but it's necessary :/
+    IBoard chessboard; // <-- this relations isn't in class diagram, but it's necessary :/
 
-    Piece(Chessboard chessboard, Player player) {
+    Piece(IBoard chessboard, Player player) {
         this.chessboard = chessboard;
         this.setPlayer(player);
         this.name = this.getClass().getSimpleName();
@@ -61,8 +61,8 @@ public abstract class Piece {
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             Point topLeft = this.chessboard.getTopLeftPoint();
             int height = this.chessboard.get_square_height();
-            int x = (this.square.pozX * height) + topLeft.x;
-            int y = (this.square.pozY * height) + topLeft.y;
+            int x = (this.getSquare().pozX * height) + topLeft.x;
+            int y = (this.getSquare().pozY * height) + topLeft.y;
             float addX = (height - image.getWidth(null)) / 2;
             float addY = (height - image.getHeight(null)) / 2;
             if (image != null && g != null) {
@@ -148,11 +148,19 @@ public abstract class Piece {
     }
 
     // modification
-    public Chessboard getChessboard() {
+    public IBoard getChessboard() {
         return chessboard;
     }
 
-    public void setChessboard(Chessboard chessboard) {
+    public void setChessboard(IBoard chessboard) {
         this.chessboard = chessboard;
+    }
+
+    public Square getSquare() {
+        return square;
+    }
+
+    public void setSquare(Square square) {
+        this.square = square;
     }
 }

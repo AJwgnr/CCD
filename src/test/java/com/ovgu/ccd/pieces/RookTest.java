@@ -5,7 +5,6 @@ import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.Game;
 import com.ovgu.ccd.gui.Moves;
 import com.ovgu.ccd.gui.Player;
-import com.ovgu.ccd.pieces.Rook;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,9 +26,9 @@ public class RookTest {
         King whiteKing = new King(board, whitePlayer);
 
         board.getSquare(4,7).setPiece(blackKing);
-        board.kingBlack = blackKing;
+        board.setKingBlack(blackKing);
 
-        board.kingWhite = whiteKing;
+        board.setKingWhite(whiteKing);
         board.getSquare(4, 0).setPiece(whiteKing);
     }
 

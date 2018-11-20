@@ -5,7 +5,6 @@ import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.Game;
 import com.ovgu.ccd.gui.Moves;
 import com.ovgu.ccd.gui.Player;
-import com.ovgu.ccd.pieces.Bishop;
 import org.hamcrest.MatcherAssert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,8 +23,8 @@ public class BishopTest {
 
     @Before
     public void setup() {
-        board.kingWhite = whiteKing;
-        board.kingBlack = blackKing;
+        board.setKingWhite(whiteKing);
+        board.setKingBlack(blackKing);
         board.getSquare(4, 0).setPiece(whiteKing);
         board.getSquare(4, 7).setPiece(blackKing);
     }

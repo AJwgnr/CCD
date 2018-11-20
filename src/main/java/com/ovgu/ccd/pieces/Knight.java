@@ -68,28 +68,28 @@ public class Knight extends Piece {
         int newX;
         int newY;
 
-        if (validMove(newX = square.pozX - 2, newY = square.pozY + 1))
+        if (validMove(newX = getSquare().pozX - 2, newY = getSquare().pozY + 1))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = square.pozX - 1, newY = square.pozY + 2))
+        if (validMove(newX = getSquare().pozX - 1, newY = getSquare().pozY + 2))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = square.pozX + 1, newY = square.pozY + 2))
+        if (validMove(newX = getSquare().pozX + 1, newY = getSquare().pozY + 2))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = square.pozX + 2, newY = square.pozY + 1))
+        if (validMove(newX = getSquare().pozX + 2, newY = getSquare().pozY + 1))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = square.pozX + 2, newY = square.pozY - 1))
+        if (validMove(newX = getSquare().pozX + 2, newY = getSquare().pozY - 1))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = square.pozX + 1, newY = square.pozY - 2))
+        if (validMove(newX = getSquare().pozX + 1, newY = getSquare().pozY - 2))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = square.pozX - 1, newY = square.pozY - 2))
+        if (validMove(newX = getSquare().pozX - 1, newY = getSquare().pozY - 2))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = square.pozX - 2, newY = square.pozY - 1))
+        if (validMove(newX = getSquare().pozX - 2, newY = getSquare().pozY - 1))
             moves.add(chessboard.getSquare(newX, newY));
 
         return moves;
@@ -99,6 +99,6 @@ public class Knight extends Piece {
         if (outsideOfBoard(newX, newY)) { return false; }
 
         Square nextPosition = chessboard.getSquare(newX, newY);
-        return (canMoveTo(nextPosition) && (chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(square, nextPosition)));
+        return (canMoveTo(nextPosition) && (chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(getSquare(), nextPosition)));
     }
 }

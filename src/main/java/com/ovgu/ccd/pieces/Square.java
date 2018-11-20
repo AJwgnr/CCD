@@ -28,7 +28,7 @@ public class Square {
     int pozY;
 
     private boolean invalid = false;
-    public Piece piece = null;
+    public Piece piece;
 
     public Square(int pozX, int pozY, Piece piece)
     {
@@ -52,7 +52,7 @@ public class Square {
     {
         this.piece = piece;
         if (piece != null) {
-            this.piece.square = this;
+            this.piece.setSquare(this);
         }
     }
 
@@ -84,7 +84,7 @@ public class Square {
         return invalid;
     }
 
-    public void setInvalid(boolean invalid) {
-        this.invalid = invalid;
+    public void setInvalid(boolean value) {
+        this.invalid = value;
     }
 }

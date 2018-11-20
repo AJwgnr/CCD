@@ -25,8 +25,8 @@ public class PawnTest {
 
     @Before
     public void setup() {
-        board.kingWhite = whiteKing;
-        board.kingBlack = blackKing;
+        board.setKingWhite(whiteKing);
+        board.setKingBlack(blackKing);
         board.getSquare(4, 0).setPiece(whiteKing);
         board.getSquare(4, 7).setPiece(blackKing);
     }

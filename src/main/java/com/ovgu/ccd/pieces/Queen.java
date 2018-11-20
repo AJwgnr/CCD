@@ -22,9 +22,10 @@ package com.ovgu.ccd.pieces;
 
 import com.ovgu.ccd.jchess.DiagonalMoves;
 import com.ovgu.ccd.jchess.HorizontalMoves;
+import com.ovgu.ccd.jchess.IBoard;
 import com.ovgu.ccd.jchess.VerticalMoves;
 
-import com.ovgu.ccd.gui.Chessboard;
+
 import com.ovgu.ccd.gui.GUI;
 import com.ovgu.ccd.gui.Player;
 
@@ -49,7 +50,7 @@ public class Queen extends Piece {
 
     public static short value = 9;
 
-    public Queen(Chessboard chessboard, Player player) {
+    public Queen(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "Q";
         imageWhite = GUI.loadImage("Queen-W.png");

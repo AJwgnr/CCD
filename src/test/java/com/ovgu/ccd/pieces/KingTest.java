@@ -5,7 +5,6 @@ import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.Game;
 import com.ovgu.ccd.gui.Moves;
 import com.ovgu.ccd.gui.Player;
-import com.ovgu.ccd.pieces.King;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,7 +25,7 @@ public class KingTest {
     public void setup() {
         King blackKing = new King(board, blackPlayer);
         board.getSquare(4, 7).setPiece(blackKing);
-        board.kingBlack = blackKing;
+        board.setKingBlack(blackKing);
     }
 
     @Test
@@ -56,7 +55,7 @@ public class KingTest {
     @Test
     public void testAllMovesMiddleBoard() {
         King whiteKing = new King(board, whitePlayer);
-        board.kingWhite = whiteKing;
+        board.setKingWhite(whiteKing);
         board.getSquare(3, 3).setPiece(whiteKing);
         List<Square> moves = whiteKing.allMoves();
 
@@ -80,7 +79,7 @@ public class KingTest {
     @Test
     public void testAllMovesTopLeftCorner() {
         King whiteKing = new King(board, whitePlayer);
-        board.kingWhite = whiteKing;
+        board.setKingWhite(whiteKing);
         board.getSquare(0, 7).setPiece(whiteKing);
         List<Square> moves = whiteKing.allMoves();
 
@@ -113,7 +112,7 @@ public class KingTest {
         Pawn   rightPiece = new Pawn(board, whitePlayer);
         Bishop topPiece = new Bishop(board, whitePlayer);
         Knight bottomPiece = new Knight(board, whitePlayer);
-        board.kingWhite = whiteKing;
+        board.setKingWhite(whiteKing);
         board.getSquare(0, 7).setPiece(whiteKing);
 
         board.getSquare(3, 3).setPiece(whiteKing);
