@@ -2,31 +2,29 @@ package com.ovgu.ccd.gui.chessboardListener;
 
 import java.awt.Graphics;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 // regular hexagon
-public class Hexagon extends GeometricPrimitiveDrawer 
+public class Hexagon extends GeometricShape
 {
 	private static final long serialVersionUID = 4539157182258466862L;
 	
 	private boolean visibility = true;
 	private HashMap<String, Point> vertices = new HashMap<String, Point>();
-	private Point center = new Point(0,0);
+	private HashMap<String, Line> lines = new HashMap<String, Line>();
+	private Point center = null;
 	private int radius = 0;
-	
-	
-	// constructor
-	public Hexagon()
-	{
-		
-	}
-	
+
 	
 	public Hexagon(Point center, int radius)
 	{
 		this.radius = radius;
 		this.center = center;
 		computeVertices();
+		setupLines();
 	}
 	
 	
@@ -50,6 +48,17 @@ public class Hexagon extends GeometricPrimitiveDrawer
 		this.vertices.put("D", outerCircle.findIntersectionPoint(constructionCircleRight).get(0));
 		this.vertices.put("B", outerCircle.findIntersectionPoint(constructionCircleRight).get(1));
 	}
+
+
+	private void setupLines()
+	{
+		lines.put("AB", new Line(this.vertices.get("A"), this.vertices.get("B")));
+		lines.put("BC", new Line(this.vertices.get("B"), this.vertices.get("C")));
+		lines.put("CD", new Line(this.vertices.get("C"), this.vertices.get("D")));
+		lines.put("DE", new Line(this.vertices.get("D"), this.vertices.get("E")));
+		lines.put("EF", new Line(this.vertices.get("E"), this.vertices.get("F")));
+		lines.put("FA", new Line(this.vertices.get("F"), this.vertices.get("A")));
+	}
 	
 	
 	public void setVisibility(boolean en)
@@ -69,9 +78,23 @@ public class Hexagon extends GeometricPrimitiveDrawer
 	{
 		return this.radius;
 	}
+
+	public List<Line> getLinesAsList()
+	{
+		return this.lines.values().stream().collect(Collectors.toList());
+	}
+
+	public HashMap<String, Line> getLinesAsMap()
+	{
+		return this.lines;
+	}
+
+	public List<Point> getVerticesAsList()
+	{
+		return this.vertices.values().stream().collect(Collectors.toList());
+	}
 	
-	
-	public HashMap<String, Point> getVertices()
+	public HashMap<String, Point> getVerticesAsMap()
 	{
 		return this.vertices;
 	}
@@ -91,14 +114,15 @@ public class Hexagon extends GeometricPrimitiveDrawer
 	@Override
 	public void draw(Graphics graphics)
 	{
-		if (this.visibility && !this.vertices.isEmpty())
+		if (this.visibility)
 		{
-			new Line(this.vertices.get("A"), this.vertices.get("B")).paint(graphics);
-			new Line(this.vertices.get("B"), this.vertices.get("C")).paint(graphics);
-			new Line(this.vertices.get("C"), this.vertices.get("D")).paint(graphics);
-			new Line(this.vertices.get("D"), this.vertices.get("E")).paint(graphics);
-			new Line(this.vertices.get("E"), this.vertices.get("F")).paint(graphics);
-			new Line(this.vertices.get("F"), this.vertices.get("A")).paint(graphics);
+			for(Map.Entry<String, Line> line : lines.entrySet())
+				line.getValue().paint(graphics);
 		}
+	}
+
+	@Override
+	public double area() {
+		return 0;
 	}
 }
