@@ -22,8 +22,8 @@ public class DiagonalMove implements IMove {
     public ArrayList<Square> moves() throws Exception {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
-        if (!getSameSixtantMoves(piece.getSquare()).isEmpty()) {
-            possibleMoves.addAll(getSameSixtantMoves(piece.getSquare()));
+        if (!getSameSextantMoves(piece.getSquare()).isEmpty()) {
+            possibleMoves.addAll(getSameSextantMoves(piece.getSquare()));
         }
         Square currentRosette = board.getCurrentRosette(piece.getSquare());
 
@@ -37,36 +37,36 @@ public class DiagonalMove implements IMove {
             possibleMoves.addAll(oppositeRosetteDiagonalMoves(side));
 
             // Here it's ok to check both ways, we are adding redundant moves but it's ok.
-            Square leftSide = board.getLeftCuadrantSquare(side);
+            Square leftSide = board.getLeftQuadrantSquare(side);
             if (board.validMove(leftSide)) {
-                possibleMoves.addAll(neighborSixtantMoves(leftSide));
+                possibleMoves.addAll(neighborSextantMoves(leftSide));
             }
 
-            Square rightSide = board.getRightCuadrantSquare(side);
+            Square rightSide = board.getRightQuadrantSquare(side);
             if (board.validMove(rightSide)){
-                possibleMoves.addAll(neighborSixtantMoves(rightSide));
+                possibleMoves.addAll(neighborSextantMoves(rightSide));
             }
         }
 
 
-        // check sixtants on both sides and ask for their diagonals...
+        // check sextants on both sides and ask for their diagonals...
         Square leftSide = null;
         ArrayList<Square> leftSquares = left(piece.getSquare());
         if (!leftSquares.isEmpty() && leftSquares.get(leftSquares.size() - 1) != null) {
-            leftSide = board.getLeftCuadrantSquare(leftSquares.get(leftSquares.size() - 1));
+            leftSide = board.getLeftQuadrantSquare(leftSquares.get(leftSquares.size() - 1));
         } else {
-            leftSide = board.getLeftCuadrantSquare(piece.getSquare());
+            leftSide = board.getLeftQuadrantSquare(piece.getSquare());
         }
-        possibleMoves.addAll(neighborSixtantMoves(leftSide));
+        possibleMoves.addAll(neighborSextantMoves(leftSide));
 
         Square rightSide = null;
         ArrayList<Square> rightSquares = right(piece.getSquare());
         if (!rightSquares.isEmpty() && (rightSquares.get(rightSquares.size() - 1)) != null) {
-            rightSide = board.getRightCuadrantSquare(rightSquares.get(rightSquares.size() - 1));
+            rightSide = board.getRightQuadrantSquare(rightSquares.get(rightSquares.size() - 1));
         } else {
-            rightSide = board.getRightCuadrantSquare(piece.getSquare());
+            rightSide = board.getRightQuadrantSquare(piece.getSquare());
         }
-        possibleMoves.addAll(neighborSixtantMoves(rightSide));
+        possibleMoves.addAll(neighborSextantMoves(rightSide));
 
         return new ArrayList<Square>(Arrays.asList(possibleMoves.stream().distinct().toArray(Square[]::new)));
     }
@@ -80,7 +80,7 @@ public class DiagonalMove implements IMove {
         );
     }
 
-    public ArrayList<Square> getSameSixtantMoves(Square square) {
+    public ArrayList<Square> getSameSextantMoves(Square square) {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         possibleMoves.addAll(left(square));
         possibleMoves.addAll(right(square));
@@ -113,7 +113,7 @@ public class DiagonalMove implements IMove {
             }
 
             Square nextMove = new Square(xCoord, yCoord, null);
-            if (board.validMove(nextMove) && board.inSixtant(square, xCoord, yCoord)) {
+            if (board.validMove(nextMove) && board.inSextant(square, xCoord, yCoord)) {
                 possibleMoves.add(nextMove);
             }
         }
@@ -141,7 +141,7 @@ public class DiagonalMove implements IMove {
             }
             
             Square nextMove = new Square(xCoord, yCoord, null);
-            if (board.validMove(nextMove) && board.inSixtant(square, xCoord, yCoord)) {
+            if (board.validMove(nextMove) && board.inSextant(square, xCoord, yCoord)) {
                 possibleMoves.add(nextMove);
             }
         }
@@ -152,7 +152,7 @@ public class DiagonalMove implements IMove {
     private ArrayList<Square> diagonal(Square square) {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
-        // going outside in the same diagonal, same sixtant
+        // going outside in the same diagonal, same sextant
         for(int i = 1; i <= 3; i++) {
             int xCoord = square.getPozX();
             int yCoord = square.getPozY();
@@ -170,12 +170,12 @@ public class DiagonalMove implements IMove {
             }
 
             Square nextMove = new Square(xCoord, yCoord, null);
-            if (board.validMove(nextMove) && board.inSixtant(square, xCoord, yCoord)) {
+            if (board.validMove(nextMove) && board.inSextant(square, xCoord, yCoord)) {
                 possibleMoves.add(nextMove);
             }
         }
 
-        // going inside in the same diagonal, same sixtant
+        // going inside in the same diagonal, same sextant
         for(int i = 1; i <= 3; i++) {
             int xCoord = square.getPozX();
             int yCoord = square.getPozY();
@@ -193,7 +193,7 @@ public class DiagonalMove implements IMove {
             }
             
             Square nextMove = new Square(xCoord, yCoord, null);
-            if (board.validMove(nextMove) && board.inSixtant(square, xCoord, yCoord)) {
+            if (board.validMove(nextMove) && board.inSextant(square, xCoord, yCoord)) {
                 possibleMoves.add(nextMove);
             }
         }
@@ -215,7 +215,7 @@ public class DiagonalMove implements IMove {
         return possibleMoves;
     }
 
-    private ArrayList<Square> neighborSixtantMoves(Square square) {
+    private ArrayList<Square> neighborSextantMoves(Square square) {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         if (board.validMove(square)) {

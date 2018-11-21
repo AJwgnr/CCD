@@ -3,10 +3,8 @@ package com.ovgu.ccd.jchess.three;
 import com.ovgu.ccd.gui.Player;
 import com.ovgu.ccd.jchess.IBoard;
 import com.ovgu.ccd.pieces.Bishop;
-import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 import org.hamcrest.MatcherAssert;
-import org.junit.Assert;
 import org.junit.Test;
 import java.util.ArrayList;
 import static org.hamcrest.CoreMatchers.hasItems;
@@ -97,13 +95,13 @@ public class DiagonalMoveTest {
     }
 
     @Test
-    public void testSameSixtantMovesTopRight() {
+    public void testSameSextantMovesTopRight() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = new Bishop(board, whitePlayer);
         ArrayList<Square> moves;
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.I);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -116,7 +114,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 8, ThreePlayerChessboard.I);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 9, ThreePlayerChessboard.J);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 5);
         MatcherAssert.assertThat(
                 moves,
@@ -131,7 +129,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 9, ThreePlayerChessboard.J);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 10, ThreePlayerChessboard.K);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 5);
         MatcherAssert.assertThat(
                 moves,
@@ -147,7 +145,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 10, ThreePlayerChessboard.K);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 11, ThreePlayerChessboard.L);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -160,7 +158,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 11, ThreePlayerChessboard.L);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 10, ThreePlayerChessboard.I);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -173,7 +171,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 10, ThreePlayerChessboard.I);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 11, ThreePlayerChessboard.J);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -186,7 +184,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 11, ThreePlayerChessboard.J);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.K);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -199,7 +197,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 8, ThreePlayerChessboard.K);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 9, ThreePlayerChessboard.L);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -212,7 +210,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 9, ThreePlayerChessboard.L);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.L);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -225,7 +223,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 8, ThreePlayerChessboard.L);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 10, ThreePlayerChessboard.L);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -238,7 +236,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 10, ThreePlayerChessboard.L);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 9, ThreePlayerChessboard.K);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 5);
         MatcherAssert.assertThat(
                 moves,
@@ -253,7 +251,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 9, ThreePlayerChessboard.K);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 11, ThreePlayerChessboard.K);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -266,7 +264,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 11, ThreePlayerChessboard.K);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.J);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -279,7 +277,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 8, ThreePlayerChessboard.J);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 10, ThreePlayerChessboard.J);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 5);
         MatcherAssert.assertThat(
                 moves,
@@ -294,7 +292,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 10, ThreePlayerChessboard.J);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 9, ThreePlayerChessboard.I);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -307,7 +305,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 9, ThreePlayerChessboard.I);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 11, ThreePlayerChessboard.I);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -320,7 +318,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 11, ThreePlayerChessboard.I);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 3, ThreePlayerChessboard.E);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -333,7 +331,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 3, ThreePlayerChessboard.E);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 0, ThreePlayerChessboard.H);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -346,7 +344,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 0, ThreePlayerChessboard.H);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.E);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -359,7 +357,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 8, ThreePlayerChessboard.E);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 11, ThreePlayerChessboard.H);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -372,7 +370,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 11, ThreePlayerChessboard.H);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 3, ThreePlayerChessboard.D);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -385,7 +383,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 3, ThreePlayerChessboard.D);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 0, ThreePlayerChessboard.A);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -398,7 +396,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 0, ThreePlayerChessboard.A);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.D);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -411,7 +409,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 4, ThreePlayerChessboard.D);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 7, ThreePlayerChessboard.A);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -424,7 +422,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 7, ThreePlayerChessboard.A);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.I);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -437,7 +435,7 @@ public class DiagonalMoveTest {
         ((ThreePlayerChessboard) board).setPiece(null, 4, ThreePlayerChessboard.I);
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 7, ThreePlayerChessboard.L);
-        moves = new DiagonalMove(bishop, board).getSameSixtantMoves(bishop.getSquare());
+        moves = new DiagonalMove(bishop, board).getSameSextantMoves(bishop.getSquare());
         assertTrue(moves.size() == 3);
         MatcherAssert.assertThat(
                 moves,
@@ -462,7 +460,7 @@ public class DiagonalMoveTest {
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
-                        // same sixtant
+                        // same sextant
                         new Square(9, ThreePlayerChessboard.J, null),  new Square(10, ThreePlayerChessboard.K, null),  new Square(11, ThreePlayerChessboard.L, null),
                         // right
                         new Square(4, ThreePlayerChessboard.J, null),  new Square(5, ThreePlayerChessboard.K, null),   new Square(6, ThreePlayerChessboard.L, null),
@@ -487,9 +485,9 @@ public class DiagonalMoveTest {
                 moves,
                 hasItems(
                         new Square(1,  ThreePlayerChessboard.H, null), // down diagonal
-                        new Square(0,  ThreePlayerChessboard.E, null), new Square(1, ThreePlayerChessboard.F, null), // left diagonal same sixtant
-                        new Square(3,  ThreePlayerChessboard.H, null), // right diagonal same sixtant
-                        new Square(3,  ThreePlayerChessboard.F, null), // top diagonal same sixtant
+                        new Square(0,  ThreePlayerChessboard.E, null), new Square(1, ThreePlayerChessboard.F, null), // left diagonal same sextant
+                        new Square(3,  ThreePlayerChessboard.H, null), // right diagonal same sextant
+                        new Square(3,  ThreePlayerChessboard.F, null), // top diagonal same sextant
                         new Square(8,  ThreePlayerChessboard.E, null), new Square(9, ThreePlayerChessboard.F, null),  new Square(10, ThreePlayerChessboard.G, null),
                         new Square(11, ThreePlayerChessboard.H, null), new Square(9, ThreePlayerChessboard.I, null),  new Square(10, ThreePlayerChessboard.J, null),
                         new Square(11, ThreePlayerChessboard.K, null), new Square(3, ThreePlayerChessboard.D, null),  new Square(2, ThreePlayerChessboard.C, null),  new Square(1, ThreePlayerChessboard.B, null),

@@ -155,7 +155,7 @@ public class ThreePlayerChessboard implements IBoard {
         throw new Exception("Invalid square");
     }
 
-    public boolean inSixtant(Square square, int x_coord, int y_coord) {
+    public boolean inSextant(Square square, int x_coord, int y_coord) {
         return ((1 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 4  && E <= square.getPozY() && square.getPozY() <= H) && (1 <= (x_coord + 1) && (x_coord + 1) <= 4  && E <= y_coord && y_coord <= H) ||
             (9 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 12 && E <= square.getPozY() && square.getPozY() <= H) && (9 <= (x_coord + 1) && (x_coord + 1) <= 12 && E <= y_coord && y_coord <= H) ||
             (9 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 12 && I <= square.getPozY() && square.getPozY() <= L) && (9 <= (x_coord + 1) && (x_coord + 1) <= 12 && I <= y_coord && y_coord <= L) ||
@@ -164,7 +164,7 @@ public class ThreePlayerChessboard implements IBoard {
             (1 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 4  && A <= square.getPozY() && square.getPozY() <= D) && (1 <= (x_coord + 1) && (x_coord + 1) <= 4  && A <= y_coord && y_coord <= D));
     }
 
-    public Square getLeftCuadrantSquare(Square square) throws Exception {
+    public Square getLeftQuadrantSquare(Square square) throws Exception {
         if (9 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 12) {
             if (square.getPozY() == I) {
                 return new Square(square.getPozX() + 1, E, null);
@@ -192,7 +192,7 @@ public class ThreePlayerChessboard implements IBoard {
         throw new Exception("Invalid square");
     }
 
-    public Square getRightCuadrantSquare(Square square) throws Exception {
+    public Square getRightQuadrantSquare(Square square) throws Exception {
         if (9 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 12) {
             if (square.getPozY() == E) {
                 return new Square(square.getPozX() + 1, I, null);
