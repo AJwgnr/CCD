@@ -1073,7 +1073,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		
 		for(Map.Entry<String, Point> point : points.entrySet())
 			point.getValue().paintComponent(graphics);
-
+      
 		this.labeling.draw(graphics);
 	}
 }

@@ -2,7 +2,6 @@ package com.ovgu.ccd.gui.chessboardListener;
 
 import java.awt.*;
 import java.util.ArrayList;
-
 import javax.swing.JComponent;
 
 
@@ -13,13 +12,12 @@ public class Line extends GeometricShape
 	private Point start = new Point(0,0);
 	private Point end = new Point(0,0);
 
-
 	@Override
 	public double area() {
 		return 0;
 	}
 
-
+	
 	// constructor
 	public Line(Point start, Point end)
 	{

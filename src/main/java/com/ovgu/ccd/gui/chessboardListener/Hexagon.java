@@ -17,7 +17,6 @@ public class Hexagon extends GeometricShape
 	private HashMap<String, Line> lines = new HashMap<String, Line>();
 	private Point center = null;
 	private int radius = 0;
-
 	
 	public Hexagon(Point center, int radius)
 	{
@@ -48,7 +47,6 @@ public class Hexagon extends GeometricShape
 		this.vertices.put("D", outerCircle.findIntersectionPoint(constructionCircleRight).get(0));
 		this.vertices.put("B", outerCircle.findIntersectionPoint(constructionCircleRight).get(1));
 	}
-
 
 	private void setupLines()
 	{

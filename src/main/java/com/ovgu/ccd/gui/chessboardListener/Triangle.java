@@ -22,7 +22,6 @@ public class Triangle extends GeometricShape
 		this.lines.put("CA", new Line(c, a));
 	}
 
-
 	@Override
 	public void draw(Graphics graphics)
 	{
