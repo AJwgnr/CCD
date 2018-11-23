@@ -246,7 +246,7 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(this, Settings.lang("fill_name"));
                 return;
             }
-            Game newGUI = JChessApp.jcv.addNewTab(this.firstName.getText() + " vs " + this.secondName.getText() + " vs. " + this.thirdName.getText());
+            Game newGUI = JChessApp.jcv.addNewTab(this.firstName.getText() + " vs " + this.secondName.getText() +  " vs " + this.thirdName.getText()  );
             Settings sett = newGUI.settings;//sett local settings variable
             Player pl1 = sett.playerWhite;//set local player variable
             Player pl2 = sett.playerBlack;//set local player variable
