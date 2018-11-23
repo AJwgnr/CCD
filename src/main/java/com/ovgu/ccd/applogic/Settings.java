@@ -41,6 +41,7 @@ public class Settings implements Serializable {
     public gameModes gameMode;
     public Player playerWhite;
     public Player playerBlack;
+    public Player playerThree;
     public gameTypes gameType;
     public boolean renderLabels = true;
 
@@ -48,6 +49,7 @@ public class Settings implements Serializable {
         //temporally
         this.playerWhite = new Player("", "white");
         this.playerBlack = new Player("", "black");
+        this.playerThree = new Player("", "black");
         this.timeLimitSet = false;
 
         gameMode = gameModes.newGame;

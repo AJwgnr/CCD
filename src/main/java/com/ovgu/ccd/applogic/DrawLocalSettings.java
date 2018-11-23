@@ -33,7 +33,7 @@ import java.awt.event.TextListener;
 /**
  * Class responsible for drawing the fold with local game settings
  */
-public class DrawLocalSettings extends JPanel implements ActionListener, TextListener {
+public class DrawLocalSettings extends JPanel implements ActionListener {
 
     private JDialog parent;//needet to close newGame window
     private JComboBox color;//to choose color of player
@@ -74,11 +74,11 @@ public class DrawLocalSettings extends JPanel implements ActionListener, TextLis
     public DrawLocalSettings(JDialog parent) {
         super();
         //this.setA//choose oponent
-        initUiComponents();
+        initUiComponents(parent);
     }
 
 
-    private void initUiComponents() {
+    private void initUiComponents(JDialog parent) {
         this.parent = parent;
         this.color = new JComboBox(colors);
         this.gridBagLayout = new GridBagLayout();
@@ -234,8 +234,11 @@ public class DrawLocalSettings extends JPanel implements ActionListener, TextLis
             if (this.secondName.getText().length() > 9) {//make names short to 10 digits
                 this.secondName.setText(this.trimString(secondName, 9));
             }
+            if (this.thirdName.getText().length() > 9) {//make names short to 10 digits
+                this.thirdName.setText(this.trimString(thirdName, 9));
+            }
             if (!this.oponentComp.isSelected()
-                    && (this.firstName.getText().length() == 0 || this.secondName.getText().length() == 0)) {
+                    && (this.firstName.getText().length() == 0 || this.secondName.getText().length() == 0) || (this.thirdName.getText().length() == 0 )) {
                 JOptionPane.showMessageDialog(this, Settings.lang("fill_names"));
                 return;
             }
@@ -243,23 +246,29 @@ public class DrawLocalSettings extends JPanel implements ActionListener, TextLis
                 JOptionPane.showMessageDialog(this, Settings.lang("fill_name"));
                 return;
             }
-            Game newGUI = JChessApp.jcv.addNewTab(this.firstName.getText() + " vs " + this.secondName.getText());
+            Game newGUI = JChessApp.jcv.addNewTab(this.firstName.getText() + " vs " + this.secondName.getText() + " vs. " + this.thirdName.getText());
             Settings sett = newGUI.settings;//sett local settings variable
             Player pl1 = sett.playerWhite;//set local player variable
             Player pl2 = sett.playerBlack;//set local player variable
+            Player pl3 = sett.playerThree;//set local player variable
+
+
             sett.gameMode = Settings.gameModes.newGame;
             //if(this.firstName.getText().length() >9 ) this.firstName.setText(this.firstName.getText(0,8));
             if (this.color.getActionCommand().equals("biały")) //if first player is white
             {
                 pl1.setName(this.firstName.getText());//set name of player
                 pl2.setName(this.secondName.getText());//set name of player
+                pl3.setName(this.thirdName.getText());
             } else //else change names
             {
                 pl2.setName(this.firstName.getText());//set name of player
                 pl1.setName(this.secondName.getText());//set name of player
+                pl3.setName(this.thirdName.getText());
             }
             pl1.setType(Player.playerTypes.localUser);//set type of player
             pl2.setType(Player.playerTypes.localUser);//set type of player
+            pl3.setType(Player.playerTypes.localUser);//set type of player
             sett.gameType = Settings.gameTypes.local;
             if (this.oponentComp.isSelected()) //if computer oponent is checked
             {
@@ -278,7 +287,7 @@ public class DrawLocalSettings extends JPanel implements ActionListener, TextLis
             }
             System.out.println(this.time4Game.getActionCommand());
             //this.time4Game.getComponent(this.time4Game.getSelectedIndex());
-            System.out.println("****************\nStarting new game: " + pl1.getName() + " vs. " + pl2.getName()
+            System.out.println("****************\nStarting new game: " + pl1.getName() + " vs. " + pl2.getName() + " vs. " + pl3.getName()
                     + "\ntime 4 game: " + sett.timeForGame + "\ntime limit set: " + sett.timeLimitSet
                     + "\nwhite on top?: " + sett.upsideDown + "\n****************");//4test
             newGUI.newGame();//start new Game
