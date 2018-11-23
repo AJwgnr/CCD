@@ -110,7 +110,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         Calendar cal = Calendar.getInstance();
         String str = new String("");
         String info = new String("[Event \"Game\"]\n[Date \"" + cal.get(cal.YEAR) + "." + (cal.get(cal.MONTH) + 1) + "." + cal.get(cal.DAY_OF_MONTH) + "\"]\n"
-                + "[White \"" + this.settings.playerWhite.name + "\"]\n[Black \"" + this.settings.playerBlack.name + "\"]\n\n");
+                + "[White \"" + this.settings.playerWhite.getName() + "\"]\n[Black \"" + this.settings.playerBlack.getName() + "\"]\n\n");
         str += info;
         str += this.moves.getMovesInString();
         try
@@ -175,8 +175,8 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         }
         Game newGUI = JChessApp.jcv.addNewTab(whiteName + " vs. " + blackName);
         Settings locSetts = newGUI.settings;
-        locSetts.playerBlack.name = blackName;
-        locSetts.playerWhite.name = whiteName;
+        locSetts.playerBlack.setName(blackName);
+        locSetts.playerWhite.setName(whiteName);
         locSetts.playerBlack.setType(Player.playerTypes.localUser);
         locSetts.playerWhite.setType(Player.playerTypes.localUser);
         locSetts.gameMode = Settings.gameModes.loadGame;
@@ -258,7 +258,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         //System.out.println("new game, game type: "+settings.gameType.name());
 
         activePlayer = settings.playerWhite;
-        if (activePlayer.playerType != Player.playerTypes.localUser)
+        if (activePlayer.getPlayerType() != Player.playerTypes.localUser)
         {
             this.blockedChessboard = true;
         }
@@ -316,16 +316,16 @@ public class Game extends JPanel implements MouseListener, ComponentListener
     {
         switchActive();
 
-        System.out.println("next move, active player: " + activePlayer.name + ", color: " + activePlayer.getColor().name() + ", type: " + activePlayer.playerType.name());
-        if (activePlayer.playerType == Player.playerTypes.localUser)
+        System.out.println("next move, active player: " + activePlayer.getName() + ", color: " + activePlayer.getColor().name() + ", type: " + activePlayer.getPlayerType().name());
+        if (activePlayer.getPlayerType() == Player.playerTypes.localUser)
         {
             this.blockedChessboard = false;
         }
-        else if (activePlayer.playerType == Player.playerTypes.networkUser)
+        else if (activePlayer.getPlayerType() == Player.playerTypes.networkUser)
         {
             this.blockedChessboard = true;
         }
-        else if (activePlayer.playerType == Player.playerTypes.computer)
+        else if (activePlayer.getPlayerType() == Player.playerTypes.computer)
         {
         }
     }
