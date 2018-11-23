@@ -21,6 +21,7 @@
 package com.ovgu.ccd.pieces;
 
 
+import com.ovgu.ccd.applogic.Player.Colors;
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.applogic.Player;
 
@@ -142,7 +143,7 @@ public abstract class Piece {
         this.player = player;
     }
 
-    public Player.colors getColor() {
+    public Colors getColor() {
         return player.getColor();
     }
 

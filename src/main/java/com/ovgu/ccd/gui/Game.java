@@ -177,8 +177,8 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         Settings locSetts = newGUI.settings;
         locSetts.playerBlack.setName(blackName);
         locSetts.playerWhite.setName(whiteName);
-        locSetts.playerBlack.setType(Player.playerTypes.localUser);
-        locSetts.playerWhite.setType(Player.playerTypes.localUser);
+        locSetts.playerBlack.setType(Player.PlayerTypes.localUser);
+        locSetts.playerWhite.setType(Player.PlayerTypes.localUser);
         locSetts.gameMode = Settings.gameModes.loadGame;
         locSetts.gameType = Settings.gameTypes.local;
 
@@ -258,7 +258,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         //System.out.println("new game, game type: "+settings.gameType.name());
 
         activePlayer = settings.playerWhite;
-        if (activePlayer.getPlayerType() != Player.playerTypes.localUser)
+        if (activePlayer.getPlayerType() != Player.PlayerTypes.localUser)
         {
             this.blockedChessboard = true;
         }
@@ -317,15 +317,15 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         switchActive();
 
         System.out.println("next move, active player: " + activePlayer.getName() + ", color: " + activePlayer.getColor().name() + ", type: " + activePlayer.getPlayerType().name());
-        if (activePlayer.getPlayerType() == Player.playerTypes.localUser)
+        if (activePlayer.getPlayerType() == Player.PlayerTypes.localUser)
         {
             this.blockedChessboard = false;
         }
-        else if (activePlayer.getPlayerType() == Player.playerTypes.networkUser)
+        else if (activePlayer.getPlayerType() == Player.PlayerTypes.networkUser)
         {
             this.blockedChessboard = true;
         }
-        else if (activePlayer.getPlayerType() == Player.playerTypes.computer)
+        else if (activePlayer.getPlayerType() == Player.PlayerTypes.computer)
         {
         }
     }

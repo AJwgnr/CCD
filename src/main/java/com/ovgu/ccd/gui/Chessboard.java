@@ -20,6 +20,7 @@
  */
 package com.ovgu.ccd.gui;
 
+import com.ovgu.ccd.applogic.Player.Colors;
 import com.ovgu.ccd.applogic.JChessApp;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;
@@ -173,14 +174,14 @@ public class Chessboard extends JPanel {
         this.squares[5][i].setPiece(new Bishop(this, player));
         if (upsideDown) {
             this.squares[4][i].setPiece(new Queen(this, player));
-            if (player.getColor() == Player.colors.white) {
+            if (player.getColor() == Player.Colors.white) {
                 this.squares[3][i].setPiece(kingWhite = new King(this, player));
             } else {
                 this.squares[3][i].setPiece(kingBlack = new King(this, player));
             }
         } else {
             this.squares[3][i].setPiece(new Queen(this, player));
-            if (player.getColor() == Player.colors.white) {
+            if (player.getColor() == Player.Colors.white) {
                 this.squares[4][i].setPiece(kingWhite = new King(this, player));
             } else {
                 this.squares[4][i].setPiece(kingBlack = new King(this, player));
@@ -423,7 +424,7 @@ public class Chessboard extends JPanel {
             {
                 if (clearForwardHistory) {
                     String color;
-                    if (end.getPiece().getPlayer().getColor() == Player.colors.white)
+                    if (end.getPiece().getPlayer().getColor() == Colors.white)
                     {
                         color = "W"; // promotionWindow was show with pieces in this color
                     } else {
@@ -789,9 +790,9 @@ public class Chessboard extends JPanel {
         System.out.println(" |0|1|2|3|4|5|6|7|");
     }
 
-    public King myKing(Player.colors color)
+    public King myKing(Colors color)
     {
-        if (color == Player.colors.white) {
+        if (color == Colors.white) {
             return kingWhite;
         } else {
             return  kingBlack;

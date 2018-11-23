@@ -28,40 +28,39 @@ import java.io.Serializable;
  */
 public class Player implements Serializable {
     private String name;
-    private colors color;
-    private playerTypes playerType;
+    private Colors color;
+    private PlayerTypes playerType;
     private boolean goDown;
+
+    /**
+     *Enum for the different possible colors for the chess paly
+     */
+    public enum Colors {
+        white, black
+
+    }
+
+    /**
+     *'Enum representing the different player options in the game
+     */
+    public enum PlayerTypes {
+        localUser, networkUser, computer
+    }
 
 
     /**
-     *
      * @param name
      * @param color
      */
 
     public Player(String name, String color) {
         this.name = name;
-        this.setColor(colors.valueOf(color));
+        this.setColor(Colors.valueOf(color));
         this.setGoDown(false);
     }
 
-    /**
-     *
-     */
-    public enum colors {
-        white, black
-    }
 
     /**
-     *
-     */
-    public enum playerTypes {
-        localUser, networkUser, computer
-    }
-
-
-    /**
-     *
      * @return
      */
     public boolean isGoDown() {
@@ -69,7 +68,6 @@ public class Player implements Serializable {
     }
 
     /**
-     *
      * @param goDown
      */
     public void setGoDown(boolean goDown) {
@@ -92,15 +90,16 @@ public class Player implements Serializable {
      *
      * @param type type of player - enumerate
      */
-    public void setType(playerTypes type) {
+    public void setType(PlayerTypes type) {
         this.playerType = type;
     }
 
     /**
      * sets the color of the player Instance
+     *
      * @param color
      */
-    public void setColor(colors color) {
+    public void setColor(Colors color) {
         this.color = color;
     }
 
@@ -116,17 +115,19 @@ public class Player implements Serializable {
 
     /**
      * Get the color of the player instance
+     *
      * @return players color
      */
-    public colors getColor() {
+    public Colors getColor() {
         return this.color;
     }
 
     /**
      * Get the playerType instance of the Player instance
+     *
      * @return playerType
      */
-    public playerTypes getPlayerType(){
+    public PlayerTypes getPlayerType() {
         return this.playerType;
     }
 }

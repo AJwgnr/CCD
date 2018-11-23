@@ -13,7 +13,7 @@ public class KnightTest {
     @Test
     public void testWhitePlayerImage() {
         Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.colors.white.name());
+        Player player = new Player("John", Player.Colors.white.name());
         Knight knight = new Knight(board, player);
 
         assertEquals(Knight.imageWhite, knight.image);
@@ -24,7 +24,7 @@ public class KnightTest {
     @Test
     public void testBlackPlayerImage() {
         Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.colors.black.name());
+        Player player = new Player("John", Player.Colors.black.name());
         Knight knight = new Knight(board, player);
 
         assertEquals(Knight.imageBlack, knight.image);
@@ -34,7 +34,7 @@ public class KnightTest {
     @Test
     public void testSymbol() {
         Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.colors.black.name());
+        Player player = new Player("John", Player.Colors.black.name());
         Knight knight = new Knight(board, player);
 
         assertEquals("N", knight.getSymbol());
