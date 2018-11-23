@@ -102,8 +102,7 @@ public class Pawn extends Piece {
         }
 
         moves.addAll(regularMove(immediateYCoordinate));
-        if (getPlayer().isGoDown() && square.pozY == 1 || !getPlayer().isGoDown() && square.pozY == 6)
-        {
+        if (getPlayer().isGoDown() && square.pozY == 1 || !getPlayer().isGoDown() && square.pozY == 6) {
             moves.addAll(regularMove(twoPositionsYCoordinate));
         }
 
@@ -136,15 +135,15 @@ public class Pawn extends Piece {
         return list;
     }
 
-    private ArrayList captureMove(Integer nextXCoordinate, Integer nextYCoordinate)
-    {
+    private ArrayList captureMove(Integer nextXCoordinate, Integer nextYCoordinate) {
         ArrayList list = new ArrayList();
-        if (outsideOfBoard(nextXCoordinate, nextYCoordinate)) { return list; }
+        if (outsideOfBoard(nextXCoordinate, nextYCoordinate)) {
+            return list;
+        }
 
         Square nextPosition = chessboard.getSquare(nextXCoordinate, nextYCoordinate);
         if (canMoveTo(nextPosition) && otherOwner(nextPosition.piece)
-            && chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(square, nextPosition))
-        {
+                && chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(square, nextPosition)) {
             list.add(nextPosition);
         }
 
