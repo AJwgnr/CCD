@@ -24,78 +24,103 @@ import java.io.Serializable;
 
 
 /**
- * Class representing the player in the game
+ * Represents a Player in the Chess Game
  */
-public class Player implements Serializable
-{
+public class Player implements Serializable {
 
-    String name;
-
-
-    public colors getColor() {
-        return color;
-    }
-
-    public void setColor(colors color) {
-        this.color = color;
-    }
-
-    public enum colors
-    {
-
-        white, black
-    }
+    private String name;
     private colors color;
-
-    public enum playerTypes
-    {
-
-        localUser, networkUser, computer
-    }
-    public playerTypes playerType;
-
+    private playerTypes playerType;
     private boolean goDown;
 
-    public boolean isGoDown() {
-        return goDown;
-    }
-
-    public void setGoDown(boolean goDown) {
-        this.goDown = goDown;
-    }
-
-    public Player()
-    {
-    }
-
-    public Player(String name, String color)
-    {
+    
+    /**
+     *
+     * @param name
+     * @param color
+     */
+    public Player(String name, String color) {
         this.name = name;
         this.setColor(colors.valueOf(color));
         this.setGoDown(false);
     }
 
-    /** Method setting the players name
-     *  @param name name of player
+
+    /**
+     *
      */
-    public void setName(String name)
-    {
+    public enum colors {
+        white, black
+    }
+
+    /**
+     *
+     */
+    public enum playerTypes {
+        localUser, networkUser, computer
+    }
+
+
+    /**
+     *
+     * @return
+     */
+    public boolean isGoDown() {
+        return goDown;
+    }
+
+    /**
+     *
+     * @param goDown
+     */
+    public void setGoDown(boolean goDown) {
+        this.goDown = goDown;
+    }
+
+
+    /**
+     * Sets the players name
+     *
+     * @param name name of player
+     */
+    public void setName(String name) {
         this.name = name;
     }
 
-    /** Method getting the players name
-     *  @return name of player
+
+    /**
+     * Set the players type
+     *
+     * @param type type of player - enumerate
      */
-    public String getName()
-    {
+    public void setType(playerTypes type) {
+        this.playerType = type;
+    }
+
+    /**
+     * sets the color of the player Instance
+     * @param color
+     */
+    private void setColor(colors color) {
+        this.color = color;
+    }
+
+
+    /**
+     * Get the name of the Player instance
+     *
+     * @return name of player
+     */
+    public String getName() {
         return this.name;
     }
 
-    /** Method setting the players type
-     *  @param type type of player - enumerate
+    /**
+     * Get the color of the player instance
+     * @return players color
      */
-    public void setType(playerTypes type)
-    {
-        this.playerType = type;
+    public colors getColor() {
+        return this.color;
     }
+
 }
