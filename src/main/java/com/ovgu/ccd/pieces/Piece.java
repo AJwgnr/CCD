@@ -22,12 +22,11 @@ package com.ovgu.ccd.pieces;
 
 
 import com.ovgu.ccd.gui.Chessboard;
-import com.ovgu.ccd.gui.Player;
+import com.ovgu.ccd.applogic.Player;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Class to represent a piece (any kind) - this class should be extended to represent pawn, bishop etc.

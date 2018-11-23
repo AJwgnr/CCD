@@ -15,7 +15,7 @@
 
 package com.ovgu.ccd.applogic;
 
-import com.ovgu.ccd.gui.Player.playerTypes;
+import com.ovgu.ccd.applogic.Player.playerTypes;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

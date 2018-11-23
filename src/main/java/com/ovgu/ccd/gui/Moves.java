@@ -20,6 +20,7 @@
  */
 package com.ovgu.ccd.gui;
 
+import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;

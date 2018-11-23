@@ -1,8 +1,7 @@
 package com.ovgu.ccd.pieces;
 
 import com.ovgu.ccd.gui.Chessboard;
-import com.ovgu.ccd.gui.Player;
-import com.ovgu.ccd.pieces.Bishop;
+import com.ovgu.ccd.applogic.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

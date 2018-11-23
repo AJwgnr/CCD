@@ -18,7 +18,7 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.gui;
+package com.ovgu.ccd.applogic;
 
 import java.io.Serializable;
 
@@ -122,6 +122,10 @@ public class Player implements Serializable {
         return this.color;
     }
 
+    /**
+     * Get the playerType instance of the Player instance
+     * @return playerType
+     */
     public playerTypes getPlayerType(){
         return this.playerType;
     }

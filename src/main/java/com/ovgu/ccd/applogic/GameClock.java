@@ -21,7 +21,6 @@
 package com.ovgu.ccd.applogic;
 
 import com.ovgu.ccd.gui.Game;
-import com.ovgu.ccd.gui.Player;
 
 import javax.swing.*;
 import java.awt.*;

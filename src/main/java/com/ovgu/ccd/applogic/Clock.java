@@ -20,8 +20,6 @@
  */
 package com.ovgu.ccd.applogic;
 
-import com.ovgu.ccd.gui.Player;
-
 /**
  * Class to represent seperate wall-clock for one player.
  * Full ChessClock is represented by GameClock object (two clock - one for each player)

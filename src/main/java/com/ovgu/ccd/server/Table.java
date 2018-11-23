@@ -21,7 +21,7 @@
 package com.ovgu.ccd.server;
 
 import com.ovgu.ccd.applogic.Settings;
-import com.ovgu.ccd.gui.Player;
+import com.ovgu.ccd.applogic.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;

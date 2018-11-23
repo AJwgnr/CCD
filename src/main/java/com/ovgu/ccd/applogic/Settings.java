@@ -20,8 +20,6 @@
  */
 package com.ovgu.ccd.applogic;
 
-import com.ovgu.ccd.gui.Player;
-
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.PropertyResourceBundle;

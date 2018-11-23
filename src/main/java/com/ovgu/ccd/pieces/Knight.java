@@ -22,7 +22,7 @@ package com.ovgu.ccd.pieces;
 
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.GUI;
-import com.ovgu.ccd.gui.Player;
+import com.ovgu.ccd.applogic.Player;
 
 import java.util.ArrayList;
 

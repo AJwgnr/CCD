@@ -21,6 +21,7 @@
 package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.JChessApp;
+import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.Moves.castling;
 import com.ovgu.ccd.pieces.*;
