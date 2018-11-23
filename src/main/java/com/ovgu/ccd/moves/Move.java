@@ -16,44 +16,52 @@
 /*
  * Author: Mateusz Sławomir Lach ( matlak, msl )
  */
-package com.ovgu.ccd.gui;
+package com.ovgu.ccd.moves;
 
+import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.Moves.castling;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
-class Move {
+/**
+ * Represents a move done by a player
+ */
+public class Move {
 
-    protected Square from = null;
-    protected Square to = null;
-    protected Piece movedPiece = null;
-    protected Piece takenPiece = null;
-    protected Piece promotedTo = null;
-    protected boolean wasEnPassant = false;
-    protected castling castlingMove = castling.none;
-    protected boolean wasPawnTwoFieldsMove = false;
+    private Square from = null;
+    private Square to = null;
+    private Piece movedPiece = null;
+    private Piece takenPiece = null;
+    private Piece promotedTo = null;
+    private boolean wasEnPassant = false;
+    private castling castlingMove = castling.none;
+    private boolean wasPawnTwoFieldsMove = false;
 
-    Move(Square from, Square to, Piece movedPiece, Piece takenPiece, castling castlingMove, boolean wasEnPassant, Piece promotedPiece) {
-        this.from = from;
-        this.to = to;
-
-        this.movedPiece = movedPiece;
-        this.takenPiece = takenPiece;
-
-        this.castlingMove = castlingMove;
-        this.wasEnPassant = wasEnPassant;
+    public Move(Square from, Square to, Piece movedPiece, Piece takenPiece, castling castlingMove, boolean wasEnPassant, Piece promotedPiece) {
+        this.setFrom(from);
+        this.setTo(to);
+        this.setMovedPiece(movedPiece);
+        this.setTakenPiece(takenPiece);
+        this.setCastlingMove(castlingMove);
+        this.setWasEnPassant(wasEnPassant);
 
         if (movedPiece.name.equals("Pawn") && Math.abs(to.getPozY() - from.getPozY()) == 2) {
-            this.wasPawnTwoFieldsMove = true;
+            this.setWasPawnTwoFieldsMove(true);
         } else if (movedPiece.name.equals("Pawn") && to.getPozY() == Chessboard.bottom || to.getPozY() == Chessboard.top && promotedPiece != null) {
-            this.promotedTo = promotedPiece;
+            this.setPromotedTo(promotedPiece);
         }
     }
 
+    /**
+     * @return
+     */
     public Square getFrom() {
         return this.from;
     }
 
+    /**
+     * @return
+     */
     public Square getTo() {
         return this.to;
     }
@@ -62,23 +70,115 @@ class Move {
         return this.movedPiece;
     }
 
+    /**
+     * @return
+     */
     public Piece getTakenPiece() {
         return this.takenPiece;
     }
 
+    /**
+     * @return
+     */
     public boolean wasEnPassant() {
-        return this.wasEnPassant;
+        return this.isWasEnPassant();
     }
 
+    /**
+     * @return
+     */
     public boolean wasPawnTwoFieldsMove() {
-        return this.wasPawnTwoFieldsMove;
+        return this.isWasPawnTwoFieldsMove();
     }
 
+    /**
+     * @return
+     */
     public castling getCastlingMove() {
         return this.castlingMove;
     }
 
+    /**
+     * @return
+     */
     public Piece getPromotedPiece() {
-        return this.promotedTo;
+        return this.getPromotedTo();
+    }
+
+    /**
+     * @param from
+     */
+    private void setFrom(Square from) {
+        this.from = from;
+    }
+
+    /**
+     * @param to
+     */
+    private void setTo(Square to) {
+        this.to = to;
+    }
+
+    /**
+     * @param movedPiece
+     */
+    private void setMovedPiece(Piece movedPiece) {
+        this.movedPiece = movedPiece;
+    }
+
+    /**
+     * @param takenPiece
+     */
+    private void setTakenPiece(Piece takenPiece) {
+        this.takenPiece = takenPiece;
+    }
+
+    /**
+     * @return
+     */
+    public Piece getPromotedTo() {
+        return promotedTo;
+    }
+
+    /**
+     * @param promotedTo
+     */
+    private void setPromotedTo(Piece promotedTo) {
+        this.promotedTo = promotedTo;
+    }
+
+    /**
+     * @return
+     */
+    public boolean isWasEnPassant() {
+        return wasEnPassant;
+    }
+
+    /**
+     * @param wasEnPassant
+     */
+    private void setWasEnPassant(boolean wasEnPassant) {
+        this.wasEnPassant = wasEnPassant;
+    }
+
+    /**
+     * @param castlingMove
+     */
+    private void setCastlingMove(castling castlingMove) {
+        this.castlingMove = castlingMove;
+    }
+
+    /**
+     * @return
+     */
+    public boolean isWasPawnTwoFieldsMove() {
+        return wasPawnTwoFieldsMove;
+    }
+
+    /**
+     * @param wasPawnTwoFieldsMove
+     */
+    private void setWasPawnTwoFieldsMove(boolean wasPawnTwoFieldsMove) {
+        this.wasPawnTwoFieldsMove = wasPawnTwoFieldsMove;
     }
 }
