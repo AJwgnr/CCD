@@ -8,9 +8,9 @@ import java.util.Properties;
 /**
  * Loading the apllication wide resources
  */
-public class ResourceLoader {
+public class ResourceManager {
 
-    private static ResourceLoader singleton_instance = null;
+    private static ResourceManager singleton_instance = null;
     private Properties jChessAppPropertie;
     private Properties jChessViewPropertie;
     private Properties jChessAboutBoxPropertie;
@@ -18,7 +18,7 @@ public class ResourceLoader {
     /**
      *
      */
-    private ResourceLoader() {
+    private ResourceManager() {
         InputStream jChessViewInputStream = JChessView.class.getClassLoader().getResourceAsStream("JChessView.properties");
         jChessViewPropertie = new Properties();
 
@@ -49,9 +49,9 @@ public class ResourceLoader {
      *
      * @return
      */
-    public static ResourceLoader getInstance() {
+    public static ResourceManager getInstance() {
         if (singleton_instance == null) {
-            singleton_instance = new ResourceLoader();
+            singleton_instance = new ResourceManager();
         }
         return singleton_instance;
     }
