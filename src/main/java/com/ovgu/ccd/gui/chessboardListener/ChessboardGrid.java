@@ -40,12 +40,13 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	private HashMap<String, ChessPanel> panels = new HashMap<String, ChessPanel>();
 	private Node<ChessPanel> panelRoot = null;
 	private Hexagon hexagon = null;
+	private ChessboardLabeling labeling = null;
 
 	
 	public ChessboardGrid(Point center, int radius)
 	{
 		this.hexagon = new Hexagon(center, radius);
-		this.points = this.hexagon.getVertices();
+		this.points = this.hexagon.getVerticesAsMap();
 		this.points.put("Center", center);
 		init();
 	}
@@ -57,6 +58,20 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		setupLines();
 		setupPanels();
 		setupPanelTree();
+		setupLabeling();
+	}
+
+
+	private void setupLabeling()
+	{
+		String[] labels = new String[]{
+				"A", "B", "C", "D", "E", "F", "G", "H",
+				"1", "2", "3", "4", "9", "10", "11", "12",
+				"H", "G", "F", "E", "I", "J", "K", "L",
+				"12", "11", "10", "9", "5", "6", "7", "8",
+				"L", "K", "J", "I", "D", "C", "B", "A",
+				"8", "7", "6", "5", "4", "3", "2", "1"};
+		this.labeling = new ChessboardLabeling(this.hexagon, labels);
 	}
 	
 	
@@ -1058,5 +1073,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		
 		for(Map.Entry<String, Point> point : points.entrySet())
 			point.getValue().paintComponent(graphics);
+      
+		this.labeling.draw(graphics);
 	}
 }

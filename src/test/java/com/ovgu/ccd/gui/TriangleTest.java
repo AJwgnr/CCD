@@ -26,6 +26,6 @@ public class TriangleTest
     @Test
     public void testAreaComputation()
     {
-        assertEquals(triangle.getArea(), 5000, 0);
+        assertEquals(triangle.area(), 5000, 0);
     }
 }
