@@ -21,6 +21,7 @@
 package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.*;
+import com.ovgu.ccd.gui.chessboardListener.ChessboardListener;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Square;
 
@@ -62,6 +63,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         this.setLayout(null);
         this.moves = new Moves(this);
         settings = new Settings();
+
         chessboard = new Chessboard(this.settings, this.moves);
         chessboard.setVisible(true);
         chessboard.setSize(Chessboard.img_height, Chessboard.img_widht);

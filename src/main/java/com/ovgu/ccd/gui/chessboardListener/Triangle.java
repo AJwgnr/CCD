@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Triangle extends GeometricPrimitiveDrawer
+public class Triangle extends GeometricShape
 {
 	private static final long serialVersionUID = -7342706080221603266L;
 	private HashMap<String, Point> vertices = new HashMap<String, Point>();
@@ -21,9 +21,16 @@ public class Triangle extends GeometricPrimitiveDrawer
 		this.lines.put("BC", new Line(b, c));
 		this.lines.put("CA", new Line(c, a));
 	}
-	
-	
-	public double getArea()
+
+	@Override
+	public void draw(Graphics graphics)
+	{
+		for(Map.Entry<String, Line> line : lines.entrySet())
+			line.getValue().paint(graphics);
+	}
+
+	@Override
+	public double area()
 	{
 		int x1 = this.vertices.get("A").getX();
 		int x2 = this.vertices.get("B").getX();
@@ -33,13 +40,4 @@ public class Triangle extends GeometricPrimitiveDrawer
 		int y3 = this.vertices.get("C").getY();
 		return Math.abs((float)(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2);
 	}
-
-
-	@Override
-	public void draw(Graphics graphics)
-	{
-		for(Map.Entry<String, Line> line : lines.entrySet())
-			line.getValue().paint(graphics);
-	}
-
 }

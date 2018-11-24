@@ -1,24 +1,22 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
 import java.awt.*;
-
+import java.util.ArrayList;
 import javax.swing.JComponent;
 
 
-public class Line extends GeometricPrimitiveDrawer
+public class Line extends GeometricShape
 {
 	private static final long serialVersionUID = -516881209755986697L;
 	
 	private Point start = new Point(0,0);
 	private Point end = new Point(0,0);
-	
-	
-	// constructor
-	public Line()
-	{
 
+	@Override
+	public double area() {
+		return 0;
 	}
-	
+
 	
 	// constructor
 	public Line(Point start, Point end)
@@ -28,7 +26,7 @@ public class Line extends GeometricPrimitiveDrawer
 		setEndPoint(end);
 	}
 	
-	
+
 	// set coordinates of the start point
 	public void setStartPoint(Point start)
 	{
@@ -66,7 +64,7 @@ public class Line extends GeometricPrimitiveDrawer
 	}
 	
 	
-	public Point findIntersectionPoint(Line otherLine)
+	public Point computeIntersectionPoint(Line otherLine)
 	{
         int a1 = this.end.getY() - this.start.getY();
         int b1 = this.start.getX() - this.end.getX();
@@ -121,7 +119,42 @@ public class Line extends GeometricPrimitiveDrawer
 	}
 
 
-	//@Override
+	public Point getMeanPoint()
+	{
+		return this.getStartPoint().getMeanPointBetween(this.getEndPoint());
+	}
+
+
+	// @param: numOfPoints: sum of points on line without start and end point
+	// @return: list of ALL point on line
+	public ArrayList<Point> getEquallyDistributedPoints(int numOfPoints)
+	{
+		ArrayList<Point> points = new ArrayList<Point>();
+		float distance = (float)this.getLength() / (numOfPoints - 1);
+		for (int i = 0; i < numOfPoints; i++)
+			points.add(getPointAfterDistance(distance * i));
+		return points;
+	}
+
+
+	// comuted with linear interpolation
+	public Point getPointAfterDistance(float distance)
+	{
+		if (distance == 0.0f)
+			return this.getStartPoint();
+		else if (distance == getLength())
+			return this.getEndPoint();
+		else
+		{
+			float t = distance / (float)getLength();
+			float x = (1 - t) * this.getStartPoint().getX() + t * this.getEndPoint().getX();
+			float y = (1 - t) * this.getStartPoint().getY() + t * this.getEndPoint().getY();
+			return new Point(x,y);
+		}
+	}
+
+
+	@Override
 	public void draw(Graphics graphics)
 	{
 		graphics.drawLine(this.start.getX(), this.start.getY(), this.end.getX(), this.end.getY());
