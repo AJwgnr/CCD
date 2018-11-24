@@ -39,9 +39,23 @@ public class Settings implements Serializable {
     public boolean timeLimitSet;//tel us if player choose time 4 game or it's infinity
     public boolean upsideDown;
     public gameModes gameMode;
-    public Player playerWhite;
-    public Player playerBlack;
-    public Player playerThree;
+
+    public Player getPlayerWhite() {
+        return playerWhite;
+    }
+
+    public Player getPlayerBlack() {
+        return playerBlack;
+    }
+
+    public Player getPlayerThree() {
+        return playerThree;
+    }
+
+    private Player playerWhite;
+    private Player playerBlack;
+    private Player playerThree;
+
     public gameTypes gameType;
     public boolean renderLabels = true;
 
