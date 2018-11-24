@@ -61,6 +61,10 @@ public class Clock {
 
     }
 
+
+    public void setTime_left(int time){
+        this.time_left = time;
+    }
     /**
      * Method to get left time in seconds
      *

@@ -22,8 +22,6 @@ package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.Clock;
 import com.ovgu.ccd.applogic.Settings;
-import com.ovgu.ccd.gui.Game;
-import com.ovgu.ccd.gui.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,6 +35,9 @@ import java.awt.image.BufferedImage;
 @SuppressWarnings("ALL")
 public class GameClock extends JPanel implements Runnable {
 
+    private static final int GAMECLOCKBACKGROUNDWIDTH = 600;
+    private static final int GAMECLOCKBACKGROUNDHEIGHT = 600;
+
     private Clock playerOneClock;
     private Clock playerTwoClock;
     private Clock playerThreeClock;
@@ -47,7 +48,7 @@ public class GameClock extends JPanel implements Runnable {
     private Thread thread;
     private Game game;
     private Graphics g;
-    private String white_clock, black_clock;
+    private String playerOneClockString, playerTwoClockString, playerThreeClockString;
     private BufferedImage background;
     private Graphics bufferedGraphics;
 
@@ -57,22 +58,10 @@ public class GameClock extends JPanel implements Runnable {
     public GameClock(Game game) {
         super();
 
-
         this.runningClock = this.playerOneClock;//running/active clock
-
         this.game = game;
         this.settings = game.settings;
-        this.background = new BufferedImage(600, 600, BufferedImage.TYPE_INT_ARGB);
-
-        int time = this.settings.getTimeForGame();
-
-        this.playerOneClock = new Clock(time);
-        this.playerTwoClock = new Clock(time);
-        this.playerThreeClock = new Clock(time);
-
-
-        this.setPlayers(this.settings.getPlayerBlack(), this.settings.getPlayerWhite(), this.settings.getPlayerThree());
-
+        this.background = new BufferedImage(GAMECLOCKBACKGROUNDWIDTH, GAMECLOCKBACKGROUNDHEIGHT, BufferedImage.TYPE_INT_ARGB);
         this.thread = new Thread(this);
         if (this.settings.timeLimitSet) {
             thread.start();
@@ -86,6 +75,22 @@ public class GameClock extends JPanel implements Runnable {
      */
     public void start() {
         this.thread.start();
+    }
+
+    /**
+     * Method with is setting the players clocks time
+     *
+     * @param t1 Capt the player time
+     * @param t2 Capt the player time
+     */
+    public void initClock() {
+        /*rather in chess game players got the same time 4 game, so why in documentation
+         * this method've 2 parameters ? */
+        int time = this.settings.getTimeForGame();
+        this.playerOneClock = new Clock(time);
+        this.playerTwoClock = new Clock(time);
+        this.playerThreeClock = new Clock(time);
+        this.setPlayers(this.settings.getPlayerTwo(), this.settings.getPlayerOne(), this.settings.getPlayerThree());
     }
 
     /**
@@ -106,26 +111,43 @@ public class GameClock extends JPanel implements Runnable {
     /**
      * Method of drawing graphical background of clock
      */
-    void drawBackground() {
+    private void drawBackground() {
         Graphics gr = this.background.getGraphics();
         Graphics2D g2d = (Graphics2D) gr;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         Font font = new Font("Serif", Font.ITALIC, 20);
 
+        //create fields for names
         g2d.setColor(Color.WHITE);
         g2d.fillRect(5, 30, 80, 30);
         g2d.setFont(font);
 
         g2d.setColor(Color.BLACK);
-        g2d.fillRect(85, 30, 90, 30);
+        g2d.fillRect(85, 30, 80, 30);
+        g2d.setFont(font);
+
+        g2d.setColor(Color.WHITE);
+        g2d.fillRect(165, 30, 80, 30);
+        g2d.setFont(font);
+
+
         g2d.drawRect(5, 30, 170, 30);
         g2d.drawRect(5, 60, 170, 30);
+        g2d.drawRect(85, 30, 170, 30);
+        g2d.drawRect(85, 60, 170, 30);
+        g2d.drawRect(165, 30, 170, 30);
+        g2d.drawRect(165, 60, 170, 30);
+
         g2d.drawLine(85, 30, 85, 90);
-        font = new Font("Serif", Font.ITALIC, 16);
-        g2d.drawString(settings.getPlayerWhite().getName(), 10, 50);
+        font = new Font("Serif", Font.ITALIC, 50);
         g2d.setColor(Color.WHITE);
-        g2d.drawString(settings.getPlayerBlack().getName(), 100, 50);
+        //Write names of player
+
+        //Write names in created rectangles
+        g2d.drawString(settings.getPlayerOne().getName(), 10, 50);
+        g2d.drawString(settings.getPlayerTwo().getName(), 100, 50);
+        g2d.drawString(settings.getPlayerThree().getName(), 190, 50);
         this.bufferedGraphics = this.background.getGraphics();
     }
 
@@ -138,8 +160,9 @@ public class GameClock extends JPanel implements Runnable {
     public void paint(Graphics g) {
         //System.out.println("rysuje zegary");
         super.paint(g);
-        white_clock = this.playerOneClock.prepareString();
-        black_clock = this.playerTwoClock.prepareString();
+        playerOneClockString = this.playerOneClock.prepareString();
+        playerTwoClockString = this.playerTwoClock.prepareString();
+        playerThreeClockString = this.playerThreeClock.prepareString();
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(this.background, 0, 0, this);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -154,17 +177,21 @@ public class GameClock extends JPanel implements Runnable {
         g2d.fillRect(85, 30, 90, 30);
         g2d.drawRect(5, 30, 170, 30);
         g2d.drawRect(5, 60, 170, 30);
+        g2d.drawRect(85, 30, 170, 30);
         g2d.drawLine(85, 30, 85, 90);
         font = new Font("Serif", Font.ITALIC, 14);
         g2d.drawImage(this.background, 0, 0, this);
         g2d.setFont(font);
-        g.drawString(settings.getPlayerWhite().getName(), 10, 50);
+        g.drawString(settings.getPlayerOne().getName(), 10, 50);
         g.setColor(Color.WHITE);
-        g.drawString(settings.getPlayerBlack().getName(), 100, 50);
+        g.drawString(settings.getPlayerTwo().getName(), 100, 50);
+        g2d.drawString(settings.getPlayerThree().getName(), 190, 50);
         g2d.setFont(font);
         g.setColor(Color.BLACK);
-        g2d.drawString(white_clock, 10, 80);
-        g2d.drawString(black_clock, 90, 80);
+
+        g2d.drawString(playerOneClockString, 10, 80);
+        g2d.drawString(playerTwoClockString, 100, 80);
+        g2d.drawString(playerThreeClockString, 190, 80);
     }
 
     /**
@@ -204,7 +231,6 @@ public class GameClock extends JPanel implements Runnable {
         if (p1.getColor() == p1.getColor().white) {
             this.playerOneClock.setPlayer(p1);
             this.playerTwoClock.setPlayer(p2);
-            this.playerThreeClock.setPlayer(p3);
             this.playerThreeClock.setPlayer(p3);
         } else {
             this.playerOneClock.setPlayer(p2);

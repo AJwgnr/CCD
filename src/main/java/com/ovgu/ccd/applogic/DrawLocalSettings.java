@@ -28,7 +28,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.TextEvent;
-import java.awt.event.TextListener;
 
 /**
  * Class responsible for drawing the fold with local game settings
@@ -247,10 +246,22 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
                 return;
             }
             Game newGUI = JChessApp.jcv.addNewTab(this.firstName.getText() + " vs " + this.secondName.getText() +  " vs " + this.thirdName.getText()  );
+
+
             Settings sett = newGUI.settings;//sett local settings variable
-            Player pl1 = sett.playerWhite;//set local player variable
-            Player pl2 = sett.playerBlack;//set local player variable
-            Player pl3 = sett.playerThree;//set local player variable
+            //if (this.timeGame.isSelected()) //if timeGame is checked
+           // {
+                String value = this.times[this.time4Game.getSelectedIndex()];//set time for game
+                Integer val = new Integer(value);
+                sett.timeLimitSet = true;
+                sett.timeForGame = val * 60;//set time for game and mult it to seconds
+                newGUI.gameClock.initClock();
+                newGUI.gameClock.start();
+           // }
+
+            Player pl1 = sett.getPlayerOne();//set local player variable
+            Player pl2 = sett.getPlayerTwo();//set local player variable
+            Player pl3 = sett.getPlayerThree();//set local player variable
 
 
             sett.gameMode = Settings.gameModes.newGame;
@@ -276,15 +287,7 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
             }
             //if upsideDown is checked
             sett.upsideDown = this.upsideDown.isSelected();
-            if (this.timeGame.isSelected()) //if timeGame is checked
-            {
-                String value = this.times[this.time4Game.getSelectedIndex()];//set time for game
-                Integer val = new Integer(value);
-                sett.timeLimitSet = true;
-                sett.timeForGame = val * 60;//set time for game and mult it to seconds
-                newGUI.gameClock.setTimes(sett.timeForGame, sett.timeForGame);
-                newGUI.gameClock.start();
-            }
+
             System.out.println(this.time4Game.getActionCommand());
             //this.time4Game.getComponent(this.time4Game.getSelectedIndex());
             System.out.println("****************\nStarting new game: " + pl1.getName() + " vs. " + pl2.getName() + " vs. " + pl3.getName()

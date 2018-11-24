@@ -40,20 +40,20 @@ public class Settings implements Serializable {
     public boolean upsideDown;
     public gameModes gameMode;
 
-    public Player getPlayerWhite() {
-        return playerWhite;
+    public Player getPlayerOne() {
+        return playerOne;
     }
 
-    public Player getPlayerBlack() {
-        return playerBlack;
+    public Player getPlayerTwo() {
+        return playerTwo;
     }
 
     public Player getPlayerThree() {
         return playerThree;
     }
 
-    private Player playerWhite;
-    private Player playerBlack;
+    private Player playerOne;
+    private Player playerTwo;
     private Player playerThree;
 
     public gameTypes gameType;
@@ -61,8 +61,8 @@ public class Settings implements Serializable {
 
     public Settings() {
         //temporally
-        this.playerWhite = new Player("", "white");
-        this.playerBlack = new Player("", "black");
+        this.playerOne = new Player("", "white");
+        this.playerTwo = new Player("", "black");
         this.playerThree = new Player("", "black");
         this.timeLimitSet = false;
 
