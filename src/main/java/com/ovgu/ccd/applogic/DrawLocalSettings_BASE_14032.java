@@ -20,6 +20,7 @@
 package com.ovgu.ccd.applogic;
 
 import com.ovgu.ccd.gui.Game;
+import com.ovgu.ccd.gui.Player;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -27,39 +28,34 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.TextEvent;
+import java.awt.event.TextListener;
 
 /**
  * Class responsible for drawing the fold with local game settings
  */
-public class DrawLocalSettings extends JPanel implements ActionListener {
+public class DrawLocalSettings extends JPanel implements ActionListener, TextListener {
 
-    private JDialog parent;//needet to close newGame window
-    private JComboBox color;//to choose color of player
-    private JRadioButton oponentComp;//choose oponent
-    private JRadioButton oponentHuman;//choose oponent (human)
-    private ButtonGroup oponentChoos;//group 4 radio buttons
-    private JFrame localPanel;
-    private JLabel compLevLab;
-    private JSlider computerLevel;//slider to choose jChess Engine level
-
-    //Player names
-    private JTextField firstName;
-    private JTextField secondName;
-    private JTextField thirdName;
-
-    private JLabel firstNameLab;
-    private JLabel secondNameLab;
-    private JLabel thirdNameLab;
-
-    private JCheckBox upsideDown;//if true draw chessboard upsideDown(white on top)
-    private GridBagLayout gridBagLayout;
-    private GridBagConstraints gridBagConstraints;
-    private Container container;
-    private JSeparator sep;
-    private JButton okButton;
-    private JCheckBox timeGame;
-    private JComboBox time4Game;
-    private String colors[] =
+    JDialog parent;//needet to close newGame window
+    JComboBox color;//to choose color of player
+    JRadioButton oponentComp;//choose oponent
+    JRadioButton oponentHuman;//choose oponent (human)
+    ButtonGroup oponentChoos;//group 4 radio buttons
+    JFrame localPanel;
+    JLabel compLevLab;
+    JSlider computerLevel;//slider to choose jChess Engine level
+    JTextField firstName;//editable field 4 nickname
+    JTextField secondName;//editable field 4 nickname
+    JLabel firstNameLab;
+    JLabel secondNameLab;
+    JCheckBox upsideDown;//if true draw chessboard upsideDown(white on top)
+    GridBagLayout gbl;
+    GridBagConstraints gbc;
+    Container cont;
+    JSeparator sep;
+    JButton okButton;
+    JCheckBox timeGame;
+    JComboBox time4Game;
+    String colors[] =
             {
                     Settings.lang("white"), Settings.lang("black")
             };
@@ -72,15 +68,10 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
     public DrawLocalSettings(JDialog parent) {
         super();
         //this.setA//choose oponent
-        initUiComponents(parent);
-    }
-
-
-    private void initUiComponents(JDialog parent) {
         this.parent = parent;
         this.color = new JComboBox(colors);
-        this.gridBagLayout = new GridBagLayout();
-        this.gridBagConstraints = new GridBagConstraints();
+        this.gbl = new GridBagLayout();
+        this.gbc = new GridBagConstraints();
         this.sep = new JSeparator();
         this.okButton = new JButton(Settings.lang("ok"));
         this.compLevLab = new JLabel(Settings.lang("computer_level"));
@@ -89,13 +80,8 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
         this.firstName.setSize(new Dimension(200, 50));
         this.secondName = new JTextField("", 10);
         this.secondName.setSize(new Dimension(200, 50));
-        this.thirdName = new JTextField("", 10);
-        this.thirdName.setSize(new Dimension(200, 50));
-
         this.firstNameLab = new JLabel(Settings.lang("first_player_name") + ": ");
         this.secondNameLab = new JLabel(Settings.lang("second_player_name") + ": ");
-        this.thirdNameLab = new JLabel(Settings.lang("third_player_name") + ": ");
-
         this.oponentChoos = new ButtonGroup();
         this.computerLevel = new JSlider();
         this.upsideDown = new JCheckBox(Settings.lang("upside_down"));
@@ -105,7 +91,7 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
         this.oponentComp = new JRadioButton(Settings.lang("against_computer"), false);
         this.oponentHuman = new JRadioButton(Settings.lang("against_other_human"), true);
 
-        this.setLayout(gridBagLayout);
+        this.setLayout(gbl);
         this.oponentComp.addActionListener(this);
         this.oponentHuman.addActionListener(this);
         this.okButton.addActionListener(this);
@@ -118,68 +104,59 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
         this.computerLevel.setMaximum(3);
         this.computerLevel.setMinimum(1);
 
-        this.gridBagConstraints.gridx = 0;
-        this.gridBagConstraints.gridy = 0;
-        this.gridBagConstraints.insets = new Insets(3, 3, 3, 3);
-        this.gridBagLayout.setConstraints(oponentComp, gridBagConstraints);
+        this.gbc.gridx = 0;
+        this.gbc.gridy = 0;
+        this.gbc.insets = new Insets(3, 3, 3, 3);
+        this.gbl.setConstraints(oponentComp, gbc);
         this.add(oponentComp);
-        this.gridBagConstraints.gridx = 1;
-        this.gridBagLayout.setConstraints(oponentHuman, gridBagConstraints);
+        this.gbc.gridx = 1;
+        this.gbl.setConstraints(oponentHuman, gbc);
         this.add(oponentHuman);
-        this.gridBagConstraints.gridx = 0;
-        this.gridBagConstraints.gridy = 1;
-        this.gridBagLayout.setConstraints(firstNameLab, gridBagConstraints);
+        this.gbc.gridx = 0;
+        this.gbc.gridy = 1;
+        this.gbl.setConstraints(firstNameLab, gbc);
         this.add(firstNameLab);
-        this.gridBagConstraints.gridx = 0;
-        this.gridBagConstraints.gridy = 2;
-        this.gridBagLayout.setConstraints(firstName, gridBagConstraints);
+        this.gbc.gridx = 0;
+        this.gbc.gridy = 2;
+        this.gbl.setConstraints(firstName, gbc);
         this.add(firstName);
-        this.gridBagConstraints.gridx = 1;
-        this.gridBagConstraints.gridy = 2;
-        this.gridBagLayout.setConstraints(color, gridBagConstraints);
+        this.gbc.gridx = 1;
+        this.gbc.gridy = 2;
+        this.gbl.setConstraints(color, gbc);
         this.add(color);
-        this.gridBagConstraints.gridx = 0;
-        this.gridBagConstraints.gridy = 3;
-        this.gridBagLayout.setConstraints(secondNameLab, gridBagConstraints);
+        this.gbc.gridx = 0;
+        this.gbc.gridy = 3;
+        this.gbl.setConstraints(secondNameLab, gbc);
         this.add(secondNameLab);
-        this.gridBagConstraints.gridy = 4;
-        this.gridBagLayout.setConstraints(secondName, gridBagConstraints);
+        this.gbc.gridy = 4;
+        this.gbl.setConstraints(secondName, gbc);
         this.add(secondName);
-
-
-        this.gridBagConstraints.gridy = 5;
-        this.gridBagLayout.setConstraints(thirdNameLab, gridBagConstraints);
-        this.add(thirdNameLab);
-        this.gridBagConstraints.gridy = 6;
-        this.gridBagLayout.setConstraints(thirdName, gridBagConstraints);
-        this.add(thirdName);
-
-
-        this.gridBagConstraints.gridy = 7;
-        this.gridBagConstraints.insets = new Insets(0, 0, 0, 0);
-        this.gridBagLayout.setConstraints(compLevLab, gridBagConstraints);
+        this.gbc.gridy = 5;
+        this.gbc.insets = new Insets(0, 0, 0, 0);
+        this.gbl.setConstraints(compLevLab, gbc);
         this.add(compLevLab);
-        this.gridBagConstraints.gridy = 8;
-        this.gridBagLayout.setConstraints(computerLevel, gridBagConstraints);
+        this.gbc.gridy = 6;
+        this.gbl.setConstraints(computerLevel, gbc);
         this.add(computerLevel);
-        this.gridBagConstraints.gridy = 9;
-        this.gridBagLayout.setConstraints(upsideDown, gridBagConstraints);
+        this.gbc.gridy = 7;
+        this.gbl.setConstraints(upsideDown, gbc);
         this.add(upsideDown);
-        this.gridBagConstraints.gridy = 10;
-        this.gridBagConstraints.gridwidth = 1;
-        this.gridBagLayout.setConstraints(timeGame, gridBagConstraints);
+        this.gbc.gridy = 8;
+        this.gbc.gridwidth = 1;
+        this.gbl.setConstraints(timeGame, gbc);
         this.add(timeGame);
-        this.gridBagConstraints.gridx = 1;
-        this.gridBagConstraints.gridy = 11;
-        this.gridBagConstraints.gridwidth = 1;
-        this.gridBagLayout.setConstraints(time4Game, gridBagConstraints);
+        this.gbc.gridx = 1;
+        this.gbc.gridy = 8;
+        this.gbc.gridwidth = 1;
+        this.gbl.setConstraints(time4Game, gbc);
         this.add(time4Game);
-        this.gridBagConstraints.gridx = 1;
-        this.gridBagConstraints.gridy = 12;
-        this.gridBagConstraints.gridwidth = 0;
-        this.gridBagLayout.setConstraints(okButton, gridBagConstraints);
+        this.gbc.gridx = 1;
+        this.gbc.gridy = 9;
+        this.gbc.gridwidth = 0;
+        this.gbl.setConstraints(okButton, gbc);
         this.add(okButton);
         this.oponentComp.setEnabled(false);//for now, becouse not implemented!
+
     }
 
     /**
@@ -232,11 +209,8 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
             if (this.secondName.getText().length() > 9) {//make names short to 10 digits
                 this.secondName.setText(this.trimString(secondName, 9));
             }
-            if (this.thirdName.getText().length() > 9) {//make names short to 10 digits
-                this.thirdName.setText(this.trimString(thirdName, 9));
-            }
             if (!this.oponentComp.isSelected()
-                    && (this.firstName.getText().length() == 0 || this.secondName.getText().length() == 0) || (this.thirdName.getText().length() == 0 )) {
+                    && (this.firstName.getText().length() == 0 || this.secondName.getText().length() == 0)) {
                 JOptionPane.showMessageDialog(this, Settings.lang("fill_names"));
                 return;
             }
@@ -244,52 +218,42 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(this, Settings.lang("fill_name"));
                 return;
             }
-            Game newGUI = JChessApp.jcv.addNewTab(this.firstName.getText() + " vs " + this.secondName.getText() +  " vs " + this.thirdName.getText()  );
-
-
+            Game newGUI = JChessApp.jcv.addNewTab(this.firstName.getText() + " vs " + this.secondName.getText());
             Settings sett = newGUI.settings;//sett local settings variable
-            //if (this.timeGame.isSelected()) //if timeGame is checked
-           // {
-                String value = this.times[this.time4Game.getSelectedIndex()];//set time for game
-                Integer val = new Integer(value);
-                sett.timeLimitSet = true;
-                sett.timeForGame = val * 60;//set time for game and mult it to seconds
-                newGUI.gameClock.initClock();
-                newGUI.gameClock.start();
-           // }
-
-            Player pl1 = sett.getPlayerOne();//set local player variable
-            Player pl2 = sett.getPlayerTwo();//set local player variable
-            Player pl3 = sett.getPlayerThree();//set local player variable
-
-
+            Player pl1 = sett.playerWhite;//set local player variable
+            Player pl2 = sett.playerBlack;//set local player variable
             sett.gameMode = Settings.gameModes.newGame;
             //if(this.firstName.getText().length() >9 ) this.firstName.setText(this.firstName.getText(0,8));
             if (this.color.getActionCommand().equals("biały")) //if first player is white
             {
                 pl1.setName(this.firstName.getText());//set name of player
                 pl2.setName(this.secondName.getText());//set name of player
-                pl3.setName(this.thirdName.getText());
             } else //else change names
             {
                 pl2.setName(this.firstName.getText());//set name of player
                 pl1.setName(this.secondName.getText());//set name of player
-                pl3.setName(this.thirdName.getText());
             }
-            pl1.setType(Player.PlayerTypes.localUser);//set type of player
-            pl2.setType(Player.PlayerTypes.localUser);//set type of player
-            pl3.setType(Player.playerTypes.localUser);//set type of player
+            pl1.setType(Player.playerTypes.localUser);//set type of player
+            pl2.setType(Player.playerTypes.localUser);//set type of player
             sett.gameType = Settings.gameTypes.local;
             if (this.oponentComp.isSelected()) //if computer oponent is checked
             {
-                pl2.setType(Player.PlayerTypes.computer);
+                pl2.setType(Player.playerTypes.computer);
             }
             //if upsideDown is checked
             sett.upsideDown = this.upsideDown.isSelected();
-
+            if (this.timeGame.isSelected()) //if timeGame is checked
+            {
+                String value = this.times[this.time4Game.getSelectedIndex()];//set time for game
+                Integer val = new Integer(value);
+                sett.timeLimitSet = true;
+                sett.timeForGame = val * 60;//set time for game and mult it to seconds
+                newGUI.gameClock.setTimes(sett.timeForGame, sett.timeForGame);
+                newGUI.gameClock.start();
+            }
             System.out.println(this.time4Game.getActionCommand());
             //this.time4Game.getComponent(this.time4Game.getSelectedIndex());
-            System.out.println("****************\nStarting new game: " + pl1.getName() + " vs. " + pl2.getName() + " vs. " + pl3.getName()
+            System.out.println("****************\nStarting new game: " + pl1.getName() + " vs. " + pl2.getName()
                     + "\ntime 4 game: " + sett.timeForGame + "\ntime limit set: " + sett.timeLimitSet
                     + "\nwhite on top?: " + sett.upsideDown + "\n****************");//4test
             newGUI.newGame();//start new Game

@@ -48,7 +48,7 @@ public class Moves extends AbstractTableModel {
     private int rowsNum = 0;
     private String[] names = new String[]
             {
-                    Settings.lang("white"), Settings.lang("black")
+                    Settings.lang("white"), Settings.lang("black"), "ThirdPlayer"
             };
     private MyDefaultTableModel tableModel;
     private JScrollPane scrollPane;
@@ -59,9 +59,12 @@ public class Moves extends AbstractTableModel {
     /**
      * @param game The current game
      */
-    public Moves(Game game)
-    {
+    public Moves(Game game) {
         super();
+        initUiComponents(game);
+    }
+
+    public void initUiComponents(Game game){
         this.tableModel = new MyDefaultTableModel();
         this.table = new JTable(this.tableModel);
         this.scrollPane = new JScrollPane(this.table);
@@ -71,6 +74,7 @@ public class Moves extends AbstractTableModel {
 
         this.tableModel.addColumn(this.names[0]);
         this.tableModel.addColumn(this.names[1]);
+        this.tableModel.addColumn(this.names[2]);
         this.addTableModelListener(null);
         this.tableModel.addTableModelListener(null);
         this.scrollPane.setAutoscrolls(true);
@@ -154,7 +158,7 @@ public class Moves extends AbstractTableModel {
     }
 
     protected void addRow() {
-        this.tableModel.addRow(new String[2]);
+        this.tableModel.addRow(new String[3]);
     }
 
     protected void addCastling(String move) {

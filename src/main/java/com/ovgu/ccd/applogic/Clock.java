@@ -29,11 +29,7 @@ public class Clock {
     private int time_left;
     private Player player;
 
-    Clock() {
-        this.init(time_left);
-    }
-
-    Clock(int time) {
+    public Clock(int time) {
         this.init(time);
     }
 
@@ -42,12 +38,14 @@ public class Clock {
      *
      * @param time tell method with how much time init clock
      */
-    public void init(int time) {
+    private void init(int time) {
         this.time_left = time;
     }
 
-    /** Method to decrement value of left time
-     *  @return bool true if time_left is bigger than 0, else returns false
+    /**
+     * Method to decrement value of left time
+     *
+     * @return bool true if time_left is bigger than 0, else returns false
      */
     public boolean decrement() {
         if (this.time_left > 0) {
@@ -58,8 +56,13 @@ public class Clock {
     }
 
     public void pause() {
+
     }
 
+
+    public void setTime_left(int time){
+        this.time_left = time;
+    }
     /**
      * Method to get left time in seconds
      *

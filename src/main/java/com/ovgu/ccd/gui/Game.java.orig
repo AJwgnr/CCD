@@ -108,7 +108,11 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         Calendar cal = Calendar.getInstance();
         String str = new String("");
         String info = new String("[Event \"Game\"]\n[Date \"" + cal.get(cal.YEAR) + "." + (cal.get(cal.MONTH) + 1) + "." + cal.get(cal.DAY_OF_MONTH) + "\"]\n"
+<<<<<<< HEAD
+                + "[White \"" + this.settings.playerWhite.getName() + "\"]\n[Black \"" + this.settings.playerBlack.getName() + "\"]\n\n");
+=======
                 + "[White \"" + this.settings.getPlayerOne().name + "\"]\n[Black \"" + this.settings.getPlayerTwo().name + "\"]\n\n");
+>>>>>>> develop
         str += info;
         str += this.moves.getMovesInString();
         try
@@ -173,10 +177,17 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         }
         Game newGUI = JChessApp.jcv.addNewTab(whiteName + " vs. " + blackName);
         Settings locSetts = newGUI.settings;
+<<<<<<< HEAD
+        locSetts.playerBlack.setName(blackName);
+        locSetts.playerWhite.setName(whiteName);
+        locSetts.playerBlack.setType(Player.PlayerTypes.localUser);
+        locSetts.playerWhite.setType(Player.PlayerTypes.localUser);
+=======
         locSetts.getPlayerTwo().name = blackName;
         locSetts.getPlayerOne().name = whiteName;
         locSetts.getPlayerTwo().setType(Player.playerTypes.localUser);
         locSetts.getPlayerOne().setType(Player.playerTypes.localUser);
+>>>>>>> develop
         locSetts.gameMode = Settings.gameModes.loadGame;
         locSetts.gameType = Settings.gameTypes.local;
 
@@ -255,8 +266,13 @@ public class Game extends JPanel implements MouseListener, ComponentListener
 
         //System.out.println("new game, game type: "+settings.gameType.name());
 
-        activePlayer = settings.getPlayerOne();
+<<<<<<< HEAD
+        activePlayer = settings.playerWhite;
         if (activePlayer.getPlayerType() != Player.PlayerTypes.localUser)
+=======
+        activePlayer = settings.getPlayerOne();
+        if (activePlayer.playerType != Player.playerTypes.localUser)
+>>>>>>> develop
         {
             this.blockedChessboard = true;
         }
