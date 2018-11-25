@@ -78,7 +78,7 @@ public class ResourceManager {
      * @return
      */
     public Properties getJChessAboutBoxPropertie() {
-        return jChessViewPropertie;
+        return jChessAboutBoxPropertie;
     }
 
 }

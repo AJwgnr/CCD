@@ -73,9 +73,10 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
     ///--endOf- don't delete, because they're interfaces for MouseEvent
     public JChessView(SingleFrameApplication app) {
         super(app);
+        jChessViewPropertie = ResourceManager.getInstance().getJChessViewPropertie();
         initComponents();
 
-         jChessViewPropertie = ResourceManager.getInstance().getJChessViewPropertie();
+
 
 
         // status bar initialization - message timeout, idle icon and busy animation, etc
