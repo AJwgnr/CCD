@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 
-public class Point extends GeometricPrimitiveDrawer
+public class Point extends GeometricShape
 {
 	private static final long serialVersionUID = -821761050568399843L;
 	private int x = 0;
@@ -15,7 +15,12 @@ public class Point extends GeometricPrimitiveDrawer
 	{
 		
 	}
-	
+
+	@Override
+	public double area() {
+		return 0;
+	}
+
 	public Point(int x, int y)
 	{
 		this.x = x;
