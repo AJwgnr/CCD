@@ -63,7 +63,7 @@ public class Settings implements Serializable {
         //temporally
         this.playerOne = new Player("", "white");
         this.playerTwo = new Player("", "black");
-        this.playerThree = new Player("", "black");
+        this.playerThree = new Player("", "grey");
         this.timeLimitSet = false;
 
         gameMode = gameModes.newGame;
