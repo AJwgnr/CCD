@@ -26,7 +26,7 @@ public class ResourceManager {
         jChessAppPropertie = new Properties();
 
         InputStream jChessAboutBoxInputStream = JChessView.class.getClassLoader().getResourceAsStream("JChessAboutBox.properties");
-        jChessAppPropertie = new Properties();
+        jChessAboutBoxPropertie = new Properties();
 
         try {
             jChessViewPropertie.load(jChessViewInputStream);
