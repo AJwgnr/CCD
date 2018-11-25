@@ -21,7 +21,6 @@
 package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.DrawLocalSettings;
-import com.ovgu.ccd.applogic.DrawNetworkSettings;
 import com.ovgu.ccd.applogic.Settings;
 
 import javax.swing.*;
@@ -43,7 +42,7 @@ public class NewGameWindow extends JDialog {
         this.setSize(400, 700);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.jTabbedPane1.addTab(Settings.lang("local_game"), new DrawLocalSettings(this));
-        this.jTabbedPane1.addTab(Settings.lang("network_game"), new DrawNetworkSettings(this));
+
     }
 
     /**
