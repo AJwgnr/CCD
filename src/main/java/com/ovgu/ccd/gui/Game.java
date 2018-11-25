@@ -108,7 +108,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         Calendar cal = Calendar.getInstance();
         String str = new String("");
         String info = new String("[Event \"Game\"]\n[Date \"" + cal.get(cal.YEAR) + "." + (cal.get(cal.MONTH) + 1) + "." + cal.get(cal.DAY_OF_MONTH) + "\"]\n"
-                + "[White \"" + this.settings.getPlayerOne().name + "\"]\n[Black \"" + this.settings.getPlayerTwo().name + "\"]\n\n");
+                + "[White \"" + this.settings.getPlayerOne().getName() + "\"]\n[Black \"" + this.settings.getPlayerTwo().getName() + "\"]\n\n");
         str += info;
         str += this.moves.getMovesInString();
         try
@@ -173,10 +173,10 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         }
         Game newGUI = JChessApp.jcv.addNewTab(whiteName + " vs. " + blackName);
         Settings locSetts = newGUI.settings;
-        locSetts.getPlayerTwo().name = blackName;
-        locSetts.getPlayerOne().name = whiteName;
-        locSetts.getPlayerTwo().setType(Player.playerTypes.localUser);
-        locSetts.getPlayerOne().setType(Player.playerTypes.localUser);
+        locSetts.getPlayerTwo().setName(blackName);
+        locSetts.getPlayerOne().setName(whiteName);
+        locSetts.getPlayerTwo().setType(Player.PlayerTypes.LOCALUSER);
+        locSetts.getPlayerOne().setType(Player.PlayerTypes.LOCALUSER);
         locSetts.gameMode = Settings.gameModes.loadGame;
         locSetts.gameType = Settings.gameTypes.local;
 
@@ -256,7 +256,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         //System.out.println("new game, game type: "+settings.gameType.name());
 
         activePlayer = settings.getPlayerOne();
-        if (activePlayer.getPlayerType() != Player.PlayerTypes.localUser)
+        if (activePlayer.getPlayerType() != Player.PlayerTypes.LOCALUSER)
         {
             this.blockedChessboard = true;
         }
@@ -315,15 +315,15 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         switchActive();
 
         System.out.println("next move, active player: " + activePlayer.getName() + ", color: " + activePlayer.getColor().name() + ", type: " + activePlayer.getPlayerType().name());
-        if (activePlayer.getPlayerType() == Player.PlayerTypes.localUser)
+        if (activePlayer.getPlayerType() == Player.PlayerTypes.LOCALUSER)
         {
             this.blockedChessboard = false;
         }
-        else if (activePlayer.getPlayerType() == Player.PlayerTypes.networkUser)
+        else if (activePlayer.getPlayerType() == Player.PlayerTypes.NETWORKUSER)
         {
             this.blockedChessboard = true;
         }
-        else if (activePlayer.getPlayerType() == Player.PlayerTypes.computer)
+        else if (activePlayer.getPlayerType() == Player.PlayerTypes.COMPUTER)
         {
         }
     }

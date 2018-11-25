@@ -12,7 +12,7 @@ public class BishopTest {
     @Test
     public void testWhitePlayerImage() {
         Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.Colors.white.name());
+        Player player = new Player("John", Player.Colors.WHITE.name());
         Bishop bishop = new Bishop(board, player);
 
         assertEquals(Bishop.imageWhite, bishop.image);
@@ -23,7 +23,7 @@ public class BishopTest {
     @Test
     public void testBlackPlayerImage() {
         Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.Colors.black.name());
+        Player player = new Player("John", Player.Colors.BLACK.name());
         Bishop bishop = new Bishop(board, player);
 
         assertEquals(Bishop.imageBlack, bishop.image);
@@ -33,7 +33,7 @@ public class BishopTest {
     @Test
     public void testSymbol() {
         Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.Colors.black.name());
+        Player player = new Player("John", Player.Colors.BLACK.name());
         Bishop bishop = new Bishop(board, player);
 
         assertEquals("B", bishop.getSymbol());

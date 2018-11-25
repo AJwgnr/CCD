@@ -85,7 +85,7 @@ public abstract class Piece {
 
     void setImage()
     {
-        if (this.getPlayer().getColor() == this.getPlayer().getColor().black)
+        if (this.getPlayer().getColor() == this.getPlayer().getColor().BLACK)
         {
 
             image = imageBlack;

@@ -17,8 +17,8 @@ public class PlayerTest {
     @Before
     public void initObjects(){
         this.name = "TestPlayer";
-        this.color = Player.Colors.black;
-        this.playerType= Player.PlayerTypes.localUser;
+        this.color = Player.Colors.BLACK;
+        this.playerType= Player.PlayerTypes.LOCALUSER;
         this.player = new Player(this.name, this.color.name());
     }
 

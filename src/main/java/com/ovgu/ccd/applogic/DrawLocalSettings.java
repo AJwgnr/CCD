@@ -276,13 +276,13 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
                 pl1.setName(this.secondName.getText());//set name of player
                 pl3.setName(this.thirdName.getText());
             }
-            pl1.setType(Player.PlayerTypes.localUser);//set type of player
-            pl2.setType(Player.PlayerTypes.localUser);//set type of player
-            pl3.setType(Player.playerTypes.localUser);//set type of player
+            pl1.setType(Player.PlayerTypes.LOCALUSER);//set type of player
+            pl2.setType(Player.PlayerTypes.LOCALUSER);//set type of player
+            pl3.setType(Player.PlayerTypes.LOCALUSER);//set type of player
             sett.gameType = Settings.gameTypes.local;
             if (this.oponentComp.isSelected()) //if computer oponent is checked
             {
-                pl2.setType(Player.PlayerTypes.computer);
+                pl2.setType(Player.PlayerTypes.COMPUTER);
             }
             //if upsideDown is checked
             sett.upsideDown = this.upsideDown.isSelected();

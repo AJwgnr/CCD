@@ -12,7 +12,7 @@ public class QueenTest {
     @Test
     public void testWhitePlayerImage() {
         Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.Colors.white.name());
+        Player player = new Player("John", Player.Colors.WHITE.name());
         Queen queen = new Queen(board, player);
 
         assertEquals(Queen.imageWhite, queen.image);
@@ -23,7 +23,7 @@ public class QueenTest {
     @Test
     public void testBlackPlayerImage() {
         Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.Colors.black.name());
+        Player player = new Player("John", Player.Colors.BLACK.name());
         Queen queen = new Queen(board, player);
 
         assertEquals(Queen.imageBlack, queen.image);
@@ -33,7 +33,7 @@ public class QueenTest {
     @Test
     public void testSymbol() {
         Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.Colors.black.name());
+        Player player = new Player("John", Player.Colors.BLACK.name());
         Queen queen = new Queen(board, player);
 
         assertEquals("Q", queen.getSymbol());

@@ -12,7 +12,7 @@ public class RookTest {
     @Test
     public void testWhitePlayerImage() {
         Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.Colors.white.name());
+        Player player = new Player("John", Player.Colors.WHITE.name());
         Rook rook = new Rook(board, player);
 
         assertEquals(Rook.imageWhite, rook.image);
@@ -23,7 +23,7 @@ public class RookTest {
     @Test
     public void testBlackPlayerImage() {
         Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.Colors.black.name());
+        Player player = new Player("John", Player.Colors.BLACK.name());
         Rook rook = new Rook(board, player);
 
         assertEquals(Rook.imageBlack, rook.image);
@@ -33,7 +33,7 @@ public class RookTest {
     @Test
     public void testSymbol() {
         Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.Colors.black.name());
+        Player player = new Player("John", Player.Colors.BLACK.name());
         Rook rook = new Rook(board, player);
 
         assertEquals("R", rook.getSymbol());

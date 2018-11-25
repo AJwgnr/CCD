@@ -174,14 +174,14 @@ public class Chessboard extends JPanel {
         this.squares[5][i].setPiece(new Bishop(this, player));
         if (upsideDown) {
             this.squares[4][i].setPiece(new Queen(this, player));
-            if (player.getColor() == Player.Colors.white) {
+            if (player.getColor() == Colors.WHITE) {
                 this.squares[3][i].setPiece(kingWhite = new King(this, player));
             } else {
                 this.squares[3][i].setPiece(kingBlack = new King(this, player));
             }
         } else {
             this.squares[3][i].setPiece(new Queen(this, player));
-            if (player.getColor() == Player.Colors.white) {
+            if (player.getColor() == Colors.WHITE) {
                 this.squares[4][i].setPiece(kingWhite = new King(this, player));
             } else {
                 this.squares[4][i].setPiece(kingBlack = new King(this, player));
@@ -424,7 +424,7 @@ public class Chessboard extends JPanel {
             {
                 if (clearForwardHistory) {
                     String color;
-                    if (end.getPiece().getPlayer().getColor() == Colors.white)
+                    if (end.getPiece().getPlayer().getColor() == Colors.WHITE)
                     {
                         color = "W"; // promotionWindow was show with pieces in this color
                     } else {
@@ -792,7 +792,7 @@ public class Chessboard extends JPanel {
 
     public King myKing(Colors color)
     {
-        if (color == Colors.white) {
+        if (color == Colors.WHITE) {
             return kingWhite;
         } else {
             return  kingBlack;
