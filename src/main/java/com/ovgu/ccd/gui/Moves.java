@@ -21,6 +21,7 @@
 package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.Settings;
+import com.ovgu.ccd.moves.Move;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
@@ -511,7 +512,7 @@ public class Moves extends AbstractTableModel {
         return str;
     }
 
-    enum castling {
+   public enum castling {
         none, shortCastling, longCastling
     }
 }

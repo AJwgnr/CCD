@@ -23,7 +23,7 @@ package com.ovgu.ccd.pieces;
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.GUI;
 import com.ovgu.ccd.gui.Player;
-import com.ovgu.ccd.jchess.DiagonalMoves;
+import com.ovgu.ccd.moves.DiagonalMoves;
 
 
 import java.util.ArrayList;

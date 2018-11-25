@@ -83,10 +83,8 @@ public abstract class Piece {
         }
     }
 
-    void setImage()
-    {
-        if (this.getPlayer().getColor() == this.getPlayer().getColor().black)
-        {
+    void setImage() {
+        if (this.getPlayer().getColor() == this.getPlayer().getColor().black) {
 
             image = imageBlack;
         } else {
@@ -104,29 +102,26 @@ public abstract class Piece {
      * @param x x position on chessboard
      * @param y y position on chessboard
      * @return true if parameters are out of bounds (array)
-     * */
-    public boolean outsideOfBoard(int x, int y)
-    {
+     */
+    public boolean outsideOfBoard(int x, int y) {
         return (x < 0 || x > 7 || y < 0 || y > 7);
     }
 
-    public boolean canMoveTo(Square position)
-    {
+    public boolean canMoveTo(Square position) {
         Piece piece = position.piece;
-        if (piece != null && piece.name.equals("King"))
-        {
+        if (piece != null && piece.name.equals("King")) {
             return false;
         }
-        if (piece == null || piece.getPlayer() != this.getPlayer())
-        {
+        if (piece == null || piece.getPlayer() != this.getPlayer()) {
             return true;
         }
         return false;
     }
 
-    public boolean otherOwner(Piece otherPiece)
-    {
-        if (otherPiece == null) { return false; }
+    public boolean otherOwner(Piece otherPiece) {
+        if (otherPiece == null) {
+            return false;
+        }
         return player != otherPiece.getPlayer();
     }
 
