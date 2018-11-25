@@ -1,8 +1,7 @@
 package com.ovgu.ccd.pieces;
 
 import com.ovgu.ccd.gui.Chessboard;
-import com.ovgu.ccd.gui.Player;
-import com.ovgu.ccd.pieces.Pawn;
+import com.ovgu.ccd.applogic.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -13,7 +12,7 @@ public class PawnTest {
     @Test
     public void testWhitePlayerImage() {
         Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.colors.white.name());
+        Player player = new Player("John", Player.Colors.WHITE.name());
         Pawn pawn = new Pawn(board, player);
 
         assertEquals(Pawn.imageWhite, pawn.image);
@@ -24,7 +23,7 @@ public class PawnTest {
     @Test
     public void testBlackPlayerImage() {
         Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.colors.black.name());
+        Player player = new Player("John", Player.Colors.BLACK.name());
         Pawn pawn = new Pawn(board, player);
 
         assertEquals(Pawn.imageBlack, pawn.image);
@@ -34,7 +33,7 @@ public class PawnTest {
     @Test
     public void testSymbol() {
         Chessboard board = mock(Chessboard.class);
-        Player player = new Player("John", Player.colors.black.name());
+        Player player = new Player("John", Player.Colors.BLACK.name());
         Pawn pawn = new Pawn(board, player);
 
         assertEquals("", pawn.getSymbol());

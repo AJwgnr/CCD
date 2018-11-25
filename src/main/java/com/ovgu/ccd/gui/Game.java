@@ -21,7 +21,6 @@
 package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.*;
-import com.ovgu.ccd.gui.chessboardListener.ChessboardListener;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Square;
 
@@ -108,7 +107,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         Calendar cal = Calendar.getInstance();
         String str = new String("");
         String info = new String("[Event \"Game\"]\n[Date \"" + cal.get(cal.YEAR) + "." + (cal.get(cal.MONTH) + 1) + "." + cal.get(cal.DAY_OF_MONTH) + "\"]\n"
-                + "[White \"" + this.settings.getPlayerOne().name + "\"]\n[Black \"" + this.settings.getPlayerTwo().name + "\"]\n\n");
+                + "[White \"" + this.settings.getPlayerOne().getName() + "\"]\n[Black \"" + this.settings.getPlayerTwo().getName() + "\"]\n\n");
         str += info;
         str += this.moves.getMovesInString();
         try
@@ -173,12 +172,12 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         }
         Game newGUI = JChessApp.jcv.addNewTab(whiteName + " vs. " + blackName);
         Settings locSetts = newGUI.settings;
-        locSetts.getPlayerTwo().name = blackName;
-        locSetts.getPlayerOne().name = whiteName;
-        locSetts.getPlayerTwo().setType(Player.playerTypes.localUser);
-        locSetts.getPlayerOne().setType(Player.playerTypes.localUser);
-        locSetts.gameMode = Settings.gameModes.loadGame;
-        locSetts.gameType = Settings.gameTypes.local;
+        locSetts.getPlayerTwo().setName(blackName);
+        locSetts.getPlayerOne().setName(whiteName);
+        locSetts.getPlayerTwo().setType(Player.PlayerTypes.LOCALUSER);
+        locSetts.getPlayerOne().setType(Player.PlayerTypes.LOCALUSER);
+        locSetts.gameMode = Settings.gameModes.LOADGAME;
+        locSetts.gameType = Settings.gameTypes.LOCAL;
 
         newGUI.newGame();
         newGUI.blockedChessboard = true;
@@ -256,7 +255,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         //System.out.println("new game, game type: "+settings.gameType.name());
 
         activePlayer = settings.getPlayerOne();
-        if (activePlayer.playerType != Player.playerTypes.localUser)
+        if (activePlayer.getPlayerType() != Player.PlayerTypes.LOCALUSER)
         {
             this.blockedChessboard = true;
         }
@@ -308,27 +307,27 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         return this.activePlayer;
     }
 
-    /** Method to go to next move (checks if game is local/network etc.)
+    /** Method to go to next move (checks if game is LOCAL/NETWORK etc.)
      */
     public void nextMove()
     {
         switchActive();
 
-        System.out.println("next move, active player: " + activePlayer.name + ", color: " + activePlayer.getColor().name() + ", type: " + activePlayer.playerType.name());
-        if (activePlayer.playerType == Player.playerTypes.localUser)
+        System.out.println("next move, active player: " + activePlayer.getName() + ", color: " + activePlayer.getColor().name() + ", type: " + activePlayer.getPlayerType().name());
+        if (activePlayer.getPlayerType() == Player.PlayerTypes.LOCALUSER)
         {
             this.blockedChessboard = false;
         }
-        else if (activePlayer.playerType == Player.playerTypes.networkUser)
+        else if (activePlayer.getPlayerType() == Player.PlayerTypes.NETWORKUSER)
         {
             this.blockedChessboard = true;
         }
-        else if (activePlayer.playerType == Player.playerTypes.computer)
+        else if (activePlayer.getPlayerType() == Player.PlayerTypes.COMPUTER)
         {
         }
     }
 
-    /** Method to simulate Move to check if it's correct etc. (usable for network game).
+    /** Method to simulate Move to check if it's correct etc. (usable for NETWORK game).
      * @param beginX from which X (on chessboard) move starts
      * @param beginY from which Y (on chessboard) move starts
      * @param endX   to   which X (on chessboard) move go
@@ -381,7 +380,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
     {
         boolean status = false;
 
-        if( this.settings.gameType == Settings.gameTypes.local )
+        if( this.settings.gameType == Settings.gameTypes.LOCAL)
         {
             status = chessboard.undo();
             if( status )
@@ -401,7 +400,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
     {
         boolean result = false;
 
-        if( this.settings.gameType == Settings.gameTypes.local )
+        if( this.settings.gameType == Settings.gameTypes.LOCAL)
         {
             while( chessboard.undo() )
             {
@@ -420,7 +419,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
     {
         boolean result = false;
 
-        if( this.settings.gameType == Settings.gameTypes.local )
+        if( this.settings.gameType == Settings.gameTypes.LOCAL)
         {
             while( chessboard.redo() )
             {
@@ -438,7 +437,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
     public boolean redo()
     {
         boolean status = chessboard.redo();
-        if( this.settings.gameType == Settings.gameTypes.local )
+        if( this.settings.gameType == Settings.gameTypes.LOCAL)
         {
             if ( status )
             {
@@ -464,7 +463,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         {
             this.undo();
         }
-        else if (event.getButton() == MouseEvent.BUTTON2 && settings.gameType == Settings.gameTypes.local)
+        else if (event.getButton() == MouseEvent.BUTTON2 && settings.gameType == Settings.gameTypes.LOCAL)
         {
             this.redo();
         }
@@ -497,7 +496,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
                     else if (chessboard.activeSquare != null && chessboard.activeSquare.getPiece() != null
                             && chessboard.activeSquare.getPiece().allMoves().indexOf(sq) != -1) //move
                     {
-                        if (settings.gameType == Settings.gameTypes.local)
+                        if (settings.gameType == Settings.gameTypes.LOCAL)
                         {
                             chessboard.move(chessboard.activeSquare, sq);
                         }

@@ -20,7 +20,9 @@
  */
 package com.ovgu.ccd.gui;
 
+import com.ovgu.ccd.applogic.Player.Colors;
 import com.ovgu.ccd.applogic.JChessApp;
+import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.Moves.castling;
 import com.ovgu.ccd.moves.Move;
@@ -114,7 +116,7 @@ public class Chessboard extends JPanel {
      */
     public void setPieces(String places, Player plWhite, Player plBlack) {
 
-        if (places.equals("")) //if newGame
+        if (places.equals("")) //if NEWGAME
         {
             if (this.settings.upsideDown) {
                 this.setPieces4NewGame(true, plWhite, plBlack);
@@ -173,14 +175,14 @@ public class Chessboard extends JPanel {
         this.squares[5][i].setPiece(new Bishop(this, player));
         if (upsideDown) {
             this.squares[4][i].setPiece(new Queen(this, player));
-            if (player.getColor() == Player.colors.white) {
+            if (player.getColor() == Colors.WHITE) {
                 this.squares[3][i].setPiece(kingWhite = new King(this, player));
             } else {
                 this.squares[3][i].setPiece(kingBlack = new King(this, player));
             }
         } else {
             this.squares[3][i].setPiece(new Queen(this, player));
-            if (player.getColor() == Player.colors.white) {
+            if (player.getColor() == Colors.WHITE) {
                 this.squares[4][i].setPiece(kingWhite = new King(this, player));
             } else {
                 this.squares[4][i].setPiece(kingBlack = new King(this, player));
@@ -423,7 +425,7 @@ public class Chessboard extends JPanel {
             {
                 if (clearForwardHistory) {
                     String color;
-                    if (end.getPiece().getPlayer().getColor() == Player.colors.white)
+                    if (end.getPiece().getPlayer().getColor() == Colors.WHITE)
                     {
                         color = "W"; // promotionWindow was show with pieces in this color
                     } else {
@@ -488,7 +490,7 @@ public class Chessboard extends JPanel {
     }
 
     public boolean redo(boolean refresh) {
-        if (this.settings.gameType == Settings.gameTypes.local) //redo only for local game
+        if (this.settings.gameType == Settings.gameTypes.LOCAL) //redo only for LOCAL game
         {
             Move first = this.moves_history.redo();
 
@@ -789,9 +791,9 @@ public class Chessboard extends JPanel {
         System.out.println(" |0|1|2|3|4|5|6|7|");
     }
 
-    public King myKing(Player.colors color)
+    public King myKing(Colors color)
     {
-        if (color == Player.colors.white) {
+        if (color == Colors.WHITE) {
             return kingWhite;
         } else {
             return  kingBlack;

@@ -20,7 +20,6 @@
 package com.ovgu.ccd.applogic;
 
 import com.ovgu.ccd.gui.Game;
-import com.ovgu.ccd.gui.Player;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -30,11 +29,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.TextEvent;
 
 /**
- * Class responsible for drawing the fold with local game settings
+ * Class responsible for drawing the fold with LOCAL game settings
  */
 public class DrawLocalSettings extends JPanel implements ActionListener {
 
-    private JDialog parent;//needet to close newGame window
+    private JDialog parent;//needet to close NEWGAME window
     private JComboBox color;//to choose color of player
     private JRadioButton oponentComp;//choose oponent
     private JRadioButton oponentHuman;//choose oponent (human)
@@ -211,7 +210,7 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
 
     /**
      * Method responsible for changing the options which can make a player
-     * when he want to start new local game
+     * when he want to start new LOCAL game
      *
      * @param e where is saving data of performed action
      */
@@ -248,7 +247,7 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
             Game newGUI = JChessApp.jcv.addNewTab(this.firstName.getText() + " vs " + this.secondName.getText() +  " vs " + this.thirdName.getText()  );
 
 
-            Settings sett = newGUI.settings;//sett local settings variable
+            Settings sett = newGUI.settings;//sett LOCAL settings variable
             //if (this.timeGame.isSelected()) //if timeGame is checked
            // {
                 String value = this.times[this.time4Game.getSelectedIndex()];//set time for game
@@ -259,12 +258,12 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
                 newGUI.gameClock.start();
            // }
 
-            Player pl1 = sett.getPlayerOne();//set local player variable
-            Player pl2 = sett.getPlayerTwo();//set local player variable
-            Player pl3 = sett.getPlayerThree();//set local player variable
+            Player pl1 = sett.getPlayerOne();//set LOCAL player variable
+            Player pl2 = sett.getPlayerTwo();//set LOCAL player variable
+            Player pl3 = sett.getPlayerThree();//set LOCAL player variable
 
 
-            sett.gameMode = Settings.gameModes.newGame;
+            sett.gameMode = Settings.gameModes.NEWGAME;
             //if(this.firstName.getText().length() >9 ) this.firstName.setText(this.firstName.getText(0,8));
             if (this.color.getActionCommand().equals("biały")) //if first player is white
             {
@@ -277,13 +276,13 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
                 pl1.setName(this.secondName.getText());//set name of player
                 pl3.setName(this.thirdName.getText());
             }
-            pl1.setType(Player.playerTypes.localUser);//set type of player
-            pl2.setType(Player.playerTypes.localUser);//set type of player
-            pl3.setType(Player.playerTypes.localUser);//set type of player
-            sett.gameType = Settings.gameTypes.local;
+            pl1.setType(Player.PlayerTypes.LOCALUSER);//set type of player
+            pl2.setType(Player.PlayerTypes.LOCALUSER);//set type of player
+            pl3.setType(Player.PlayerTypes.LOCALUSER);//set type of player
+            sett.gameType = Settings.gameTypes.LOCAL;
             if (this.oponentComp.isSelected()) //if computer oponent is checked
             {
-                pl2.setType(Player.playerTypes.computer);
+                pl2.setType(Player.PlayerTypes.COMPUTER);
             }
             //if upsideDown is checked
             sett.upsideDown = this.upsideDown.isSelected();

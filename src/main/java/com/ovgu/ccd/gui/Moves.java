@@ -20,6 +20,7 @@
  */
 package com.ovgu.ccd.gui;
 
+import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.moves.Move;
 import com.ovgu.ccd.pieces.Piece;
@@ -284,7 +285,7 @@ public class Moves extends AbstractTableModel {
     }
 
     /**
-     * Method to set all moves from String with validation test (usefoul for network game)
+     * Method to set all moves from String with validation test (usefoul for NETWORK game)
      *
      * @param moves String to set in String like PGN with full-notation format
      */
@@ -331,7 +332,7 @@ public class Moves extends AbstractTableModel {
             {
                 int[] values = new int[4];
                 if (locMove.equals("O-O-O")) {
-                    if (this.game.getActivePlayer().getColor() == Player.colors.black) //if black turn
+                    if (this.game.getActivePlayer().getColor() == Player.Colors.BLACK) //if black turn
                     {
                         values = new int[]
                                 {
@@ -345,7 +346,7 @@ public class Moves extends AbstractTableModel {
                     }
                 } else if (locMove.equals("O-O")) //if short castling
                 {
-                    if (this.game.getActivePlayer().getColor() == Player.colors.black) //if black turn
+                    if (this.game.getActivePlayer().getColor() == Player.Colors.BLACK) //if black turn
                     {
                         values = new int[]
                                 {
@@ -441,7 +442,7 @@ public class Moves extends AbstractTableModel {
         try {
             Move last = this.moveBackStack.pop();
             if (last != null) {
-                if (this.game.settings.gameType == Settings.gameTypes.local) //moveForward / redo available only for local game
+                if (this.game.settings.gameType == Settings.gameTypes.LOCAL) //moveForward / redo available only for LOCAL game
                 {
                     this.moveForwardStack.push(last);
                 }
@@ -471,7 +472,7 @@ public class Moves extends AbstractTableModel {
 
     public synchronized Move redo() {
         try {
-            if (this.game.settings.gameType == Settings.gameTypes.local) {
+            if (this.game.settings.gameType == Settings.gameTypes.LOCAL) {
                 Move first = this.moveForwardStack.pop();
                 this.moveBackStack.push(first);
 

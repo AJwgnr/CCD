@@ -22,6 +22,7 @@ package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.Clock;
 import com.ovgu.ccd.applogic.Settings;
+import com.ovgu.ccd.applogic.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -228,7 +229,7 @@ public class GameClock extends JPanel implements Runnable {
         /*in documentation it's called 'setPlayer' but when we've 'setTimes' better to use
          * one convention of naming methods - this've to be repaired in documentation by Wąsu:P
         dojdziemy do tego:D:D:D*/
-        if (p1.getColor() == p1.getColor().white) {
+        if (p1.getColor() == p1.getColor().WHITE) {
             this.playerOneClock.setPlayer(p1);
             this.playerTwoClock.setPlayer(p2);
             this.playerThreeClock.setPlayer(p3);
