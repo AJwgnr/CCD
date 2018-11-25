@@ -59,17 +59,17 @@ public class Settings implements Serializable {
 
     public Settings() {
         //temporally
-        this.playerOne = new Player("", "white");
-        this.playerTwo = new Player("", "black");
-        this.playerThree = new Player("", "grey");
+        this.playerOne = new Player("", "WHITE");
+        this.playerTwo = new Player("", "BLACK");
+        this.playerThree = new Player("", "GREY");
         this.timeLimitSet = false;
 
-        gameMode = gameModes.newGame;
+        gameMode = gameModes.NEWGAME;
     }
 
     public static String lang(String key) {
         if (Settings.loc == null) {
-            //Settings.loc = PropertyResourceBundle.getBundle("jchess.resources.i18n.main");
+            //Settings.loc = PropertyResourceBundle.getBundle("moves.resources.i18n.main");
             Settings.loc = PropertyResourceBundle.getBundle("i18n.main");
             Locale.setDefault(Locale.ENGLISH);
         }
@@ -94,11 +94,11 @@ public class Settings implements Serializable {
 
     public enum gameModes {
 
-        newGame, loadGame
+        NEWGAME, LOADGAME
     }
 
     public enum gameTypes {
 
-        local, network
+        LOCAL, NETWORK
     }
 }

@@ -48,8 +48,7 @@ public class Knight extends Piece {
      * @return ArrayList with new possition of pawn
      */
     @Override
-    public ArrayList allMoves()
-    {
+    public ArrayList allMoves() {
         ArrayList moves = new ArrayList();
 
         // knight all moves
@@ -96,7 +95,9 @@ public class Knight extends Piece {
     }
 
     private boolean validMove(int newX, int newY) {
-        if (outsideOfBoard(newX, newY)) { return false; }
+        if (outsideOfBoard(newX, newY)) {
+            return false;
+        }
 
         Square nextPosition = chessboard.getSquare(newX, newY);
         return (canMoveTo(nextPosition) && (chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(square, nextPosition)));

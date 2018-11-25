@@ -21,7 +21,6 @@
 package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.*;
-import com.ovgu.ccd.gui.chessboardListener.ChessboardListener;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Square;
 
@@ -177,8 +176,8 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         locSetts.getPlayerOne().setName(whiteName);
         locSetts.getPlayerTwo().setType(Player.PlayerTypes.LOCALUSER);
         locSetts.getPlayerOne().setType(Player.PlayerTypes.LOCALUSER);
-        locSetts.gameMode = Settings.gameModes.loadGame;
-        locSetts.gameType = Settings.gameTypes.local;
+        locSetts.gameMode = Settings.gameModes.LOADGAME;
+        locSetts.gameType = Settings.gameTypes.LOCAL;
 
         newGUI.newGame();
         newGUI.blockedChessboard = true;
@@ -308,7 +307,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         return this.activePlayer;
     }
 
-    /** Method to go to next move (checks if game is local/network etc.)
+    /** Method to go to next move (checks if game is LOCAL/NETWORK etc.)
      */
     public void nextMove()
     {
@@ -328,7 +327,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         }
     }
 
-    /** Method to simulate Move to check if it's correct etc. (usable for network game).
+    /** Method to simulate Move to check if it's correct etc. (usable for NETWORK game).
      * @param beginX from which X (on chessboard) move starts
      * @param beginY from which Y (on chessboard) move starts
      * @param endX   to   which X (on chessboard) move go
@@ -381,7 +380,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
     {
         boolean status = false;
 
-        if( this.settings.gameType == Settings.gameTypes.local )
+        if( this.settings.gameType == Settings.gameTypes.LOCAL)
         {
             status = chessboard.undo();
             if( status )
@@ -401,7 +400,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
     {
         boolean result = false;
 
-        if( this.settings.gameType == Settings.gameTypes.local )
+        if( this.settings.gameType == Settings.gameTypes.LOCAL)
         {
             while( chessboard.undo() )
             {
@@ -420,7 +419,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
     {
         boolean result = false;
 
-        if( this.settings.gameType == Settings.gameTypes.local )
+        if( this.settings.gameType == Settings.gameTypes.LOCAL)
         {
             while( chessboard.redo() )
             {
@@ -438,7 +437,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
     public boolean redo()
     {
         boolean status = chessboard.redo();
-        if( this.settings.gameType == Settings.gameTypes.local )
+        if( this.settings.gameType == Settings.gameTypes.LOCAL)
         {
             if ( status )
             {
@@ -464,7 +463,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         {
             this.undo();
         }
-        else if (event.getButton() == MouseEvent.BUTTON2 && settings.gameType == Settings.gameTypes.local)
+        else if (event.getButton() == MouseEvent.BUTTON2 && settings.gameType == Settings.gameTypes.LOCAL)
         {
             this.redo();
         }
@@ -497,7 +496,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
                     else if (chessboard.activeSquare != null && chessboard.activeSquare.getPiece() != null
                             && chessboard.activeSquare.getPiece().allMoves().indexOf(sq) != -1) //move
                     {
-                        if (settings.gameType == Settings.gameTypes.local)
+                        if (settings.gameType == Settings.gameTypes.LOCAL)
                         {
                             chessboard.move(chessboard.activeSquare, sq);
                         }

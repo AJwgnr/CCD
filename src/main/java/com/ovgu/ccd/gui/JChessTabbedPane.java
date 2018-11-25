@@ -85,7 +85,7 @@ public class JChessTabbedPane extends JTabbedPane implements MouseListener, Imag
                 this.showNewGameWindow();
             }
         } else if (this.addIconRect != null && this.addIconRect.contains(e.getX(), e.getY())) {
-            System.out.println("newGame by + button");
+            System.out.println("NEWGAME by + button");
             this.showNewGameWindow();
         }
         //System.out.println("x:" +e.getX()+" y: "+e.getY()+" x:"+this.addIconRect.x+" y::"+this.addIconRect.y+" width:"+this.addIconRect.width+" height: "+this.addIconRect.height);

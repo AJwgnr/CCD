@@ -20,9 +20,9 @@
  */
 package com.ovgu.ccd.pieces;
 
-import com.ovgu.ccd.jchess.DiagonalMoves;
-import com.ovgu.ccd.jchess.HorizontalMoves;
-import com.ovgu.ccd.jchess.VerticalMoves;
+import com.ovgu.ccd.moves.DiagonalMoves;
+import com.ovgu.ccd.moves.HorizontalMoves;
+import com.ovgu.ccd.moves.VerticalMoves;
 
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.GUI;

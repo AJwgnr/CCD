@@ -25,6 +25,7 @@ import com.ovgu.ccd.applogic.JChessApp;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.Moves.castling;
+import com.ovgu.ccd.moves.Move;
 import com.ovgu.ccd.pieces.*;
 
 import javax.swing.*;
@@ -115,7 +116,7 @@ public class Chessboard extends JPanel {
      */
     public void setPieces(String places, Player plWhite, Player plBlack) {
 
-        if (places.equals("")) //if newGame
+        if (places.equals("")) //if NEWGAME
         {
             if (this.settings.upsideDown) {
                 this.setPieces4NewGame(true, plWhite, plBlack);
@@ -489,7 +490,7 @@ public class Chessboard extends JPanel {
     }
 
     public boolean redo(boolean refresh) {
-        if (this.settings.gameType == Settings.gameTypes.local) //redo only for local game
+        if (this.settings.gameType == Settings.gameTypes.LOCAL) //redo only for LOCAL game
         {
             Move first = this.moves_history.redo();
 

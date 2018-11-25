@@ -181,7 +181,7 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
                 }
                 ///JChessView.gui.game.saveGame(fc.);
             }
-        } else if (target == loadGameItem) { //loadGame
+        } else if (target == loadGameItem) { //LOADGAME
             JFileChooser fc = new JFileChooser();
             int retVal = fc.showOpenDialog(this.gamesPane);
             if (retVal == JFileChooser.APPROVE_OPTION) {
