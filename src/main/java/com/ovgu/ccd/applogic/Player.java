@@ -36,7 +36,7 @@ public class Player implements Serializable {
      *Enum for the different possible colors for the chess paly
      */
     public enum Colors {
-        white, black
+        WHITE, BLACK
 
     }
 
@@ -44,7 +44,7 @@ public class Player implements Serializable {
      *'Enum representing the different player options in the game
      */
     public enum PlayerTypes {
-        localUser, networkUser, computer
+        LOCALUSER, NETWORKUSER, COMPUTER
     }
 
 
