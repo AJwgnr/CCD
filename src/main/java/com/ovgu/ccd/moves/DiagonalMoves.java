@@ -31,7 +31,7 @@ public class DiagonalMoves {
         Square square = piece.square;
 
         //left
-        for (int x = square.getPozX() - 1, y = square.getPozY() + 1; !piece.outsideOfBoard(x, y); --x, ++y) {
+        for (int x = square.getPosX() - 1, y = square.getPosY() + 1; !piece.outsideOfBoard(x, y); --x, ++y) {
             Square nextPosition = board.getSquare(x, y);
             if (!piece.canMoveTo(nextPosition)) {
                 break;
@@ -44,7 +44,7 @@ public class DiagonalMoves {
             }
         }
 
-        for (int x = square.getPozX() - 1, y = square.getPozY() - 1; !piece.outsideOfBoard(x, y); --x, --y) {
+        for (int x = square.getPosX() - 1, y = square.getPosY() - 1; !piece.outsideOfBoard(x, y); --x, --y) {
             Square nextPosition = board.getSquare(x, y);
             if (!piece.canMoveTo(nextPosition)) {
                 break;
@@ -58,7 +58,7 @@ public class DiagonalMoves {
         }
 
         //right
-        for (int x = square.getPozX() + 1, y = square.getPozY() + 1; !piece.outsideOfBoard(x, y); ++x, ++y) {
+        for (int x = square.getPosX() + 1, y = square.getPosY() + 1; !piece.outsideOfBoard(x, y); ++x, ++y) {
             Square nextPosition = board.getSquare(x, y);
             if (!piece.canMoveTo(nextPosition)) {
                 break;
@@ -71,7 +71,7 @@ public class DiagonalMoves {
             }
         }
 
-        for (int x = square.getPozX() + 1, y = square.getPozY() - 1; !piece.outsideOfBoard(x, y); ++x, --y) {
+        for (int x = square.getPosX() + 1, y = square.getPosY() - 1; !piece.outsideOfBoard(x, y); ++x, --y) {
             Square nextPosition = board.getSquare(x, y);
             if (!piece.canMoveTo(nextPosition)) {
                 break;

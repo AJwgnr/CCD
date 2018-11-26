@@ -71,8 +71,8 @@ public abstract class Piece {
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             Point topLeft = this.chessboard.getTopLeftPoint();
             int height = this.chessboard.get_square_height();
-            int x = (this.square.pozX * height) + topLeft.x;
-            int y = (this.square.pozY * height) + topLeft.y;
+            int x = (this.square.getPosX() * height) + topLeft.x;
+            int y = (this.square.getPosY() * height) + topLeft.y;
             float addX = (height - image.getWidth(null)) / 2;
             float addY = (height - image.getHeight(null)) / 2;
             if (image != null && g != null) {
@@ -118,7 +118,7 @@ public abstract class Piece {
     }
 
     public boolean canMoveTo(Square position) {
-        Piece piece = position.piece;
+        Piece piece = position.getPiece();
         if (piece != null && piece.name.equals("King")) {
             return false;
         }
