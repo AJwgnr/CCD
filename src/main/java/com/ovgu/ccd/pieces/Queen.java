@@ -49,7 +49,7 @@ public class Queen extends Piece {
 
     public static short value = 9;
 
-    public Queen(Chessboard chessboard, Player player) {
+    protected Queen(Chessboard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "Q";
         imageWhite = GUI.loadImage("Queen-W.png");

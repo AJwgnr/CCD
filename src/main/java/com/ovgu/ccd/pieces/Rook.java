@@ -49,7 +49,7 @@ public class Rook extends Piece {
     public static short value = 5;
     boolean wasMotion = false;
 
-    public Rook(Chessboard chessboard, Player player) {
+    protected Rook(Chessboard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "R";
         imageWhite = GUI.loadImage("Rook-W.png");

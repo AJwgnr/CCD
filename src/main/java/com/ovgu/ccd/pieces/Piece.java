@@ -50,7 +50,7 @@ public abstract class Piece {
      * @param chessboard
      * @param player
      */
-    Piece(Chessboard chessboard, Player player) {
+    protected Piece(Chessboard chessboard, Player player) {
         this.chessboard = chessboard;
         this.setPlayer(player);
         this.name = this.getClass().getSimpleName();

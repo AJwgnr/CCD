@@ -49,7 +49,7 @@ public class King extends Piece {
     public boolean wasMotion = false;
     public static short value = 99;
 
-    public King(Chessboard chessboard, Player player) {
+    protected King(Chessboard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "K";
         imageWhite = GUI.loadImage("King-W.png");

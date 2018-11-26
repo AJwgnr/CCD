@@ -34,7 +34,7 @@ public class Knight extends Piece {
     public static short value = 3;
 
 
-    public Knight(Chessboard chessboard, Player player) {
+    protected Knight(Chessboard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "N";
         imageWhite = GUI.loadImage("Knight-W.png");
