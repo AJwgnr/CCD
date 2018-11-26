@@ -14,7 +14,8 @@ public class KnightTest {
     public void testWhitePlayerImage() {
         Chessboard board = mock(Chessboard.class);
         Player player = new Player("John", Player.Colors.WHITE.name());
-        Knight knight = new Knight(board, player);
+        Knight knight = (Knight) PieceFactory.getPiece(board, player, Piece.PieceTypes.KNIGHT);
+
 
         assertEquals(Knight.imageWhite, knight.image);
         assertEquals(Knight.imageWhite, knight.orgImage);
@@ -25,7 +26,7 @@ public class KnightTest {
     public void testBlackPlayerImage() {
         Chessboard board = mock(Chessboard.class);
         Player player = new Player("John", Player.Colors.BLACK.name());
-        Knight knight = new Knight(board, player);
+        Knight knight = (Knight) PieceFactory.getPiece(board, player, Piece.PieceTypes.KNIGHT);
 
         assertEquals(Knight.imageBlack, knight.image);
         assertEquals(Knight.imageBlack, knight.orgImage);
@@ -35,7 +36,7 @@ public class KnightTest {
     public void testSymbol() {
         Chessboard board = mock(Chessboard.class);
         Player player = new Player("John", Player.Colors.BLACK.name());
-        Knight knight = new Knight(board, player);
+        Knight knight = (Knight) PieceFactory.getPiece(board, player, Piece.PieceTypes.KNIGHT);
 
         assertEquals("N", knight.getSymbol());
     }

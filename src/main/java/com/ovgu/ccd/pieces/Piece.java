@@ -45,12 +45,22 @@ public abstract class Piece {
     protected String symbol;
     Chessboard chessboard; // <-- this relations isn't in class diagram, but it's necessary :/
 
-    Piece(Chessboard chessboard, Player player) {
+    /**
+     *
+     * @param chessboard
+     * @param player
+     */
+    protected Piece(Chessboard chessboard, Player player) {
         this.chessboard = chessboard;
         this.setPlayer(player);
         this.name = this.getClass().getSimpleName();
 
     }
+
+    public enum PieceTypes{
+        BISHOP, ROOK, KING,KNIGHT,PAWN,QUEEN
+    }
+
     /* Method to draw piece on chessboard
      * @graph : where to draw
      */

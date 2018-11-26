@@ -70,7 +70,7 @@ public class Pawn extends Piece {
     public static short value = 1;
     boolean down;
 
-    public Pawn(Chessboard chessboard, Player player) {
+    protected Pawn(Chessboard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "";
         imageWhite = GUI.loadImage("Pawn-W.png");

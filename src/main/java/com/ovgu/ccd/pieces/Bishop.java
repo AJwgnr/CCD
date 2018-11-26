@@ -47,7 +47,7 @@ public class Bishop extends Piece {
 
     public static short value = 3;
 
-    public Bishop(Chessboard chessboard, Player player) {
+    protected Bishop(Chessboard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "B";
         imageWhite = GUI.loadImage("Bishop-W.png");
