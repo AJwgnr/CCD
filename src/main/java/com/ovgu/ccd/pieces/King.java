@@ -38,9 +38,8 @@ package com.ovgu.ccd.pieces;
  * 0 1 2 3 4 5 6 7
  */
 
-import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.GUI;
-import com.ovgu.ccd.jchess.IBoard;
+import com.ovgu.ccd.moves.IBoard;
 import com.ovgu.ccd.applogic.Player;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.ovgu.ccd.jchess;
+package com.ovgu.ccd.moves;
 import com.ovgu.ccd.pieces.Square;
 import java.util.ArrayList;
 

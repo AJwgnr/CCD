@@ -1,4 +1,4 @@
-package com.ovgu.ccd.jchess.three;
+package com.ovgu.ccd.moves.three;
 
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.pieces.Knight;
