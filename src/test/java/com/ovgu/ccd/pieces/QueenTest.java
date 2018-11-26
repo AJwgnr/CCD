@@ -4,8 +4,9 @@ import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.Game;
 import com.ovgu.ccd.gui.Moves;
-import com.ovgu.ccd.gui.Player;
 import org.junit.Before;
+
+import com.ovgu.ccd.applogic.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -19,13 +20,13 @@ import static org.hamcrest.CoreMatchers.hasItems;
 public class QueenTest {
 
     Chessboard board = new Chessboard(new Settings(), new Moves(mock(Game.class)));
-    Player whitePlayer = new Player("John", Player.colors.white.name());
-    Player blackPlayer = new Player("John", Player.colors.black.name());
+    Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
+    Player blackPlayer = new Player("John", Player.Colors.BLACK.name());
 
     @Before
     public void setup() {
-        King blackKing = new King(board, blackPlayer);
-        King whiteKing = new King(board, whitePlayer);
+        King blackKing = (King) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.KING);
+        King whiteKing = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
 
         board.getSquare(4, 7).setPiece(blackKing);
         board.setKingBlack(blackKing);
@@ -36,8 +37,7 @@ public class QueenTest {
 
     @Test
     public void testWhitePlayerImage() {
-        Queen queen = new Queen(board, whitePlayer);
-
+        Queen queen = (Queen) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.QUEEN);
         assertEquals(Queen.imageWhite, queen.image);
         assertEquals(Queen.imageWhite, queen.orgImage);
     }
@@ -45,7 +45,7 @@ public class QueenTest {
 
     @Test
     public void testBlackPlayerImage() {
-        Queen queen = new Queen(board, blackPlayer);
+        Queen queen = (Queen) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.QUEEN);
 
         assertEquals(Queen.imageBlack, queen.image);
         assertEquals(Queen.imageBlack, queen.orgImage);
@@ -53,7 +53,7 @@ public class QueenTest {
 
     @Test
     public void testSymbol() {
-        Queen queen = new Queen(board, blackPlayer);
+        Queen queen = (Queen) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.QUEEN);
 
         assertEquals("Q", queen.getSymbol());
     }
@@ -71,7 +71,7 @@ public class QueenTest {
                 |_|_|_|_|K|_|_|_|0
                  0 1 2 3 4 5 6 7
         */
-        Queen queen = new Queen(board, whitePlayer);
+        Queen queen = (Queen) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.QUEEN);
         board.getSquare(3, 3).setPiece(queen);
         List<Square> moves = queen.allMoves();
 
@@ -112,7 +112,7 @@ public class QueenTest {
 
     @Test
     public void testAllMovesBottomLeftCorner() {
-        Queen queen = new Queen(board, whitePlayer);
+        Queen queen = (Queen) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.QUEEN);
         board.getSquare(0, 0).setPiece(queen);
         List<Square> moves = queen.allMoves();
 
@@ -154,16 +154,16 @@ public class QueenTest {
                 |_|_|_|_|K|_|_|_|0
                  0 1 2 3 4 5 6 7
         */
-        Queen queen = new Queen(board, whitePlayer);
+        Queen queen = (Queen) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.QUEEN);
 
-        Pawn leftTopPiece = new Pawn(board, blackPlayer);
-        Pawn leftMiddlePiece = new Pawn(board, blackPlayer);
-        Pawn leftBottomPiece = new Pawn(board, blackPlayer);
-        Pawn rightTopPiece = new Pawn(board, blackPlayer);
-        Pawn rightMiddlePiece = new Pawn(board, blackPlayer);
-        Pawn rightBottomPiece = new Pawn(board, blackPlayer);
-        Pawn bottomPiece = new Pawn(board, blackPlayer);
-        Pawn topPiece = new Pawn(board, blackPlayer);
+        Pawn leftTopPiece = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        Pawn leftMiddlePiece = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        Pawn leftBottomPiece = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        Pawn rightTopPiece = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        Pawn rightMiddlePiece = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        Pawn rightBottomPiece = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        Pawn bottomPiece = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        Pawn topPiece = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
 
         board.getSquare(3, 3).setPiece(queen);
         board.getSquare(2, 3).setPiece(leftMiddlePiece);

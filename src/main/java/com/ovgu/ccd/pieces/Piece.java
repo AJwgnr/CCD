@@ -21,9 +21,9 @@
 package com.ovgu.ccd.pieces;
 
 
-import com.ovgu.ccd.gui.Chessboard;
-import com.ovgu.ccd.gui.Player;
+import com.ovgu.ccd.applogic.Player.Colors;
 import com.ovgu.ccd.jchess.IBoard;
+import com.ovgu.ccd.applogic.Player;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -45,12 +45,22 @@ public abstract class Piece {
     protected String symbol;
     IBoard chessboard; // <-- this relations isn't in class diagram, but it's necessary :/
 
-    Piece(IBoard chessboard, Player player) {
+    /**
+     *
+     * @param chessboard
+     * @param player
+     */
+    protected Piece(IBoard chessboard, Player player) {
         this.chessboard = chessboard;
         this.setPlayer(player);
         this.name = this.getClass().getSimpleName();
 
     }
+
+    public enum PieceTypes{
+        BISHOP, ROOK, KING,KNIGHT,PAWN,QUEEN
+    }
+
     /* Method to draw piece on chessboard
      * @graph : where to draw
      */
@@ -85,9 +95,7 @@ public abstract class Piece {
 
     void setImage()
     {
-        if (this.getPlayer().getColor() == this.getPlayer().getColor().black)
-        {
-
+        if (this.getPlayer().getColor() == this.getPlayer().getColor().BLACK){
             image = imageBlack;
         } else {
             image = imageWhite;
@@ -104,29 +112,26 @@ public abstract class Piece {
      * @param x x position on chessboard
      * @param y y position on chessboard
      * @return true if parameters are out of bounds (array)
-     * */
-    public boolean outsideOfBoard(int x, int y)
-    {
+     */
+    public boolean outsideOfBoard(int x, int y) {
         return (x < 0 || x > 7 || y < 0 || y > 7);
     }
 
-    public boolean canMoveTo(Square position)
-    {
+    public boolean canMoveTo(Square position) {
         Piece piece = position.piece;
-        if (piece != null && piece.name.equals("King"))
-        {
+        if (piece != null && piece.name.equals("King")) {
             return false;
         }
-        if (piece == null || piece.getPlayer() != this.getPlayer())
-        {
+        if (piece == null || piece.getPlayer() != this.getPlayer()) {
             return true;
         }
         return false;
     }
 
-    public boolean otherOwner(Piece otherPiece)
-    {
-        if (otherPiece == null) { return false; }
+    public boolean otherOwner(Piece otherPiece) {
+        if (otherPiece == null) {
+            return false;
+        }
         return player != otherPiece.getPlayer();
     }
 
@@ -143,7 +148,7 @@ public abstract class Piece {
         this.player = player;
     }
 
-    public Player.colors getColor() {
+    public Colors getColor() {
         return player.getColor();
     }
 

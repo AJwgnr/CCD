@@ -1,8 +1,10 @@
 package com.ovgu.ccd.jchess.three;
 
-import com.ovgu.ccd.gui.Player;
+import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.jchess.IBoard;
 import com.ovgu.ccd.pieces.Bishop;
+import com.ovgu.ccd.pieces.Piece;
+import com.ovgu.ccd.pieces.PieceFactory;
 import com.ovgu.ccd.pieces.Square;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
@@ -12,12 +14,12 @@ import static org.junit.Assert.assertTrue;
 
 public class DiagonalMoveTest {
 
-    Player whitePlayer = new Player("John", Player.colors.white.name());
+    Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
 
     @Test
     public void testPerfectDiagonal() {
         IBoard board = new ThreePlayerChessboard();
-        Bishop bishop = new Bishop(board, whitePlayer);
+        Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
 
         //White diagonals
         ((ThreePlayerChessboard) board).setPiece(bishop, 0,  ThreePlayerChessboard.H);
@@ -97,7 +99,7 @@ public class DiagonalMoveTest {
     @Test
     public void testSameSextantMovesTopRight() {
         IBoard board = new ThreePlayerChessboard();
-        Bishop bishop = new Bishop(board, whitePlayer);
+        Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.I);
@@ -451,7 +453,7 @@ public class DiagonalMoveTest {
     @Test
     public void testMoves8I() throws Exception {
         IBoard board = new ThreePlayerChessboard();
-        Bishop bishop = new Bishop(board, whitePlayer);
+        Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.I);
@@ -475,7 +477,7 @@ public class DiagonalMoveTest {
     @Test
     public void testMoves2G() throws Exception {
         IBoard board = new ThreePlayerChessboard();
-        Bishop bishop = new Bishop(board, whitePlayer);
+        Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
         ((ThreePlayerChessboard) board).setPiece(bishop, 2, ThreePlayerChessboard.G);

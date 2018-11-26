@@ -1,6 +1,6 @@
 package com.ovgu.ccd.jchess.three;
 
-import com.ovgu.ccd.gui.Player;
+import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.jchess.IBoard;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Pawn;
@@ -276,7 +276,7 @@ public class ThreePlayerChessboard implements IBoard {
 
     // TODO: Remove me
     @Override
-    public King myKing(Player.colors color)
+    public King myKing(Player.Colors color)
     {
         return null;
     }

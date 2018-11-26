@@ -22,12 +22,11 @@
 package com.ovgu.ccd.pieces;
 
 
-import com.ovgu.ccd.jchess.HorizontalMoves;
 import com.ovgu.ccd.jchess.IBoard;
-import com.ovgu.ccd.jchess.VerticalMoves;
-import com.ovgu.ccd.gui.Chessboard;
+import com.ovgu.ccd.moves.HorizontalMoves;
+import com.ovgu.ccd.moves.VerticalMoves;
 import com.ovgu.ccd.gui.GUI;
-import com.ovgu.ccd.gui.Player;
+import com.ovgu.ccd.applogic.Player;
 
 import java.util.ArrayList;
 
@@ -50,7 +49,7 @@ public class Rook extends Piece {
     public static short value = 5;
     boolean wasMotion = false;
 
-    public Rook(IBoard chessboard, Player player) {
+    protected Rook(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "R";
         imageWhite = GUI.loadImage("Rook-W.png");

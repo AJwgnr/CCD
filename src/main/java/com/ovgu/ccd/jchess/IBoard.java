@@ -1,6 +1,6 @@
 package com.ovgu.ccd.jchess;
 
-import com.ovgu.ccd.gui.Player;
+import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Pawn;
 import com.ovgu.ccd.pieces.Square;
@@ -48,7 +48,7 @@ public interface IBoard {
 
     void move(Square begin, Square end, boolean refresh, boolean clearForwardHistory);
 
-    King myKing(Player.colors color);
+    King myKing(Player.Colors color);
 
     Square getSquare(int xCoordinate, int yCoordinate);
 

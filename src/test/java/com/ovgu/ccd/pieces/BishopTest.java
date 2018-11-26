@@ -4,9 +4,9 @@ import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.Game;
 import com.ovgu.ccd.gui.Moves;
-import com.ovgu.ccd.gui.Player;
 import org.hamcrest.MatcherAssert;
 import org.junit.Before;
+import com.ovgu.ccd.applogic.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -16,10 +16,10 @@ import static org.hamcrest.CoreMatchers.hasItems;
 public class BishopTest {
 
     Chessboard board = new Chessboard(new Settings(), new Moves(mock(Game.class)));
-    Player whitePlayer = new Player("John", Player.colors.white.name());
-    Player blackPlayer = new Player("John", Player.colors.black.name());
-    King whiteKing = new King(board, whitePlayer);
-    King blackKing = new King(board, blackPlayer);
+    Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
+    Player blackPlayer = new Player("John", Player.Colors.BLACK.name());
+    King blackKing = (King) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.KING);
+    King whiteKing = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
 
     @Before
     public void setup() {
@@ -31,7 +31,7 @@ public class BishopTest {
 
     @Test
     public void testWhitePlayerImage() {
-        Bishop bishop = new Bishop(board, whitePlayer);
+        Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
 
         assertEquals(Bishop.imageWhite, bishop.image);
         assertEquals(Bishop.imageWhite, bishop.orgImage);
@@ -40,7 +40,7 @@ public class BishopTest {
 
     @Test
     public void testBlackPlayerImage() {
-        Bishop bishop = new Bishop(board, blackPlayer);
+        Bishop bishop = (Bishop) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.BISHOP);
 
         assertEquals(Bishop.imageBlack, bishop.image);
         assertEquals(Bishop.imageBlack, bishop.orgImage);
@@ -48,14 +48,14 @@ public class BishopTest {
 
     @Test
     public void testSymbol() {
-        Bishop bishop = new Bishop(board, blackPlayer);
+        Bishop bishop = (Bishop) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.BISHOP);
 
         assertEquals("B", bishop.getSymbol());
     }
 
     @Test
     public void testAllMovesMiddleBoard() {
-        Bishop bishop = new Bishop(board, whitePlayer);
+        Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         board.getSquare(3, 3).setPiece(bishop);
         List<Square> moves = bishop.allMoves();
 
@@ -83,7 +83,7 @@ public class BishopTest {
 
     @Test
     public void testAllMovesTopLeftCorner() {
-        Bishop bishop = new Bishop(board, whitePlayer);
+        Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         board.getSquare(0, 7).setPiece(bishop);
         List<Square> moves = bishop.allMoves();
 
@@ -115,11 +115,11 @@ public class BishopTest {
                 |_|_|_|_|K|_|_|_|0
                  0 1 2 3 4 5 6 7
         */
-        Bishop bishop = new Bishop(board, whitePlayer);
-        Knight topLeftPiece = new Knight(board, whitePlayer);
-        Pawn topRightPiece = new Pawn(board, whitePlayer);
-        Bishop bottomRightPiece = new Bishop(board, whitePlayer);
-        Knight bottomLeftPiece = new Knight(board, whitePlayer);
+        Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
+        Knight topLeftPiece = (Knight) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KNIGHT);
+        Pawn topRightPiece = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        Bishop bottomRightPiece = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
+        Knight bottomLeftPiece = (Knight) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KNIGHT);
 
         board.getSquare(3, 3).setPiece(bishop);
         board.getSquare(1, 5).setPiece(topLeftPiece);

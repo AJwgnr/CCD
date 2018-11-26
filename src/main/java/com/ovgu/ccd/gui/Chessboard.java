@@ -20,10 +20,13 @@
  */
 package com.ovgu.ccd.gui;
 
+import com.ovgu.ccd.applogic.Player.Colors;
 import com.ovgu.ccd.applogic.JChessApp;
+import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.Moves.castling;
 import com.ovgu.ccd.jchess.IBoard;
+import com.ovgu.ccd.moves.Move;
 import com.ovgu.ccd.pieces.*;
 
 import javax.swing.*;
@@ -115,7 +118,7 @@ public class Chessboard extends JPanel implements IBoard {
     @Override
     public void setPieces(String places, Player plWhite, Player plBlack) {
 
-        if (places.equals("")) //if newGame
+        if (places.equals("")) //if NEWGAME
         {
             if (this.settings.upsideDown) {
                 this.setPieces4NewGame(true, plWhite, plBlack);
@@ -166,25 +169,25 @@ public class Chessboard extends JPanel implements IBoard {
             player.setGoDown(true);
         }
 
-        this.squares[0][i].setPiece(new Rook(this, player));
-        this.squares[7][i].setPiece(new Rook(this, player));
-        this.squares[1][i].setPiece(new Knight(this, player));
-        this.squares[6][i].setPiece(new Knight(this, player));
-        this.squares[2][i].setPiece(new Bishop(this, player));
-        this.squares[5][i].setPiece(new Bishop(this, player));
+        this.squares[0][i].setPiece(PieceFactory.getPiece(this, player, Piece.PieceTypes.ROOK));
+        this.squares[7][i].setPiece(PieceFactory.getPiece(this, player, Piece.PieceTypes.ROOK));
+        this.squares[1][i].setPiece(PieceFactory.getPiece(this, player, Piece.PieceTypes.KNIGHT));
+        this.squares[6][i].setPiece(PieceFactory.getPiece(this, player, Piece.PieceTypes.KNIGHT));
+        this.squares[2][i].setPiece(PieceFactory.getPiece(this, player, Piece.PieceTypes.BISHOP));
+        this.squares[5][i].setPiece(PieceFactory.getPiece(this, player, Piece.PieceTypes.BISHOP));
         if (upsideDown) {
-            this.squares[4][i].setPiece(new Queen(this, player));
-            if (player.getColor() == Player.colors.white) {
-                this.squares[3][i].setPiece(kingWhite = new King(this, player));
+            this.squares[4][i].setPiece(PieceFactory.getPiece(this, player, Piece.PieceTypes.QUEEN));
+            if (player.getColor() == Colors.WHITE) {
+                this.squares[3][i].setPiece(kingWhite = (King) PieceFactory.getPiece(this, player, Piece.PieceTypes.KING));
             } else {
-                this.squares[3][i].setPiece(kingBlack = new King(this, player));
+                this.squares[3][i].setPiece(kingBlack = (King) PieceFactory.getPiece(this, player, Piece.PieceTypes.KING));
             }
         } else {
-            this.squares[3][i].setPiece(new Queen(this, player));
-            if (player.getColor() == Player.colors.white) {
-                this.squares[4][i].setPiece(kingWhite = new King(this, player));
+            this.squares[3][i].setPiece(PieceFactory.getPiece(this, player, Piece.PieceTypes.QUEEN));
+            if (player.getColor() == Colors.WHITE) {
+                this.squares[4][i].setPiece(kingWhite = (King) PieceFactory.getPiece(this, player, Piece.PieceTypes.KING));
             } else {
-                this.squares[4][i].setPiece(kingBlack = new King(this, player));
+                this.squares[4][i].setPiece(kingBlack = (King) PieceFactory.getPiece(this, player, Piece.PieceTypes.KING));
             }
         }
     }
@@ -202,7 +205,7 @@ public class Chessboard extends JPanel implements IBoard {
         }
 
         for (int x = 0; x < 8; x++) {
-            this.squares[x][i].setPiece(new Pawn(this, player));
+            this.squares[x][i].setPiece(PieceFactory.getPiece(this, player, Piece.PieceTypes.PAWN));
 
         }
     }
@@ -215,8 +218,7 @@ public class Chessboard extends JPanel implements IBoard {
      * @return reference to searched square
      */
     @Override
-    public Square getSquareConsideringLabels(int x, int y)
-    {
+    public Square getSquareConsideringLabels(int x, int y) {
         if ((x > this.get_height()) || (y > this.get_widht())) //test if click is out of chessboard
         {
             System.out.println("click out of chessboard.");
@@ -241,12 +243,9 @@ public class Chessboard extends JPanel implements IBoard {
         System.out.println("square_x: " + square_x + " square_y: " + square_y + " \n"); //4tests
         Square result;
 
-        try
-        {
+        try {
             result = this.squares[(int) square_x - 1][(int) square_y - 1];
-        }
-        catch (java.lang.ArrayIndexOutOfBoundsException exc)
-        {
+        } catch (java.lang.ArrayIndexOutOfBoundsException exc) {
             System.out.println("!!Array out of bounds when getting Square with Chessboard.getSquareConsideringLabels(int,int) : " + exc);
             return null;
         }
@@ -435,8 +434,7 @@ public class Chessboard extends JPanel implements IBoard {
             {
                 if (clearForwardHistory) {
                     String color;
-                    if (end.getPiece().getPlayer().getColor() == Player.colors.white)
-                    {
+                    if (end.getPiece().getPlayer().getColor() == Colors.WHITE) {
                         color = "W"; // promotionWindow was show with pieces in this color
                     } else {
                         color = "B";
@@ -446,28 +444,28 @@ public class Chessboard extends JPanel implements IBoard {
 
                     if (newPiece.equals("Queen")) // transform pawn to queen
                     {
-                        Queen queen = new Queen(this, end.getPiece().player);
+                        Queen queen = (Queen) PieceFactory.getPiece(this, end.getPiece().player, Piece.PieceTypes.QUEEN);
                         queen.setChessboard(end.getPiece().getChessboard());
                         queen.player = end.getPiece().player;
                         queen.setSquare(end.getPiece().getSquare());
                         end.setPiece(queen);
                     } else if (newPiece.equals("Rook")) // transform pawn to rook
                     {
-                        Rook rook = new Rook(this, end.getPiece().player);
+                        Rook rook = (Rook) PieceFactory.getPiece(this, end.getPiece().player, Piece.PieceTypes.ROOK);
                         rook.setChessboard(end.getPiece().getChessboard());
                         rook.player = end.getPiece().player;
                         rook.setSquare(end.getPiece().getSquare());
                         end.setPiece(rook);
                     } else if (newPiece.equals("Bishop")) // transform pawn to bishop
                     {
-                        Bishop bishop = new Bishop(this, end.getPiece().player);
+                        Bishop bishop = (Bishop) PieceFactory.getPiece(this, end.getPiece().player, Piece.PieceTypes.BISHOP);
                         bishop.setChessboard(end.getPiece().getChessboard());
                         bishop.player = end.getPiece().player;
                         bishop.setSquare(end.getPiece().getSquare());
                         end.setPiece(bishop);
                     } else // transform pawn to knight
                     {
-                        Knight knight = new Knight(this, end.getPiece().player);
+                        Knight knight = (Knight) PieceFactory.getPiece(this, end.getPiece().player, Piece.PieceTypes.KNIGHT);
                         knight.setChessboard(end.getPiece().getChessboard());
                         knight.player = end.getPiece().player;
                         knight.setSquare(end.getPiece().getSquare());
@@ -500,7 +498,7 @@ public class Chessboard extends JPanel implements IBoard {
     }
 
     public boolean redo(boolean refresh) {
-        if (this.settings.gameType == Settings.gameTypes.local) //redo only for local game
+        if (this.settings.gameType == Settings.gameTypes.LOCAL) //redo only for LOCAL game
         {
             Move first = this.moves_history.redo();
 
@@ -786,10 +784,8 @@ public class Chessboard extends JPanel implements IBoard {
         for (int y = 7; y >= 0; y--) //drawPiecesOnSquares
         {
             System.out.print(y + "|");
-            for (int i = 0; i < 8; i++)
-            {
-                if (this.getSquares()[i][y].getPiece() != null)
-                {
+            for (int i = 0; i < 8; i++) {
+                if (this.getSquares()[i][y].getPiece() != null) {
                     System.out.print("P");
                 } else {
                     System.out.print("_");
@@ -802,19 +798,18 @@ public class Chessboard extends JPanel implements IBoard {
     }
 
     @Override
-    public King myKing(Player.colors color)
-    {
-        if (color == Player.colors.white) {
-            return getKingWhite();
+    public King myKing(Colors color) {
+        if (color == Colors.WHITE) {
+            return kingWhite;
         } else {
-            return getKingBlack();
+            return kingBlack;
         }
     }
 
     @Override
     public Square getSquare(int xCoordinate, int yCoordinate)
     {
-        return squares[xCoordinate][yCoordinate];
+        return getSquares()[xCoordinate][yCoordinate];
     }
 
     @Override

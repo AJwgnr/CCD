@@ -20,10 +20,10 @@
  */
 package com.ovgu.ccd.pieces;
 
-import com.ovgu.ccd.gui.Chessboard;
+
 import com.ovgu.ccd.gui.GUI;
-import com.ovgu.ccd.gui.Player;
 import com.ovgu.ccd.jchess.IBoard;
+import com.ovgu.ccd.applogic.Player;
 
 import java.util.ArrayList;
 
@@ -71,7 +71,7 @@ public class Pawn extends Piece {
     public static short value = 1;
     boolean down;
 
-    public Pawn(IBoard chessboard, Player player) {
+    protected Pawn(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "";
         imageWhite = GUI.loadImage("Pawn-W.png");
@@ -105,6 +105,7 @@ public class Pawn extends Piece {
         moves.addAll(regularMove(immediateYCoordinate));
         if (getPlayer().isGoDown() && getSquare().pozY == 1 || !getPlayer().isGoDown() && getSquare().pozY == 6)
         {
+
             moves.addAll(regularMove(twoPositionsYCoordinate));
         }
 
@@ -137,10 +138,11 @@ public class Pawn extends Piece {
         return list;
     }
 
-    private ArrayList captureMove(Integer nextXCoordinate, Integer nextYCoordinate)
-    {
+    private ArrayList captureMove(Integer nextXCoordinate, Integer nextYCoordinate) {
         ArrayList list = new ArrayList();
-        if (outsideOfBoard(nextXCoordinate, nextYCoordinate)) { return list; }
+        if (outsideOfBoard(nextXCoordinate, nextYCoordinate)) {
+            return list;
+        }
 
         Square nextPosition = chessboard.getSquare(nextXCoordinate, nextYCoordinate);
         if (canMoveTo(nextPosition) && otherOwner(nextPosition.piece)

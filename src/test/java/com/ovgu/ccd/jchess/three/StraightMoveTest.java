@@ -1,9 +1,9 @@
 package com.ovgu.ccd.jchess.three;
 
-import com.ovgu.ccd.gui.Player;
+import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.jchess.IBoard;
 import com.ovgu.ccd.pieces.Piece;
-import com.ovgu.ccd.pieces.Rook;
+import com.ovgu.ccd.pieces.PieceFactory;
 import com.ovgu.ccd.pieces.Square;
 import org.hamcrest.MatcherAssert;
 import org.junit.Assert;
@@ -13,12 +13,12 @@ import static org.hamcrest.CoreMatchers.hasItems;
 
 public class StraightMoveTest {
 
-    Player whitePlayer = new Player("John", Player.colors.white.name());
+    Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
 
     @Test
     public void testMovesIn3E() {
         IBoard board = new ThreePlayerChessboard();
-        Piece rook = new Rook(board, whitePlayer);
+        Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
         board.getSquare(3, ThreePlayerChessboard.E).setPiece(rook);
         ArrayList<Square> moves = new StraightMove(rook, board).moves();
 
@@ -48,7 +48,7 @@ public class StraightMoveTest {
     @Test
     public void testMovesIn2G() {
         IBoard board = new ThreePlayerChessboard();
-        Piece rook = new Rook(board, whitePlayer);
+        Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
         board.getSquare(2, ThreePlayerChessboard.G).setPiece(rook);
         ArrayList<Square> moves = new StraightMove(rook, board).moves();
 
@@ -77,7 +77,7 @@ public class StraightMoveTest {
     @Test
     public void testMovesIn9J() {
         IBoard board = new ThreePlayerChessboard();
-        Piece rook = new Rook(board, whitePlayer);
+        Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
         board.getSquare(9, ThreePlayerChessboard.J).setPiece(rook);
         ArrayList<Square> moves = new StraightMove(rook, board).moves();
 

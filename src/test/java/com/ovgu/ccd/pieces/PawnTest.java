@@ -3,8 +3,8 @@ package com.ovgu.ccd.pieces;
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.Game;
 import com.ovgu.ccd.gui.Moves;
-import com.ovgu.ccd.gui.Player;
 import org.junit.Before;
+import com.ovgu.ccd.applogic.Player;
 import org.junit.Test;
 import org.hamcrest.MatcherAssert;
 
@@ -18,10 +18,10 @@ public class PawnTest {
 
     Game game = new Game();
     Chessboard board = new Chessboard(game.settings, new Moves(game));
-    Player whitePlayer = new Player("John", Player.colors.white.name());
-    Player blackPlayer = new Player("John", Player.colors.black.name());
-    King whiteKing = new King(board, whitePlayer);
-    King blackKing = new King(board, blackPlayer);
+    Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
+    Player blackPlayer = new Player("John", Player.Colors.BLACK.name());
+    King blackKing = (King) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.KING);
+    King whiteKing = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
 
     @Before
     public void setup() {
@@ -33,7 +33,7 @@ public class PawnTest {
 
     @Test
     public void testWhitePlayerImage() {
-        Pawn pawn = new Pawn(board, whitePlayer);
+        Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
 
         assertEquals(Pawn.imageWhite, pawn.image);
         assertEquals(Pawn.imageWhite, pawn.orgImage);
@@ -42,7 +42,7 @@ public class PawnTest {
 
     @Test
     public void testBlackPlayerImage() {
-        Pawn pawn = new Pawn(board, blackPlayer);
+        Pawn pawn = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
 
         assertEquals(Pawn.imageBlack, pawn.image);
         assertEquals(Pawn.imageBlack, pawn.orgImage);
@@ -50,14 +50,14 @@ public class PawnTest {
 
     @Test
     public void testSymbol() {
-        Pawn pawn = new Pawn(board, whitePlayer);
+        Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
 
         assertEquals("", pawn.getSymbol());
     }
 
     @Test
     public void testAllMovesMiddleBoard() {
-        Pawn pawn = new Pawn(board, whitePlayer);
+        Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         board.getSquare(3, 3).setPiece(pawn);
 
         List<Square> moves = pawn.allMoves();
@@ -73,8 +73,8 @@ public class PawnTest {
 
     @Test
     public void testAllMovesLimitedByPieces() {
-        Pawn pawn = new Pawn(board, whitePlayer);
-        Pawn blockingPawn = new Pawn(board, whitePlayer);
+        Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        Pawn blockingPawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
 
         board.getSquare(3, 3).setPiece(pawn);
         board.getSquare(3, 2).setPiece(blockingPawn);
@@ -86,9 +86,9 @@ public class PawnTest {
 
     @Test
     public void testAllMovesEating() {
-        Pawn pawn = new Pawn(board, whitePlayer);
-        Pawn blockingPawnLeft = new Pawn(board, blackPlayer);
-        Pawn blockingPawnRight = new Pawn(board, blackPlayer);
+        Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        Pawn blockingPawnLeft = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        Pawn blockingPawnRight = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
 
         board.getSquare(3, 3).setPiece(pawn);
         board.getSquare(2, 2).setPiece(blockingPawnLeft);
@@ -110,7 +110,7 @@ public class PawnTest {
 
     @Test
     public void testAllMovesInBorderLeft() {
-        Pawn pawn = new Pawn(board, whitePlayer);;
+        Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         board.getSquare(0, 3).setPiece(pawn);
 
         List<Square> moves = pawn.allMoves();
@@ -124,7 +124,7 @@ public class PawnTest {
 
     @Test
     public void testAllMovesInBorderRight() {
-        Pawn pawn = new Pawn(board, whitePlayer);;
+        Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         board.getSquare(7, 3).setPiece(pawn);
 
         List<Square> moves = pawn.allMoves();
@@ -138,7 +138,7 @@ public class PawnTest {
 
     @Test
     public void testAllMovesTwoJump() {
-        Pawn pawn = new Pawn(board, whitePlayer);;
+        Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         board.getSquare(3, 6).setPiece(pawn);
 
         List<Square> moves = pawn.allMoves();
@@ -166,8 +166,8 @@ public class PawnTest {
                 |_|_|_|_|K|_|_|_|0
                  0 1 2 3 4 5 6 7
         */
-        Pawn pawn = new Pawn(board, whitePlayer);;
-        Pawn rightPawn = new Pawn(board, blackPlayer);;
+        Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        Pawn rightPawn = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
 
         board.getSquare(3, 3).setPiece(pawn);
         board.getSquare(4, 1).setPiece(rightPawn);

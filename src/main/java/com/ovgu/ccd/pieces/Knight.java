@@ -20,10 +20,9 @@
  */
 package com.ovgu.ccd.pieces;
 
-import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.GUI;
-import com.ovgu.ccd.gui.Player;
 import com.ovgu.ccd.jchess.IBoard;
+import com.ovgu.ccd.applogic.Player;
 
 import java.util.ArrayList;
 
@@ -35,7 +34,7 @@ public class Knight extends Piece {
     public static short value = 3;
 
 
-    public Knight(IBoard chessboard, Player player) {
+    protected Knight(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "N";
         imageWhite = GUI.loadImage("Knight-W.png");
@@ -49,8 +48,7 @@ public class Knight extends Piece {
      * @return ArrayList with new possition of pawn
      */
     @Override
-    public ArrayList allMoves()
-    {
+    public ArrayList allMoves() {
         ArrayList moves = new ArrayList();
 
         // knight all moves
@@ -97,7 +95,9 @@ public class Knight extends Piece {
     }
 
     private boolean validMove(int newX, int newY) {
-        if (outsideOfBoard(newX, newY)) { return false; }
+        if (outsideOfBoard(newX, newY)) {
+            return false;
+        }
 
         Square nextPosition = chessboard.getSquare(newX, newY);
         return (canMoveTo(nextPosition) && (chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(getSquare(), nextPosition)));

@@ -20,7 +20,9 @@
  */
 package com.ovgu.ccd.gui;
 
+import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;
+import com.ovgu.ccd.moves.Move;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
@@ -47,7 +49,7 @@ public class Moves extends AbstractTableModel {
     private int rowsNum = 0;
     private String[] names = new String[]
             {
-                    Settings.lang("white"), Settings.lang("black")
+                    Settings.lang("white"), Settings.lang("black"), "ThirdPlayer"
             };
     private MyDefaultTableModel tableModel;
     private JScrollPane scrollPane;
@@ -58,9 +60,12 @@ public class Moves extends AbstractTableModel {
     /**
      * @param game The current game
      */
-    public Moves(Game game)
-    {
+    public Moves(Game game) {
         super();
+        initUiComponents(game);
+    }
+
+    public void initUiComponents(Game game){
         this.tableModel = new MyDefaultTableModel();
         this.table = new JTable(this.tableModel);
         this.scrollPane = new JScrollPane(this.table);
@@ -70,6 +75,7 @@ public class Moves extends AbstractTableModel {
 
         this.tableModel.addColumn(this.names[0]);
         this.tableModel.addColumn(this.names[1]);
+        this.tableModel.addColumn(this.names[2]);
         this.addTableModelListener(null);
         this.tableModel.addTableModelListener(null);
         this.scrollPane.setAutoscrolls(true);
@@ -153,7 +159,7 @@ public class Moves extends AbstractTableModel {
     }
 
     protected void addRow() {
-        this.tableModel.addRow(new String[2]);
+        this.tableModel.addRow(new String[3]);
     }
 
     protected void addCastling(String move) {
@@ -279,7 +285,7 @@ public class Moves extends AbstractTableModel {
     }
 
     /**
-     * Method to set all moves from String with validation test (usefoul for network game)
+     * Method to set all moves from String with validation test (usefoul for NETWORK game)
      *
      * @param moves String to set in String like PGN with full-notation format
      */
@@ -326,7 +332,7 @@ public class Moves extends AbstractTableModel {
             {
                 int[] values = new int[4];
                 if (locMove.equals("O-O-O")) {
-                    if (this.game.getActivePlayer().getColor() == Player.colors.black) //if black turn
+                    if (this.game.getActivePlayer().getColor() == Player.Colors.BLACK) //if black turn
                     {
                         values = new int[]
                                 {
@@ -340,7 +346,7 @@ public class Moves extends AbstractTableModel {
                     }
                 } else if (locMove.equals("O-O")) //if short castling
                 {
-                    if (this.game.getActivePlayer().getColor() == Player.colors.black) //if black turn
+                    if (this.game.getActivePlayer().getColor() == Player.Colors.BLACK) //if black turn
                     {
                         values = new int[]
                                 {
@@ -436,7 +442,7 @@ public class Moves extends AbstractTableModel {
         try {
             Move last = this.moveBackStack.pop();
             if (last != null) {
-                if (this.game.settings.gameType == Settings.gameTypes.local) //moveForward / redo available only for local game
+                if (this.game.settings.gameType == Settings.gameTypes.LOCAL) //moveForward / redo available only for LOCAL game
                 {
                     this.moveForwardStack.push(last);
                 }
@@ -466,7 +472,7 @@ public class Moves extends AbstractTableModel {
 
     public synchronized Move redo() {
         try {
-            if (this.game.settings.gameType == Settings.gameTypes.local) {
+            if (this.game.settings.gameType == Settings.gameTypes.LOCAL) {
                 Move first = this.moveForwardStack.pop();
                 this.moveBackStack.push(first);
 
@@ -507,7 +513,7 @@ public class Moves extends AbstractTableModel {
         return str;
     }
 
-    enum castling {
+   public enum castling {
         none, shortCastling, longCastling
     }
 }

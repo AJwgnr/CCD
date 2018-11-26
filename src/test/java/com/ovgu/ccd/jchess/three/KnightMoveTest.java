@@ -1,8 +1,9 @@
 package com.ovgu.ccd.jchess.three;
 
-import com.ovgu.ccd.gui.Player;
+import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.pieces.Knight;
 import com.ovgu.ccd.pieces.Piece;
+import com.ovgu.ccd.pieces.PieceFactory;
 import com.ovgu.ccd.pieces.Square;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
@@ -14,9 +15,9 @@ import static org.junit.Assert.assertTrue;
 
 public class KnightMoveTest {
 
-    Player whitePlayer = new Player("John", Player.colors.white.name());
+    Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
     ThreePlayerChessboard board = new ThreePlayerChessboard();
-    Piece knight = new Knight(board, whitePlayer);
+    Piece knight = (Knight) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KNIGHT);
 
     @Test
     public void testTwoDownOneRight0to3() {

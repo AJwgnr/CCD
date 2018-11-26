@@ -32,8 +32,7 @@ public class Square {
     private boolean invalid = false;
     public Piece piece;
 
-    public Square(int pozX, int pozY, Piece piece)
-    {
+    public Square(int pozX, int pozY, Piece piece) {
         this.pozX = pozX;
         this.pozY = pozY;
         this.piece = piece;
@@ -50,8 +49,7 @@ public class Square {
         return new Square(square);
     }
 
-    public void setPiece(Piece piece)
-    {
+    public void setPiece(Piece piece) {
         this.piece = piece;
         if (piece != null) {
             this.piece.setSquare(this);

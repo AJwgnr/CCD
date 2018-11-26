@@ -4,8 +4,8 @@ import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.Game;
 import com.ovgu.ccd.gui.Moves;
-import com.ovgu.ccd.gui.Player;
 import org.junit.Before;
+import com.ovgu.ccd.applogic.Player;
 import org.junit.Test;
 
 import java.util.List;
@@ -18,19 +18,19 @@ import org.hamcrest.MatcherAssert;
 public class KingTest {
 
     Chessboard board = new Chessboard(new Settings(), new Moves(mock(Game.class)));
-    Player whitePlayer = new Player("John", Player.colors.white.name());
-    Player blackPlayer = new Player("John", Player.colors.black.name());
+    Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
+    Player blackPlayer = new Player("John", Player.Colors.BLACK.name());
 
     @Before
     public void setup() {
-        King blackKing = new King(board, blackPlayer);
+        King blackKing = (King) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.KING);
         board.getSquare(4, 7).setPiece(blackKing);
         board.setKingBlack(blackKing);
     }
 
     @Test
     public void testWhitePlayerImage() {
-        King king = new King(board, whitePlayer);
+        King king = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
 
         assertEquals(King.imageWhite, king.image);
         assertEquals(King.imageWhite, king.orgImage);
@@ -39,7 +39,7 @@ public class KingTest {
 
     @Test
     public void testBlackPlayerImage() {
-        King king = new King(board, blackPlayer);
+        King king = (King) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.KING);
 
         assertEquals(King.imageBlack, king.image);
         assertEquals(King.imageBlack, king.orgImage);
@@ -47,14 +47,14 @@ public class KingTest {
 
     @Test
     public void testSymbol() {
-        King king = new King(board, blackPlayer);
+        King king = (King) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.KING);
 
         assertEquals("K", king.getSymbol());
     }
 
     @Test
     public void testAllMovesMiddleBoard() {
-        King whiteKing = new King(board, whitePlayer);
+        King whiteKing = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite(whiteKing);
         board.getSquare(3, 3).setPiece(whiteKing);
         List<Square> moves = whiteKing.allMoves();
@@ -78,7 +78,7 @@ public class KingTest {
 
     @Test
     public void testAllMovesTopLeftCorner() {
-        King whiteKing = new King(board, whitePlayer);
+        King whiteKing = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite(whiteKing);
         board.getSquare(0, 7).setPiece(whiteKing);
         List<Square> moves = whiteKing.allMoves();
@@ -107,11 +107,11 @@ public class KingTest {
                 |_|_|_|_|_|_|_|_|0
                  0 1 2 3 4 5 6 7
         */
-        King   whiteKing = new King(board, whitePlayer);
-        Knight leftPiece = new Knight(board, whitePlayer);
-        Pawn   rightPiece = new Pawn(board, whitePlayer);
-        Bishop topPiece = new Bishop(board, whitePlayer);
-        Knight bottomPiece = new Knight(board, whitePlayer);
+        King   whiteKing = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
+        Knight leftPiece = (Knight) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KNIGHT);
+        Pawn   rightPiece = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        Bishop topPiece = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
+        Knight bottomPiece = (Knight) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KNIGHT);
         board.setKingWhite(whiteKing);
         board.getSquare(0, 7).setPiece(whiteKing);
 

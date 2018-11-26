@@ -82,7 +82,7 @@ public class ChessPanel extends GeometricPrimitiveDrawer
 				this.vertices.get("C"),
 				this.vertices.get("D"),
 				this.vertices.get("A"));
-		return triangle1.getArea() + triangle2.getArea();
+		return triangle1.area() + triangle2.area();
 	}
 	
 	
@@ -105,10 +105,10 @@ public class ChessPanel extends GeometricPrimitiveDrawer
 				this.vertices.get("B"),
 				this.vertices.get("A"));
 		
-		double areaAPD = triangleAPD.getArea();
-		double areaDPC = triangleDPC.getArea();
-		double areaCPB = triangleCPB.getArea();
-		double areaPBA = trianglePBA.getArea();
+		double areaAPD = triangleAPD.area();
+		double areaDPC = triangleDPC.area();
+		double areaCPB = triangleCPB.area();
+		double areaPBA = trianglePBA.area();
 		
 		double areaOfTriagles = areaAPD + areaDPC + areaCPB + areaPBA;
 		
