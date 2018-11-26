@@ -80,20 +80,20 @@ public class Square {
         if (!(o instanceof Square)) return false;
 
         Square square = (Square) o;
-        return square.getPozX() == posX && square.getPozY() == posY && square.getPiece() == piece;
+        return square.getPosX() == posX && square.getPosY() == posY && square.getPiece() == piece;
     }
 
     /**
      * @return X position of the square
      */
-    public int getPozX() {
+    public int getPosX() {
         return posX;
     }
 
     /**
      * @return Y Position of the square
      */
-    public int getPozY() {
+    public int getPosY() {
         return posY;
     }
 

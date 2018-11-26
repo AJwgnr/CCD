@@ -31,8 +31,8 @@ public class HorizontalMoves {
         Square square = piece.square;
 
         //left
-        for (int i = square.getPozX() - 1; i >= 0; --i) {
-            Square nextPosition = board.getSquare(i, square.getPozY());
+        for (int i = square.getPosX() - 1; i >= 0; --i) {
+            Square nextPosition = board.getSquare(i, square.getPosY());
             if (!piece.canMoveTo(nextPosition)) {
                 break;
             }
@@ -45,8 +45,8 @@ public class HorizontalMoves {
         }
 
         //right
-        for (int i = square.getPozX() + 1; i <= 7; ++i) {
-            Square nextPosition = board.getSquare(i, square.getPozY());
+        for (int i = square.getPosX() + 1; i <= 7; ++i) {
+            Square nextPosition = board.getSquare(i, square.getPosY());
             if (!piece.canMoveTo(nextPosition)) {
                 break;
             }
