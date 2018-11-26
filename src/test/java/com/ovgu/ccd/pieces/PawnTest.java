@@ -13,7 +13,7 @@ public class PawnTest {
     public void testWhitePlayerImage() {
         Chessboard board = mock(Chessboard.class);
         Player player = new Player("John", Player.Colors.WHITE.name());
-        Pawn pawn = new Pawn(board, player);
+        Pawn pawn = (Pawn) PieceFactory.getPiece(board, player, Piece.PieceTypes.PAWN);
         assertEquals(Pawn.imageWhite, pawn.image);
         assertEquals(Pawn.imageWhite, pawn.orgImage);
     }
@@ -23,7 +23,7 @@ public class PawnTest {
     public void testBlackPlayerImage() {
         Chessboard board = mock(Chessboard.class);
         Player player = new Player("John", Player.Colors.BLACK.name());
-        Pawn pawn = new Pawn(board, player);
+        Pawn pawn = (Pawn) PieceFactory.getPiece(board, player, Piece.PieceTypes.PAWN);
 
         assertEquals(Pawn.imageBlack, pawn.image);
         assertEquals(Pawn.imageBlack, pawn.orgImage);
@@ -33,7 +33,7 @@ public class PawnTest {
     public void testSymbol() {
         Chessboard board = mock(Chessboard.class);
         Player player = new Player("John", Player.Colors.BLACK.name());
-        Pawn pawn = new Pawn(board, player);
+        Pawn pawn = (Pawn) PieceFactory.getPiece(board, player, Piece.PieceTypes.PAWN);
 
         assertEquals("", pawn.getSymbol());
     }
