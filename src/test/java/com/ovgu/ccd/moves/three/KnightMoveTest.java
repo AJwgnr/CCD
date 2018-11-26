@@ -1779,7 +1779,6 @@ public class KnightMoveTest {
                         new Square(8, ThreePlayerChessboard.G, null),
                         new Square(0, ThreePlayerChessboard.G, null),
                         new Square(3, ThreePlayerChessboard.F, null),
-                        new Square(3, ThreePlayerChessboard.F, null),
                         new Square(1, ThreePlayerChessboard.F, null)
                 )
         );
@@ -1855,7 +1854,7 @@ public class KnightMoveTest {
         ArrayList<Square> moves;
         board.setPiece(knight,  3, ThreePlayerChessboard.E);
         moves = new KnightMove(knight, board).moves();
-        assertTrue(moves.size() == 8);
+        assertTrue(moves.size() == 10);
         MatcherAssert.assertThat(
                 moves, hasItems(
                         new Square(1, ThreePlayerChessboard.D, null),
@@ -1865,7 +1864,9 @@ public class KnightMoveTest {
                         new Square(9, ThreePlayerChessboard.I, null),
                         new Square(9, ThreePlayerChessboard.F, null),
                         new Square(2, ThreePlayerChessboard.C, null),
-                        new Square(4, ThreePlayerChessboard.C, null)
+                        new Square(4, ThreePlayerChessboard.C, null),
+                        new Square(8, ThreePlayerChessboard.J, null),
+                        new Square(5, ThreePlayerChessboard.D, null)
                 )
         );
         board.setPiece(null, 3, ThreePlayerChessboard.E);
@@ -1876,7 +1877,7 @@ public class KnightMoveTest {
         ArrayList<Square> moves;
         board.setPiece(knight,  3, ThreePlayerChessboard.F);
         moves = new KnightMove(knight, board).moves();
-        assertTrue(moves.size() == 8);
+        assertTrue(moves.size() == 9);
         MatcherAssert.assertThat(
                 moves, hasItems(
                         new Square(1, ThreePlayerChessboard.E, null),
