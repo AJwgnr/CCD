@@ -20,31 +20,28 @@ public class PieceFactory {
      * @return
      */
     public static Piece getPiece(Chessboard board, Player player, Piece.PieceTypes pieceType) {
-        Piece newPiece = null;
         String piece = pieceType.toString();
         switch (piece) {
             case BISHOP:
-                newPiece = new Bishop(board, player);
-                break;
+                Bishop bishop = new Bishop(board, player);
+                return bishop;
             case KING:
-                newPiece = new King(board, player);
-                break;
+                King king = new King(board, player);
+                return king;
             case KNIGHT:
-                newPiece = new Knight(board, player);
-                break;
+                Knight knight = new Knight(board, player);
+                return knight;
             case PAWN:
-                newPiece = new Pawn(board, player);
-                break;
+                Pawn pawn = new Pawn(board, player);
+                return pawn;
             case QUEEN:
-                newPiece = new Queen(board, player);
-                break;
+                Queen queen = new Queen(board, player);
+                return queen;
             case ROOK:
-                newPiece = new Rook(board, player);
-                break;
+                Rook rook = new Rook(board, player);
+                return rook;
             default:
-                newPiece = null;
                 throw new IllegalArgumentException("Invalid type of a piece " + piece);
         }
-        return newPiece;
     }
 }

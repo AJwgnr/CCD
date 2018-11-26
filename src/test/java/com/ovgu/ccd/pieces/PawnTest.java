@@ -14,7 +14,6 @@ public class PawnTest {
         Chessboard board = mock(Chessboard.class);
         Player player = new Player("John", Player.Colors.WHITE.name());
         Pawn pawn = new Pawn(board, player);
-
         assertEquals(Pawn.imageWhite, pawn.image);
         assertEquals(Pawn.imageWhite, pawn.orgImage);
     }
