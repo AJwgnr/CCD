@@ -6,6 +6,7 @@ import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 public class KnightMove implements IMove {
@@ -19,7 +20,17 @@ public class KnightMove implements IMove {
 
     @Override
     public ArrayList<Square> moves() throws Exception {
-        return null;
+        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        possibleMoves.addAll(twoDownOneRight());
+        possibleMoves.addAll(twoDownOneLeft());
+        possibleMoves.addAll(twoUpOneRight());
+        possibleMoves.addAll(twoUpOneLeft());
+        possibleMoves.addAll(twoRightOneUp());
+        possibleMoves.addAll(twoRightOneDown());
+        possibleMoves.addAll(twoLeftOneUp());
+        possibleMoves.addAll(twoLeftOneDown());
+
+        return new ArrayList<Square>(Arrays.asList(possibleMoves.stream().distinct().toArray(Square[]::new)));
     }
 
     public ArrayList<Square> twoDownOneRight() {
