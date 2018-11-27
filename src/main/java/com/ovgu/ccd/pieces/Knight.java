@@ -20,6 +20,7 @@
  */
 package com.ovgu.ccd.pieces;
 
+import com.ovgu.ccd.applogic.ResourceLoader;
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.GUI;
 import com.ovgu.ccd.applogic.Player;
@@ -37,8 +38,8 @@ public class Knight extends Piece {
     protected Knight(Chessboard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "N";
-        imageWhite = GUI.loadImage("Knight-W.png");
-        imageBlack = GUI.loadImage("Knight-B.png");
+        imageWhite = ResourceLoader.loadImage("Knight-W.png");
+        imageBlack = ResourceLoader.loadImage("Knight-B.png");
         this.setImage();
     }
 

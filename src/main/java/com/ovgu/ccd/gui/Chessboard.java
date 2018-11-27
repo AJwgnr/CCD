@@ -23,6 +23,7 @@ package com.ovgu.ccd.gui;
 import com.ovgu.ccd.applogic.Player.Colors;
 import com.ovgu.ccd.applogic.JChessApp;
 import com.ovgu.ccd.applogic.Player;
+import com.ovgu.ccd.applogic.ResourceLoader;
 import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.Moves.castling;
 import com.ovgu.ccd.moves.Move;
@@ -50,9 +51,9 @@ public class Chessboard extends JPanel {
     public static final int img_y = img_x;//image y position (used in JChessView class!)
     public static final int img_widht = 480;//image width
     public static final int img_height = img_widht;//image height
-    private static final Image orgImage = GUI.loadImage("chessboard.png");//image of chessboard
-    private static final Image org_sel_square = GUI.loadImage("sel_square.png");//image of highlited square
-    private static final Image org_able_square = GUI.loadImage("able_square.png");//image of square where piece can go
+    private static final Image orgImage = ResourceLoader.loadImage("chessboard.png");//image of chessboard
+    private static final Image org_sel_square = ResourceLoader.loadImage("sel_square.png");//image of highlited square
+    private static final Image org_able_square = ResourceLoader.loadImage("able_square.png");//image of square where piece can go
     private static Image image = Chessboard.orgImage;//image of chessboard
     private static Image sel_square = org_sel_square;//image of highlited square
     private static Image able_square = org_able_square;//image of square where piece can go
