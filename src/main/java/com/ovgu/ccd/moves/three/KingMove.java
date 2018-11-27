@@ -1,12 +1,11 @@
 package com.ovgu.ccd.moves.three;
 
 import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.jchess.ThreePlayerChessboard;
-import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.ThreePlayerChessboard;
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.moves.IMove;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Piece;
-import com.ovgu.ccd.pieces.Rook;
 import com.ovgu.ccd.pieces.Square;
 
 import java.util.ArrayList;

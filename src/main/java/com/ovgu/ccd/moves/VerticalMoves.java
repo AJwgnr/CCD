@@ -1,5 +1,6 @@
 package com.ovgu.ccd.moves;
 
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;

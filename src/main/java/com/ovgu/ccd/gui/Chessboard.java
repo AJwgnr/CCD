@@ -25,7 +25,7 @@ import com.ovgu.ccd.applogic.JChessApp;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.Moves.castling;
-import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.moves.Move;
 import com.ovgu.ccd.pieces.*;
 

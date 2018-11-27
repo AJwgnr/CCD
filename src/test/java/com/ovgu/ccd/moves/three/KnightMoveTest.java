@@ -1,7 +1,7 @@
 package com.ovgu.ccd.moves.three;
 
 import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.jchess.ThreePlayerChessboard;
+import com.ovgu.ccd.applogic.ThreePlayerChessboard;
 import com.ovgu.ccd.pieces.Knight;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.PieceFactory;

@@ -1,7 +1,7 @@
-package com.ovgu.ccd.jchess;
+package com.ovgu.ccd.applogic;
 
 import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.pieces.*;
 
 import java.awt.*;

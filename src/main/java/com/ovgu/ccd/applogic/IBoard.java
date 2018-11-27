@@ -1,4 +1,4 @@
-package com.ovgu.ccd.moves;
+package com.ovgu.ccd.applogic;
 
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.pieces.King;

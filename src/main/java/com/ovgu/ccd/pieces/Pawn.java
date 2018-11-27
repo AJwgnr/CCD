@@ -22,7 +22,7 @@ package com.ovgu.ccd.pieces;
 
 
 import com.ovgu.ccd.gui.GUI;
-import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
 
 import java.util.ArrayList;

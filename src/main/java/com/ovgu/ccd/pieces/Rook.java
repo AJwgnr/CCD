@@ -22,7 +22,7 @@
 package com.ovgu.ccd.pieces;
 
 
-import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.moves.HorizontalMoves;
 import com.ovgu.ccd.moves.VerticalMoves;
 import com.ovgu.ccd.gui.GUI;
