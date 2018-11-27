@@ -16,9 +16,9 @@ public class PieceMoves {
      * @param piece
      * @param board
      */
-    public PieceMoves(Piece piece, Chessboard board) {
+    public PieceMoves(Piece piece, IBoard board) {
         this.piece = piece;
-        this.board = board;
+        this.board = (Chessboard) board;
     }
 
     /**
@@ -26,6 +26,6 @@ public class PieceMoves {
      * @return
      */
     private boolean validMove(Square nextPosition) {
-        return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(piece.square, nextPosition);
+        return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(piece.getSquare(), nextPosition);
     }
 }

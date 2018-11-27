@@ -22,7 +22,7 @@ package com.ovgu.ccd.pieces;
 
 
 import com.ovgu.ccd.applogic.Player.Colors;
-import com.ovgu.ccd.gui.Chessboard;
+import com.ovgu.ccd.moves.IBoard;
 import com.ovgu.ccd.applogic.Player;
 
 import java.awt.*;
@@ -37,20 +37,20 @@ public abstract class Piece {
     public static Image imageBlack;
     public static Image imageWhite;
     public static short value = 0;
-    public Square square;
+    private Square square;
     public Player player;
     public String name;
     public Image orgImage;
     public Image image;
     protected String symbol;
-    Chessboard chessboard; // <-- this relations isn't in class diagram, but it's necessary :/
+    IBoard chessboard; // <-- this relations isn't in class diagram, but it's necessary :/
 
     /**
      *
      * @param chessboard
      * @param player
      */
-    protected Piece(Chessboard chessboard, Player player) {
+    protected Piece(IBoard chessboard, Player player) {
         this.chessboard = chessboard;
         this.setPlayer(player);
         this.name = this.getClass().getSimpleName();
@@ -152,12 +152,27 @@ public abstract class Piece {
         return player.getColor();
     }
 
-    // modification
-    public Chessboard getChessboard() {
+    public IBoard getChessboard() {
         return chessboard;
     }
 
-    public void setChessboard(Chessboard chessboard) {
+    public void setChessboard(IBoard chessboard) {
         this.chessboard = chessboard;
+    }
+
+    public Square getSquare() {
+        return square;
+    }
+
+    public void setSquare(Square square) {
+        this.square = square;
+    }
+
+    public int getPosX() {
+        return square.getPosX();
+    }
+
+    public int getPosY() {
+        return square.getPosY();
     }
 }

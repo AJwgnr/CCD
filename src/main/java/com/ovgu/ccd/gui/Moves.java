@@ -247,11 +247,11 @@ public class Moves extends AbstractTableModel {
             locMove += "(e.p)";//pawn take down opponent en passant
             wasEnPassant = true;
         }
-        if ((!this.enterBlack && this.game.chessboard.kingBlack.isChecked())
-                || (this.enterBlack && this.game.chessboard.kingWhite.isChecked())) {//if checked
+        if ((!this.enterBlack && this.game.chessboard.getKingBlack().isChecked())
+                || (this.enterBlack && this.game.chessboard.getKingWhite().isChecked())) {//if checked
 
-            if ((!this.enterBlack && this.game.chessboard.kingBlack.isCheckmatedOrStalemated() == 1)
-                    || (this.enterBlack && this.game.chessboard.kingWhite.isCheckmatedOrStalemated() == 1)) {//check if checkmated
+            if ((!this.enterBlack && this.game.chessboard.getKingBlack().isCheckmatedOrStalemated() == 1)
+                    || (this.enterBlack && this.game.chessboard.getKingWhite().isCheckmatedOrStalemated() == 1)) {//check if checkmated
                 locMove += "#";//check mate
             } else {
                 locMove += "+";//check
@@ -396,8 +396,8 @@ public class Moves extends AbstractTableModel {
                         for (Object square : pieceMoves) {
                             Square currSquare = (Square) square;
                             if (currSquare.getPosX() == xTo && currSquare.getPosY() == yTo) {
-                                xFrom = squares[i][j].getPiece().square.getPosX();
-                                yFrom = squares[i][j].getPiece().square.getPosY();
+                                xFrom = squares[i][j].getPiece().getSquare().getPosX();
+                                yFrom = squares[i][j].getPiece().getSquare().getPosY();
                                 pieceFound = true;
                             }
                         }

@@ -20,8 +20,9 @@
  */
 package com.ovgu.ccd.pieces;
 
-import com.ovgu.ccd.gui.Chessboard;
+
 import com.ovgu.ccd.gui.GUI;
+import com.ovgu.ccd.moves.IBoard;
 import com.ovgu.ccd.applogic.Player;
 
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public class Pawn extends Piece {
     public static short value = 1;
     boolean down;
 
-    protected Pawn(Chessboard chessboard, Player player) {
+    protected Pawn(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "";
         imageWhite = GUI.loadImage("Pawn-W.png");
@@ -90,11 +91,11 @@ public class Pawn extends Piece {
         ArrayList moves = new ArrayList();
 
         if (getPlayer().isGoDown()) {
-            immediateYCoordinate = square.getPosY() + 1;
-            twoPositionsYCoordinate = square.getPosY() + 2;
+            immediateYCoordinate = getSquare().getPosY() + 1;
+            twoPositionsYCoordinate = getSquare().getPosY() + 2;
         } else {
-            immediateYCoordinate = square.getPosY() - 1;
-            twoPositionsYCoordinate = square.getPosY() - 2;
+            immediateYCoordinate = getSquare().getPosY() - 1;
+            twoPositionsYCoordinate = getSquare().getPosY() - 2;
         }
 
         if (outsideOfBoard(immediateYCoordinate, immediateYCoordinate)) {
@@ -102,21 +103,22 @@ public class Pawn extends Piece {
         }
 
         moves.addAll(regularMove(immediateYCoordinate));
-        if (getPlayer().isGoDown() && square.getPosY() == 1 || !getPlayer().isGoDown() && square.getPosY() == 6) {
+        if (getPlayer().isGoDown() && getSquare().getPosY() == 1 || !getPlayer().isGoDown() && getSquare().getPosY() == 6)
+        {
             moves.addAll(regularMove(twoPositionsYCoordinate));
         }
 
         // Capture left
-        moves.addAll(captureMove(square.getPosX() - 1, immediateYCoordinate));
+        moves.addAll(captureMove(getSquare().getPosX() - 1, immediateYCoordinate));
 
         // Capture right
-        moves.addAll(captureMove(square.getPosX() + 1, immediateYCoordinate));
+        moves.addAll(captureMove(getSquare().getPosX() + 1, immediateYCoordinate));
 
         // EnPassant left
-        moves.addAll(enPassantMove(square.getPosX() - 1, immediateYCoordinate));
+        moves.addAll(enPassantMove(getSquare().getPosX() - 1, immediateYCoordinate));
 
         // EnPassant right
-        moves.addAll(enPassantMove(square.getPosX() + 1, immediateYCoordinate));
+        moves.addAll(enPassantMove(getSquare().getPosX() + 1, immediateYCoordinate));
 
         return moves;
     }
@@ -124,12 +126,13 @@ public class Pawn extends Piece {
 
     private ArrayList regularMove(Integer nextYCoordinate) {
         ArrayList list = new ArrayList();
-        Square nextPosition = chessboard.getSquare(square.getPosX(), nextYCoordinate);
+
+        Square nextPosition = chessboard.getSquare(getSquare().getPosX(), nextYCoordinate);
 
         if (nextPosition.getPiece() != null) {
             return list;
         }
-        if (chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(square, nextPosition)) {
+        if (chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(getSquare(), nextPosition)) {
             list.add(nextPosition);
         }
         return list;
@@ -143,7 +146,8 @@ public class Pawn extends Piece {
 
         Square nextPosition = chessboard.getSquare(nextXCoordinate, nextYCoordinate);
         if (canMoveTo(nextPosition) && otherOwner(nextPosition.getPiece())
-                && chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(square, nextPosition)) {
+            && chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(getSquare(), nextPosition))
+        {
             list.add(nextPosition);
         }
 
@@ -158,12 +162,13 @@ public class Pawn extends Piece {
         }
 
         Square nextPosition = chessboard.getSquare(nextXCoordinate, nextYCoordinate);
-        Square otherPiecePosition = chessboard.getSquare(nextXCoordinate, square.getPosY());
+
+        Square otherPiecePosition = chessboard.getSquare(nextXCoordinate, getSquare().getPosY());
         if (otherPiecePosition.getPiece() != null && otherOwner(otherPiecePosition.getPiece())
                 && !otherPiecePosition.getPiece().name.equals("King")
-                && chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(square, nextPosition)
-                && chessboard.twoSquareMovedPawn != null
-                && otherPiecePosition == chessboard.twoSquareMovedPawn.square) {
+                && chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(getSquare(), nextPosition)
+                && chessboard.getTwoSquareMovedPawn() != null
+                && otherPiecePosition == chessboard.getTwoSquareMovedPawn().getSquare()) {
             list.add(nextPosition);
         }
 
