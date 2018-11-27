@@ -3,6 +3,7 @@ package com.ovgu.ccd.moves;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Pawn;
+import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
 import java.awt.*;
@@ -55,4 +56,6 @@ public interface IBoard {
     Square[][] getSquares();
 
     Point getTopLeftPoint();
+
+    void setPiece(Piece piece, int x, int y);
 }
