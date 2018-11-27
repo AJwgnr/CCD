@@ -66,29 +66,30 @@ public class Knight extends Piece {
 
         int newX;
         int newY;
+        Square square = getSquare();
 
-        if (validMove(newX = getSquare().pozX - 2, newY = getSquare().pozY + 1))
+        if (validMove(newX = square.getPosX() - 2, newY = square.getPosY() + 1))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = getSquare().pozX - 1, newY = getSquare().pozY + 2))
+        if (validMove(newX = square.getPosX() - 1, newY = square.getPosY() + 2))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = getSquare().pozX + 1, newY = getSquare().pozY + 2))
+        if (validMove(newX = square.getPosX() + 1, newY = square.getPosY() + 2))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = getSquare().pozX + 2, newY = getSquare().pozY + 1))
+        if (validMove(newX = square.getPosX() + 2, newY = square.getPosY() + 1))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = getSquare().pozX + 2, newY = getSquare().pozY - 1))
+        if (validMove(newX = square.getPosX() + 2, newY = square.getPosY() - 1))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = getSquare().pozX + 1, newY = getSquare().pozY - 2))
+        if (validMove(newX = square.getPosX() + 1, newY = square.getPosY() - 2))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = getSquare().pozX - 1, newY = getSquare().pozY - 2))
+        if (validMove(newX = square.getPosX() - 1, newY = square.getPosY() - 2))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = getSquare().pozX - 2, newY = getSquare().pozY - 1))
+        if (validMove(newX = square.getPosX() - 2, newY = square.getPosY() - 1))
             moves.add(chessboard.getSquare(newX, newY));
 
         return moves;

@@ -1,5 +1,6 @@
 package com.ovgu.ccd.moves.three;
 
+import com.ovgu.ccd.jchess.ThreePlayerChessboard;
 import com.ovgu.ccd.moves.IBoard;
 import com.ovgu.ccd.moves.IMove;
 import com.ovgu.ccd.pieces.Piece;
@@ -74,9 +75,9 @@ public class DiagonalMove implements IMove {
     public boolean perfectDiagonal() {
         // white diagonals first, black diagonals second
         return (
-                ((piece.getPozX() + 1) + (piece.getPozY() + 1) == 9) ||
-                (piece.getPozX() == piece.getPozY()) ||
-                (Math.abs((piece.getPozX() + 1) - (piece.getPozY() + 1)) == 4)
+                ((piece.getPosX() + 1) + (piece.getPosY() + 1) == 9) ||
+                (piece.getPosX() == piece.getPosY()) ||
+                (Math.abs((piece.getPosX() + 1) - (piece.getPosY() + 1)) == 4)
         );
     }
 
@@ -93,20 +94,20 @@ public class DiagonalMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         for(int i = 1; i <= 3; i++) {
-            int xCoord = square.getPozX();
-            int yCoord = square.getPozY();
+            int xCoord = square.getPosX();
+            int yCoord = square.getPosY();
 
-            if (((1 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 4)) && (ThreePlayerChessboard.E <= square.getPozY() && square.getPozY() <= ThreePlayerChessboard.H)) ||
-                ((5 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 8)) && (ThreePlayerChessboard.I <= square.getPozY() && square.getPozY() <= ThreePlayerChessboard.L)) ||
-                ((9 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 12)) && (ThreePlayerChessboard.E <= square.getPozY() && square.getPozY() <= ThreePlayerChessboard.H))) {
+            if (((1 <= (square.getPosX() + 1) && (square.getPosX() + 1 <= 4)) && (ThreePlayerChessboard.E <= square.getPosY() && square.getPosY() <= ThreePlayerChessboard.H)) ||
+                ((5 <= (square.getPosX() + 1) && (square.getPosX() + 1 <= 8)) && (ThreePlayerChessboard.I <= square.getPosY() && square.getPosY() <= ThreePlayerChessboard.L)) ||
+                ((9 <= (square.getPosX() + 1) && (square.getPosX() + 1 <= 12)) && (ThreePlayerChessboard.E <= square.getPosY() && square.getPosY() <= ThreePlayerChessboard.H))) {
                 xCoord -= i;
             } else {
                 xCoord += i;
             }
 
 
-            if ((1 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 4)) ||
-                ((9 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 12)) && (ThreePlayerChessboard.I <= square.getPozY() && square.getPozY() <= ThreePlayerChessboard.L))) {
+            if ((1 <= (square.getPosX() + 1) && (square.getPosX() + 1 <= 4)) ||
+                ((9 <= (square.getPosX() + 1) && (square.getPosX() + 1 <= 12)) && (ThreePlayerChessboard.I <= square.getPosY() && square.getPosY() <= ThreePlayerChessboard.L))) {
                 yCoord -= i;
             } else {
                 yCoord += i;
@@ -125,16 +126,16 @@ public class DiagonalMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         for(int i = 1; i <= 3; i++) {
-            int xCoord = square.getPozX();
-            int yCoord = square.getPozY();
+            int xCoord = square.getPosX();
+            int yCoord = square.getPosY();
 
-            if ((ThreePlayerChessboard.A <= square.getPozY() && square.getPozY() <= ThreePlayerChessboard.D) || ((9 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 12)) && (ThreePlayerChessboard.I <= square.getPozY() && square.getPozY() <= ThreePlayerChessboard.L))) {
+            if ((ThreePlayerChessboard.A <= square.getPosY() && square.getPosY() <= ThreePlayerChessboard.D) || ((9 <= (square.getPosX() + 1) && (square.getPosX() + 1 <= 12)) && (ThreePlayerChessboard.I <= square.getPosY() && square.getPosY() <= ThreePlayerChessboard.L))) {
                 xCoord -= i;
             } else {
                 xCoord += i;
             }
 
-            if (((5 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 8)) || ((9 <= (square.getPozX() + 1) && (square.getPozX() + 1 <= 12)) && (ThreePlayerChessboard.E <= square.getPozY() && square.getPozY() <= ThreePlayerChessboard.H)))) {
+            if (((5 <= (square.getPosX() + 1) && (square.getPosX() + 1 <= 8)) || ((9 <= (square.getPosX() + 1) && (square.getPosX() + 1 <= 12)) && (ThreePlayerChessboard.E <= square.getPosY() && square.getPosY() <= ThreePlayerChessboard.H)))) {
                 yCoord -= i;
             } else {
                 yCoord += i;
@@ -154,16 +155,16 @@ public class DiagonalMove implements IMove {
 
         // going outside in the same diagonal, same sextant
         for(int i = 1; i <= 3; i++) {
-            int xCoord = square.getPozX();
-            int yCoord = square.getPozY();
+            int xCoord = square.getPosX();
+            int yCoord = square.getPosY();
 
-            if ((square.getPozX() + 1) >= 5) {
+            if ((square.getPosX() + 1) >= 5) {
                 xCoord += i;
             } else {
                 xCoord -= i;
             }
 
-            if ((ThreePlayerChessboard.A <= square.getPozY()) && (square.getPozY() <= ThreePlayerChessboard.D)) {
+            if ((ThreePlayerChessboard.A <= square.getPosY()) && (square.getPosY() <= ThreePlayerChessboard.D)) {
                 yCoord -= i;
             } else {
                 yCoord += i;
@@ -177,16 +178,16 @@ public class DiagonalMove implements IMove {
 
         // going inside in the same diagonal, same sextant
         for(int i = 1; i <= 3; i++) {
-            int xCoord = square.getPozX();
-            int yCoord = square.getPozY();
+            int xCoord = square.getPosX();
+            int yCoord = square.getPosY();
 
-            if ((1 <= square.getPozX() + 1) && (square.getPozX() + 1 <= 4)) {
+            if ((1 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 4)) {
                 xCoord += i;
             } else {
                 xCoord -= i;
             }
 
-            if ((ThreePlayerChessboard.A <= square.getPozY()) && (square.getPozY() <= ThreePlayerChessboard.D)) {
+            if ((ThreePlayerChessboard.A <= square.getPosY()) && (square.getPosY() <= ThreePlayerChessboard.D)) {
                 yCoord += i;
             } else {
                 yCoord -= i;

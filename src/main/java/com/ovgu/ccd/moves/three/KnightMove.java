@@ -1,5 +1,6 @@
 package com.ovgu.ccd.moves.three;
 
+import com.ovgu.ccd.jchess.ThreePlayerChessboard;
 import com.ovgu.ccd.moves.IBoard;
 import com.ovgu.ccd.moves.IMove;
 import com.ovgu.ccd.pieces.Piece;
@@ -45,32 +46,32 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if (piece.getPozX() + 1 == 12 || piece.getPozX() + 1 == 1 || piece.getPozX() + 1 == 8) { return possibleMoves; }
-        if (piece.getPozY() == ThreePlayerChessboard.A || piece.getPozY() == ThreePlayerChessboard.H || piece.getPozY() == ThreePlayerChessboard.L) { return possibleMoves; }
+        if (piece.getPosX() + 1 == 12 || piece.getPosX() + 1 == 1 || piece.getPosX() + 1 == 8) { return possibleMoves; }
+        if (piece.getPosY() == ThreePlayerChessboard.A || piece.getPosY() == ThreePlayerChessboard.H || piece.getPosY() == ThreePlayerChessboard.L) { return possibleMoves; }
 
-        if ((2 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 4)) {
-            move = new Square(piece.getPozX() - 1, piece.getPozY() + 2, null);
+        if ((2 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)) {
+            move = new Square(piece.getPosX() - 1, piece.getPosY() + 2, null);
         }
 
-        if ((5 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 8) && (ThreePlayerChessboard.A <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.D)) {
-            move = new Square(piece.getPozX() + 1, piece.getPozY() - 2, null);
+        if ((5 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 8) && (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.D)) {
+            move = new Square(piece.getPosX() + 1, piece.getPosY() - 2, null);
         }
-        if ((5 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 8)) {
-            if (ThreePlayerChessboard.K <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(piece.getPozX() + 1, piece.getPozY() - 2, null);
-            } else if (ThreePlayerChessboard.K <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(piece.getPozX() + 1, piece.getPozY() - 5, null);
+        if ((5 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 8)) {
+            if (ThreePlayerChessboard.K <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(piece.getPosX() + 1, piece.getPosY() - 2, null);
+            } else if (ThreePlayerChessboard.K <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(piece.getPosX() + 1, piece.getPosY() - 5, null);
             }
         }
-        if ((9 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 12)) {
-            if (ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(piece.getPozX() + 1, piece.getPozY() + 2, null);
+        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 12)) {
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(piece.getPosX() + 1, piece.getPosY() + 2, null);
             }
-            if (ThreePlayerChessboard.H <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.G) {
-                move = new Square(piece.getPozX() + 1, piece.getPozY() - 2, null);
+            if (ThreePlayerChessboard.H <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.G) {
+                move = new Square(piece.getPosX() + 1, piece.getPosY() - 2, null);
             }
-            if (ThreePlayerChessboard.E <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.F) {
-                move = new Square(piece.getPozX() + 1, piece.getPozY() + 5, null);
+            if (ThreePlayerChessboard.E <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.F) {
+                move = new Square(piece.getPosX() + 1, piece.getPosY() + 5, null);
             }
         }
         if (move != null && board.validMove(move)) {
@@ -83,32 +84,32 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if (piece.getPozX() + 1 == 12 || piece.getPozX() + 1 == 1 || piece.getPozX() + 1 == 8) { return possibleMoves; }
-        if (piece.getPozY() == ThreePlayerChessboard.A || piece.getPozY() == ThreePlayerChessboard.H || piece.getPozY() == ThreePlayerChessboard.L) { return possibleMoves; }
+        if (piece.getPosX() + 1 == 12 || piece.getPosX() + 1 == 1 || piece.getPosX() + 1 == 8) { return possibleMoves; }
+        if (piece.getPosY() == ThreePlayerChessboard.A || piece.getPosY() == ThreePlayerChessboard.H || piece.getPosY() == ThreePlayerChessboard.L) { return possibleMoves; }
 
-        if ((2 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 4)) {
-            move = new Square(piece.getPozX() - 1, piece.getPozY() - 2, null);
+        if ((2 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)) {
+            move = new Square(piece.getPosX() - 1, piece.getPosY() - 2, null);
         }
 
-        if ((5 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 8) && (ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L)) {
-            move = new Square(piece.getPozX() + 1, piece.getPozY() + 2, null);
+        if ((5 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 8) && (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L)) {
+            move = new Square(piece.getPosX() + 1, piece.getPosY() + 2, null);
         }
-        if ((5 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 8)) {
-            if (ThreePlayerChessboard.A <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.B) {
-                move = new Square(piece.getPozX() + 1, piece.getPozY() + 2, null);
-            } else if (ThreePlayerChessboard.C <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.D) {
-                move = new Square(piece.getPozX() + 1, piece.getPozY() + 6, null);
+        if ((5 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 8)) {
+            if (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.B) {
+                move = new Square(piece.getPosX() + 1, piece.getPosY() + 2, null);
+            } else if (ThreePlayerChessboard.C <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.D) {
+                move = new Square(piece.getPosX() + 1, piece.getPosY() + 6, null);
             }
         }
-        if ((9 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 12)) {
-            if (ThreePlayerChessboard.L <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.K) {
-                move = new Square(piece.getPozX() + 1, piece.getPozY() - 2, null);
+        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 12)) {
+            if (ThreePlayerChessboard.L <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.K) {
+                move = new Square(piece.getPosX() + 1, piece.getPosY() - 2, null);
             }
-            if (ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.J) {
-                move = new Square(piece.getPozX() + 1, piece.getPozY() - 3, null);
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.J) {
+                move = new Square(piece.getPosX() + 1, piece.getPosY() - 3, null);
             }
-            if (ThreePlayerChessboard.E <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.F) {
-                move = new Square(piece.getPozX() + 1, piece.getPozY() + 2, null);
+            if (ThreePlayerChessboard.E <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.F) {
+                move = new Square(piece.getPosX() + 1, piece.getPosY() + 2, null);
             }
         }
         if (move != null && board.validMove(move)) {
@@ -121,45 +122,45 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if (1 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 3) {
-            if (ThreePlayerChessboard.G < piece.getPozY()) {
-                move = new Square(piece.getPozX() + 1, piece.getPozY() + 2, null);
+        if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 3) {
+            if (ThreePlayerChessboard.G < piece.getPosY()) {
+                move = new Square(piece.getPosX() + 1, piece.getPosY() + 2, null);
             }
         }
 
-        if (piece.getPozX() + 1 == 4) {
-            if (ThreePlayerChessboard.E <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.F) {
-                move = new Square(piece.getPozX() + 5, piece.getPozY() + 2, null);
-            } else if (ThreePlayerChessboard.A <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.B) {
-                move = new Square(4, piece.getPozY() + 2, null);
+        if (piece.getPosX() + 1 == 4) {
+            if (ThreePlayerChessboard.E <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.F) {
+                move = new Square(piece.getPosX() + 5, piece.getPosY() + 2, null);
+            } else if (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.B) {
+                move = new Square(4, piece.getPosY() + 2, null);
             } else {
-                if (ThreePlayerChessboard.D == piece.getPozY()) {
+                if (ThreePlayerChessboard.D == piece.getPosY()) {
                     move = new Square(8, ThreePlayerChessboard.J, null);
                 } else {
-                    if (piece.getPozY() != ThreePlayerChessboard.H && piece.getPozY() != ThreePlayerChessboard.G) {
+                    if (piece.getPosY() != ThreePlayerChessboard.H && piece.getPosY() != ThreePlayerChessboard.G) {
                         move = new Square(4, ThreePlayerChessboard.I, null);
                     }
                 }
             }
         }
 
-        if (6 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 8) {
-            if (ThreePlayerChessboard.A <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.D) {
-                move = new Square(piece.getPozX() - 1, piece.getPozY() + 2, null);
-            } else if (ThreePlayerChessboard.L <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.K) {
-                move = new Square(piece.getPozX() - 1, piece.getPozY() - 2, null);
+        if (6 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 8) {
+            if (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.D) {
+                move = new Square(piece.getPosX() - 1, piece.getPosY() + 2, null);
+            } else if (ThreePlayerChessboard.L <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.K) {
+                move = new Square(piece.getPosX() - 1, piece.getPosY() - 2, null);
             } else {
-                move = new Square(piece.getPozX() - 1, piece.getPozY() - 6, null);
+                move = new Square(piece.getPosX() - 1, piece.getPosY() - 6, null);
             }
         }
 
-        if (piece.getPozX() + 1 == 5) {
-            if (ThreePlayerChessboard.A <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.D) {
-                move = new Square(piece.getPozX() - 1, piece.getPozY() - 2, null);
-            } else if (ThreePlayerChessboard.L <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.K) {
-                move = new Square(8, piece.getPozY() - 2, null);
+        if (piece.getPosX() + 1 == 5) {
+            if (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.D) {
+                move = new Square(piece.getPosX() - 1, piece.getPosY() - 2, null);
+            } else if (ThreePlayerChessboard.L <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.K) {
+                move = new Square(8, piece.getPosY() - 2, null);
             } else {
-                if (ThreePlayerChessboard.I == piece.getPozY()) {
+                if (ThreePlayerChessboard.I == piece.getPosY()) {
                     move = new Square(8, ThreePlayerChessboard.F, null);
                 } else {
                     move = new Square(8, ThreePlayerChessboard.E, null);
@@ -167,27 +168,27 @@ public class KnightMove implements IMove {
             }
         }
 
-        if (10 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 12) {
-            if (ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(piece.getPozX() - 1, piece.getPozY() + 2, null);
-            } else if (ThreePlayerChessboard.G <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.H) {
-                move = new Square(piece.getPozX() - 1, piece.getPozY() - 2, null);
+        if (10 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 12) {
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(piece.getPosX() - 1, piece.getPosY() + 2, null);
+            } else if (ThreePlayerChessboard.G <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.H) {
+                move = new Square(piece.getPosX() - 1, piece.getPosY() - 2, null);
             } else {
-                if (ThreePlayerChessboard.F == piece.getPozY()) {
-                    move = new Square(piece.getPozX() - 1, piece.getPozY() + 3, null);
+                if (ThreePlayerChessboard.F == piece.getPosY()) {
+                    move = new Square(piece.getPosX() - 1, piece.getPosY() + 3, null);
                 } else {
-                    move = new Square(piece.getPozX() - 1, piece.getPozY() + 5, null);
+                    move = new Square(piece.getPosX() - 1, piece.getPosY() + 5, null);
                 }
             }
         }
 
-        if (piece.getPozX() + 1 == 9) {
-            if (ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(4, piece.getPozY() + 2, null);
-            } else if (ThreePlayerChessboard.G <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.H) {
-                move = new Square(3, piece.getPozY() - 2, null);
+        if (piece.getPosX() + 1 == 9) {
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(4, piece.getPosY() + 2, null);
+            } else if (ThreePlayerChessboard.G <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.H) {
+                move = new Square(3, piece.getPosY() - 2, null);
             } else {
-                if (ThreePlayerChessboard.F == piece.getPozY()) {
+                if (ThreePlayerChessboard.F == piece.getPosY()) {
                     move = new Square(2, ThreePlayerChessboard.D, null);
                 } else {
                     move = new Square(3, ThreePlayerChessboard.C, null);
@@ -205,77 +206,77 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if (1 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 3) {
-            move = new Square(piece.getPozX() + 1, piece.getPozY() - 2, null);
+        if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 3) {
+            move = new Square(piece.getPosX() + 1, piece.getPosY() - 2, null);
         }
 
-        if (piece.getPozX() + 1 == 4) {
-            if (ThreePlayerChessboard.A <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.D) {
-                move = new Square(4, piece.getPozY() - 2, null);
+        if (piece.getPosX() + 1 == 4) {
+            if (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.D) {
+                move = new Square(4, piece.getPosY() - 2, null);
             }
-            if (ThreePlayerChessboard.G <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.H) {
-                move = new Square(8, piece.getPozY() - 2, null);
+            if (ThreePlayerChessboard.G <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.H) {
+                move = new Square(8, piece.getPosY() - 2, null);
             }
-            if (ThreePlayerChessboard.F == piece.getPozY()) {
+            if (ThreePlayerChessboard.F == piece.getPosY()) {
                 move = new Square(8, ThreePlayerChessboard.I, null);
             }
-            if (ThreePlayerChessboard.E == piece.getPozY()) {
+            if (ThreePlayerChessboard.E == piece.getPosY()) {
                 move = new Square(8, ThreePlayerChessboard.J, null);
             }
         }
-        if (6 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 8) {
-            if (ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(piece.getPozX() - 1, piece.getPozY() + 2, null);
+        if (6 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 8) {
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(piece.getPosX() - 1, piece.getPosY() + 2, null);
             }
-            if (ThreePlayerChessboard.A <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.B) {
-                move = new Square(piece.getPozX() - 1, piece.getPozY() + 2, null);
+            if (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.B) {
+                move = new Square(piece.getPosX() - 1, piece.getPosY() + 2, null);
             }
-            if (ThreePlayerChessboard.C == piece.getPozY()) {
-                move = new Square(piece.getPozX() - 1, piece.getPozY() + 6, null);
+            if (ThreePlayerChessboard.C == piece.getPosY()) {
+                move = new Square(piece.getPosX() - 1, piece.getPosY() + 6, null);
             }
-            if (ThreePlayerChessboard.D == piece.getPozY()) {
-                move = new Square(piece.getPozX() - 1, piece.getPozY() + 6, null);
+            if (ThreePlayerChessboard.D == piece.getPosY()) {
+                move = new Square(piece.getPosX() - 1, piece.getPosY() + 6, null);
             }
         }
-        if (piece.getPozX() + 1 == 5) {
-            if (ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(8, piece.getPozY() + 2, null);
+        if (piece.getPosX() + 1 == 5) {
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(8, piece.getPosY() + 2, null);
             }
-            if (ThreePlayerChessboard.A <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.B) {
-                move = new Square(3, piece.getPozY() + 2, null);
+            if (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.B) {
+                move = new Square(3, piece.getPosY() + 2, null);
             }
-            if (ThreePlayerChessboard.C == piece.getPozY()) {
+            if (ThreePlayerChessboard.C == piece.getPosY()) {
                 move = new Square(3, ThreePlayerChessboard.E, null);
             }
-            if (ThreePlayerChessboard.D == piece.getPozY()) {
+            if (ThreePlayerChessboard.D == piece.getPosY()) {
                 move = new Square(3, ThreePlayerChessboard.F, null);
             }
         }
-        if (10 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 12) {
-            if (ThreePlayerChessboard.E <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.F) {
-                move = new Square(piece.getPozX() - 1, piece.getPozY() + 2, null);
+        if (10 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 12) {
+            if (ThreePlayerChessboard.E <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.F) {
+                move = new Square(piece.getPosX() - 1, piece.getPosY() + 2, null);
             }
-            if (ThreePlayerChessboard.L <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.K) {
-                move = new Square(piece.getPozX() - 1, piece.getPozY() - 2, null);
+            if (ThreePlayerChessboard.L <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.K) {
+                move = new Square(piece.getPosX() - 1, piece.getPosY() - 2, null);
             }
-            if (ThreePlayerChessboard.J == piece.getPozY()) {
-                move = new Square(piece.getPozX() - 1, piece.getPozY() - 5, null);
+            if (ThreePlayerChessboard.J == piece.getPosY()) {
+                move = new Square(piece.getPosX() - 1, piece.getPosY() - 5, null);
             }
-            if (ThreePlayerChessboard.I == piece.getPozY()) {
-                move = new Square(piece.getPozX() - 1, piece.getPozY() - 3, null);
+            if (ThreePlayerChessboard.I == piece.getPosY()) {
+                move = new Square(piece.getPosX() - 1, piece.getPosY() - 3, null);
             }
         }
-        if (9 == piece.getPozX() + 1) {
-            if (ThreePlayerChessboard.E <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.F) {
-                move = new Square(3, piece.getPozY() + 2, null);
+        if (9 == piece.getPosX() + 1) {
+            if (ThreePlayerChessboard.E <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.F) {
+                move = new Square(3, piece.getPosY() + 2, null);
             }
-            if (ThreePlayerChessboard.L <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.K) {
-                move = new Square(4, piece.getPozY() - 2, null);
+            if (ThreePlayerChessboard.L <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.K) {
+                move = new Square(4, piece.getPosY() - 2, null);
             }
-            if (ThreePlayerChessboard.J == piece.getPozY()) {
+            if (ThreePlayerChessboard.J == piece.getPosY()) {
                 move = new Square(4, ThreePlayerChessboard.D, null);
             }
-            if (ThreePlayerChessboard.I == piece.getPozY()) {
+            if (ThreePlayerChessboard.I == piece.getPosY()) {
                 move = new Square(4, ThreePlayerChessboard.C, null);
             }
         }
@@ -290,86 +291,86 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if (1 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 2) {
-            if (piece.getPozY() != ThreePlayerChessboard.H) {
-                move = new Square(piece.getPozX() + 2, piece.getPozY() + 1, null);
+        if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 2) {
+            if (piece.getPosY() != ThreePlayerChessboard.H) {
+                move = new Square(piece.getPosX() + 2, piece.getPosY() + 1, null);
             }
         }
-        if (3 == piece.getPozX() + 1 || 4 == piece.getPozX() + 1) {
-            if (ThreePlayerChessboard.A <= piece.getPozX() + 1 && piece.getPozX() + 1 <= ThreePlayerChessboard.C) {
-                move = new Square(piece.getPozX() + 2, piece.getPozY() + 1, null);
+        if (3 == piece.getPosX() + 1 || 4 == piece.getPosX() + 1) {
+            if (ThreePlayerChessboard.A <= piece.getPosX() + 1 && piece.getPosX() + 1 <= ThreePlayerChessboard.C) {
+                move = new Square(piece.getPosX() + 2, piece.getPosY() + 1, null);
             } else {
-                if (piece.getPozY() != ThreePlayerChessboard.H) {
-                    move = new Square(piece.getPozX() + 6, piece.getPozY() + 1, null);
+                if (piece.getPosY() != ThreePlayerChessboard.H) {
+                    move = new Square(piece.getPosX() + 6, piece.getPosY() + 1, null);
                 }
             }
         }
-        if (7 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 8) {
-            if (ThreePlayerChessboard.A <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.D) {
-                move = new Square(piece.getPozX() - 2, piece.getPozY() + 1, null);
+        if (7 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 8) {
+            if (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.D) {
+                move = new Square(piece.getPosX() - 2, piece.getPosY() + 1, null);
             }
-            if (ThreePlayerChessboard.J <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(piece.getPozX() - 2, piece.getPozY() - 1, null);
+            if (ThreePlayerChessboard.J <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(piece.getPosX() - 2, piece.getPosY() - 1, null);
             }
-            if (ThreePlayerChessboard.I == piece.getPozY()) {
-                move = new Square(piece.getPozX() - 2, ThreePlayerChessboard.D, null);
+            if (ThreePlayerChessboard.I == piece.getPosY()) {
+                move = new Square(piece.getPosX() - 2, ThreePlayerChessboard.D, null);
             }
         }
 
-        if (6 == piece.getPozX() + 1) {
-            if (ThreePlayerChessboard.A <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.D) {
-                move = new Square(piece.getPozX() - 2, piece.getPozY() + 1, null);
+        if (6 == piece.getPosX() + 1) {
+            if (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.D) {
+                move = new Square(piece.getPosX() - 2, piece.getPosY() + 1, null);
             }
-            if (ThreePlayerChessboard.J <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(8, piece.getPozY() - 1, null);
+            if (ThreePlayerChessboard.J <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(8, piece.getPosY() - 1, null);
             }
-            if (ThreePlayerChessboard.I == piece.getPozY()) {
+            if (ThreePlayerChessboard.I == piece.getPosY()) {
                 move = new Square(3, ThreePlayerChessboard.D, null);
             }
         }
-        if (5 == piece.getPozX() + 1) {
-            if (ThreePlayerChessboard.A <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.D) {
-                move = new Square(piece.getPozX() - 2, piece.getPozY() + 1, null);
+        if (5 == piece.getPosX() + 1) {
+            if (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.D) {
+                move = new Square(piece.getPosX() - 2, piece.getPosY() + 1, null);
             }
-            if (ThreePlayerChessboard.J <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(9, piece.getPozY() - 1, null);
+            if (ThreePlayerChessboard.J <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(9, piece.getPosY() - 1, null);
             }
-            if (ThreePlayerChessboard.I == piece.getPozY()) {
+            if (ThreePlayerChessboard.I == piece.getPosY()) {
                 move = new Square(2, ThreePlayerChessboard.D, null);
             }
         }
 
-        if (11 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 12) {
-            if (ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(piece.getPozX() - 2, piece.getPozY() + 1, null);
+        if (11 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 12) {
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(piece.getPosX() - 2, piece.getPosY() + 1, null);
             }
-            if (ThreePlayerChessboard.F <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.H) {
-                move = new Square(piece.getPozX() - 2, piece.getPozY() - 1, null);
+            if (ThreePlayerChessboard.F <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.H) {
+                move = new Square(piece.getPosX() - 2, piece.getPosY() - 1, null);
             }
-            if (ThreePlayerChessboard.E == piece.getPozY()) {
-                move = new Square(piece.getPozX() - 2, ThreePlayerChessboard.I, null);
+            if (ThreePlayerChessboard.E == piece.getPosY()) {
+                move = new Square(piece.getPosX() - 2, ThreePlayerChessboard.I, null);
             }
         }
 
-        if (9 == piece.getPozX() + 1) {
-            if (ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(5, piece.getPozY() + 1, null);
+        if (9 == piece.getPosX() + 1) {
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(5, piece.getPosY() + 1, null);
             }
-            if (ThreePlayerChessboard.F <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.H) {
-                move = new Square(3, piece.getPozY() - 1, null);
+            if (ThreePlayerChessboard.F <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.H) {
+                move = new Square(3, piece.getPosY() - 1, null);
             }
-            if (ThreePlayerChessboard.E == piece.getPozY()) {
+            if (ThreePlayerChessboard.E == piece.getPosY()) {
                 move = new Square(5, ThreePlayerChessboard.I, null);
             }
         }
-        if (10 == piece.getPozX() + 1) {
-            if (ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(4, piece.getPozY() + 1, null);
+        if (10 == piece.getPosX() + 1) {
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(4, piece.getPosY() + 1, null);
             }
-            if (ThreePlayerChessboard.F <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.H) {
-                move = new Square(3, piece.getPozY() - 1, null);
+            if (ThreePlayerChessboard.F <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.H) {
+                move = new Square(3, piece.getPosY() - 1, null);
             }
-            if (ThreePlayerChessboard.E == piece.getPozY()) {
+            if (ThreePlayerChessboard.E == piece.getPosY()) {
                 move = new Square(4, ThreePlayerChessboard.I, null);
             }
         }
@@ -384,40 +385,40 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if (1 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 2) {
+        if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 2) {
             return possibleMoves;
         }
-        if (7 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 8) {
+        if (7 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 8) {
             return possibleMoves;
         }
-        if (11 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 12) {
+        if (11 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 12) {
             return possibleMoves;
         }
-        if (3 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 4) {
-            if (piece.getPozY() != ThreePlayerChessboard.H) {
-                move = new Square(piece.getPozX() - 2, piece.getPozY() + 1, null);
+        if (3 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 4) {
+            if (piece.getPosY() != ThreePlayerChessboard.H) {
+                move = new Square(piece.getPosX() - 2, piece.getPosY() + 1, null);
             }
         }
-        if (5 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 6) {
-            if (ThreePlayerChessboard.A <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.D) {
-                move = new Square(piece.getPozX() + 2, piece.getPozY() - 1, null);
+        if (5 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 6) {
+            if (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.D) {
+                move = new Square(piece.getPosX() + 2, piece.getPosY() - 1, null);
             }
-            if (ThreePlayerChessboard.J <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(piece.getPozX() + 2, piece.getPozY() - 1, null);
+            if (ThreePlayerChessboard.J <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(piece.getPosX() + 2, piece.getPosY() - 1, null);
             }
-            if (ThreePlayerChessboard.I == piece.getPozY()) {
-                move = new Square(piece.getPozX() + 2, ThreePlayerChessboard.D, null);
+            if (ThreePlayerChessboard.I == piece.getPosY()) {
+                move = new Square(piece.getPosX() + 2, ThreePlayerChessboard.D, null);
             }
         }
-        if (9 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 10) {
-            if (ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(piece.getPozX() + 2, piece.getPozY() + 1, null);
+        if (9 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 10) {
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(piece.getPosX() + 2, piece.getPosY() + 1, null);
             }
-            if (ThreePlayerChessboard.F <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.H) {
-                move = new Square(piece.getPozX() + 2, piece.getPozY() - 1, null);
+            if (ThreePlayerChessboard.F <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.H) {
+                move = new Square(piece.getPosX() + 2, piece.getPosY() - 1, null);
             }
-            if (ThreePlayerChessboard.E == piece.getPozY()) {
-                move = new Square(piece.getPozX() + 2, ThreePlayerChessboard.I, null);
+            if (ThreePlayerChessboard.E == piece.getPosY()) {
+                move = new Square(piece.getPosX() + 2, ThreePlayerChessboard.I, null);
             }
         }
         if (move != null && board.validMove(move)) {
@@ -430,65 +431,65 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if (1 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 4) {
-            if (ThreePlayerChessboard.A <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.E) {
-                move = new Square(piece.getPozX() + 2, piece.getPozY() - 1, null);
+        if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 4) {
+            if (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.E) {
+                move = new Square(piece.getPosX() + 2, piece.getPosY() - 1, null);
             }
-            if (ThreePlayerChessboard.F <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.H) {
-                if (1 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 2) {
-                    move = new Square(piece.getPozX() + 2, piece.getPozY() - 1, null);
+            if (ThreePlayerChessboard.F <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.H) {
+                if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 2) {
+                    move = new Square(piece.getPosX() + 2, piece.getPosY() - 1, null);
                 } else {
-                    move = new Square(piece.getPozX() + 6, piece.getPozY() - 1, null);
+                    move = new Square(piece.getPosX() + 6, piece.getPosY() - 1, null);
                 }
             }
         }
-        if (5 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 8) {
-            if (ThreePlayerChessboard.A <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.C) {
-                move = new Square(piece.getPozX() - 2, piece.getPozY() - 1, null);
+        if (5 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 8) {
+            if (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.C) {
+                move = new Square(piece.getPosX() - 2, piece.getPosY() - 1, null);
             }
-            if (ThreePlayerChessboard.D == piece.getPozY()) {
-                if (7 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 8) {
-                    move = new Square(piece.getPozX() - 2, ThreePlayerChessboard.I, null);
+            if (ThreePlayerChessboard.D == piece.getPosY()) {
+                if (7 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 8) {
+                    move = new Square(piece.getPosX() - 2, ThreePlayerChessboard.I, null);
                 } else {
-                    if (6 == piece.getPozX() + 1) {
-                        move = new Square(8, piece.getPozY() + 1, null);
+                    if (6 == piece.getPosX() + 1) {
+                        move = new Square(8, piece.getPosY() + 1, null);
                     } else {
-                        move = new Square(9, piece.getPozY() + 1, null);
+                        move = new Square(9, piece.getPosY() + 1, null);
                     }
                 }
             }
-            if (ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                if (7 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 8) {
-                    move = new Square(piece.getPozX() - 2, piece.getPozY() + 1, null);
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                if (7 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 8) {
+                    move = new Square(piece.getPosX() - 2, piece.getPosY() + 1, null);
                 } else {
-                    if (6 == piece.getPozX() + 1) {
-                        move = new Square(8, piece.getPozY() + 1, null);
+                    if (6 == piece.getPosX() + 1) {
+                        move = new Square(8, piece.getPosY() + 1, null);
                     } else {
-                        move = new Square(9, piece.getPozY() + 1, null);
+                        move = new Square(9, piece.getPosY() + 1, null);
                     }
                 }
             }
         }
-        if (9 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 12) {
-            if (ThreePlayerChessboard.E <= piece.getPozY() && piece.getPozY() < ThreePlayerChessboard.G) {
-                if (11 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 12) {
-                    move = new Square(piece.getPozX() - 2, piece.getPozY() + 1, null);
+        if (9 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 12) {
+            if (ThreePlayerChessboard.E <= piece.getPosY() && piece.getPosY() < ThreePlayerChessboard.G) {
+                if (11 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 12) {
+                    move = new Square(piece.getPosX() - 2, piece.getPosY() + 1, null);
                 } else {
-                    if (10 == piece.getPozX() + 1) {
-                        move = new Square(3, piece.getPozY() + 1, null);
+                    if (10 == piece.getPosX() + 1) {
+                        move = new Square(3, piece.getPosY() + 1, null);
                     } else {
-                        move = new Square(2, piece.getPozY() + 1, null);
+                        move = new Square(2, piece.getPosY() + 1, null);
                     }
                 }
             }
-            if (ThreePlayerChessboard.J <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                if (11 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 12) {
-                    move = new Square(piece.getPozX() - 2, piece.getPozY() - 1, null);
+            if (ThreePlayerChessboard.J <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                if (11 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 12) {
+                    move = new Square(piece.getPosX() - 2, piece.getPosY() - 1, null);
                 } else {
-                    if (10 == piece.getPozX() + 1) {
-                        move = new Square(4, piece.getPozY() - 1, null);
+                    if (10 == piece.getPosX() + 1) {
+                        move = new Square(4, piece.getPosY() - 1, null);
                     } else {
-                        move = new Square(5, piece.getPozY() - 1, null);
+                        move = new Square(5, piece.getPosY() - 1, null);
                     }
                 }
             }
@@ -504,39 +505,39 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if (1 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 2) {
+        if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 2) {
             return possibleMoves;
         }
-        if (7 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 8) {
+        if (7 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 8) {
             return possibleMoves;
         }
-        if (11 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 12) {
+        if (11 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 12) {
             return possibleMoves;
         }
 
-        if (3 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 4) {
-            move = new Square(piece.getPozX() - 2, piece.getPozY() - 1, null);
+        if (3 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 4) {
+            move = new Square(piece.getPosX() - 2, piece.getPosY() - 1, null);
         }
-        if (5 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 6) {
-            if (ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(piece.getPozX() + 2, piece.getPozY() + 1, null);
+        if (5 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 6) {
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(piece.getPosX() + 2, piece.getPosY() + 1, null);
             }
-            if (ThreePlayerChessboard.A <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.C) {
-                move = new Square(piece.getPozX() + 2, piece.getPozY() + 1, null);
+            if (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.C) {
+                move = new Square(piece.getPosX() + 2, piece.getPosY() + 1, null);
             }
-            if (ThreePlayerChessboard.D == piece.getPozY()) {
-                move = new Square(piece.getPozX() + 2, ThreePlayerChessboard.I, null);
+            if (ThreePlayerChessboard.D == piece.getPosY()) {
+                move = new Square(piece.getPosX() + 2, ThreePlayerChessboard.I, null);
             }
         }
-        if (9 <= piece.getPozX() + 1 && piece.getPozX() + 1 <= 10) {
-            if (ThreePlayerChessboard.J <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L) {
-                move = new Square(piece.getPozX() + 2, piece.getPozY() - 1, null);
+        if (9 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 10) {
+            if (ThreePlayerChessboard.J <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(piece.getPosX() + 2, piece.getPosY() - 1, null);
             }
-            if (ThreePlayerChessboard.E <= piece.getPozY() && piece.getPozY() < ThreePlayerChessboard.G) {
-                move = new Square(piece.getPozX() + 2, piece.getPozY() + 1, null);
+            if (ThreePlayerChessboard.E <= piece.getPosY() && piece.getPosY() < ThreePlayerChessboard.G) {
+                move = new Square(piece.getPosX() + 2, piece.getPosY() + 1, null);
             }
-            if (ThreePlayerChessboard.I == piece.getPozY()) {
-                move = new Square(piece.getPozX() + 2, ThreePlayerChessboard.E, null);
+            if (ThreePlayerChessboard.I == piece.getPosY()) {
+                move = new Square(piece.getPosX() + 2, ThreePlayerChessboard.E, null);
             }
         }
 
@@ -550,29 +551,29 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if ((3 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 4)) {
-            if (piece.getPozY() != ThreePlayerChessboard.H) {
-                move = new Square(piece.getPozX() - 2, piece.getPozY() + 1, null);
+        if ((3 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)) {
+            if (piece.getPosY() != ThreePlayerChessboard.H) {
+                move = new Square(piece.getPosX() - 2, piece.getPosY() + 1, null);
             }
         }
-        if ((5 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 6)) {
-            if (piece.getPozY() == ThreePlayerChessboard.I) {
-                move = new Square(piece.getPozX() + 2, ThreePlayerChessboard.D, null);
+        if ((5 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 6)) {
+            if (piece.getPosY() == ThreePlayerChessboard.I) {
+                move = new Square(piece.getPosX() + 2, ThreePlayerChessboard.D, null);
             } else {
-                if (piece.getPozY() != ThreePlayerChessboard.A){
-                    move = new Square(piece.getPozX() +2,piece.getPozY() - 1, null);
+                if (piece.getPosY() != ThreePlayerChessboard.A){
+                    move = new Square(piece.getPosX() +2,piece.getPosY() - 1, null);
                 }
             }
         }
-        if ((9 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 12)) {
-            if ((ThreePlayerChessboard.F <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.H)) {
-                move = new Square(piece.getPozX() +2,piece.getPozY() - 1, null);
+        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 12)) {
+            if ((ThreePlayerChessboard.F <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.H)) {
+                move = new Square(piece.getPosX() +2,piece.getPosY() - 1, null);
             }
-            if (ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.K){
-                move = new Square(piece.getPozX() +2,piece.getPozY() + 1, null);
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.K){
+                move = new Square(piece.getPosX() +2,piece.getPosY() + 1, null);
             }
-            if (piece.getPozY() ==ThreePlayerChessboard.E) {
-                move = new Square(piece.getPozX() + 2, ThreePlayerChessboard.I, null);
+            if (piece.getPosY() ==ThreePlayerChessboard.E) {
+                move = new Square(piece.getPosX() + 2, ThreePlayerChessboard.I, null);
             }
         }
 
@@ -586,25 +587,25 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if ((3 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 4)) {
-            move = new Square(piece.getPozX() - 2, piece.getPozY() - 1, null);
+        if ((3 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)) {
+            move = new Square(piece.getPosX() - 2, piece.getPosY() - 1, null);
         }
 
-        if ((5 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 6)) {
-            move = new Square(piece.getPozX() + 2, piece.getPozY() + 1, null);
-            if ( piece.getPozY() ==ThreePlayerChessboard.D) {
-                move = new Square(piece.getPozX() + 2, ThreePlayerChessboard.I, null);
+        if ((5 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 6)) {
+            move = new Square(piece.getPosX() + 2, piece.getPosY() + 1, null);
+            if ( piece.getPosY() ==ThreePlayerChessboard.D) {
+                move = new Square(piece.getPosX() + 2, ThreePlayerChessboard.I, null);
             }
         }
-        if ((9 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 10)){
-            if ((ThreePlayerChessboard.E <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.G)) {
-                move = new Square(piece.getPozX() + 2,piece.getPozY() + 1, null);
+        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 10)){
+            if ((ThreePlayerChessboard.E <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.G)) {
+                move = new Square(piece.getPosX() + 2,piece.getPosY() + 1, null);
             }
-            if ((ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L)) {
-                move = new Square(piece.getPozX() + 2,piece.getPozY() - 1, null);
+            if ((ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L)) {
+                move = new Square(piece.getPosX() + 2,piece.getPosY() - 1, null);
             }
-            if (piece.getPozY() == ThreePlayerChessboard.I) {
-                move = new Square(piece.getPozX() + 2, ThreePlayerChessboard.E, null);
+            if (piece.getPosY() == ThreePlayerChessboard.I) {
+                move = new Square(piece.getPosX() + 2, ThreePlayerChessboard.E, null);
             }
         }
 
@@ -619,78 +620,78 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if ((1 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 2)) {
-            if (piece.getPozY() != ThreePlayerChessboard.H) {
-                move = new Square(piece.getPozX() + 2, piece.getPozY() + 1, null);
+        if ((1 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 2)) {
+            if (piece.getPosY() != ThreePlayerChessboard.H) {
+                move = new Square(piece.getPosX() + 2, piece.getPosY() + 1, null);
             }
         }
-        if ((3 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 4)){
-            if (piece.getPozY() ==ThreePlayerChessboard.D) {
-                move = new Square(piece.getPozX() +2, ThreePlayerChessboard.I, null);
+        if ((3 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)){
+            if (piece.getPosY() ==ThreePlayerChessboard.D) {
+                move = new Square(piece.getPosX() +2, ThreePlayerChessboard.I, null);
             }
-            if (ThreePlayerChessboard.A <= piece.getPozY() &&piece.getPozY() <=ThreePlayerChessboard.C){
-                move = new Square(piece.getPozX() +2,piece.getPozY() +1, null);
+            if (ThreePlayerChessboard.A <= piece.getPosY() &&piece.getPosY() <=ThreePlayerChessboard.C){
+                move = new Square(piece.getPosX() +2,piece.getPosY() +1, null);
             }
-            if ((ThreePlayerChessboard.E <= piece.getPozY()) &&( piece.getPozY() <=ThreePlayerChessboard.G)){
-                move = new Square(piece.getPozX() +6,piece.getPozY() +1, null);
+            if ((ThreePlayerChessboard.E <= piece.getPosY()) &&( piece.getPosY() <=ThreePlayerChessboard.G)){
+                move = new Square(piece.getPosX() +6,piece.getPosY() +1, null);
             }
         }
-        if ((5 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 8)) {
-            if ((ThreePlayerChessboard.J <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L)){
-                if (( piece.getPozX() +1) ==6){
-                    move = new Square(piece.getPozX() +3,piece.getPozY() -1, null);
+        if ((5 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 8)) {
+            if ((ThreePlayerChessboard.J <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L)){
+                if (( piece.getPosX() +1) ==6){
+                    move = new Square(piece.getPosX() +3,piece.getPosY() -1, null);
                 } else{
-                    if ((piece.getPozX() +1) == 5){
-                        move = new Square(piece.getPozX() +5,piece.getPozY() -1, null);
+                    if ((piece.getPosX() +1) == 5){
+                        move = new Square(piece.getPosX() +5,piece.getPosY() -1, null);
                     } else{
-                        move = new Square(piece.getPozX() -2,piece.getPozY() -1, null);
+                        move = new Square(piece.getPosX() -2,piece.getPosY() -1, null);
                     }
                 }
             }
-            if ((ThreePlayerChessboard.B <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.D)){
-                move = new Square(piece.getPozX() -2,piece.getPozY() -1, null);
+            if ((ThreePlayerChessboard.B <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.D)){
+                move = new Square(piece.getPosX() -2,piece.getPosY() -1, null);
             }
-            if (piece.getPozY() == ThreePlayerChessboard.I){
-                if (8 == ( piece.getPozX() +1)){
-                    move = new Square(piece.getPozX() -2, ThreePlayerChessboard.D, null);
+            if (piece.getPosY() == ThreePlayerChessboard.I){
+                if (8 == ( piece.getPosX() +1)){
+                    move = new Square(piece.getPosX() -2, ThreePlayerChessboard.D, null);
                 }
-                if (7 == ( piece.getPozX() +1)){
-                    move = new Square(piece.getPozX() -2, ThreePlayerChessboard.D, null);
+                if (7 == ( piece.getPosX() +1)){
+                    move = new Square(piece.getPosX() -2, ThreePlayerChessboard.D, null);
                 }
-                if (6 == ( piece.getPozX() +1)){
-                    move = new Square(piece.getPozX() +3, ThreePlayerChessboard.E, null);
+                if (6 == ( piece.getPosX() +1)){
+                    move = new Square(piece.getPosX() +3, ThreePlayerChessboard.E, null);
                 }
-                if (5 == ( piece.getPozX() +1)){
-                    move = new Square(piece.getPozX() +5, ThreePlayerChessboard.E, null);
+                if (5 == ( piece.getPosX() +1)){
+                    move = new Square(piece.getPosX() +5, ThreePlayerChessboard.E, null);
                 }
             }
         }
-        if ((9 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 12) && (piece.getPozY() != ThreePlayerChessboard.L)) {
-            if (piece.getPozY() == ThreePlayerChessboard.E) {
-                if (12 == (piece.getPozX() + 1)){
-                    move = new Square(piece.getPozX() -2, ThreePlayerChessboard.I, null);
+        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 12) && (piece.getPosY() != ThreePlayerChessboard.L)) {
+            if (piece.getPosY() == ThreePlayerChessboard.E) {
+                if (12 == (piece.getPosX() + 1)){
+                    move = new Square(piece.getPosX() -2, ThreePlayerChessboard.I, null);
                 }
-                if (11 == (piece.getPozX() + 1)){
-                    move = new Square(piece.getPozX() -2, ThreePlayerChessboard.I, null);
+                if (11 == (piece.getPosX() + 1)){
+                    move = new Square(piece.getPosX() -2, ThreePlayerChessboard.I, null);
                 }
-                if (10 == (piece.getPozX() + 1)){
-                    move = new Square(piece.getPozX() -6, ThreePlayerChessboard.D, null);
+                if (10 == (piece.getPosX() + 1)){
+                    move = new Square(piece.getPosX() -6, ThreePlayerChessboard.D, null);
                 }
-                if (9 == (piece.getPozX() + 1)){
-                    move = new Square(piece.getPozX() -6, ThreePlayerChessboard.D, null);
+                if (9 == (piece.getPosX() + 1)){
+                    move = new Square(piece.getPosX() -6, ThreePlayerChessboard.D, null);
                 }
             } else {
-                if (piece.getPozX() + 1 >= 11) {
-                    move = new Square(piece.getPozX() - 2, piece.getPozY() - 1, null);
+                if (piece.getPosX() + 1 >= 11) {
+                    move = new Square(piece.getPosX() - 2, piece.getPosY() - 1, null);
                 } else {
-                    if (ThreePlayerChessboard.I <= piece.getPozY() && piece.getPozY() <= ThreePlayerChessboard.L){
-                        if (10 == (piece.getPozX() +1)){
-                            move = new Square(piece.getPozX() -5,piece.getPozY() +1, null);
+                    if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L){
+                        if (10 == (piece.getPosX() +1)){
+                            move = new Square(piece.getPosX() -5,piece.getPosY() +1, null);
                         } else{
-                            move = new Square(piece.getPozX() -3,piece.getPozY() +1, null);
+                            move = new Square(piece.getPosX() -3,piece.getPosY() +1, null);
                         }
                     } else {
-                        move = new Square(piece.getPozX() -6,piece.getPozY() -1, null);
+                        move = new Square(piece.getPosX() -6,piece.getPosY() -1, null);
                     }
                 }
             }
@@ -706,91 +707,91 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if ((1 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 2) && (piece.getPozY() != ThreePlayerChessboard.A)){
-            move = new Square(piece.getPozX() +2,piece.getPozY() -1, null);
+        if ((1 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 2) && (piece.getPosY() != ThreePlayerChessboard.A)){
+            move = new Square(piece.getPosX() +2,piece.getPosY() -1, null);
         }
-        if ((3 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 4)){
-            if (piece.getPozY() ==ThreePlayerChessboard.E){
-                move = new Square(piece.getPozX() +6, ThreePlayerChessboard.I, null);
+        if ((3 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)){
+            if (piece.getPosY() ==ThreePlayerChessboard.E){
+                move = new Square(piece.getPosX() +6, ThreePlayerChessboard.I, null);
             }
-            if (ThreePlayerChessboard.B <= piece.getPozY() &&piece.getPozY() <=ThreePlayerChessboard.D){
-                move = new Square(piece.getPozX() +2,piece.getPozY() -1, null);
+            if (ThreePlayerChessboard.B <= piece.getPosY() &&piece.getPosY() <=ThreePlayerChessboard.D){
+                move = new Square(piece.getPosX() +2,piece.getPosY() -1, null);
             }
-            if ((ThreePlayerChessboard.F <= piece.getPozY()) &&( piece.getPozY() <=ThreePlayerChessboard.H)){
-                move = new Square(piece.getPozX() +6,piece.getPozY() -1, null);
+            if ((ThreePlayerChessboard.F <= piece.getPosY()) &&( piece.getPosY() <=ThreePlayerChessboard.H)){
+                move = new Square(piece.getPosX() +6,piece.getPosY() -1, null);
             }
         }
-        if ((5 <= (piece.getPozX() + 1)) && ((piece.getPozX() + 1) <= 8)){
-            if ((ThreePlayerChessboard.A <= piece.getPozY() &&piece.getPozY() <=ThreePlayerChessboard.C)){
-                if (( piece.getPozX() +1) ==6){
-                    move = new Square(3,piece.getPozY() +1, null);
+        if ((5 <= (piece.getPosX() + 1)) && ((piece.getPosX() + 1) <= 8)){
+            if ((ThreePlayerChessboard.A <= piece.getPosY() &&piece.getPosY() <=ThreePlayerChessboard.C)){
+                if (( piece.getPosX() +1) ==6){
+                    move = new Square(3,piece.getPosY() +1, null);
                 } else{
-                    if (( piece.getPozX() +1) ==5){
-                        move = new Square(2,piece.getPozY() +1, null);
+                    if (( piece.getPosX() +1) ==5){
+                        move = new Square(2,piece.getPosY() +1, null);
                     } else{
-                        move = new Square(piece.getPozX() -2,piece.getPozY() +1, null);
+                        move = new Square(piece.getPosX() -2,piece.getPosY() +1, null);
                     }
 
                 }
             }
 
-            if ((ThreePlayerChessboard.I <= piece.getPozY() &&piece.getPozY() <=ThreePlayerChessboard.K)){
-                if (( piece.getPozX() +1) ==6){
-                    move = new Square(8,piece.getPozY() +1, null);
+            if ((ThreePlayerChessboard.I <= piece.getPosY() &&piece.getPosY() <=ThreePlayerChessboard.K)){
+                if (( piece.getPosX() +1) ==6){
+                    move = new Square(8,piece.getPosY() +1, null);
                 } else{
-                    if (( piece.getPozX() +1) ==5){
-                        move = new Square(9,piece.getPozY() +1, null);
+                    if (( piece.getPosX() +1) ==5){
+                        move = new Square(9,piece.getPosY() +1, null);
                     } else{
-                        move = new Square(piece.getPozX() -2,piece.getPozY() +1, null);
+                        move = new Square(piece.getPosX() -2,piece.getPosY() +1, null);
                     }
                 }
             }
 
-            if (piece.getPozY() == ThreePlayerChessboard.D){
-                if (8 == ( piece.getPozX() +1)){
+            if (piece.getPosY() == ThreePlayerChessboard.D){
+                if (8 == ( piece.getPosX() +1)){
                     move = new Square(5, ThreePlayerChessboard.I, null);
                 }
-                if (7 == ( piece.getPozX() +1)){
+                if (7 == ( piece.getPosX() +1)){
                     move = new Square(4, ThreePlayerChessboard.I, null);
                 }
-                if (6 == ( piece.getPozX() +1)){
+                if (6 == ( piece.getPosX() +1)){
                     move = new Square(3, ThreePlayerChessboard.E, null);
                 }
-                if (5 == ( piece.getPozX() +1)){
+                if (5 == ( piece.getPosX() +1)){
                     move = new Square(2, ThreePlayerChessboard.E, null);
                 }
             }
         }
-        if ((9 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 12) && (piece.getPozY() != ThreePlayerChessboard.H)) {
-            if (piece.getPozY() == ThreePlayerChessboard.I) {
-                if (12 == (piece.getPozX() +1)) {
-                    move = new Square(piece.getPozX() -2, ThreePlayerChessboard.E, null);
+        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 12) && (piece.getPosY() != ThreePlayerChessboard.H)) {
+            if (piece.getPosY() == ThreePlayerChessboard.I) {
+                if (12 == (piece.getPosX() +1)) {
+                    move = new Square(piece.getPosX() -2, ThreePlayerChessboard.E, null);
                 }
-                if (11 == (piece.getPozX() +1)) {
-                    move = new Square(piece.getPozX() -2, ThreePlayerChessboard.E, null);
+                if (11 == (piece.getPosX() +1)) {
+                    move = new Square(piece.getPosX() -2, ThreePlayerChessboard.E, null);
                 }
-                if (10 == (piece.getPozX() +1)) {
+                if (10 == (piece.getPosX() +1)) {
                     move = new Square(4, ThreePlayerChessboard.D, null);
                 }
-                if (9 == (piece.getPozX() +1)) {
+                if (9 == (piece.getPosX() +1)) {
                     move = new Square(5, ThreePlayerChessboard.D, null);
                 }
             } else {
-                if ((ThreePlayerChessboard.J <= piece.getPozY()) && (piece.getPozY() <= ThreePlayerChessboard.L)) {
-                    if (piece.getPozX() +1 >= 11){
-                        move = new Square(piece.getPozX() -2,piece.getPozY() -1, null);
+                if ((ThreePlayerChessboard.J <= piece.getPosY()) && (piece.getPosY() <= ThreePlayerChessboard.L)) {
+                    if (piece.getPosX() +1 >= 11){
+                        move = new Square(piece.getPosX() -2,piece.getPosY() -1, null);
                     } else {
-                        if (piece.getPozX() + 1 == 10) {
-                            move = new Square(4, piece.getPozY() - 1, null);
+                        if (piece.getPosX() + 1 == 10) {
+                            move = new Square(4, piece.getPosY() - 1, null);
                         } else {
-                            move = new Square(5, piece.getPozY() - 1, null);
+                            move = new Square(5, piece.getPosY() - 1, null);
                         }
                     }
                 } else {
-                    if (piece.getPozX() +1 >= 11){
-                        move = new Square(piece.getPozX() -2,piece.getPozY() +1, null);
+                    if (piece.getPosX() +1 >= 11){
+                        move = new Square(piece.getPosX() -2,piece.getPosY() +1, null);
                     } else {
-                        move = new Square(piece.getPozX() -6,piece.getPozY() +1, null);
+                        move = new Square(piece.getPosX() -6,piece.getPosY() +1, null);
                     }
                 }
             }
@@ -806,62 +807,62 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if ((1 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 4) && (piece.getPozY() != ThreePlayerChessboard.G && piece.getPozY() != ThreePlayerChessboard.H)) {
-            if (piece.getPozY() >=ThreePlayerChessboard.C){
-                if ((piece.getPozX() +1) <=3){
-                    move = new Square(piece.getPozX() +1,piece.getPozY() +2, null);
+        if ((1 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4) && (piece.getPosY() != ThreePlayerChessboard.G && piece.getPosY() != ThreePlayerChessboard.H)) {
+            if (piece.getPosY() >=ThreePlayerChessboard.C){
+                if ((piece.getPosX() +1) <=3){
+                    move = new Square(piece.getPosX() +1,piece.getPosY() +2, null);
                 } else {
-                    move = new Square(8,piece.getPozY() +2, null);
+                    move = new Square(8,piece.getPosY() +2, null);
                 }
             } else{
-                move = new Square(piece.getPozX() +1,piece.getPozY() +2, null);
+                move = new Square(piece.getPosX() +1,piece.getPosY() +2, null);
             }
         }
 
-        if ((5 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 8) && (piece.getPozY() != ThreePlayerChessboard.A && piece.getPozY() != ThreePlayerChessboard.B)) {
-            if (piece.getPozY() ==ThreePlayerChessboard.K || piece.getPozY() ==ThreePlayerChessboard.L) {
-                if (piece.getPozX() +1 >= 6) {
-                    move = new Square(piece.getPozX() -1,piece.getPozY() -2, null);
+        if ((5 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 8) && (piece.getPosY() != ThreePlayerChessboard.A && piece.getPosY() != ThreePlayerChessboard.B)) {
+            if (piece.getPosY() ==ThreePlayerChessboard.K || piece.getPosY() ==ThreePlayerChessboard.L) {
+                if (piece.getPosX() +1 >= 6) {
+                    move = new Square(piece.getPosX() -1,piece.getPosY() -2, null);
                 } else{
-                    move = new Square(8,piece.getPozY() -2, null);
+                    move = new Square(8,piece.getPosY() -2, null);
                 }
             }
-            if (piece.getPozY() ==ThreePlayerChessboard.I || piece.getPozY() ==ThreePlayerChessboard.J){
-                if (piece.getPozX() +1 >= 6) {
-                    move = new Square(piece.getPozX() -1,piece.getPozY() -6, null);
+            if (piece.getPosY() ==ThreePlayerChessboard.I || piece.getPosY() ==ThreePlayerChessboard.J){
+                if (piece.getPosX() +1 >= 6) {
+                    move = new Square(piece.getPosX() -1,piece.getPosY() -6, null);
                 } else {
-                    move = new Square(3,piece.getPozY() -6, null);
+                    move = new Square(3,piece.getPosY() -6, null);
                 }
             }
-            if (piece.getPozY() ==ThreePlayerChessboard.C || piece.getPozY() == ThreePlayerChessboard.D) {
-                move = new Square(piece.getPozX() -1,piece.getPozY() -2, null);
+            if (piece.getPosY() ==ThreePlayerChessboard.C || piece.getPosY() == ThreePlayerChessboard.D) {
+                move = new Square(piece.getPosX() -1,piece.getPosY() -2, null);
             }
         }
 
-        if ((9 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 12) && (piece.getPozY() != ThreePlayerChessboard.K && piece.getPozY() != ThreePlayerChessboard.L)) {
-            if (piece.getPozY() == ThreePlayerChessboard.I || piece.getPozY() == ThreePlayerChessboard.J) {
-                if (piece.getPozX() +1 >= 10) {
-                    move = new Square(piece.getPozX() -1,piece.getPozY() +2, null);
+        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 12) && (piece.getPosY() != ThreePlayerChessboard.K && piece.getPosY() != ThreePlayerChessboard.L)) {
+            if (piece.getPosY() == ThreePlayerChessboard.I || piece.getPosY() == ThreePlayerChessboard.J) {
+                if (piece.getPosX() +1 >= 10) {
+                    move = new Square(piece.getPosX() -1,piece.getPosY() +2, null);
                 } else {
-                    move = new Square(piece.getPozX() -4,piece.getPozY() +2, null);
+                    move = new Square(piece.getPosX() -4,piece.getPosY() +2, null);
                 }
             }
-            if ((piece.getPozY() == ThreePlayerChessboard.E) || (piece.getPozY() == ThreePlayerChessboard.F)) {
-                if (piece.getPozX() +1 >= 10) {
-                    move = new Square(piece.getPozX() -1,piece.getPozY() +5, null);
+            if ((piece.getPosY() == ThreePlayerChessboard.E) || (piece.getPosY() == ThreePlayerChessboard.F)) {
+                if (piece.getPosX() +1 >= 10) {
+                    move = new Square(piece.getPosX() -1,piece.getPosY() +5, null);
                 } else {
-                    if (piece.getPozY() ==ThreePlayerChessboard.F) {
+                    if (piece.getPosY() ==ThreePlayerChessboard.F) {
                         move = new Square(4, ThreePlayerChessboard.I, null);
                     } else {
                         move = new Square(4, ThreePlayerChessboard.J, null);
                     }
                 }
             }
-            if (piece.getPozY() == ThreePlayerChessboard.H || piece.getPozY() == ThreePlayerChessboard.G) {
-                if (piece.getPozX() +1 >= 10) {
-                    move = new Square(piece.getPozX() -1,piece.getPozY() -2, null);
+            if (piece.getPosY() == ThreePlayerChessboard.H || piece.getPosY() == ThreePlayerChessboard.G) {
+                if (piece.getPosX() +1 >= 10) {
+                    move = new Square(piece.getPosX() -1,piece.getPosY() -2, null);
                 } else {
-                    move = new Square(3,piece.getPozY() -2, null);
+                    move = new Square(3,piece.getPosY() -2, null);
                 }
             }
         }
@@ -876,34 +877,34 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if ((1 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 4) && (piece.getPozY() != ThreePlayerChessboard.G && piece.getPozY() != ThreePlayerChessboard.H)) {
-            move = new Square(piece.getPozX() -1,piece.getPozY() +2, null);
+        if ((1 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4) && (piece.getPosY() != ThreePlayerChessboard.G && piece.getPosY() != ThreePlayerChessboard.H)) {
+            move = new Square(piece.getPosX() -1,piece.getPosY() +2, null);
         }
 
-        if ((5 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 7) && (piece.getPozY() != ThreePlayerChessboard.A && piece.getPozY() != ThreePlayerChessboard.B)) {
-            if (piece.getPozY() == ThreePlayerChessboard.C || piece.getPozY() == ThreePlayerChessboard.D) {
-                move = new Square(piece.getPozX() +1,piece.getPozY() -2, null);
+        if ((5 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 7) && (piece.getPosY() != ThreePlayerChessboard.A && piece.getPosY() != ThreePlayerChessboard.B)) {
+            if (piece.getPosY() == ThreePlayerChessboard.C || piece.getPosY() == ThreePlayerChessboard.D) {
+                move = new Square(piece.getPosX() +1,piece.getPosY() -2, null);
             }
-            if (piece.getPozY() == ThreePlayerChessboard.I || piece.getPozY() == ThreePlayerChessboard.J) {
-                move = new Square(piece.getPozX() +1,piece.getPozY() -6, null);
+            if (piece.getPosY() == ThreePlayerChessboard.I || piece.getPosY() == ThreePlayerChessboard.J) {
+                move = new Square(piece.getPosX() +1,piece.getPosY() -6, null);
             }
-            if (piece.getPozY() == ThreePlayerChessboard.K || piece.getPozY() == ThreePlayerChessboard.L) {
-                move = new Square(piece.getPozX() +1,piece.getPozY() -2, null);
+            if (piece.getPosY() == ThreePlayerChessboard.K || piece.getPosY() == ThreePlayerChessboard.L) {
+                move = new Square(piece.getPosX() +1,piece.getPosY() -2, null);
             }
         }
 
-        if ((9 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 11) && (piece.getPozY() != ThreePlayerChessboard.K && piece.getPozY() != ThreePlayerChessboard.L)){
-            if (piece.getPozY() == ThreePlayerChessboard.I || piece.getPozY() == ThreePlayerChessboard.J) {
-                move = new Square(piece.getPozX() +1,piece.getPozY() +2, null);
+        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 11) && (piece.getPosY() != ThreePlayerChessboard.K && piece.getPosY() != ThreePlayerChessboard.L)){
+            if (piece.getPosY() == ThreePlayerChessboard.I || piece.getPosY() == ThreePlayerChessboard.J) {
+                move = new Square(piece.getPosX() +1,piece.getPosY() +2, null);
             }
-            if (piece.getPozY() == ThreePlayerChessboard.E) {
-                move = new Square(piece.getPozX() +1, ThreePlayerChessboard.J, null);
+            if (piece.getPosY() == ThreePlayerChessboard.E) {
+                move = new Square(piece.getPosX() +1, ThreePlayerChessboard.J, null);
             }
-            if (piece.getPozY() == ThreePlayerChessboard.F) {
-                move = new Square(piece.getPozX() +1, ThreePlayerChessboard.I, null);
+            if (piece.getPosY() == ThreePlayerChessboard.F) {
+                move = new Square(piece.getPosX() +1, ThreePlayerChessboard.I, null);
             }
-            if (piece.getPozY() == ThreePlayerChessboard.G || piece.getPozY() == ThreePlayerChessboard.H) {
-                move = new Square(piece.getPozX() +1,piece.getPozY() -2, null);
+            if (piece.getPosY() == ThreePlayerChessboard.G || piece.getPosY() == ThreePlayerChessboard.H) {
+                move = new Square(piece.getPosX() +1,piece.getPosY() -2, null);
             }
         }
 
@@ -917,62 +918,62 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if ((1 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 4) && (piece.getPozY() != ThreePlayerChessboard.A && piece.getPozY() != ThreePlayerChessboard.B)){
-            if ( piece.getPozX() +1 <= 3){
-                move = new Square(piece.getPozX() +1,piece.getPozY() -2, null);
+        if ((1 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4) && (piece.getPosY() != ThreePlayerChessboard.A && piece.getPosY() != ThreePlayerChessboard.B)){
+            if ( piece.getPosX() +1 <= 3){
+                move = new Square(piece.getPosX() +1,piece.getPosY() -2, null);
             } else{
-                if (piece.getPozY() == ThreePlayerChessboard.G || piece.getPozY() ==ThreePlayerChessboard.H){
-                    move = new Square(8, piece.getPozY() -2, null);
+                if (piece.getPosY() == ThreePlayerChessboard.G || piece.getPosY() ==ThreePlayerChessboard.H){
+                    move = new Square(8, piece.getPosY() -2, null);
                 } else {
-                    move = new Square(4, piece.getPozY() -2, null);
+                    move = new Square(4, piece.getPosY() -2, null);
                 }
             }
         }
-        if ((5 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 8) && (piece.getPozY() != ThreePlayerChessboard.K && piece.getPozY() != ThreePlayerChessboard.L)) {
-            if (piece.getPozY() == ThreePlayerChessboard.A || piece.getPozY() == ThreePlayerChessboard.B) {
-                move = new Square(piece.getPozX() -1,piece.getPozY() +2, null);
+        if ((5 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 8) && (piece.getPosY() != ThreePlayerChessboard.K && piece.getPosY() != ThreePlayerChessboard.L)) {
+            if (piece.getPosY() == ThreePlayerChessboard.A || piece.getPosY() == ThreePlayerChessboard.B) {
+                move = new Square(piece.getPosX() -1,piece.getPosY() +2, null);
             }
-            if (piece.getPozY() == ThreePlayerChessboard.C || piece.getPozY() == ThreePlayerChessboard.D) {
-                if ( piece.getPozX() +1 >= 6){
-                    move = new Square(piece.getPozX() -1,piece.getPozY() +6, null);
+            if (piece.getPosY() == ThreePlayerChessboard.C || piece.getPosY() == ThreePlayerChessboard.D) {
+                if ( piece.getPosX() +1 >= 6){
+                    move = new Square(piece.getPosX() -1,piece.getPosY() +6, null);
                 } else {
-                    move = new Square(8,piece.getPozY() +6, null);
+                    move = new Square(8,piece.getPosY() +6, null);
                 }
             }
-            if (piece.getPozY() == ThreePlayerChessboard.I || piece.getPozY() == ThreePlayerChessboard.J) {
-                if (piece.getPozX() +1 >= 6){
-                    move = new Square(piece.getPozX() -1,piece.getPozY() +2, null);
+            if (piece.getPosY() == ThreePlayerChessboard.I || piece.getPosY() == ThreePlayerChessboard.J) {
+                if (piece.getPosX() +1 >= 6){
+                    move = new Square(piece.getPosX() -1,piece.getPosY() +2, null);
                 } else {
-                    move = new Square(8,piece.getPozY() +2, null);
+                    move = new Square(8,piece.getPosY() +2, null);
                 }
             }
         }
-        if ((9 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 12) && (piece.getPozY() != ThreePlayerChessboard.H && piece.getPozY() != ThreePlayerChessboard.G)) {
-            if (piece.getPozY() == ThreePlayerChessboard.L || piece.getPozY() == ThreePlayerChessboard.K){
-                if (piece.getPozX() +1 >= 10) {
-                    move = new Square(piece.getPozX() -1,piece.getPozY() -2, null);
+        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 12) && (piece.getPosY() != ThreePlayerChessboard.H && piece.getPosY() != ThreePlayerChessboard.G)) {
+            if (piece.getPosY() == ThreePlayerChessboard.L || piece.getPosY() == ThreePlayerChessboard.K){
+                if (piece.getPosX() +1 >= 10) {
+                    move = new Square(piece.getPosX() -1,piece.getPosY() -2, null);
                 } else {
-                    move = new Square(4,piece.getPozY() -2, null);
+                    move = new Square(4,piece.getPosY() -2, null);
                 }
             }
-            if (piece.getPozY() == ThreePlayerChessboard.F || piece.getPozY() == ThreePlayerChessboard.E) {
-                if (piece.getPozX() +1 >= 10){
-                    move = new Square(piece.getPozX() -1,piece.getPozY() +2, null);
+            if (piece.getPosY() == ThreePlayerChessboard.F || piece.getPosY() == ThreePlayerChessboard.E) {
+                if (piece.getPosX() +1 >= 10){
+                    move = new Square(piece.getPosX() -1,piece.getPosY() +2, null);
                 } else {
-                    move = new Square(3,piece.getPozY() +2, null);
+                    move = new Square(3,piece.getPosY() +2, null);
                 }
             }
 
-            if (piece.getPozY() == ThreePlayerChessboard.J || piece.getPozY() == ThreePlayerChessboard.I){
-                if (piece.getPozY() ==ThreePlayerChessboard.J) {
-                    if (piece.getPozX() +1 >= 10){
-                        move = new Square(piece.getPozX() -1, ThreePlayerChessboard.E, null);
+            if (piece.getPosY() == ThreePlayerChessboard.J || piece.getPosY() == ThreePlayerChessboard.I){
+                if (piece.getPosY() ==ThreePlayerChessboard.J) {
+                    if (piece.getPosX() +1 >= 10){
+                        move = new Square(piece.getPosX() -1, ThreePlayerChessboard.E, null);
                     } else{
                         move = new Square(3, ThreePlayerChessboard.E, null);
                     }
                 } else {
-                if (piece.getPozX() +1 >= 10){
-                        move = new Square(piece.getPozX() -1, ThreePlayerChessboard.F, null);
+                if (piece.getPosX() +1 >= 10){
+                        move = new Square(piece.getPosX() -1, ThreePlayerChessboard.F, null);
                     } else{
                         move = new Square(3, ThreePlayerChessboard.F, null);
                     }
@@ -990,27 +991,27 @@ public class KnightMove implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if ((2 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 4)) {
-            move = new Square(piece.getPozX() -1,piece.getPozY() -2, null);
+        if ((2 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)) {
+            move = new Square(piece.getPosX() -1,piece.getPosY() -2, null);
         }
-        if ((5 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 7)) {
-            if (piece.getPozY() == ThreePlayerChessboard.C || piece.getPozY() == ThreePlayerChessboard.D) {
-                move = new Square(piece.getPozX() +1,piece.getPozY() +6, null);
+        if ((5 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 7)) {
+            if (piece.getPosY() == ThreePlayerChessboard.C || piece.getPosY() == ThreePlayerChessboard.D) {
+                move = new Square(piece.getPosX() +1,piece.getPosY() +6, null);
             } else {
-                move = new Square(piece.getPozX() +1,piece.getPozY() +2, null);
+                move = new Square(piece.getPosX() +1,piece.getPosY() +2, null);
             }
         }
-        if ((9 <= piece.getPozX() + 1) && (piece.getPozX() + 1 <= 12) && (piece.getPozY() != ThreePlayerChessboard.G && piece.getPozY() != ThreePlayerChessboard.H)){
-            if (piece.getPozY() == ThreePlayerChessboard.E || piece.getPozY() == ThreePlayerChessboard.F) {
-                move = new Square(piece.getPozX() +1,piece.getPozY() +2, null);
+        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 12) && (piece.getPosY() != ThreePlayerChessboard.G && piece.getPosY() != ThreePlayerChessboard.H)){
+            if (piece.getPosY() == ThreePlayerChessboard.E || piece.getPosY() == ThreePlayerChessboard.F) {
+                move = new Square(piece.getPosX() +1,piece.getPosY() +2, null);
             } else {
-                if (piece.getPozY() == ThreePlayerChessboard.L || piece.getPozY() == ThreePlayerChessboard.K){
-                    move = new Square(piece.getPozX() +1,piece.getPozY() -2, null);
+                if (piece.getPosY() == ThreePlayerChessboard.L || piece.getPosY() == ThreePlayerChessboard.K){
+                    move = new Square(piece.getPosX() +1,piece.getPosY() -2, null);
                 } else{
-                    if (piece.getPozY() == ThreePlayerChessboard.J) {
-                        move = new Square(piece.getPozX() +1, ThreePlayerChessboard.E, null);
+                    if (piece.getPosY() == ThreePlayerChessboard.J) {
+                        move = new Square(piece.getPosX() +1, ThreePlayerChessboard.E, null);
                     } else{
-                        move = new Square(piece.getPozX() +1, ThreePlayerChessboard.F, null);
+                        move = new Square(piece.getPosX() +1, ThreePlayerChessboard.F, null);
                     }
                 }
             }

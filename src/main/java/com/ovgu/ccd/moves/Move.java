@@ -45,9 +45,9 @@ public class Move {
         this.setCastlingMove(castlingMove);
         this.setWasEnPassant(wasEnPassant);
 
-        if (movedPiece.name.equals("Pawn") && Math.abs(to.getPozY() - from.getPozY()) == 2) {
+        if (movedPiece.name.equals("Pawn") && Math.abs(to.getPosY() - from.getPosY()) == 2) {
             this.setWasPawnTwoFieldsMove(true);
-        } else if (movedPiece.name.equals("Pawn") && to.getPozY() == Chessboard.bottom || to.getPozY() == Chessboard.top && promotedPiece != null) {
+        } else if (movedPiece.name.equals("Pawn") && to.getPosY() == Chessboard.bottom || to.getPosY() == Chessboard.top && promotedPiece != null) {
             this.setPromotedTo(promotedPiece);
         }
     }

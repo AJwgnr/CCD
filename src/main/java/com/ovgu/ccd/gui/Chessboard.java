@@ -260,8 +260,8 @@ public class Chessboard extends JPanel implements IBoard {
     @Override
     public void select(Square sq) {
         this.activeSquare = sq;
-        this.active_x_square = sq.getPozX() + 1;
-        this.active_y_square = sq.getPozY() + 1;
+        this.active_x_square = sq.getPosX() + 1;
+        this.active_y_square = sq.getPosY() + 1;
 
         //this.draw();//redraw
         System.out.println("active_x: " + this.active_x_square + " active_y: " + this.active_y_square);//4tests
@@ -391,14 +391,14 @@ public class Chessboard extends JPanel implements IBoard {
 
             //Castling
 
-            if (begin.getPozX() + 2 == end.getPozX()) {
-                move(squares[7][begin.getPozY()], squares[end.getPozX() - 1][begin.getPozY()], false, false);
+            if (begin.getPosX() + 2 == end.getPosX()) {
+                move(squares[7][begin.getPosY()], squares[end.getPosX() - 1][begin.getPosY()], false, false);
                 ifWasCastling = end.getPiece();  //for undo
                 wasCastling = Moves.castling.shortCastling;
                 //this.moves_history.addMove(tempBegin, tempEnd, clearForwardHistory, wasCastling, wasEnPassant);
                 //return;
-            } else if (begin.getPozX() - 2 == end.getPozX()) {
-                move(squares[0][begin.getPozY()], squares[end.getPozX() + 1][begin.getPozY()], false, false);
+            } else if (begin.getPosX() - 2 == end.getPosX()) {
+                move(squares[0][begin.getPosY()], squares[end.getPosX() + 1][begin.getPosY()], false, false);
                 ifWasCastling = end.getPiece();  // for undo
                 wasCastling = Moves.castling.longCastling;
                 //this.moves_history.addMove(tempBegin, tempEnd, clearForwardHistory, wasCastling, wasEnPassant);
@@ -412,17 +412,17 @@ public class Chessboard extends JPanel implements IBoard {
             }
 
         } else if (end.getPiece().name.equals("Pawn")) {
-            if (getTwoSquareMovedPawn() != null && squares[end.getPozX()][begin.getPozY()] == getTwoSquareMovedPawn().getSquare()) //en passant
+            if (getTwoSquareMovedPawn() != null && squares[end.getPosX()][begin.getPosY()] == getTwoSquareMovedPawn().getSquare()) //en passant
             {
-                ifWasEnPassant = squares[end.getPozX()][begin.getPozY()].getPiece(); //for undo
+                ifWasEnPassant = squares[end.getPosX()][begin.getPosY()].getPiece(); //for undo
 
-                tempEnd.setPiece(squares[end.getPozX()][begin.getPozY()].getPiece()); //ugly hack - put taken pawn in en passant plasty do end square
+                tempEnd.setPiece(squares[end.getPosX()][begin.getPosY()].getPiece()); //ugly hack - put taken pawn in en passant plasty do end square
 
-                squares[end.getPozX()][begin.getPozY()].setPiece(null);
+                squares[end.getPosX()][begin.getPosY()].setPiece(null);
                 wasEnPassant = true;
             }
 
-            if (begin.getPozY() - end.getPozY() == 2 || end.getPozY() - begin.getPozY() == 2) //moved two square
+            if (begin.getPosY() - end.getPosY() == 2 || end.getPosY() - begin.getPosY() == 2) //moved two square
             {
                 breakCastling = true;
                 setTwoSquareMovedPawn((Pawn) end.getPiece());
@@ -430,7 +430,8 @@ public class Chessboard extends JPanel implements IBoard {
                 setTwoSquareMovedPawn(null); //erase last saved move (for En passant)
             }
 
-            if (end.getPiece().getSquare().getPozY() == 0 || end.getPiece().getSquare().getPozY() == 7) //promote Pawn
+            if (end.getPiece().getSquare().getPosY() == 0 || end.getPiece().getSquare().getPosY() == 7) //promote Pawn
+
             {
                 if (clearForwardHistory) {
                     String color;
@@ -509,14 +510,14 @@ public class Chessboard extends JPanel implements IBoard {
                 from = first.getFrom();
                 to = first.getTo();
 
-                this.move(this.squares[from.getPozX()][from.getPozY()], this.squares[to.getPozX()][to.getPozY()], true, false);
+                this.move(this.squares[from.getPosX()][from.getPosY()], this.squares[to.getPosX()][to.getPosY()], true, false);
                 if (first.getPromotedPiece() != null) {
-                    Pawn pawn = (Pawn) this.squares[to.getPozX()][to.getPozY()].getPiece();
+                    Pawn pawn = (Pawn) this.squares[to.getPosX()][to.getPosY()].getPiece();
                     pawn.setSquare(null);
 
-                    this.squares[to.getPozX()][to.getPozY()].setPiece(first.getPromotedPiece());
-                    Piece promoted = this.squares[to.getPozX()][to.getPozY()].getPiece();
-                    promoted.setSquare(this.squares[to.getPozX()][to.getPozY()]);
+                    this.squares[to.getPosX()][to.getPosY()].setPiece(first.getPromotedPiece());
+                    Piece promoted = this.squares[to.getPosX()][to.getPosY()].getPiece();
+                    promoted.setSquare(this.squares[to.getPosX()][to.getPosY()]);
                 }
                 return true;
             }
@@ -539,23 +540,23 @@ public class Chessboard extends JPanel implements IBoard {
             Square end = last.getTo();
             try {
                 Piece moved = last.getMovedPiece();
-                this.squares[begin.getPozX()][begin.getPozY()].setPiece(moved);
+                this.squares[begin.getPosX()][begin.getPosY()].setPiece(moved);
 
-                moved.setSquare(this.squares[begin.getPozX()][begin.getPozY()]);
+                moved.setSquare(this.squares[begin.getPosX()][begin.getPosY()]);
 
                 Piece taken = last.getTakenPiece();
                 if (last.getCastlingMove() != castling.none) {
                     Piece rook = null;
                     if (last.getCastlingMove() == castling.shortCastling) {
-                        rook = this.squares[end.getPozX() - 1][end.getPozY()].getPiece();
-                        this.squares[7][begin.getPozY()].setPiece(rook);
-                        rook.setSquare(this.squares[7][begin.getPozY()]);
-                        this.squares[end.getPozX() - 1][end.getPozY()].setPiece(null);
+                        rook = this.squares[end.getPosX() - 1][end.getPosY()].getPiece();
+                        this.squares[7][begin.getPosY()].setPiece(rook);
+                        rook.setSquare(this.squares[7][begin.getPosY()]);
+                        this.squares[end.getPosX() - 1][end.getPosY()].setPiece(null);
                     } else {
-                        rook = this.squares[end.getPozX() + 1][end.getPozY()].getPiece();
-                        this.squares[0][begin.getPozY()].setPiece(rook);
-                        rook.setSquare(this.squares[0][begin.getPozY()]);
-                        this.squares[end.getPozX() + 1][end.getPozY()].setPiece(null);
+                        rook = this.squares[end.getPosX() + 1][end.getPosY()].getPiece();
+                        this.squares[0][begin.getPosY()].setPiece(rook);
+                        rook.setSquare(this.squares[0][begin.getPosY()]);
+                        this.squares[end.getPosX() + 1][end.getPosY()].setPiece(null);
                     }
                     ((King) moved).setWasMotion(false);
                     ((Rook) rook).setWasMotion(false);
@@ -564,31 +565,31 @@ public class Chessboard extends JPanel implements IBoard {
                     ((Rook) moved).setWasMotion(false);
                 } else if (moved.name.equals("Pawn") && last.wasEnPassant()) {
                     Pawn pawn = (Pawn) last.getTakenPiece();
-                    this.squares[end.getPozX()][begin.getPozY()].setPiece(pawn);
-                    pawn.setSquare(this.squares[end.getPozX()][begin.getPozY()]);
+                    this.squares[end.getPosX()][begin.getPosY()].setPiece(pawn);
+                    pawn.setSquare(this.squares[end.getPosX()][begin.getPosY()]);
                 }
                 else if (moved.name.equals("Pawn") && last.getPromotedPiece() != null)
                 {
-                    Piece promoted = this.squares[end.getPozX()][end.getPozY()].getPiece();
+                    Piece promoted = this.squares[end.getPosX()][end.getPosY()].getPiece();
 
                     promoted.setSquare(null);
-                    this.squares[end.getPozX()][end.getPozY()].setPiece(null);
+                    this.squares[end.getPosX()][end.getPosY()].setPiece(null);
                 }
 
                 //check one more move back for en passant
                 Move oneMoveEarlier = this.moves_history.getLastMoveFromHistory();
                 if (oneMoveEarlier != null && oneMoveEarlier.wasPawnTwoFieldsMove()) {
-                    Piece canBeTakenEnPassant = this.squares[oneMoveEarlier.getTo().getPozX()][oneMoveEarlier.getTo().getPozY()].getPiece();
+                    Piece canBeTakenEnPassant = this.squares[oneMoveEarlier.getTo().getPosX()][oneMoveEarlier.getTo().getPosY()].getPiece();
                     if (canBeTakenEnPassant.name.equals("Pawn")) {
                         this.setTwoSquareMovedPawn((Pawn) canBeTakenEnPassant);
                     }
                 }
 
                 if (taken != null && !last.wasEnPassant()) {
-                    this.squares[end.getPozX()][end.getPozY()].setPiece(taken);
-                    taken.setSquare(this.squares[end.getPozX()][end.getPozY()]);
+                    this.squares[end.getPosX()][end.getPosY()].setPiece(taken);
+                    taken.setSquare(this.squares[end.getPosX()][end.getPosY()]);
                 } else {
-                    this.squares[end.getPozX()][end.getPozY()].setPiece(null);
+                    this.squares[end.getPosX()][end.getPosY()].setPiece(null);
                 }
 
                 if (refresh) {
@@ -672,8 +673,8 @@ public class Chessboard extends JPanel implements IBoard {
             for (Iterator it = moves.iterator(); moves != null && it.hasNext(); ) {
                 Square sq = (Square) it.next();
                 g2d.drawImage(able_square,
-                        (sq.getPozX() * (int) square_height) + topLeftPoint.x,
-                        (sq.getPozY() * (int) square_height) + topLeftPoint.y, null);
+                        (sq.getPosX() * (int) square_height) + topLeftPoint.x,
+                        (sq.getPosY() * (int) square_height) + topLeftPoint.y, null);
             }
         }
     }/*--endOf-paint--*/

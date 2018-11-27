@@ -1,4 +1,4 @@
-package com.ovgu.ccd.moves.three;
+package com.ovgu.ccd.jchess;
 
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.moves.IBoard;
@@ -135,15 +135,15 @@ public class ThreePlayerChessboard implements IBoard {
 
     @Override
     public boolean validMove(Square square) {
-        return (0 <= square.getPozX() && square.getPozX() <= 11 &&
-                0 <= square.getPozY() && square.getPozY() <= 11 &&
-                !matrix[square.getPozX()][square.getPozY()].isInvalid() &&
-                matrix[square.getPozX()][square.getPozY()].isEmpty());
+        return (0 <= square.getPosX() && square.getPosX() <= 11 &&
+                0 <= square.getPosY() && square.getPosY() <= 11 &&
+                !matrix[square.getPosX()][square.getPosY()].isInvalid() &&
+                matrix[square.getPosX()][square.getPosY()].isEmpty());
     }
 
     public Square getCurrentRosette(Square square) throws Exception {
-        int x = square.getPozX() + 1;
-        int y = square.getPozY() + 1;
+        int x = square.getPosX() + 1;
+        int y = square.getPosY() + 1;
 
         if (1 <= x && x <= 4 && E <= y && y <= H) { return new Square(3, E, null); }
         if (9 <= x && x <= 12 && E <= y && y <= H) { return new Square(8, E, null); }
@@ -156,100 +156,100 @@ public class ThreePlayerChessboard implements IBoard {
     }
 
     public boolean inSextant(Square square, int x_coord, int y_coord) {
-        return ((1 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 4  && E <= square.getPozY() && square.getPozY() <= H) && (1 <= (x_coord + 1) && (x_coord + 1) <= 4  && E <= y_coord && y_coord <= H) ||
-            (9 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 12 && E <= square.getPozY() && square.getPozY() <= H) && (9 <= (x_coord + 1) && (x_coord + 1) <= 12 && E <= y_coord && y_coord <= H) ||
-            (9 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 12 && I <= square.getPozY() && square.getPozY() <= L) && (9 <= (x_coord + 1) && (x_coord + 1) <= 12 && I <= y_coord && y_coord <= L) ||
-            (5 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 8  && I <= square.getPozY() && square.getPozY() <= L) && (5 <= (x_coord + 1) && (x_coord + 1) <= 8  && I <= y_coord && y_coord <= L) ||
-            (5 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 8  && A <= square.getPozY() && square.getPozY() <= D) && (5 <= (x_coord + 1) && (x_coord + 1) <= 8  && A <= y_coord && y_coord <= D) ||
-            (1 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 4  && A <= square.getPozY() && square.getPozY() <= D) && (1 <= (x_coord + 1) && (x_coord + 1) <= 4  && A <= y_coord && y_coord <= D));
+        return ((1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4  && E <= square.getPosY() && square.getPosY() <= H) && (1 <= (x_coord + 1) && (x_coord + 1) <= 4  && E <= y_coord && y_coord <= H) ||
+            (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12 && E <= square.getPosY() && square.getPosY() <= H) && (9 <= (x_coord + 1) && (x_coord + 1) <= 12 && E <= y_coord && y_coord <= H) ||
+            (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12 && I <= square.getPosY() && square.getPosY() <= L) && (9 <= (x_coord + 1) && (x_coord + 1) <= 12 && I <= y_coord && y_coord <= L) ||
+            (5 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 8  && I <= square.getPosY() && square.getPosY() <= L) && (5 <= (x_coord + 1) && (x_coord + 1) <= 8  && I <= y_coord && y_coord <= L) ||
+            (5 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 8  && A <= square.getPosY() && square.getPosY() <= D) && (5 <= (x_coord + 1) && (x_coord + 1) <= 8  && A <= y_coord && y_coord <= D) ||
+            (1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4  && A <= square.getPosY() && square.getPosY() <= D) && (1 <= (x_coord + 1) && (x_coord + 1) <= 4  && A <= y_coord && y_coord <= D));
     }
 
     public Square getLeftQuadrantSquare(Square square) throws Exception {
-        if (9 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 12) {
-            if (square.getPozY() == I) {
-                return new Square(square.getPozX() + 1, E, null);
+        if (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12) {
+            if (square.getPosY() == I) {
+                return new Square(square.getPosX() + 1, E, null);
             } else {
-                return new Square(square.getPozX() - 4, square.getPozY() + 1, null);
+                return new Square(square.getPosX() - 4, square.getPosY() + 1, null);
             }
         }
 
-        if (1 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 4) {
-            if (square.getPozY() == E) {
-                return new Square(square.getPozX() - 1, I, null);
+        if (1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4) {
+            if (square.getPosY() == E) {
+                return new Square(square.getPosX() - 1, I, null);
             } else {
-                return new Square(square.getPozX() + 1, square.getPozY() - 1, null);
+                return new Square(square.getPosX() + 1, square.getPosY() - 1, null);
             }
         }
 
 
-        if (5 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 8) {
-            if (square.getPozY() == D) {
-                return new Square(square.getPozX() + 1, I, null);
+        if (5 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 8) {
+            if (square.getPosY() == D) {
+                return new Square(square.getPosX() + 1, I, null);
             } else {
-                return new Square(square.getPozX() + 4, square.getPozY() + 1, null);
+                return new Square(square.getPosX() + 4, square.getPosY() + 1, null);
             }
         }
         throw new Exception("Invalid square");
     }
 
     public Square getRightQuadrantSquare(Square square) throws Exception {
-        if (9 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 12) {
-            if (square.getPozY() == E) {
-                return new Square(square.getPozX() + 1, I, null);
+        if (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12) {
+            if (square.getPosY() == E) {
+                return new Square(square.getPosX() + 1, I, null);
             } else {
-                return new Square(square.getPozX() - 4, square.getPozY() + 1, null);
+                return new Square(square.getPosX() - 4, square.getPosY() + 1, null);
             }
         }
 
-        if (1 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 4) {
-            if (square.getPozY() == D) {
-                return new Square(square.getPozX() - 1, E, null);
+        if (1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4) {
+            if (square.getPosY() == D) {
+                return new Square(square.getPosX() - 1, E, null);
             } else {
-                return new Square(square.getPozX() + 1, square.getPozY() - 1, null);
+                return new Square(square.getPosX() + 1, square.getPosY() - 1, null);
             }
         }
 
 
-        if (5 <= (square.getPozX() + 1) && (square.getPozX() + 1) <= 8) {
-            if (square.getPozY() == I) {
-                return new Square(square.getPozX() + 1, D, null);
+        if (5 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 8) {
+            if (square.getPosY() == I) {
+                return new Square(square.getPosX() + 1, D, null);
             } else {
-                return new Square(square.getPozX() + 4, square.getPozY() + 1, null);
+                return new Square(square.getPosX() + 4, square.getPosY() + 1, null);
             }
         }
         throw new Exception("Invalid square");
     }
 
     public Square getSideRosetteTile(Square square, ArrayList<Square> diagonal) throws Exception {
-        if ((E <= square.getPozY()) && (square.getPozY() <= H)) {
-            if ((1 <= square.getPozX() + 1) && (square.getPozX() + 1 <= 4)) {
+        if ((E <= square.getPosY()) && (square.getPosY() <= H)) {
+            if ((1 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 4)) {
                 if (diagonal.contains(new Square(3, F, null))) { return new Square(8, E, null); }
                 if (diagonal.contains(new Square(2, E, null))) { return new Square(3, D, null); }
             }
-            if ((9 <= square.getPozX() + 1) && (square.getPozX() + 1 <= 12)) {
+            if ((9 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 12)) {
                 if (diagonal.contains(new Square(9, E, null))) { return new Square(8, I, null); }
                 if (diagonal.contains(new Square(3, F, null))) { return new Square(3, E, null); }
             }
         }
 
-        if ((A <= square.getPozY()) && (square.getPozY() <= D)) {
-            if ((1 <= square.getPozX() + 1) && (square.getPozX() + 1 <= 4)) {
+        if ((A <= square.getPosY()) && (square.getPosY() <= D)) {
+            if ((1 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 4)) {
                 if (diagonal.contains(new Square(2, D, null))) { return new Square(3, E, null); }
                 if (diagonal.contains(new Square(3, C, null))) { return new Square(4, D, null); }
             }
-            if ((5 <= square.getPozX() + 1) && (square.getPozX() + 1 <= 8)) {
+            if ((5 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 8)) {
                 if (diagonal.contains(new Square(4, C, null))) { return new Square(3, D, null); }
                 if (diagonal.contains(new Square(5, D, null))) { return new Square(4, I, null); }
             }
         }
 
 
-        if ((I <= square.getPozY()) && (square.getPozY() <= L)) {
-            if ((5 <= square.getPozX() + 1) && (square.getPozX() + 1 <= 8)) {
+        if ((I <= square.getPosY()) && (square.getPosY() <= L)) {
+            if ((5 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 8)) {
                 if (diagonal.contains(new Square(5, I, null))) { return new Square(4, D, null);  }
                 if (diagonal.contains(new Square(4, J, null))) { return new Square(8, I, null); }
                 }
-            if ((9 <= square.getPozX() + 1) && (square.getPozX() + 1 <= 12)) {
+            if ((9 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 12)) {
                 if (diagonal.contains(new Square(8, J, null))) { return new Square(3, D, null);  }
                 if (diagonal.contains(new Square(9, I, null))) { return new Square(8, E, null); }
             }
@@ -263,11 +263,11 @@ public class ThreePlayerChessboard implements IBoard {
 
 
     public ArrayList<Square> getDiagonalCenterPositions(Square square) throws Exception {
-        if (WHITE_ROSETTE.contains(new Square(square.getPozX(), square.getPozY(), null))) {
+        if (WHITE_ROSETTE.contains(new Square(square.getPosX(), square.getPosY(), null))) {
             return WHITE_ROSETTE;
         }
 
-        if (BLACK_ROSETTE.contains(new Square(square.getPozX(), square.getPozY(), null))) {
+        if (BLACK_ROSETTE.contains(new Square(square.getPosX(), square.getPosY(), null))) {
             return BLACK_ROSETTE;
         }
 

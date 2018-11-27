@@ -23,11 +23,11 @@ public class StraightMove implements IMove {
         Square currentSquare = piece.getSquare();
 
         for(int i = 0; i <= 11; i++) {
-            Square nextMove = new Square(currentSquare.getPozX(), i, null);
+            Square nextMove = new Square(currentSquare.getPosX(), i, null);
             if (board.validMove(nextMove)) {
                 possibleMoves.add(nextMove);
             }
-            nextMove = new Square(i, currentSquare.getPozY(), null);
+            nextMove = new Square(i, currentSquare.getPosY(), null);
             if (board.validMove(nextMove)) {
                 possibleMoves.add(nextMove);
             }

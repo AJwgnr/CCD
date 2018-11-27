@@ -1,6 +1,7 @@
 package com.ovgu.ccd.moves.three;
 
 import com.ovgu.ccd.applogic.Player;
+import com.ovgu.ccd.jchess.ThreePlayerChessboard;
 import com.ovgu.ccd.pieces.Knight;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.PieceFactory;
@@ -1091,7 +1092,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoRightOneUp();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, knight.getPozY() - 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, knight.getPosY() - 2, null)));
                 board.setPiece(null,  x, y);
             }
         }
@@ -1100,7 +1101,7 @@ public class KnightMoveTest {
             board.setPiece(knight,  x, ThreePlayerChessboard.I);
             moves = new KnightMove(knight, board).twoRightOneUp();
             assertTrue(moves.size() == 1);
-            MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, ThreePlayerChessboard.C, null)));
+            MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, ThreePlayerChessboard.C, null)));
             board.setPiece(null,  x, ThreePlayerChessboard.I);
         }
 
@@ -1108,7 +1109,7 @@ public class KnightMoveTest {
             board.setPiece(knight,  x, ThreePlayerChessboard.J);
             moves = new KnightMove(knight, board).twoRightOneUp();
             assertTrue(moves.size() == 1);
-            MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, ThreePlayerChessboard.D, null)));
+            MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, ThreePlayerChessboard.D, null)));
             board.setPiece(null,  x, ThreePlayerChessboard.J);
         }
 
@@ -1123,7 +1124,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoRightOneUp();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, knight.getPozY() - 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, knight.getPosY() - 2, null)));
                 board.setPiece(null,  x, y);
             }
         }
@@ -1146,7 +1147,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoRightOneUp();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, knight.getPozY() - 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, knight.getPosY() - 2, null)));
                 board.setPiece(null,  x, y);
             }
         }
@@ -1156,7 +1157,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoRightOneUp();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, knight.getPozY() + 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, knight.getPosY() + 2, null)));
                 board.setPiece(null,  x, y);
             }
         }
@@ -1190,7 +1191,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoRightOneUp();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, knight.getPozY() + 5, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, knight.getPosY() + 5, null)));
                 board.setPiece(null,  x, y);
             }
         }
@@ -1217,7 +1218,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoRightOneDown();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, knight.getPozY() + 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, knight.getPosY() + 2, null)));
                 board.setPiece(null,  x, y);
 
             }
@@ -1244,7 +1245,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoRightOneDown();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() + 1, knight.getPozY() - 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() + 1, knight.getPosY() - 2, null)));
                 board.setPiece(null,  x, y);
 
             }
@@ -1258,7 +1259,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoRightOneDown();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() + 1, knight.getPozY() - 6, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() + 1, knight.getPosY() - 6, null)));
                 board.setPiece(null,  x, y);
 
             }
@@ -1272,7 +1273,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoRightOneDown();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() + 1, knight.getPozY() - 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() + 1, knight.getPosY() - 2, null)));
                 board.setPiece(null,  x, y);
 
             }
@@ -1305,7 +1306,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoRightOneDown();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() + 1, knight.getPozY() + 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() + 1, knight.getPosY() + 2, null)));
                 board.setPiece(null,  x, y);
             }
         }
@@ -1314,13 +1315,13 @@ public class KnightMoveTest {
             board.setPiece(knight,  x, ThreePlayerChessboard.E);
             moves = new KnightMove(knight, board).twoRightOneDown();
             assertTrue(moves.size() == 1);
-            MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() + 1, ThreePlayerChessboard.J, null)));
+            MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() + 1, ThreePlayerChessboard.J, null)));
             board.setPiece(null,  x, ThreePlayerChessboard.E);
 
             board.setPiece(knight,  x, ThreePlayerChessboard.F);
             moves = new KnightMove(knight, board).twoRightOneDown();
             assertTrue(moves.size() == 1);
-            MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() + 1, ThreePlayerChessboard.I, null)));
+            MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() + 1, ThreePlayerChessboard.I, null)));
             board.setPiece(null,  x, ThreePlayerChessboard.F);
         }
 
@@ -1329,7 +1330,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoRightOneDown();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() + 1, knight.getPozY() - 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() + 1, knight.getPosY() - 2, null)));
                 board.setPiece(null,  x, y);
             }
         }
@@ -1353,7 +1354,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoLeftOneUp();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() + 1, knight.getPozY() - 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() + 1, knight.getPosY() - 2, null)));
                 board.setPiece(null,  x, y);
             }
         }
@@ -1362,7 +1363,7 @@ public class KnightMoveTest {
             board.setPiece(knight,  3, y);
             moves = new KnightMove(knight, board).twoLeftOneUp();
             assertTrue(moves.size() == 1);
-            MatcherAssert.assertThat(moves, hasItems(new Square(8, knight.getPozY() - 2, null)));
+            MatcherAssert.assertThat(moves, hasItems(new Square(8, knight.getPosY() - 2, null)));
             board.setPiece(null,  3, y);
         }
 
@@ -1370,7 +1371,7 @@ public class KnightMoveTest {
             board.setPiece(knight,  3, y);
             moves = new KnightMove(knight, board).twoLeftOneUp();
             assertTrue(moves.size() == 1);
-            MatcherAssert.assertThat(moves, hasItems(new Square(4, knight.getPozY() - 2, null)));
+            MatcherAssert.assertThat(moves, hasItems(new Square(4, knight.getPosY() - 2, null)));
             board.setPiece(null,  3, y);
         }
 
@@ -1396,7 +1397,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoLeftOneUp();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, knight.getPozY() + 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, knight.getPosY() + 2, null)));
                 board.setPiece(null, x, y);
             }
         }
@@ -1406,14 +1407,14 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoLeftOneUp();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, knight.getPozY() + 6, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, knight.getPosY() + 6, null)));
                 board.setPiece(null, x, y);
             }
 
             board.setPiece(knight,  4, y);
             moves = new KnightMove(knight, board).twoLeftOneUp();
             assertTrue(moves.size() == 1);
-            MatcherAssert.assertThat(moves, hasItems(new Square(8, knight.getPozY() + 6, null)));
+            MatcherAssert.assertThat(moves, hasItems(new Square(8, knight.getPosY() + 6, null)));
             board.setPiece(null, 4, y);
         }
 
@@ -1422,14 +1423,14 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoLeftOneUp();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, knight.getPozY() + 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, knight.getPosY() + 2, null)));
                 board.setPiece(null, x, y);
             }
 
             board.setPiece(knight,  4, y);
             moves = new KnightMove(knight, board).twoLeftOneUp();
             assertTrue(moves.size() == 1);
-            MatcherAssert.assertThat(moves, hasItems(new Square(8, knight.getPozY() + 2, null)));
+            MatcherAssert.assertThat(moves, hasItems(new Square(8, knight.getPosY() + 2, null)));
             board.setPiece(null, 4, y);
         }
 
@@ -1459,14 +1460,14 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoLeftOneUp();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, knight.getPozY() + 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, knight.getPosY() + 2, null)));
                 board.setPiece(null, x, y);
             }
 
             board.setPiece(knight,  8, y);
             moves = new KnightMove(knight, board).twoLeftOneUp();
             assertTrue(moves.size() == 1);
-            MatcherAssert.assertThat(moves, hasItems(new Square(3, knight.getPozY() + 2, null)));
+            MatcherAssert.assertThat(moves, hasItems(new Square(3, knight.getPosY() + 2, null)));
             board.setPiece(null, 8, y);
         }
 
@@ -1474,7 +1475,7 @@ public class KnightMoveTest {
             board.setPiece(knight,  x, ThreePlayerChessboard.J);
             moves = new KnightMove(knight, board).twoLeftOneUp();
             assertTrue(moves.size() == 1);
-            MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, ThreePlayerChessboard.E, null)));
+            MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, ThreePlayerChessboard.E, null)));
             board.setPiece(null, x, ThreePlayerChessboard.J);
         }
 
@@ -1488,7 +1489,7 @@ public class KnightMoveTest {
             board.setPiece(knight,  x, ThreePlayerChessboard.I);
             moves = new KnightMove(knight, board).twoLeftOneUp();
             assertTrue(moves.size() == 1);
-            MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, ThreePlayerChessboard.F, null)));
+            MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, ThreePlayerChessboard.F, null)));
             board.setPiece(null, x, ThreePlayerChessboard.I);
         }
 
@@ -1503,14 +1504,14 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoLeftOneUp();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, knight.getPozY() - 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, knight.getPosY() - 2, null)));
                 board.setPiece(null, x, y);
             }
 
             board.setPiece(knight,  8, y);
             moves = new KnightMove(knight, board).twoLeftOneUp();
             assertTrue(moves.size() == 1);
-            MatcherAssert.assertThat(moves, hasItems(new Square(4, knight.getPozY() - 2, null)));
+            MatcherAssert.assertThat(moves, hasItems(new Square(4, knight.getPosY() - 2, null)));
             board.setPiece(null, 8, y);
         }
     }
@@ -1536,7 +1537,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoLeftOneDown();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() - 1, knight.getPozY() - 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() - 1, knight.getPosY() - 2, null)));
                 board.setPiece(null, x, y);
             }
         }
@@ -1551,7 +1552,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoLeftOneDown();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() + 1, knight.getPozY() + 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() + 1, knight.getPosY() + 2, null)));
                 board.setPiece(null, x, y);
             }
 
@@ -1565,7 +1566,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoLeftOneDown();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() + 1, knight.getPozY() + 6, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() + 1, knight.getPosY() + 6, null)));
                 board.setPiece(null, x, y);
             }
 
@@ -1579,7 +1580,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoLeftOneDown();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() + 1, knight.getPozY() + 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() + 1, knight.getPosY() + 2, null)));
                 board.setPiece(null, x, y);
             }
 
@@ -1606,7 +1607,7 @@ public class KnightMoveTest {
                 board.setPiece(knight,  x, y);
                 moves = new KnightMove(knight, board).twoLeftOneDown();
                 assertTrue(moves.size() == 1);
-                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPozX() + 1, knight.getPozY() + 2, null)));
+                MatcherAssert.assertThat(moves, hasItems(new Square(knight.getPosX() + 1, knight.getPosY() + 2, null)));
                 board.setPiece(null, x, y);
             }
 
