@@ -53,7 +53,6 @@ public class GUI {
         try {
             Properties prop = GUI.getConfigFile();
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
-            System.out.println("Load Image from Theme: " + prop.getProperty("THEME"));
             URL imageLink = loader.getResource("theme/" + prop.getProperty("THEME", "default") + "/images/" + name);
             img = tk.getImage(imageLink);
 

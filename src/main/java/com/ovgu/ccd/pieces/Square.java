@@ -20,13 +20,17 @@
  */
 package com.ovgu.ccd.pieces;
 
+import java.util.Objects;
+
 /**
  * Class to represent a chessboard square
  */
 public class Square {
+    private boolean invalid = false;
     private int posX;
     private int posY;
     private Piece piece = null;
+
 
     /**
      * Initializes a Square on the chessboard with the
@@ -64,7 +68,7 @@ public class Square {
     public void setPiece(Piece piece) {
         this.piece = piece;
         if (piece != null) {
-            this.piece.square = this;
+            this.piece.setSquare(this);
         }
     }
 
@@ -80,7 +84,12 @@ public class Square {
         if (!(o instanceof Square)) return false;
 
         Square square = (Square) o;
-        return square.getPosX() == posX && square.getPosY() == posY && square.getPiece() == piece;
+        return square.getPosX() == posX && square.getPosY() == posY;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(posX, posY);
     }
 
     /**
@@ -106,4 +115,13 @@ public class Square {
         return piece;
     }
 
+    public boolean isEmpty() { return piece == null; }
+
+    public boolean isInvalid() {
+        return invalid;
+    }
+
+    public void setInvalid(boolean value) {
+        this.invalid = value;
+    }
 }
