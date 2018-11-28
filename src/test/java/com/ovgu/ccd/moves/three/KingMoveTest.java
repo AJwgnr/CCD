@@ -106,7 +106,7 @@ public class KingMoveTest {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
 
-        board.getSquare(3, ThreePlayerChessboard.F).setPiece(king);
+        board.setPiece(king, 3, ThreePlayerChessboard.F);
         ArrayList<Square> moves = new KingMove(king, board).moves();
 
         Assert.assertEquals(8, moves.size());
@@ -130,7 +130,7 @@ public class KingMoveTest {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
 
-        board.getSquare(9, ThreePlayerChessboard.E).setPiece(king);
+        board.setPiece(king, 9, ThreePlayerChessboard.E);
         ArrayList<Square> moves = new KingMove(king, board).moves();
 
         Assert.assertEquals(8, moves.size());
@@ -155,7 +155,7 @@ public class KingMoveTest {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
 
-        board.getSquare(3, ThreePlayerChessboard.D).setPiece(king);
+        board.setPiece(king, 3, ThreePlayerChessboard.D);
         ArrayList<Square> moves = new KingMove(king, board).moves();
 
         Assert.assertEquals(9, moves.size());

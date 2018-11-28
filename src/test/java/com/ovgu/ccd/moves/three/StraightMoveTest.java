@@ -20,7 +20,7 @@ public class StraightMoveTest {
     public void testMovesIn3E() {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
-        board.getSquare(3, ThreePlayerChessboard.E).setPiece(rook);
+        board.setPiece(rook, 3, ThreePlayerChessboard.E);
         ArrayList<Square> moves = new StraightMove(rook, board).moves();
 
         Assert.assertEquals(14, moves.size());
@@ -50,7 +50,7 @@ public class StraightMoveTest {
     public void testMovesIn2G() {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
-        board.getSquare(2, ThreePlayerChessboard.G).setPiece(rook);
+        board.setPiece(rook, 2, ThreePlayerChessboard.G);
         ArrayList<Square> moves = new StraightMove(rook, board).moves();
 
         Assert.assertEquals(14, moves.size());
@@ -79,7 +79,7 @@ public class StraightMoveTest {
     public void testMovesIn9J() {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
-        board.getSquare(9, ThreePlayerChessboard.J).setPiece(rook);
+        board.setPiece(rook, 9, ThreePlayerChessboard.J);
         ArrayList<Square> moves = new StraightMove(rook, board).moves();
 
         Assert.assertEquals(14, moves.size());
