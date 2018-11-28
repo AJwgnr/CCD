@@ -23,6 +23,7 @@ package com.ovgu.ccd.pieces;
 import com.ovgu.ccd.applogic.ResourceLoader;
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.GUI;
+import com.ovgu.ccd.moves.IBoard;
 import com.ovgu.ccd.applogic.Player;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class Knight extends Piece {
     public static short value = 3;
 
 
-    protected Knight(Chessboard chessboard, Player player) {
+    protected Knight(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "N";
         imageWhite = ResourceLoader.loadImage("Knight-W.png");
@@ -67,6 +68,7 @@ public class Knight extends Piece {
 
         int newX;
         int newY;
+        Square square = getSquare();
 
         if (validMove(newX = square.getPosX() - 2, newY = square.getPosY() + 1))
             moves.add(chessboard.getSquare(newX, newY));
@@ -101,6 +103,6 @@ public class Knight extends Piece {
         }
 
         Square nextPosition = chessboard.getSquare(newX, newY);
-        return (canMoveTo(nextPosition) && (chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(square, nextPosition)));
+        return (canMoveTo(nextPosition) && (chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(getSquare(), nextPosition)));
     }
 }

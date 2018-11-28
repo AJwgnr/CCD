@@ -23,9 +23,9 @@ package com.ovgu.ccd.pieces;
 import com.ovgu.ccd.applogic.ResourceLoader;
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.GUI;
+import com.ovgu.ccd.moves.IBoard;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.moves.DiagonalMoves;
-
 
 import java.util.ArrayList;
 
@@ -48,7 +48,7 @@ public class Bishop extends Piece {
 
     public static short value = 3;
 
-    protected Bishop(Chessboard chessboard, Player player) {
+    protected Bishop(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "B";
         imageWhite = ResourceLoader.loadImage("Bishop-W.png");

@@ -18,9 +18,9 @@ public class DiagonalMoves {
      * @param piece
      * @param board
      */
-    public DiagonalMoves(Piece piece, Chessboard board) {
+    public DiagonalMoves(Piece piece, IBoard board) {
         this.piece = piece;
-        this.board = board;
+        this.board = (Chessboard) board;
     }
 
     /**
@@ -28,7 +28,7 @@ public class DiagonalMoves {
      */
     public ArrayList all() {
         ArrayList moves = new ArrayList();
-        Square square = piece.square;
+        Square square = piece.getSquare();
 
         //left
         for (int x = square.getPosX() - 1, y = square.getPosY() + 1; !piece.outsideOfBoard(x, y); --x, ++y) {
@@ -92,6 +92,6 @@ public class DiagonalMoves {
      * @return
      */
     private boolean validMove(Square nextPosition) {
-        return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(piece.square, nextPosition);
+        return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(piece.getSquare(), nextPosition);
     }
 }

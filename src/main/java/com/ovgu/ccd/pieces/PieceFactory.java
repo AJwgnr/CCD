@@ -1,7 +1,7 @@
 package com.ovgu.ccd.pieces;
 
 import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.gui.Chessboard;
+import com.ovgu.ccd.moves.IBoard;
 
 /**
  *
@@ -19,7 +19,7 @@ public class PieceFactory {
      * @param pieceType
      * @return
      */
-    public static Piece getPiece(Chessboard board, Player player, Piece.PieceTypes pieceType) {
+    public static Piece getPiece(IBoard board, Player player, Piece.PieceTypes pieceType) {
         String piece = pieceType.toString();
         switch (piece) {
             case BISHOP:

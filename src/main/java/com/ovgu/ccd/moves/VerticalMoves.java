@@ -18,9 +18,9 @@ public class VerticalMoves {
      * @param piece
      * @param board
      */
-    public VerticalMoves(Piece piece, Chessboard board) {
+    public VerticalMoves(Piece piece, IBoard board) {
         this.piece = piece;
-        this.board = board;
+        this.board = (Chessboard) board;
     }
 
     /**
@@ -28,7 +28,7 @@ public class VerticalMoves {
      */
     public ArrayList all() {
         ArrayList moves = new ArrayList();
-        Square square = piece.square;
+        Square square = piece.getSquare();
 
         //up
         for (int i = square.getPosY() + 1; i <= 7; ++i) {
@@ -66,6 +66,6 @@ public class VerticalMoves {
      * @return
      */
     private boolean validMove(Square nextPosition) {
-        return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(piece.square, nextPosition);
+        return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(piece.getSquare(), nextPosition);
     }
 }

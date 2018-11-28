@@ -511,11 +511,11 @@ public class Game extends JPanel implements MouseListener, ComponentListener
                         King king;
                         if (this.activePlayer == settings.getPlayerOne())
                         {
-                            king = chessboard.kingWhite;
+                            king = chessboard.getKingWhite();
                         }
                         else
                         {
-                            king = chessboard.kingBlack;
+                            king = chessboard.getKingBlack();
                         }
 
                         switch (king.isCheckmatedOrStalemated())

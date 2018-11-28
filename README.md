@@ -22,7 +22,21 @@ Stick to the gitflow branching Model! Use the jira ticket in the branch names to
 * **bugfix-DEEP-XX-XXXXX**: forked from the master branch and contains important bug fixes
 
 ## Tests:
-Every implemented feature should have a corresponding Test! Meaning that there should be at least one Test class for every feature branch.
+Tests are highly significant investigations to provide developers and even stakeholders with certain information about the software.
+Therefore, every implemented class should have a corresponding test class.
+That test class should comprise as many testing methods as are necessary to ensure a proper behavior of the specific class.
+In general, test methods should exactly check one particular property or concept. Furthermore, they should be written in an reproducible and independent way (in terms of eg. other test classes). 
+
+#### Subsystem Tests
+To verify that particular components are working correctly use [JUnit](https://junit.org/junit5/) as an unit test framework for testing implemented methods.
+When the usage of a mocking framework is convenient, we decided to use [Mockito](https://site.mockito.org/) to mock certain objects.
+These tests will be automatically executed after a build request.
+
+#### System Integration Tests
+The CI-Server will check the test output of the system and thus guarantee that all components are working correctly together. 
+
+#### Test Documentation
+The CI-Server keeps also track of the test history.
 
 ## CI:
 The [CI system](https://ccd.ovgu.de/bamboo/allPlans.action) has one general execution plan for building and testing the software on the master branch. All forked branches automatically create a new execution plan on the CI server which inherits all tasks from the general execution plan. The CI server checks the test, the checkstyle and pmd conformance.
