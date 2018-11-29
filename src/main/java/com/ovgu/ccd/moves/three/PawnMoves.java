@@ -9,11 +9,11 @@ import com.ovgu.ccd.pieces.Square;
 
 import java.util.ArrayList;
 
-public class PawnMove implements IMove {
+public class PawnMoves implements IMove {
     private Piece piece;
     private ThreePlayerChessboard board;
 
-    PawnMove(Piece piece, IBoard board) {
+    public PawnMoves(Piece piece, IBoard board) {
         this.piece = piece;
         this.board = (ThreePlayerChessboard) board;
     }

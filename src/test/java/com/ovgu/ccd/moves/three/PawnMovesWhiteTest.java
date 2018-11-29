@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.hasItems;
 
-public class PawnMoveWhiteTest {
+public class PawnMovesWhiteTest {
     Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
 
     @Test
@@ -23,7 +23,7 @@ public class PawnMoveWhiteTest {
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         board.getSquare(1, ThreePlayerChessboard.A).setPiece(pawn);
 
-        ArrayList<Square> moves = new PawnMove(pawn, board).moves();
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(2, moves.size());
         MatcherAssert.assertThat(
                 moves,
@@ -40,7 +40,7 @@ public class PawnMoveWhiteTest {
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         board.getSquare(3, ThreePlayerChessboard.A).setPiece(pawn);
 
-        ArrayList<Square> moves = new PawnMove(pawn, board).moves();
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
         MatcherAssert.assertThat(
                 moves,
@@ -56,7 +56,7 @@ public class PawnMoveWhiteTest {
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         board.getSquare(4, ThreePlayerChessboard.A).setPiece(pawn);
 
-        ArrayList<Square> moves = new PawnMove(pawn, board).moves();
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
         MatcherAssert.assertThat(
                 moves,
@@ -72,7 +72,7 @@ public class PawnMoveWhiteTest {
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         board.getSquare(2, ThreePlayerChessboard.H).setPiece(pawn);
 
-        ArrayList<Square> moves = new PawnMove(pawn, board).moves();
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
         MatcherAssert.assertThat(
                 moves,
@@ -88,7 +88,7 @@ public class PawnMoveWhiteTest {
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         board.getSquare(3, ThreePlayerChessboard.H).setPiece(pawn);
 
-        ArrayList<Square> moves = new PawnMove(pawn, board).moves();
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
         MatcherAssert.assertThat(
                 moves,
@@ -104,7 +104,7 @@ public class PawnMoveWhiteTest {
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         board.getSquare(8, ThreePlayerChessboard.I).setPiece(pawn);
 
-        ArrayList<Square> moves = new PawnMove(pawn, board).moves();
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
         MatcherAssert.assertThat(
                 moves,
@@ -120,7 +120,7 @@ public class PawnMoveWhiteTest {
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         board.getSquare(4, ThreePlayerChessboard.I).setPiece(pawn);
 
-        ArrayList<Square> moves = new PawnMove(pawn, board).moves();
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
         MatcherAssert.assertThat(
                 moves,

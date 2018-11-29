@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.hasItems;
 
-public class PawnMoveGreyTest {
+public class PawnMovesGreyTest {
 
     Player greyPlayer = new Player("John", Player.Colors.GREY.name());
 
@@ -24,7 +24,7 @@ public class PawnMoveGreyTest {
         Piece pawn = PieceFactory.getPiece(board, greyPlayer, Piece.PieceTypes.PAWN);
         board.getSquare(10, ThreePlayerChessboard.E).setPiece(pawn);
 
-        ArrayList<Square> moves = new PawnMove(pawn, board).moves();
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(2, moves.size());
         MatcherAssert.assertThat(
                 moves,
@@ -41,7 +41,7 @@ public class PawnMoveGreyTest {
         Piece pawn = PieceFactory.getPiece(board, greyPlayer, Piece.PieceTypes.PAWN);
         board.getSquare(8, ThreePlayerChessboard.E).setPiece(pawn);
 
-        ArrayList<Square> moves = new PawnMove(pawn, board).moves();
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
         MatcherAssert.assertThat(
                 moves,
@@ -57,7 +57,7 @@ public class PawnMoveGreyTest {
         Piece pawn = PieceFactory.getPiece(board, greyPlayer, Piece.PieceTypes.PAWN);
         board.getSquare(3, ThreePlayerChessboard.E).setPiece(pawn);
 
-        ArrayList<Square> moves = new PawnMove(pawn, board).moves();
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
         MatcherAssert.assertThat(
                 moves,
@@ -73,7 +73,7 @@ public class PawnMoveGreyTest {
         Piece pawn = PieceFactory.getPiece(board, greyPlayer, Piece.PieceTypes.PAWN);
         board.getSquare(9, ThreePlayerChessboard.I).setPiece(pawn);
 
-        ArrayList<Square> moves = new PawnMove(pawn, board).moves();
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
         MatcherAssert.assertThat(
                 moves,
@@ -89,7 +89,7 @@ public class PawnMoveGreyTest {
         Piece pawn = PieceFactory.getPiece(board, greyPlayer, Piece.PieceTypes.PAWN);
         board.getSquare(8, ThreePlayerChessboard.K).setPiece(pawn);
 
-        ArrayList<Square> moves = new PawnMove(pawn, board).moves();
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
         MatcherAssert.assertThat(
                 moves,
@@ -105,7 +105,7 @@ public class PawnMoveGreyTest {
         Piece pawn = PieceFactory.getPiece(board, greyPlayer, Piece.PieceTypes.PAWN);
         board.getSquare(4, ThreePlayerChessboard.K).setPiece(pawn);
 
-        ArrayList<Square> moves = new PawnMove(pawn, board).moves();
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
         MatcherAssert.assertThat(
                 moves,
@@ -121,7 +121,7 @@ public class PawnMoveGreyTest {
         Piece pawn = PieceFactory.getPiece(board, greyPlayer, Piece.PieceTypes.PAWN);
         board.getSquare(4, ThreePlayerChessboard.D).setPiece(pawn);
 
-        ArrayList<Square> moves = new PawnMove(pawn, board).moves();
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
         MatcherAssert.assertThat(
                 moves,
@@ -137,7 +137,7 @@ public class PawnMoveGreyTest {
         Piece pawn = PieceFactory.getPiece(board, greyPlayer, Piece.PieceTypes.PAWN);
         board.getSquare(3, ThreePlayerChessboard.D).setPiece(pawn);
 
-        ArrayList<Square> moves = new PawnMove(pawn, board).moves();
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
         MatcherAssert.assertThat(
                 moves,
