@@ -103,4 +103,35 @@ public class StraightMovesTest {
                 )
         );
     }
+
+
+    @Test
+    public void testMovesIn3EBlockedByPieces() {
+        IBoard board = new ThreePlayerChessboard();
+        Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
+        board.getSquare(3, ThreePlayerChessboard.E).setPiece(rook);
+
+        Piece pawn1 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.getSquare(1, ThreePlayerChessboard.E).setPiece(pawn1);
+        Piece pawn2 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.getSquare(3, ThreePlayerChessboard.G).setPiece(pawn2);
+        Piece pawn3 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.getSquare(3, ThreePlayerChessboard.C).setPiece(pawn3);
+        Piece pawn4 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.getSquare(10, ThreePlayerChessboard.E).setPiece(pawn4);
+
+        ArrayList<Square> moves = new StraightMoves(rook, board).moves();
+
+        Assert.assertEquals(5, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(3, ThreePlayerChessboard.D, null),
+                        new Square(3, ThreePlayerChessboard.F, null),
+                        new Square(2, ThreePlayerChessboard.E, null),
+                        new Square(8, ThreePlayerChessboard.E, null),
+                        new Square(9, ThreePlayerChessboard.E, null)
+                )
+        );
+    }
 }

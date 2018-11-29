@@ -1,5 +1,6 @@
 package com.ovgu.ccd.moves.three;
 
+import com.ovgu.ccd.jchess.ThreePlayerChessboard;
 import com.ovgu.ccd.moves.IBoard;
 import com.ovgu.ccd.moves.IMove;
 import com.ovgu.ccd.pieces.Piece;
@@ -11,25 +12,58 @@ import java.util.Arrays;
 public class StraightMoves implements IMove {
 
     private Piece piece;
-    private IBoard board;
+    private ThreePlayerChessboard board;
 
     public StraightMoves(Piece piece, IBoard board) {
         this.piece = piece;
-        this.board = board;
+        this.board = (ThreePlayerChessboard) board;
     }
 
     public ArrayList<Square> moves() {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square currentSquare = piece.getSquare();
+        Square nextMove;
 
-        for(int i = 0; i <= 11; i++) {
-            Square nextMove = new Square(currentSquare.getPosX(), i, null);
-            if (board.validMove(nextMove)) {
-                possibleMoves.add(nextMove);
+        for(int i = currentSquare.getPosX(); i <= 11; i++) {
+            nextMove = new Square(currentSquare.getPosX(), i, null);
+            if (!nextMove.equals(currentSquare)) {
+                if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
+                    && !board.occupiedByOther(piece, nextMove)) { break; }
+                if (board.validMove(nextMove)) {
+                    possibleMoves.add(nextMove);
+                }
             }
+        }
+        for(int i = currentSquare.getPosX(); i >= 0; i--) {
+            nextMove = new Square(currentSquare.getPosX(), i, null);
+            if (!nextMove.equals(currentSquare))
+                if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
+                    && !board.occupiedByOther(piece, nextMove)) { break; }{
+                if (board.validMove(nextMove)) {
+                    possibleMoves.add(nextMove);
+                }
+            }
+        }
+
+        for(int i = currentSquare.getPosY(); i >= ThreePlayerChessboard.A; i--) {
             nextMove = new Square(i, currentSquare.getPosY(), null);
-            if (board.validMove(nextMove)) {
-                possibleMoves.add(nextMove);
+            if (!nextMove.equals(currentSquare)) {
+                if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
+                    && !board.occupiedByOther(piece, nextMove)) { break; }
+                if (board.validMove(nextMove)) {
+                    possibleMoves.add(nextMove);
+                }
+            }
+        }
+
+        for(int i = currentSquare.getPosY(); i <= ThreePlayerChessboard.L; i++) {
+            nextMove = new Square(i, currentSquare.getPosY(), null);
+            if (!nextMove.equals(currentSquare)) {
+                if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
+                    && !board.occupiedByOther(piece, nextMove)) { break; }
+                if (board.validMove(nextMove)) {
+                    possibleMoves.add(nextMove);
+                }
             }
         }
 

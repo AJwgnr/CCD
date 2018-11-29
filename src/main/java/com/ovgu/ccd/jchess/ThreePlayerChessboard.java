@@ -274,6 +274,11 @@ public class ThreePlayerChessboard implements IBoard {
         throw new Exception("Invalid square");
     }
 
+    public boolean occupiedByOther(Piece piece, Square square) {
+        Square nextMove =  matrix[square.getPosX()][square.getPosY()];
+        return (nextMove.getPiece() != null && nextMove.getPiece().getPlayer() != piece.getPlayer());
+    }
+
     // TODO: Remove me
     @Override
     public King myKing(Player.Colors color)
