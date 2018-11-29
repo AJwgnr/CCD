@@ -12,7 +12,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import static org.hamcrest.CoreMatchers.hasItems;
 
-public class StraightMoveTest {
+public class StraightMovesTest {
 
     Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
 
@@ -21,7 +21,7 @@ public class StraightMoveTest {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
         board.getSquare(3, ThreePlayerChessboard.E).setPiece(rook);
-        ArrayList<Square> moves = new StraightMove(rook, board).moves();
+        ArrayList<Square> moves = new StraightMoves(rook, board).moves();
 
         Assert.assertEquals(14, moves.size());
         MatcherAssert.assertThat(
@@ -51,7 +51,7 @@ public class StraightMoveTest {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
         board.getSquare(2, ThreePlayerChessboard.G).setPiece(rook);
-        ArrayList<Square> moves = new StraightMove(rook, board).moves();
+        ArrayList<Square> moves = new StraightMoves(rook, board).moves();
 
         Assert.assertEquals(14, moves.size());
         MatcherAssert.assertThat(
@@ -80,7 +80,7 @@ public class StraightMoveTest {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
         board.getSquare(9, ThreePlayerChessboard.J).setPiece(rook);
-        ArrayList<Square> moves = new StraightMove(rook, board).moves();
+        ArrayList<Square> moves = new StraightMoves(rook, board).moves();
 
         Assert.assertEquals(14, moves.size());
         MatcherAssert.assertThat(

@@ -9,11 +9,11 @@ import com.ovgu.ccd.pieces.Square;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class KnightMove implements IMove {
+public class KnightMoves implements IMove {
     private Piece piece;
     private ThreePlayerChessboard board;
 
-    KnightMove(Piece piece, IBoard board) {
+    public KnightMoves(Piece piece, IBoard board) {
         this.piece = piece;
         this.board = (ThreePlayerChessboard) board;
     }

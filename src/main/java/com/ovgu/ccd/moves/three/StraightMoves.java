@@ -8,12 +8,12 @@ import com.ovgu.ccd.pieces.Square;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class StraightMove implements IMove {
+public class StraightMoves implements IMove {
 
     private Piece piece;
     private IBoard board;
 
-    StraightMove(Piece piece, IBoard board) {
+    public StraightMoves(Piece piece, IBoard board) {
         this.piece = piece;
         this.board = board;
     }
