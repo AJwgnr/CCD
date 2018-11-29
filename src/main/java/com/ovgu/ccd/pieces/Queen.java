@@ -20,7 +20,9 @@
  */
 package com.ovgu.ccd.pieces;
 
+
 import com.ovgu.ccd.applogic.IBoard;
+import com.ovgu.ccd.applogic.ResourceLoader;
 import com.ovgu.ccd.moves.DiagonalMoves;
 import com.ovgu.ccd.moves.HorizontalMoves;
 import com.ovgu.ccd.moves.VerticalMoves;
@@ -53,8 +55,8 @@ public class Queen extends Piece {
     protected Queen(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "Q";
-        imageWhite = GUI.loadImage("Queen-W.png");
-        imageBlack = GUI.loadImage("Queen-B.png");
+        imageWhite = ResourceLoader.loadImage("Queen-W.png");
+        imageBlack = ResourceLoader.loadImage("Queen-B.png");
         this.setImage();
     }
 

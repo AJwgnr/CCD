@@ -21,11 +21,10 @@
 
 package com.ovgu.ccd.pieces;
 
-
 import com.ovgu.ccd.applogic.IBoard;
+import com.ovgu.ccd.applogic.ResourceLoader;
 import com.ovgu.ccd.moves.HorizontalMoves;
 import com.ovgu.ccd.moves.VerticalMoves;
-import com.ovgu.ccd.gui.GUI;
 import com.ovgu.ccd.applogic.Player;
 
 import java.util.ArrayList;
@@ -52,8 +51,8 @@ public class Rook extends Piece {
     protected Rook(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "R";
-        imageWhite = GUI.loadImage("Rook-W.png");
-        imageBlack = GUI.loadImage("Rook-B.png");
+        imageWhite = ResourceLoader.loadImage("Rook-W.png");
+        imageBlack = ResourceLoader.loadImage("Rook-B.png");
         this.setImage();
     }
 
