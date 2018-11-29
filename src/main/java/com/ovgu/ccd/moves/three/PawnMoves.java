@@ -46,7 +46,10 @@ public class PawnMoves implements IMove {
             }
         }
         if (piece.getPosX() + 1 == 2) {
-            possibleMoves.add(new Square(3, piece.getPosY(), null));
+            Square twoStepMove = new Square(3, piece.getPosY(), null);
+            if (board.validMove(new Square(2, piece.getPosY(), null)) && board.validMove(twoStepMove)) {
+                possibleMoves.add(twoStepMove);
+            }
         }
         if (5 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 12) {
             move = new Square(piece.getPosX() + 1, piece.getPosY(), null);
@@ -77,7 +80,10 @@ public class PawnMoves implements IMove {
             }
         }
         if (piece.getPosX() + 1 == 7) {
-            possibleMoves.add(new Square(4, piece.getPosY(), null));
+            Square twoStepMove = new Square(4, piece.getPosY(), null);
+            if (board.validMove(new Square(5, piece.getPosY(), null)) && board.validMove(twoStepMove)) {
+                possibleMoves.add(twoStepMove);
+            }
         }
         if (9 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 12) {
             move = new Square(piece.getPosX() + 1, piece.getPosY(), null);
@@ -111,7 +117,10 @@ public class PawnMoves implements IMove {
             }
         }
         if (piece.getPosX() + 1 == 11) {
-            possibleMoves.add(new Square(8, piece.getPosY(), null));
+            Square twoStepMove = new Square(8, piece.getPosY(), null);
+            if (board.validMove(new Square(9, piece.getPosY(), null)) && board.validMove(twoStepMove)) {
+                possibleMoves.add(twoStepMove);
+            }
         }
 
         if (board.validMove(move)) {
