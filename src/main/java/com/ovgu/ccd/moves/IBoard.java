@@ -3,13 +3,14 @@ package com.ovgu.ccd.moves;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Pawn;
+import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
 import java.awt.*;
 
 public interface IBoard {
 
-    boolean validMove(Square square);
+    boolean validMove(Square square, Piece piece);
 
     King getKingWhite();
 

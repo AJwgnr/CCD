@@ -851,7 +851,7 @@ public class Chessboard extends JPanel implements IBoard {
 
     // TODO: Remove me
     @Override
-    public boolean validMove(Square square) {
+    public boolean validMove(Square square, Piece piece) {
         return false;
     }
 

@@ -39,12 +39,12 @@ public class DiagonalMoves implements IMove {
 
             // Here it's ok to check both ways, we are adding redundant moves but it's ok.
             Square leftSide = board.getLeftQuadrantSquare(side);
-            if (board.validMove(leftSide)) {
+            if (board.validMove(leftSide, piece)) {
                 possibleMoves.addAll(neighborSextantMoves(leftSide));
             }
 
             Square rightSide = board.getRightQuadrantSquare(side);
-            if (board.validMove(rightSide)){
+            if (board.validMove(rightSide, piece)){
                 possibleMoves.addAll(neighborSextantMoves(rightSide));
             }
         }
@@ -114,7 +114,7 @@ public class DiagonalMoves implements IMove {
             }
 
             Square nextMove = new Square(xCoord, yCoord, null);
-            if (board.validMove(nextMove) && board.inSextant(square, xCoord, yCoord)) {
+            if (board.validMove(nextMove, piece) && board.inSextant(square, xCoord, yCoord)) {
                 possibleMoves.add(nextMove);
             }
         }
@@ -142,7 +142,7 @@ public class DiagonalMoves implements IMove {
             }
             
             Square nextMove = new Square(xCoord, yCoord, null);
-            if (board.validMove(nextMove) && board.inSextant(square, xCoord, yCoord)) {
+            if (board.validMove(nextMove, piece) && board.inSextant(square, xCoord, yCoord)) {
                 possibleMoves.add(nextMove);
             }
         }
@@ -171,7 +171,7 @@ public class DiagonalMoves implements IMove {
             }
 
             Square nextMove = new Square(xCoord, yCoord, null);
-            if (board.validMove(nextMove) && board.inSextant(square, xCoord, yCoord)) {
+            if (board.validMove(nextMove, piece) && board.inSextant(square, xCoord, yCoord)) {
                 possibleMoves.add(nextMove);
             }
         }
@@ -194,7 +194,7 @@ public class DiagonalMoves implements IMove {
             }
             
             Square nextMove = new Square(xCoord, yCoord, null);
-            if (board.validMove(nextMove) && board.inSextant(square, xCoord, yCoord)) {
+            if (board.validMove(nextMove, piece) && board.inSextant(square, xCoord, yCoord)) {
                 possibleMoves.add(nextMove);
             }
         }
@@ -207,7 +207,7 @@ public class DiagonalMoves implements IMove {
 
         ArrayList<Square> squares = board.getDiagonalCenterPositions(currentRosette);
         for (Square square : squares) {
-            if (board.validMove(square)) {
+            if (board.validMove(square, piece)) {
                 possibleMoves.add(square);
                 possibleMoves.addAll(diagonal(square));
             }
@@ -219,7 +219,7 @@ public class DiagonalMoves implements IMove {
     private ArrayList<Square> neighborSextantMoves(Square square) {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
-        if (board.validMove(square)) {
+        if (board.validMove(square, piece)) {
             possibleMoves.add(square);
             possibleMoves.addAll(diagonal(square));
         }

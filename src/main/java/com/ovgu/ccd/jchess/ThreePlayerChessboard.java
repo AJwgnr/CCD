@@ -134,11 +134,11 @@ public class ThreePlayerChessboard implements IBoard {
     }
 
     @Override
-    public boolean validMove(Square square) {
+    public boolean validMove(Square square, Piece piece) {
         return (0 <= square.getPosX() && square.getPosX() <= 11 &&
                 0 <= square.getPosY() && square.getPosY() <= 11 &&
                 !matrix[square.getPosX()][square.getPosY()].isInvalid() &&
-                matrix[square.getPosX()][square.getPosY()].isEmpty());
+                (matrix[square.getPosX()][square.getPosY()].isEmpty() || occupiedByOther(piece, square)));
     }
 
     public Square getCurrentRosette(Square square) throws Exception {
@@ -276,7 +276,7 @@ public class ThreePlayerChessboard implements IBoard {
 
     public boolean occupiedByOther(Piece piece, Square square) {
         Square nextMove =  matrix[square.getPosX()][square.getPosY()];
-        return (nextMove.getPiece() != null && nextMove.getPiece().getPlayer() != piece.getPlayer());
+        return (!nextMove.isInvalid() && nextMove.getPiece() != null && nextMove.getPiece().getPlayer() != piece.getPlayer());
     }
 
     // TODO: Remove me

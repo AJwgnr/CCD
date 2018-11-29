@@ -1931,4 +1931,29 @@ public class KnightMovesTest {
         );
         board.setPiece(null, 3, ThreePlayerChessboard.H);
     }
+
+    @Test
+    public void testMoves3EBlockedByPieces() throws Exception {
+        ArrayList<Square> moves;
+        board.setPiece(knight,  3, ThreePlayerChessboard.E);
+        Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.getSquare(1, ThreePlayerChessboard.D).setPiece(pawn);
+        board.getSquare(9, ThreePlayerChessboard.I).setPiece(pawn);
+        board.getSquare(8, ThreePlayerChessboard.J).setPiece(pawn);
+
+        moves = new KnightMoves(knight, board).moves();
+        assertTrue(moves.size() == 7);
+        MatcherAssert.assertThat(
+                moves, hasItems(
+                        new Square(1, ThreePlayerChessboard.F, null),
+                        new Square(2, ThreePlayerChessboard.G, null),
+                        new Square(8, ThreePlayerChessboard.G, null),
+                        new Square(9, ThreePlayerChessboard.F, null),
+                        new Square(2, ThreePlayerChessboard.C, null),
+                        new Square(4, ThreePlayerChessboard.C, null),
+                        new Square(5, ThreePlayerChessboard.D, null)
+                )
+        );
+        board.setPiece(null, 3, ThreePlayerChessboard.E);
+    }
 }

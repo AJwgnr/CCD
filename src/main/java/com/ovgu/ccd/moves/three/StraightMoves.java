@@ -29,7 +29,7 @@ public class StraightMoves implements IMove {
             if (!nextMove.equals(currentSquare)) {
                 if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
                     && !board.occupiedByOther(piece, nextMove)) { break; }
-                if (board.validMove(nextMove)) {
+                if (board.validMove(nextMove, piece)) {
                     possibleMoves.add(nextMove);
                 }
             }
@@ -39,7 +39,7 @@ public class StraightMoves implements IMove {
             if (!nextMove.equals(currentSquare))
                 if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
                     && !board.occupiedByOther(piece, nextMove)) { break; }{
-                if (board.validMove(nextMove)) {
+                if (board.validMove(nextMove, piece)) {
                     possibleMoves.add(nextMove);
                 }
             }
@@ -50,7 +50,7 @@ public class StraightMoves implements IMove {
             if (!nextMove.equals(currentSquare)) {
                 if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
                     && !board.occupiedByOther(piece, nextMove)) { break; }
-                if (board.validMove(nextMove)) {
+                if (board.validMove(nextMove, piece)) {
                     possibleMoves.add(nextMove);
                 }
             }
@@ -61,7 +61,7 @@ public class StraightMoves implements IMove {
             if (!nextMove.equals(currentSquare)) {
                 if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
                     && !board.occupiedByOther(piece, nextMove)) { break; }
-                if (board.validMove(nextMove)) {
+                if (board.validMove(nextMove, piece)) {
                     possibleMoves.add(nextMove);
                 }
             }

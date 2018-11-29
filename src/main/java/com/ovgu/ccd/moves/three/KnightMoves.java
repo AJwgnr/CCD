@@ -74,7 +74,7 @@ public class KnightMoves implements IMove {
                 move = new Square(piece.getPosX() + 1, piece.getPosY() + 5, null);
             }
         }
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -112,7 +112,7 @@ public class KnightMoves implements IMove {
                 move = new Square(piece.getPosX() + 1, piece.getPosY() + 2, null);
             }
         }
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -196,7 +196,7 @@ public class KnightMoves implements IMove {
             }
         }
 
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -281,7 +281,7 @@ public class KnightMoves implements IMove {
             }
         }
 
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -375,7 +375,7 @@ public class KnightMoves implements IMove {
             }
         }
 
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -421,7 +421,7 @@ public class KnightMoves implements IMove {
                 move = new Square(piece.getPosX() + 2, ThreePlayerChessboard.I, null);
             }
         }
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -495,7 +495,7 @@ public class KnightMoves implements IMove {
             }
         }
 
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -541,7 +541,7 @@ public class KnightMoves implements IMove {
             }
         }
 
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -577,7 +577,7 @@ public class KnightMoves implements IMove {
             }
         }
 
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -609,7 +609,7 @@ public class KnightMoves implements IMove {
             }
         }
 
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
                 
@@ -697,7 +697,7 @@ public class KnightMoves implements IMove {
             }
         }
 
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -797,7 +797,7 @@ public class KnightMoves implements IMove {
             }
         }
 
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -866,7 +866,7 @@ public class KnightMoves implements IMove {
                 }
             }
         }
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
 
@@ -908,7 +908,7 @@ public class KnightMoves implements IMove {
             }
         }
 
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -981,7 +981,7 @@ public class KnightMoves implements IMove {
             }
         }
 
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -1017,7 +1017,7 @@ public class KnightMoves implements IMove {
             }
         }
 
-        if (move != null && board.validMove(move)) {
+        if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         

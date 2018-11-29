@@ -47,7 +47,7 @@ public class PawnMoves implements IMove {
         }
         if (piece.getPosX() + 1 == 2) {
             Square twoStepMove = new Square(3, piece.getPosY(), null);
-            if (board.validMove(new Square(2, piece.getPosY(), null)) && board.validMove(twoStepMove)) {
+            if (board.validMove(new Square(2, piece.getPosY(), null), piece) && board.validMove(twoStepMove, piece)) {
                 possibleMoves.add(twoStepMove);
             }
         }
@@ -55,7 +55,7 @@ public class PawnMoves implements IMove {
             move = new Square(piece.getPosX() + 1, piece.getPosY(), null);
         }
 
-        if (board.validMove(move)) {
+        if (board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -81,7 +81,7 @@ public class PawnMoves implements IMove {
         }
         if (piece.getPosX() + 1 == 7) {
             Square twoStepMove = new Square(4, piece.getPosY(), null);
-            if (board.validMove(new Square(5, piece.getPosY(), null)) && board.validMove(twoStepMove)) {
+            if (board.validMove(new Square(5, piece.getPosY(), null), piece) && board.validMove(twoStepMove, piece)) {
                 possibleMoves.add(twoStepMove);
             }
         }
@@ -89,7 +89,7 @@ public class PawnMoves implements IMove {
             move = new Square(piece.getPosX() + 1, piece.getPosY(), null);
         }
 
-        if (board.validMove(move)) {
+        if (board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -118,12 +118,12 @@ public class PawnMoves implements IMove {
         }
         if (piece.getPosX() + 1 == 11) {
             Square twoStepMove = new Square(8, piece.getPosY(), null);
-            if (board.validMove(new Square(9, piece.getPosY(), null)) && board.validMove(twoStepMove)) {
+            if (board.validMove(new Square(9, piece.getPosY(), null), piece) && board.validMove(twoStepMove, piece)) {
                 possibleMoves.add(twoStepMove);
             }
         }
 
-        if (board.validMove(move)) {
+        if (board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
