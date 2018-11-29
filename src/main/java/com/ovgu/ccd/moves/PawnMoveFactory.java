@@ -11,7 +11,7 @@ public class PawnMoveFactory {
         if (board instanceof ThreePlayerChessboard) {
             return new PawnMoves(piece, board);
         } else if (board instanceof Chessboard) {
-            return new com.ovgu.ccd.moves.PawnMoves(piece, board);
+            return new com.ovgu.ccd.moves.two.PawnMoves(piece, board);
         } else {
             throw new IllegalArgumentException("Invalid board");
         }

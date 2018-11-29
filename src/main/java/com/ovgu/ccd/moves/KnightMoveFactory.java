@@ -11,7 +11,7 @@ public class KnightMoveFactory {
         if (board instanceof ThreePlayerChessboard) {
             return new KnightMoves(piece, board);
         } else if (board instanceof Chessboard) {
-            return new com.ovgu.ccd.moves.KnightMoves(piece, board);
+            return new com.ovgu.ccd.moves.two.KnightMoves(piece, board);
         } else {
             throw new IllegalArgumentException("Invalid board");
         }

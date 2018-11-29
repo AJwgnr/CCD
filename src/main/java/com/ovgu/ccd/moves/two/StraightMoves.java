@@ -1,6 +1,8 @@
-package com.ovgu.ccd.moves;
+package com.ovgu.ccd.moves.two;
 
 import com.ovgu.ccd.gui.Chessboard;
+import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.moves.IMove;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 

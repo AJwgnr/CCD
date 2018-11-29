@@ -11,7 +11,7 @@ public class DiagonalMoveFactory {
         if (board instanceof ThreePlayerChessboard) {
             return new DiagonalMoves(piece, board);
         } else if (board instanceof Chessboard) {
-            return new com.ovgu.ccd.moves.DiagonalMoves(piece, board);
+            return new com.ovgu.ccd.moves.two.DiagonalMoves(piece, board);
         } else {
             throw new IllegalArgumentException("Invalid board");
         }
