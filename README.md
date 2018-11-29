@@ -9,8 +9,25 @@ Please stick to the following project Rules:
 ## Organization:
 The implementation is done in weekly sprints. Releases are created every week. Meaning that the changes in the development branch are merged into the master branch and a tagged released is created from this.
 
-## Issues: 
-Use the [Jira](https://ccd.ovgu.de/jira/secure/Dashboard.jspa) system for reporting any bugs or ideas for the features. Every implementation should relate to a jira issue/bug.
+## Issue Tracking: 
+Make use of the issue tracking system [Jira](https://ccd.ovgu.de/jira/secure/Dashboard.jspa)
+for reporting bugs, discuss new ideas for features and many more.
+Before adding a new issue make sure that the following requirements are fulfilled:
+* Every ticket needs a meaningful name (summary).
+* Every ticket needs a (short) description to avoid any ambiguity.
+* Every ticket needs a certain priority level, which indicates the importance of the ticket.
+
+After the ticket has been created, any developer, who is capable and willing to work on a solution,
+can assign the specific ticket to himself/herself. Subsequently, maintain a suitable status for your assigned ticket,
+which informs foreign developers about your progress.
+Moreover, [Jira](https://ccd.ovgu.de/jira/secure/Dashboard.jspa) provides many more adjustments like the assignment to certain sprints:
+
+#### Sprints
+To maintain a equal distribution of workload during the project we decided to use a weekly sprint strategy.
+Therefore, any issue should be assigned to a particular sprint, in which the specific work has to be completed.
+Tickets, which are not completed during the sprint, must be moved to the next sprint.
+
+(For more information check out the following link: [Jira Help](https://ccd.ovgu.de/jira/secure/ShowConstantsHelp.jspa?decorator=popup#PriorityLevels).)
 
 ## Branching: 
 Stick to the gitflow branching Model! Use the jira ticket in the branch names to simplify the mapping to the jira system:
