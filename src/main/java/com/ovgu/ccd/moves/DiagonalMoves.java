@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  *
  */
-public class DiagonalMoves {
+public class DiagonalMoves implements IMove {
 
     private Piece piece;
     private Chessboard board;
@@ -26,7 +26,7 @@ public class DiagonalMoves {
     /**
      * @return
      */
-    public ArrayList all() {
+    public ArrayList moves() {
         ArrayList moves = new ArrayList();
         Square square = piece.getSquare();
 

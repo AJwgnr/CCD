@@ -9,12 +9,12 @@ import com.ovgu.ccd.pieces.Square;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class DiagonalMove implements IMove {
+public class DiagonalMoves implements IMove {
 
     private Piece piece;
     private ThreePlayerChessboard board;
 
-    DiagonalMove(Piece piece, IBoard board) {
+    public DiagonalMoves(Piece piece, IBoard board) {
         this.piece = piece;
         this.board = (ThreePlayerChessboard) board;
     }

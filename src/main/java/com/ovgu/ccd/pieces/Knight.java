@@ -53,7 +53,7 @@ public class Knight extends Piece {
     public ArrayList allMoves() {
         ArrayList moves = new ArrayList();
 
-        // knight all moves
+        // knight moves moves
         //  _______________ Y:
         // |_|_|_|_|_|_|_|_|7
         // |_|_|_|_|_|_|_|_|6
