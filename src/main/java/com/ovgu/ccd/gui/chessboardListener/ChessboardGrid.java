@@ -1,5 +1,10 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
+import com.ovgu.ccd.applogic.Player;
+import com.ovgu.ccd.jchess.ThreePlayerChessboard;
+import com.ovgu.ccd.pieces.King;
+import com.ovgu.ccd.pieces.Piece;
+import com.ovgu.ccd.pieces.PieceFactory;
 import com.ovgu.ccd.pieces.Square;
 
 import java.awt.Graphics;
@@ -40,6 +45,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	private Hexagon hexagon = null;
 	private ChessboardLabeling labeling = null;
 
+	private King testKing = null;
 	
 	public ChessboardGrid(Point center, int radius)
 	{
@@ -57,6 +63,17 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		setupPanels();
 		setupPanelTree();
 		setupLabeling();
+
+		// @TODO dummy
+		Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
+		testKing = (King) PieceFactory.getPiece(null, whitePlayer, Piece.PieceTypes.KING);
+		testKing.setSquare(this.squares.get("A3"));
+	}
+
+	// @TODO remove later = dummy
+	public King getPiece()
+	{
+		return this.testKing;
 	}
 
 
@@ -1092,5 +1109,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 			point.getValue().paintComponent(graphics);
       
 		this.labeling.draw(graphics);
+
+		testKing.draw(graphics);
+		//repaint();
 	}
 }
