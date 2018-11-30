@@ -27,11 +27,6 @@ public class ChessboardListener implements MouseListener
 	{
 		this.grid = new ChessboardGrid(center, radius);
 		this.grid.addMouseListener(this);
-
-		board = new ThreePlayerChessboard();
-		Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
-		King whiteKing = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
-		board.setPiece(whiteKing, 1,1);
 	}
 
 
@@ -51,24 +46,16 @@ public class ChessboardListener implements MouseListener
 		return clickedSquare;
 	}
 
-	private void movePiece(com.ovgu.ccd.pieces.Square newPosition)
-	{
-		if (this.lastClickedSquare != null)
-			if (this.lastClickedSquare.getPiece() != null)
-				this.lastClickedSquare.getPiece().setSquare(newPosition);
-	}
-
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
 		Square clickedSquare = getClickedSquare(e);
-        clickedSquare.print();
-
-		// move previously selected piece
-		if (this.pieceSelected)
-			movePiece(clickedSquare);
-
-		this.lastClickedSquare = clickedSquare;
+        if(clickedSquare != null)
+        {
+            clickedSquare.print();
+            this.grid.getPiece().setSquare(clickedSquare);
+            this.grid.redraw();
+        }
 	}
 
 	@Override

@@ -172,7 +172,7 @@ public class Square
     public Point center()
     {
         Line diagonalLineAC = new Line(this.vertices.get("A"), this.vertices.get("C"));
-        Line diagonalLineBD = new Line(this.vertices.get("C"), this.vertices.get("D"));
+        Line diagonalLineBD = new Line(this.vertices.get("D"), this.vertices.get("B"));
         return diagonalLineAC.computeIntersectionPoint(diagonalLineBD);
     }
 
