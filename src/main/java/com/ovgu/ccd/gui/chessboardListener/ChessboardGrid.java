@@ -1030,6 +1030,15 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		lines.put("E7_D4E7", new Line(this.points.get("E7"), this.points.get("F4A1")));
 		lines.put("F7_E4F7", new Line(this.points.get("F7"), this.points.get("A4B1")));
 	}
+
+	// @param:  name of the panel regarding the labeling convention (eg.: D7, A3 ...)
+	// @return: certain chessPanel object
+	public ChessPanel getChesspanel(String name)
+	{
+		if (this.panels.containsKey(name))
+			return this.panels.get(name);
+		return null;
+	}
 	
 	
 	// @return: ChessPanel or NULL if the point isnt within any panel
