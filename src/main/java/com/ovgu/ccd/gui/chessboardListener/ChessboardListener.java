@@ -1,10 +1,6 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
 import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.applogic.Settings;
-import com.ovgu.ccd.gui.Chessboard;
-import com.ovgu.ccd.gui.Game;
-import com.ovgu.ccd.gui.Moves;
 import com.ovgu.ccd.jchess.ThreePlayerChessboard;
 import com.ovgu.ccd.pieces.*;
 
@@ -21,7 +17,7 @@ public class ChessboardListener implements MouseListener
 {
 
 	private ChessboardGrid grid = null;
-	private Square lastClickedSquare = null;
+	private com.ovgu.ccd.pieces.Square lastClickedSquare = null;
 	private boolean pieceSelected = false;
 
 	private ThreePlayerChessboard board = null;
@@ -48,14 +44,14 @@ public class ChessboardListener implements MouseListener
 		return mainPanel;
 	}
 
-	private ChessPanel getClickedChesspanel(MouseEvent e)
+	private Square getClickedSquare(MouseEvent e)
 	{
-		ChessPanel clickedPanel = grid.getPanelWithinPoint(
+		Square clickedSquare = grid.getSquareWithinPoint(
 				new Point (e.getX(), e.getY()));
-		return clickedPanel;
+		return clickedSquare;
 	}
 
-	private void movePiece(Square newPosition)
+	private void movePiece(com.ovgu.ccd.pieces.Square newPosition)
 	{
 		if (this.lastClickedSquare != null)
 			if (this.lastClickedSquare.getPiece() != null)
@@ -65,11 +61,8 @@ public class ChessboardListener implements MouseListener
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
-		ChessPanel clickedPanel = getClickedChesspanel(e);
-		clickedPanel.printPanel();
-
-		// convert to square object
-		Square clickedSquare = board.getSquare(clickedPanel.getColumnIdx(), clickedPanel.getRowIdx());
+		Square clickedSquare = getClickedSquare(e);
+        clickedSquare.print();
 
 		// move previously selected piece
 		if (this.pieceSelected)
