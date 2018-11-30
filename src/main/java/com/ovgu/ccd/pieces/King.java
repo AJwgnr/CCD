@@ -41,15 +41,14 @@ package com.ovgu.ccd.pieces;
 import com.ovgu.ccd.applogic.ResourceLoader;
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.gui.GUI;
-import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.pieces.Piece;
 
 import java.util.ArrayList;
 
 public class King extends Piece {
 
-    public boolean wasMotion = false;
+    private boolean wasMotion = false;
     public static short value = 99;
 
     protected King(IBoard chessboard, Player player) {
@@ -497,7 +496,7 @@ public class King extends Piece {
     private ArrayList possibleCastlings() {
         ArrayList list = new ArrayList();
 
-        if (wasMotion || isChecked()) {
+        if (isWasMotion() || isChecked()) {
             return list;
         }
 

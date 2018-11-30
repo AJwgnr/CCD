@@ -26,7 +26,7 @@ import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.ResourceLoader;
 import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.Moves.castling;
-import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.moves.Move;
 import com.ovgu.ccd.pieces.*;
 
@@ -635,6 +635,11 @@ public class Chessboard extends JPanel implements IBoard {
             return new Point(this.topLeft.x + this.upDownLabel.getHeight(null), this.topLeft.y + this.upDownLabel.getHeight(null));
         }
         return this.topLeft;
+    }
+
+    @Override
+    public void setPiece(Piece piece, int x, int y) {
+        squares[x][y].setPiece(piece);
     }
 
     @Override

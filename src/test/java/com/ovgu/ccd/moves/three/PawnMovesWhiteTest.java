@@ -1,8 +1,8 @@
 package com.ovgu.ccd.moves.three;
 
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.jchess.ThreePlayerChessboard;
-import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.ThreePlayerChessboard;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.PieceFactory;
 import com.ovgu.ccd.pieces.Square;
@@ -22,7 +22,7 @@ public class PawnMovesWhiteTest {
     public void testMovesIn1A() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(1, ThreePlayerChessboard.A).setPiece(pawn);
+        board.setPiece(pawn, 1, ThreePlayerChessboard.A);
 
         ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(2, moves.size());
@@ -39,7 +39,7 @@ public class PawnMovesWhiteTest {
     public void testMovesIn3A() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(3, ThreePlayerChessboard.A).setPiece(pawn);
+        board.setPiece(pawn, 3, ThreePlayerChessboard.A);
 
         ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
@@ -55,7 +55,7 @@ public class PawnMovesWhiteTest {
     public void testMovesIn4A() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(4, ThreePlayerChessboard.A).setPiece(pawn);
+        board.setPiece(pawn, 4, ThreePlayerChessboard.A);
 
         ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
@@ -71,7 +71,7 @@ public class PawnMovesWhiteTest {
     public void testMovesIn2H() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(2, ThreePlayerChessboard.H).setPiece(pawn);
+        board.setPiece(pawn, 2, ThreePlayerChessboard.H);
 
         ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
@@ -87,7 +87,7 @@ public class PawnMovesWhiteTest {
     public void testMovesIn3H() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(3, ThreePlayerChessboard.H).setPiece(pawn);
+        board.setPiece(pawn, 3, ThreePlayerChessboard.H);
 
         ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
@@ -103,7 +103,7 @@ public class PawnMovesWhiteTest {
     public void testMovesIn8I() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(8, ThreePlayerChessboard.I).setPiece(pawn);
+        board.setPiece(pawn, 8, ThreePlayerChessboard.I);
 
         ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
@@ -119,7 +119,7 @@ public class PawnMovesWhiteTest {
     public void testMovesIn4I() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(4, ThreePlayerChessboard.I).setPiece(pawn);
+        board.setPiece(pawn,4, ThreePlayerChessboard.I);
 
         ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
@@ -135,10 +135,10 @@ public class PawnMovesWhiteTest {
     public void testMovesIn1ABlockedByPiece() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(1, ThreePlayerChessboard.A).setPiece(pawn);
+        board.setPiece(pawn, 1, ThreePlayerChessboard.A);
 
         Piece blockingPiece = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(2, ThreePlayerChessboard.A).setPiece(blockingPiece);
+        board.setPiece(blockingPiece, 2, ThreePlayerChessboard.A);
 
         assertTrue(new PawnMoves(pawn, board).moves().isEmpty());
     }
@@ -147,10 +147,10 @@ public class PawnMovesWhiteTest {
     public void testMovesIn1ABlockedByPieceInTwoStep() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(1, ThreePlayerChessboard.A).setPiece(pawn);
+        board.setPiece(pawn, 1, ThreePlayerChessboard.A);
 
         Piece blockingPiece = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(3, ThreePlayerChessboard.A).setPiece(blockingPiece);
+        board.setPiece(blockingPiece, 3, ThreePlayerChessboard.A);
 
         ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
         Assert.assertEquals(1, moves.size());
@@ -166,10 +166,10 @@ public class PawnMovesWhiteTest {
     public void testMovesIn3ABlockedByPiece() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(3, ThreePlayerChessboard.A).setPiece(pawn);
+        board.setPiece(pawn, 3, ThreePlayerChessboard.A);
 
         Piece blockingPiece = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(4, ThreePlayerChessboard.A).setPiece(blockingPiece);
+        board.setPiece(blockingPiece, 4, ThreePlayerChessboard.A);
 
         assertTrue(new PawnMoves(pawn, board).moves().isEmpty());
     }
@@ -178,10 +178,10 @@ public class PawnMovesWhiteTest {
     public void testMovesIn2HBlockedByPiece() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(2, ThreePlayerChessboard.H).setPiece(pawn);
+        board.setPiece(pawn, 2, ThreePlayerChessboard.H);
 
         Piece blockingPiece = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(3, ThreePlayerChessboard.H).setPiece(blockingPiece);
+        board.setPiece(blockingPiece, 3, ThreePlayerChessboard.H);
 
         assertTrue(new PawnMoves(pawn, board).moves().isEmpty());
     }
@@ -190,10 +190,10 @@ public class PawnMovesWhiteTest {
     public void testMovesIn3HBlockedByPiece() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(3, ThreePlayerChessboard.H).setPiece(pawn);
+        board.setPiece(pawn, 3, ThreePlayerChessboard.H);
 
         Piece blockingPiece = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(8, ThreePlayerChessboard.H).setPiece(blockingPiece);
+        board.setPiece(blockingPiece, 8, ThreePlayerChessboard.H);
 
         assertTrue(new PawnMoves(pawn, board).moves().isEmpty());
     }
@@ -202,10 +202,10 @@ public class PawnMovesWhiteTest {
     public void testMovesIn8IBlockedByPiece() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(8, ThreePlayerChessboard.I).setPiece(pawn);
+        board.setPiece(pawn, 8, ThreePlayerChessboard.I);
 
         Piece blockingPiece = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(9, ThreePlayerChessboard.I).setPiece(blockingPiece);
+        board.setPiece(blockingPiece, 9, ThreePlayerChessboard.I);
 
         assertTrue(new PawnMoves(pawn, board).moves().isEmpty());
     }
@@ -214,10 +214,10 @@ public class PawnMovesWhiteTest {
     public void testMovesIn4IBlockedByPiece() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(4, ThreePlayerChessboard.I).setPiece(pawn);
+        board.setPiece(pawn, 4, ThreePlayerChessboard.I);
 
         Piece blockingPiece = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(5, ThreePlayerChessboard.I).setPiece(blockingPiece);
+        board.setPiece(blockingPiece, 5, ThreePlayerChessboard.I);
 
         assertTrue(new PawnMoves(pawn, board).moves().isEmpty());
     }

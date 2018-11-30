@@ -1,8 +1,8 @@
 package com.ovgu.ccd.moves.three;
 
 import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.jchess.ThreePlayerChessboard;
-import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.ThreePlayerChessboard;
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.PieceFactory;
 import com.ovgu.ccd.pieces.Square;
@@ -20,7 +20,7 @@ public class StraightMovesTest {
     public void testMovesIn3E() {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
-        board.getSquare(3, ThreePlayerChessboard.E).setPiece(rook);
+        board.setPiece(rook, 3, ThreePlayerChessboard.E);
         ArrayList<Square> moves = new StraightMoves(rook, board).moves();
 
         Assert.assertEquals(14, moves.size());
@@ -50,7 +50,7 @@ public class StraightMovesTest {
     public void testMovesIn2G() {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
-        board.getSquare(2, ThreePlayerChessboard.G).setPiece(rook);
+        board.setPiece(rook, 2, ThreePlayerChessboard.G);
         ArrayList<Square> moves = new StraightMoves(rook, board).moves();
 
         Assert.assertEquals(14, moves.size());
@@ -79,7 +79,7 @@ public class StraightMovesTest {
     public void testMovesIn9J() {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
-        board.getSquare(9, ThreePlayerChessboard.J).setPiece(rook);
+        board.setPiece(rook, 9, ThreePlayerChessboard.J);
         ArrayList<Square> moves = new StraightMoves(rook, board).moves();
 
         Assert.assertEquals(14, moves.size());
@@ -109,16 +109,16 @@ public class StraightMovesTest {
     public void testMovesIn3EBlockedByPieces() {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
-        board.getSquare(3, ThreePlayerChessboard.E).setPiece(rook);
+        board.setPiece(rook, 3, ThreePlayerChessboard.E);
 
         Piece pawn1 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(1, ThreePlayerChessboard.E).setPiece(pawn1);
+        board.setPiece(pawn1, 1, ThreePlayerChessboard.E);
         Piece pawn2 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(3, ThreePlayerChessboard.G).setPiece(pawn2);
+        board.setPiece(pawn2, 3, ThreePlayerChessboard.G);
         Piece pawn3 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(3, ThreePlayerChessboard.C).setPiece(pawn3);
+        board.setPiece(pawn3, 3, ThreePlayerChessboard.C);
         Piece pawn4 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(10, ThreePlayerChessboard.E).setPiece(pawn4);
+        board.setPiece(pawn4, 10, ThreePlayerChessboard.E);
 
         ArrayList<Square> moves = new StraightMoves(rook, board).moves();
 

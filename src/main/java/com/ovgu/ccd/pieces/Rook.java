@@ -21,8 +21,8 @@
 
 package com.ovgu.ccd.pieces;
 
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.ResourceLoader;
-import com.ovgu.ccd.moves.IBoard;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.moves.StraightMoveFactory;
 
