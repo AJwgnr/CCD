@@ -1,4 +1,4 @@
-package com.ovgu.ccd.moves.three;
+package com.ovgu.ccd.moves.two;
 
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.moves.IMove;

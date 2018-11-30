@@ -23,12 +23,7 @@ package com.ovgu.ccd.pieces;
 
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.ResourceLoader;
-import com.ovgu.ccd.moves.two.DiagonalMoves;
-import com.ovgu.ccd.moves.two.HorizontalMoves;
-import com.ovgu.ccd.moves.two.VerticalMoves;
-
-
-
+import com.ovgu.ccd.moves.QueenMoveFactory;
 import com.ovgu.ccd.applogic.Player;
 
 
@@ -70,9 +65,11 @@ public class Queen extends Piece {
     public ArrayList allMoves() {
         ArrayList moves = new ArrayList();
 
-        moves.addAll(new VerticalMoves(this, chessboard).all());
-        moves.addAll(new HorizontalMoves(this, chessboard).all());
-        moves.addAll(new DiagonalMoves(this, chessboard).moves());
+        try {
+            moves.addAll(QueenMoveFactory.getMoves(chessboard, this).moves());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return moves;
     }

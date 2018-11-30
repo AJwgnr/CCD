@@ -15,7 +15,7 @@ public class KingMoves implements IMove {
     private Piece piece;
     private ThreePlayerChessboard board;
 
-    KingMoves(Piece piece, IBoard board) {
+    public KingMoves(Piece piece, IBoard board) {
         this.piece = piece;
         this.board = (ThreePlayerChessboard) board;
     }
