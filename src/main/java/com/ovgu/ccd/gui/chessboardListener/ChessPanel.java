@@ -124,6 +124,15 @@ public class ChessPanel extends GeometricPrimitiveDrawer
 		else
 			return true;
 	}
+
+	// computes the center of the chess panel
+	// @return: center point
+	public Point center()
+	{
+		Line diagonalLineAC = new Line(this.vertices.get("A"), this.vertices.get("C"));
+		Line diagonalLineBD = new Line(this.vertices.get("C"), this.vertices.get("D"));
+		return diagonalLineAC.computeIntersectionPoint(diagonalLineBD);
+	}
 	
 	
 	public void printPanel()
