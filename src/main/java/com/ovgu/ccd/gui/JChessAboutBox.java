@@ -79,7 +79,7 @@ public class JChessAboutBox extends JDialog {
         closeButton.setName("closeButton"); // NOI18N
 
         appTitleLabel.setFont(appTitleLabel.getFont().deriveFont(appTitleLabel.getFont().getStyle() | java.awt.Font.BOLD, appTitleLabel.getFont().getSize() + 4));
-        appTitleLabel.setText(jChessAboutBoxProperty.getProperty("Application.title")); // NOI18N
+        appTitleLabel.setText(jChessAboutBoxProperty.getProperty("title")); // NOI18N
         appTitleLabel.setName("appTitleLabel"); // NOI18N
 
         versionLabel.setFont(versionLabel.getFont().deriveFont(versionLabel.getFont().getStyle() | java.awt.Font.BOLD));
