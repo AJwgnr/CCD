@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class Circle extends GeometricPrimitiveDrawer
+public class Circle extends GeometricShape
 {
 	private static final long serialVersionUID = -4701817387438983685L;
 	private int radius = 0;
@@ -16,7 +16,12 @@ public class Circle extends GeometricPrimitiveDrawer
 	{
 		
 	}
-	
+
+	@Override
+	public double area() {
+		return 0;
+	}
+
 	public Circle(Point center, int radius)
 	{
 		this.center = center;

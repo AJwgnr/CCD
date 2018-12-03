@@ -50,8 +50,8 @@ public class JChessApp extends SingleFrameApplication {
      */
     @Override
     protected void startup() {
-        ChessboardListener chessboard = new ChessboardListener(new com.ovgu.ccd.gui.chessboardListener.Point(500,500),500);
-        new com.ovgu.ccd.gui.chessboardListener.Window("ChessboardListener",1200,1200, chessboard.getPanel());
+        ChessboardListener chessboard = new ChessboardListener(new com.ovgu.ccd.gui.chessboardListener.Point(550,550),500);
+        new com.ovgu.ccd.gui.chessboardListener.Window("ChessboardListener",1280,1280, chessboard.getPanel());
         jcv = new JChessView(this);
         show(jcv);
     }

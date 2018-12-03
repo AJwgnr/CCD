@@ -20,8 +20,6 @@
  */
 package com.ovgu.ccd.applogic;
 
-import com.ovgu.ccd.gui.Player;
-
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.PropertyResourceBundle;
@@ -39,23 +37,39 @@ public class Settings implements Serializable {
     public boolean timeLimitSet;//tel us if player choose time 4 game or it's infinity
     public boolean upsideDown;
     public gameModes gameMode;
-    public Player playerWhite;
-    public Player playerBlack;
+
+    public Player getPlayerOne() {
+        return playerOne;
+    }
+
+    public Player getPlayerTwo() {
+        return playerTwo;
+    }
+
+    public Player getPlayerThree() {
+        return playerThree;
+    }
+
+    private Player playerOne;
+    private Player playerTwo;
+    private Player playerThree;
+
     public gameTypes gameType;
     public boolean renderLabels = true;
 
     public Settings() {
         //temporally
-        this.playerWhite = new Player("", "white");
-        this.playerBlack = new Player("", "black");
+        this.playerOne = new Player("", "WHITE");
+        this.playerTwo = new Player("", "BLACK");
+        this.playerThree = new Player("", "GREY");
         this.timeLimitSet = false;
 
-        gameMode = gameModes.newGame;
+        gameMode = gameModes.NEWGAME;
     }
 
     public static String lang(String key) {
         if (Settings.loc == null) {
-            //Settings.loc = PropertyResourceBundle.getBundle("jchess.resources.i18n.main");
+            //Settings.loc = PropertyResourceBundle.getBundle("moves.resources.i18n.main");
             Settings.loc = PropertyResourceBundle.getBundle("i18n.main");
             Locale.setDefault(Locale.ENGLISH);
         }
@@ -80,11 +94,11 @@ public class Settings implements Serializable {
 
     public enum gameModes {
 
-        newGame, loadGame
+        NEWGAME, LOADGAME
     }
 
     public enum gameTypes {
 
-        local, network
+        LOCAL, NETWORK
     }
 }

@@ -20,60 +20,108 @@
  */
 package com.ovgu.ccd.pieces;
 
+import java.util.Objects;
+
 /**
  * Class to represent a chessboard square
  */
 public class Square {
-    int pozX;
-    int pozY;
-    Piece piece = null;
+    private boolean invalid = false;
+    private int posX;
+    private int posY;
+    private Piece piece = null;
 
-    public Square(int pozX, int pozY, Piece piece)
-    {
-        this.pozX = pozX;
-        this.pozY = pozY;
+
+    /**
+     * Initializes a Square on the chessboard with the
+     *
+     * @param posX
+     * @param posY
+     * @param piece
+     */
+    public Square(int posX, int posY, Piece piece) {
+        this.posX = posX;
+        this.posY = posY;
         this.piece = piece;
     }
 
-
+    /**
+     * @param square
+     */
     public Square(Square square) {
-        this.pozX = square.pozX;
-        this.pozY = square.pozY;
+        this.posX = square.posX;
+        this.posY = square.posY;
         this.piece = square.piece;
     }
 
+    /**
+     * @param square
+     * @return
+     */
     public Square clone(Square square) {
         return new Square(square);
     }
 
-    public void setPiece(Piece piece)
-    {
+    /**
+     * @param piece
+     */
+    public void setPiece(Piece piece) {
         this.piece = piece;
         if (piece != null) {
-            this.piece.square = this;
+            this.piece.setSquare(this);
         }
     }
 
+    /**
+     * checks whether two squares are equal by comparing the x,y corrdinate and checking if there is the same piece on it
+     *
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (o == this) return true;
         if (!(o instanceof Square)) return false;
 
         Square square = (Square) o;
-        return square.getPozX() == pozX && square.getPozY() == pozY && square.getPiece() == piece;
+        return square.getPosX() == posX && square.getPosY() == posY;
     }
 
-    // modification
-    public int getPozX() {
-        return pozX;
+    @Override
+    public int hashCode() {
+        return Objects.hash(posX, posY);
     }
 
-    public int getPozY() {
-        return pozY;
+    /**
+     * @return X position of the square
+     */
+    public int getPosX() {
+        return posX;
     }
 
+    /**
+     * @return Y Position of the square
+     */
+    public int getPosY() {
+        return posY;
+    }
+
+    /**
+     * Retrieve the piece on the square
+     *
+     * @return
+     */
     public Piece getPiece() {
         return piece;
     }
 
+    public boolean isEmpty() { return piece == null; }
+
+    public boolean isInvalid() {
+        return invalid;
+    }
+
+    public void setInvalid(boolean value) {
+        this.invalid = value;
+    }
 }

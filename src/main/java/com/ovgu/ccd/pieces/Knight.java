@@ -20,9 +20,10 @@
  */
 package com.ovgu.ccd.pieces;
 
-import com.ovgu.ccd.gui.Chessboard;
-import com.ovgu.ccd.gui.GUI;
-import com.ovgu.ccd.gui.Player;
+
+import com.ovgu.ccd.applogic.ResourceManager;
+import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.Player;
 
 import java.util.ArrayList;
 
@@ -34,11 +35,11 @@ public class Knight extends Piece {
     public static short value = 3;
 
 
-    public Knight(Chessboard chessboard, Player player) {
+    protected Knight(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "N";
-        imageWhite = GUI.loadImage("Knight-W.png");
-        imageBlack = GUI.loadImage("Knight-B.png");
+        imageWhite = ResourceManager.loadImage("Knight-W.png");
+        imageBlack = ResourceManager.loadImage("Knight-B.png");
         this.setImage();
     }
 
@@ -48,8 +49,7 @@ public class Knight extends Piece {
      * @return ArrayList with new possition of pawn
      */
     @Override
-    public ArrayList allMoves()
-    {
+    public ArrayList allMoves() {
         ArrayList moves = new ArrayList();
 
         // knight all moves
@@ -67,38 +67,41 @@ public class Knight extends Piece {
 
         int newX;
         int newY;
+        Square square = getSquare();
 
-        if (validMove(newX = square.pozX - 2, newY = square.pozY + 1))
+        if (validMove(newX = square.getPosX() - 2, newY = square.getPosY() + 1))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = square.pozX - 1, newY = square.pozY + 2))
+        if (validMove(newX = square.getPosX() - 1, newY = square.getPosY() + 2))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = square.pozX + 1, newY = square.pozY + 2))
+        if (validMove(newX = square.getPosX() + 1, newY = square.getPosY() + 2))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = square.pozX + 2, newY = square.pozY + 1))
+        if (validMove(newX = square.getPosX() + 2, newY = square.getPosY() + 1))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = square.pozX + 2, newY = square.pozY - 1))
+        if (validMove(newX = square.getPosX() + 2, newY = square.getPosY() - 1))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = square.pozX + 1, newY = square.pozY - 2))
+        if (validMove(newX = square.getPosX() + 1, newY = square.getPosY() - 2))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = square.pozX - 1, newY = square.pozY - 2))
+        if (validMove(newX = square.getPosX() - 1, newY = square.getPosY() - 2))
             moves.add(chessboard.getSquare(newX, newY));
 
-        if (validMove(newX = square.pozX - 2, newY = square.pozY - 1))
+        if (validMove(newX = square.getPosX() - 2, newY = square.getPosY() - 1))
             moves.add(chessboard.getSquare(newX, newY));
 
         return moves;
     }
 
     private boolean validMove(int newX, int newY) {
-        if (outsideOfBoard(newX, newY)) { return false; }
+        if (outsideOfBoard(newX, newY)) {
+            return false;
+        }
 
         Square nextPosition = chessboard.getSquare(newX, newY);
-        return (canMoveTo(nextPosition) && (chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(square, nextPosition)));
+        return (canMoveTo(nextPosition) && (chessboard.myKing(getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(getSquare(), nextPosition)));
     }
 }

@@ -21,6 +21,7 @@
 package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.JChessApp;
+import com.ovgu.ccd.applogic.ResourceManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,8 +40,8 @@ public class JChessTabbedPane extends JTabbedPane implements MouseListener, Imag
     JChessTabbedPane() {
         super();
         this.closeIcon = new TabbedPaneIcon(this.closeIcon);
-        this.unclickedAddIcon = GUI.loadImage("add-tab-icon.png");
-        this.clickedAddIcon = GUI.loadImage("clicked-add-tab-icon.png");
+        this.unclickedAddIcon = ResourceManager.loadImage("add-tab-icon.png");
+        this.clickedAddIcon = ResourceManager.loadImage("clicked-add-tab-icon.png");
         this.addIcon = this.unclickedAddIcon;
         this.setDoubleBuffered(true);
         super.addMouseListener(this);
@@ -85,7 +86,7 @@ public class JChessTabbedPane extends JTabbedPane implements MouseListener, Imag
                 this.showNewGameWindow();
             }
         } else if (this.addIconRect != null && this.addIconRect.contains(e.getX(), e.getY())) {
-            System.out.println("newGame by + button");
+            System.out.println("NEWGAME by + button");
             this.showNewGameWindow();
         }
         //System.out.println("x:" +e.getX()+" y: "+e.getY()+" x:"+this.addIconRect.x+" y::"+this.addIconRect.y+" width:"+this.addIconRect.width+" height: "+this.addIconRect.height);

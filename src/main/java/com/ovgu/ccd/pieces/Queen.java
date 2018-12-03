@@ -20,13 +20,15 @@
  */
 package com.ovgu.ccd.pieces;
 
-import com.ovgu.ccd.jchess.DiagonalMoves;
-import com.ovgu.ccd.jchess.HorizontalMoves;
-import com.ovgu.ccd.jchess.VerticalMoves;
 
-import com.ovgu.ccd.gui.Chessboard;
-import com.ovgu.ccd.gui.GUI;
-import com.ovgu.ccd.gui.Player;
+import com.ovgu.ccd.applogic.ResourceManager;
+import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.moves.DiagonalMoves;
+import com.ovgu.ccd.moves.HorizontalMoves;
+import com.ovgu.ccd.moves.VerticalMoves;
+
+
+import com.ovgu.ccd.applogic.Player;
 
 
 import java.util.ArrayList;
@@ -49,11 +51,11 @@ public class Queen extends Piece {
 
     public static short value = 9;
 
-    public Queen(Chessboard chessboard, Player player) {
+    protected Queen(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "Q";
-        imageWhite = GUI.loadImage("Queen-W.png");
-        imageBlack = GUI.loadImage("Queen-B.png");
+        imageWhite = ResourceManager.loadImage("Queen-W.png");
+        imageBlack = ResourceManager.loadImage("Queen-B.png");
         this.setImage();
     }
 
