@@ -37,7 +37,6 @@ import java.util.ResourceBundle;
  * The application's main frame.
  */
 public class JChessView extends FrameView implements ActionListener, ComponentListener {
-    static GUI gui = null;
     // End of variables declaration//GEN-END:variables
     //private JTabbedPaneWithIcon gamesPane;
     private final Timer messageTimer;
@@ -46,7 +45,7 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
     private final Icon[] busyIcons = new Icon[15];
     public javax.swing.JPanel mainPanel;
     public JDialog newGameFrame;
-    GUI activeGUI;//in future it will be reference to active tab
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu gameMenu;
     private javax.swing.JTabbedPane gamesPane;
@@ -439,9 +438,6 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
 
     private void moveBackItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_moveBackItemActionPerformed
     {//GEN-HEADEREND:event_moveBackItemActionPerformed
-        if (gui != null && gui.game != null) {
-            gui.game.undo();
-        } else {
             try {
                 Game activeGame = this.getActiveTabGame();
                 if (!activeGame.undo()) {
@@ -454,9 +450,7 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
             } catch (UnsupportedOperationException exc) {
                 JOptionPane.showMessageDialog(null, exc.getMessage());
             }
-        }
-
-    }//GEN-LAST:event_moveBackItemActionPerformed
+        }//GEN-LAST:event_moveBackItemActionPerformed
 
     private void moveBackItemMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_moveBackItemMouseClicked
     {//GEN-HEADEREND:event_moveBackItemMouseClicked
@@ -472,10 +466,6 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
 
     private void moveForwardItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_moveForwardItemActionPerformed
     {//GEN-HEADEREND:event_moveForwardItemActionPerformed
-        // TODO add your handling code here:
-        if (gui != null && gui.game != null) {
-            gui.game.redo();
-        } else {
             try {
                 Game activeGame = this.getActiveTabGame();
                 if (!activeGame.redo()) {
@@ -488,8 +478,7 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
             } catch (UnsupportedOperationException exc) {
                 JOptionPane.showMessageDialog(null, exc.getMessage());
             }
-        }
-    }//GEN-LAST:event_moveForwardItemActionPerformed
+        }//GEN-LAST:event_moveForwardItemActionPerformed
 
     private void rewindToBeginActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rewindToBeginActionPerformed
     {//GEN-HEADEREND:event_rewindToBeginActionPerformed
