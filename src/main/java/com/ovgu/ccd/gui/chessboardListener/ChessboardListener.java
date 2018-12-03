@@ -1,6 +1,5 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
-import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.jchess.ThreePlayerChessboard;
 import com.ovgu.ccd.pieces.*;
 
@@ -9,8 +8,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
-
-import static org.mockito.Mockito.mock;
 
 
 public class ChessboardListener implements MouseListener 
