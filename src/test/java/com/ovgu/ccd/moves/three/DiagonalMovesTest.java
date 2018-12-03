@@ -499,4 +499,31 @@ public class DiagonalMovesTest {
                 )
         );
     }
+
+
+    @Test
+    public void testMoves2GBlockedByPieces() throws Exception {
+        IBoard board = new ThreePlayerChessboard();
+        Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
+        ArrayList<Square> moves;
+
+        ((ThreePlayerChessboard) board).setPiece(bishop, 2, ThreePlayerChessboard.G);
+        Piece pawn1 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn1, 1, ThreePlayerChessboard.H);
+        Piece pawn2 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn2, 8, ThreePlayerChessboard.E);
+        Piece pawn3 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn2, 0, ThreePlayerChessboard.E);
+
+        moves = new DiagonalMoves(bishop, board).moves();
+        assertTrue(moves.size() == 3);
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(1, ThreePlayerChessboard.F, null), // left diagonal same sextant
+                        new Square(3,  ThreePlayerChessboard.H, null), // right diagonal same sextant
+                        new Square(3,  ThreePlayerChessboard.F, null) // top diagonal same sextant
+                )
+        );
+    }
 }

@@ -174,4 +174,34 @@ public class KingMovesTest {
                 )
         );
     }
+
+
+    @Test
+    public void testMovesIn3DBlockedByPieces() throws Exception {
+        IBoard board = new ThreePlayerChessboard();
+        Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
+
+        board.setPiece(king, 3, ThreePlayerChessboard.D);
+        Piece pawn1 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.getSquare(3, ThreePlayerChessboard.E).setPiece(pawn1);
+        Piece pawn2 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.getSquare(2, ThreePlayerChessboard.D).setPiece(pawn2);
+        Piece pawn3 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.getSquare(3, ThreePlayerChessboard.C).setPiece(pawn3);
+        Piece pawn4 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.getSquare(4, ThreePlayerChessboard.D).setPiece(pawn4);
+        ArrayList<Square> moves = new KingMoves(king, board).moves();
+
+        Assert.assertEquals(5, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(2, ThreePlayerChessboard.C, null),
+                        new Square(2, ThreePlayerChessboard.E, null),
+                        new Square(4, ThreePlayerChessboard.C, null),
+                        new Square(4, ThreePlayerChessboard.I, null),
+                        new Square(8, ThreePlayerChessboard.E, null)
+                )
+        );
+    }
 }
