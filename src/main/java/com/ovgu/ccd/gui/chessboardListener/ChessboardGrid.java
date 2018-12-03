@@ -60,8 +60,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	{
 		setupPoints();
 		setupLines();
-		setupPanels();
-		setupPanelTree();
+		setupSquares();
+		setupSquareTree();
 		setupLabeling();
 
 		// @TODO dummy
@@ -90,7 +90,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	}
 	
 	
-	private void setupPanels()
+	private void setupSquares()
 	{
 		this.squares.put("Section A", new Square(
 				this.points.get("A"), this.points.get("A4"),
@@ -616,7 +616,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	}
 	
 	
-	private void setupPanelTree()
+	private void setupSquareTree()
 	{
 		// set whole hexagon as the root node
 		this.panelRoot = new Node<Square>("root", new Square());
