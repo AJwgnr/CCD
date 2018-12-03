@@ -36,7 +36,6 @@ public class Square
     private boolean invalid = false;
     private Piece piece = null;
     private HashMap<String, Point> vertices = new HashMap<String, Point>();
-    private HashMap<String, Line> lines = new HashMap<String, Line>();
     private int boardPosX = -1;
     private int boardPosY = -1;
 
@@ -64,10 +63,6 @@ public class Square
         this.vertices.put("B", b);
         this.vertices.put("C", c);
         this.vertices.put("D", d);
-        this.lines.put("AB", new Line(a, b));
-        this.lines.put("BC", new Line(b, c));
-        this.lines.put("CD", new Line(c, d));
-        this.lines.put("DA", new Line(d, a));
     }
 
 
@@ -79,10 +74,6 @@ public class Square
         this.vertices.put("B", b);
         this.vertices.put("C", c);
         this.vertices.put("D", d);
-        this.lines.put("AB", new Line(a, b));
-        this.lines.put("BC", new Line(b, c));
-        this.lines.put("CD", new Line(c, d));
-        this.lines.put("DA", new Line(d, a));
     }
 
 
