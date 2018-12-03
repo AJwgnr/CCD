@@ -1,6 +1,5 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
-import com.ovgu.ccd.jchess.ThreePlayerChessboard;
 import com.ovgu.ccd.pieces.*;
 
 import java.awt.BorderLayout;
@@ -12,12 +11,7 @@ import javax.swing.JPanel;
 
 public class ChessboardListener implements MouseListener 
 {
-
 	private ChessboardGrid grid = null;
-	private com.ovgu.ccd.pieces.Square lastClickedSquare = null;
-	private boolean pieceSelected = false;
-
-	private ThreePlayerChessboard board = null;
 
 
 	public ChessboardListener(Point center, int radius)
