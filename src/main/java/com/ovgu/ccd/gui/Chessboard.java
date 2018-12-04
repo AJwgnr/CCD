@@ -272,7 +272,7 @@ public class Chessboard extends JPanel implements IBoard {
 
 
     /**
-     * Method set variables active_x_square & active_y_square
+     * Method set variables active_x_square and active_y_square
      * to 0 values.
      */
     @Override

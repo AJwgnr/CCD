@@ -30,8 +30,6 @@ import java.awt.image.BufferedImage;
 
 /**
  * Class to representing the full game time
- *
- * @param game The current game
  */
 @SuppressWarnings("ALL")
 public class GameClock extends JPanel implements Runnable {
@@ -80,9 +78,6 @@ public class GameClock extends JPanel implements Runnable {
 
     /**
      * Method with is setting the players clocks time
-     *
-     * @param t1 Capt the player time
-     * @param t2 Capt the player time
      */
     public void initClock() {
         /*rather in chess game players got the same time 4 game, so why in documentation
