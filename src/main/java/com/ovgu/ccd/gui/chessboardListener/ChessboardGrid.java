@@ -1,10 +1,13 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
+import com.ovgu.ccd.applogic.Player;
+import com.ovgu.ccd.jchess.ThreePlayerChessboard;
+import com.ovgu.ccd.pieces.King;
+import com.ovgu.ccd.pieces.Piece;
+import com.ovgu.ccd.pieces.PieceFactory;
+import com.ovgu.ccd.pieces.Square;
+
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,11 +40,12 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	
 	private HashMap<String, Point> points = new HashMap<String, Point>();
 	private HashMap<String, Line> lines = new HashMap<String, Line>();
-	private HashMap<String, ChessPanel> panels = new HashMap<String, ChessPanel>();
-	private Node<ChessPanel> panelRoot = null;
+	private HashMap<String, Square> squares = new HashMap<String, Square>();
+	private Node<Square> panelRoot = null;
 	private Hexagon hexagon = null;
 	private ChessboardLabeling labeling = null;
 
+	private King testKing = null;
 	
 	public ChessboardGrid(Point center, int radius)
 	{
@@ -56,9 +60,20 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	{
 		setupPoints();
 		setupLines();
-		setupPanels();
-		setupPanelTree();
+		setupSquares();
+		setupSquareTree();
 		setupLabeling();
+
+		// @TODO dummy
+		Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
+		testKing = (King) PieceFactory.getPiece(null, whitePlayer, Piece.PieceTypes.KING);
+		testKing.setSquare(this.squares.get("A3"));
+	}
+
+	// @TODO remove later = dummy
+	public King getPiece()
+	{
+		return this.testKing;
 	}
 
 
@@ -75,761 +90,761 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	}
 	
 	
-	private void setupPanels()
+	private void setupSquares()
 	{
-		this.panels.put("Section A", new ChessPanel(
+		this.squares.put("Section A", new Square(
 				this.points.get("A"), this.points.get("A4"),
 				this.points.get("Center"), this.points.get("F4")));
 		
-		this.panels.put("Section B", new ChessPanel(
+		this.squares.put("Section B", new Square(
 				this.points.get("B"), this.points.get("B4"),
 				this.points.get("Center"), this.points.get("A4")));
 		
-		this.panels.put("Section C", new ChessPanel(
+		this.squares.put("Section C", new Square(
 				this.points.get("C"), this.points.get("C4"),
 				this.points.get("Center"), this.points.get("B4")));
 		
-		this.panels.put("Section D", new ChessPanel(
+		this.squares.put("Section D", new Square(
 				this.points.get("D"), this.points.get("D4"),
 				this.points.get("Center"), this.points.get("C4")));
 		
-		this.panels.put("Section E", new ChessPanel(
+		this.squares.put("Section E", new Square(
 				this.points.get("E"), this.points.get("E4"),
 				this.points.get("Center"), this.points.get("D4")));
 		
-		this.panels.put("Section F", new ChessPanel(
+		this.squares.put("Section F", new Square(
 				this.points.get("F"), this.points.get("F4"),
 				this.points.get("Center"), this.points.get("E4")));
 		
 		// Sector A
-		this.panels.put("Section A1F7", new ChessPanel(
+		this.squares.put("Section A1F7", new Square(
 				this.points.get("A"), this.points.get("A2"),
 				this.points.get("A2F6"), this.points.get("F6")));
 		
-		this.panels.put("Section A3F7", new ChessPanel(
+		this.squares.put("Section A3F7", new Square(
 				this.points.get("A2"), this.points.get("A4"),
 				this.points.get("A4B2"), this.points.get("A2F6")));
 		
-		this.panels.put("Section A1F5", new ChessPanel(
+		this.squares.put("Section A1F5", new Square(
 				this.points.get("F6"), this.points.get("A2F6"),
 				this.points.get("F4A2"), this.points.get("F4")));
 		
-		this.panels.put("Section A3F5", new ChessPanel(
+		this.squares.put("Section A3F5", new Square(
 				this.points.get("A2F6"), this.points.get("A4B2"),
 				this.points.get("Center"), this.points.get("F4A2")));
 		
 		// Sector B
-		this.panels.put("Section B1A7", new ChessPanel(
+		this.squares.put("Section B1A7", new Square(
 				this.points.get("B"), this.points.get("B2"),
 				this.points.get("B2A6"), this.points.get("A6")));
 		
-		this.panels.put("Section B3A7", new ChessPanel(
+		this.squares.put("Section B3A7", new Square(
 				this.points.get("B2"), this.points.get("B4"),
 				this.points.get("B4C2"), this.points.get("B2A6")));
 		
-		this.panels.put("Section B1A5", new ChessPanel(
+		this.squares.put("Section B1A5", new Square(
 				this.points.get("A6"), this.points.get("B2A6"),
 				this.points.get("A4B2"), this.points.get("A4")));
 		
-		this.panels.put("Section B3A5", new ChessPanel(
+		this.squares.put("Section B3A5", new Square(
 				this.points.get("B2A6"), this.points.get("B4C2"),
 				this.points.get("Center"), this.points.get("A4B2")));
 		
 		// Sector C
-		this.panels.put("Section C1B7", new ChessPanel(
+		this.squares.put("Section C1B7", new Square(
 				this.points.get("C"), this.points.get("C2"),
 				this.points.get("C2B6"), this.points.get("B6")));
 		
-		this.panels.put("Section C3B7", new ChessPanel(
+		this.squares.put("Section C3B7", new Square(
 				this.points.get("C2"), this.points.get("C4"),
 				this.points.get("C4D2"), this.points.get("C2B6")));
 		
-		this.panels.put("Section C1B5", new ChessPanel(
+		this.squares.put("Section C1B5", new Square(
 				this.points.get("B6"), this.points.get("C2B6"),
 				this.points.get("B4C2"), this.points.get("B4")));
 		
-		this.panels.put("Section C3B5", new ChessPanel(
+		this.squares.put("Section C3B5", new Square(
 				this.points.get("C2B6"), this.points.get("C4D2"),
 				this.points.get("Center"), this.points.get("B4C2")));
 		
 		// Sector D
-		this.panels.put("Section D1C7", new ChessPanel(
+		this.squares.put("Section D1C7", new Square(
 				this.points.get("D"), this.points.get("D2"),
 				this.points.get("D2C6"), this.points.get("C6")));
 		
-		this.panels.put("Section D3C7", new ChessPanel(
+		this.squares.put("Section D3C7", new Square(
 				this.points.get("D2"), this.points.get("D4"),
 				this.points.get("D4E2"), this.points.get("D2C6")));
 		
-		this.panels.put("Section D1C5", new ChessPanel(
+		this.squares.put("Section D1C5", new Square(
 				this.points.get("C6"), this.points.get("D2C6"),
 				this.points.get("C4D2"), this.points.get("C4")));
 		
-		this.panels.put("Section D3C5", new ChessPanel(
+		this.squares.put("Section D3C5", new Square(
 				this.points.get("D2C6"), this.points.get("D4E2"),
 				this.points.get("Center"), this.points.get("C4D2")));
 		
 		// Sector E
-		this.panels.put("Section E1D7", new ChessPanel(
+		this.squares.put("Section E1D7", new Square(
 				this.points.get("E"), this.points.get("E2"),
 				this.points.get("E2D6"), this.points.get("D6")));
 		
-		this.panels.put("Section E3D7", new ChessPanel(
+		this.squares.put("Section E3D7", new Square(
 				this.points.get("E2"), this.points.get("E4"),
 				this.points.get("E4F2"), this.points.get("E2D6")));
 		
-		this.panels.put("Section E1D5", new ChessPanel(
+		this.squares.put("Section E1D5", new Square(
 				this.points.get("D6"), this.points.get("E2D6"),
 				this.points.get("D4E2"), this.points.get("D4")));
 		
-		this.panels.put("Section E3D5", new ChessPanel(
+		this.squares.put("Section E3D5", new Square(
 				this.points.get("E2D6"), this.points.get("E4F2"),
 				this.points.get("Center"), this.points.get("D4E2")));
 		
 		// Sector F
-		this.panels.put("Section F1E7", new ChessPanel(
+		this.squares.put("Section F1E7", new Square(
 				this.points.get("F"), this.points.get("F2"),
 				this.points.get("F2E6"), this.points.get("E6")));
 		
-		this.panels.put("Section F3E7", new ChessPanel(
+		this.squares.put("Section F3E7", new Square(
 				this.points.get("F2"), this.points.get("F4"),
 				this.points.get("F4A2"), this.points.get("F2E6")));
 		
-		this.panels.put("Section F1E5", new ChessPanel(
+		this.squares.put("Section F1E5", new Square(
 				this.points.get("E6"), this.points.get("F2E6"),
 				this.points.get("E4F2"), this.points.get("E4")));
 		
-		this.panels.put("Section F3E5", new ChessPanel(
+		this.squares.put("Section F3E5", new Square(
 				this.points.get("F2E6"), this.points.get("F4A2"),
 				this.points.get("Center"), this.points.get("E4F2")));
 		
 		// Panels - Row 0
-		this.panels.put("A1", new ChessPanel( 0, 0,
+		this.squares.put("A1", new Square( 0, 0,
 				this.points.get("A"), this.points.get("A1"),
 				this.points.get("A1F7"), this.points.get("F7")));
 		
-		this.panels.put("B1", new ChessPanel( 1, 0,
+		this.squares.put("B1", new Square( 1, 0,
 				this.points.get("A1"), this.points.get("A2"),
 				this.points.get("A2F7"), this.points.get("A1F7")));
 		
-		this.panels.put("C1", new ChessPanel( 2, 0,
+		this.squares.put("C1", new Square( 2, 0,
 				this.points.get("A2"), this.points.get("A3"),
 				this.points.get("A3F7"), this.points.get("A2F7")));
 		
-		this.panels.put("D1", new ChessPanel( 3, 0,
+		this.squares.put("D1", new Square( 3, 0,
 				this.points.get("A3"), this.points.get("A4"),
 				this.points.get("A4B1"), this.points.get("A3F7")));
 	
-		this.panels.put("E1", new ChessPanel( 4, 0,
+		this.squares.put("E1", new Square( 4, 0,
 				this.points.get("A4"), this.points.get("A5"),
 				this.points.get("B1A5"), this.points.get("A4B1")));
 		
-		this.panels.put("F1", new ChessPanel( 5, 0,
+		this.squares.put("F1", new Square( 5, 0,
 				this.points.get("A5"), this.points.get("A6"),
 				this.points.get("B1A6"), this.points.get("B1A5")));
 		
-		this.panels.put("G1", new ChessPanel( 6, 0,
+		this.squares.put("G1", new Square( 6, 0,
 				this.points.get("A6"), this.points.get("A7"),
 				this.points.get("B1A7"), this.points.get("B1A6")));
 		
-		this.panels.put("H1", new ChessPanel( 7, 0,
+		this.squares.put("H1", new Square( 7, 0,
 				this.points.get("A7"), this.points.get("B"),
 				this.points.get("B1"), this.points.get("B1A7")));
 		
 		// Panels - Row 1
-		this.panels.put("A2", new ChessPanel( 0, 1,
+		this.squares.put("A2", new Square( 0, 1,
 				this.points.get("F7"), this.points.get("A1F7"),
 				this.points.get("A1F6"), this.points.get("F6")));
 		
-		this.panels.put("B2", new ChessPanel( 1, 1,
+		this.squares.put("B2", new Square( 1, 1,
 				this.points.get("A1F7"), this.points.get("A2F7"),
 				this.points.get("A2F6"), this.points.get("A1F6")));
 		
-		this.panels.put("C2", new ChessPanel( 2, 1,
+		this.squares.put("C2", new Square( 2, 1,
 				this.points.get("A2F7"), this.points.get("A3F7"),
 				this.points.get("A3F6"), this.points.get("A2F6")));
 		
-		this.panels.put("D2", new ChessPanel( 3, 1,
+		this.squares.put("D2", new Square( 3, 1,
 				this.points.get("A3F7"), this.points.get("A4B1"),
 				this.points.get("A4B2"), this.points.get("A3F6")));
 	
-		this.panels.put("E2", new ChessPanel( 4, 1,
+		this.squares.put("E2", new Square( 4, 1,
 				this.points.get("A4B1"), this.points.get("B1A5"),
 				this.points.get("B2A5"), this.points.get("A4B2")));
 		
-		this.panels.put("F2", new ChessPanel( 5, 1,
+		this.squares.put("F2", new Square( 5, 1,
 				this.points.get("B1A5"), this.points.get("B1A6"),
 				this.points.get("B2A6"), this.points.get("B2A5")));
 		
-		this.panels.put("G2", new ChessPanel( 6, 1,
+		this.squares.put("G2", new Square( 6, 1,
 				this.points.get("B1A6"), this.points.get("B1A7"),
 				this.points.get("B2A7"), this.points.get("B2A6")));
 		
-		this.panels.put("H2", new ChessPanel( 7, 1,
+		this.squares.put("H2", new Square( 7, 1,
 				this.points.get("B1A7"), this.points.get("B1"),
 				this.points.get("B2"), this.points.get("B2A7")));
 		
 		// Panels - Row 2
-		this.panels.put("A3", new ChessPanel( 0, 2,
+		this.squares.put("A3", new Square( 0, 2,
 				this.points.get("F6"), this.points.get("A1F6"),
 				this.points.get("A1F5"), this.points.get("F5")));
 		
-		this.panels.put("B3", new ChessPanel( 1, 2,
+		this.squares.put("B3", new Square( 1, 2,
 				this.points.get("A1F6"), this.points.get("A2F6"),
 				this.points.get("A2F5"), this.points.get("A1F5")));
 		
-		this.panels.put("C3", new ChessPanel( 2, 2,
+		this.squares.put("C3", new Square( 2, 2,
 				this.points.get("A2F6"), this.points.get("A3F6"),
 				this.points.get("A3F5"), this.points.get("A2F5")));
 		
-		this.panels.put("D3", new ChessPanel( 3, 2,
+		this.squares.put("D3", new Square( 3, 2,
 				this.points.get("A3F6"), this.points.get("A4B2"),
 				this.points.get("A4B3"), this.points.get("A3F5")));
 	
-		this.panels.put("E3", new ChessPanel( 4, 2,
+		this.squares.put("E3", new Square( 4, 2,
 				this.points.get("A4B2"), this.points.get("B2A5"),
 				this.points.get("B3A5"), this.points.get("A4B3")));
 		
-		this.panels.put("F3", new ChessPanel( 5, 2,
+		this.squares.put("F3", new Square( 5, 2,
 				this.points.get("B2A5"), this.points.get("B2A6"),
 				this.points.get("B3A6"), this.points.get("B3A5")));
 		
-		this.panels.put("G3", new ChessPanel( 6, 2,
+		this.squares.put("G3", new Square( 6, 2,
 				this.points.get("B2A6"), this.points.get("B2A7"),
 				this.points.get("B3A7"), this.points.get("B3A6")));
 		
-		this.panels.put("H3", new ChessPanel( 7, 2,
+		this.squares.put("H3", new Square( 7, 2,
 				this.points.get("B2A7"), this.points.get("B2"),
 				this.points.get("B3"), this.points.get("B3A7")));
 		
 		// Panels - Row 3
-		this.panels.put("A4", new ChessPanel( 0, 3,
+		this.squares.put("A4", new Square( 0, 3,
 				this.points.get("F5"), this.points.get("A1F5"),
 				this.points.get("F4A1"), this.points.get("F4")));
 		
-		this.panels.put("B4", new ChessPanel( 1, 3,
+		this.squares.put("B4", new Square( 1, 3,
 				this.points.get("A1F5"), this.points.get("A2F5"),
 				this.points.get("F4A2"), this.points.get("F4A1")));
 		
-		this.panels.put("C4", new ChessPanel( 2, 3,
+		this.squares.put("C4", new Square( 2, 3,
 				this.points.get("A2F5"), this.points.get("A3F5"),
 				this.points.get("F4A3"), this.points.get("F4A2")));
 		
-		this.panels.put("D4", new ChessPanel( 3, 3,
+		this.squares.put("D4", new Square( 3, 3,
 				this.points.get("A3F5"), this.points.get("A4B3"),
 				this.points.get("Center"), this.points.get("F4A3")));
 	
-		this.panels.put("E4", new ChessPanel( 4, 3,
+		this.squares.put("E4", new Square( 4, 3,
 				this.points.get("A4B3"), this.points.get("B3A5"),
 				this.points.get("B4C3"), this.points.get("Center")));
 		
-		this.panels.put("F4", new ChessPanel( 5, 3,
+		this.squares.put("F4", new Square( 5, 3,
 				this.points.get("B3A5"), this.points.get("B3A6"),
 				this.points.get("B4C2"), this.points.get("B4C3")));
 		
-		this.panels.put("G4", new ChessPanel( 6, 3,
+		this.squares.put("G4", new Square( 6, 3,
 				this.points.get("B3A6"), this.points.get("B3A7"),
 				this.points.get("B4C2"), this.points.get("B4C2")));
 		
-		this.panels.put("H4", new ChessPanel( 7, 3,
+		this.squares.put("H4", new Square( 7, 3,
 				this.points.get("B3A7"), this.points.get("B3"),
 				this.points.get("B4"), this.points.get("B4C1")));
 		
 		// Panels - Row 4
-		this.panels.put("A5", new ChessPanel( 0, 4,
+		this.squares.put("A5", new Square( 0, 4,
 				this.points.get("F4"), this.points.get("F4A1"),
 				this.points.get("F3E7"), this.points.get("F3")));
 		
-		this.panels.put("B5", new ChessPanel( 1, 4,
+		this.squares.put("B5", new Square( 1, 4,
 				this.points.get("F4A1"), this.points.get("F4A2"),
 				this.points.get("F3E6"), this.points.get("F3E7")));
 		
-		this.panels.put("C5", new ChessPanel( 2, 4,
+		this.squares.put("C5", new Square( 2, 4,
 				this.points.get("F4A2"), this.points.get("F4A3"),
 				this.points.get("F3E5"), this.points.get("F3E6")));
 		
-		this.panels.put("D5", new ChessPanel( 3, 4,
+		this.squares.put("D5", new Square( 3, 4,
 				this.points.get("F4A3"), this.points.get("Center"),
 				this.points.get("E4F3"), this.points.get("F3E5")));
 		
-		this.panels.put("I5", new ChessPanel( 8, 4,
+		this.squares.put("I5", new Square( 8, 4,
 				this.points.get("Center"), this.points.get("D4E3"),
 				this.points.get("E3D5"), this.points.get("E4F3")));
 		
-		this.panels.put("J5", new ChessPanel( 9, 4,
+		this.squares.put("J5", new Square( 9, 4,
 				this.points.get("D4E3"), this.points.get("D4E2"),
 				this.points.get("E2D5"), this.points.get("E3D5")));
 		
-		this.panels.put("K5", new ChessPanel( 10, 4,
+		this.squares.put("K5", new Square( 10, 4,
 				this.points.get("D4E2"), this.points.get("D4E1"),
 				this.points.get("E1D5"), this.points.get("E2D5")));
 		
-		this.panels.put("L5", new ChessPanel( 11, 4,
+		this.squares.put("L5", new Square( 11, 4,
 				this.points.get("D4E1"), this.points.get("D4"),
 				this.points.get("D5"), this.points.get("E1D5")));
 		
 		// Panels - Row 5
-		this.panels.put("A6", new ChessPanel( 0, 5,
+		this.squares.put("A6", new Square( 0, 5,
 				this.points.get("F3"), this.points.get("F3E7"),
 				this.points.get("F2E7"), this.points.get("F2")));
 		
-		this.panels.put("B6", new ChessPanel( 1, 5,
+		this.squares.put("B6", new Square( 1, 5,
 				this.points.get("F3E7"), this.points.get("F3E6"),
 				this.points.get("F2E6"), this.points.get("F2E7")));
 		
-		this.panels.put("C6", new ChessPanel( 2, 5,
+		this.squares.put("C6", new Square( 2, 5,
 				this.points.get("F3E6"), this.points.get("F3E5"),
 				this.points.get("F2E5"), this.points.get("F2E6")));
 		
-		this.panels.put("D6", new ChessPanel( 3, 5,
+		this.squares.put("D6", new Square( 3, 5,
 				this.points.get("F3E5"), this.points.get("E4F3"),
 				this.points.get("E4F2"), this.points.get("F2E5")));
 		
-		this.panels.put("I6", new ChessPanel( 8, 5,
+		this.squares.put("I6", new Square( 8, 5,
 				this.points.get("E4F3"), this.points.get("E3D5"),
 				this.points.get("E3D6"), this.points.get("E4F2")));
 		
-		this.panels.put("J6", new ChessPanel( 9, 5,
+		this.squares.put("J6", new Square( 9, 5,
 				this.points.get("E3D5"), this.points.get("E2D5"),
 				this.points.get("E2D6"), this.points.get("E3D6")));
 		
-		this.panels.put("K6", new ChessPanel( 10, 5,
+		this.squares.put("K6", new Square( 10, 5,
 				this.points.get("E2D5"), this.points.get("E1D5"),
 				this.points.get("E1D6"), this.points.get("E2D6")));
 		
-		this.panels.put("L6", new ChessPanel( 11, 5,
+		this.squares.put("L6", new Square( 11, 5,
 				this.points.get("E1D5"), this.points.get("D5"),
 				this.points.get("D6"), this.points.get("E1D6")));
 		
 		// Panels - Row 6
-		this.panels.put("A7", new ChessPanel( 0, 6,
+		this.squares.put("A7", new Square( 0, 6,
 				this.points.get("F2"), this.points.get("F2E7"),
 				this.points.get("F1E7"), this.points.get("F1")));
 		
-		this.panels.put("B7", new ChessPanel( 1, 6,
+		this.squares.put("B7", new Square( 1, 6,
 				this.points.get("F2E7"), this.points.get("F2E6"),
 				this.points.get("F1E6"), this.points.get("F1E7")));
 		
-		this.panels.put("C7", new ChessPanel( 2, 6,
+		this.squares.put("C7", new Square( 2, 6,
 				this.points.get("F2E6"), this.points.get("F2E5"),
 				this.points.get("F1E5"), this.points.get("F1E6")));
 		
-		this.panels.put("D7", new ChessPanel( 3, 6,
+		this.squares.put("D7", new Square( 3, 6,
 				this.points.get("F2E5"), this.points.get("E4F2"),
 				this.points.get("E4F1"), this.points.get("F1E5")));
 		
-		this.panels.put("I7", new ChessPanel( 8, 6,
+		this.squares.put("I7", new Square( 8, 6,
 				this.points.get("E4F2"), this.points.get("E3D6"),
 				this.points.get("E3D7"), this.points.get("E4F1")));
 		
-		this.panels.put("J7", new ChessPanel( 9, 6,
+		this.squares.put("J7", new Square( 9, 6,
 				this.points.get("E3D6"), this.points.get("E2D6"),
 				this.points.get("E2D7"), this.points.get("E3D7")));
 		
-		this.panels.put("K7", new ChessPanel( 10, 6,
+		this.squares.put("K7", new Square( 10, 6,
 				this.points.get("E2D6"), this.points.get("E1D6"),
 				this.points.get("E1D7"), this.points.get("E2D7")));
 		
-		this.panels.put("L7", new ChessPanel( 11, 6,
+		this.squares.put("L7", new Square( 11, 6,
 				this.points.get("E1D6"), this.points.get("D6"),
 				this.points.get("D7"), this.points.get("E1D7")));
 		
 		// Panels - Row 7
-		this.panels.put("A8", new ChessPanel( 0, 7,
+		this.squares.put("A8", new Square( 0, 7,
 				this.points.get("F1"), this.points.get("F1E7"),
 				this.points.get("E7"), this.points.get("F")));
 		
-		this.panels.put("B8", new ChessPanel( 1, 7,
+		this.squares.put("B8", new Square( 1, 7,
 				this.points.get("F1E7"), this.points.get("F1E6"),
 				this.points.get("E6"), this.points.get("E7")));
 		
-		this.panels.put("C8", new ChessPanel( 2, 7,
+		this.squares.put("C8", new Square( 2, 7,
 				this.points.get("F1E6"), this.points.get("F1E5"),
 				this.points.get("E5"), this.points.get("E6")));
 		
-		this.panels.put("D8", new ChessPanel( 3, 7,
+		this.squares.put("D8", new Square( 3, 7,
 				this.points.get("F1E5"), this.points.get("E4F1"),
 				this.points.get("E4"), this.points.get("E5")));
 		
-		this.panels.put("I8", new ChessPanel( 8, 7,
+		this.squares.put("I8", new Square( 8, 7,
 				this.points.get("E4F1"), this.points.get("E3D7"),
 				this.points.get("E3"), this.points.get("E4")));
 		
-		this.panels.put("J8", new ChessPanel( 9, 7,
+		this.squares.put("J8", new Square( 9, 7,
 				this.points.get("E3D7"), this.points.get("E2D7"),
 				this.points.get("E2"), this.points.get("E3")));
 		
-		this.panels.put("K8", new ChessPanel( 10, 7,
+		this.squares.put("K8", new Square( 10, 7,
 				this.points.get("E2D7"), this.points.get("E1D7"),
 				this.points.get("E1"), this.points.get("E2")));
 		
-		this.panels.put("L8", new ChessPanel( 11, 7,
+		this.squares.put("L8", new Square( 11, 7,
 				this.points.get("E1D7"), this.points.get("D7"),
 				this.points.get("E"), this.points.get("E1")));
 		
 		// Panels - Row 8
-		this.panels.put("H9", new ChessPanel( 0, 8,
+		this.squares.put("H9", new Square( 0, 8,
 				this.points.get("B4"), this.points.get("B4C1"),
 				this.points.get("C1B5"), this.points.get("B5")));
 		
-		this.panels.put("G9", new ChessPanel( 1, 8,
+		this.squares.put("G9", new Square( 1, 8,
 				this.points.get("B4C1"), this.points.get("B4C2"),
 				this.points.get("C2B5"), this.points.get("C1B5")));
 		
-		this.panels.put("F9", new ChessPanel( 2, 8,
+		this.squares.put("F9", new Square( 2, 8,
 				this.points.get("B4C2"), this.points.get("B4C3"),
 				this.points.get("C3B5"), this.points.get("C2B5")));
 		
-		this.panels.put("E9", new ChessPanel( 3, 8,
+		this.squares.put("E9", new Square( 3, 8,
 				this.points.get("B4C3"), this.points.get("Center"),
 				this.points.get("C4D3"), this.points.get("C3B5")));
 		
-		this.panels.put("I9", new ChessPanel( 8, 8,
+		this.squares.put("I9", new Square( 8, 8,
 				this.points.get("Center"), this.points.get("D4E3"),
 				this.points.get("D3C5"), this.points.get("C4D3")));
 		
-		this.panels.put("J9", new ChessPanel( 9, 8,
+		this.squares.put("J9", new Square( 9, 8,
 				this.points.get("D4E3"), this.points.get("D4E2"),
 				this.points.get("D3C6"), this.points.get("D3C5")));
 		
-		this.panels.put("K9", new ChessPanel( 10, 8,
+		this.squares.put("K9", new Square( 10, 8,
 				this.points.get("D4E2"), this.points.get("D4E1"),
 				this.points.get("D3C7"), this.points.get("D3C6")));
 		
-		this.panels.put("L9", new ChessPanel( 11, 8,
+		this.squares.put("L9", new Square( 11, 8,
 				this.points.get("D4E1"), this.points.get("D4"),
 				this.points.get("D3"), this.points.get("D3C7")));
 		
 		// Panels - Row 9
-		this.panels.put("H10", new ChessPanel( 0, 9,
+		this.squares.put("H10", new Square( 0, 9,
 				this.points.get("B5"), this.points.get("C1B5"),
 				this.points.get("C1B6"), this.points.get("B6")));
 		
-		this.panels.put("G10", new ChessPanel( 1, 9,
+		this.squares.put("G10", new Square( 1, 9,
 				this.points.get("C1B5"), this.points.get("C2B5"),
 				this.points.get("C2B6"), this.points.get("C1B6")));
 		
-		this.panels.put("F10", new ChessPanel( 2, 9,
+		this.squares.put("F10", new Square( 2, 9,
 				this.points.get("C2B5"), this.points.get("C3B5"),
 				this.points.get("C3B6"), this.points.get("C2B6")));
 		
-		this.panels.put("E10", new ChessPanel( 3, 9,
+		this.squares.put("E10", new Square( 3, 9,
 				this.points.get("C3B5"), this.points.get("C4D3"),
 				this.points.get("C4D2"), this.points.get("C2B6")));
 		
-		this.panels.put("I10", new ChessPanel( 8, 9,
+		this.squares.put("I10", new Square( 8, 9,
 				this.points.get("C4D3"), this.points.get("D3C5"),
 				this.points.get("D2C5"), this.points.get("C4D2")));
 		
-		this.panels.put("J10", new ChessPanel( 9, 9,
+		this.squares.put("J10", new Square( 9, 9,
 				this.points.get("D3C5"), this.points.get("D3C6"),
 				this.points.get("D2C6"), this.points.get("D2C5")));
 		
-		this.panels.put("K10", new ChessPanel( 10, 9,
+		this.squares.put("K10", new Square( 10, 9,
 				this.points.get("D3C6"), this.points.get("D3C7"),
 				this.points.get("D2C7"), this.points.get("D2C6")));
 		
-		this.panels.put("L10", new ChessPanel( 11, 9,
+		this.squares.put("L10", new Square( 11, 9,
 				this.points.get("D3C7"), this.points.get("D3"),
 				this.points.get("D2"), this.points.get("D2C7")));
 		
 		// Panels - Row 10
-		this.panels.put("H11", new ChessPanel( 0, 10,
+		this.squares.put("H11", new Square( 0, 10,
 				this.points.get("B6"), this.points.get("C1B6"),
 				this.points.get("C1B7"), this.points.get("B7")));
 		
-		this.panels.put("G11", new ChessPanel( 1, 10,
+		this.squares.put("G11", new Square( 1, 10,
 				this.points.get("C1B6"), this.points.get("C2B6"),
 				this.points.get("C2B7"), this.points.get("C1B7")));
 		
-		this.panels.put("F11", new ChessPanel( 2, 10,
+		this.squares.put("F11", new Square( 2, 10,
 				this.points.get("C2B6"), this.points.get("C3B6"),
 				this.points.get("C3B7"), this.points.get("C2B7")));
 		
-		this.panels.put("E11", new ChessPanel( 3, 10,
+		this.squares.put("E11", new Square( 3, 10,
 				this.points.get("C3B6"), this.points.get("C4D2"),
 				this.points.get("C4D1"), this.points.get("C3B7")));
 		
-		this.panels.put("I11", new ChessPanel( 8, 10,
+		this.squares.put("I11", new Square( 8, 10,
 				this.points.get("C4D2"), this.points.get("D2C5"),
 				this.points.get("D1C5"), this.points.get("C4D1")));
 		
-		this.panels.put("J11", new ChessPanel( 9, 10,
+		this.squares.put("J11", new Square( 9, 10,
 				this.points.get("D2C5"), this.points.get("D2C6"),
 				this.points.get("D1C6"), this.points.get("D1C5")));
 		
-		this.panels.put("K11", new ChessPanel( 10, 10,
+		this.squares.put("K11", new Square( 10, 10,
 				this.points.get("D2C6"), this.points.get("D2C7"),
 				this.points.get("D1C7"), this.points.get("D1C6")));
 		
-		this.panels.put("L11", new ChessPanel( 11, 10,
+		this.squares.put("L11", new Square( 11, 10,
 				this.points.get("D2C7"), this.points.get("D2"),
 				this.points.get("D1"), this.points.get("D1C7")));
 		
 		// Panels - Row 11
-		this.panels.put("H12", new ChessPanel( 0, 11,
+		this.squares.put("H12", new Square( 0, 11,
 				this.points.get("B7"), this.points.get("C1B7"),
 				this.points.get("C1"), this.points.get("C")));
 		
-		this.panels.put("G12", new ChessPanel( 1, 11,
+		this.squares.put("G12", new Square( 1, 11,
 				this.points.get("C1B7"), this.points.get("C2B7"),
 				this.points.get("C2"), this.points.get("C1")));
 		
-		this.panels.put("F12", new ChessPanel( 2, 11,
+		this.squares.put("F12", new Square( 2, 11,
 				this.points.get("C2B7"), this.points.get("C3B7"),
 				this.points.get("C3"), this.points.get("C2")));
 		
-		this.panels.put("E12", new ChessPanel( 3, 11,
+		this.squares.put("E12", new Square( 3, 11,
 				this.points.get("C3"), this.points.get("C4D1"),
 				this.points.get("C4"), this.points.get("C3B7")));
 		
-		this.panels.put("I12", new ChessPanel( 8, 11,
+		this.squares.put("I12", new Square( 8, 11,
 				this.points.get("C4D1"), this.points.get("D1C5"),
 				this.points.get("C5"), this.points.get("C4")));
 		
-		this.panels.put("J12", new ChessPanel( 9, 11,
+		this.squares.put("J12", new Square( 9, 11,
 				this.points.get("D1C5"), this.points.get("D1C6"),
 				this.points.get("C6"), this.points.get("C5")));
 		
-		this.panels.put("K12", new ChessPanel( 10, 11,
+		this.squares.put("K12", new Square( 10, 11,
 				this.points.get("D1C6"), this.points.get("D1C7"),
 				this.points.get("C7"), this.points.get("C6")));
 		
-		this.panels.put("L12", new ChessPanel( 11, 11,
+		this.squares.put("L12", new Square( 11, 11,
 				this.points.get("D1C7"), this.points.get("D1"),
 				this.points.get("D"), this.points.get("C7")));
 	}
 	
 	
-	private void setupPanelTree()
+	private void setupSquareTree()
 	{
 		// set whole hexagon as the root node
-		this.panelRoot = new Node<ChessPanel>("root", new ChessPanel());
+		this.panelRoot = new Node<Square>("root", new Square());
 		
-		List<Node<ChessPanel>> children = new ArrayList<Node<ChessPanel>>();
+		List<Node<Square>> children = new ArrayList<Node<Square>>();
 		
-		children.add(new Node<ChessPanel>("Section A", this.panels.get("Section A")));
-		children.add(new Node<ChessPanel>("Section B", this.panels.get("Section B")));
-		children.add(new Node<ChessPanel>("Section C", this.panels.get("Section C")));
-		children.add(new Node<ChessPanel>("Section D", this.panels.get("Section D")));
-		children.add(new Node<ChessPanel>("Section E", this.panels.get("Section E")));
-		children.add(new Node<ChessPanel>("Section F", this.panels.get("Section F")));
+		children.add(new Node<Square>("Section A", this.squares.get("Section A")));
+		children.add(new Node<Square>("Section B", this.squares.get("Section B")));
+		children.add(new Node<Square>("Section C", this.squares.get("Section C")));
+		children.add(new Node<Square>("Section D", this.squares.get("Section D")));
+		children.add(new Node<Square>("Section E", this.squares.get("Section E")));
+		children.add(new Node<Square>("Section F", this.squares.get("Section F")));
 		this.panelRoot.addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("Section A1F7", this.panels.get("Section A1F7")));
-		children.add(new Node<ChessPanel>("Section A3F7", this.panels.get("Section A3F7")));
-		children.add(new Node<ChessPanel>("Section A1F5", this.panels.get("Section A1F5")));
-		children.add(new Node<ChessPanel>("Section A3F5", this.panels.get("Section A3F5")));
+		children.add(new Node<Square>("Section A1F7", this.squares.get("Section A1F7")));
+		children.add(new Node<Square>("Section A3F7", this.squares.get("Section A3F7")));
+		children.add(new Node<Square>("Section A1F5", this.squares.get("Section A1F5")));
+		children.add(new Node<Square>("Section A3F5", this.squares.get("Section A3F5")));
 		this.panelRoot.getChild("Section A").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("Section B1A7", this.panels.get("Section B1A7")));
-		children.add(new Node<ChessPanel>("Section B3A7", this.panels.get("Section B3A7")));
-		children.add(new Node<ChessPanel>("Section B1A5", this.panels.get("Section B1A5")));
-		children.add(new Node<ChessPanel>("Section B3A5", this.panels.get("Section B3A5")));
+		children.add(new Node<Square>("Section B1A7", this.squares.get("Section B1A7")));
+		children.add(new Node<Square>("Section B3A7", this.squares.get("Section B3A7")));
+		children.add(new Node<Square>("Section B1A5", this.squares.get("Section B1A5")));
+		children.add(new Node<Square>("Section B3A5", this.squares.get("Section B3A5")));
 		this.panelRoot.getChild("Section B").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("Section C1B7", this.panels.get("Section C1B7")));
-		children.add(new Node<ChessPanel>("Section C3B7", this.panels.get("Section C3B7")));
-		children.add(new Node<ChessPanel>("Section C1B5", this.panels.get("Section C1B5")));
-		children.add(new Node<ChessPanel>("Section C3B5", this.panels.get("Section C3B5")));
+		children.add(new Node<Square>("Section C1B7", this.squares.get("Section C1B7")));
+		children.add(new Node<Square>("Section C3B7", this.squares.get("Section C3B7")));
+		children.add(new Node<Square>("Section C1B5", this.squares.get("Section C1B5")));
+		children.add(new Node<Square>("Section C3B5", this.squares.get("Section C3B5")));
 		this.panelRoot.getChild("Section C").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("Section D1C7", this.panels.get("Section D1C7")));
-		children.add(new Node<ChessPanel>("Section D3C7", this.panels.get("Section D3C7")));
-		children.add(new Node<ChessPanel>("Section D1C5", this.panels.get("Section D1C5")));
-		children.add(new Node<ChessPanel>("Section D3C5", this.panels.get("Section D3C5")));
+		children.add(new Node<Square>("Section D1C7", this.squares.get("Section D1C7")));
+		children.add(new Node<Square>("Section D3C7", this.squares.get("Section D3C7")));
+		children.add(new Node<Square>("Section D1C5", this.squares.get("Section D1C5")));
+		children.add(new Node<Square>("Section D3C5", this.squares.get("Section D3C5")));
 		this.panelRoot.getChild("Section D").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("Section E1D7", this.panels.get("Section E1D7")));
-		children.add(new Node<ChessPanel>("Section E3D7", this.panels.get("Section E3D7")));
-		children.add(new Node<ChessPanel>("Section E1D5", this.panels.get("Section E1D5")));
-		children.add(new Node<ChessPanel>("Section E3D5", this.panels.get("Section E3D5")));
+		children.add(new Node<Square>("Section E1D7", this.squares.get("Section E1D7")));
+		children.add(new Node<Square>("Section E3D7", this.squares.get("Section E3D7")));
+		children.add(new Node<Square>("Section E1D5", this.squares.get("Section E1D5")));
+		children.add(new Node<Square>("Section E3D5", this.squares.get("Section E3D5")));
 		this.panelRoot.getChild("Section E").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("Section F1E7", this.panels.get("Section F1E7")));
-		children.add(new Node<ChessPanel>("Section F3E7", this.panels.get("Section F3E7")));
-		children.add(new Node<ChessPanel>("Section F1E5", this.panels.get("Section F1E5")));
-		children.add(new Node<ChessPanel>("Section F3E5", this.panels.get("Section F3E5")));
+		children.add(new Node<Square>("Section F1E7", this.squares.get("Section F1E7")));
+		children.add(new Node<Square>("Section F3E7", this.squares.get("Section F3E7")));
+		children.add(new Node<Square>("Section F1E5", this.squares.get("Section F1E5")));
+		children.add(new Node<Square>("Section F3E5", this.squares.get("Section F3E5")));
 		this.panelRoot.getChild("Section F").addChildren(children);
 		children.clear();
 		
 		
-		children.add(new Node<ChessPanel>("A1", this.panels.get("A1")));
-		children.add(new Node<ChessPanel>("B1", this.panels.get("B1")));
-		children.add(new Node<ChessPanel>("A2", this.panels.get("A2")));
-		children.add(new Node<ChessPanel>("B2", this.panels.get("B2")));
+		children.add(new Node<Square>("A1", this.squares.get("A1")));
+		children.add(new Node<Square>("B1", this.squares.get("B1")));
+		children.add(new Node<Square>("A2", this.squares.get("A2")));
+		children.add(new Node<Square>("B2", this.squares.get("B2")));
 		this.panelRoot.getNode("Section A1F7").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("C1", this.panels.get("C1")));
-		children.add(new Node<ChessPanel>("D1", this.panels.get("D1")));
-		children.add(new Node<ChessPanel>("C2", this.panels.get("C2")));
-		children.add(new Node<ChessPanel>("D2", this.panels.get("D2")));
+		children.add(new Node<Square>("C1", this.squares.get("C1")));
+		children.add(new Node<Square>("D1", this.squares.get("D1")));
+		children.add(new Node<Square>("C2", this.squares.get("C2")));
+		children.add(new Node<Square>("D2", this.squares.get("D2")));
 		this.panelRoot.getNode("Section A3F7").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("E1", this.panels.get("E1")));
-		children.add(new Node<ChessPanel>("F1", this.panels.get("F1")));
-		children.add(new Node<ChessPanel>("E2", this.panels.get("E2")));
-		children.add(new Node<ChessPanel>("F2", this.panels.get("F2")));
+		children.add(new Node<Square>("E1", this.squares.get("E1")));
+		children.add(new Node<Square>("F1", this.squares.get("F1")));
+		children.add(new Node<Square>("E2", this.squares.get("E2")));
+		children.add(new Node<Square>("F2", this.squares.get("F2")));
 		this.panelRoot.getNode("Section B1A5").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("G1", this.panels.get("G1")));
-		children.add(new Node<ChessPanel>("H1", this.panels.get("H1")));
-		children.add(new Node<ChessPanel>("G2", this.panels.get("G2")));
-		children.add(new Node<ChessPanel>("H2", this.panels.get("H2")));
+		children.add(new Node<Square>("G1", this.squares.get("G1")));
+		children.add(new Node<Square>("H1", this.squares.get("H1")));
+		children.add(new Node<Square>("G2", this.squares.get("G2")));
+		children.add(new Node<Square>("H2", this.squares.get("H2")));
 		this.panelRoot.getNode("Section B1A7").addChildren(children);
 		children.clear();
 		
 		
-		children.add(new Node<ChessPanel>("A3", this.panels.get("A3")));
-		children.add(new Node<ChessPanel>("B3", this.panels.get("B3")));
-		children.add(new Node<ChessPanel>("A4", this.panels.get("A4")));
-		children.add(new Node<ChessPanel>("B4", this.panels.get("B4")));
+		children.add(new Node<Square>("A3", this.squares.get("A3")));
+		children.add(new Node<Square>("B3", this.squares.get("B3")));
+		children.add(new Node<Square>("A4", this.squares.get("A4")));
+		children.add(new Node<Square>("B4", this.squares.get("B4")));
 		this.panelRoot.getNode("Section A1F5").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("C3", this.panels.get("C3")));
-		children.add(new Node<ChessPanel>("D3", this.panels.get("D3")));
-		children.add(new Node<ChessPanel>("C4", this.panels.get("C4")));
-		children.add(new Node<ChessPanel>("D4", this.panels.get("D4")));
+		children.add(new Node<Square>("C3", this.squares.get("C3")));
+		children.add(new Node<Square>("D3", this.squares.get("D3")));
+		children.add(new Node<Square>("C4", this.squares.get("C4")));
+		children.add(new Node<Square>("D4", this.squares.get("D4")));
 		this.panelRoot.getNode("Section A3F5").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("E3", this.panels.get("E3")));
-		children.add(new Node<ChessPanel>("F3", this.panels.get("F3")));
-		children.add(new Node<ChessPanel>("E4", this.panels.get("E4")));
-		children.add(new Node<ChessPanel>("F4", this.panels.get("F4")));
+		children.add(new Node<Square>("E3", this.squares.get("E3")));
+		children.add(new Node<Square>("F3", this.squares.get("F3")));
+		children.add(new Node<Square>("E4", this.squares.get("E4")));
+		children.add(new Node<Square>("F4", this.squares.get("F4")));
 		this.panelRoot.getNode("Section B3A5").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("G3", this.panels.get("G3")));
-		children.add(new Node<ChessPanel>("H3", this.panels.get("H3")));
-		children.add(new Node<ChessPanel>("G4", this.panels.get("G4")));
-		children.add(new Node<ChessPanel>("H4", this.panels.get("H4")));
+		children.add(new Node<Square>("G3", this.squares.get("G3")));
+		children.add(new Node<Square>("H3", this.squares.get("H3")));
+		children.add(new Node<Square>("G4", this.squares.get("G4")));
+		children.add(new Node<Square>("H4", this.squares.get("H4")));
 		this.panelRoot.getNode("Section B3A7").addChildren(children);
 		children.clear();
 		
 		
-		children.add(new Node<ChessPanel>("A5", this.panels.get("A5")));
-		children.add(new Node<ChessPanel>("B5", this.panels.get("B5")));
-		children.add(new Node<ChessPanel>("A6", this.panels.get("A6")));
-		children.add(new Node<ChessPanel>("B6", this.panels.get("B6")));
+		children.add(new Node<Square>("A5", this.squares.get("A5")));
+		children.add(new Node<Square>("B5", this.squares.get("B5")));
+		children.add(new Node<Square>("A6", this.squares.get("A6")));
+		children.add(new Node<Square>("B6", this.squares.get("B6")));
 		this.panelRoot.getNode("Section F3E7").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("C5", this.panels.get("C5")));
-		children.add(new Node<ChessPanel>("D5", this.panels.get("D5")));
-		children.add(new Node<ChessPanel>("C6", this.panels.get("C6")));
-		children.add(new Node<ChessPanel>("D6", this.panels.get("D6")));
+		children.add(new Node<Square>("C5", this.squares.get("C5")));
+		children.add(new Node<Square>("D5", this.squares.get("D5")));
+		children.add(new Node<Square>("C6", this.squares.get("C6")));
+		children.add(new Node<Square>("D6", this.squares.get("D6")));
 		this.panelRoot.getNode("Section F3E5").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("I5", this.panels.get("I5")));
-		children.add(new Node<ChessPanel>("J5", this.panels.get("J5")));
-		children.add(new Node<ChessPanel>("I6", this.panels.get("I6")));
-		children.add(new Node<ChessPanel>("J6", this.panels.get("J6")));
+		children.add(new Node<Square>("I5", this.squares.get("I5")));
+		children.add(new Node<Square>("J5", this.squares.get("J5")));
+		children.add(new Node<Square>("I6", this.squares.get("I6")));
+		children.add(new Node<Square>("J6", this.squares.get("J6")));
 		this.panelRoot.getNode("Section E3D5").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("K5", this.panels.get("K5")));
-		children.add(new Node<ChessPanel>("L5", this.panels.get("L5")));
-		children.add(new Node<ChessPanel>("K6", this.panels.get("K6")));
-		children.add(new Node<ChessPanel>("L6", this.panels.get("L6")));
+		children.add(new Node<Square>("K5", this.squares.get("K5")));
+		children.add(new Node<Square>("L5", this.squares.get("L5")));
+		children.add(new Node<Square>("K6", this.squares.get("K6")));
+		children.add(new Node<Square>("L6", this.squares.get("L6")));
 		this.panelRoot.getNode("Section E1D5").addChildren(children);
 		children.clear();
 		
 		
-		children.add(new Node<ChessPanel>("A7", this.panels.get("A7")));
-		children.add(new Node<ChessPanel>("B7", this.panels.get("B7")));
-		children.add(new Node<ChessPanel>("A8", this.panels.get("A8")));
-		children.add(new Node<ChessPanel>("B8", this.panels.get("B8")));
+		children.add(new Node<Square>("A7", this.squares.get("A7")));
+		children.add(new Node<Square>("B7", this.squares.get("B7")));
+		children.add(new Node<Square>("A8", this.squares.get("A8")));
+		children.add(new Node<Square>("B8", this.squares.get("B8")));
 		this.panelRoot.getNode("Section F1E7").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("C7", this.panels.get("C7")));
-		children.add(new Node<ChessPanel>("D7", this.panels.get("D7")));
-		children.add(new Node<ChessPanel>("C8", this.panels.get("C8")));
-		children.add(new Node<ChessPanel>("D8", this.panels.get("D8")));
+		children.add(new Node<Square>("C7", this.squares.get("C7")));
+		children.add(new Node<Square>("D7", this.squares.get("D7")));
+		children.add(new Node<Square>("C8", this.squares.get("C8")));
+		children.add(new Node<Square>("D8", this.squares.get("D8")));
 		this.panelRoot.getNode("Section F1E5").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("I7", this.panels.get("I7")));
-		children.add(new Node<ChessPanel>("J7", this.panels.get("J7")));
-		children.add(new Node<ChessPanel>("I8", this.panels.get("I8")));
-		children.add(new Node<ChessPanel>("J8", this.panels.get("J8")));
+		children.add(new Node<Square>("I7", this.squares.get("I7")));
+		children.add(new Node<Square>("J7", this.squares.get("J7")));
+		children.add(new Node<Square>("I8", this.squares.get("I8")));
+		children.add(new Node<Square>("J8", this.squares.get("J8")));
 		this.panelRoot.getNode("Section E3D7").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("K7", this.panels.get("K7")));
-		children.add(new Node<ChessPanel>("L7", this.panels.get("L7")));
-		children.add(new Node<ChessPanel>("K8", this.panels.get("K8")));
-		children.add(new Node<ChessPanel>("L8", this.panels.get("L8")));
+		children.add(new Node<Square>("K7", this.squares.get("K7")));
+		children.add(new Node<Square>("L7", this.squares.get("L7")));
+		children.add(new Node<Square>("K8", this.squares.get("K8")));
+		children.add(new Node<Square>("L8", this.squares.get("L8")));
 		this.panelRoot.getNode("Section E1D7").addChildren(children);
 		children.clear();
 		
 		
-		children.add(new Node<ChessPanel>("H9", this.panels.get("H9")));
-		children.add(new Node<ChessPanel>("G9", this.panels.get("G9")));
-		children.add(new Node<ChessPanel>("H10", this.panels.get("H10")));
-		children.add(new Node<ChessPanel>("G10", this.panels.get("G10")));
+		children.add(new Node<Square>("H9", this.squares.get("H9")));
+		children.add(new Node<Square>("G9", this.squares.get("G9")));
+		children.add(new Node<Square>("H10", this.squares.get("H10")));
+		children.add(new Node<Square>("G10", this.squares.get("G10")));
 		this.panelRoot.getNode("Section C1B5").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("F9", this.panels.get("F9")));
-		children.add(new Node<ChessPanel>("E9", this.panels.get("E9")));
-		children.add(new Node<ChessPanel>("F10", this.panels.get("F10")));
-		children.add(new Node<ChessPanel>("E10", this.panels.get("E10")));
+		children.add(new Node<Square>("F9", this.squares.get("F9")));
+		children.add(new Node<Square>("E9", this.squares.get("E9")));
+		children.add(new Node<Square>("F10", this.squares.get("F10")));
+		children.add(new Node<Square>("E10", this.squares.get("E10")));
 		this.panelRoot.getNode("Section C3B5").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("I9", this.panels.get("I9")));
-		children.add(new Node<ChessPanel>("J9", this.panels.get("J9")));
-		children.add(new Node<ChessPanel>("I10", this.panels.get("I10")));
-		children.add(new Node<ChessPanel>("J10", this.panels.get("J10")));
+		children.add(new Node<Square>("I9", this.squares.get("I9")));
+		children.add(new Node<Square>("J9", this.squares.get("J9")));
+		children.add(new Node<Square>("I10", this.squares.get("I10")));
+		children.add(new Node<Square>("J10", this.squares.get("J10")));
 		this.panelRoot.getNode("Section D3C5").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("K9", this.panels.get("K9")));
-		children.add(new Node<ChessPanel>("L9", this.panels.get("L9")));
-		children.add(new Node<ChessPanel>("K10", this.panels.get("K10")));
-		children.add(new Node<ChessPanel>("L10", this.panels.get("L10")));
+		children.add(new Node<Square>("K9", this.squares.get("K9")));
+		children.add(new Node<Square>("L9", this.squares.get("L9")));
+		children.add(new Node<Square>("K10", this.squares.get("K10")));
+		children.add(new Node<Square>("L10", this.squares.get("L10")));
 		this.panelRoot.getNode("Section D3C7").addChildren(children);
 		children.clear();
 		
 		
-		children.add(new Node<ChessPanel>("H11", this.panels.get("H11")));
-		children.add(new Node<ChessPanel>("G11", this.panels.get("G11")));
-		children.add(new Node<ChessPanel>("H12", this.panels.get("H12")));
-		children.add(new Node<ChessPanel>("G12", this.panels.get("G12")));
+		children.add(new Node<Square>("H11", this.squares.get("H11")));
+		children.add(new Node<Square>("G11", this.squares.get("G11")));
+		children.add(new Node<Square>("H12", this.squares.get("H12")));
+		children.add(new Node<Square>("G12", this.squares.get("G12")));
 		this.panelRoot.getNode("Section C1B7").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("F11", this.panels.get("F11")));
-		children.add(new Node<ChessPanel>("E11", this.panels.get("E11")));
-		children.add(new Node<ChessPanel>("F12", this.panels.get("F12")));
-		children.add(new Node<ChessPanel>("E12", this.panels.get("E12")));
+		children.add(new Node<Square>("F11", this.squares.get("F11")));
+		children.add(new Node<Square>("E11", this.squares.get("E11")));
+		children.add(new Node<Square>("F12", this.squares.get("F12")));
+		children.add(new Node<Square>("E12", this.squares.get("E12")));
 		this.panelRoot.getNode("Section C3B7").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("I11", this.panels.get("I11")));
-		children.add(new Node<ChessPanel>("J11", this.panels.get("J11")));
-		children.add(new Node<ChessPanel>("I12", this.panels.get("I12")));
-		children.add(new Node<ChessPanel>("J12", this.panels.get("J12")));
+		children.add(new Node<Square>("I11", this.squares.get("I11")));
+		children.add(new Node<Square>("J11", this.squares.get("J11")));
+		children.add(new Node<Square>("I12", this.squares.get("I12")));
+		children.add(new Node<Square>("J12", this.squares.get("J12")));
 		this.panelRoot.getNode("Section D1C5").addChildren(children);
 		children.clear();
 		
-		children.add(new Node<ChessPanel>("K11", this.panels.get("K11")));
-		children.add(new Node<ChessPanel>("L11", this.panels.get("L11")));
-		children.add(new Node<ChessPanel>("K12", this.panels.get("K12")));
-		children.add(new Node<ChessPanel>("L12", this.panels.get("L12")));
+		children.add(new Node<Square>("K11", this.squares.get("K11")));
+		children.add(new Node<Square>("L11", this.squares.get("L11")));
+		children.add(new Node<Square>("K12", this.squares.get("K12")));
+		children.add(new Node<Square>("L12", this.squares.get("L12")));
 		this.panelRoot.getNode("Section D1C7").addChildren(children);
 		children.clear();
 	}
@@ -1030,10 +1045,29 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		lines.put("E7_D4E7", new Line(this.points.get("E7"), this.points.get("F4A1")));
 		lines.put("F7_E4F7", new Line(this.points.get("F7"), this.points.get("A4B1")));
 	}
-	
-	
-	// @return: ChessPanel or NULL if the point isnt within any panel
-	public ChessPanel getPanelWithinPoint(Point point)
+
+	// @param:  name of the panel regarding the labeling convention (eg.: D7, A3 ...)
+	// @return: certain chessPanel object
+	public Square getSquares(String name)
+	{
+		if (this.squares.containsKey(name))
+			return this.squares.get(name);
+		return null;
+	}
+
+
+	public Square getSquare(int boardPosX, int boardPosY)
+	{
+		for(Map.Entry<String, Square> square : this.squares.entrySet())
+			if (square.getValue().getPosX() == boardPosX &&
+				square.getValue().getPosY() == boardPosY)
+				return square.getValue();
+		return null;
+	}
+
+
+	// @return: Square or NULL if the point isnt within any panel
+	public Square getSquareWithinPoint(Point point)
 	{
 		if (this.hexagon.isPointWithinHexagon(point))
 			return breadthFirstSearch(point);
@@ -1041,19 +1075,19 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	}
 	
 	
-	private ChessPanel breadthFirstSearch(Point point)
+	private Square breadthFirstSearch(Point point)
 	{
 		return searchInTreeLevel(this.panelRoot, point);
 	}
 	
 	
-	private ChessPanel searchInTreeLevel(Node<ChessPanel> parentNode, Point point)
+	private Square searchInTreeLevel(Node<Square> parentNode, Point point)
 	{
-		List<Node<ChessPanel>> childNodes = parentNode.getChildren();
+		List<Node<Square>> childNodes = parentNode.getChildren();
 		
-		for (Node<ChessPanel> node : childNodes)
+		for (Node<Square> node : childNodes)
 		{
-			if (node.getData().isPointInsidePanel(point))
+			if (node.getData().isPointInside(point))
 			{
 				if (node.hasChildren())
 					return searchInTreeLevel(node, point);
@@ -1075,5 +1109,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 			point.getValue().paintComponent(graphics);
       
 		this.labeling.draw(graphics);
+
+		testKing.draw(graphics);
+		//repaint();
 	}
 }

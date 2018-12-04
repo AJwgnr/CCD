@@ -1,23 +1,22 @@
 package com.ovgu.ccd.gui;
 
-import com.ovgu.ccd.gui.chessboardListener.ChessPanel;
 import com.ovgu.ccd.gui.chessboardListener.Point;
-import com.ovgu.ccd.gui.chessboardListener.Triangle;
+import com.ovgu.ccd.pieces.Square;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class ChessPanelTest
+public class SquareTest
 {
-    private ChessPanel chesspanel = null;
+    private Square square = null;
 
 
     @Before
     public void setup()
     {
-        chesspanel = new ChessPanel(
+        square = new Square(
                 new Point(100,100),
                 new Point(200, 100),
                 new Point(200,200),
@@ -29,12 +28,12 @@ public class ChessPanelTest
     @Test
     public void testAreaComputation()
     {
-        assertEquals(chesspanel.getArea(), 10000, 0);
+        assertEquals(square.getArea(), 10000, 0);
     }
 
     @Test
     public void testIsPointInsidePanel()
     {
-        assertTrue(chesspanel.isPointInsidePanel(new Point(150,150)));
+        assertTrue(square.isPointInside(new Point(150,150)));
     }
 }

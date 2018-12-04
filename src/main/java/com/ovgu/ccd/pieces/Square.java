@@ -20,56 +20,169 @@
  */
 package com.ovgu.ccd.pieces;
 
+import com.ovgu.ccd.gui.chessboardListener.Line;
+import com.ovgu.ccd.gui.chessboardListener.Point;
+import com.ovgu.ccd.gui.chessboardListener.Triangle;
+
+import java.util.HashMap;
 import java.util.Objects;
+
 
 /**
  * Class to represent a chessboard square
  */
-public class Square {
+public class Square
+{
     private boolean invalid = false;
-    private int posX;
-    private int posY;
     private Piece piece = null;
+    private HashMap<String, Point> vertices = new HashMap<String, Point>();
+    private int boardPosX = -1;
+    private int boardPosY = -1;
 
+    // dummy square
+    public Square() { }
 
-    /**
-     * Initializes a Square on the chessboard with the
-     *
-     * @param posX
-     * @param posY
-     * @param piece
-     */
-    public Square(int posX, int posY, Piece piece) {
-        this.posX = posX;
-        this.posY = posY;
+    // @TODO remove later
+    public Square(int x, int y, Piece piece)
+    {
+        this.boardPosX = x;
+        this.boardPosY = y;
         this.piece = piece;
     }
 
-    /**
-     * @param square
-     */
-    public Square(Square square) {
-        this.posX = square.posX;
-        this.posY = square.posY;
-        this.piece = square.piece;
+    public Square(Square square)
+    {
+        this.boardPosX = square.getPosX();
+        this.boardPosY = square.getPosY();
+        this.piece = square.getPiece();
     }
 
-    /**
-     * @param square
-     * @return
-     */
-    public Square clone(Square square) {
-        return new Square(square);
+    public Square(Point a, Point b, Point c, Point d)
+    {
+        this.vertices.put("A", a);
+        this.vertices.put("B", b);
+        this.vertices.put("C", c);
+        this.vertices.put("D", d);
+    }
+
+
+    public Square(int boardPosX, int boardPosY, Point a, Point b, Point c, Point d)
+    {
+        this.boardPosX = boardPosX;
+        this.boardPosY = boardPosY;
+        this.vertices.put("A", a);
+        this.vertices.put("B", b);
+        this.vertices.put("C", c);
+        this.vertices.put("D", d);
+    }
+
+
+    public void setPosX(int x)
+    {
+        this.boardPosX = x;
+    }
+
+
+    public void setPosY(int y)
+    {
+        this.boardPosY = y;
+    }
+
+
+    public int getPosX()
+    {
+        return this.boardPosX;
+    }
+
+
+    public int getPosY()
+    {
+        return this.boardPosY;
+    }
+
+    public Point getVertex(String name)
+    {
+        if (this.vertices.containsKey(name))
+            return this.vertices.get(name);
+        return null;
+    }
+
+
+    public double getArea()
+    {
+        Triangle triangle1 = new Triangle(
+                this.vertices.get("A"),
+                this.vertices.get("B"),
+                this.vertices.get("C"));
+        Triangle triangle2 = new Triangle(
+                this.vertices.get("C"),
+                this.vertices.get("D"),
+                this.vertices.get("A"));
+        return triangle1.area() + triangle2.area();
+    }
+
+
+    public boolean isPointInside(Point point)
+    {
+        Triangle triangleAPD = new Triangle(
+                this.vertices.get("A"),
+                point,
+                this.vertices.get("D"));
+        Triangle triangleDPC = new Triangle(
+                this.vertices.get("D"),
+                point,
+                this.vertices.get("C"));
+        Triangle triangleCPB = new Triangle(
+                this.vertices.get("C"),
+                point,
+                this.vertices.get("B"));
+        Triangle trianglePBA = new Triangle(
+                point,
+                this.vertices.get("B"),
+                this.vertices.get("A"));
+
+        double areaOfTriangles =
+                triangleAPD.area() + triangleDPC.area() +
+                triangleCPB.area() + trianglePBA.area();
+
+        // if size(APD) + size(DPC) + size(CPB) + size(PBA) > size(ABCD)
+        // -> Point P is outside
+        if (areaOfTriangles > this.getArea())
+            return false;
+
+        // if size(APD) + size(DPC) + size(CPB) + size(PBA) = size(ABCD)
+        // -> Point P lies on one of the panel lines
+        // else
+        // -> Point P lies inside the panel
+        else
+            return true;
+    }
+
+    // computes the center of the chess panel
+    // @return: center point
+    public Point center()
+    {
+        Line diagonalLineAC = new Line(this.vertices.get("A"), this.vertices.get("C"));
+        Line diagonalLineBD = new Line(this.vertices.get("D"), this.vertices.get("B"));
+        return diagonalLineAC.computeIntersectionPoint(diagonalLineBD);
+    }
+
+
+    public void print()
+    {
+        System.out.println("Square:           " + this.hashCode());
+        System.out.println("Board Position X: " + this.getPosX());
+        System.out.println("Board Position Y: " + this.getPosY());
     }
 
     /**
      * @param piece
      */
-    public void setPiece(Piece piece) {
+    public void setPiece(Piece piece)
+    {
         this.piece = piece;
-        if (piece != null) {
+        if (piece != null)
             this.piece.setSquare(this);
-        }
     }
 
     /**
@@ -79,31 +192,27 @@ public class Square {
      * @return
      */
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+    {
         if (o == this) return true;
         if (!(o instanceof Square)) return false;
 
         Square square = (Square) o;
-        return square.getPosX() == posX && square.getPosY() == posY;
+        if (square.getVertex("A") == this.vertices.get("A") &&
+                square.getVertex("B") == this.vertices.get("B") &&
+                square.getVertex("C") == this.vertices.get("C") &&
+                square.getVertex("D") == this.vertices.get("D"))
+        {
+            if (square.getPosX() == this.boardPosX &&
+                square.getPosY() == this.boardPosY)
+                return true;
+        }
+        return false;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(posX, posY);
-    }
-
-    /**
-     * @return X position of the square
-     */
-    public int getPosX() {
-        return posX;
-    }
-
-    /**
-     * @return Y Position of the square
-     */
-    public int getPosY() {
-        return posY;
+        return Objects.hash(this.vertices);
     }
 
     /**
