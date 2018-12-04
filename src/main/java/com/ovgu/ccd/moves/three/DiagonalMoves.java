@@ -1,7 +1,7 @@
 package com.ovgu.ccd.moves.three;
 
-import com.ovgu.ccd.jchess.ThreePlayerChessboard;
-import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.ThreePlayerChessboard;
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.moves.IMove;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
@@ -9,12 +9,12 @@ import com.ovgu.ccd.pieces.Square;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class DiagonalMove implements IMove {
+public class DiagonalMoves implements IMove {
 
     private Piece piece;
     private ThreePlayerChessboard board;
 
-    DiagonalMove(Piece piece, IBoard board) {
+    public DiagonalMoves(Piece piece, IBoard board) {
         this.piece = piece;
         this.board = (ThreePlayerChessboard) board;
     }
@@ -35,42 +35,79 @@ public class DiagonalMove implements IMove {
             // We don't reach the rosette, get reachable rosette, its neighbors and the diagonal moves
             //also, for the reachable rosette, get left or right neighbors
             Square side = board.getSideRosetteTile(piece.getSquare(), diagonal(piece.getSquare()));
-            possibleMoves.addAll(oppositeRosetteDiagonalMoves(side));
+            if (board.validMove(side, piece)) {
+                possibleMoves.addAll(oppositeRosetteDiagonalMoves(side));
 
-            // Here it's ok to check both ways, we are adding redundant moves but it's ok.
-            Square leftSide = board.getLeftQuadrantSquare(side);
-            if (board.validMove(leftSide)) {
-                possibleMoves.addAll(neighborSextantMoves(leftSide));
-            }
+                // Here it's ok to check both ways, we are adding redundant moves but it's ok.
+                Square leftSide = board.getLeftQuadrantSquare(side);
+                if (board.validMove(leftSide, piece)) {
+                    possibleMoves.addAll(neighborSextantMoves(leftSide));
+                }
 
-            Square rightSide = board.getRightQuadrantSquare(side);
-            if (board.validMove(rightSide)){
-                possibleMoves.addAll(neighborSextantMoves(rightSide));
+                Square rightSide = board.getRightQuadrantSquare(side);
+                if (board.validMove(rightSide, piece)) {
+                    possibleMoves.addAll(neighborSextantMoves(rightSide));
+                }
             }
         }
 
 
         // check sextants on both sides and ask for their diagonals...
-        Square leftSide = null;
-        ArrayList<Square> leftSquares = left(piece.getSquare());
-        if (!leftSquares.isEmpty() && leftSquares.get(leftSquares.size() - 1) != null) {
-            leftSide = board.getLeftQuadrantSquare(leftSquares.get(leftSquares.size() - 1));
-        } else {
-            leftSide = board.getLeftQuadrantSquare(piece.getSquare());
-        }
-        possibleMoves.addAll(neighborSextantMoves(leftSide));
-
-        Square rightSide = null;
-        ArrayList<Square> rightSquares = right(piece.getSquare());
-        if (!rightSquares.isEmpty() && (rightSquares.get(rightSquares.size() - 1)) != null) {
-            rightSide = board.getRightQuadrantSquare(rightSquares.get(rightSquares.size() - 1));
-        } else {
-            rightSide = board.getRightQuadrantSquare(piece.getSquare());
-        }
-        possibleMoves.addAll(neighborSextantMoves(rightSide));
+        possibleMoves.addAll(leftSextantMoves());
+        possibleMoves.addAll(rightSextantMoves());
 
         return new ArrayList<Square>(Arrays.asList(possibleMoves.stream().distinct().toArray(Square[]::new)));
     }
+
+    public ArrayList<Square> leftSextantMoves() throws Exception {
+        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        Square leftSide = null;
+        ArrayList<Square> leftSquares = left(piece.getSquare());
+
+        if (!leftSquares.isEmpty() && leftSquares.get(leftSquares.size() - 1) != null) {
+            Square leftSquare = leftSquares.get(leftSquares.size() - 1);
+            if (leftSextantReachable(leftSquare)) {
+                leftSide = board.getLeftQuadrantSquare(leftSquare);
+            }
+        } else {
+            leftSide = board.getLeftQuadrantSquare(piece.getSquare());
+        }
+        if(leftSide != null && board.validMove(leftSide, piece)) {
+            possibleMoves.addAll(neighborSextantMoves(leftSide));
+        }
+
+        return possibleMoves;
+    }
+
+    public ArrayList<Square> rightSextantMoves() throws Exception {
+        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        Square rightSide = null;
+        ArrayList<Square> rightSquares = right(piece.getSquare());
+
+        if (!rightSquares.isEmpty() && (rightSquares.get(rightSquares.size() - 1)) != null) {
+            Square rightSquare = rightSquares.get(rightSquares.size() - 1);
+            if (rightSextantReachable(rightSquare)) {
+                rightSide = board.getRightQuadrantSquare(rightSquare);
+            }
+        } else {
+            rightSide = board.getRightQuadrantSquare(piece.getSquare());
+        }
+        if(rightSide != null && board.validMove(rightSide, piece)) {
+            possibleMoves.addAll(neighborSextantMoves(rightSide));
+        }
+        return possibleMoves;
+    }
+
+    public boolean leftSextantReachable(Square leftMostSquare) {
+        return leftMostSquare.getPosY() == ThreePlayerChessboard.E || leftMostSquare.getPosY() == ThreePlayerChessboard.I || leftMostSquare.getPosY() == ThreePlayerChessboard.D ||
+         leftMostSquare.getPosX() +1 == 4 || leftMostSquare.getPosX() +1 == 5 || leftMostSquare.getPosX() +1 == 9;
+    }
+
+    public boolean rightSextantReachable(Square rightMostSquare) {
+        return rightMostSquare.getPosY() == ThreePlayerChessboard.E || rightMostSquare.getPosY() == ThreePlayerChessboard.I || rightMostSquare.getPosY() == ThreePlayerChessboard.D ||
+               rightMostSquare.getPosX() +1 == 4 || rightMostSquare.getPosX() +1 == 5 || rightMostSquare.getPosX() +1 == 9;
+    }
+
 
     public boolean perfectDiagonal() {
         // white diagonals first, black diagonals second
@@ -114,7 +151,7 @@ public class DiagonalMove implements IMove {
             }
 
             Square nextMove = new Square(xCoord, yCoord, null);
-            if (board.validMove(nextMove) && board.inSextant(square, xCoord, yCoord)) {
+            if (board.validMove(nextMove, piece) && board.inSextant(square, xCoord, yCoord)) {
                 possibleMoves.add(nextMove);
             }
         }
@@ -142,7 +179,7 @@ public class DiagonalMove implements IMove {
             }
             
             Square nextMove = new Square(xCoord, yCoord, null);
-            if (board.validMove(nextMove) && board.inSextant(square, xCoord, yCoord)) {
+            if (board.validMove(nextMove, piece) && board.inSextant(square, xCoord, yCoord)) {
                 possibleMoves.add(nextMove);
             }
         }
@@ -171,7 +208,7 @@ public class DiagonalMove implements IMove {
             }
 
             Square nextMove = new Square(xCoord, yCoord, null);
-            if (board.validMove(nextMove) && board.inSextant(square, xCoord, yCoord)) {
+            if (board.validMove(nextMove, piece) && board.inSextant(square, xCoord, yCoord)) {
                 possibleMoves.add(nextMove);
             }
         }
@@ -194,7 +231,7 @@ public class DiagonalMove implements IMove {
             }
             
             Square nextMove = new Square(xCoord, yCoord, null);
-            if (board.validMove(nextMove) && board.inSextant(square, xCoord, yCoord)) {
+            if (board.validMove(nextMove, piece) && board.inSextant(square, xCoord, yCoord)) {
                 possibleMoves.add(nextMove);
             }
         }
@@ -207,7 +244,7 @@ public class DiagonalMove implements IMove {
 
         ArrayList<Square> squares = board.getDiagonalCenterPositions(currentRosette);
         for (Square square : squares) {
-            if (board.validMove(square)) {
+            if (board.validMove(square, piece)) {
                 possibleMoves.add(square);
                 possibleMoves.addAll(diagonal(square));
             }
@@ -219,7 +256,7 @@ public class DiagonalMove implements IMove {
     private ArrayList<Square> neighborSextantMoves(Square square) {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
-        if (board.validMove(square)) {
+        if (board.validMove(square, piece)) {
             possibleMoves.add(square);
             possibleMoves.addAll(diagonal(square));
         }
