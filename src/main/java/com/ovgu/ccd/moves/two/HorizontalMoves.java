@@ -1,5 +1,6 @@
-package com.ovgu.ccd.moves;
+package com.ovgu.ccd.moves.two;
 
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.gui.Chessboard;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 /**
  *
  */
-public class VerticalMoves {
+public class HorizontalMoves {
 
     private Piece piece;
     private Chessboard board;
@@ -18,7 +19,7 @@ public class VerticalMoves {
      * @param piece
      * @param board
      */
-    public VerticalMoves(Piece piece, IBoard board) {
+    public HorizontalMoves(Piece piece, IBoard board) {
         this.piece = piece;
         this.board = (Chessboard) board;
     }
@@ -30,9 +31,9 @@ public class VerticalMoves {
         ArrayList moves = new ArrayList();
         Square square = piece.getSquare();
 
-        //up
-        for (int i = square.getPosY() + 1; i <= 7; ++i) {
-            Square nextPosition = board.getSquare(square.getPosX(), i);
+        //left
+        for (int i = square.getPosX() - 1; i >= 0; --i) {
+            Square nextPosition = board.getSquare(i, square.getPosY());
             if (!piece.canMoveTo(nextPosition)) {
                 break;
             }
@@ -44,9 +45,9 @@ public class VerticalMoves {
             }
         }
 
-        //down
-        for (int i = square.getPosY() - 1; i >= 0; --i) {
-            Square nextPosition = board.getSquare(square.getPosX(), i);
+        //right
+        for (int i = square.getPosX() + 1; i <= 7; ++i) {
+            Square nextPosition = board.getSquare(i, square.getPosY());
             if (!piece.canMoveTo(nextPosition)) {
                 break;
             }
@@ -57,7 +58,6 @@ public class VerticalMoves {
                 break;
             }
         }
-
         return moves;
     }
 

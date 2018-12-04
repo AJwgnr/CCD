@@ -26,7 +26,7 @@ import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.ResourceLoader;
 import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.Moves.castling;
-import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.moves.Move;
 import com.ovgu.ccd.pieces.*;
 
@@ -638,6 +638,11 @@ public class Chessboard extends JPanel implements IBoard {
     }
 
     @Override
+    public void setPiece(Piece piece, int x, int y) {
+        squares[x][y].setPiece(piece);
+    }
+
+    @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -851,7 +856,7 @@ public class Chessboard extends JPanel implements IBoard {
 
     // TODO: Remove me
     @Override
-    public boolean validMove(Square square) {
+    public boolean validMove(Square square, Piece piece) {
         return false;
     }
 

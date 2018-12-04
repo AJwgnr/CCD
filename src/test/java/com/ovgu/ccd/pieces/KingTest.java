@@ -24,7 +24,7 @@ public class KingTest {
     @Before
     public void setup() {
         King blackKing = (King) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.KING);
-        board.getSquare(4, 7).setPiece(blackKing);
+        board.setPiece(blackKing, 4, 7);
         board.setKingBlack(blackKing);
     }
 
@@ -56,7 +56,7 @@ public class KingTest {
     public void testAllMovesMiddleBoard() {
         King whiteKing = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite(whiteKing);
-        board.getSquare(3, 3).setPiece(whiteKing);
+        board.setPiece(whiteKing, 3, 3);
         List<Square> moves = whiteKing.allMoves();
 
         assertEquals(8, moves.size());
@@ -80,7 +80,7 @@ public class KingTest {
     public void testAllMovesTopLeftCorner() {
         King whiteKing = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite(whiteKing);
-        board.getSquare(0, 7).setPiece(whiteKing);
+        board.setPiece(whiteKing, 0, 7);
         List<Square> moves = whiteKing.allMoves();
 
         assertEquals(3, moves.size());
@@ -113,13 +113,13 @@ public class KingTest {
         Bishop topPiece = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         Knight bottomPiece = (Knight) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KNIGHT);
         board.setKingWhite(whiteKing);
-        board.getSquare(0, 7).setPiece(whiteKing);
+        board.setPiece(whiteKing, 0, 7);
 
-        board.getSquare(3, 3).setPiece(whiteKing);
-        board.getSquare(2, 3).setPiece(leftPiece);
-        board.getSquare(3, 4).setPiece(topPiece);
-        board.getSquare(4, 3).setPiece(rightPiece);
-        board.getSquare(3, 2).setPiece(bottomPiece);
+        board.setPiece(whiteKing, 3, 3);
+        board.setPiece(leftPiece, 2, 3);
+        board.setPiece(topPiece, 3, 4);
+        board.setPiece(rightPiece, 4, 3);
+        board.setPiece(bottomPiece, 3, 2);
 
         List<Square> moves = whiteKing.allMoves();
 

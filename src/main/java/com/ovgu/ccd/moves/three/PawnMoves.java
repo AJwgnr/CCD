@@ -1,19 +1,19 @@
 package com.ovgu.ccd.moves.three;
 
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.jchess.ThreePlayerChessboard;
-import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.ThreePlayerChessboard;
 import com.ovgu.ccd.moves.IMove;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
 import java.util.ArrayList;
 
-public class PawnMove implements IMove {
+public class PawnMoves implements IMove {
     private Piece piece;
     private ThreePlayerChessboard board;
 
-    PawnMove(Piece piece, IBoard board) {
+    public PawnMoves(Piece piece, IBoard board) {
         this.piece = piece;
         this.board = (ThreePlayerChessboard) board;
     }
@@ -46,13 +46,16 @@ public class PawnMove implements IMove {
             }
         }
         if (piece.getPosX() + 1 == 2) {
-            possibleMoves.add(new Square(3, piece.getPosY(), null));
+            Square twoStepMove = new Square(3, piece.getPosY(), null);
+            if (board.validMove(new Square(2, piece.getPosY(), null), piece) && board.validMove(twoStepMove, piece)) {
+                possibleMoves.add(twoStepMove);
+            }
         }
         if (5 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 12) {
             move = new Square(piece.getPosX() + 1, piece.getPosY(), null);
         }
 
-        if (board.validMove(move)) {
+        if (board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -77,13 +80,16 @@ public class PawnMove implements IMove {
             }
         }
         if (piece.getPosX() + 1 == 7) {
-            possibleMoves.add(new Square(4, piece.getPosY(), null));
+            Square twoStepMove = new Square(4, piece.getPosY(), null);
+            if (board.validMove(new Square(5, piece.getPosY(), null), piece) && board.validMove(twoStepMove, piece)) {
+                possibleMoves.add(twoStepMove);
+            }
         }
         if (9 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 12) {
             move = new Square(piece.getPosX() + 1, piece.getPosY(), null);
         }
 
-        if (board.validMove(move)) {
+        if (board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;
@@ -111,10 +117,13 @@ public class PawnMove implements IMove {
             }
         }
         if (piece.getPosX() + 1 == 11) {
-            possibleMoves.add(new Square(8, piece.getPosY(), null));
+            Square twoStepMove = new Square(8, piece.getPosY(), null);
+            if (board.validMove(new Square(9, piece.getPosY(), null), piece) && board.validMove(twoStepMove, piece)) {
+                possibleMoves.add(twoStepMove);
+            }
         }
 
-        if (board.validMove(move)) {
+        if (board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
         return possibleMoves;

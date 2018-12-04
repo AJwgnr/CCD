@@ -1,11 +1,8 @@
-package com.ovgu.ccd.jchess;
+package com.ovgu.ccd.applogic;
 
 import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.moves.IBoard;
-import com.ovgu.ccd.pieces.King;
-import com.ovgu.ccd.pieces.Pawn;
-import com.ovgu.ccd.pieces.Piece;
-import com.ovgu.ccd.pieces.Square;
+import com.ovgu.ccd.applogic.IBoard;
+import com.ovgu.ccd.pieces.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -134,16 +131,16 @@ public class ThreePlayerChessboard implements IBoard {
     }
 
     @Override
-    public boolean validMove(Square square) {
+    public boolean validMove(Square square, Piece piece) {
         return (0 <= square.getPosX() && square.getPosX() <= 11 &&
                 0 <= square.getPosY() && square.getPosY() <= 11 &&
                 !matrix[square.getPosX()][square.getPosY()].isInvalid() &&
-                matrix[square.getPosX()][square.getPosY()].isEmpty());
+                (matrix[square.getPosX()][square.getPosY()].isEmpty() || occupiedByOther(piece, square)));
     }
 
     public Square getCurrentRosette(Square square) throws Exception {
         int x = square.getPosX() + 1;
-        int y = square.getPosY() + 1;
+        int y = square.getPosY();
 
         if (1 <= x && x <= 4 && E <= y && y <= H) { return new Square(3, E, null); }
         if (9 <= x && x <= 12 && E <= y && y <= H) { return new Square(8, E, null); }
@@ -272,6 +269,78 @@ public class ThreePlayerChessboard implements IBoard {
         }
 
         throw new Exception("Invalid square");
+    }
+
+
+    public boolean occupiedByOther(Piece piece, Square square) {
+        Square nextMove = matrix[square.getPosX()][square.getPosY()];
+        return (!nextMove.isInvalid() && nextMove.getPiece() != null && nextMove.getPiece().getPlayer() != piece.getPlayer());
+    }
+
+    public boolean leftCastlingPossible(King king) {
+        if (king.isWasMotion()) { return false; }
+
+        Rook rook;
+
+        if (king.getColor() == Player.Colors.WHITE) {
+            rook = (Rook) matrix[0][A].getPiece();
+        } else if (king.getColor() == Player.Colors.BLACK) {
+            rook = (Rook) matrix[7][L].getPiece();
+        } else {
+            rook = (Rook) matrix[11][H].getPiece();
+        }
+        if (rook == null) { return false; }
+        if (!rook.name.equals("Rook")) { return false; }
+        if (rook.isWasMotion()) { return true; }
+
+        if (king.getColor() == Player.Colors.WHITE) {
+            for (int y = B; y <= D; y++) {
+                if (matrix[0][y].getPiece() != null) { return false; }
+            }
+        } else if (king.getColor() == Player.Colors.BLACK) {
+            for (int y = I; y <= K; y++) {
+                if (matrix[7][y].getPiece() != null) { return false; }
+            }
+        } else {
+            for (int y = E; y <= G; y++) {
+                if (matrix[11][y].getPiece() != null) { return false; }
+            }
+        }
+
+        return true;
+    }
+
+    public boolean rightCastlingPossible(King king) {
+        if (king.isWasMotion()) { return false; }
+
+        Rook rook;
+
+        if (king.getColor() == Player.Colors.WHITE) {
+            rook = (Rook) matrix[0][H].getPiece();
+        } else if (king.getColor() == Player.Colors.BLACK) {
+            rook = (Rook) matrix[7][A].getPiece();
+        } else {
+            rook = (Rook) matrix[11][L].getPiece();
+        }
+        if (rook == null) { return false; }
+        if (!rook.name.equals("Rook")) { return false; }
+        if (rook.isWasMotion()) { return true; }
+
+        if (king.getColor() == Player.Colors.WHITE) {
+            for (int y = F; y <= G; y++) {
+                if (matrix[0][y].getPiece() != null) { return false; }
+            }
+        } else if (king.getColor() == Player.Colors.BLACK) {
+            for (int y = B; y <= C; y++) {
+                if (matrix[7][y].getPiece() != null) { return false; }
+            }
+        } else {
+            for (int y = J; y <= K; y++) {
+                if (matrix[11][y].getPiece() != null) { return false; }
+            }
+        }
+
+        return true;
     }
 
     // TODO: Remove me
