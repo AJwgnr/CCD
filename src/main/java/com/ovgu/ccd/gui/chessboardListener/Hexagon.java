@@ -27,7 +27,7 @@ public class Hexagon extends GeometricShape
 	}
 	
 	
-	// construct the hexagon and computes a list of all vertices
+	// construct the hexagon and computes a list of moves vertices
 	private void computeVertices()
 	{
 		Circle outerCircle = new Circle(this.center, this.radius);
