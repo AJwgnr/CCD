@@ -12,11 +12,12 @@ import javax.swing.JPanel;
 public class ChessboardListener implements MouseListener 
 {
 	private ChessboardGrid grid = null;
+	private Square squareBuffer = null;
 
 
-	public ChessboardListener(Point center, int radius)
+	public ChessboardListener(ChessboardGrid grid)
 	{
-		this.grid = new ChessboardGrid(center, radius);
+		this.grid = grid;
 		this.grid.addMouseListener(this);
 	}
 
@@ -37,16 +38,47 @@ public class ChessboardListener implements MouseListener
 		return clickedSquare;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e)
-	{
-		Square clickedSquare = getClickedSquare(e);
+	private void movePiece(Square origin, Square target)
+    {
+        if (origin != null && target != null)
+        {
+            if (origin.getPiece() != null)
+            {
+                target.setPiece(origin.getPiece());
+                origin.setPiece(null);
+            }
+        }
+    }
+
+	private void handleChessboardClicks(MouseEvent e)
+    {
+        Square clickedSquare = getClickedSquare(e);
         if(clickedSquare != null)
         {
             clickedSquare.print();
-            this.grid.getPiece().setSquare(clickedSquare);
+
+            // select piece
+            if (clickedSquare.getPiece() != null && this.squareBuffer == null)
+            {
+                this.squareBuffer = clickedSquare;
+                System.out.println("Select");
+            }
+
+            // move piece
+            else
+            {
+                movePiece(this.squareBuffer, clickedSquare);
+                this.squareBuffer = null;
+                System.out.println("Move");
+            }
             this.grid.redraw();
         }
+    }
+
+	@Override
+	public void mouseClicked(MouseEvent e)
+	{
+        handleChessboardClicks(e);
 	}
 
 	@Override

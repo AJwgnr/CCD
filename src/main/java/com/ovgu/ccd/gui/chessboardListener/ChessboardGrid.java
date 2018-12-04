@@ -44,8 +44,6 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	private Node<Square> panelRoot = null;
 	private Hexagon hexagon = null;
 	private ChessboardLabeling labeling = null;
-
-	private King testKing = null;
 	
 	public ChessboardGrid(Point center, int radius)
 	{
@@ -63,17 +61,6 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		setupSquares();
 		setupSquareTree();
 		setupLabeling();
-
-		// @TODO dummy
-		Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
-		testKing = (King) PieceFactory.getPiece(null, whitePlayer, Piece.PieceTypes.KING);
-		testKing.setSquare(this.squares.get("A3"));
-	}
-
-	// @TODO remove later = dummy
-	public King getPiece()
-	{
-		return this.testKing;
 	}
 
 
@@ -223,36 +210,36 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 				this.points.get("A"), this.points.get("A1"),
 				this.points.get("A1F7"), this.points.get("F7")));
 		
-		this.squares.put("B1", new Square( 1, 0,
+		this.squares.put("B1", new Square( 0, 1,
 				this.points.get("A1"), this.points.get("A2"),
 				this.points.get("A2F7"), this.points.get("A1F7")));
 		
-		this.squares.put("C1", new Square( 2, 0,
+		this.squares.put("C1", new Square( 0, 2,
 				this.points.get("A2"), this.points.get("A3"),
 				this.points.get("A3F7"), this.points.get("A2F7")));
 		
-		this.squares.put("D1", new Square( 3, 0,
+		this.squares.put("D1", new Square( 0, 3,
 				this.points.get("A3"), this.points.get("A4"),
 				this.points.get("A4B1"), this.points.get("A3F7")));
 	
-		this.squares.put("E1", new Square( 4, 0,
+		this.squares.put("E1", new Square( 0, 4,
 				this.points.get("A4"), this.points.get("A5"),
 				this.points.get("B1A5"), this.points.get("A4B1")));
 		
-		this.squares.put("F1", new Square( 5, 0,
+		this.squares.put("F1", new Square( 0, 5,
 				this.points.get("A5"), this.points.get("A6"),
 				this.points.get("B1A6"), this.points.get("B1A5")));
 		
-		this.squares.put("G1", new Square( 6, 0,
+		this.squares.put("G1", new Square( 0, 6,
 				this.points.get("A6"), this.points.get("A7"),
 				this.points.get("B1A7"), this.points.get("B1A6")));
 		
-		this.squares.put("H1", new Square( 7, 0,
+		this.squares.put("H1", new Square( 0, 7,
 				this.points.get("A7"), this.points.get("B"),
 				this.points.get("B1"), this.points.get("B1A7")));
 		
 		// Panels - Row 1
-		this.squares.put("A2", new Square( 0, 1,
+		this.squares.put("A2", new Square( 1, 0,
 				this.points.get("F7"), this.points.get("A1F7"),
 				this.points.get("A1F6"), this.points.get("F6")));
 		
@@ -260,36 +247,36 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 				this.points.get("A1F7"), this.points.get("A2F7"),
 				this.points.get("A2F6"), this.points.get("A1F6")));
 		
-		this.squares.put("C2", new Square( 2, 1,
+		this.squares.put("C2", new Square( 1, 2,
 				this.points.get("A2F7"), this.points.get("A3F7"),
 				this.points.get("A3F6"), this.points.get("A2F6")));
 		
-		this.squares.put("D2", new Square( 3, 1,
+		this.squares.put("D2", new Square( 1, 3,
 				this.points.get("A3F7"), this.points.get("A4B1"),
 				this.points.get("A4B2"), this.points.get("A3F6")));
 	
-		this.squares.put("E2", new Square( 4, 1,
+		this.squares.put("E2", new Square( 1, 4,
 				this.points.get("A4B1"), this.points.get("B1A5"),
 				this.points.get("B2A5"), this.points.get("A4B2")));
 		
-		this.squares.put("F2", new Square( 5, 1,
+		this.squares.put("F2", new Square( 1, 5,
 				this.points.get("B1A5"), this.points.get("B1A6"),
 				this.points.get("B2A6"), this.points.get("B2A5")));
 		
-		this.squares.put("G2", new Square( 6, 1,
+		this.squares.put("G2", new Square( 1, 6,
 				this.points.get("B1A6"), this.points.get("B1A7"),
 				this.points.get("B2A7"), this.points.get("B2A6")));
 		
-		this.squares.put("H2", new Square( 7, 1,
+		this.squares.put("H2", new Square( 1, 7,
 				this.points.get("B1A7"), this.points.get("B1"),
 				this.points.get("B2"), this.points.get("B2A7")));
 		
 		// Panels - Row 2
-		this.squares.put("A3", new Square( 0, 2,
+		this.squares.put("A3", new Square( 2, 0,
 				this.points.get("F6"), this.points.get("A1F6"),
 				this.points.get("A1F5"), this.points.get("F5")));
 		
-		this.squares.put("B3", new Square( 1, 2,
+		this.squares.put("B3", new Square( 2, 1,
 				this.points.get("A1F6"), this.points.get("A2F6"),
 				this.points.get("A2F5"), this.points.get("A1F5")));
 		
@@ -297,36 +284,36 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 				this.points.get("A2F6"), this.points.get("A3F6"),
 				this.points.get("A3F5"), this.points.get("A2F5")));
 		
-		this.squares.put("D3", new Square( 3, 2,
+		this.squares.put("D3", new Square( 2, 3,
 				this.points.get("A3F6"), this.points.get("A4B2"),
 				this.points.get("A4B3"), this.points.get("A3F5")));
 	
-		this.squares.put("E3", new Square( 4, 2,
+		this.squares.put("E3", new Square( 2, 4,
 				this.points.get("A4B2"), this.points.get("B2A5"),
 				this.points.get("B3A5"), this.points.get("A4B3")));
 		
-		this.squares.put("F3", new Square( 5, 2,
+		this.squares.put("F3", new Square( 2, 5,
 				this.points.get("B2A5"), this.points.get("B2A6"),
 				this.points.get("B3A6"), this.points.get("B3A5")));
 		
-		this.squares.put("G3", new Square( 6, 2,
+		this.squares.put("G3", new Square( 2, 6,
 				this.points.get("B2A6"), this.points.get("B2A7"),
 				this.points.get("B3A7"), this.points.get("B3A6")));
 		
-		this.squares.put("H3", new Square( 7, 2,
+		this.squares.put("H3", new Square( 2, 7,
 				this.points.get("B2A7"), this.points.get("B2"),
 				this.points.get("B3"), this.points.get("B3A7")));
 		
 		// Panels - Row 3
-		this.squares.put("A4", new Square( 0, 3,
+		this.squares.put("A4", new Square( 3, 0,
 				this.points.get("F5"), this.points.get("A1F5"),
 				this.points.get("F4A1"), this.points.get("F4")));
 		
-		this.squares.put("B4", new Square( 1, 3,
+		this.squares.put("B4", new Square( 3, 1,
 				this.points.get("A1F5"), this.points.get("A2F5"),
 				this.points.get("F4A2"), this.points.get("F4A1")));
 		
-		this.squares.put("C4", new Square( 2, 3,
+		this.squares.put("C4", new Square( 3, 2,
 				this.points.get("A2F5"), this.points.get("A3F5"),
 				this.points.get("F4A3"), this.points.get("F4A2")));
 		
@@ -334,168 +321,168 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 				this.points.get("A3F5"), this.points.get("A4B3"),
 				this.points.get("Center"), this.points.get("F4A3")));
 	
-		this.squares.put("E4", new Square( 4, 3,
+		this.squares.put("E4", new Square( 3, 4,
 				this.points.get("A4B3"), this.points.get("B3A5"),
 				this.points.get("B4C3"), this.points.get("Center")));
 		
-		this.squares.put("F4", new Square( 5, 3,
+		this.squares.put("F4", new Square( 3, 5,
 				this.points.get("B3A5"), this.points.get("B3A6"),
 				this.points.get("B4C2"), this.points.get("B4C3")));
 		
-		this.squares.put("G4", new Square( 6, 3,
+		this.squares.put("G4", new Square( 3, 6,
 				this.points.get("B3A6"), this.points.get("B3A7"),
 				this.points.get("B4C2"), this.points.get("B4C2")));
 		
-		this.squares.put("H4", new Square( 7, 3,
+		this.squares.put("H4", new Square( 3, 7,
 				this.points.get("B3A7"), this.points.get("B3"),
 				this.points.get("B4"), this.points.get("B4C1")));
 		
 		// Panels - Row 4
-		this.squares.put("A5", new Square( 0, 4,
+		this.squares.put("A5", new Square( 4, 0,
 				this.points.get("F4"), this.points.get("F4A1"),
 				this.points.get("F3E7"), this.points.get("F3")));
 		
-		this.squares.put("B5", new Square( 1, 4,
+		this.squares.put("B5", new Square( 4, 1,
 				this.points.get("F4A1"), this.points.get("F4A2"),
 				this.points.get("F3E6"), this.points.get("F3E7")));
 		
-		this.squares.put("C5", new Square( 2, 4,
+		this.squares.put("C5", new Square( 4, 2,
 				this.points.get("F4A2"), this.points.get("F4A3"),
 				this.points.get("F3E5"), this.points.get("F3E6")));
 		
-		this.squares.put("D5", new Square( 3, 4,
+		this.squares.put("D5", new Square( 4, 3,
 				this.points.get("F4A3"), this.points.get("Center"),
 				this.points.get("E4F3"), this.points.get("F3E5")));
 		
-		this.squares.put("I5", new Square( 8, 4,
+		this.squares.put("I5", new Square( 4, 8,
 				this.points.get("Center"), this.points.get("D4E3"),
 				this.points.get("E3D5"), this.points.get("E4F3")));
 		
-		this.squares.put("J5", new Square( 9, 4,
+		this.squares.put("J5", new Square( 4, 9,
 				this.points.get("D4E3"), this.points.get("D4E2"),
 				this.points.get("E2D5"), this.points.get("E3D5")));
 		
-		this.squares.put("K5", new Square( 10, 4,
+		this.squares.put("K5", new Square( 4, 10,
 				this.points.get("D4E2"), this.points.get("D4E1"),
 				this.points.get("E1D5"), this.points.get("E2D5")));
 		
-		this.squares.put("L5", new Square( 11, 4,
+		this.squares.put("L5", new Square( 4, 11,
 				this.points.get("D4E1"), this.points.get("D4"),
 				this.points.get("D5"), this.points.get("E1D5")));
 		
 		// Panels - Row 5
-		this.squares.put("A6", new Square( 0, 5,
+		this.squares.put("A6", new Square( 5, 0,
 				this.points.get("F3"), this.points.get("F3E7"),
 				this.points.get("F2E7"), this.points.get("F2")));
 		
-		this.squares.put("B6", new Square( 1, 5,
+		this.squares.put("B6", new Square( 5, 1,
 				this.points.get("F3E7"), this.points.get("F3E6"),
 				this.points.get("F2E6"), this.points.get("F2E7")));
 		
-		this.squares.put("C6", new Square( 2, 5,
+		this.squares.put("C6", new Square( 5, 2,
 				this.points.get("F3E6"), this.points.get("F3E5"),
 				this.points.get("F2E5"), this.points.get("F2E6")));
 		
-		this.squares.put("D6", new Square( 3, 5,
+		this.squares.put("D6", new Square( 5, 3,
 				this.points.get("F3E5"), this.points.get("E4F3"),
 				this.points.get("E4F2"), this.points.get("F2E5")));
 		
-		this.squares.put("I6", new Square( 8, 5,
+		this.squares.put("I6", new Square( 5, 8,
 				this.points.get("E4F3"), this.points.get("E3D5"),
 				this.points.get("E3D6"), this.points.get("E4F2")));
 		
-		this.squares.put("J6", new Square( 9, 5,
+		this.squares.put("J6", new Square( 5, 9,
 				this.points.get("E3D5"), this.points.get("E2D5"),
 				this.points.get("E2D6"), this.points.get("E3D6")));
 		
-		this.squares.put("K6", new Square( 10, 5,
+		this.squares.put("K6", new Square( 5, 10,
 				this.points.get("E2D5"), this.points.get("E1D5"),
 				this.points.get("E1D6"), this.points.get("E2D6")));
 		
-		this.squares.put("L6", new Square( 11, 5,
+		this.squares.put("L6", new Square( 5, 11,
 				this.points.get("E1D5"), this.points.get("D5"),
 				this.points.get("D6"), this.points.get("E1D6")));
 		
 		// Panels - Row 6
-		this.squares.put("A7", new Square( 0, 6,
+		this.squares.put("A7", new Square( 6, 0,
 				this.points.get("F2"), this.points.get("F2E7"),
 				this.points.get("F1E7"), this.points.get("F1")));
 		
-		this.squares.put("B7", new Square( 1, 6,
+		this.squares.put("B7", new Square( 6, 1,
 				this.points.get("F2E7"), this.points.get("F2E6"),
 				this.points.get("F1E6"), this.points.get("F1E7")));
 		
-		this.squares.put("C7", new Square( 2, 6,
+		this.squares.put("C7", new Square( 6, 2,
 				this.points.get("F2E6"), this.points.get("F2E5"),
 				this.points.get("F1E5"), this.points.get("F1E6")));
 		
-		this.squares.put("D7", new Square( 3, 6,
+		this.squares.put("D7", new Square( 6, 3,
 				this.points.get("F2E5"), this.points.get("E4F2"),
 				this.points.get("E4F1"), this.points.get("F1E5")));
 		
-		this.squares.put("I7", new Square( 8, 6,
+		this.squares.put("I7", new Square( 6, 8,
 				this.points.get("E4F2"), this.points.get("E3D6"),
 				this.points.get("E3D7"), this.points.get("E4F1")));
 		
-		this.squares.put("J7", new Square( 9, 6,
+		this.squares.put("J7", new Square( 6, 9,
 				this.points.get("E3D6"), this.points.get("E2D6"),
 				this.points.get("E2D7"), this.points.get("E3D7")));
 		
-		this.squares.put("K7", new Square( 10, 6,
+		this.squares.put("K7", new Square( 6, 10,
 				this.points.get("E2D6"), this.points.get("E1D6"),
 				this.points.get("E1D7"), this.points.get("E2D7")));
 		
-		this.squares.put("L7", new Square( 11, 6,
+		this.squares.put("L7", new Square( 6, 11,
 				this.points.get("E1D6"), this.points.get("D6"),
 				this.points.get("D7"), this.points.get("E1D7")));
 		
 		// Panels - Row 7
-		this.squares.put("A8", new Square( 0, 7,
+		this.squares.put("A8", new Square( 7, 0,
 				this.points.get("F1"), this.points.get("F1E7"),
 				this.points.get("E7"), this.points.get("F")));
 		
-		this.squares.put("B8", new Square( 1, 7,
+		this.squares.put("B8", new Square( 7, 1,
 				this.points.get("F1E7"), this.points.get("F1E6"),
 				this.points.get("E6"), this.points.get("E7")));
 		
-		this.squares.put("C8", new Square( 2, 7,
+		this.squares.put("C8", new Square( 7, 2,
 				this.points.get("F1E6"), this.points.get("F1E5"),
 				this.points.get("E5"), this.points.get("E6")));
 		
-		this.squares.put("D8", new Square( 3, 7,
+		this.squares.put("D8", new Square( 7, 3,
 				this.points.get("F1E5"), this.points.get("E4F1"),
 				this.points.get("E4"), this.points.get("E5")));
 		
-		this.squares.put("I8", new Square( 8, 7,
+		this.squares.put("I8", new Square( 7, 8,
 				this.points.get("E4F1"), this.points.get("E3D7"),
 				this.points.get("E3"), this.points.get("E4")));
 		
-		this.squares.put("J8", new Square( 9, 7,
+		this.squares.put("J8", new Square( 7, 9,
 				this.points.get("E3D7"), this.points.get("E2D7"),
 				this.points.get("E2"), this.points.get("E3")));
 		
-		this.squares.put("K8", new Square( 10, 7,
+		this.squares.put("K8", new Square( 7, 10,
 				this.points.get("E2D7"), this.points.get("E1D7"),
 				this.points.get("E1"), this.points.get("E2")));
 		
-		this.squares.put("L8", new Square( 11, 7,
+		this.squares.put("L8", new Square( 7, 11,
 				this.points.get("E1D7"), this.points.get("D7"),
 				this.points.get("E"), this.points.get("E1")));
 		
 		// Panels - Row 8
-		this.squares.put("H9", new Square( 0, 8,
+		this.squares.put("H9", new Square( 8, 7,
 				this.points.get("B4"), this.points.get("B4C1"),
 				this.points.get("C1B5"), this.points.get("B5")));
 		
-		this.squares.put("G9", new Square( 1, 8,
+		this.squares.put("G9", new Square( 8, 6,
 				this.points.get("B4C1"), this.points.get("B4C2"),
 				this.points.get("C2B5"), this.points.get("C1B5")));
 		
-		this.squares.put("F9", new Square( 2, 8,
+		this.squares.put("F9", new Square( 8, 5,
 				this.points.get("B4C2"), this.points.get("B4C3"),
 				this.points.get("C3B5"), this.points.get("C2B5")));
 		
-		this.squares.put("E9", new Square( 3, 8,
+		this.squares.put("E9", new Square( 8, 4,
 				this.points.get("B4C3"), this.points.get("Center"),
 				this.points.get("C4D3"), this.points.get("C3B5")));
 		
@@ -503,36 +490,36 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 				this.points.get("Center"), this.points.get("D4E3"),
 				this.points.get("D3C5"), this.points.get("C4D3")));
 		
-		this.squares.put("J9", new Square( 9, 8,
+		this.squares.put("J9", new Square( 8, 9,
 				this.points.get("D4E3"), this.points.get("D4E2"),
 				this.points.get("D3C6"), this.points.get("D3C5")));
 		
-		this.squares.put("K9", new Square( 10, 8,
+		this.squares.put("K9", new Square( 8, 10,
 				this.points.get("D4E2"), this.points.get("D4E1"),
 				this.points.get("D3C7"), this.points.get("D3C6")));
 		
-		this.squares.put("L9", new Square( 11, 8,
+		this.squares.put("L9", new Square( 8, 11,
 				this.points.get("D4E1"), this.points.get("D4"),
 				this.points.get("D3"), this.points.get("D3C7")));
 		
 		// Panels - Row 9
-		this.squares.put("H10", new Square( 0, 9,
+		this.squares.put("H10", new Square( 9, 7,
 				this.points.get("B5"), this.points.get("C1B5"),
 				this.points.get("C1B6"), this.points.get("B6")));
 		
-		this.squares.put("G10", new Square( 1, 9,
+		this.squares.put("G10", new Square( 9, 6,
 				this.points.get("C1B5"), this.points.get("C2B5"),
 				this.points.get("C2B6"), this.points.get("C1B6")));
 		
-		this.squares.put("F10", new Square( 2, 9,
+		this.squares.put("F10", new Square( 9, 5,
 				this.points.get("C2B5"), this.points.get("C3B5"),
 				this.points.get("C3B6"), this.points.get("C2B6")));
 		
-		this.squares.put("E10", new Square( 3, 9,
+		this.squares.put("E10", new Square( 9, 4,
 				this.points.get("C3B5"), this.points.get("C4D3"),
 				this.points.get("C4D2"), this.points.get("C2B6")));
 		
-		this.squares.put("I10", new Square( 8, 9,
+		this.squares.put("I10", new Square( 9, 8,
 				this.points.get("C4D3"), this.points.get("D3C5"),
 				this.points.get("D2C5"), this.points.get("C4D2")));
 		
@@ -540,36 +527,36 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 				this.points.get("D3C5"), this.points.get("D3C6"),
 				this.points.get("D2C6"), this.points.get("D2C5")));
 		
-		this.squares.put("K10", new Square( 10, 9,
+		this.squares.put("K10", new Square( 9, 10,
 				this.points.get("D3C6"), this.points.get("D3C7"),
 				this.points.get("D2C7"), this.points.get("D2C6")));
 		
-		this.squares.put("L10", new Square( 11, 9,
+		this.squares.put("L10", new Square( 9, 11,
 				this.points.get("D3C7"), this.points.get("D3"),
 				this.points.get("D2"), this.points.get("D2C7")));
 		
 		// Panels - Row 10
-		this.squares.put("H11", new Square( 0, 10,
+		this.squares.put("H11", new Square( 10, 7,
 				this.points.get("B6"), this.points.get("C1B6"),
 				this.points.get("C1B7"), this.points.get("B7")));
 		
-		this.squares.put("G11", new Square( 1, 10,
+		this.squares.put("G11", new Square( 10, 6,
 				this.points.get("C1B6"), this.points.get("C2B6"),
 				this.points.get("C2B7"), this.points.get("C1B7")));
 		
-		this.squares.put("F11", new Square( 2, 10,
+		this.squares.put("F11", new Square( 10, 5,
 				this.points.get("C2B6"), this.points.get("C3B6"),
 				this.points.get("C3B7"), this.points.get("C2B7")));
 		
-		this.squares.put("E11", new Square( 3, 10,
+		this.squares.put("E11", new Square( 10, 4,
 				this.points.get("C3B6"), this.points.get("C4D2"),
 				this.points.get("C4D1"), this.points.get("C3B7")));
 		
-		this.squares.put("I11", new Square( 8, 10,
+		this.squares.put("I11", new Square( 10, 8,
 				this.points.get("C4D2"), this.points.get("D2C5"),
 				this.points.get("D1C5"), this.points.get("C4D1")));
 		
-		this.squares.put("J11", new Square( 9, 10,
+		this.squares.put("J11", new Square( 10, 9,
 				this.points.get("D2C5"), this.points.get("D2C6"),
 				this.points.get("D1C6"), this.points.get("D1C5")));
 		
@@ -577,36 +564,36 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 				this.points.get("D2C6"), this.points.get("D2C7"),
 				this.points.get("D1C7"), this.points.get("D1C6")));
 		
-		this.squares.put("L11", new Square( 11, 10,
+		this.squares.put("L11", new Square( 10, 11,
 				this.points.get("D2C7"), this.points.get("D2"),
 				this.points.get("D1"), this.points.get("D1C7")));
 		
 		// Panels - Row 11
-		this.squares.put("H12", new Square( 0, 11,
+		this.squares.put("H12", new Square( 11, 7,
 				this.points.get("B7"), this.points.get("C1B7"),
 				this.points.get("C1"), this.points.get("C")));
 		
-		this.squares.put("G12", new Square( 1, 11,
+		this.squares.put("G12", new Square( 11, 6,
 				this.points.get("C1B7"), this.points.get("C2B7"),
 				this.points.get("C2"), this.points.get("C1")));
 		
-		this.squares.put("F12", new Square( 2, 11,
+		this.squares.put("F12", new Square( 11, 5,
 				this.points.get("C2B7"), this.points.get("C3B7"),
 				this.points.get("C3"), this.points.get("C2")));
 		
-		this.squares.put("E12", new Square( 3, 11,
-				this.points.get("C3"), this.points.get("C4D1"),
-				this.points.get("C4"), this.points.get("C3B7")));
+		this.squares.put("E12", new Square( 11, 4,
+				this.points.get("C3B7"), this.points.get("C4D1"),
+				this.points.get("C4"), this.points.get("C3")));
 		
-		this.squares.put("I12", new Square( 8, 11,
+		this.squares.put("I12", new Square( 11, 8,
 				this.points.get("C4D1"), this.points.get("D1C5"),
 				this.points.get("C5"), this.points.get("C4")));
 		
-		this.squares.put("J12", new Square( 9, 11,
+		this.squares.put("J12", new Square( 11, 9,
 				this.points.get("D1C5"), this.points.get("D1C6"),
 				this.points.get("C6"), this.points.get("C5")));
 		
-		this.squares.put("K12", new Square( 10, 11,
+		this.squares.put("K12", new Square( 11, 10,
 				this.points.get("D1C6"), this.points.get("D1C7"),
 				this.points.get("C7"), this.points.get("C6")));
 		
@@ -1056,6 +1043,9 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	}
 
 
+	// @param boardPosX - letter (A..)
+	// @param boardPosY - number (1..)
+	// @return Square 	- square object
 	public Square getSquare(int boardPosX, int boardPosY)
 	{
 		for(Map.Entry<String, Square> square : this.squares.entrySet())
@@ -1102,15 +1092,20 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	@Override
 	public void draw(Graphics graphics)
 	{
-		for(Map.Entry<String, Line> line : lines.entrySet())
+		for(Map.Entry<String, Line> line : this.lines.entrySet())
 			line.getValue().paintComponent(graphics);
 		
-		for(Map.Entry<String, Point> point : points.entrySet())
+		for(Map.Entry<String, Point> point : this.points.entrySet())
 			point.getValue().paintComponent(graphics);
       
 		this.labeling.draw(graphics);
 
-		testKing.draw(graphics);
-		//repaint();
+		for(Map.Entry<String, Square> square : this.squares.entrySet()) {
+			if (square.getKey().equals("E12"))
+				square.getValue().getPiece().draw(graphics);
+
+			if (square.getValue().getPiece() != null)
+				square.getValue().getPiece().draw(graphics);
+		}
 	}
 }
