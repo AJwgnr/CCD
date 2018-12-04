@@ -50,6 +50,24 @@ public class ChessboardListener implements MouseListener
         }
     }
 
+    private void handlePieceInteraction(Square clickedSquare)
+	{
+		// select piece
+		if (this.squareBuffer == null)
+		{
+			this.squareBuffer = clickedSquare;
+			this.grid.displayPossibleMoves(clickedSquare);
+		}
+
+		// move piece
+		else if (this.squareBuffer.getPiece().allMoves().contains(clickedSquare))
+		{
+			movePiece(this.squareBuffer, clickedSquare);
+			this.squareBuffer = null;
+			this.grid.displayPossibleMoves(false);
+		}
+	}
+
 	private void handleChessboardClicks(MouseEvent e)
     {
         Square clickedSquare = getClickedSquare(e);
@@ -57,20 +75,9 @@ public class ChessboardListener implements MouseListener
         {
             clickedSquare.print();
 
-            // select piece
-            if (clickedSquare.getPiece() != null && this.squareBuffer == null)
-            {
-                this.squareBuffer = clickedSquare;
-                System.out.println("Select");
-            }
+  			if (clickedSquare.getPiece() != null)
+				handlePieceInteraction(clickedSquare);
 
-            // move piece
-            else
-            {
-                movePiece(this.squareBuffer, clickedSquare);
-                this.squareBuffer = null;
-                System.out.println("Move");
-            }
             this.grid.redraw();
         }
     }

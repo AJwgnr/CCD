@@ -44,6 +44,11 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	private Node<Square> panelRoot = null;
 	private Hexagon hexagon = null;
 	private ChessboardLabeling labeling = null;
+
+	private ArrayList<Square> possibleMoves = null;
+	private ArrayList<Circle> markers = null;
+	private boolean displayPossibleMoves = false;
+
 	
 	public ChessboardGrid(Point center, int radius)
 	{
@@ -1089,6 +1094,21 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	}
 
 
+	public void displayPossibleMoves(Square square)
+    {
+        this.possibleMoves = square.getPiece().allMoves();
+        this.markers = null;
+        for (Square possibleMove : this.possibleMoves)
+            this.markers.add(new Circle(possibleMove.center(), 15));
+        this.displayPossibleMoves = true;
+    }
+
+    public void displayPossibleMoves(boolean en)
+    {
+        this.displayPossibleMoves = en;
+    }
+
+
 	@Override
 	public void draw(Graphics graphics)
 	{
@@ -1100,12 +1120,12 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
       
 		this.labeling.draw(graphics);
 
-		for(Map.Entry<String, Square> square : this.squares.entrySet()) {
-			if (square.getKey().equals("E12"))
-				square.getValue().getPiece().draw(graphics);
-
+		for(Map.Entry<String, Square> square : this.squares.entrySet())
 			if (square.getValue().getPiece() != null)
 				square.getValue().getPiece().draw(graphics);
-		}
+
+		if (this.displayPossibleMoves && this.markers != null)
+		    for (Circle circle : this.markers)
+		        circle.draw(graphics);
 	}
 }
