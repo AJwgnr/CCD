@@ -1,15 +1,16 @@
-package com.ovgu.ccd.moves;
+package com.ovgu.ccd.applogic;
 
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Pawn;
+import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
 import java.awt.*;
 
 public interface IBoard {
 
-    boolean validMove(Square square);
+    boolean validMove(Square square, Piece piece);
 
     King getKingWhite();
 
@@ -55,4 +56,6 @@ public interface IBoard {
     Square[][] getSquares();
 
     Point getTopLeftPoint();
+
+    void setPiece(Piece piece, int x, int y);
 }

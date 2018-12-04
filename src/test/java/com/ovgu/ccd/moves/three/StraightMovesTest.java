@@ -1,8 +1,8 @@
 package com.ovgu.ccd.moves.three;
 
 import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.jchess.ThreePlayerChessboard;
-import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.ThreePlayerChessboard;
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.PieceFactory;
 import com.ovgu.ccd.pieces.Square;
@@ -12,7 +12,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import static org.hamcrest.CoreMatchers.hasItems;
 
-public class StraightMoveTest {
+public class StraightMovesTest {
 
     Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
 
@@ -20,8 +20,8 @@ public class StraightMoveTest {
     public void testMovesIn3E() {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
-        board.getSquare(3, ThreePlayerChessboard.E).setPiece(rook);
-        ArrayList<Square> moves = new StraightMove(rook, board).moves();
+        board.setPiece(rook, 3, ThreePlayerChessboard.E);
+        ArrayList<Square> moves = new StraightMoves(rook, board).moves();
 
         Assert.assertEquals(14, moves.size());
         MatcherAssert.assertThat(
@@ -50,8 +50,8 @@ public class StraightMoveTest {
     public void testMovesIn2G() {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
-        board.getSquare(2, ThreePlayerChessboard.G).setPiece(rook);
-        ArrayList<Square> moves = new StraightMove(rook, board).moves();
+        board.setPiece(rook, 2, ThreePlayerChessboard.G);
+        ArrayList<Square> moves = new StraightMoves(rook, board).moves();
 
         Assert.assertEquals(14, moves.size());
         MatcherAssert.assertThat(
@@ -79,8 +79,8 @@ public class StraightMoveTest {
     public void testMovesIn9J() {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
-        board.getSquare(9, ThreePlayerChessboard.J).setPiece(rook);
-        ArrayList<Square> moves = new StraightMove(rook, board).moves();
+        board.setPiece(rook, 9, ThreePlayerChessboard.J);
+        ArrayList<Square> moves = new StraightMoves(rook, board).moves();
 
         Assert.assertEquals(14, moves.size());
         MatcherAssert.assertThat(
@@ -100,6 +100,37 @@ public class StraightMoveTest {
                         new Square(8, ThreePlayerChessboard.J, null),
                         new Square(10, ThreePlayerChessboard.J, null),
                         new Square(11, ThreePlayerChessboard.J, null)
+                )
+        );
+    }
+
+
+    @Test
+    public void testMovesIn3EBlockedByPieces() {
+        IBoard board = new ThreePlayerChessboard();
+        Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
+        board.setPiece(rook, 3, ThreePlayerChessboard.E);
+
+        Piece pawn1 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn1, 1, ThreePlayerChessboard.E);
+        Piece pawn2 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn2, 3, ThreePlayerChessboard.G);
+        Piece pawn3 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn3, 3, ThreePlayerChessboard.C);
+        Piece pawn4 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn4, 10, ThreePlayerChessboard.E);
+
+        ArrayList<Square> moves = new StraightMoves(rook, board).moves();
+
+        Assert.assertEquals(5, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(3, ThreePlayerChessboard.D, null),
+                        new Square(3, ThreePlayerChessboard.F, null),
+                        new Square(2, ThreePlayerChessboard.E, null),
+                        new Square(8, ThreePlayerChessboard.E, null),
+                        new Square(9, ThreePlayerChessboard.E, null)
                 )
         );
     }

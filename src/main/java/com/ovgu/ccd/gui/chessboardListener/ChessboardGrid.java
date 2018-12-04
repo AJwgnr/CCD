@@ -1,7 +1,6 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
 import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.jchess.ThreePlayerChessboard;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.PieceFactory;
@@ -48,7 +47,6 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	private ArrayList<Square> possibleMoves = null;
 	private ArrayList<Circle> markers = null;
 	private boolean displayPossibleMoves = false;
-
 	
 	public ChessboardGrid(Point center, int radius)
 	{
@@ -214,7 +212,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		this.squares.put("A1", new Square( 0, 0,
 				this.points.get("A"), this.points.get("A1"),
 				this.points.get("A1F7"), this.points.get("F7")));
-		
+
 		this.squares.put("B1", new Square( 0, 1,
 				this.points.get("A1"), this.points.get("A2"),
 				this.points.get("A2F7"), this.points.get("A1F7")));
@@ -251,7 +249,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		this.squares.put("B2", new Square( 1, 1,
 				this.points.get("A1F7"), this.points.get("A2F7"),
 				this.points.get("A2F6"), this.points.get("A1F6")));
-		
+
 		this.squares.put("C2", new Square( 1, 2,
 				this.points.get("A2F7"), this.points.get("A3F7"),
 				this.points.get("A3F6"), this.points.get("A2F6")));
@@ -288,7 +286,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		this.squares.put("C3", new Square( 2, 2,
 				this.points.get("A2F6"), this.points.get("A3F6"),
 				this.points.get("A3F5"), this.points.get("A2F5")));
-		
+
 		this.squares.put("D3", new Square( 2, 3,
 				this.points.get("A3F6"), this.points.get("A4B2"),
 				this.points.get("A4B3"), this.points.get("A3F5")));
@@ -325,7 +323,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		this.squares.put("D4", new Square( 3, 3,
 				this.points.get("A3F5"), this.points.get("A4B3"),
 				this.points.get("Center"), this.points.get("F4A3")));
-	
+
 		this.squares.put("E4", new Square( 3, 4,
 				this.points.get("A4B3"), this.points.get("B3A5"),
 				this.points.get("B4C3"), this.points.get("Center")));
@@ -494,7 +492,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		this.squares.put("I9", new Square( 8, 8,
 				this.points.get("Center"), this.points.get("D4E3"),
 				this.points.get("D3C5"), this.points.get("C4D3")));
-		
+
 		this.squares.put("J9", new Square( 8, 9,
 				this.points.get("D4E3"), this.points.get("D4E2"),
 				this.points.get("D3C6"), this.points.get("D3C5")));
@@ -531,7 +529,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		this.squares.put("J10", new Square( 9, 9,
 				this.points.get("D3C5"), this.points.get("D3C6"),
 				this.points.get("D2C6"), this.points.get("D2C5")));
-		
+
 		this.squares.put("K10", new Square( 9, 10,
 				this.points.get("D3C6"), this.points.get("D3C7"),
 				this.points.get("D2C7"), this.points.get("D2C6")));
@@ -568,7 +566,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		this.squares.put("K11", new Square( 10, 10,
 				this.points.get("D2C6"), this.points.get("D2C7"),
 				this.points.get("D1C7"), this.points.get("D1C6")));
-		
+
 		this.squares.put("L11", new Square( 10, 11,
 				this.points.get("D2C7"), this.points.get("D2"),
 				this.points.get("D1"), this.points.get("D1C7")));

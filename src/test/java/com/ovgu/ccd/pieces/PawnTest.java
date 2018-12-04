@@ -27,8 +27,8 @@ public class PawnTest {
     public void setup() {
         board.setKingWhite(whiteKing);
         board.setKingBlack(blackKing);
-        board.getSquare(4, 0).setPiece(whiteKing);
-        board.getSquare(4, 7).setPiece(blackKing);
+        board.setPiece(whiteKing, 4, 0);
+        board.setPiece(blackKing, 4, 7);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class PawnTest {
     @Test
     public void testAllMovesMiddleBoard() {
         Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(3, 3).setPiece(pawn);
+        board.setPiece(pawn, 3, 3);
 
         List<Square> moves = pawn.allMoves();
 
@@ -76,8 +76,8 @@ public class PawnTest {
         Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         Pawn blockingPawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
 
-        board.getSquare(3, 3).setPiece(pawn);
-        board.getSquare(3, 2).setPiece(blockingPawn);
+        board.setPiece(pawn, 3, 3);
+        board.setPiece(blockingPawn, 3, 2);
 
         List<Square> moves = pawn.allMoves();
 
@@ -90,9 +90,9 @@ public class PawnTest {
         Pawn blockingPawnLeft = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
         Pawn blockingPawnRight = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
 
-        board.getSquare(3, 3).setPiece(pawn);
-        board.getSquare(2, 2).setPiece(blockingPawnLeft);
-        board.getSquare(4, 2).setPiece(blockingPawnRight);
+        board.setPiece(pawn, 3, 3);
+        board.setPiece(blockingPawnLeft, 2, 2);
+        board.setPiece(blockingPawnRight, 4, 2);
 
         List<Square> moves = pawn.allMoves();
 
@@ -111,7 +111,7 @@ public class PawnTest {
     @Test
     public void testAllMovesInBorderLeft() {
         Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(0, 3).setPiece(pawn);
+        board.setPiece(pawn, 0, 3);
 
         List<Square> moves = pawn.allMoves();
 
@@ -125,7 +125,7 @@ public class PawnTest {
     @Test
     public void testAllMovesInBorderRight() {
         Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(7, 3).setPiece(pawn);
+        board.setPiece(pawn, 7, 3);
 
         List<Square> moves = pawn.allMoves();
 
@@ -139,7 +139,7 @@ public class PawnTest {
     @Test
     public void testAllMovesTwoJump() {
         Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
-        board.getSquare(3, 6).setPiece(pawn);
+        board.setPiece(pawn, 3, 6);
 
         List<Square> moves = pawn.allMoves();
 
@@ -169,8 +169,8 @@ public class PawnTest {
         Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         Pawn rightPawn = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
 
-        board.getSquare(3, 3).setPiece(pawn);
-        board.getSquare(4, 1).setPiece(rightPawn);
+        board.setPiece(pawn, 3, 3);
+        board.setPiece(rightPawn, 4, 1);
 
         game.chessboard = board;
 

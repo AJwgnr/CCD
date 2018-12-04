@@ -21,12 +21,10 @@
 
 package com.ovgu.ccd.pieces;
 
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.ResourceLoader;
-import com.ovgu.ccd.moves.IBoard;
-import com.ovgu.ccd.moves.HorizontalMoves;
-import com.ovgu.ccd.moves.VerticalMoves;
-import com.ovgu.ccd.gui.GUI;
 import com.ovgu.ccd.applogic.Player;
+import com.ovgu.ccd.moves.StraightMoveFactory;
 
 import java.util.ArrayList;
 
@@ -66,10 +64,11 @@ public class Rook extends Piece {
     public ArrayList allMoves()
     {
         ArrayList moves = new ArrayList();
-
-        moves.addAll(new HorizontalMoves(this, chessboard).all());
-        moves.addAll(new VerticalMoves(this, chessboard).all());
-
+        try {
+            moves.addAll(StraightMoveFactory.getMoves(chessboard, this).moves());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return moves;
     }

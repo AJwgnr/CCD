@@ -22,8 +22,6 @@ public class SquareTest
                 new Point(200,200),
                 new Point(100,200)
         );
-        square.setPosX(1);
-        square.setPosX(2);
     }
 
 
@@ -34,28 +32,8 @@ public class SquareTest
     }
 
     @Test
-    public void testIsPointInsideSquare()
+    public void testIsPointInsidePanel()
     {
         assertTrue(square.isPointInside(new Point(150,150)));
-    }
-
-    @Test
-    public void testEqualsSquare()
-    {
-        Square squareOther = new Square(
-                new Point(100,100),
-                new Point(200, 100),
-                new Point(200,200),
-                new Point(100,200));
-        squareOther.setPosX(1);
-        squareOther.setPosX(2);
-        assertTrue(square.equals(squareOther));
-    }
-
-    @Test
-    public void testCenterComputation()
-    {
-        assertEquals(square.center().getX(), 150);
-        assertEquals(square.center().getY(), 150);
     }
 }

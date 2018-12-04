@@ -19,7 +19,6 @@ import com.ovgu.ccd.gui.JChessView;
 import com.ovgu.ccd.gui.chessboardListener.ChessboardListener;
 import com.ovgu.ccd.gui.chessboardListener.ChessboardGrid;
 import com.ovgu.ccd.gui.chessboardListener.Point;
-import com.ovgu.ccd.jchess.ThreePlayerChessboard;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
