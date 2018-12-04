@@ -29,6 +29,7 @@ public class ThreePlayerChessboard implements IBoard {
 
     private King kingWhite;
     private King kingBlack;
+    private King kingGrey;
     private Pawn twoSquareMovedPawn = null;
 
     private Player whitePlayer = null;
@@ -252,18 +253,18 @@ public class ThreePlayerChessboard implements IBoard {
             (1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4  && A <= square.getPosY() && square.getPosY() <= D) && (1 <= (x_coord + 1) && (x_coord + 1) <= 4  && A <= y_coord && y_coord <= D));
     }
 
-    public Square getLeftQuadrantSquare(Square square) throws Exception {
+    public Square getLeftSextantSquare(Square square) throws Exception {
         if (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12) {
             if (square.getPosY() == I) {
                 return new Square(square.getPosX() + 1, E, null);
             } else {
-                return new Square(square.getPosX() - 4, square.getPosY() + 1, null);
+                return new Square(3, square.getPosY() + 1, null);
             }
         }
 
         if (1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4) {
             if (square.getPosY() == E) {
-                return new Square(square.getPosX() - 1, I, null);
+                return new Square(square.getPosX() - 1, D, null);
             } else {
                 return new Square(square.getPosX() + 1, square.getPosY() - 1, null);
             }
@@ -280,12 +281,12 @@ public class ThreePlayerChessboard implements IBoard {
         throw new Exception("Invalid square");
     }
 
-    public Square getRightQuadrantSquare(Square square) throws Exception {
+    public Square getRightSextantSquare(Square square) throws Exception {
         if (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12) {
             if (square.getPosY() == E) {
                 return new Square(square.getPosX() + 1, I, null);
             } else {
-                return new Square(square.getPosX() - 4, square.getPosY() + 1, null);
+                return new Square(4, square.getPosY() + 1, null);
             }
         }
 
@@ -293,7 +294,7 @@ public class ThreePlayerChessboard implements IBoard {
             if (square.getPosY() == D) {
                 return new Square(square.getPosX() - 1, E, null);
             } else {
-                return new Square(square.getPosX() + 1, square.getPosY() - 1, null);
+                return new Square(8, square.getPosY() + 1, null);
             }
         }
 
@@ -302,7 +303,7 @@ public class ThreePlayerChessboard implements IBoard {
             if (square.getPosY() == I) {
                 return new Square(square.getPosX() + 1, D, null);
             } else {
-                return new Square(square.getPosX() + 4, square.getPosY() + 1, null);
+                return new Square(square.getPosX() - 1, square.getPosY() - 1, null);
             }
         }
         throw new Exception("Invalid square");
@@ -349,7 +350,6 @@ public class ThreePlayerChessboard implements IBoard {
         matrix[x][y].setPiece(piece);
     }
 
-
     public ArrayList<Square> getDiagonalCenterPositions(Square square) throws Exception {
         if (WHITE_ROSETTE.contains(new Square(square.getPosX(), square.getPosY(), null))) {
             return WHITE_ROSETTE;
@@ -361,7 +361,6 @@ public class ThreePlayerChessboard implements IBoard {
 
         throw new Exception("Invalid square");
     }
-
 
     public boolean occupiedByOther(Piece piece, Square square) {
         Square nextMove = matrix[square.getPosX()][square.getPosY()];
@@ -434,17 +433,38 @@ public class ThreePlayerChessboard implements IBoard {
         return true;
     }
 
-    // TODO: Remove me
-    @Override
-    public King myKing(Player.Colors color)
-    {
-        return null;
+    public boolean isMyKingSafe(Player player) throws Exception {
+        King king;
+        if (player.getColor() == Player.Colors.WHITE) {
+            king = kingWhite;
+        } else if (player.getColor() == Player.Colors.BLACK) {
+            king = kingBlack;
+        } else {
+            king = kingGrey;
+        }
+
+        return new CheckController(this, king).isSafe();
+    }
+
+    public King getKingGrey() {
+        return kingGrey;
+    }
+
+    public void setKingGrey(King kingGrey) {
+        this.kingGrey = kingGrey;
     }
 
     @Override
     public Square getSquare(int xCoordinate, int yCoordinate)
     {
         return getSquares()[xCoordinate][yCoordinate];
+    }
+
+    // TODO: Remove me
+    @Override
+    public King myKing(Player.Colors color)
+    {
+        return null;
     }
 
     @Override

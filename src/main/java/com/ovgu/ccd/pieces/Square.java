@@ -201,10 +201,8 @@ public class Square
         if (!(o instanceof Square)) return false;
 
         Square square = (Square) o;
-        if (square.getPosX() == this.boardPosX &&
-                square.getPosY() == this.boardPosY)
-                return true;
-        return false;
+
+        return square.getPosX() == getPosX() && square.getPosY() == getPosY();
     }
 
     @Override

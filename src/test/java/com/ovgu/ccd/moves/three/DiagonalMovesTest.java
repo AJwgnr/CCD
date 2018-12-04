@@ -500,6 +500,43 @@ public class DiagonalMovesTest {
         );
     }
 
+    @Test
+    public void testMoves3F() throws Exception {
+        IBoard board = new ThreePlayerChessboard();
+        Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
+        ArrayList<Square> moves;
+
+        ((ThreePlayerChessboard) board).setPiece(bishop, 3, ThreePlayerChessboard.F);
+        moves = new DiagonalMoves(bishop, board).moves();
+        assertTrue(moves.size() == 22);
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(2,  ThreePlayerChessboard.G, null),//s
+                        new Square(1,  ThreePlayerChessboard.H, null),//s
+                        new Square(8,  ThreePlayerChessboard.G, null),//falta
+                        new Square(9,  ThreePlayerChessboard.H, null),//falta
+                        new Square(2,  ThreePlayerChessboard.E, null),//s
+                        new Square(1,  ThreePlayerChessboard.D, null),//falta
+                        new Square(0,  ThreePlayerChessboard.C, null),//falta
+                        new Square(8,  ThreePlayerChessboard.E, null),//s
+                        new Square(9,  ThreePlayerChessboard.F, null),//s
+                        new Square(10,  ThreePlayerChessboard.G, null),//s
+                        new Square(11,  ThreePlayerChessboard.H, null),//s
+                        new Square(9,  ThreePlayerChessboard.I, null),//s
+                        new Square(10,  ThreePlayerChessboard.J, null),//s
+                        new Square(11,  ThreePlayerChessboard.K, null),//s
+                        new Square(4,  ThreePlayerChessboard.I, null),//s
+                        new Square(5,  ThreePlayerChessboard.J, null),//s
+                        new Square(6,  ThreePlayerChessboard.K, null),//s
+                        new Square(7,  ThreePlayerChessboard.L, null),//s
+                        new Square(3,  ThreePlayerChessboard.D, null),//s
+                        new Square(2,  ThreePlayerChessboard.C, null),//s
+                        new Square(1,  ThreePlayerChessboard.B, null),//a
+                        new Square(0,  ThreePlayerChessboard.A, null)//a
+                )
+        );
+    }
 
     @Test
     public void testMoves2GBlockedByPieces() throws Exception {
