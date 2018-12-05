@@ -1095,9 +1095,12 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	public void displayPossibleMoves(Square square)
     {
         this.possibleMoves = square.getPiece().allMoves();
-        this.markers = null;
+        this.markers = new ArrayList<>();
         for (Square possibleMove : this.possibleMoves)
-            this.markers.add(new Circle(possibleMove.center(), 15));
+        	this.markers.add(new Circle(getSquare(
+        			possibleMove.getPosX(),
+					possibleMove.getPosY()).center(),
+					15));
         this.displayPossibleMoves = true;
     }
 

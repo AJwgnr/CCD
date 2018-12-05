@@ -130,7 +130,7 @@ public class ThreePlayerChessboard implements IBoard {
         {
             for (int y = 0; y < COLUMNS; y++)
             {
-                if (this.chessboardGrid != null)
+                if (this.chessboardGrid != null && chessboardGrid.getSquare(x,y) != null)
                     matrix[x][y] = chessboardGrid.getSquare(x,y);
                 else
                     matrix[x][y] = new Square(x,y,null);

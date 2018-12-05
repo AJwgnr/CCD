@@ -75,8 +75,8 @@ public class ChessboardListener implements MouseListener
         {
             clickedSquare.print();
 
-  			if (clickedSquare.getPiece() != null)
-				handlePieceInteraction(clickedSquare);
+            if (clickedSquare.getPiece() != null || this.squareBuffer != null)
+            	handlePieceInteraction(clickedSquare);
 
             this.grid.redraw();
         }
