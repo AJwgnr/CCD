@@ -156,33 +156,33 @@ public class ThreePlayerChessboard implements IBoard {
             for (int i = A; i <= H; i++)
                 this.matrix[1][i].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.PAWN));
 
-            // grey player start positions
-            this.matrix[7][A].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.ROOK));
-            this.matrix[7][B].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KNIGHT));
-            this.matrix[7][C].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.BISHOP));
-            this.matrix[7][D].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.QUEEN));
-            this.matrix[7][I].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KING));
-            this.matrix[7][J].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.BISHOP));
-            this.matrix[7][K].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KNIGHT));
-            this.matrix[7][L].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.ROOK));
-            for (int i = A; i <= D; i++)
-                this.matrix[6][i].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN));
-            for (int i = I; i <= L; i++)
-                this.matrix[6][i].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN));
-
             // black player start positions
-            this.matrix[11][H].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.ROOK));
-            this.matrix[11][G].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KNIGHT));
-            this.matrix[11][F].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.BISHOP));
-            this.matrix[11][E].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.QUEEN));
-            this.matrix[11][I].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KING));
-            this.matrix[11][J].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.BISHOP));
-            this.matrix[11][K].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KNIGHT));
-            this.matrix[11][L].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.ROOK));
-            for (int i = E; i <= H; i++)
-                this.matrix[10][i].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN));
+            this.matrix[7][A].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.ROOK));
+            this.matrix[7][B].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KNIGHT));
+            this.matrix[7][C].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.BISHOP));
+            this.matrix[7][D].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.QUEEN));
+            this.matrix[7][I].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KING));
+            this.matrix[7][J].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.BISHOP));
+            this.matrix[7][K].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KNIGHT));
+            this.matrix[7][L].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.ROOK));
+            for (int i = A; i <= D; i++)
+                this.matrix[6][i].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN));
             for (int i = I; i <= L; i++)
-                this.matrix[10][i].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN));
+                this.matrix[6][i].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN));
+
+            // gray player start positions
+            this.matrix[11][H].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.ROOK));
+            this.matrix[11][G].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KNIGHT));
+            this.matrix[11][F].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.BISHOP));
+            this.matrix[11][E].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.QUEEN));
+            this.matrix[11][I].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KING));
+            this.matrix[11][J].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.BISHOP));
+            this.matrix[11][K].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KNIGHT));
+            this.matrix[11][L].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.ROOK));
+            for (int i = E; i <= H; i++)
+                this.matrix[10][i].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN));
+            for (int i = I; i <= L; i++)
+                this.matrix[10][i].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN));
         }
     }
 
