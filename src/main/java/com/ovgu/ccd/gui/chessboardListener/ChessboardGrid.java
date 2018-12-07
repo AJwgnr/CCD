@@ -357,7 +357,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		
 		this.squares.put("G4", new GridSquare( 3, 6,
 				this.points.get("B3A6"), this.points.get("B3A7"),
-				this.points.get("B4C2"), this.points.get("B4C2")));
+				this.points.get("B4C1"), this.points.get("B4C2")));
 		
 		this.squares.put("H4", new GridSquare( 3, 7,
 				this.points.get("B3A7"), this.points.get("B3"),
@@ -538,12 +538,12 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 				this.points.get("C2B6"), this.points.get("C1B6")));
 		
 		this.squares.put("F10", new GridSquare( 9, 5,
-				this.points.get("C2B5"), this.points.get("C3B5"),
-				this.points.get("C3B6"), this.points.get("C2B6")));
+				this.points.get("C3B5"), this.points.get("C2B5"),
+				this.points.get("C2B6"), this.points.get("C3B6")));
 		
 		this.squares.put("E10", new GridSquare( 9, 4,
-				this.points.get("C3B5"), this.points.get("C4D3"),
-				this.points.get("C4D2"), this.points.get("C2B6")));
+				this.points.get("C4D3"), this.points.get("C3B5"),
+				this.points.get("C3B6"), this.points.get("C4D2")));
 		
 		this.squares.put("I10", new GridSquare( 9, 8,
 				this.points.get("C4D3"), this.points.get("D3C5"),
