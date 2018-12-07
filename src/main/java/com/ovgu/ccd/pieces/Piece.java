@@ -36,6 +36,7 @@ public abstract class Piece {
 
     public static Image imageBlack;
     public static Image imageWhite;
+    public static Image imageGray;
     public static short value = 0;
     private Square square;
     public Player player;
@@ -78,10 +79,17 @@ public abstract class Piece {
 
     void setImage()
     {
-        if (this.getPlayer().getColor() == this.getPlayer().getColor().BLACK){
+        if (this.getPlayer().getColor() == this.getPlayer().getColor().BLACK)
+        {
             image = imageBlack;
-        } else {
+        }
+        else if (this.getPlayer().getColor() == this.getPlayer().getColor().WHITE)
+        {
             image = imageWhite;
+        }
+        else
+        {
+            image = imageGray;
         }
         orgImage = image;
     }

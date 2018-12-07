@@ -42,6 +42,7 @@ public class Knight extends Piece {
         this.symbol = "N";
         imageWhite = ResourceLoader.loadImage("Knight-W.png");
         imageBlack = ResourceLoader.loadImage("Knight-B.png");
+        imageGray = ResourceLoader.loadImage("Knight-G.png");
         this.setImage();
     }
 

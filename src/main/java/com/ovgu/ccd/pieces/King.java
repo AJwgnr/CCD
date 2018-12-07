@@ -55,6 +55,7 @@ public class King extends Piece {
         this.symbol = "K";
         imageWhite = ResourceLoader.loadImage("King-W.png");
         imageBlack = ResourceLoader.loadImage("King-B.png");
+        imageGray = ResourceLoader.loadImage("King-G.png");
         this.setImage();
 
     }
