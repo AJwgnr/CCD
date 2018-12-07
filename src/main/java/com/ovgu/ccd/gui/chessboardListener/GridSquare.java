@@ -1,6 +1,8 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
 import com.ovgu.ccd.pieces.Square;
+
+import java.awt.*;
 import java.util.HashMap;
 
 
@@ -9,10 +11,11 @@ import java.util.HashMap;
  * @version 1.0
  * @since   1.0
  */
-public class GridSquare
+public class GridSquare extends GeometricPrimitiveDrawer
 {
     private HashMap<String, Point> vertices = new HashMap<String, Point>();
     private Square square = null;
+    private boolean highlight = false;
 
 
     /**
@@ -118,6 +121,30 @@ public class GridSquare
 
 
     /**
+     * sets highlight property -> mark squares, which should be highlighted
+     *
+     * @param en highlight on/off
+     * @return
+     */
+    public void setHighlight(boolean en)
+    {
+        this.highlight = en;
+    }
+
+
+    /**
+     * get highlight property
+     *
+     * @param
+     * @return boolean highlight on/off
+     */
+    public boolean getHighlight()
+    {
+        return this.highlight;
+    }
+
+
+    /**
      * get the area of the square
      *
      * computed by splitting the area of the square into two triangles
@@ -197,5 +224,52 @@ public class GridSquare
         Line diagonalLineAC = new Line(this.vertices.get("A"), this.vertices.get("C"));
         Line diagonalLineBD = new Line(this.vertices.get("D"), this.vertices.get("B"));
         return diagonalLineAC.computeIntersectionPoint(diagonalLineBD);
+    }
+
+
+    /**
+     * transforms the square to an polygon
+     *
+     * @param
+     * @return Polygon
+     */
+    public Polygon toPolygon()
+    {
+        int xPoly[] =
+        {
+            this.vertices.get("A").getX(),
+            this.vertices.get("B").getX(),
+            this.vertices.get("C").getX(),
+            this.vertices.get("D").getX()
+        };
+        int yPoly[] =
+        {
+            this.vertices.get("A").getY(),
+            this.vertices.get("B").getY(),
+            this.vertices.get("C").getY(),
+            this.vertices.get("D").getY()
+        };
+        return new Polygon(xPoly, yPoly, xPoly.length);
+    }
+
+
+    /**
+     * draws the square
+     *
+     * @param graphics graphics
+     * @return
+     */
+    @Override
+    public void draw(Graphics graphics)
+    {
+        Polygon polygon = toPolygon();
+        if (this.highlight)
+        {
+            graphics.setColor(new Color(50,250,100, 100));
+            graphics.fillPolygon(polygon);
+        }
+
+        if (this.square != null && this.square.getPiece() != null)
+            this.square.getPiece().draw(graphics);
     }
 }

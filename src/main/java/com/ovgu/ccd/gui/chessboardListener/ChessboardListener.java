@@ -97,7 +97,7 @@ public class ChessboardListener implements MouseListener
 		{
 			movePiece(this.squareBuffer, clickedSquare);
 			this.squareBuffer = null;
-			this.grid.displayPossibleMoves(false);
+			this.grid.stopDisplayingPossibleMoves();
 		}
 	}
 

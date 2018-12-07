@@ -43,10 +43,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	private Node<GridSquare> panelRoot = null;
 	private Hexagon hexagon = null;
 	private ChessboardLabeling labeling = null;
-
 	private ArrayList<Square> possibleMoves = null;
-	private ArrayList<Circle> markers = null;
-	private boolean displayPossibleMoves = false;
 
 
     /**
@@ -1173,26 +1170,32 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	public void displayPossibleMoves(GridSquare square)
     {
         this.possibleMoves = square.getBoardSquare().getPiece().allMoves();
-        this.markers = new ArrayList<>();
         for (Square possibleMove : this.possibleMoves)
-        	this.markers.add(new Circle(getSquare(
-        			possibleMove.getPosX(),
-					possibleMove.getPosY()).center(),
-					15));
-        this.displayPossibleMoves = true;
+		{
+			try
+			{
+				getSquare(possibleMove.getPosX(), possibleMove.getPosY()).setHighlight(true);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				System.out.println("Possible move square is not part of the chessboard grid!");
+			}
+		}
     }
 
 
-    /**
-     * enables / disables displaying possible moves for chess pieces
-     *
-     * @param en enable displaying
-     * @return
-     */
-    public void displayPossibleMoves(boolean en)
-    {
-        this.displayPossibleMoves = en;
-    }
+	/**
+	 * disable displaying possible moves
+	 *
+	 * @param
+	 * @return
+	 */
+	public void stopDisplayingPossibleMoves()
+	{
+		for(Map.Entry<String, GridSquare> square : this.squares.entrySet())
+			square.getValue().setHighlight(false);
+	}
 
 
     /**
@@ -1213,12 +1216,6 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		this.labeling.draw(graphics);
 
 		for(Map.Entry<String, GridSquare> square : this.squares.entrySet())
-			if (square.getValue().hasBoardSquare())
-				if (square.getValue().getBoardSquare().getPiece() != null)
-					square.getValue().getBoardSquare().getPiece().draw(graphics);
-
-		if (this.displayPossibleMoves && this.markers != null)
-		    for (Circle circle : this.markers)
-		        circle.draw(graphics);
+			square.getValue().draw(graphics);
 	}
 }
