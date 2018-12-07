@@ -1,20 +1,28 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
-import com.ovgu.ccd.pieces.*;
-
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.JPanel;
 
 
+/**
+ * @author  CCD DeepBlue team
+ * @version 1.0
+ * @since   1.0
+ */
 public class ChessboardListener implements MouseListener 
 {
 	private ChessboardGrid grid = null;
-	private Square squareBuffer = null;
+	private GridSquare squareBuffer = null;
 
 
+	/**
+	 * constructor
+	 *
+	 * @param grid chessboard gird to listen to
+	 * @return
+	 */
 	public ChessboardListener(ChessboardGrid grid)
 	{
 		this.grid = grid;
@@ -22,7 +30,12 @@ public class ChessboardListener implements MouseListener
 	}
 
 
-	// chessboard grid to keep track of each square
+	/**
+	 * puts all grid objects to the grid
+	 *
+	 * @param
+	 * @return JPanel main panel
+	 */
 	public JPanel getPanel()
 	{
 		JPanel mainPanel = new JPanel();
@@ -31,26 +44,46 @@ public class ChessboardListener implements MouseListener
 		return mainPanel;
 	}
 
-	private Square getClickedSquare(MouseEvent e)
+
+	/**
+	 * gets clicked square
+	 *
+	 * @param e mouse event -> clicked point
+	 * @return GridSquare
+	 */
+	private GridSquare getClickedSquare(MouseEvent e)
 	{
-		Square clickedSquare = grid.getSquareWithinPoint(
-				new Point (e.getX(), e.getY()));
-		return clickedSquare;
+		return grid.getSquareWithinPoint(new Point (e.getX(), e.getY()));
 	}
 
-	private void movePiece(Square origin, Square target)
+
+	/**
+	 * moves a piece to a certain target square
+	 *
+	 * @param origin start square
+	 * @param target target square
+	 * @return
+	 */
+	private void movePiece(GridSquare origin, GridSquare target)
     {
         if (origin != null && target != null)
         {
-            if (origin.getPiece() != null)
+            if (origin.getBoardSquare().getPiece() != null)
             {
-                target.setPiece(origin.getPiece());
-                origin.setPiece(null);
+                target.getBoardSquare().setPiece(origin.getBoardSquare().getPiece());
+                origin.getBoardSquare().setPiece(null);
             }
         }
     }
 
-    private void handlePieceInteraction(Square clickedSquare)
+
+	/**
+	 * handles piece interactions: moving or selecting
+	 *
+	 * @param clickedSquare clicked square
+	 * @return
+	 */
+    private void handlePieceInteraction(GridSquare clickedSquare)
 	{
 		// select piece
 		if (this.squareBuffer == null)
@@ -60,7 +93,7 @@ public class ChessboardListener implements MouseListener
 		}
 
 		// move piece
-		else if (this.squareBuffer.getPiece().allMoves().contains(clickedSquare))
+		else if (this.squareBuffer.getBoardSquare().getPiece().allMoves().contains(clickedSquare.getBoardSquare()))
 		{
 			movePiece(this.squareBuffer, clickedSquare);
 			this.squareBuffer = null;
@@ -68,19 +101,27 @@ public class ChessboardListener implements MouseListener
 		}
 	}
 
+
+	/**
+	 * handles chessboard clicks
+	 *
+	 * @param e mouse event -> clicked point
+	 * @return
+	 */
 	private void handleChessboardClicks(MouseEvent e)
     {
-        Square clickedSquare = getClickedSquare(e);
+		GridSquare clickedSquare = getClickedSquare(e);
         if(clickedSquare != null)
         {
-            clickedSquare.print();
+            clickedSquare.getBoardSquare().print();
 
-            if (clickedSquare.getPiece() != null || this.squareBuffer != null)
+            if (clickedSquare.getBoardSquare().getPiece() != null || this.squareBuffer != null)
             	handlePieceInteraction(clickedSquare);
 
             this.grid.redraw();
         }
     }
+
 
 	@Override
 	public void mouseClicked(MouseEvent e)

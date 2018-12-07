@@ -25,8 +25,8 @@ import com.ovgu.ccd.applogic.Player.Colors;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
 
+import com.ovgu.ccd.gui.chessboardListener.Point;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
@@ -67,11 +67,12 @@ public abstract class Piece {
 
     final public void draw(Graphics g)
     {
-        int x = this.square.center().getX();
-        int y = this.square.center().getY();
+        Point center = this.chessboard.getChessboardGrid().getSquare(
+                this.square.getPosX(),
+                this.square.getPosY()).center();
         g.drawImage(orgImage,
-                x - (orgImage.getWidth(null) / 2),
-                y - (orgImage.getHeight(null) / 2),
+                center.getX() - (orgImage.getWidth(null) / 2),
+                center.getY() - (orgImage.getHeight(null) / 2),
                 null);
     }
 

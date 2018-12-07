@@ -132,7 +132,7 @@ public class ThreePlayerChessboard implements IBoard {
             for (int y = 0; y < COLUMNS; y++)
             {
                 if (this.chessboardGrid != null && chessboardGrid.getSquare(x,y) != null)
-                    matrix[x][y] = chessboardGrid.getSquare(x,y);
+                    matrix[x][y] = chessboardGrid.getSquare(x,y).getBoardSquare();
                 else
                     matrix[x][y] = new Square(x,y,null);
             }
@@ -220,6 +220,11 @@ public class ThreePlayerChessboard implements IBoard {
     @Override
     public void setTwoSquareMovedPawn(Pawn twoSquareMovedPawn) {
         this.twoSquareMovedPawn = twoSquareMovedPawn;
+    }
+
+    @Override
+    public ChessboardGrid getChessboardGrid() {
+        return this.chessboardGrid;
     }
 
     @Override

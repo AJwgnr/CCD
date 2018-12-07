@@ -1,5 +1,6 @@
 package com.ovgu.ccd.gui;
 
+import com.ovgu.ccd.gui.chessboardListener.GridSquare;
 import com.ovgu.ccd.gui.chessboardListener.Point;
 import com.ovgu.ccd.pieces.Square;
 import org.junit.Before;
@@ -8,15 +9,15 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class SquareTest
+public class GridSquareTest
 {
-    private Square square = null;
+    private GridSquare square = null;
 
 
     @Before
     public void setup()
     {
-        square = new Square(
+        square = new GridSquare(
                 new Point(100,100),
                 new Point(200, 100),
                 new Point(200,200),

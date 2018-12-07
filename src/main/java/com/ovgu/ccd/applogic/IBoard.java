@@ -1,6 +1,7 @@
 package com.ovgu.ccd.applogic;
 
 import com.ovgu.ccd.applogic.Player;
+import com.ovgu.ccd.gui.chessboardListener.ChessboardGrid;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Pawn;
 import com.ovgu.ccd.pieces.Piece;
@@ -23,6 +24,8 @@ public interface IBoard {
     Pawn getTwoSquareMovedPawn();
 
     void setTwoSquareMovedPawn(Pawn twoSquareMovedPawn);
+
+    ChessboardGrid getChessboardGrid();
 
     //Old methods
     void setPieces(String places, Player plWhite, Player plBlack);

@@ -35,14 +35,12 @@ public class Square
 {
     private boolean invalid = false;
     private Piece piece = null;
-    private HashMap<String, Point> vertices = new HashMap<String, Point>();
     private int boardPosX = -1;
     private int boardPosY = -1;
 
     // dummy square
     public Square() { }
 
-    // @TODO remove later
     public Square(int x, int y, Piece piece)
     {
         this.boardPosX = x;
@@ -55,25 +53,6 @@ public class Square
         this.boardPosX = square.getPosX();
         this.boardPosY = square.getPosY();
         this.piece = square.getPiece();
-    }
-
-    public Square(Point a, Point b, Point c, Point d)
-    {
-        this.vertices.put("A", a);
-        this.vertices.put("B", b);
-        this.vertices.put("C", c);
-        this.vertices.put("D", d);
-    }
-
-
-    public Square(int boardPosX, int boardPosY, Point a, Point b, Point c, Point d)
-    {
-        this.boardPosX = boardPosX;
-        this.boardPosY = boardPosY;
-        this.vertices.put("A", a);
-        this.vertices.put("B", b);
-        this.vertices.put("C", c);
-        this.vertices.put("D", d);
     }
 
 
@@ -98,73 +77,6 @@ public class Square
     public int getPosY()
     {
         return this.boardPosY;
-    }
-
-    public Point getVertex(String name)
-    {
-        if (this.vertices.containsKey(name))
-            return this.vertices.get(name);
-        return null;
-    }
-
-
-    public double getArea()
-    {
-        Triangle triangle1 = new Triangle(
-                this.vertices.get("A"),
-                this.vertices.get("B"),
-                this.vertices.get("C"));
-        Triangle triangle2 = new Triangle(
-                this.vertices.get("C"),
-                this.vertices.get("D"),
-                this.vertices.get("A"));
-        return triangle1.area() + triangle2.area();
-    }
-
-
-    public boolean isPointInside(Point point)
-    {
-        Triangle triangleAPD = new Triangle(
-                this.vertices.get("A"),
-                point,
-                this.vertices.get("D"));
-        Triangle triangleDPC = new Triangle(
-                this.vertices.get("D"),
-                point,
-                this.vertices.get("C"));
-        Triangle triangleCPB = new Triangle(
-                this.vertices.get("C"),
-                point,
-                this.vertices.get("B"));
-        Triangle trianglePBA = new Triangle(
-                point,
-                this.vertices.get("B"),
-                this.vertices.get("A"));
-
-        double areaOfTriangles =
-                triangleAPD.area() + triangleDPC.area() +
-                triangleCPB.area() + trianglePBA.area();
-
-        // if size(APD) + size(DPC) + size(CPB) + size(PBA) > size(ABCD)
-        // -> Point P is outside
-        if (areaOfTriangles > this.getArea())
-            return false;
-
-        // if size(APD) + size(DPC) + size(CPB) + size(PBA) = size(ABCD)
-        // -> Point P lies on one of the panel lines
-        // else
-        // -> Point P lies inside the panel
-        else
-            return true;
-    }
-
-    // computes the center of the chess panel
-    // @return: center point
-    public Point center()
-    {
-        Line diagonalLineAC = new Line(this.vertices.get("A"), this.vertices.get("C"));
-        Line diagonalLineBD = new Line(this.vertices.get("D"), this.vertices.get("B"));
-        return diagonalLineAC.computeIntersectionPoint(diagonalLineBD);
     }
 
 
@@ -207,7 +119,7 @@ public class Square
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.vertices);
+        return Objects.hash(100*this.boardPosX + this.boardPosY);
     }
 
     /**

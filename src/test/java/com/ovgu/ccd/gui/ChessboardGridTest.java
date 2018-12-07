@@ -22,13 +22,13 @@ public class ChessboardGridTest
     @Test
     public void testGetSquareBoardPosX()
     {
-        assertEquals(grid.getSquare(3,1).getPosX(), 3);
+        assertEquals(grid.getSquare(3,1).getBoardSquare().getPosX(), 3);
     }
 
     @Test
     public void testGetSquareBoardPosY()
     {
-        assertEquals(grid.getSquare(2,4).getPosY(), 4);
+        assertEquals(grid.getSquare(2,4).getBoardSquare().getPosY(), 4);
     }
 
     @Test
