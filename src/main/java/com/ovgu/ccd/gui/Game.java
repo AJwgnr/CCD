@@ -21,6 +21,8 @@
 package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.*;
+import com.ovgu.ccd.exception.ErrorCode;
+import com.ovgu.ccd.exception.ReadGameError;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Square;
 
@@ -30,10 +32,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -149,27 +148,27 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         {
             fileR = new FileReader(file);
         }
-        catch (java.io.IOException exc)
+        catch (IOException exc)
         {
             System.out.println("Something wrong reading file: " + exc);
             return;
         }
+
         BufferedReader br = new BufferedReader(fileR);
         String tempStr = new String();
         String blackName, whiteName;
-        try
-        {
+
+        try {
             tempStr = getLineWithVar(br, new String("[White"));
             whiteName = getValue(tempStr);
             tempStr = getLineWithVar(br, new String("[Black"));
             blackName = getValue(tempStr);
             tempStr = getLineWithVar(br, new String("1."));
-        }
-        catch (ReadGameError err)
-        {
-            System.out.println("Error reading file: " + err);
+        } catch (Exception ex) {
+            System.out.println("Error reading file: " + ex);
             return;
         }
+
         Game newGUI = JChessApp.jcv.addNewTab(whiteName + " vs. " + blackName);
         Settings locSetts = newGUI.settings;
         locSetts.getPlayerTwo().setName(blackName);
@@ -208,7 +207,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
             }
             if (str == null)
             {
-                throw new ReadGameError();
+                throw new ReadGameError("No searched string is found", ErrorCode.ERR_CODE_001);
             }
             if (str.startsWith(srcStr))
             {
@@ -231,7 +230,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         String result = new String();
         if (to < from || from > size || to > size || to < 0 || from < 0)
         {
-            throw new ReadGameError();
+            throw new ReadGameError("Unable to read value from loaded text", ErrorCode.ERR_CODE_002);
         }
         try
         {
@@ -318,10 +317,10 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         {
             this.blockedChessboard = false;
         }
-        else if (activePlayer.getPlayerType() == Player.PlayerTypes.NETWORKUSER)
+        /*else if (activePlayer.getPlayerType() == Player.PlayerTypes.NETWORKUSER)
         {
             this.blockedChessboard = true;
-        }
+        }*/
         else if (activePlayer.getPlayerType() == Player.PlayerTypes.COMPUTER)
         {
         }
@@ -372,6 +371,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
     }
 
     // MouseListener:
+    @Override
     public void mouseClicked(MouseEvent arg0)
     {
     }
@@ -454,8 +454,6 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         }
         return status;
     }
-
-
 
     public void mousePressed(MouseEvent event)
     {
@@ -585,8 +583,4 @@ public class Game extends JPanel implements MouseListener, ComponentListener
     {
         this.settings = settings;
     }
-}
-
-class ReadGameError extends Exception
-{
 }
