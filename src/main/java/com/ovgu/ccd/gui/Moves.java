@@ -517,19 +517,3 @@ public class Moves extends AbstractTableModel {
         none, shortCastling, longCastling
     }
 }
-/*
- * Overriding DefaultTableModel and  isCellEditable method
- * (history cannot be edited by player)
- */
-
-class MyDefaultTableModel extends DefaultTableModel {
-
-    MyDefaultTableModel() {
-        super();
-    }
-
-    @Override
-    public boolean isCellEditable(int a, int b) {
-        return false;
-    }
-}
