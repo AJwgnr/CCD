@@ -53,6 +53,7 @@ public class Queen extends Piece {
         this.symbol = "Q";
         imageWhite = ResourceManager.loadImage("Queen-W.png");
         imageBlack = ResourceManager.loadImage("Queen-B.png");
+        imageGray = ResourceManager.loadImage("Queen-G.png");
         this.setImage();
     }
 

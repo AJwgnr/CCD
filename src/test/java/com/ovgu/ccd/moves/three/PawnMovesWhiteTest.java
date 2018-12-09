@@ -17,6 +17,7 @@ import static org.junit.Assert.assertTrue;
 
 public class PawnMovesWhiteTest {
     Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
+    Player blackPlayer = new Player("John", Player.Colors.BLACK.name());
 
     @Test
     public void testMovesIn1A() throws Exception {
@@ -220,5 +221,250 @@ public class PawnMovesWhiteTest {
         board.setPiece(blockingPiece, 5, ThreePlayerChessboard.I);
 
         assertTrue(new PawnMoves(pawn, board).moves().isEmpty());
+    }
+
+
+    @Test
+    public void testMovesIn4IBlockedByPieceOtherPlayer() throws Exception {
+        IBoard board = new ThreePlayerChessboard();
+        Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 4, ThreePlayerChessboard.I);
+
+        Piece blockingPiece = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(blockingPiece, 5, ThreePlayerChessboard.I);
+
+        assertTrue(new PawnMoves(pawn, board).moves().isEmpty());
+    }
+
+    @Test
+    public void testMovesIn1EEat() throws Exception {
+        IBoard board = new ThreePlayerChessboard();
+        Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 1, ThreePlayerChessboard.E);
+
+        Piece blockingPiece = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(blockingPiece, 2, ThreePlayerChessboard.E);
+        Piece eatPiece1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece1, 2, ThreePlayerChessboard.D);
+        Piece eatPiece2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece2, 2, ThreePlayerChessboard.F);
+
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
+        Assert.assertEquals(2, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(2, ThreePlayerChessboard.D, null),
+                        new Square(2, ThreePlayerChessboard.F, null)
+                )
+        );
+    }
+
+
+    @Test
+    public void testMovesIn9EEat() throws Exception {
+        IBoard board = new ThreePlayerChessboard();
+        Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 9, ThreePlayerChessboard.E);
+
+        Piece blockingPiece = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(blockingPiece, 10, ThreePlayerChessboard.E);
+        Piece eatPiece1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece1, 10, ThreePlayerChessboard.I);
+        Piece eatPiece2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece2, 10, ThreePlayerChessboard.F);
+
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
+        Assert.assertEquals(2, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(10, ThreePlayerChessboard.I, null),
+                        new Square(10, ThreePlayerChessboard.F, null)
+                )
+        );
+    }
+
+
+
+    @Test
+    public void testMovesIn9FEat() throws Exception {
+        IBoard board = new ThreePlayerChessboard();
+        Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 9, ThreePlayerChessboard.F);
+
+        Piece blockingPiece = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(blockingPiece, 10, ThreePlayerChessboard.F);
+        Piece eatPiece1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece1, 10, ThreePlayerChessboard.E);
+        Piece eatPiece2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece2, 10, ThreePlayerChessboard.G);
+
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
+        Assert.assertEquals(2, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(10, ThreePlayerChessboard.E, null),
+                        new Square(10, ThreePlayerChessboard.G, null)
+                )
+        );
+    }
+
+
+
+    @Test
+    public void testMovesIn9IEat() throws Exception {
+        IBoard board = new ThreePlayerChessboard();
+        Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 9, ThreePlayerChessboard.I);
+
+        Piece blockingPiece = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(blockingPiece, 10, ThreePlayerChessboard.I);
+        Piece eatPiece1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece1, 10, ThreePlayerChessboard.J);
+        Piece eatPiece2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece2, 10, ThreePlayerChessboard.E);
+
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
+        Assert.assertEquals(2, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(10, ThreePlayerChessboard.E, null),
+                        new Square(10, ThreePlayerChessboard.J, null)
+                )
+        );
+    }
+
+    @Test
+    public void testMovesIn5CEat() throws Exception {
+        IBoard board = new ThreePlayerChessboard();
+        Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 5, ThreePlayerChessboard.C);
+
+        Piece blockingPiece = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(blockingPiece, 6, ThreePlayerChessboard.C);
+        Piece eatPiece1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece1, 6, ThreePlayerChessboard.B);
+        Piece eatPiece2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece2, 6, ThreePlayerChessboard.D);
+
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
+        Assert.assertEquals(2, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(6, ThreePlayerChessboard.B, null),
+                        new Square(6, ThreePlayerChessboard.D, null)
+                )
+        );
+    }
+
+
+    @Test
+    public void testMovesIn5DEat() throws Exception {
+        IBoard board = new ThreePlayerChessboard();
+        Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 5, ThreePlayerChessboard.D);
+
+        Piece blockingPiece = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(blockingPiece, 6, ThreePlayerChessboard.D);
+        Piece eatPiece1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece1, 6, ThreePlayerChessboard.C);
+        Piece eatPiece2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece2, 6, ThreePlayerChessboard.I);
+
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
+        Assert.assertEquals(2, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(6, ThreePlayerChessboard.I, null),
+                        new Square(6, ThreePlayerChessboard.C, null)
+                )
+        );
+    }
+
+
+    @Test
+    public void testMovesIn5IEat() throws Exception {
+        IBoard board = new ThreePlayerChessboard();
+        Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 5, ThreePlayerChessboard.I);
+
+        Piece blockingPiece = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(blockingPiece, 6, ThreePlayerChessboard.I);
+        Piece eatPiece1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece1, 6, ThreePlayerChessboard.D);
+        Piece eatPiece2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece2, 6, ThreePlayerChessboard.J);
+
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
+        Assert.assertEquals(2, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(6, ThreePlayerChessboard.D, null),
+                        new Square(6, ThreePlayerChessboard.J, null)
+                )
+        );
+    }
+
+
+    @Test
+    public void testMovesIn3EEat() throws Exception {
+        IBoard board = new ThreePlayerChessboard();
+        Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 3, ThreePlayerChessboard.E);
+
+        Piece blockingPiece = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(blockingPiece, 8, ThreePlayerChessboard.E);
+        Piece eatPiece1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece1, 4, ThreePlayerChessboard.D);
+        Piece eatPiece2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece2, 8, ThreePlayerChessboard.I);
+        Piece eatPiece3 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece3, 8, ThreePlayerChessboard.F);
+
+
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
+        Assert.assertEquals(3, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(4, ThreePlayerChessboard.D, null),
+                        new Square(8, ThreePlayerChessboard.I, null),
+                        new Square(8, ThreePlayerChessboard.F, null)
+                )
+        );
+    }
+
+    @Test
+    public void testMovesIn3DEat() throws Exception {
+        IBoard board = new ThreePlayerChessboard();
+        Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 3, ThreePlayerChessboard.D);
+
+        Piece blockingPiece = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(blockingPiece, 4, ThreePlayerChessboard.D);
+        Piece eatPiece1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece1, 4, ThreePlayerChessboard.C);
+        Piece eatPiece2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece2, 4, ThreePlayerChessboard.I);
+        Piece eatPiece3 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(eatPiece3, 8, ThreePlayerChessboard.E);
+
+
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
+        Assert.assertEquals(3, moves.size());
+        MatcherAssert.assertThat(
+                moves,
+                hasItems(
+                        new Square(4, ThreePlayerChessboard.C, null),
+                        new Square(4, ThreePlayerChessboard.I, null),
+                        new Square(8, ThreePlayerChessboard.E, null)
+                )
+        );
     }
 }

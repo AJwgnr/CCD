@@ -51,6 +51,7 @@ public class Bishop extends Piece {
         this.symbol = "B";
         imageWhite = ResourceManager.loadImage("Bishop-W.png");
         imageBlack = ResourceManager.loadImage("Bishop-B.png");
+        imageGray = ResourceManager.loadImage("Bishop-G.png");
         this.setImage();
     }
 

@@ -77,6 +77,8 @@ public class Pawn extends Piece {
         this.symbol = "";
         imageWhite = ResourceManager.loadImage("Pawn-W.png");
         imageBlack = ResourceManager.loadImage("Pawn-B.png");
+        imageGray = ResourceManager.loadImage("Pawn-G.png");
+
         this.setImage();
     }
 

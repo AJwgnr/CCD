@@ -52,6 +52,7 @@ public class Rook extends Piece {
         this.symbol = "R";
         imageWhite = ResourceManager.loadImage("Rook-W.png");
         imageBlack = ResourceManager.loadImage("Rook-B.png");
+        imageGray = ResourceManager.loadImage("Rook-G.png");
         this.setImage();
     }
 

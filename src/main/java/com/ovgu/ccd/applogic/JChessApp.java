@@ -17,6 +17,8 @@ package com.ovgu.ccd.applogic;
 
 import com.ovgu.ccd.gui.JChessView;
 import com.ovgu.ccd.gui.chessboardListener.ChessboardListener;
+import com.ovgu.ccd.gui.chessboardListener.ChessboardGrid;
+import com.ovgu.ccd.gui.chessboardListener.Point;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -50,10 +52,13 @@ public class JChessApp extends SingleFrameApplication {
      */
     @Override
     protected void startup() {
-        ChessboardListener chessboard = new ChessboardListener(new com.ovgu.ccd.gui.chessboardListener.Point(550,550),500);
-        new com.ovgu.ccd.gui.chessboardListener.Window("ChessboardListener",1280,1280, chessboard.getPanel());
-        jcv = new JChessView(this);
-        show(jcv);
+        ChessboardGrid chessboardGrid = new ChessboardGrid(new Point(550,550),500);
+        ChessboardListener listener = new ChessboardListener(chessboardGrid);
+        new com.ovgu.ccd.gui.chessboardListener.Window("ChessboardListener",1280,1280, listener.getPanel());
+        ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
+
+        //jcv = new JChessView(this);
+        //show(jcv);
     }
 
     /**

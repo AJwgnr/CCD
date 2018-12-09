@@ -25,8 +25,8 @@ import com.ovgu.ccd.applogic.Player.Colors;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
 
+import com.ovgu.ccd.gui.chessboardListener.Point;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
@@ -36,6 +36,7 @@ public abstract class Piece {
 
     public static Image imageBlack;
     public static Image imageWhite;
+    public static Image imageGray;
     public static short value = 0;
     private Square square;
     public Player player;
@@ -67,20 +68,28 @@ public abstract class Piece {
 
     final public void draw(Graphics g)
     {
-        int x = this.square.center().getX();
-        int y = this.square.center().getY();
+        Point center = this.chessboard.getChessboardGrid().getSquare(
+                this.square.getPosX(),
+                this.square.getPosY()).center();
         g.drawImage(orgImage,
-                x - (orgImage.getWidth(null) / 2),
-                y - (orgImage.getHeight(null) / 2),
+                center.getX() - (orgImage.getWidth(null) / 2),
+                center.getY() - (orgImage.getHeight(null) / 2),
                 null);
     }
 
     void setImage()
     {
-        if (this.getPlayer().getColor() == this.getPlayer().getColor().BLACK){
+        if (this.getPlayer().getColor() == this.getPlayer().getColor().BLACK)
+        {
             image = imageBlack;
-        } else {
+        }
+        else if (this.getPlayer().getColor() == this.getPlayer().getColor().WHITE)
+        {
             image = imageWhite;
+        }
+        else
+        {
+            image = imageGray;
         }
         orgImage = image;
     }

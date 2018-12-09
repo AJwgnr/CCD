@@ -237,7 +237,7 @@ public class KingMoves implements IMove {
                 move = new Square(piece.getPosX() - 1, piece.getPosY() - 1, null);
             }
             if (piece.getPosY() == ThreePlayerChessboard.I) {
-                move = new Square(piece.getPosX() - 1, ThreePlayerChessboard.E, null);
+                move = new Square(piece.getPosX() - 1, ThreePlayerChessboard.D, null);
             }
         }
         if (piece.getPosX() + 1 == 5) {
@@ -263,7 +263,7 @@ public class KingMoves implements IMove {
             }
         }
         if (piece.getPosX() + 1 == 9) {
-            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.K) {
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
                 move = new Square(4, piece.getPosY() + 1, null);
             }
             if (ThreePlayerChessboard.F <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.H) {
@@ -292,7 +292,7 @@ public class KingMoves implements IMove {
         }
         if (5 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 7) {
             if (ThreePlayerChessboard.B <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.D) {
-                move = new Square(piece.getPosX() + 1, piece.getPosY() + 1, null);
+                move = new Square(piece.getPosX() + 1, piece.getPosY() - 1, null);
             }
             if (ThreePlayerChessboard.J <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
                 move = new Square(piece.getPosX() + 1, piece.getPosY() - 1, null);
@@ -331,7 +331,7 @@ public class KingMoves implements IMove {
                 move = new Square(8, piece.getPosY() - 1, null);
             }
             if (piece.getPosY() == ThreePlayerChessboard.E) {
-                move = new Square(5, ThreePlayerChessboard.D, null);
+                move = new Square(4, ThreePlayerChessboard.D, null);
             }
         }
         if (6 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 8) {
@@ -356,8 +356,8 @@ public class KingMoves implements IMove {
                 move = new Square(8, ThreePlayerChessboard.I, null);
             }
         }
-        if (8 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 12) {
-            if (ThreePlayerChessboard.L <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.J) {
+        if (9 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 12) {
+            if (ThreePlayerChessboard.J <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.K) {
                 move = new Square(piece.getPosX() - 1, piece.getPosY() - 1, null);
             }
             if (ThreePlayerChessboard.E <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.G) {
@@ -368,14 +368,11 @@ public class KingMoves implements IMove {
             }
         }
         if (piece.getPosX() + 1 == 9) {
-            if (ThreePlayerChessboard.L <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.J) {
-                move = new Square(5, piece.getPosY() - 1, null);
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = new Square(4, piece.getPosY() - 1, null);
             }
             if (ThreePlayerChessboard.E <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.G) {
                 move = new Square(3, piece.getPosY() + 1, null);
-            }
-            if (piece.getPosY() == ThreePlayerChessboard.I) {
-                move = new Square(3, ThreePlayerChessboard.E, null);
             }
         }
 

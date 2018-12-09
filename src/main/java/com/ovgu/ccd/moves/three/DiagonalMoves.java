@@ -14,6 +14,23 @@ public class DiagonalMoves implements IMove {
     private Piece piece;
     private ThreePlayerChessboard board;
 
+    private ArrayList<Square> NEXT_TO_ROSETTE =  new ArrayList<Square>(
+            Arrays.asList(
+                    new Square(3, ThreePlayerChessboard.F, null),
+                    new Square(2, ThreePlayerChessboard.E, null),
+                    new Square(2, ThreePlayerChessboard.D, null),
+                    new Square(3, ThreePlayerChessboard.C, null),
+                    new Square(4, ThreePlayerChessboard.C, null),
+                    new Square(5, ThreePlayerChessboard.D, null),
+                    new Square(5, ThreePlayerChessboard.I, null),
+                    new Square(4, ThreePlayerChessboard.J, null),
+                    new Square(8, ThreePlayerChessboard.J, null),
+                    new Square(9, ThreePlayerChessboard.I, null),
+                    new Square(9, ThreePlayerChessboard.E, null),
+                    new Square(8, ThreePlayerChessboard.F, null)
+            )
+    );
+
     public DiagonalMoves(Piece piece, IBoard board) {
         this.piece = piece;
         this.board = (ThreePlayerChessboard) board;
@@ -34,18 +51,22 @@ public class DiagonalMoves implements IMove {
         } else {
             // We don't reach the rosette, get reachable rosette, its neighbors and the diagonal moves
             //also, for the reachable rosette, get left or right neighbors
-            Square side = board.getSideRosetteTile(piece.getSquare(), diagonal(piece.getSquare()));
+            ArrayList<Square> diagonal = diagonal(piece.getSquare());
+            if (NEXT_TO_ROSETTE.stream().anyMatch(s -> s.equals(piece.getSquare()))) {
+                diagonal.add(new Square(piece.getSquare().getPosX(), piece.getSquare().getPosY(), null));
+            }
+            Square side = board.getSideRosetteTile(piece.getSquare(), diagonal);
             if (board.validMove(side, piece)) {
                 possibleMoves.addAll(oppositeRosetteDiagonalMoves(side));
 
                 // Here it's ok to check both ways, we are adding redundant moves but it's ok.
-                Square leftSide = board.getLeftQuadrantSquare(side);
-                if (board.validMove(leftSide, piece)) {
+                Square leftSide = board.getLeftSextantSquare(side);
+                if (!board.inSextant(piece.getSquare(), leftSide.getPosX(), leftSide.getPosY()) && board.validMove(leftSide, piece)) {
                     possibleMoves.addAll(neighborSextantMoves(leftSide));
                 }
 
-                Square rightSide = board.getRightQuadrantSquare(side);
-                if (board.validMove(rightSide, piece)) {
+                Square rightSide = board.getRightSextantSquare(side);
+                if (!board.inSextant(piece.getSquare(), rightSide.getPosX(), rightSide.getPosY()) && board.validMove(rightSide, piece)) {
                     possibleMoves.addAll(neighborSextantMoves(rightSide));
                 }
             }
@@ -67,10 +88,10 @@ public class DiagonalMoves implements IMove {
         if (!leftSquares.isEmpty() && leftSquares.get(leftSquares.size() - 1) != null) {
             Square leftSquare = leftSquares.get(leftSquares.size() - 1);
             if (leftSextantReachable(leftSquare)) {
-                leftSide = board.getLeftQuadrantSquare(leftSquare);
+                leftSide = board.getLeftSextantSquare(leftSquare);
             }
         } else {
-            leftSide = board.getLeftQuadrantSquare(piece.getSquare());
+            leftSide = board.getLeftSextantSquare(piece.getSquare());
         }
         if(leftSide != null && board.validMove(leftSide, piece)) {
             possibleMoves.addAll(neighborSextantMoves(leftSide));
@@ -87,10 +108,10 @@ public class DiagonalMoves implements IMove {
         if (!rightSquares.isEmpty() && (rightSquares.get(rightSquares.size() - 1)) != null) {
             Square rightSquare = rightSquares.get(rightSquares.size() - 1);
             if (rightSextantReachable(rightSquare)) {
-                rightSide = board.getRightQuadrantSquare(rightSquare);
+                rightSide = board.getRightSextantSquare(rightSquare);
             }
         } else {
-            rightSide = board.getRightQuadrantSquare(piece.getSquare());
+            rightSide = board.getRightSextantSquare(piece.getSquare());
         }
         if(rightSide != null && board.validMove(rightSide, piece)) {
             possibleMoves.addAll(neighborSextantMoves(rightSide));
@@ -104,8 +125,11 @@ public class DiagonalMoves implements IMove {
     }
 
     public boolean rightSextantReachable(Square rightMostSquare) {
-        return rightMostSquare.getPosY() == ThreePlayerChessboard.E || rightMostSquare.getPosY() == ThreePlayerChessboard.I || rightMostSquare.getPosY() == ThreePlayerChessboard.D ||
-               rightMostSquare.getPosX() +1 == 4 || rightMostSquare.getPosX() +1 == 5 || rightMostSquare.getPosX() +1 == 9;
+        return rightMostSquare.getPosY() == ThreePlayerChessboard.E ||
+               rightMostSquare.getPosY() == ThreePlayerChessboard.I ||
+               rightMostSquare.getPosY() == ThreePlayerChessboard.D ||
+               (rightMostSquare.getPosX() +1 == 4 && rightMostSquare.getPosY() != ThreePlayerChessboard.H) ||
+               rightMostSquare.getPosX() +1 == 5 || rightMostSquare.getPosX() +1 == 9;
     }
 
 

@@ -1,10 +1,7 @@
 package com.ovgu.ccd.applogic;
 
-import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.applogic.IBoard;
+import com.ovgu.ccd.gui.chessboardListener.*;
 import com.ovgu.ccd.pieces.*;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -32,7 +29,15 @@ public class ThreePlayerChessboard implements IBoard {
 
     private King kingWhite;
     private King kingBlack;
+    private King kingGrey;
     private Pawn twoSquareMovedPawn = null;
+
+    private Player whitePlayer = null;
+    private Player greyPlayer = null;
+    private Player blackPlayer = null;
+
+    private ChessboardGrid chessboardGrid = null;
+
     /*------------------------------
     #-------------MATRIX------------
     #-------------------------------
@@ -65,39 +70,126 @@ public class ThreePlayerChessboard implements IBoard {
     #   ---------------------------
     */
 
-    public ThreePlayerChessboard() {
-        matrix = new Square[COLUMNS][COLUMNS];
-        initializeMatrix();
+    // empty dummy chessboard
+    public ThreePlayerChessboard()
+    {
+        initSquareMatrix();
         setInvalidSquares();
     }
 
-    private void initializeMatrix() {
-        for (int x = 0; x < COLUMNS; x++) {
-            for (int y = 0; y < COLUMNS; y++) {
-                matrix[x][y] = new Square(x, y, null);
+    // chessboard with grid structure
+    public ThreePlayerChessboard(ChessboardGrid grid)
+    {
+        this.chessboardGrid = grid;
+        initPlayers();
+        initSquareMatrix();
+        setInvalidSquares();
+        initPieceStartPositions();
+        redrawPieces();
+    }
+
+    private void initPlayers()
+    {
+        this.whitePlayer = new Player("Mr.White", Player.Colors.WHITE.name());
+        this.greyPlayer = new Player("Mr.Grey", Player.Colors.GREY.name());
+        this.blackPlayer = new Player("Mr.Black", Player.Colors.BLACK.name());
+    }
+
+    private void setInvalidSquares()
+    {
+        if (matrix != null)
+        {
+            for (int i = 0; i <= 3; i++) {
+                for (int j = 8; j <= 11; j++) {
+                    if (matrix[i][j] != null)
+                        matrix[i][j].setInvalid(true);
+                }
+            }
+
+            for (int i = 4; i <= 7; i++) {
+                for (int j = 4; j <= 7; j++) {
+                    if (matrix[i][j] != null)
+                        matrix[i][j].setInvalid(true);
+                }
+            }
+
+
+            for(int i = 8; i <= 11; i++) {
+                for(int j = 0; j <= 3; j++) {
+                    if (matrix[i][j] != null)
+                        matrix[i][j].setInvalid(true);
+                }
             }
         }
     }
 
-    private void setInvalidSquares() {
-        for (int i = 0; i <= 3; i++) {
-            for (int j = 8; j <= 11; j++) {
-                matrix[i][j].setInvalid(true);
+    // initialize all squares
+    private void initSquareMatrix()
+    {
+        this.matrix = new Square[COLUMNS][COLUMNS];
+        for (int x = 0; x < COLUMNS; x++)
+        {
+            for (int y = 0; y < COLUMNS; y++)
+            {
+                if (this.chessboardGrid != null && chessboardGrid.getSquare(x,y) != null)
+                    matrix[x][y] = chessboardGrid.getSquare(x,y).getBoardSquare();
+                else
+                    matrix[x][y] = new Square(x,y,null);
             }
         }
+    }
 
-        for (int i = 4; i <= 7; i++) {
-            for (int j = 4; j <= 7; j++) {
-                matrix[i][j].setInvalid(true);
-            }
+    // assign all pieces to their start positions
+    private void initPieceStartPositions()
+    {
+        if (this.matrix != null)
+        {
+            // white player start positions
+            this.matrix[0][A].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.ROOK));
+            this.matrix[0][B].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.KNIGHT));
+            this.matrix[0][C].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.BISHOP));
+            this.matrix[0][D].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.QUEEN));
+            this.matrix[0][E].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.KING));
+            this.matrix[0][F].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.BISHOP));
+            this.matrix[0][G].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.KNIGHT));
+            this.matrix[0][H].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.ROOK));
+            for (int i = A; i <= H; i++)
+                this.matrix[1][i].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.PAWN));
+
+            // black player start positions
+            this.matrix[7][A].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.ROOK));
+            this.matrix[7][B].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KNIGHT));
+            this.matrix[7][C].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.BISHOP));
+            this.matrix[7][D].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.QUEEN));
+            this.matrix[7][I].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KING));
+            this.matrix[7][J].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.BISHOP));
+            this.matrix[7][K].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KNIGHT));
+            this.matrix[7][L].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.ROOK));
+            for (int i = A; i <= D; i++)
+                this.matrix[6][i].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN));
+            for (int i = I; i <= L; i++)
+                this.matrix[6][i].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN));
+
+            // gray player start positions
+            this.matrix[11][H].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.ROOK));
+            this.matrix[11][G].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KNIGHT));
+            this.matrix[11][F].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.BISHOP));
+            this.matrix[11][E].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.QUEEN));
+            this.matrix[11][I].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KING));
+            this.matrix[11][J].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.BISHOP));
+            this.matrix[11][K].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KNIGHT));
+            this.matrix[11][L].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.ROOK));
+            for (int i = E; i <= H; i++)
+                this.matrix[10][i].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN));
+            for (int i = I; i <= L; i++)
+                this.matrix[10][i].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN));
         }
+    }
 
-
-        for(int i = 8; i <= 11; i++) {
-            for(int j = 0; j <= 3; j++) {
-                matrix[i][j].setInvalid(true);
-            }
-        }
+    // redraw all pieces in matrix
+    private void redrawPieces()
+    {
+        this.chessboardGrid.redraw();
     }
 
     @Override
@@ -131,6 +223,11 @@ public class ThreePlayerChessboard implements IBoard {
     }
 
     @Override
+    public ChessboardGrid getChessboardGrid() {
+        return this.chessboardGrid;
+    }
+
+    @Override
     public boolean validMove(Square square, Piece piece) {
         return (0 <= square.getPosX() && square.getPosX() <= 11 &&
                 0 <= square.getPosY() && square.getPosY() <= 11 &&
@@ -161,18 +258,18 @@ public class ThreePlayerChessboard implements IBoard {
             (1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4  && A <= square.getPosY() && square.getPosY() <= D) && (1 <= (x_coord + 1) && (x_coord + 1) <= 4  && A <= y_coord && y_coord <= D));
     }
 
-    public Square getLeftQuadrantSquare(Square square) throws Exception {
+    public Square getLeftSextantSquare(Square square) throws Exception {
         if (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12) {
             if (square.getPosY() == I) {
                 return new Square(square.getPosX() + 1, E, null);
             } else {
-                return new Square(square.getPosX() - 4, square.getPosY() + 1, null);
+                return new Square(3, square.getPosY() + 1, null);
             }
         }
 
         if (1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4) {
             if (square.getPosY() == E) {
-                return new Square(square.getPosX() - 1, I, null);
+                return new Square(square.getPosX() - 1, D, null);
             } else {
                 return new Square(square.getPosX() + 1, square.getPosY() - 1, null);
             }
@@ -189,12 +286,12 @@ public class ThreePlayerChessboard implements IBoard {
         throw new Exception("Invalid square");
     }
 
-    public Square getRightQuadrantSquare(Square square) throws Exception {
+    public Square getRightSextantSquare(Square square) throws Exception {
         if (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12) {
             if (square.getPosY() == E) {
                 return new Square(square.getPosX() + 1, I, null);
             } else {
-                return new Square(square.getPosX() - 4, square.getPosY() + 1, null);
+                return new Square(4, square.getPosY() + 1, null);
             }
         }
 
@@ -202,7 +299,7 @@ public class ThreePlayerChessboard implements IBoard {
             if (square.getPosY() == D) {
                 return new Square(square.getPosX() - 1, E, null);
             } else {
-                return new Square(square.getPosX() + 1, square.getPosY() - 1, null);
+                return new Square(8, square.getPosY() + 1, null);
             }
         }
 
@@ -211,7 +308,7 @@ public class ThreePlayerChessboard implements IBoard {
             if (square.getPosY() == I) {
                 return new Square(square.getPosX() + 1, D, null);
             } else {
-                return new Square(square.getPosX() + 4, square.getPosY() + 1, null);
+                return new Square(square.getPosX() - 1, square.getPosY() - 1, null);
             }
         }
         throw new Exception("Invalid square");
@@ -258,7 +355,6 @@ public class ThreePlayerChessboard implements IBoard {
         matrix[x][y].setPiece(piece);
     }
 
-
     public ArrayList<Square> getDiagonalCenterPositions(Square square) throws Exception {
         if (WHITE_ROSETTE.contains(new Square(square.getPosX(), square.getPosY(), null))) {
             return WHITE_ROSETTE;
@@ -270,7 +366,6 @@ public class ThreePlayerChessboard implements IBoard {
 
         throw new Exception("Invalid square");
     }
-
 
     public boolean occupiedByOther(Piece piece, Square square) {
         Square nextMove = matrix[square.getPosX()][square.getPosY()];
@@ -343,17 +438,38 @@ public class ThreePlayerChessboard implements IBoard {
         return true;
     }
 
-    // TODO: Remove me
-    @Override
-    public King myKing(Player.Colors color)
-    {
-        return null;
+    public boolean isMyKingSafe(Player player) throws Exception {
+        King king;
+        if (player.getColor() == Player.Colors.WHITE) {
+            king = kingWhite;
+        } else if (player.getColor() == Player.Colors.BLACK) {
+            king = kingBlack;
+        } else {
+            king = kingGrey;
+        }
+
+        return new CheckController(this, king).isSafe();
+    }
+
+    public King getKingGrey() {
+        return kingGrey;
+    }
+
+    public void setKingGrey(King kingGrey) {
+        this.kingGrey = kingGrey;
     }
 
     @Override
     public Square getSquare(int xCoordinate, int yCoordinate)
     {
         return getSquares()[xCoordinate][yCoordinate];
+    }
+
+    // TODO: Remove me
+    @Override
+    public King myKing(Player.Colors color)
+    {
+        return null;
     }
 
     @Override
@@ -398,5 +514,5 @@ public class ThreePlayerChessboard implements IBoard {
     public void move(Square begin, Square end, boolean refresh, boolean clearForwardHistory) {}
 
     @Override
-    public Point getTopLeftPoint() { return new Point(); }
+    public java.awt.Point getTopLeftPoint() { return new java.awt.Point(); }
 }
