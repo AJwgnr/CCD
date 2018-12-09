@@ -285,7 +285,7 @@ public class Moves extends AbstractTableModel {
     }
 
     /**
-     * Method to set all moves from String with validation test (usefoul for NETWORK game)
+     * Method to set moves moves from String with validation test (usefoul for NETWORK game)
      *
      * @param moves String to set in String like PGN with full-notation format
      */

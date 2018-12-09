@@ -21,9 +21,9 @@
 package com.ovgu.ccd.pieces;
 
 import com.ovgu.ccd.applogic.ResourceManager;
-import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.moves.DiagonalMoves;
+import com.ovgu.ccd.moves.DiagonalMoveFactory;
 
 import java.util.ArrayList;
 
@@ -62,7 +62,11 @@ public class Bishop extends Piece {
     @Override
     public ArrayList allMoves() {
         ArrayList moves = new ArrayList();
-        moves.addAll(new DiagonalMoves(this, chessboard).all());
+        try {
+            moves.addAll(DiagonalMoveFactory.getMoves(chessboard, this).moves());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return moves;
     }

@@ -1,6 +1,8 @@
-package com.ovgu.ccd.moves;
+package com.ovgu.ccd.moves.two;
 
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.gui.Chessboard;
+import com.ovgu.ccd.moves.IMove;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 /**
  *
  */
-public class DiagonalMoves {
+public class DiagonalMoves implements IMove {
 
     private Piece piece;
     private Chessboard board;
@@ -26,7 +28,7 @@ public class DiagonalMoves {
     /**
      * @return
      */
-    public ArrayList all() {
+    public ArrayList moves() {
         ArrayList moves = new ArrayList();
         Square square = piece.getSquare();
 

@@ -39,14 +39,15 @@ package com.ovgu.ccd.pieces;
  */
 
 import com.ovgu.ccd.applogic.ResourceManager;
-import com.ovgu.ccd.moves.IBoard;
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
+import com.ovgu.ccd.moves.KingMoveFactory;
 
 import java.util.ArrayList;
 
 public class King extends Piece {
 
-    public boolean wasMotion = false;
+    private boolean wasMotion = false;
     public static short value = 99;
 
     protected King(IBoard chessboard, Player player) {
@@ -65,12 +66,15 @@ public class King extends Piece {
      */
     @Override
     public ArrayList allMoves() {
-        ArrayList list = new ArrayList();
+        ArrayList moves = new ArrayList();
 
-        list.addAll(immediateMoves());
-        list.addAll(possibleCastlings());
+        try {
+            moves.addAll(KingMoveFactory.getMoves(chessboard, this).moves());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        return list;
+        return moves;
     }
 
     /**
@@ -119,7 +123,7 @@ public class King extends Piece {
      * @param s Squere where is a king
      * @return bool true if king is save, else returns false
      */
-    private boolean isSafe(Square s) //A bit confusing code.
+    public boolean isSafe(Square s) //A bit confusing code.
     {
         // Rook & Queen
         for (int i = s.getPosY() + 1; i <= 7; ++i) //up
@@ -470,86 +474,6 @@ public class King extends Piece {
         return ret;
     }
 
-
-    private ArrayList immediateMoves() {
-        Square possibleNewPosition;
-        ArrayList moves = new ArrayList();
-
-        for (int x = this.getSquare().getPosX() - 1; x <= this.getSquare().getPosX() + 1; x++) {
-            for (int y = this.getSquare().getPosY() - 1; y <= this.getSquare().getPosY() + 1; y++) {
-                if (!this.outsideOfBoard(x, y)) {
-                    possibleNewPosition = this.chessboard.getSquare(x, y);
-
-                    if (this.getSquare() == possibleNewPosition) { continue; }
-
-                    if (this.canMoveTo(possibleNewPosition) && isSafe(possibleNewPosition)) {
-                        moves.add(possibleNewPosition);
-                    }
-                }
-            }
-        }
-        return moves;
-    }
-
-    private ArrayList possibleCastlings() {
-        ArrayList list = new ArrayList();
-
-        if (wasMotion || isChecked()) {
-            return list;
-        }
-
-
-        if (leftCastlingPossible()) {
-            list.add(chessboard.getSquare(getSquare().getPosX() - 2, getSquare().getPosY()));
-        }
-
-        if (rightCastlingPossible()) {
-            list.add(chessboard.getSquare(getSquare().getPosX() + 2, getSquare().getPosY()));
-        }
-
-        return list;
-    }
-
-    private boolean leftCastlingPossible()
-    {
-        if (chessboard.getSquare(0, getSquare().getPosY()).getPiece() == null ||
-            !chessboard.getSquare(0, getSquare().getPosY()).getPiece().name.equals("Rook")) { return false; }
-
-        Rook rook = (Rook) chessboard.getSquare(0, getSquare().getPosY()).getPiece();
-        if (!rook.wasMotion)
-        {
-            for (int i = getSquare().getPosX() - 1; i > 0; i--)
-            {
-                if (chessboard.getSquare(i, getSquare().getPosY()).getPiece() != null) { return false; }
-            }
-            Square kingsNextPosition = chessboard.getSquare(getSquare().getPosX() - 2, getSquare().getPosY());
-            Square rooksNextPosition = chessboard.getSquare(getSquare().getPosX() - 1, getSquare().getPosY());
-            return (isSafe(kingsNextPosition) && isSafe(rooksNextPosition));
-        }
-
-        return true;
-    }
-
-    private boolean rightCastlingPossible()
-    {
-        if (chessboard.getSquare(7, getSquare().getPosY()).getPiece() == null ||
-            !chessboard.getSquare(7, getSquare().getPosY()).getPiece().name.equals("Rook")) { return false; }
-
-        Rook rook = (Rook) chessboard.getSquare(7, getSquare().getPosY()).getPiece();
-        if (!rook.wasMotion)
-        {
-            for (int i = getSquare().getPosX() + 1; i < 7; i++)
-            {
-                if (chessboard.getSquare(i, getSquare().getPosY()).getPiece() != null) { return false; }
-            }
-
-            Square kingsNextPosition = chessboard.getSquare(getSquare().getPosX() + 2, getSquare().getPosY());
-            Square rooksNextPosition = chessboard.getSquare(getSquare().getPosX() + 1, getSquare().getPosY());
-            return (isSafe(kingsNextPosition) && isSafe(rooksNextPosition));
-        }
-
-        return true;
-    }
 
     public boolean isWasMotion() {
         return wasMotion;
