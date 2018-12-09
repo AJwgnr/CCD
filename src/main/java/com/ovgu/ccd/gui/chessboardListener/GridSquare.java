@@ -21,8 +21,8 @@ public class GridSquare extends GeometricPrimitiveDrawer
     /**
      * dummy constructor
      *
-     * @param
-     * @return
+     *
+     *
      */
     public GridSquare()
     {
@@ -37,7 +37,7 @@ public class GridSquare extends GeometricPrimitiveDrawer
      * @param b vertex 2
      * @param c vertex 3
      * @param d vertex 4
-     * @return
+     *
      */
     public GridSquare(Point a, Point b, Point c, Point d)
     {
@@ -58,7 +58,7 @@ public class GridSquare extends GeometricPrimitiveDrawer
      * @param b vertex 2
      * @param c vertex 3
      * @param d vertex 4
-     * @return
+     *
      */
     public GridSquare(int boardPosX, int boardPosY, Point a, Point b, Point c, Point d)
     {
@@ -87,7 +87,7 @@ public class GridSquare extends GeometricPrimitiveDrawer
     /**
      * does the grid square has a board square assigned to it
      *
-     * @param
+     *
      * @return boolean
      */
     public boolean hasBoardSquare()
@@ -99,7 +99,7 @@ public class GridSquare extends GeometricPrimitiveDrawer
     /**
      * get the chessboard square
      *
-     * @param
+     *
      * @return Square of the chessboard
      */
     public Square getBoardSquare()
@@ -112,7 +112,7 @@ public class GridSquare extends GeometricPrimitiveDrawer
      * sets the chessboard square
      *
      * @param square chessboard square
-     * @return
+     *
      */
     public void setBoardSquare(Square square)
     {
@@ -121,10 +121,10 @@ public class GridSquare extends GeometricPrimitiveDrawer
 
 
     /**
-     * sets highlight property -> mark squares, which should be highlighted
+     * sets highlight property, mark squares, which should be highlighted
      *
      * @param en highlight on/off
-     * @return
+     *
      */
     public void setHighlight(boolean en)
     {
@@ -135,7 +135,7 @@ public class GridSquare extends GeometricPrimitiveDrawer
     /**
      * get highlight property
      *
-     * @param
+     *
      * @return boolean highlight on/off
      */
     public boolean getHighlight()
@@ -149,7 +149,7 @@ public class GridSquare extends GeometricPrimitiveDrawer
      *
      * computed by splitting the area of the square into two triangles
      *
-     * @param
+     *
      * @return the area of the square
      */
     public double getArea()
@@ -216,7 +216,7 @@ public class GridSquare extends GeometricPrimitiveDrawer
     /**
      * get the center point of the square
      *
-     * @param
+     *
      * @return Point center
      */
     public Point center()
@@ -230,7 +230,7 @@ public class GridSquare extends GeometricPrimitiveDrawer
     /**
      * transforms the square to an polygon
      *
-     * @param
+     *
      * @return Polygon
      */
     public Polygon toPolygon()
@@ -257,7 +257,7 @@ public class GridSquare extends GeometricPrimitiveDrawer
      * draws the square
      *
      * @param graphics graphics
-     * @return
+     *
      */
     @Override
     public void draw(Graphics graphics)

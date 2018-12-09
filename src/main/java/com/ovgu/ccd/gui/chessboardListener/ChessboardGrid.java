@@ -51,7 +51,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
      *
      * @param center center of the chessboard
      * @param radius radius of the outer hexagon
-     * @return
+     *
      */
 	public ChessboardGrid(Point center, int radius)
 	{
@@ -65,8 +65,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
     /**
      * initialization method
      *
-     * @param
-     * @return
+     *
+     *
      */
 	private void init()
 	{
@@ -81,8 +81,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
     /**
      * setup: sets all labels for the chessboard gird
      *
-     * @param
-     * @return
+     *
+     *
      */
 	private void setupLabeling()
 	{
@@ -100,8 +100,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
     /**
      * setup: sets all squares, defined by the vertices and the chessboard position (x,y)
      *
-     * @param
-     * @return
+     *
+     *
      */
 	private void setupSquares()
 	{
@@ -632,8 +632,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
     /**
      * setup: puts all squares into a tree structure
      *
-     * @param
-     * @return
+     *
+     *
      */
 	private void setupSquareTree()
 	{
@@ -872,8 +872,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
     /**
      * setup: sets all points of the chessboard
      *
-     * @param
-     * @return
+     *
+     *
      */
 	private void setupPoints()
 	{
@@ -1015,8 +1015,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
     /**
      * setup: sets all lines of the chessboard
      *
-     * @param
-     * @return
+     *
+     *
      */
 	private void setupLines()
 	{
@@ -1165,7 +1165,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
      * adds all possible moves as squares to a stack
      *
      * @param square current square with piece to check for
-     * @return
+     *
      */
 	public void displayPossibleMoves(GridSquare square)
     {
@@ -1188,8 +1188,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	/**
 	 * disable displaying possible moves
 	 *
-	 * @param
-	 * @return
+	 *
+	 *
 	 */
 	public void stopDisplayingPossibleMoves()
 	{
@@ -1202,7 +1202,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
      * draws visual objects
      *
      * @param graphics graphics
-     * @return
+     *
      */
 	@Override
 	public void draw(Graphics graphics)

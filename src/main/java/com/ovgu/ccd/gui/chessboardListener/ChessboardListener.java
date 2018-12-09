@@ -21,7 +21,7 @@ public class ChessboardListener implements MouseListener
 	 * constructor
 	 *
 	 * @param grid chessboard gird to listen to
-	 * @return
+	 *
 	 */
 	public ChessboardListener(ChessboardGrid grid)
 	{
@@ -33,7 +33,7 @@ public class ChessboardListener implements MouseListener
 	/**
 	 * puts all grid objects to the grid
 	 *
-	 * @param
+	 *
 	 * @return JPanel main panel
 	 */
 	public JPanel getPanel()
@@ -62,7 +62,7 @@ public class ChessboardListener implements MouseListener
 	 *
 	 * @param origin start square
 	 * @param target target square
-	 * @return
+	 *
 	 */
 	private void movePiece(GridSquare origin, GridSquare target)
     {
@@ -81,7 +81,7 @@ public class ChessboardListener implements MouseListener
 	 * handles piece interactions: moving or selecting
 	 *
 	 * @param clickedSquare clicked square
-	 * @return
+	 *
 	 */
     private void handlePieceInteraction(GridSquare clickedSquare)
 	{
@@ -106,7 +106,7 @@ public class ChessboardListener implements MouseListener
 	 * handles chessboard clicks
 	 *
 	 * @param e mouse event -> clicked point
-	 * @return
+	 *
 	 */
 	private void handleChessboardClicks(MouseEvent e)
     {
