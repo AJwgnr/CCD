@@ -21,8 +21,9 @@
 package com.ovgu.ccd.pieces;
 
 
+import com.ovgu.ccd.applogic.ResourceManager;
+
 import com.ovgu.ccd.applogic.IBoard;
-import com.ovgu.ccd.applogic.ResourceLoader;
 import com.ovgu.ccd.moves.QueenMoveFactory;
 import com.ovgu.ccd.applogic.Player;
 
@@ -50,8 +51,8 @@ public class Queen extends Piece {
     protected Queen(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "Q";
-        imageWhite = ResourceLoader.loadImage("Queen-W.png");
-        imageBlack = ResourceLoader.loadImage("Queen-B.png");
+        imageWhite = ResourceManager.loadImage("Queen-W.png");
+        imageBlack = ResourceManager.loadImage("Queen-B.png");
         this.setImage();
     }
 

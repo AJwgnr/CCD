@@ -21,7 +21,7 @@
 package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.JChessApp;
-import com.ovgu.ccd.applogic.ResourceLoader;
+import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.applogic.Settings;
 
 import javax.swing.*;
@@ -92,12 +92,12 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
         this.add(this.themesList);
         this.themesList.setSelectionMode(0);
         this.themesList.addListSelectionListener(this);
-        Properties prp = ResourceLoader.getConfigFile();
+        Properties prp = ResourceManager.getConfigFile();
 
         this.gbl = new GridBagLayout();
         this.gbc = new GridBagConstraints();
         try {
-            this.themePreview = new ImageIcon(ResourceLoader.loadImage("Preview.png"));
+            this.themePreview = new ImageIcon(ResourceManager.loadImage("Preview.png"));
         } catch (java.lang.NullPointerException exc) {
             System.out.println("Cannot find preview image: " + exc);
             this.themePreview = new ImageIcon(JChessApp.class.getResource("theme/noPreview.png"));
@@ -134,7 +134,7 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
         if (evt.getSource() == this.okButton) {
             int element = this.themesList.getSelectedIndex();
             String name = this.themesList.getModel().getElementAt(element).toString();
-            ResourceLoader.setConfigFile("THEME", name);
+            ResourceManager.setConfigFile("THEME", name);
             System.out.println("HI 1 :: " + name);
             JOptionPane.showMessageDialog(this, Settings.lang("Changes will be visible after a restart!"));
             this.setVisible(false);

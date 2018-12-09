@@ -20,7 +20,7 @@
  */
 package com.ovgu.ccd.gui;
 
-import com.ovgu.ccd.applogic.ResourceLoader;
+import com.ovgu.ccd.applogic.ResourceManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,10 +63,10 @@ public class PawnPromotionWindow extends JDialog implements ActionListener
 
         this.gbl = new GridBagLayout();
         this.gbc = new GridBagConstraints();
-        this.knightButton = new JButton(new ImageIcon(ResourceLoader.loadImage("Knight-" + color + ".png")));
-        this.bishopButton = new JButton(new ImageIcon(ResourceLoader.loadImage("Bishop-" + color + ".png")));
-        this.rookButton = new JButton(new ImageIcon(ResourceLoader.loadImage("Rook-" + color + ".png")));
-        this.queenButton = new JButton(new ImageIcon(ResourceLoader.loadImage("Queen-" + color + ".png")));
+        this.knightButton = new JButton(new ImageIcon(ResourceManager.loadImage("Knight-" + color + ".png")));
+        this.bishopButton = new JButton(new ImageIcon(ResourceManager.loadImage("Bishop-" + color + ".png")));
+        this.rookButton = new JButton(new ImageIcon(ResourceManager.loadImage("Rook-" + color + ".png")));
+        this.queenButton = new JButton(new ImageIcon(ResourceManager.loadImage("Queen-" + color + ".png")));
         this.result = "";
 
         this.knightButton.addActionListener(this);
@@ -85,10 +85,10 @@ public class PawnPromotionWindow extends JDialog implements ActionListener
      */
     public void setColor(String color)
     {
-        this.knightButton.setIcon(new ImageIcon(ResourceLoader.loadImage("Knight-" + color + ".png")));
-        this.bishopButton.setIcon(new ImageIcon(ResourceLoader.loadImage("Bishop-" + color + ".png")));
-        this.rookButton.setIcon(new ImageIcon(ResourceLoader.loadImage("Rook-" + color + ".png")));
-        this.queenButton.setIcon(new ImageIcon(ResourceLoader.loadImage("Queen-" + color + ".png")));
+        this.knightButton.setIcon(new ImageIcon(ResourceManager.loadImage("Knight-" + color + ".png")));
+        this.bishopButton.setIcon(new ImageIcon(ResourceManager.loadImage("Bishop-" + color + ".png")));
+        this.rookButton.setIcon(new ImageIcon(ResourceManager.loadImage("Rook-" + color + ".png")));
+        this.queenButton.setIcon(new ImageIcon(ResourceManager.loadImage("Queen-" + color + ".png")));
     }
 
     /** Method wich is changing a pawn into queen, rook, bishop or knight

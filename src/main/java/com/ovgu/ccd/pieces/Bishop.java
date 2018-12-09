@@ -20,7 +20,7 @@
  */
 package com.ovgu.ccd.pieces;
 
-import com.ovgu.ccd.applogic.ResourceLoader;
+import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.moves.DiagonalMoveFactory;
@@ -49,8 +49,8 @@ public class Bishop extends Piece {
     protected Bishop(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "B";
-        imageWhite = ResourceLoader.loadImage("Bishop-W.png");
-        imageBlack = ResourceLoader.loadImage("Bishop-B.png");
+        imageWhite = ResourceManager.loadImage("Bishop-W.png");
+        imageBlack = ResourceManager.loadImage("Bishop-B.png");
         this.setImage();
     }
 
