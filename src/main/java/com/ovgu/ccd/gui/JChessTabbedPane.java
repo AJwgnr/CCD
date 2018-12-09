@@ -21,7 +21,7 @@
 package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.JChessApp;
-import com.ovgu.ccd.applogic.ResourceLoader;
+import com.ovgu.ccd.applogic.ResourceManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,8 +40,8 @@ public class JChessTabbedPane extends JTabbedPane implements MouseListener, Imag
     JChessTabbedPane() {
         super();
         this.closeIcon = new TabbedPaneIcon(this.closeIcon);
-        this.unclickedAddIcon = ResourceLoader.loadImage("add-tab-icon.png");
-        this.clickedAddIcon = ResourceLoader.loadImage("clicked-add-tab-icon.png");
+        this.unclickedAddIcon = ResourceManager.loadImage("add-tab-icon.png");
+        this.clickedAddIcon = ResourceManager.loadImage("clicked-add-tab-icon.png");
         this.addIcon = this.unclickedAddIcon;
         this.setDoubleBuffered(true);
         super.addMouseListener(this);

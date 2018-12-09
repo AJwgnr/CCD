@@ -38,7 +38,7 @@ package com.ovgu.ccd.pieces;
  * 0 1 2 3 4 5 6 7
  */
 
-import com.ovgu.ccd.applogic.ResourceLoader;
+import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.moves.KingMoveFactory;
@@ -53,9 +53,9 @@ public class King extends Piece {
     protected King(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "K";
-        imageWhite = ResourceLoader.loadImage("King-W.png");
-        imageBlack = ResourceLoader.loadImage("King-B.png");
-        imageGray = ResourceLoader.loadImage("King-G.png");
+        imageWhite = ResourceManager.loadImage("King-W.png");
+        imageBlack = ResourceManager.loadImage("King-B.png");
+        imageGray = ResourceManager.loadImage("King-G.png");
         this.setImage();
 
     }

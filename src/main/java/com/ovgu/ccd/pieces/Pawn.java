@@ -20,9 +20,8 @@
  */
 package com.ovgu.ccd.pieces;
 
-import com.ovgu.ccd.applogic.ResourceLoader;
-import com.ovgu.ccd.gui.Chessboard;
-import com.ovgu.ccd.gui.GUI;
+
+import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.moves.PawnMoveFactory;
@@ -76,9 +75,10 @@ public class Pawn extends Piece {
     protected Pawn(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "";
-        imageWhite = ResourceLoader.loadImage("Pawn-W.png");
-        imageBlack = ResourceLoader.loadImage("Pawn-B.png");
-        imageGray = ResourceLoader.loadImage("Pawn-G.png");
+        imageWhite = ResourceManager.loadImage("Pawn-W.png");
+        imageBlack = ResourceManager.loadImage("Pawn-B.png");
+        imageGray = ResourceManager.loadImage("Pawn-G.png");
+
         this.setImage();
     }
 
