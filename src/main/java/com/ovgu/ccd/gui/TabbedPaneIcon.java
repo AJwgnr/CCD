@@ -13,8 +13,8 @@ public class TabbedPaneIcon implements Icon {
 
     public TabbedPaneIcon(Icon fileIcon) {
         this.fileIcon = fileIcon;
-        width = 16;
-        height = 16;
+        this.width = 16;
+        this.height = 16;
     }//--endOf-TabbedPaneIcon--
 
     @Override

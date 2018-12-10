@@ -317,10 +317,6 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         {
             this.blockedChessboard = false;
         }
-        /*else if (activePlayer.getPlayerType() == Player.PlayerTypes.NETWORKUSER)
-        {
-            this.blockedChessboard = true;
-        }*/
         else if (activePlayer.getPlayerType() == Player.PlayerTypes.COMPUTER)
         {
         }
@@ -498,7 +494,6 @@ public class Game extends JPanel implements MouseListener, ComponentListener
                         {
                             chessboard.move(chessboard.activeSquare, sq);
                         }
-
 
                         chessboard.unselect();
 

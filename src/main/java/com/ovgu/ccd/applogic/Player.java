@@ -44,7 +44,7 @@ public class Player implements Serializable {
      *'Enum representing the different player options in the game
      */
     public enum PlayerTypes {
-        LOCALUSER/*, NETWORKUSER*/, COMPUTER
+        LOCALUSER, COMPUTER
     }
 
 

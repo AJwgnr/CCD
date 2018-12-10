@@ -38,7 +38,7 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
     private JRadioButton oponentComp;//choose oponent
     private JRadioButton oponentHuman;//choose oponent (human)
     private ButtonGroup oponentChoos;//group 4 radio buttons
-    private JFrame localPanel;
+    //private JFrame localPanel;
     private JLabel compLevLab;
     private JSlider computerLevel;//slider to choose jChess Engine level
 
@@ -54,7 +54,7 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
     private JCheckBox upsideDown;//if true draw chessboard upsideDown(white on top)
     private GridBagLayout gridBagLayout;
     private GridBagConstraints gridBagConstraints;
-    private Container container;
+    //private Container container;
     private JSeparator sep;
     private JButton okButton;
     private JCheckBox timeGame;
