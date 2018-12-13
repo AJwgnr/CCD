@@ -135,7 +135,7 @@ public class KnightMoves implements IMove {
                 move = new Square(4, piece.getPosY() + 2, null);
             } else {
                 if (ThreePlayerChessboard.D == piece.getPosY()) {
-                    move = new Square(8, ThreePlayerChessboard.J, null);
+                    move = new Square(4, ThreePlayerChessboard.J, null);
                 } else {
                     if (piece.getPosY() != ThreePlayerChessboard.H && piece.getPosY() != ThreePlayerChessboard.G) {
                         move = new Square(4, ThreePlayerChessboard.I, null);
@@ -454,7 +454,11 @@ public class KnightMoves implements IMove {
                     if (6 == piece.getPosX() + 1) {
                         move = new Square(8, piece.getPosY() + 1, null);
                     } else {
-                        move = new Square(9, piece.getPosY() + 1, null);
+                        if (piece.getPosX() + 1 == 5) {
+                            move = new Square(9, ThreePlayerChessboard.I, null);
+                        } else {
+                            move = new Square(9, piece.getPosY() + 1, null);
+                        }
                     }
                 }
             }
@@ -465,7 +469,11 @@ public class KnightMoves implements IMove {
                     if (6 == piece.getPosX() + 1) {
                         move = new Square(8, piece.getPosY() + 1, null);
                     } else {
-                        move = new Square(9, piece.getPosY() + 1, null);
+                        if (piece.getPosY() == ThreePlayerChessboard.I && piece.getPosX() + 1 == 8) {
+                            move = new Square(2, ThreePlayerChessboard.E, null);
+                        } else {
+                            move = new Square(9, piece.getPosY() + 1, null);
+                        }
                     }
                 }
             }
@@ -492,6 +500,9 @@ public class KnightMoves implements IMove {
                         move = new Square(5, piece.getPosY() - 1, null);
                     }
                 }
+            }
+            if (piece.getPosY() == ThreePlayerChessboard.I && piece.getPosX() + 1 == 9) {
+                move = new Square(2, ThreePlayerChessboard.E, null);
             }
         }
 

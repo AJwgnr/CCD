@@ -24,8 +24,8 @@ public class ThreePlayerChessboard implements IBoard {
 
     private Square[][] matrix = null;
 
-    private ArrayList<Square> WHITE_ROSETTE = new ArrayList<Square>(Arrays.asList(new Square(8, I, null), new Square(4, D, null), new Square(3, E, null)));
-    private ArrayList<Square> BLACK_ROSETTE = new ArrayList<Square>(Arrays.asList(new Square(4, I, null), new Square(3, D, null), new Square(8, E, null)));
+    public ArrayList<Square> WHITE_ROSETTE = new ArrayList<Square>(Arrays.asList(new Square(8, I, null), new Square(4, D, null), new Square(3, E, null)));
+    public ArrayList<Square> BLACK_ROSETTE = new ArrayList<Square>(Arrays.asList(new Square(4, I, null), new Square(3, D, null), new Square(8, E, null)));
 
     private King kingWhite;
     private King kingBlack;
@@ -262,17 +262,19 @@ public class ThreePlayerChessboard implements IBoard {
         if (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12) {
             if (square.getPosY() == I) {
                 return new Square(square.getPosX() + 1, E, null);
+            } else if (square.getPosX() + 1 == 9) {
+                if (square.getPosY() == ThreePlayerChessboard.G) {
+                    return new Square(3, square.getPosY() + 1, null);
+                } else {
+                    return new Square(3, square.getPosY() - 1, null);
+                }
             } else {
                 return new Square(3, square.getPosY() + 1, null);
             }
         }
 
         if (1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4) {
-            if (square.getPosY() == E) {
-                return new Square(square.getPosX() - 1, D, null);
-            } else {
-                return new Square(square.getPosX() + 1, square.getPosY() - 1, null);
-            }
+            return new Square(square.getPosX() + 1, square.getPosY() - 1, null);
         }
 
 
@@ -322,7 +324,7 @@ public class ThreePlayerChessboard implements IBoard {
             }
             if ((9 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 12)) {
                 if (diagonal.contains(new Square(9, E, null))) { return new Square(8, I, null); }
-                if (diagonal.contains(new Square(3, F, null))) { return new Square(3, E, null); }
+                if (diagonal.contains(new Square(8, F, null))) { return new Square(3, E, null); }
             }
         }
 
@@ -344,11 +346,11 @@ public class ThreePlayerChessboard implements IBoard {
                 if (diagonal.contains(new Square(4, J, null))) { return new Square(8, I, null); }
                 }
             if ((9 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 12)) {
-                if (diagonal.contains(new Square(8, J, null))) { return new Square(3, D, null);  }
+                if (diagonal.contains(new Square(8, J, null))) { return new Square(4, I, null);  }
                 if (diagonal.contains(new Square(9, I, null))) { return new Square(8, E, null); }
             }
         }
-        throw new Exception("Imposible square");
+        return null;
     }
 
     public void setPiece(Piece piece, int x, int y) {
@@ -370,6 +372,14 @@ public class ThreePlayerChessboard implements IBoard {
     public boolean occupiedByOther(Piece piece, Square square) {
         Square nextMove = matrix[square.getPosX()][square.getPosY()];
         return (!nextMove.isInvalid() && nextMove.getPiece() != null && nextMove.getPiece().getPlayer() != piece.getPlayer());
+    }
+
+    public boolean occupiedByMe(Piece piece, Square square) {
+        if (!(0 <= square.getPosX() && square.getPosX() <= 11 && 0 <= square.getPosY() && square.getPosY() <= 11)) {
+            return false;
+        }
+        Square nextMove = matrix[square.getPosX()][square.getPosY()];
+        return (!nextMove.isInvalid() && nextMove.getPiece() != null && nextMove.getPiece().getPlayer() == piece.getPlayer());
     }
 
     public boolean leftCastlingPossible(King king) {

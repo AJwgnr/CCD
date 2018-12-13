@@ -18,10 +18,9 @@ public class ThreePlayerChessTest {
 
         assertTrue(
                 board.getLeftSextantSquare(new Square(3, ThreePlayerChessboard.E, null)).equals(
-                        new Square(2, ThreePlayerChessboard.D, null))
+                        new Square(4, ThreePlayerChessboard.D, null))
         );
     }
-
     @Test
     public void testGetLeftSextantSquare3C() throws Exception {
         ThreePlayerChessboard board = new ThreePlayerChessboard();
@@ -78,7 +77,7 @@ public class ThreePlayerChessTest {
 
         assertTrue(
                 board.getLeftSextantSquare(new Square(8, ThreePlayerChessboard.F, null)).equals(
-                        new Square(3, ThreePlayerChessboard.G, null))
+                        new Square(3, ThreePlayerChessboard.E, null))
         );
     }
 
