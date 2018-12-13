@@ -1626,9 +1626,9 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMovesRousette() throws Exception {
+    public void testMovesRousette1() throws Exception {
         ArrayList<Square> moves;
-        board.setPiece(knight,  8, ThreePlayerChessboard.E);
+        board.setPiece(knight, 8, ThreePlayerChessboard.E);
         moves = new KnightMoves(knight, board).moves();
         assertTrue(moves.size() == 10);
         MatcherAssert.assertThat(
@@ -1647,6 +1647,149 @@ public class KnightMovesTest {
                 )
         );
         board.setPiece(null, 8, ThreePlayerChessboard.E);
+    }
+
+    @Test
+    public void testMovesRousette2() throws Exception {
+        ArrayList<Square> moves;
+        board.setPiece(knight, 4, ThreePlayerChessboard.D);
+        moves = new KnightMoves(knight, board).moves();
+        assertTrue(moves.size() == 10);
+        MatcherAssert.assertThat(
+                moves, hasItems(
+                        new Square(3, ThreePlayerChessboard.B, null),
+                        new Square(3, ThreePlayerChessboard.F, null),
+
+                        new Square(2, ThreePlayerChessboard.C, null),
+                        new Square(2, ThreePlayerChessboard.E, null),
+
+                        new Square(5, ThreePlayerChessboard.B, null),
+                        new Square(5, ThreePlayerChessboard.J, null),
+
+                        new Square(6, ThreePlayerChessboard.C, null),
+                        new Square(6, ThreePlayerChessboard.I, null),
+
+
+                        new Square(8, ThreePlayerChessboard.J, null),
+                        new Square(9, ThreePlayerChessboard.I, null)
+
+                )
+        );
+        board.setPiece(null, 4, ThreePlayerChessboard.D);
+    }
+
+    @Test
+    public void testMovesRousette3() throws Exception {
+        ArrayList<Square> moves;
+        board.setPiece(knight, 3, ThreePlayerChessboard.D);
+        moves = new KnightMoves(knight, board).moves();
+        assertTrue(moves.size() == 10);
+        MatcherAssert.assertThat(
+                moves, hasItems(
+                        new Square(1, ThreePlayerChessboard.C, null),
+                        new Square(1, ThreePlayerChessboard.E, null),
+
+                        new Square(2, ThreePlayerChessboard.B, null),
+                        new Square(2, ThreePlayerChessboard.F, null),
+
+                        new Square(4, ThreePlayerChessboard.B, null),
+                        new Square(4, ThreePlayerChessboard.J, null),
+
+                        new Square(5, ThreePlayerChessboard.C, null),
+                        new Square(5, ThreePlayerChessboard.I, null),
+
+                        new Square(8, ThreePlayerChessboard.F, null),
+                        new Square(9, ThreePlayerChessboard.E, null)
+
+                )
+        );
+        board.setPiece(null, 3, ThreePlayerChessboard.D);
+    }
+
+    @Test
+    public void testMovesRousette4() throws Exception {
+        ArrayList<Square> moves;
+
+        board.setPiece(knight, 4, ThreePlayerChessboard.I);
+        moves = new KnightMoves(knight, board).moves();
+        assertTrue(moves.size() == 10);
+        MatcherAssert.assertThat(
+                moves, hasItems(
+                        new Square(3, ThreePlayerChessboard.C, null),
+                        new Square(2, ThreePlayerChessboard.D, null),
+
+                        new Square(5, ThreePlayerChessboard.C, null),
+                        new Square(5, ThreePlayerChessboard.K, null),
+
+                        new Square(6, ThreePlayerChessboard.D, null),
+                        new Square(6, ThreePlayerChessboard.J, null),
+
+                        new Square(8, ThreePlayerChessboard.K, null),
+                        new Square(8, ThreePlayerChessboard.F, null),
+
+                        new Square(9, ThreePlayerChessboard.J, null),
+                        new Square(9, ThreePlayerChessboard.E, null)
+
+                )
+        );
+        board.setPiece(null, 4, ThreePlayerChessboard.I);
+    }
+
+    @Test
+    public void testMovesRousette5() throws Exception {
+        ArrayList<Square> moves;
+        board.setPiece(knight, 8, ThreePlayerChessboard.I);
+        moves = new KnightMoves(knight, board).moves();
+        assertTrue(moves.size() == 10);
+        MatcherAssert.assertThat(
+                moves, hasItems(
+                        new Square(3, ThreePlayerChessboard.F, null),
+                        new Square(2, ThreePlayerChessboard.E, null),
+
+                        new Square(4, ThreePlayerChessboard.C, null),
+                        new Square(4, ThreePlayerChessboard.K, null),
+
+                        new Square(5, ThreePlayerChessboard.D, null),
+                        new Square(5, ThreePlayerChessboard.J, null),
+
+                        new Square(9, ThreePlayerChessboard.K, null),
+                        new Square(9, ThreePlayerChessboard.F, null),
+
+                        new Square(10, ThreePlayerChessboard.J, null),
+                        new Square(10, ThreePlayerChessboard.E, null)
+
+                )
+        );
+        board.setPiece(null, 8, ThreePlayerChessboard.I);
+
+    }
+
+    @Test
+    public void testMovesRousette6() throws Exception {
+        ArrayList<Square> moves;
+        board.setPiece(knight,  3, ThreePlayerChessboard.E);
+        moves = new KnightMoves(knight, board).moves();
+        assertTrue(moves.size() == 10);
+        MatcherAssert.assertThat(
+                moves, hasItems(
+                        new Square(1, ThreePlayerChessboard.D, null),
+                        new Square(1, ThreePlayerChessboard.F, null),
+
+                        new Square(2, ThreePlayerChessboard.C, null),
+                        new Square(2, ThreePlayerChessboard.G, null),
+
+                        new Square(5, ThreePlayerChessboard.D, null),
+                        new Square(4, ThreePlayerChessboard.C, null),
+
+                        new Square(8, ThreePlayerChessboard.J, null),
+                        new Square(8, ThreePlayerChessboard.G, null),
+
+                        new Square(9, ThreePlayerChessboard.I, null),
+                        new Square(9, ThreePlayerChessboard.F, null)
+
+                )
+        );
+        board.setPiece(null, 3, ThreePlayerChessboard.E);
     }
 
     @Test
@@ -1913,7 +2056,6 @@ public class KnightMovesTest {
         );
         board.setPiece(null, 3, ThreePlayerChessboard.G);
     }
-
 
     @Test
     public void testMoves3H() throws Exception {

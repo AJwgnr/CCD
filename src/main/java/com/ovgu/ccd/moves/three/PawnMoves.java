@@ -157,10 +157,11 @@ public class PawnMoves implements IMove {
                 if (board.validMove(eatMove, piece) && board.occupiedByOther(piece, eatMove)) {
                     possibleMoves.add(eatMove);
                 }
-
-                eatMove = new Square(piece.getPosX() + 1, piece.getPosY() + 1, null);
-                if (board.validMove(eatMove, piece) && board.occupiedByOther(piece, eatMove)) {
-                    possibleMoves.add(eatMove);
+                if (piece.getPosY() != ThreePlayerChessboard.H) {
+                    eatMove = new Square(piece.getPosX() + 1, piece.getPosY() + 1, null);
+                    if (board.validMove(eatMove, piece) && board.occupiedByOther(piece, eatMove)) {
+                        possibleMoves.add(eatMove);
+                    }
                 }
             }
         }

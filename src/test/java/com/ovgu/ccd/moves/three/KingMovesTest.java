@@ -246,11 +246,14 @@ public class KingMovesTest {
                         new Square(5, ThreePlayerChessboard.I, null),
                         new Square(5, ThreePlayerChessboard.D, null),
                         new Square(5, ThreePlayerChessboard.C, null),
+
                         new Square(4, ThreePlayerChessboard.C, null),
                         new Square(4, ThreePlayerChessboard.I, null),
+
                         new Square(3, ThreePlayerChessboard.C, null),
                         new Square(3, ThreePlayerChessboard.D, null),
                         new Square(3, ThreePlayerChessboard.E, null),
+
                         new Square(8, ThreePlayerChessboard.I, null)
                 )
         );
