@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class KnightMoves implements IMove {
     private Piece piece;
     private Chessboard board;
+    private Square pieceSquare;
 
     /**
      * @param piece
@@ -19,6 +20,7 @@ public class KnightMoves implements IMove {
     public KnightMoves(Piece piece, IBoard board) {
         this.piece = piece;
         this.board = (Chessboard) board;
+        this.pieceSquare = piece.getSquare();
     }
 
     @Override
@@ -66,6 +68,7 @@ public class KnightMoves implements IMove {
         if (validMove(newX = square.getPosX() - 2, newY = square.getPosY() - 1))
             moves.add(board.getSquare(newX, newY));
 
+        piece.setSquare(pieceSquare);
         return moves;
     }
 
@@ -75,6 +78,6 @@ public class KnightMoves implements IMove {
         }
 
         Square nextPosition = board.getSquare(newX, newY);
-        return (piece.canMoveTo(nextPosition) && (board.myKing(piece.getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(piece.getSquare(), nextPosition)));
+        return (piece.canMoveTo(nextPosition) && (board.myKing(piece.getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(pieceSquare, nextPosition)));
     }
 }

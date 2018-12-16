@@ -14,6 +14,8 @@ public class HorizontalMoves {
 
     private Piece piece;
     private Chessboard board;
+    private Square pieceSquare;
+
 
     /**
      * @param piece
@@ -22,6 +24,7 @@ public class HorizontalMoves {
     public HorizontalMoves(Piece piece, IBoard board) {
         this.piece = piece;
         this.board = (Chessboard) board;
+        this.pieceSquare = piece.getSquare();
     }
 
     /**
@@ -29,7 +32,7 @@ public class HorizontalMoves {
      */
     public ArrayList all() {
         ArrayList moves = new ArrayList();
-        Square square = piece.getSquare();
+        Square square = pieceSquare;
 
         //left
         for (int i = square.getPosX() - 1; i >= 0; --i) {
@@ -58,6 +61,7 @@ public class HorizontalMoves {
                 break;
             }
         }
+        piece.setSquare(pieceSquare);
         return moves;
     }
 
@@ -66,6 +70,6 @@ public class HorizontalMoves {
      * @return
      */
     private boolean validMove(Square nextPosition) {
-        return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(piece.getSquare(), nextPosition);
+        return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(pieceSquare, nextPosition);
     }
 }

@@ -15,6 +15,7 @@ public class DiagonalMoves implements IMove {
 
     private Piece piece;
     private Chessboard board;
+    private Square pieceSquare;
 
     /**
      * @param piece
@@ -23,6 +24,7 @@ public class DiagonalMoves implements IMove {
     public DiagonalMoves(Piece piece, IBoard board) {
         this.piece = piece;
         this.board = (Chessboard) board;
+        this.pieceSquare = piece.getSquare();
     }
 
     /**
@@ -85,7 +87,7 @@ public class DiagonalMoves implements IMove {
                 break;
             }
         }
-
+        piece.setSquare(pieceSquare);
         return moves;
     }
 
@@ -94,6 +96,6 @@ public class DiagonalMoves implements IMove {
      * @return
      */
     private boolean validMove(Square nextPosition) {
-        return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(piece.getSquare(), nextPosition);
+        return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(pieceSquare, nextPosition);
     }
 }

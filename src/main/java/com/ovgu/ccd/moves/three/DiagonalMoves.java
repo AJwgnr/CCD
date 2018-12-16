@@ -1,8 +1,10 @@
 package com.ovgu.ccd.moves.three;
 
+import com.ovgu.ccd.applogic.CheckController;
 import com.ovgu.ccd.applogic.ThreePlayerChessboard;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.moves.IMove;
+import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
@@ -40,6 +42,19 @@ public class DiagonalMoves implements IMove {
     @Override
     public ArrayList<Square> moves() throws Exception {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        King king = board.myKing(piece.getColor());
+
+        try {
+            possibleMoves.addAll(allMoves(true));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return possibleMoves;
+    }
+
+    public ArrayList<Square> allMoves(boolean withCheck) throws Exception {
+        ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         if (!getSameSextantMoves(piece.getSquare()).isEmpty()) {
             possibleMoves.addAll(getSameSextantMoves(piece.getSquare()));
@@ -64,6 +79,18 @@ public class DiagonalMoves implements IMove {
 
         possibleMoves.addAll(leftNeighborSextantMoves(piece.getSquare()));
         possibleMoves.addAll(rightNeighborSextantMoves(piece.getSquare()));
+
+
+        ArrayList<Square> results = new ArrayList<>();
+        if (withCheck) {
+            for (Square s : possibleMoves) {
+                boolean safe = new CheckController(board, board.myKing(piece.getColor()), piece, s).isSafe();
+                if (safe) {
+                    results.add(new Square(s.getPosX(), s.getPosY(), null));
+                }
+            }
+            possibleMoves = results;
+        }
 
         return new ArrayList<Square>(Arrays.asList(possibleMoves.stream().distinct().toArray(Square[]::new)));
     }
