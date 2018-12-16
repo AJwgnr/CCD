@@ -381,9 +381,11 @@ public class Chessboard extends JPanel implements IBoard {
 
         twoSquareMovedPawn2 = getTwoSquareMovedPawn();
 
-        begin.getPiece().setSquare(end);//set square of piece to ending
-        end.setPiece(begin.getPiece());//for ending square set piece from beginin square
+        //begin.getPiece().setSquare(end);//set square of piece to ending
+        Piece piece = begin.getPiece();
         begin.setPiece(null);//make null piece for begining square
+        end.setPiece(piece);//for ending square set piece from beginin square
+
 
         if (end.getPiece().name.equals("King")) {
             if (!((King) end.getPiece()).isWasMotion()) {

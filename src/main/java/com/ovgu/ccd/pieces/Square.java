@@ -95,9 +95,13 @@ public class Square
      */
     public void setPiece(Piece piece)
     {
+        if (this.piece != null) {
+            this.piece.setSquare(null);
+        }
         this.piece = piece;
-        if (piece != null)
+        if (piece != null) {
             this.piece.setSquare(this);
+        }
     }
 
     /**
