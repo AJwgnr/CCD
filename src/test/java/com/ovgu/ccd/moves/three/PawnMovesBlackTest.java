@@ -164,7 +164,7 @@ public class PawnMovesBlackTest {
         Piece pawn = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
         board.setPiece(pawn, 6, ThreePlayerChessboard.A);
 
-        Piece blockingPiece = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        Piece blockingPiece = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         board.setPiece(blockingPiece, 5, ThreePlayerChessboard.A);
 
         assertTrue(new PawnMoves(pawn, board).allBlackMoves(true).isEmpty());

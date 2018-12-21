@@ -155,6 +155,7 @@ public class DiagonalMoves implements IMove {
                     break;
                 }
             }
+            if (board.occupiedByMe(piece, nextMove)) { break; }
         }
 
         return possibleMoves;
@@ -186,6 +187,7 @@ public class DiagonalMoves implements IMove {
                     break;
                 }
             }
+            if (board.occupiedByMe(piece, nextMove)) { break; }
         }
 
         return possibleMoves;

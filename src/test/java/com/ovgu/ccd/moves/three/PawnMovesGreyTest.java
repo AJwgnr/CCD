@@ -538,7 +538,6 @@ public class PawnMovesGreyTest {
     }
 
 
-
     @Test
     public void testMovesIn3FWithPossibleCheck() throws Exception {
         ThreePlayerChessboard board = new ThreePlayerChessboard();

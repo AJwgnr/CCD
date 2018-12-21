@@ -125,7 +125,8 @@ public class PawnMoves implements IMove {
         }
         if (piece.getPosX() + 1 == 2) {
             Square twoStepMove = new Square(3, piece.getPosY(), null);
-            if (board.validMove(new Square(2, piece.getPosY(), null), piece) && board.getSquare(2, twoStepMove.getPosY()).isEmpty()) {
+            Square oneStepMove = new Square(2, piece.getPosY(), null);
+            if (board.validMove(oneStepMove, piece) && board.getSquare(oneStepMove.getPosX(), oneStepMove.getPosY()).isEmpty() && board.getSquare(2, twoStepMove.getPosY()).isEmpty()) {
                 if (board.getSquare(twoStepMove.getPosX(), twoStepMove.getPosY()).isEmpty()) {
                     possibleMoves.add(twoStepMove);
                 }
@@ -300,7 +301,8 @@ public class PawnMoves implements IMove {
         }
         if (piece.getPosX() + 1 == 7) {
             Square twoStepMove = new Square(4, piece.getPosY(), null);
-            if (board.validMove(new Square(5, piece.getPosY(), null), piece) && board.validMove(twoStepMove, piece)) {
+            Square oneMove = new Square(5, piece.getPosY(), null);
+            if (board.validMove(oneMove, piece) && board.getSquare(oneMove.getPosX(), oneMove.getPosY()).isEmpty() && board.validMove(twoStepMove, piece)) {
                 if (board.getSquare(twoStepMove.getPosX(), twoStepMove.getPosY()).isEmpty()) {
                     possibleMoves.add(twoStepMove);
                 }
@@ -487,7 +489,8 @@ public class PawnMoves implements IMove {
         }
         if (piece.getPosX() + 1 == 11) {
             Square twoStepMove = new Square(8, piece.getPosY(), null);
-            if (board.validMove(new Square(9, piece.getPosY(), null), piece) && board.validMove(twoStepMove, piece)) {
+            Square oneStepMove = new Square(9, piece.getPosY(), null);
+            if (board.validMove(oneStepMove, piece) && board.getSquare(oneStepMove.getPosX(), oneStepMove.getPosY()).isEmpty() && board.validMove(twoStepMove, piece)) {
                 if (board.getSquare(twoStepMove.getPosX(), twoStepMove.getPosY()).isEmpty()) {
                     possibleMoves.add(twoStepMove);
                 }
