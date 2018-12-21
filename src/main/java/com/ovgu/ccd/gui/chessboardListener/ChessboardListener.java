@@ -1,5 +1,7 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
+import com.ovgu.ccd.applogic.ThreePlayerChessboard;
+
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -70,8 +72,8 @@ public class ChessboardListener implements MouseListener
         {
             if (origin.getBoardSquare().getPiece() != null)
             {
-                target.getBoardSquare().setPiece(origin.getBoardSquare().getPiece());
-                origin.getBoardSquare().setPiece(null);
+            	ThreePlayerChessboard board = (ThreePlayerChessboard) origin.getBoardSquare().getPiece().getChessboard();
+                board.setPiece(origin.getBoardSquare().getPiece(), target.getBoardSquare().getPosX(), target.getBoardSquare().getPosY());
             }
         }
     }
