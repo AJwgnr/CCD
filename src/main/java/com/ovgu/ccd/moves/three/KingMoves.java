@@ -1,9 +1,6 @@
 package com.ovgu.ccd.moves.three;
 
-import com.ovgu.ccd.applogic.CheckController;
-import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.applogic.ThreePlayerChessboard;
-import com.ovgu.ccd.applogic.IBoard;
+import com.ovgu.ccd.applogic.*;
 import com.ovgu.ccd.moves.IMove;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Piece;
@@ -425,7 +422,7 @@ public class KingMoves implements IMove {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if (board.leftCastlingPossible((King) piece)) {
+        if (new Castling((King) piece, board).leftCastlingPossible()) {
             if (piece.getColor() == Player.Colors.WHITE) {
                 move = new Square(0, ThreePlayerChessboard.B, null);
             } else if (piece.getColor() == Player.Colors.BLACK) {
@@ -439,7 +436,7 @@ public class KingMoves implements IMove {
             possibleMoves.add(move);
         }
 
-        if (board.rightCastlingPossible((King) piece)) {
+        if (new Castling((King) piece, board).rightCastlingPossible()) {
             if (piece.getColor() == Player.Colors.WHITE) {
                 move = new Square(0, ThreePlayerChessboard.G, null);
             } else if (piece.getColor() == Player.Colors.BLACK) {
