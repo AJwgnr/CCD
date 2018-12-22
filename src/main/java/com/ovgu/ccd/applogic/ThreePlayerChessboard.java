@@ -381,10 +381,19 @@ public class ThreePlayerChessboard implements IBoard {
 
     public void setPiece(Piece piece, int x, int y) {
         if (piece != null && piece.getSquare() != null) {
+            Castling cast = new Castling(myKing(piece.getColor()), this);
+            if (cast.isCastling(x, y)) {
+                Rook rook = cast.getRook(x, y);
+                Square newPos = cast.newRookPosition(rook);
+                matrix[rook.getPosX()][rook.getPosY()].setPiece(null);
+                matrix[newPos.getPosX()][newPos.getPosY()].setPiece(rook);
+            }
+
             matrix[piece.getPosX()][piece.getPosY()].setPiece(null);
         }
         matrix[x][y].setPiece(piece);
     }
+
 
     public ArrayList<Square> getDiagonalCenterPositions(Square square) throws Exception {
         if (WHITE_ROSETTE.contains(new Square(square.getPosX(), square.getPosY(), null))) {
@@ -411,91 +420,6 @@ public class ThreePlayerChessboard implements IBoard {
         return (!nextMove.isInvalid() && nextMove.getPiece() != null && nextMove.getPiece().getPlayer() == piece.getPlayer());
     }
 
-    public boolean leftCastlingPossible(King king) {
-        if (king.isWasMotion()) { return false; }
-
-        Piece piece;
-
-        if (king.getColor() == Player.Colors.WHITE) {
-            piece = (Piece) matrix[0][A].getPiece();
-        } else if (king.getColor() == Player.Colors.BLACK) {
-            piece = (Piece) matrix[7][L].getPiece();
-        } else {
-            piece = (Piece) matrix[11][H].getPiece();
-        }
-        if (piece == null) { return false; }
-        if (!piece.name.equals("Rook")) { return false; }
-        Rook rook = (Rook) piece;
-        if (rook.isWasMotion()) { return true; }
-
-        if (king.getColor() == Player.Colors.WHITE) {
-            for (int y = B; y <= D; y++) {
-                if (matrix[0][y].getPiece() != null) { return false; }
-            }
-        } else if (king.getColor() == Player.Colors.BLACK) {
-            for (int y = I; y <= K; y++) {
-                if (matrix[7][y].getPiece() != null) { return false; }
-            }
-        } else {
-            for (int y = E; y <= G; y++) {
-                if (matrix[11][y].getPiece() != null) { return false; }
-            }
-        }
-
-        return true;
-    }
-
-    public boolean rightCastlingPossible(King king) {
-        if (king.isWasMotion()) { return false; }
-
-        Piece piece;
-
-        if (king.getColor() == Player.Colors.WHITE) {
-            piece = (Piece) matrix[0][H].getPiece();
-        } else if (king.getColor() == Player.Colors.BLACK) {
-            piece = (Piece) matrix[7][A].getPiece();
-        } else {
-            piece = (Piece) matrix[11][L].getPiece();
-        }
-        if (piece == null) { return false; }
-        if (!piece.name.equals("Rook")) { return false; }
-        Rook rook = (Rook) piece;
-        if (rook.isWasMotion()) { return true; }
-
-        if (king.getColor() == Player.Colors.WHITE) {
-            for (int y = F; y <= G; y++) {
-                if (matrix[0][y].getPiece() != null) { return false; }
-            }
-        } else if (king.getColor() == Player.Colors.BLACK) {
-            for (int y = B; y <= C; y++) {
-                if (matrix[7][y].getPiece() != null) { return false; }
-            }
-        } else {
-            for (int y = J; y <= K; y++) {
-                if (matrix[11][y].getPiece() != null) { return false; }
-            }
-        }
-
-        return true;
-    }
-
-    public boolean isMyKingSafe(Piece piece, Square move) throws Exception {
-        King king;
-        if (piece.getColor() == Player.Colors.WHITE) {
-            king = kingWhite;
-        } else if (piece.getColor() == Player.Colors.BLACK) {
-            king = kingBlack;
-        } else {
-            king = kingGrey;
-        }
-
-        return new CheckController(this, king, piece, move).isSafe();
-    }
-
-    public King getKingGrey() {
-        return kingGrey;
-    }
-
     public void setKingGrey(King kingGrey) {
         this.kingGrey = kingGrey;
     }
@@ -514,24 +438,6 @@ public class ThreePlayerChessboard implements IBoard {
             return kingBlack;
         } else {
             return kingGrey;
-        }
-    }
-
-    public void printBoard(){
-        for (int x = 0; x < COLUMNS; x++)
-        {
-            for (int y = 0; y < COLUMNS; y++)
-            {
-                Square s = matrix[x][y];
-                if (s.isInvalid()) {
-                    System.out.print("X");
-                } else if (s.isEmpty()) {
-                    System.out.print("_");
-                } else {
-                    System.out.print(s.getPiece().getSymbol());
-                }
-            }
-            System.out.println();
         }
     }
 
