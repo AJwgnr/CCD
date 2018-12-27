@@ -101,6 +101,16 @@ public class ChessboardListener implements MouseListener
 			this.squareBuffer = null;
 			this.grid.stopDisplayingPossibleMoves();
 		}
+
+		// select new piece
+		else if (!this.squareBuffer.getBoardSquare().getPiece().allMoves().contains(clickedSquare.getBoardSquare()) &&
+				 clickedSquare.getBoardSquare().getPiece() != null &&
+				 this.squareBuffer.getBoardSquare().getPiece().getColor() == clickedSquare.getBoardSquare().getPiece().getColor())
+		{
+			this.grid.stopDisplayingPossibleMoves();
+			this.squareBuffer = clickedSquare;
+			this.grid.displayPossibleMoves(clickedSquare);
+		}
 	}
 
 
