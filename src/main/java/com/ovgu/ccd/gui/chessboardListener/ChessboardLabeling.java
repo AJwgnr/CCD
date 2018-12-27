@@ -40,6 +40,7 @@ public class ChessboardLabeling extends GeometricPrimitiveDrawer
     @Override
     public void draw(Graphics graphics)
     {
+        graphics.setColor(Color.BLACK);
         for (TextLabel label : labels)
             label.draw(graphics);
     }

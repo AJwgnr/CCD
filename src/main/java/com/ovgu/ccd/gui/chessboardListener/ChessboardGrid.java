@@ -1,7 +1,8 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
 import com.ovgu.ccd.pieces.Square;
-import java.awt.Graphics;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,12 +39,15 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	private static final long serialVersionUID = 1716287489012384473L;
 	
 	private HashMap<String, Point> points = new HashMap<String, Point>();
-	private HashMap<String, Line> lines = new HashMap<String, Line>();
 	private HashMap<String, GridSquare> squares = new HashMap<String, GridSquare>();
 	private Node<GridSquare> panelRoot = null;
 	private Hexagon hexagon = null;
 	private ChessboardLabeling labeling = null;
 	private ArrayList<Square> possibleMoves = null;
+
+	private Color squareHighlight = new Color(50,250,100, 100);
+    private Color squareFillColorA = new Color(153, 102, 51, 255);
+    private Color squareFillColorB = new Color(255, 230, 153, 255);
 
 
     /**
@@ -53,13 +57,13 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
      * @param radius radius of the outer hexagon
      *
      */
-	public ChessboardGrid(Point center, int radius)
-	{
-		this.hexagon = new Hexagon(center, radius);
-		this.points = this.hexagon.getVerticesAsMap();
-		this.points.put("Center", center);
-		init();
-	}
+    public ChessboardGrid(Point center, int radius)
+    {
+        this.hexagon = new Hexagon(center, radius);
+        this.points = this.hexagon.getVerticesAsMap();
+        this.points.put("Center", center);
+        init();
+    }
 
 
     /**
@@ -71,10 +75,131 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	private void init()
 	{
 		setupPoints();
-		setupLines();
 		setupSquares();
 		setupSquareTree();
 		setupLabeling();
+		setupSquareColorScheme();
+	}
+
+
+	/**
+	 * setup: square dual color scheme
+	 *
+	 *
+	 *
+	 */
+	public void setupSquareColorScheme()
+	{
+        for(Map.Entry<String, GridSquare> square : this.squares.entrySet())
+            square.getValue().setHighlightColor(this.squareHighlight);
+
+		this.squares.get("A1").setFillColor(squareFillColorA);
+		this.squares.get("B1").setFillColor(squareFillColorB);
+		this.squares.get("C1").setFillColor(squareFillColorA);
+		this.squares.get("D1").setFillColor(squareFillColorB);
+		this.squares.get("E1").setFillColor(squareFillColorA);
+		this.squares.get("F1").setFillColor(squareFillColorB);
+		this.squares.get("G1").setFillColor(squareFillColorA);
+		this.squares.get("H1").setFillColor(squareFillColorB);
+
+		this.squares.get("A2").setFillColor(squareFillColorB);
+		this.squares.get("B2").setFillColor(squareFillColorA);
+		this.squares.get("C2").setFillColor(squareFillColorB);
+		this.squares.get("D2").setFillColor(squareFillColorA);
+		this.squares.get("E2").setFillColor(squareFillColorB);
+		this.squares.get("F2").setFillColor(squareFillColorA);
+		this.squares.get("G2").setFillColor(squareFillColorB);
+		this.squares.get("H2").setFillColor(squareFillColorA);
+
+		this.squares.get("A3").setFillColor(squareFillColorA);
+		this.squares.get("B3").setFillColor(squareFillColorB);
+		this.squares.get("C3").setFillColor(squareFillColorA);
+		this.squares.get("D3").setFillColor(squareFillColorB);
+		this.squares.get("E3").setFillColor(squareFillColorA);
+		this.squares.get("F3").setFillColor(squareFillColorB);
+		this.squares.get("G3").setFillColor(squareFillColorA);
+		this.squares.get("H3").setFillColor(squareFillColorB);
+
+		this.squares.get("A4").setFillColor(squareFillColorB);
+		this.squares.get("B4").setFillColor(squareFillColorA);
+		this.squares.get("C4").setFillColor(squareFillColorB);
+		this.squares.get("D4").setFillColor(squareFillColorA);
+		this.squares.get("E4").setFillColor(squareFillColorB);
+		this.squares.get("F4").setFillColor(squareFillColorA);
+		this.squares.get("G4").setFillColor(squareFillColorB);
+		this.squares.get("H4").setFillColor(squareFillColorA);
+
+		this.squares.get("A5").setFillColor(squareFillColorA);
+		this.squares.get("B5").setFillColor(squareFillColorB);
+		this.squares.get("C5").setFillColor(squareFillColorA);
+		this.squares.get("D5").setFillColor(squareFillColorB);
+		this.squares.get("I5").setFillColor(squareFillColorA);
+		this.squares.get("J5").setFillColor(squareFillColorB);
+		this.squares.get("K5").setFillColor(squareFillColorA);
+		this.squares.get("L5").setFillColor(squareFillColorB);
+
+		this.squares.get("A6").setFillColor(squareFillColorB);
+		this.squares.get("B6").setFillColor(squareFillColorA);
+		this.squares.get("C6").setFillColor(squareFillColorB);
+		this.squares.get("D6").setFillColor(squareFillColorA);
+		this.squares.get("I6").setFillColor(squareFillColorB);
+		this.squares.get("J6").setFillColor(squareFillColorA);
+		this.squares.get("K6").setFillColor(squareFillColorB);
+		this.squares.get("L6").setFillColor(squareFillColorA);
+
+		this.squares.get("A7").setFillColor(squareFillColorA);
+		this.squares.get("B7").setFillColor(squareFillColorB);
+		this.squares.get("C7").setFillColor(squareFillColorA);
+		this.squares.get("D7").setFillColor(squareFillColorB);
+		this.squares.get("I7").setFillColor(squareFillColorA);
+		this.squares.get("J7").setFillColor(squareFillColorB);
+		this.squares.get("K7").setFillColor(squareFillColorA);
+		this.squares.get("L7").setFillColor(squareFillColorB);
+
+		this.squares.get("A8").setFillColor(squareFillColorB);
+		this.squares.get("B8").setFillColor(squareFillColorA);
+		this.squares.get("C8").setFillColor(squareFillColorB);
+		this.squares.get("D8").setFillColor(squareFillColorA);
+		this.squares.get("I8").setFillColor(squareFillColorB);
+		this.squares.get("J8").setFillColor(squareFillColorA);
+		this.squares.get("K8").setFillColor(squareFillColorB);
+		this.squares.get("L8").setFillColor(squareFillColorA);
+
+		this.squares.get("H9").setFillColor(squareFillColorB);
+		this.squares.get("G9").setFillColor(squareFillColorA);
+		this.squares.get("F9").setFillColor(squareFillColorB);
+		this.squares.get("E9").setFillColor(squareFillColorA);
+		this.squares.get("I9").setFillColor(squareFillColorB);
+		this.squares.get("J9").setFillColor(squareFillColorA);
+		this.squares.get("K9").setFillColor(squareFillColorB);
+		this.squares.get("L9").setFillColor(squareFillColorA);
+
+		this.squares.get("H10").setFillColor(squareFillColorA);
+		this.squares.get("G10").setFillColor(squareFillColorB);
+		this.squares.get("F10").setFillColor(squareFillColorA);
+		this.squares.get("E10").setFillColor(squareFillColorB);
+		this.squares.get("I10").setFillColor(squareFillColorA);
+		this.squares.get("J10").setFillColor(squareFillColorB);
+		this.squares.get("K10").setFillColor(squareFillColorA);
+		this.squares.get("L10").setFillColor(squareFillColorB);
+
+		this.squares.get("H11").setFillColor(squareFillColorB);
+		this.squares.get("G11").setFillColor(squareFillColorA);
+		this.squares.get("F11").setFillColor(squareFillColorB);
+		this.squares.get("E11").setFillColor(squareFillColorA);
+		this.squares.get("I11").setFillColor(squareFillColorB);
+		this.squares.get("J11").setFillColor(squareFillColorA);
+		this.squares.get("K11").setFillColor(squareFillColorB);
+		this.squares.get("L11").setFillColor(squareFillColorA);
+
+		this.squares.get("H12").setFillColor(squareFillColorA);
+		this.squares.get("G12").setFillColor(squareFillColorB);
+		this.squares.get("F12").setFillColor(squareFillColorA);
+		this.squares.get("E12").setFillColor(squareFillColorB);
+		this.squares.get("I12").setFillColor(squareFillColorA);
+		this.squares.get("J12").setFillColor(squareFillColorB);
+		this.squares.get("K12").setFillColor(squareFillColorA);
+		this.squares.get("L12").setFillColor(squareFillColorB);
 	}
 
 
@@ -1013,72 +1138,6 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 
 
     /**
-     * setup: sets all lines of the chessboard
-     *
-     *
-     *
-     */
-	private void setupLines()
-	{
-		lines.put("A_B", new Line(this.points.get("A"), this.points.get("B")));
-		lines.put("B_C", new Line(this.points.get("B"), this.points.get("C")));
-		lines.put("C_D", new Line(this.points.get("C"), this.points.get("D")));
-		lines.put("D_E", new Line(this.points.get("D"), this.points.get("E")));
-		lines.put("E_F", new Line(this.points.get("E"), this.points.get("F")));
-		lines.put("F_A", new Line(this.points.get("F"), this.points.get("A")));
-
-		lines.put("A1_F4A1", new Line(this.points.get("A1"), this.points.get("F4A1")));
-		lines.put("B1_A4B1", new Line(this.points.get("B1"), this.points.get("A4B1")));
-		lines.put("C1_B4C1", new Line(this.points.get("C1"), this.points.get("B4C1")));
-		lines.put("D1_C4D1", new Line(this.points.get("D1"), this.points.get("C4D1")));
-		lines.put("E1_D4E1", new Line(this.points.get("E1"), this.points.get("D4E1")));
-		lines.put("F1_E4F1", new Line(this.points.get("F1"), this.points.get("E4F1")));
-		
-		lines.put("A2_F4A2", new Line(this.points.get("A2"), this.points.get("F4A2")));
-		lines.put("B2_A4B2", new Line(this.points.get("B2"), this.points.get("A4B2")));
-		lines.put("C2_B4C2", new Line(this.points.get("C2"), this.points.get("B4C2")));
-		lines.put("D2_C4D2", new Line(this.points.get("D2"), this.points.get("C4D2")));
-		lines.put("E2_D4E2", new Line(this.points.get("E2"), this.points.get("D4E2")));
-		lines.put("F2_E4F2", new Line(this.points.get("F2"), this.points.get("E4F2")));
-		
-		lines.put("A3_F4A3", new Line(this.points.get("A3"), this.points.get("F4A3")));
-		lines.put("B3_A4B3", new Line(this.points.get("B3"), this.points.get("A4B3")));
-		lines.put("C3_B4C3", new Line(this.points.get("C3"), this.points.get("B4C3")));
-		lines.put("D3_C4D3", new Line(this.points.get("D3"), this.points.get("C4D3")));
-		lines.put("E3_D4E3", new Line(this.points.get("E3"), this.points.get("D4E3")));
-		lines.put("F3_E4F3", new Line(this.points.get("F3"), this.points.get("E4F3")));
-		
-		lines.put("A4_Center", new Line(this.points.get("A4"), this.points.get("Center")));
-		lines.put("B4_Center", new Line(this.points.get("B4"), this.points.get("Center")));
-		lines.put("C4_Center", new Line(this.points.get("C4"), this.points.get("Center")));
-		lines.put("D4_Center", new Line(this.points.get("D4"), this.points.get("Center")));
-		lines.put("E4_Center", new Line(this.points.get("E4"), this.points.get("Center")));
-		lines.put("F4_Center", new Line(this.points.get("F4"), this.points.get("Center")));
-		
-		lines.put("A5_F4A5", new Line(this.points.get("A5"), this.points.get("B4C3")));
-		lines.put("B5_A4B5", new Line(this.points.get("B5"), this.points.get("C4D3")));
-		lines.put("C5_B4C5", new Line(this.points.get("C5"), this.points.get("D4E3")));
-		lines.put("D5_C4D5", new Line(this.points.get("D5"), this.points.get("E4F3")));
-		lines.put("E5_D4E5", new Line(this.points.get("E5"), this.points.get("F4A3")));
-		lines.put("F5_E4F5", new Line(this.points.get("F5"), this.points.get("A4B3")));
-		
-		lines.put("A6_F4A6", new Line(this.points.get("A6"), this.points.get("B4C2")));
-		lines.put("B6_A4B6", new Line(this.points.get("B6"), this.points.get("C4D2")));
-		lines.put("C6_B4C6", new Line(this.points.get("C6"), this.points.get("D4E2")));
-		lines.put("D6_C4D6", new Line(this.points.get("D6"), this.points.get("E4F2")));
-		lines.put("E6_D4E6", new Line(this.points.get("E6"), this.points.get("F4A2")));
-		lines.put("F6_E4F6", new Line(this.points.get("F6"), this.points.get("A4B2")));
-		
-		lines.put("A7_F4A7", new Line(this.points.get("A7"), this.points.get("B4C1")));
-		lines.put("B7_A4B7", new Line(this.points.get("B7"), this.points.get("C4D1")));
-		lines.put("C7_B4C7", new Line(this.points.get("C7"), this.points.get("D4E1")));
-		lines.put("D7_C4D7", new Line(this.points.get("D7"), this.points.get("E4F1")));
-		lines.put("E7_D4E7", new Line(this.points.get("E7"), this.points.get("F4A1")));
-		lines.put("F7_E4F7", new Line(this.points.get("F7"), this.points.get("A4B1")));
-	}
-
-
-    /**
      * get a certain square by its name (hashmap key)
      *
      * @param name hashmap key (A1, B2 ..)
@@ -1207,12 +1266,6 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	@Override
 	public void draw(Graphics graphics)
 	{
-		for(Map.Entry<String, Line> line : this.lines.entrySet())
-			line.getValue().paintComponent(graphics);
-		
-		for(Map.Entry<String, Point> point : this.points.entrySet())
-			point.getValue().paintComponent(graphics);
-      
 		this.labeling.draw(graphics);
 
 		for(Map.Entry<String, GridSquare> square : this.squares.entrySet())
