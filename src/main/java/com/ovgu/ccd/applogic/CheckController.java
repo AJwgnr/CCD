@@ -5,7 +5,6 @@ import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Pawn;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
-import javafx.print.PageLayout;
 
 import java.util.ArrayList;
 import java.util.Collection;
