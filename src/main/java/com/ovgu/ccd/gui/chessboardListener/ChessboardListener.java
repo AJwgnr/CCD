@@ -94,22 +94,26 @@ public class ChessboardListener implements MouseListener
 			this.grid.displayPossibleMoves(clickedSquare);
 		}
 
-		// move piece
-		else if (this.squareBuffer.getBoardSquare().getPiece().allMoves().contains(clickedSquare.getBoardSquare()))
+		// piece already selected
+		else
 		{
-			movePiece(this.squareBuffer, clickedSquare);
-			this.squareBuffer = null;
-			this.grid.stopDisplayingPossibleMoves();
-		}
+			// move piece
+			if (this.squareBuffer.getBoardSquare().getPiece().allMoves().contains(clickedSquare.getBoardSquare()))
+			{
+				movePiece(this.squareBuffer, clickedSquare);
+				this.squareBuffer = null;
+				this.grid.stopDisplayingPossibleMoves();
+			}
 
-		// select new piece
-		else if (!this.squareBuffer.getBoardSquare().getPiece().allMoves().contains(clickedSquare.getBoardSquare()) &&
-				 clickedSquare.getBoardSquare().getPiece() != null &&
-				 this.squareBuffer.getBoardSquare().getPiece().getColor() == clickedSquare.getBoardSquare().getPiece().getColor())
-		{
-			this.grid.stopDisplayingPossibleMoves();
-			this.squareBuffer = clickedSquare;
-			this.grid.displayPossibleMoves(clickedSquare);
+			// select new piece
+			else if (clickedSquare.getBoardSquare().getPiece() != null &&
+					this.squareBuffer.getBoardSquare().getPiece().getColor() ==
+							clickedSquare.getBoardSquare().getPiece().getColor())
+			{
+				this.grid.stopDisplayingPossibleMoves();
+				this.squareBuffer = clickedSquare;
+				this.grid.displayPossibleMoves(clickedSquare);
+			}
 		}
 	}
 
