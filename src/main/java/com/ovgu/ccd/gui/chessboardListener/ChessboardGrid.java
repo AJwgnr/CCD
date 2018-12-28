@@ -45,9 +45,9 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	private ChessboardLabeling labeling = null;
 	private ArrayList<Square> possibleMoves = null;
 
-	private Color squareHighlight = new Color(50,250,100, 100);
-    private Color squareFillColorA = new Color(153, 102, 51, 255);
-    private Color squareFillColorB = new Color(255, 230, 153, 255);
+	private Color squareHighlight 	= new Color(50, 250, 100, 100);
+    private Color squareFillColorA 	= new Color(153, 102, 51, 255);
+    private Color squareFillColorB 	= new Color(255, 230, 153, 255);
 
 
     /**
