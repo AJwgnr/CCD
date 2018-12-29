@@ -325,7 +325,7 @@ public class ThreePlayerChessboard implements IBoard {
 
         if (1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4) {
             if (square.getPosY() == D) {
-                return new Square(square.getPosX() - 1, E, null);
+                return new Square(square.getPosX() + 1, E, null);
             } else {
                 return new Square(8, square.getPosY() + 1, null);
             }

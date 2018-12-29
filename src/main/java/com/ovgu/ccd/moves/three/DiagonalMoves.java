@@ -279,15 +279,11 @@ public class DiagonalMoves implements IMove {
 
         if (!leftSquares.isEmpty() && leftSquares.get(leftSquares.size() - 1) != null) {
             leftMostSquare = leftSquares.get(leftSquares.size() - 1);
-            if (leftSextantReachable(leftMostSquare)) {
-                leftSide = board.getLeftSextantSquare(leftMostSquare);
-            }
         } else {
-            leftSide = board.getLeftSextantSquare(square);
             leftMostSquare = square;
         }
 
-        if (leftSide != null && board.validMove(leftSide, piece) && (board.getSquare(leftMostSquare.getPosX(), leftMostSquare.getPosY()).isEmpty()) || square.equals(leftMostSquare)) {
+        if ((board.getSquare(leftMostSquare.getPosX(), leftMostSquare.getPosY()).isEmpty()) || square.equals(leftMostSquare)) {
             possibleMoves.addAll(horizontalLeft(leftMostSquare));
         }
 
@@ -301,14 +297,10 @@ public class DiagonalMoves implements IMove {
 
         if (!rightSquares.isEmpty() && (rightSquares.get(rightSquares.size() - 1)) != null) {
             rightMostSquare = rightSquares.get(rightSquares.size() - 1);
-            if (rightSextantReachable(rightMostSquare)) {
-                rightSide = board.getRightSextantSquare(rightMostSquare);
-            }
         } else {
-            rightSide = board.getRightSextantSquare(square);
             rightMostSquare = square;
         }
-        if(rightSide != null && board.validMove(rightSide, piece) && (board.getSquare(rightMostSquare.getPosX(), rightMostSquare.getPosY()).isEmpty() || square.equals(rightMostSquare))) {
+        if((board.getSquare(rightMostSquare.getPosX(), rightMostSquare.getPosY()).isEmpty() || square.equals(rightMostSquare))) {
             possibleMoves.addAll(horizontalRight(rightMostSquare));
         }
         return possibleMoves;
