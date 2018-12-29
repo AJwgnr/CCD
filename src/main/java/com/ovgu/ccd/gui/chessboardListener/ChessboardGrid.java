@@ -1084,7 +1084,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
      * @param name hashmap key (A1, B2 ..)
      * @return GridSquare
      */
-	public GridSquare getSquares(String name)
+	public GridSquare getSquare(String name)
 	{
 		if (this.squares.containsKey(name))
 			return this.squares.get(name);
