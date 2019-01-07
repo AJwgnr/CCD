@@ -25,7 +25,6 @@ public class CheckControllerTest {
         assertTrue(new CheckController(board, king, king, null).isSafe());
     }
 
-
     @Test
     public void testCheckKingWithMoveStraightDirection() throws Exception {
         ThreePlayerChessboard board = new ThreePlayerChessboard();
@@ -345,7 +344,7 @@ public class CheckControllerTest {
     }
 
     @Test
-    public void test() throws Exception {
+    public void testCheckKingWithBlockingPieces() throws Exception {
         ThreePlayerChessboard board = new ThreePlayerChessboard();
         King king = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite(king);
@@ -367,7 +366,7 @@ public class CheckControllerTest {
     }
 
     @Test
-    public void test2() throws Exception {
+    public void testCheckKingSafeByEating() throws Exception {
         ThreePlayerChessboard board = new ThreePlayerChessboard();
         King king = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite(king);
