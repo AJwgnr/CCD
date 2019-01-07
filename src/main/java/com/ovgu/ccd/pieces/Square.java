@@ -20,68 +20,56 @@
  */
 package com.ovgu.ccd.pieces;
 
-import com.ovgu.ccd.gui.chessboardListener.Line;
-import com.ovgu.ccd.gui.chessboardListener.Point;
-import com.ovgu.ccd.gui.chessboardListener.Triangle;
-
-import java.util.HashMap;
 import java.util.Objects;
 
 
 /**
  * Class to represent a chessboard square
  */
-public class Square
-{
+public class Square {
     private boolean invalid = false;
     private Piece piece = null;
     private int boardPosX = -1;
     private int boardPosY = -1;
 
     // dummy square
-    public Square() { }
+    public Square() {
+    }
 
-    public Square(int x, int y, Piece piece)
-    {
+    public Square(int x, int y, Piece piece) {
         this.boardPosX = x;
         this.boardPosY = y;
         this.piece = piece;
     }
 
-    public Square(Square square)
-    {
+    public Square(Square square) {
         this.boardPosX = square.getPosX();
         this.boardPosY = square.getPosY();
         this.piece = square.getPiece();
     }
 
 
-    public void setPosX(int x)
-    {
+    public void setPosX(int x) {
         this.boardPosX = x;
     }
 
 
-    public void setPosY(int y)
-    {
+    public void setPosY(int y) {
         this.boardPosY = y;
     }
 
 
-    public int getPosX()
-    {
+    public int getPosX() {
         return this.boardPosX;
     }
 
 
-    public int getPosY()
-    {
+    public int getPosY() {
         return this.boardPosY;
     }
 
 
-    public void print()
-    {
+    public void print() {
         System.out.println("Square Hashcode:  " + this.hashCode());
         System.out.println("Board Position X: " + this.getPosX());
         System.out.println("Board Position Y: " + this.getPosY());
@@ -93,8 +81,7 @@ public class Square
     /**
      * @param piece
      */
-    public void setPiece(Piece piece)
-    {
+    public void setPiece(Piece piece) {
         if (this.piece != null) {
             this.piece.setSquare(null);
         }
@@ -111,8 +98,7 @@ public class Square
      * @return
      */
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (o == this) return true;
         if (!(o instanceof Square)) return false;
 
@@ -123,7 +109,7 @@ public class Square
 
     @Override
     public int hashCode() {
-        return Objects.hash(100*this.boardPosX + this.boardPosY);
+        return Objects.hash(100 * this.boardPosX + this.boardPosY);
     }
 
     /**
@@ -135,7 +121,9 @@ public class Square
         return piece;
     }
 
-    public boolean isEmpty() { return piece == null; }
+    public boolean isEmpty() {
+        return piece == null;
+    }
 
     public boolean isInvalid() {
         return invalid;

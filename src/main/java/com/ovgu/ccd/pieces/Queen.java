@@ -21,12 +21,10 @@
 package com.ovgu.ccd.pieces;
 
 
-import com.ovgu.ccd.applogic.ResourceManager;
-
 import com.ovgu.ccd.applogic.IBoard;
-import com.ovgu.ccd.moves.QueenMoveFactory;
 import com.ovgu.ccd.applogic.Player;
-
+import com.ovgu.ccd.applogic.ResourceManager;
+import com.ovgu.ccd.moves.QueenMoveFactory;
 
 import java.util.ArrayList;
 
@@ -59,8 +57,8 @@ public class Queen extends Piece {
 
     /**
      * Annotation to superclass Piece changing pawns location
-
-     * @return  ArrayList with new position of piece
+     *
+     * @return ArrayList with new position of piece
      */
 
     @Override

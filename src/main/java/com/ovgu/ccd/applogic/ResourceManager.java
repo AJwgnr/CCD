@@ -51,7 +51,6 @@ public class ResourceManager {
     }
 
     /**
-     *
      * @return
      */
     public static ResourceManager getInstance() {
@@ -63,7 +62,6 @@ public class ResourceManager {
 
 
     /**
-     *
      * @return
      */
     public Properties getJChessAppPropertie() {
@@ -71,7 +69,6 @@ public class ResourceManager {
     }
 
     /**
-     *
      * @return
      */
     public Properties getJChessViewPropertie() {
@@ -79,7 +76,6 @@ public class ResourceManager {
     }
 
     /**
-     *
      * @return
      */
     public Properties getJChessAboutBoxPropertie() {
@@ -106,7 +102,7 @@ public class ResourceManager {
             System.out.println("Error loading external config file.");
         }
 
-        if(!loaded) { // load internal config.txt if external config.txt file not found
+        if (!loaded) { // load internal config.txt if external config.txt file not found
             try (InputStream resourceStream = loader.getResourceAsStream(CONFIG_FILE_PATH)) {
                 prop.load(resourceStream);
                 System.out.println("Internal config-file successfully loaded!");

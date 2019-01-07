@@ -236,7 +236,7 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
                 this.thirdName.setText(this.trimString(thirdName, 9));
             }
             if (!this.oponentComp.isSelected()
-                    && (this.firstName.getText().length() == 0 || this.secondName.getText().length() == 0) || (this.thirdName.getText().length() == 0 )) {
+                    && (this.firstName.getText().length() == 0 || this.secondName.getText().length() == 0) || (this.thirdName.getText().length() == 0)) {
                 JOptionPane.showMessageDialog(this, Settings.lang("fill_names"));
                 return;
             }
@@ -244,19 +244,19 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(this, Settings.lang("fill_name"));
                 return;
             }
-            Game newGUI = JChessApp.jcv.addNewTab(this.firstName.getText() + " vs " + this.secondName.getText() +  " vs " + this.thirdName.getText()  );
+            Game newGUI = JChessApp.jcv.addNewTab(this.firstName.getText() + " vs " + this.secondName.getText() + " vs " + this.thirdName.getText());
 
 
             Settings sett = newGUI.settings;//sett LOCAL settings variable
             //if (this.timeGame.isSelected()) //if timeGame is checked
-           // {
-                String value = this.times[this.time4Game.getSelectedIndex()];//set time for game
-                Integer val = new Integer(value);
-                sett.timeLimitSet = true;
-                sett.timeForGame = val * 60;//set time for game and mult it to seconds
-                newGUI.gameClock.initClock();
-                newGUI.gameClock.start();
-           // }
+            // {
+            String value = this.times[this.time4Game.getSelectedIndex()];//set time for game
+            Integer val = new Integer(value);
+            sett.timeLimitSet = true;
+            sett.timeForGame = val * 60;//set time for game and mult it to seconds
+            newGUI.gameClock.initClock();
+            newGUI.gameClock.start();
+            // }
 
             Player pl1 = sett.getPlayerOne();//set LOCAL player variable
             Player pl2 = sett.getPlayerTwo();//set LOCAL player variable

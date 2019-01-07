@@ -450,5 +450,7 @@ public class KingMoves implements IMove {
             possibleMoves.add(move);
         }
         return possibleMoves;
-    };
+    }
+
+    ;
 }

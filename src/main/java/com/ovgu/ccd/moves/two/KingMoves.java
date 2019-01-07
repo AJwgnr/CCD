@@ -39,7 +39,9 @@ public class KingMoves implements IMove {
                 if (!piece.outsideOfBoard(x, y)) {
                     possibleNewPosition = board.getSquare(x, y);
 
-                    if (piece.getSquare().equals(possibleNewPosition)) { continue; }
+                    if (piece.getSquare().equals(possibleNewPosition)) {
+                        continue;
+                    }
 
                     if (piece.canMoveTo(possibleNewPosition) && piece.isSafe(possibleNewPosition)) {
                         moves.add(possibleNewPosition);
@@ -69,17 +71,18 @@ public class KingMoves implements IMove {
         return list;
     }
 
-    private boolean leftCastlingPossible()
-    {
+    private boolean leftCastlingPossible() {
         if (board.getSquare(0, piece.getSquare().getPosY()).getPiece() == null ||
-            !board.getSquare(0, piece.getSquare().getPosY()).getPiece().name.equals("Rook")) { return false; }
+                !board.getSquare(0, piece.getSquare().getPosY()).getPiece().name.equals("Rook")) {
+            return false;
+        }
 
         Rook rook = (Rook) board.getSquare(0, piece.getSquare().getPosY()).getPiece();
-        if (!rook.isWasMotion())
-        {
-            for (int i = piece.getSquare().getPosX() - 1; i > 0; i--)
-            {
-                if (board.getSquare(i, piece.getSquare().getPosY()).getPiece() != null) { return false; }
+        if (!rook.isWasMotion()) {
+            for (int i = piece.getSquare().getPosX() - 1; i > 0; i--) {
+                if (board.getSquare(i, piece.getSquare().getPosY()).getPiece() != null) {
+                    return false;
+                }
             }
             Square kingsNextPosition = board.getSquare(piece.getSquare().getPosX() - 2, piece.getSquare().getPosY());
             Square rooksNextPosition = board.getSquare(piece.getSquare().getPosX() - 1, piece.getSquare().getPosY());
@@ -89,17 +92,18 @@ public class KingMoves implements IMove {
         return true;
     }
 
-    private boolean rightCastlingPossible()
-    {
+    private boolean rightCastlingPossible() {
         if (board.getSquare(7, piece.getSquare().getPosY()).getPiece() == null ||
-            !board.getSquare(7, piece.getSquare().getPosY()).getPiece().name.equals("Rook")) { return false; }
+                !board.getSquare(7, piece.getSquare().getPosY()).getPiece().name.equals("Rook")) {
+            return false;
+        }
 
         Rook rook = (Rook) board.getSquare(7, piece.getSquare().getPosY()).getPiece();
-        if (!rook.isWasMotion())
-        {
-            for (int i = piece.getSquare().getPosX() + 1; i < 7; i++)
-            {
-                if (board.getSquare(i, piece.getSquare().getPosY()).getPiece() != null) { return false; }
+        if (!rook.isWasMotion()) {
+            for (int i = piece.getSquare().getPosX() + 1; i < 7; i++) {
+                if (board.getSquare(i, piece.getSquare().getPosY()).getPiece() != null) {
+                    return false;
+                }
             }
 
             Square kingsNextPosition = board.getSquare(piece.getSquare().getPosX() + 2, piece.getSquare().getPosY());

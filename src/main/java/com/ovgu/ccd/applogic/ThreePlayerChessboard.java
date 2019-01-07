@@ -1,7 +1,8 @@
 package com.ovgu.ccd.applogic;
 
-import com.ovgu.ccd.gui.chessboardListener.*;
+import com.ovgu.ccd.gui.chessboardListener.ChessboardGrid;
 import com.ovgu.ccd.pieces.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -75,15 +76,13 @@ public class ThreePlayerChessboard implements IBoard {
     */
 
     // empty dummy chessboard
-    public ThreePlayerChessboard()
-    {
+    public ThreePlayerChessboard() {
         initSquareMatrix();
         setInvalidSquares();
     }
 
     // chessboard with grid structure
-    public ThreePlayerChessboard(ChessboardGrid grid)
-    {
+    public ThreePlayerChessboard(ChessboardGrid grid) {
         this.chessboardGrid = grid;
         initPlayers();
         initSquareMatrix();
@@ -92,17 +91,14 @@ public class ThreePlayerChessboard implements IBoard {
         redrawPieces();
     }
 
-    public void initPlayers()
-    {
+    public void initPlayers() {
         this.whitePlayer = new Player("Mr.White", Player.Colors.WHITE.name());
         this.greyPlayer = new Player("Mr.Grey", Player.Colors.GREY.name());
         this.blackPlayer = new Player("Mr.Black", Player.Colors.BLACK.name());
     }
 
-    private void setInvalidSquares()
-    {
-        if (matrix != null)
-        {
+    private void setInvalidSquares() {
+        if (matrix != null) {
             for (int i = 0; i <= 3; i++) {
                 for (int j = 8; j <= 11; j++) {
                     if (matrix[i][j] != null)
@@ -118,8 +114,8 @@ public class ThreePlayerChessboard implements IBoard {
             }
 
 
-            for(int i = 8; i <= 11; i++) {
-                for(int j = 0; j <= 3; j++) {
+            for (int i = 8; i <= 11; i++) {
+                for (int j = 0; j <= 3; j++) {
                     if (matrix[i][j] != null)
                         matrix[i][j].setInvalid(true);
                 }
@@ -128,26 +124,21 @@ public class ThreePlayerChessboard implements IBoard {
     }
 
     // initialize all squares
-    private void initSquareMatrix()
-    {
+    private void initSquareMatrix() {
         this.matrix = new Square[COLUMNS][COLUMNS];
-        for (int x = 0; x < COLUMNS; x++)
-        {
-            for (int y = 0; y < COLUMNS; y++)
-            {
-                if (this.chessboardGrid != null && chessboardGrid.getSquare(x,y) != null)
-                    matrix[x][y] = chessboardGrid.getSquare(x,y).getBoardSquare();
+        for (int x = 0; x < COLUMNS; x++) {
+            for (int y = 0; y < COLUMNS; y++) {
+                if (this.chessboardGrid != null && chessboardGrid.getSquare(x, y) != null)
+                    matrix[x][y] = chessboardGrid.getSquare(x, y).getBoardSquare();
                 else
-                    matrix[x][y] = new Square(x,y,null);
+                    matrix[x][y] = new Square(x, y, null);
             }
         }
     }
 
     // assign all pieces to their start positions
-    public void initPieceStartPositions()
-    {
-        if (this.matrix != null)
-        {
+    public void initPieceStartPositions() {
+        if (this.matrix != null) {
             Piece pawn;
             // white player start positions
             this.matrix[0][A].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.ROOK));
@@ -213,8 +204,7 @@ public class ThreePlayerChessboard implements IBoard {
     }
 
     // redraw all pieces in matrix
-    private void redrawPieces()
-    {
+    private void redrawPieces() {
         this.chessboardGrid.redraw();
     }
 
@@ -265,23 +255,35 @@ public class ThreePlayerChessboard implements IBoard {
         int x = square.getPosX() + 1;
         int y = square.getPosY();
 
-        if (1 <= x && x <= 4 && E <= y && y <= H) { return new Square(3, E, null); }
-        if (9 <= x && x <= 12 && E <= y && y <= H) { return new Square(8, E, null); }
-        if (9 <= x && x <= 12 && I <= y && y <= L) { return new Square(8, I, null); }
-        if (5 <= x && x <= 8  && I <= y && y <= L) { return new Square(4, I, null); }
-        if (5 <= x && x <= 8  && A <= y && y <= D) { return new Square(4, D, null); }
-        if (1 <= x && x <= 4  && A <= y && y <= D) { return new Square(3, D, null); }
+        if (1 <= x && x <= 4 && E <= y && y <= H) {
+            return new Square(3, E, null);
+        }
+        if (9 <= x && x <= 12 && E <= y && y <= H) {
+            return new Square(8, E, null);
+        }
+        if (9 <= x && x <= 12 && I <= y && y <= L) {
+            return new Square(8, I, null);
+        }
+        if (5 <= x && x <= 8 && I <= y && y <= L) {
+            return new Square(4, I, null);
+        }
+        if (5 <= x && x <= 8 && A <= y && y <= D) {
+            return new Square(4, D, null);
+        }
+        if (1 <= x && x <= 4 && A <= y && y <= D) {
+            return new Square(3, D, null);
+        }
 
         throw new Exception("Invalid square");
     }
 
     public boolean inSextant(Square square, int x_coord, int y_coord) {
-        return ((1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4  && E <= square.getPosY() && square.getPosY() <= H) && (1 <= (x_coord + 1) && (x_coord + 1) <= 4  && E <= y_coord && y_coord <= H) ||
-            (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12 && E <= square.getPosY() && square.getPosY() <= H) && (9 <= (x_coord + 1) && (x_coord + 1) <= 12 && E <= y_coord && y_coord <= H) ||
-            (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12 && I <= square.getPosY() && square.getPosY() <= L) && (9 <= (x_coord + 1) && (x_coord + 1) <= 12 && I <= y_coord && y_coord <= L) ||
-            (5 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 8  && I <= square.getPosY() && square.getPosY() <= L) && (5 <= (x_coord + 1) && (x_coord + 1) <= 8  && I <= y_coord && y_coord <= L) ||
-            (5 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 8  && A <= square.getPosY() && square.getPosY() <= D) && (5 <= (x_coord + 1) && (x_coord + 1) <= 8  && A <= y_coord && y_coord <= D) ||
-            (1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4  && A <= square.getPosY() && square.getPosY() <= D) && (1 <= (x_coord + 1) && (x_coord + 1) <= 4  && A <= y_coord && y_coord <= D));
+        return ((1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4 && E <= square.getPosY() && square.getPosY() <= H) && (1 <= (x_coord + 1) && (x_coord + 1) <= 4 && E <= y_coord && y_coord <= H) ||
+                (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12 && E <= square.getPosY() && square.getPosY() <= H) && (9 <= (x_coord + 1) && (x_coord + 1) <= 12 && E <= y_coord && y_coord <= H) ||
+                (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12 && I <= square.getPosY() && square.getPosY() <= L) && (9 <= (x_coord + 1) && (x_coord + 1) <= 12 && I <= y_coord && y_coord <= L) ||
+                (5 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 8 && I <= square.getPosY() && square.getPosY() <= L) && (5 <= (x_coord + 1) && (x_coord + 1) <= 8 && I <= y_coord && y_coord <= L) ||
+                (5 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 8 && A <= square.getPosY() && square.getPosY() <= D) && (5 <= (x_coord + 1) && (x_coord + 1) <= 8 && A <= y_coord && y_coord <= D) ||
+                (1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4 && A <= square.getPosY() && square.getPosY() <= D) && (1 <= (x_coord + 1) && (x_coord + 1) <= 4 && A <= y_coord && y_coord <= D));
     }
 
     public Square getLeftSextantSquare(Square square) throws Exception {
@@ -345,35 +347,59 @@ public class ThreePlayerChessboard implements IBoard {
     public Square getSideRosetteTile(Square square, ArrayList<Square> diagonal) throws Exception {
         if ((E <= square.getPosY()) && (square.getPosY() <= H)) {
             if ((1 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 4)) {
-                if (diagonal.contains(new Square(3, F, null))) { return new Square(8, E, null); }
-                if (diagonal.contains(new Square(2, E, null))) { return new Square(3, D, null); }
+                if (diagonal.contains(new Square(3, F, null))) {
+                    return new Square(8, E, null);
+                }
+                if (diagonal.contains(new Square(2, E, null))) {
+                    return new Square(3, D, null);
+                }
             }
             if ((9 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 12)) {
-                if (diagonal.contains(new Square(9, E, null))) { return new Square(8, I, null); }
-                if (diagonal.contains(new Square(8, F, null))) { return new Square(3, E, null); }
+                if (diagonal.contains(new Square(9, E, null))) {
+                    return new Square(8, I, null);
+                }
+                if (diagonal.contains(new Square(8, F, null))) {
+                    return new Square(3, E, null);
+                }
             }
         }
 
         if ((A <= square.getPosY()) && (square.getPosY() <= D)) {
             if ((1 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 4)) {
-                if (diagonal.contains(new Square(2, D, null))) { return new Square(3, E, null); }
-                if (diagonal.contains(new Square(3, C, null))) { return new Square(4, D, null); }
+                if (diagonal.contains(new Square(2, D, null))) {
+                    return new Square(3, E, null);
+                }
+                if (diagonal.contains(new Square(3, C, null))) {
+                    return new Square(4, D, null);
+                }
             }
             if ((5 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 8)) {
-                if (diagonal.contains(new Square(4, C, null))) { return new Square(3, D, null); }
-                if (diagonal.contains(new Square(5, D, null))) { return new Square(4, I, null); }
+                if (diagonal.contains(new Square(4, C, null))) {
+                    return new Square(3, D, null);
+                }
+                if (diagonal.contains(new Square(5, D, null))) {
+                    return new Square(4, I, null);
+                }
             }
         }
 
 
         if ((I <= square.getPosY()) && (square.getPosY() <= L)) {
             if ((5 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 8)) {
-                if (diagonal.contains(new Square(5, I, null))) { return new Square(4, D, null);  }
-                if (diagonal.contains(new Square(4, J, null))) { return new Square(8, I, null); }
+                if (diagonal.contains(new Square(5, I, null))) {
+                    return new Square(4, D, null);
                 }
+                if (diagonal.contains(new Square(4, J, null))) {
+                    return new Square(8, I, null);
+                }
+            }
             if ((9 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 12)) {
-                if (diagonal.contains(new Square(8, J, null))) { return new Square(4, I, null);  }
-                if (diagonal.contains(new Square(9, I, null))) { return new Square(8, E, null); }
+                if (diagonal.contains(new Square(8, J, null))) {
+                    return new Square(4, I, null);
+                }
+                if (diagonal.contains(new Square(9, I, null))) {
+                    return new Square(8, E, null);
+                }
             }
         }
         return null;
@@ -425,8 +451,7 @@ public class ThreePlayerChessboard implements IBoard {
     }
 
     @Override
-    public Square getSquare(int xCoordinate, int yCoordinate)
-    {
+    public Square getSquare(int xCoordinate, int yCoordinate) {
         return getSquares()[xCoordinate][yCoordinate];
     }
 
@@ -448,41 +473,60 @@ public class ThreePlayerChessboard implements IBoard {
     }
 
     @Override
-    public void setPieces(String places, Player plWhite, Player plBlack) {}
+    public void setPieces(String places, Player plWhite, Player plBlack) {
+    }
 
     @Override
-    public Square getSquareConsideringLabels(int x, int y) { return null; }
+    public Square getSquareConsideringLabels(int x, int y) {
+        return null;
+    }
 
     @Override
-    public void select(Square sq) {}
+    public void select(Square sq) {
+    }
 
     @Override
-    public void unselect() {}
+    public void unselect() {
+    }
 
     @Override
-    public int get_widht() { return 1; }
+    public int get_widht() {
+        return 1;
+    }
 
     @Override
-    public int get_height() { return 1; }
+    public int get_height() {
+        return 1;
+    }
 
     @Override
-    public int get_widht(boolean includeLables) { return 1; }
+    public int get_widht(boolean includeLables) {
+        return 1;
+    }
 
     @Override
-    public int get_square_height() { return 1; }
+    public int get_square_height() {
+        return 1;
+    }
 
     @Override
-    public void move(Square begin, Square end) {}
+    public void move(Square begin, Square end) {
+    }
 
     @Override
-    public void move(int xFrom, int yFrom, int xTo, int yTo) {}
+    public void move(int xFrom, int yFrom, int xTo, int yTo) {
+    }
 
     @Override
-    public void move(Square begin, Square end, boolean refresh) {}
+    public void move(Square begin, Square end, boolean refresh) {
+    }
 
     @Override
-    public void move(Square begin, Square end, boolean refresh, boolean clearForwardHistory) {}
+    public void move(Square begin, Square end, boolean refresh, boolean clearForwardHistory) {
+    }
 
     @Override
-    public java.awt.Point getTopLeftPoint() { return new java.awt.Point(); }
+    public java.awt.Point getTopLeftPoint() {
+        return new java.awt.Point();
+    }
 }

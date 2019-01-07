@@ -38,9 +38,9 @@ package com.ovgu.ccd.pieces;
  * 0 1 2 3 4 5 6 7
  */
 
-import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
+import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.moves.KingMoveFactory;
 
 import java.util.ArrayList;
@@ -83,8 +83,7 @@ public class King extends Piece {
      *
      * @return bool true if king is not save, else returns false
      */
-    public boolean isChecked()
-    {
+    public boolean isChecked() {
         return !isSafe(this.getSquare());
     }
 
@@ -389,12 +388,9 @@ public class King extends Piece {
 
         // King
         King otherKing;
-        if (this == chessboard.getKingWhite())
-        {
+        if (this == chessboard.getKingWhite()) {
             otherKing = chessboard.getKingBlack();
-        }
-        else
-        {
+        } else {
             otherKing = chessboard.getKingWhite();
         }
 
@@ -465,12 +461,12 @@ public class King extends Piece {
     {
         Piece tmp = nextPosition.getPiece();
         nextPosition.setPiece(currentPosition.getPiece()); // move without redraw
-        currentPosition.setPiece( null);
+        currentPosition.setPiece(null);
 
         boolean ret = isSafe(this.getSquare());
 
         currentPosition.setPiece(nextPosition.getPiece());
-        nextPosition.setPiece( tmp);
+        nextPosition.setPiece(tmp);
 
         return ret;
     }

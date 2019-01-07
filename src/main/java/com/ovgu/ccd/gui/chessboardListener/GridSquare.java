@@ -7,12 +7,11 @@ import java.util.HashMap;
 
 
 /**
- * @author  CCD DeepBlue team
+ * @author CCD DeepBlue team
  * @version 1.0
- * @since   1.0
+ * @since 1.0
  */
-public class GridSquare extends GeometricPrimitiveDrawer
-{
+public class GridSquare extends GeometricPrimitiveDrawer {
     private HashMap<String, Point> vertices = new HashMap<String, Point>();
     private Square square = null;
     private boolean highlight = false;
@@ -22,12 +21,8 @@ public class GridSquare extends GeometricPrimitiveDrawer
 
     /**
      * dummy constructor
-     *
-     *
-     *
      */
-    public GridSquare()
-    {
+    public GridSquare() {
 
     }
 
@@ -39,10 +34,8 @@ public class GridSquare extends GeometricPrimitiveDrawer
      * @param b vertex 2
      * @param c vertex 3
      * @param d vertex 4
-     *
      */
-    public GridSquare(Point a, Point b, Point c, Point d)
-    {
+    public GridSquare(Point a, Point b, Point c, Point d) {
         this.vertices.put("A", a);
         this.vertices.put("B", b);
         this.vertices.put("C", c);
@@ -50,20 +43,17 @@ public class GridSquare extends GeometricPrimitiveDrawer
     }
 
 
-
     /**
      * constructor
      *
      * @param boardPosX chessboard x position
      * @param boardPosY chessboard y position
-     * @param a vertex 1
-     * @param b vertex 2
-     * @param c vertex 3
-     * @param d vertex 4
-     *
+     * @param a         vertex 1
+     * @param b         vertex 2
+     * @param c         vertex 3
+     * @param d         vertex 4
      */
-    public GridSquare(int boardPosX, int boardPosY, Point a, Point b, Point c, Point d)
-    {
+    public GridSquare(int boardPosX, int boardPosY, Point a, Point b, Point c, Point d) {
         this.square = new Square(boardPosX, boardPosY, null);
         this.vertices.put("A", a);
         this.vertices.put("B", b);
@@ -78,8 +68,7 @@ public class GridSquare extends GeometricPrimitiveDrawer
      * @param name name of the vertex (A,B,C,D)
      * @return Point (vertex)
      */
-    public Point getVertex(String name)
-    {
+    public Point getVertex(String name) {
         if (this.vertices.containsKey(name))
             return this.vertices.get(name);
         return null;
@@ -89,11 +78,9 @@ public class GridSquare extends GeometricPrimitiveDrawer
     /**
      * does the grid square has a board square assigned to it
      *
-     *
      * @return boolean
      */
-    public boolean hasBoardSquare()
-    {
+    public boolean hasBoardSquare() {
         return this.square != null;
     }
 
@@ -101,11 +88,9 @@ public class GridSquare extends GeometricPrimitiveDrawer
     /**
      * get the chessboard square
      *
-     *
      * @return Square of the chessboard
      */
-    public Square getBoardSquare()
-    {
+    public Square getBoardSquare() {
         return this.square;
     }
 
@@ -114,10 +99,8 @@ public class GridSquare extends GeometricPrimitiveDrawer
      * sets the chessboard square
      *
      * @param square chessboard square
-     *
      */
-    public void setBoardSquare(Square square)
-    {
+    public void setBoardSquare(Square square) {
         this.square = square;
     }
 
@@ -126,10 +109,8 @@ public class GridSquare extends GeometricPrimitiveDrawer
      * sets highlight property, mark squares, which should be highlighted
      *
      * @param en highlight on/off
-     *
      */
-    public void setHighlight(boolean en)
-    {
+    public void setHighlight(boolean en) {
         this.highlight = en;
     }
 
@@ -137,25 +118,21 @@ public class GridSquare extends GeometricPrimitiveDrawer
     /**
      * get highlight property
      *
-     *
      * @return boolean highlight on/off
      */
-    public boolean getHighlight()
-    {
+    public boolean getHighlight() {
         return this.highlight;
     }
 
 
     /**
      * get the area of the square
-     *
+     * <p>
      * computed by splitting the area of the square into two triangles
-     *
      *
      * @return the area of the square
      */
-    public double getArea()
-    {
+    public double getArea() {
         Triangle triangle1 = new Triangle(
                 this.vertices.get("A"),
                 this.vertices.get("B"),
@@ -168,18 +145,16 @@ public class GridSquare extends GeometricPrimitiveDrawer
     }
 
 
-
     /**
      * checks whether a given point lays inside the square or not
-     *
+     * <p>
      * constructs four triangles (point + one side of the square) and computes the are
      * if its the same as the area of the square itself, then the point is inside the square.
      *
      * @param point the point to check for
      * @return boolean if the point is inside or not
      */
-    public boolean isPointInside(Point point)
-    {
+    public boolean isPointInside(Point point) {
         Triangle triangleAPD = new Triangle(
                 this.vertices.get("A"),
                 point,
@@ -218,11 +193,9 @@ public class GridSquare extends GeometricPrimitiveDrawer
     /**
      * get the center point of the square
      *
-     *
      * @return Point center
      */
-    public Point center()
-    {
+    public Point center() {
         Line diagonalLineAC = new Line(this.vertices.get("A"), this.vertices.get("C"));
         Line diagonalLineBD = new Line(this.vertices.get("D"), this.vertices.get("B"));
         return diagonalLineAC.computeIntersectionPoint(diagonalLineBD);
@@ -232,46 +205,43 @@ public class GridSquare extends GeometricPrimitiveDrawer
     /**
      * transforms the square to an polygon
      *
-     *
      * @return Polygon
      */
-    public Polygon toPolygon()
-    {
+    public Polygon toPolygon() {
         int xPoly[] =
-        {
-            this.vertices.get("A").getX(),
-            this.vertices.get("B").getX(),
-            this.vertices.get("C").getX(),
-            this.vertices.get("D").getX()
-        };
+                {
+                        this.vertices.get("A").getX(),
+                        this.vertices.get("B").getX(),
+                        this.vertices.get("C").getX(),
+                        this.vertices.get("D").getX()
+                };
         int yPoly[] =
-        {
-            this.vertices.get("A").getY(),
-            this.vertices.get("B").getY(),
-            this.vertices.get("C").getY(),
-            this.vertices.get("D").getY()
-        };
+                {
+                        this.vertices.get("A").getY(),
+                        this.vertices.get("B").getY(),
+                        this.vertices.get("C").getY(),
+                        this.vertices.get("D").getY()
+                };
         return new Polygon(xPoly, yPoly, xPoly.length);
     }
 
 
     /**
      * sets fill color
+     *
      * @param color color
      */
-    public void setFillColor(Color color)
-    {
+    public void setFillColor(Color color) {
         this.fillColor = color;
     }
 
 
     /**
      * returns the fill color value
-     * @return: fill color
      *
+     * @return: fill color
      */
-    public Color getFillColor()
-    {
+    public Color getFillColor() {
         return this.fillColor;
     }
 
@@ -280,10 +250,8 @@ public class GridSquare extends GeometricPrimitiveDrawer
      * sets highlight color
      *
      * @param color
-     *
      */
-    public void setHighlightColor(Color color)
-    {
+    public void setHighlightColor(Color color) {
         this.highlightColor = color;
     }
 
@@ -292,10 +260,8 @@ public class GridSquare extends GeometricPrimitiveDrawer
      * returns the highlight color value
      *
      * @return fill color
-     *
      */
-    public Color getHighlightColor()
-    {
+    public Color getHighlightColor() {
         return this.highlightColor;
     }
 
@@ -304,22 +270,18 @@ public class GridSquare extends GeometricPrimitiveDrawer
      * draws the square
      *
      * @param graphics graphics
-     *
      */
     @Override
-    public void draw(Graphics graphics)
-    {
+    public void draw(Graphics graphics) {
         Polygon polygon = toPolygon();
 
-        if (this.fillColor != null)
-        {
+        if (this.fillColor != null) {
             graphics.setColor(this.fillColor);
             graphics.fillPolygon(polygon);
         }
 
-        if (this.highlight)
-        {
-            graphics.setColor(new Color(50,250,100, 100));
+        if (this.highlight) {
+            graphics.setColor(new Color(50, 250, 100, 100));
             graphics.fillPolygon(polygon);
         }
 

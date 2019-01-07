@@ -20,7 +20,9 @@
  */
 package com.ovgu.ccd.gui;
 
-import com.ovgu.ccd.applogic.*;
+import com.ovgu.ccd.applogic.JChessApp;
+import com.ovgu.ccd.applogic.Player;
+import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Square;
 
@@ -45,8 +47,7 @@ import java.util.logging.Logger;
  * a move at the moment
  */
 
-public class Game extends JPanel implements MouseListener, ComponentListener
-{
+public class Game extends JPanel implements MouseListener, ComponentListener {
 
     public Settings settings;
     public boolean blockedChessboard;
@@ -57,8 +58,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
     public Moves moves;
 
 
-    public Game()
-    {
+    public Game() {
         this.setLayout(null);
         this.moves = new Moves(this);
         settings = new Settings();
@@ -87,21 +87,19 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         this.setDoubleBuffered(true);
     }
 
-    /** Method to save actual state of game
+    /**
+     * Method to save actual state of game
+     *
      * @param path address of place where game will be saved
      */
-    public void saveGame(File path)
-    {
+    public void saveGame(File path) {
         File file = path;
         FileWriter fileW = null;
-        try
-        {
+        try {
             fileW = new FileWriter(file);
-        }
-        catch (java.io.IOException exc)
-        {
+        } catch (java.io.IOException exc) {
             System.err.println("error creating fileWriter: " + exc);
-            JOptionPane.showMessageDialog(this, Settings.lang("error_writing_to_file")+": " + exc);
+            JOptionPane.showMessageDialog(this, Settings.lang("error_writing_to_file") + ": " + exc);
             return;
         }
         Calendar cal = Calendar.getInstance();
@@ -110,23 +108,22 @@ public class Game extends JPanel implements MouseListener, ComponentListener
                 + "[White \"" + this.settings.getPlayerOne().getName() + "\"]\n[Black \"" + this.settings.getPlayerTwo().getName() + "\"]\n\n");
         str += info;
         str += this.moves.getMovesInString();
-        try
-        {
+        try {
             fileW.write(str);
             fileW.flush();
             fileW.close();
-        }
-        catch (java.io.IOException exc)
-        {
+        } catch (java.io.IOException exc) {
             System.out.println("error writing to file: " + exc);
-            JOptionPane.showMessageDialog(this, Settings.lang("error_writing_to_file")+": " + exc);
+            JOptionPane.showMessageDialog(this, Settings.lang("error_writing_to_file") + ": " + exc);
             return;
         }
         JOptionPane.showMessageDialog(this, Settings.lang("game_saved_properly"));
     }
 
-    /** Loading game method(loading game state from the earlier saved file)
-     *  @param file File where is saved game
+    /**
+     * Loading game method(loading game state from the earlier saved file)
+     *
+     * @param file File where is saved game
      */
 
     /*@Override
@@ -142,31 +139,24 @@ public class Game extends JPanel implements MouseListener, ComponentListener
     super.setSize(width, height);
     }
     }*/
-    static public void loadGame(File file)
-    {
+    static public void loadGame(File file) {
         FileReader fileR = null;
-        try
-        {
+        try {
             fileR = new FileReader(file);
-        }
-        catch (java.io.IOException exc)
-        {
+        } catch (java.io.IOException exc) {
             System.out.println("Something wrong reading file: " + exc);
             return;
         }
         BufferedReader br = new BufferedReader(fileR);
         String tempStr = new String();
         String blackName, whiteName;
-        try
-        {
+        try {
             tempStr = getLineWithVar(br, new String("[White"));
             whiteName = getValue(tempStr);
             tempStr = getLineWithVar(br, new String("[Black"));
             blackName = getValue(tempStr);
             tempStr = getLineWithVar(br, new String("1."));
-        }
-        catch (ReadGameError err)
-        {
+        } catch (ReadGameError err) {
             System.out.println("Error reading file: " + err);
             return;
         }
@@ -187,83 +177,72 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         //newGUI.chessboard.draw();
     }
 
-    /** Method checking in with of line there is an error
-     *  @param  br BufferedReader class object to operate on
-     *  @param  srcStr String class object with text which variable you want to get in file
-     *  @return String with searched variable in file (whole line)
-     *  @throws ReadGameError class object when something goes wrong when reading file
+    /**
+     * Method checking in with of line there is an error
+     *
+     * @param br     BufferedReader class object to operate on
+     * @param srcStr String class object with text which variable you want to get in file
+     * @return String with searched variable in file (whole line)
+     * @throws ReadGameError class object when something goes wrong when reading file
      */
-    static public String getLineWithVar(BufferedReader br, String srcStr) throws ReadGameError
-    {
+    static public String getLineWithVar(BufferedReader br, String srcStr) throws ReadGameError {
         String str = new String();
-        while (true)
-        {
-            try
-            {
+        while (true) {
+            try {
                 str = br.readLine();
-            }
-            catch (java.io.IOException exc)
-            {
+            } catch (java.io.IOException exc) {
                 System.out.println("Something wrong reading file: " + exc);
             }
-            if (str == null)
-            {
+            if (str == null) {
                 throw new ReadGameError();
             }
-            if (str.startsWith(srcStr))
-            {
+            if (str.startsWith(srcStr)) {
                 return str;
             }
         }
     }
 
-    /** Method to get value from loaded txt line
-     *  @param line Line which is readed
-     *  @return result String with loaded value
-     *  @throws ReadGameError object class when something goes wrong
+    /**
+     * Method to get value from loaded txt line
+     *
+     * @param line Line which is readed
+     * @return result String with loaded value
+     * @throws ReadGameError object class when something goes wrong
      */
-    static public String getValue(String line) throws ReadGameError
-    {
+    static public String getValue(String line) throws ReadGameError {
         //System.out.println("getValue called with: "+line);
         int from = line.indexOf("\"");
         int to = line.lastIndexOf("\"");
         int size = line.length() - 1;
         String result = new String();
-        if (to < from || from > size || to > size || to < 0 || from < 0)
-        {
+        if (to < from || from > size || to > size || to < 0 || from < 0) {
             throw new ReadGameError();
         }
-        try
-        {
+        try {
             result = line.substring(from + 1, to);
-        }
-        catch (java.lang.StringIndexOutOfBoundsException exc)
-        {
+        } catch (java.lang.StringIndexOutOfBoundsException exc) {
             System.out.println("error getting value: " + exc);
             return "none";
         }
         return result;
     }
 
-    /** Method to Start new game
-     *
+    /**
+     * Method to Start new game
      */
-    public void newGame()
-    {
+    public void newGame() {
         chessboard.setPieces("", settings.getPlayerOne(), settings.getPlayerTwo());
 
         //System.out.println("new game, game type: "+settings.gameType.name());
 
         activePlayer = settings.getPlayerOne();
-        if (activePlayer.getPlayerType() != Player.PlayerTypes.LOCALUSER)
-        {
+        if (activePlayer.getPlayerType() != Player.PlayerTypes.LOCALUSER) {
             this.blockedChessboard = true;
         }
         //dirty hacks starts over here :)
         //to fix rendering artefacts on first run
         Game activeGame = JChessApp.jcv.getActiveTabGame();
-        if( activeGame != null && JChessApp.jcv.getNumberOfOpenedTabs() == 0 )
-        {
+        if (activeGame != null && JChessApp.jcv.getNumberOfOpenedTabs() == 0) {
             activeGame.chessboard.resizeChessboard(activeGame.chessboard.get_height(false));
             activeGame.chessboard.repaint();
             activeGame.repaint();
@@ -273,77 +252,69 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         //dirty hacks ends over here :)
     }
 
-    /** Method to end game
-     *  @param message what to show player(s) at end of the game (for example "draw", "black wins" etc.)
+    /**
+     * Method to end game
+     *
+     * @param message what to show player(s) at end of the game (for example "draw", "black wins" etc.)
      */
-    public void endGame(String message)
-    {
+    public void endGame(String message) {
         this.blockedChessboard = true;
         System.out.println(message);
         JOptionPane.showMessageDialog(null, message);
     }
 
-    /** Method to swich active players after move
+    /**
+     * Method to swich active players after move
      */
-    public void switchActive()
-    {
-        if (activePlayer == settings.getPlayerOne())
-        {
+    public void switchActive() {
+        if (activePlayer == settings.getPlayerOne()) {
             activePlayer = settings.getPlayerTwo();
-        }
-        else
-        {
+        } else {
             activePlayer = settings.getPlayerOne();
         }
 
         this.gameClock.switch_clocks();
     }
 
-    /** Method of getting accualy active player
-     *  @return  player The player which have a move
+    /**
+     * Method of getting accualy active player
+     *
+     * @return player The player which have a move
      */
-    public Player getActivePlayer()
-    {
+    public Player getActivePlayer() {
         return this.activePlayer;
     }
 
-    /** Method to go to next move (checks if game is LOCAL/NETWORK etc.)
+    /**
+     * Method to go to next move (checks if game is LOCAL/NETWORK etc.)
      */
-    public void nextMove()
-    {
+    public void nextMove() {
         switchActive();
 
         System.out.println("next move, active player: " + activePlayer.getName() + ", color: " + activePlayer.getColor().name() + ", type: " + activePlayer.getPlayerType().name());
-        if (activePlayer.getPlayerType() == Player.PlayerTypes.LOCALUSER)
-        {
+        if (activePlayer.getPlayerType() == Player.PlayerTypes.LOCALUSER) {
             this.blockedChessboard = false;
-        }
-        else if (activePlayer.getPlayerType() == Player.PlayerTypes.NETWORKUSER)
-        {
+        } else if (activePlayer.getPlayerType() == Player.PlayerTypes.NETWORKUSER) {
             this.blockedChessboard = true;
-        }
-        else if (activePlayer.getPlayerType() == Player.PlayerTypes.COMPUTER)
-        {
+        } else if (activePlayer.getPlayerType() == Player.PlayerTypes.COMPUTER) {
         }
     }
 
-    /** Method to simulate Move to check if it's correct etc. (usable for NETWORK game).
+    /**
+     * Method to simulate Move to check if it's correct etc. (usable for NETWORK game).
+     *
      * @param beginX from which X (on chessboard) move starts
      * @param beginY from which Y (on chessboard) move starts
      * @param endX   to   which X (on chessboard) move go
      * @param endY   to   which Y (on chessboard) move go
-     * */
-    public boolean simulateMove(int beginX, int beginY, int endX, int endY)
-    {
-        try
-        {
+     */
+    public boolean simulateMove(int beginX, int beginY, int endX, int endY) {
+        try {
             chessboard.select(chessboard.getSquare(beginX, beginY));
             if (chessboard.activeSquare.getPiece().allMoves().indexOf(chessboard.getSquare(endX, endY)) != -1) //move
             {
                 chessboard.move(chessboard.getSquare(beginX, beginY), chessboard.getSquare(endX, endY));
-            }
-            else
-            {
+            } else {
                 System.out.println("Bad move");
                 return false;
             }
@@ -352,43 +323,29 @@ public class Game extends JPanel implements MouseListener, ComponentListener
 
             return true;
 
-        }
-        catch(StringIndexOutOfBoundsException exc)
-        {
+        } catch (StringIndexOutOfBoundsException exc) {
             return false;
-        }
-        catch(ArrayIndexOutOfBoundsException exc)
-        {
+        } catch (ArrayIndexOutOfBoundsException exc) {
             return false;
-        }
-        catch(NullPointerException exc)
-        {
+        } catch (NullPointerException exc) {
             return false;
-        }
-        finally
-        {
+        } finally {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, "ERROR");
         }
     }
 
     // MouseListener:
-    public void mouseClicked(MouseEvent arg0)
-    {
+    public void mouseClicked(MouseEvent arg0) {
     }
 
-    public boolean undo()
-    {
+    public boolean undo() {
         boolean status = false;
 
-        if( this.settings.gameType == Settings.gameTypes.LOCAL)
-        {
+        if (this.settings.gameType == Settings.gameTypes.LOCAL) {
             status = chessboard.undo();
-            if( status )
-            {
+            if (status) {
                 this.switchActive();
-            }
-            else
-            {
+            } else {
                 chessboard.repaint();//repaint for sure
             }
         }
@@ -396,108 +353,79 @@ public class Game extends JPanel implements MouseListener, ComponentListener
         return status;
     }
 
-    public boolean rewindToBegin()
-    {
+    public boolean rewindToBegin() {
         boolean result = false;
 
-        if( this.settings.gameType == Settings.gameTypes.LOCAL)
-        {
-            while( chessboard.undo() )
-            {
+        if (this.settings.gameType == Settings.gameTypes.LOCAL) {
+            while (chessboard.undo()) {
                 result = true;
             }
-        }
-        else
-        {
-            throw new UnsupportedOperationException( Settings.lang("operation_supported_only_in_local_game") );
+        } else {
+            throw new UnsupportedOperationException(Settings.lang("operation_supported_only_in_local_game"));
         }
 
         return result;
     }
 
-    public boolean rewindToEnd() throws UnsupportedOperationException
-    {
+    public boolean rewindToEnd() throws UnsupportedOperationException {
         boolean result = false;
 
-        if( this.settings.gameType == Settings.gameTypes.LOCAL)
-        {
-            while( chessboard.redo() )
-            {
+        if (this.settings.gameType == Settings.gameTypes.LOCAL) {
+            while (chessboard.redo()) {
                 result = true;
             }
-        }
-        else
-        {
-            throw new UnsupportedOperationException( Settings.lang("operation_supported_only_in_local_game") );
+        } else {
+            throw new UnsupportedOperationException(Settings.lang("operation_supported_only_in_local_game"));
         }
 
         return result;
     }
 
-    public boolean redo()
-    {
+    public boolean redo() {
         boolean status = chessboard.redo();
-        if( this.settings.gameType == Settings.gameTypes.LOCAL)
-        {
-            if ( status )
-            {
+        if (this.settings.gameType == Settings.gameTypes.LOCAL) {
+            if (status) {
                 this.nextMove();
-            }
-            else
-            {
+            } else {
                 chessboard.repaint();//repaint for sure
             }
-        }
-        else
-        {
-            throw new UnsupportedOperationException( Settings.lang("operation_supported_only_in_local_game") );
+        } else {
+            throw new UnsupportedOperationException(Settings.lang("operation_supported_only_in_local_game"));
         }
         return status;
     }
 
 
-
-    public void mousePressed(MouseEvent event)
-    {
+    public void mousePressed(MouseEvent event) {
         if (event.getButton() == MouseEvent.BUTTON3) //right button
         {
             this.undo();
-        }
-        else if (event.getButton() == MouseEvent.BUTTON2 && settings.gameType == Settings.gameTypes.LOCAL)
-        {
+        } else if (event.getButton() == MouseEvent.BUTTON2 && settings.gameType == Settings.gameTypes.LOCAL) {
             this.redo();
-        }
-        else if (event.getButton() == MouseEvent.BUTTON1) //left button
+        } else if (event.getButton() == MouseEvent.BUTTON1) //left button
         {
 
-            if (!blockedChessboard)
-            {
-                try
-                {
+            if (!blockedChessboard) {
+                try {
                     int x = event.getX();//get X position of mouse
                     int y = event.getY();//get Y position of mouse
 
                     Square sq = chessboard.getSquareConsideringLabels(x, y);
                     if ((sq == null && sq.getPiece() == null && chessboard.activeSquare == null)
-                            || (this.chessboard.activeSquare == null && sq.getPiece() != null && sq.getPiece().getPlayer() != this.activePlayer))
-                    {
+                            || (this.chessboard.activeSquare == null && sq.getPiece() != null && sq.getPiece().getPlayer() != this.activePlayer)) {
                         return;
                     }
 
-                    if (sq.getPiece() != null && sq.getPiece().getPlayer() == this.activePlayer && sq != chessboard.activeSquare)
-                    {
+                    if (sq.getPiece() != null && sq.getPiece().getPlayer() == this.activePlayer && sq != chessboard.activeSquare) {
                         chessboard.unselect();
                         chessboard.select(sq);
-                    }
-                    else if (chessboard.activeSquare == sq) //unselect
+                    } else if (chessboard.activeSquare == sq) //unselect
                     {
                         chessboard.unselect();
-                    }
-                    else if (chessboard.activeSquare != null && chessboard.activeSquare.getPiece() != null
+                    } else if (chessboard.activeSquare != null && chessboard.activeSquare.getPiece() != null
                             && chessboard.activeSquare.getPiece().allMoves().indexOf(sq) != -1) //move
                     {
-                        if (settings.gameType == Settings.gameTypes.LOCAL)
-                        {
+                        if (settings.gameType == Settings.gameTypes.LOCAL) {
                             chessboard.move(chessboard.activeSquare, sq);
                         }
 
@@ -509,17 +437,13 @@ public class Game extends JPanel implements MouseListener, ComponentListener
 
                         //checkmate or stalemate
                         King king;
-                        if (this.activePlayer == settings.getPlayerOne())
-                        {
+                        if (this.activePlayer == settings.getPlayerOne()) {
                             king = chessboard.getKingWhite();
-                        }
-                        else
-                        {
+                        } else {
                             king = chessboard.getKingBlack();
                         }
 
-                        switch (king.isCheckmatedOrStalemated())
-                        {
+                        switch (king.isCheckmatedOrStalemated()) {
                             case 1:
                                 this.endGame("Checkmate! " + king.getPlayer().getColor().toString() + " player lose!");
                                 break;
@@ -529,39 +453,31 @@ public class Game extends JPanel implements MouseListener, ComponentListener
                         }
                     }
 
-                }
-                catch(NullPointerException exc)
-                {
+                } catch (NullPointerException exc) {
                     System.err.println(exc.getMessage());
                     chessboard.repaint();
                     return;
                 }
-            }
-            else if (blockedChessboard)
-            {
+            } else if (blockedChessboard) {
                 System.out.println("Chessboard is blocked");
             }
         }
         //chessboard.repaint();
     }
 
-    public void mouseReleased(MouseEvent arg0)
-    {
+    public void mouseReleased(MouseEvent arg0) {
     }
 
-    public void mouseEntered(MouseEvent arg0)
-    {
+    public void mouseEntered(MouseEvent arg0) {
     }
 
-    public void mouseExited(MouseEvent arg0)
-    {
+    public void mouseExited(MouseEvent arg0) {
     }
 
-    public void componentResized(ComponentEvent e)
-    {
+    public void componentResized(ComponentEvent e) {
         int height = this.getHeight() >= this.getWidth() ? this.getWidth() : this.getHeight();
-        int chess_height = (int)Math.round( (height * 0.8)/8 )*8;
-        this.chessboard.resizeChessboard((int)chess_height);
+        int chess_height = (int) Math.round((height * 0.8) / 8) * 8;
+        this.chessboard.resizeChessboard((int) chess_height);
         chess_height = this.chessboard.getHeight();
         this.moves.getScrollPane().setLocation(new Point(chess_height + 5, 100));
         this.moves.getScrollPane().setSize(this.moves.getScrollPane().getWidth(), chess_height - 100);
@@ -569,24 +485,19 @@ public class Game extends JPanel implements MouseListener, ComponentListener
 
     }
 
-    public void componentMoved(ComponentEvent e)
-    {
+    public void componentMoved(ComponentEvent e) {
     }
 
-    public void componentShown(ComponentEvent e)
-    {
+    public void componentShown(ComponentEvent e) {
     }
 
-    public void componentHidden(ComponentEvent e)
-    {
+    public void componentHidden(ComponentEvent e) {
     }
 
-    public void setSettings(Settings settings)
-    {
+    public void setSettings(Settings settings) {
         this.settings = settings;
     }
 }
 
-class ReadGameError extends Exception
-{
+class ReadGameError extends Exception {
 }

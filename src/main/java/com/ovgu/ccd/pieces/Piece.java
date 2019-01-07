@@ -21,11 +21,11 @@
 package com.ovgu.ccd.pieces;
 
 
-import com.ovgu.ccd.applogic.Player.Colors;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
-
+import com.ovgu.ccd.applogic.Player.Colors;
 import com.ovgu.ccd.gui.chessboardListener.Point;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -47,7 +47,6 @@ public abstract class Piece {
     IBoard chessboard; // <-- this relations isn't in class diagram, but it's necessary :/
 
     /**
-     *
      * @param chessboard
      * @param player
      */
@@ -58,16 +57,15 @@ public abstract class Piece {
 
     }
 
-    public enum PieceTypes{
-        BISHOP, ROOK, KING,KNIGHT,PAWN,QUEEN
+    public enum PieceTypes {
+        BISHOP, ROOK, KING, KNIGHT, PAWN, QUEEN
     }
 
     /* Method to draw piece on chessboard
      * @graph : where to draw
      */
 
-    final public void draw(Graphics g)
-    {
+    final public void draw(Graphics g) {
         Point center = this.chessboard.getChessboardGrid().getSquare(
                 this.square.getPosX(),
                 this.square.getPosY()).center();
@@ -77,18 +75,12 @@ public abstract class Piece {
                 null);
     }
 
-    void setImage()
-    {
-        if (this.getPlayer().getColor() == this.getPlayer().getColor().BLACK)
-        {
+    void setImage() {
+        if (this.getPlayer().getColor() == this.getPlayer().getColor().BLACK) {
             image = imageBlack;
-        }
-        else if (this.getPlayer().getColor() == this.getPlayer().getColor().WHITE)
-        {
+        } else if (this.getPlayer().getColor() == this.getPlayer().getColor().WHITE) {
             image = imageWhite;
-        }
-        else
-        {
+        } else {
             image = imageGray;
         }
         orgImage = image;

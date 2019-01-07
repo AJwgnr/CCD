@@ -22,8 +22,8 @@
 package com.ovgu.ccd.pieces;
 
 import com.ovgu.ccd.applogic.IBoard;
-import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.applogic.Player;
+import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.moves.StraightMoveFactory;
 
 import java.util.ArrayList;
@@ -58,12 +58,12 @@ public class Rook extends Piece {
 
 
     /**
-     *  Annotation to superclass Piece changing pawns location
-     * @return  ArrayList with new position of piece
+     * Annotation to superclass Piece changing pawns location
+     *
+     * @return ArrayList with new position of piece
      */
     @Override
-    public ArrayList allMoves()
-    {
+    public ArrayList allMoves() {
         ArrayList moves = new ArrayList();
         try {
             moves.addAll(StraightMoveFactory.getMoves(chessboard, this).moves());

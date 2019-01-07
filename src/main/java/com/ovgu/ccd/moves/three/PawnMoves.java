@@ -362,7 +362,7 @@ public class PawnMoves implements IMove {
         King king = board.myKing(piece.getColor());
 
         try {
-             possibleMoves.addAll(allGreyMoves(true));
+            possibleMoves.addAll(allGreyMoves(true));
         } catch (Exception e) {
             e.printStackTrace();
         }

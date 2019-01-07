@@ -20,9 +20,9 @@
  */
 package com.ovgu.ccd.pieces;
 
-import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
+import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.moves.DiagonalMoveFactory;
 
 import java.util.ArrayList;
