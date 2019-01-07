@@ -44,7 +44,7 @@ public class Castling {
      * @param y
      * @return
      */
-    public Rook getRook(final int x, final int y) {
+    protected Rook getRook(final int x, final int y) {
         if (king.getColor() == Player.Colors.WHITE) {
             if (leftWhiteCastling(x, y)) {
                 return (Rook) board.getSquare(0, ThreePlayerChessboard.A).getPiece();
@@ -70,7 +70,7 @@ public class Castling {
      * @param rook
      * @return
      */
-    private Square newRookPosition(final Piece rook) {
+    protected Square newRookPosition(final Piece rook) {
         Square pieceSquare = rook.getSquare();
         if (pieceSquare.getPosX() == 0 && pieceSquare.getPosY() == ThreePlayerChessboard.A) {
             return new Square(0, ThreePlayerChessboard.C, null);
@@ -90,7 +90,7 @@ public class Castling {
     /**
      * @return
      */
-    private boolean leftWhiteCastlingPossible() {
+    public boolean leftWhiteCastlingPossible() {
         Piece piece = null;
 
         if (king.getColor() == Player.Colors.WHITE) {
@@ -114,7 +114,7 @@ public class Castling {
     /**
      * @return
      */
-    private boolean leftBlackCastlingPossible() {
+    public boolean leftBlackCastlingPossible() {
         Piece piece = null;
 
         if (king.getColor() == Player.Colors.BLACK) {
@@ -138,7 +138,7 @@ public class Castling {
     /**
      * @return
      */
-    private boolean leftGreyCastlingPossible() {
+    public boolean leftGreyCastlingPossible() {
         Piece piece = null;
 
         if (king.getColor() == Player.Colors.GREY) {
@@ -181,7 +181,7 @@ public class Castling {
     /**
      * @return
      */
-    private boolean rightWhiteCastlingPossible() {
+    public boolean rightWhiteCastlingPossible() {
         Piece piece = null;
 
         if (king.getColor() == Player.Colors.WHITE) {
@@ -205,7 +205,7 @@ public class Castling {
     /**
      * @return
      */
-    private boolean rightBlackCastlingPossible() {
+    public boolean rightBlackCastlingPossible() {
         Piece piece = null;
 
         if (king.getColor() == Player.Colors.BLACK) {
@@ -229,7 +229,7 @@ public class Castling {
     /**
      * @return
      */
-    private boolean rightGreyCastlingPossible() {
+    public boolean rightGreyCastlingPossible() {
         Piece piece = null;
 
         if (king.getColor() == Player.Colors.GREY) {
@@ -253,7 +253,7 @@ public class Castling {
     /**
      * @return
      */
-    private boolean rightCastlingPossible() {
+    public boolean rightCastlingPossible() {
         if (king == null) {
             return false;
         }
@@ -274,7 +274,7 @@ public class Castling {
      * @param y
      * @return
      */
-    private boolean leftWhiteCastling(final int x, final int y) {
+    public boolean leftWhiteCastling(final int x, final int y) {
         return leftWhiteCastlingPossible() && x == 0 && y == ThreePlayerChessboard.B;
     }
 
@@ -292,7 +292,7 @@ public class Castling {
      * @param y
      * @return
      */
-    private boolean leftBlackCastling(final int x, final int y) {
+    public boolean leftBlackCastling(final int x, final int y) {
         return leftBlackCastlingPossible() && x == 7 && y == ThreePlayerChessboard.K;
     }
 
@@ -301,7 +301,7 @@ public class Castling {
      * @param y
      * @return
      */
-    private boolean rightBlackCastling(final int x, final int y) {
+    public boolean rightBlackCastling(final int x, final int y) {
         return rightBlackCastlingPossible() && x == 7 && y == ThreePlayerChessboard.B;
     }
 
@@ -310,7 +310,7 @@ public class Castling {
      * @param y
      * @return
      */
-    private boolean leftGreyCastling(final int x, final int y) {
+    public boolean leftGreyCastling(final int x, final int y) {
         return leftGreyCastlingPossible() && x == 11 && y == ThreePlayerChessboard.G;
     }
 
@@ -319,7 +319,7 @@ public class Castling {
      * @param y
      * @return
      */
-    private boolean rightGreyCastling(final int x, final int y) {
+    public boolean rightGreyCastling(final int x, final int y) {
         return rightGreyCastlingPossible() && x == 11 && y == ThreePlayerChessboard.K;
     }
 
@@ -328,7 +328,7 @@ public class Castling {
      * @param y
      * @return
      */
-    private boolean isCastling(final int x, final int y) {
+    public boolean isCastling(final int x, final int y) {
         if (king == null) {
             return false;
         }
