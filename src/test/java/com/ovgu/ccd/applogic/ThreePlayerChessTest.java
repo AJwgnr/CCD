@@ -92,7 +92,7 @@ public class ThreePlayerChessTest {
 
         assertTrue(
                 board.getRightSextantSquare(new Square(2, ThreePlayerChessboard.D, null)).equals(
-                        new Square(1, ThreePlayerChessboard.E, null))
+                        new Square(3, ThreePlayerChessboard.E, null))
         );
     }
 
