@@ -6,6 +6,7 @@ import com.ovgu.ccd.pieces.Square;
 import org.junit.Before;
 import org.junit.Test;
 
+import static junit.framework.Assert.assertNotSame;
 import static junit.framework.TestCase.assertEquals;
 
 public class ChessboardGridTest
@@ -37,5 +38,13 @@ public class ChessboardGridTest
         assertEquals(
                 grid.getSquareWithinPoint(grid.getSquare(1,1).center()),
                 grid.getSquare(1,1));
+    }
+
+    @Test
+    public void testSquareFillColorScheme()
+    {
+        assertNotSame(
+                grid.getSquare(1,1).getFillColor(),
+                grid.getSquare(1,2).getFillColor());
     }
 }

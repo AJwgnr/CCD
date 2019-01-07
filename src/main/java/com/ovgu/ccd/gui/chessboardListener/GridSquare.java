@@ -16,6 +16,8 @@ public class GridSquare extends GeometricPrimitiveDrawer
     private HashMap<String, Point> vertices = new HashMap<String, Point>();
     private Square square = null;
     private boolean highlight = false;
+    private Color fillColor = null;
+    private Color highlightColor = null;
 
 
     /**
@@ -254,6 +256,51 @@ public class GridSquare extends GeometricPrimitiveDrawer
 
 
     /**
+     * sets fill color
+     * @param color color
+     */
+    public void setFillColor(Color color)
+    {
+        this.fillColor = color;
+    }
+
+
+    /**
+     * returns the fill color value
+     * @return: fill color
+     *
+     */
+    public Color getFillColor()
+    {
+        return this.fillColor;
+    }
+
+
+    /**
+     * sets highlight color
+     *
+     * @param color
+     *
+     */
+    public void setHighlightColor(Color color)
+    {
+        this.highlightColor = color;
+    }
+
+
+    /**
+     * returns the highlight color value
+     *
+     * @return fill color
+     *
+     */
+    public Color getHighlightColor()
+    {
+        return this.highlightColor;
+    }
+
+
+    /**
      * draws the square
      *
      * @param graphics graphics
@@ -263,6 +310,13 @@ public class GridSquare extends GeometricPrimitiveDrawer
     public void draw(Graphics graphics)
     {
         Polygon polygon = toPolygon();
+
+        if (this.fillColor != null)
+        {
+            graphics.setColor(this.fillColor);
+            graphics.fillPolygon(polygon);
+        }
+
         if (this.highlight)
         {
             graphics.setColor(new Color(50,250,100, 100));
