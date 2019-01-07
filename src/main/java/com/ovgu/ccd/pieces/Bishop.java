@@ -58,7 +58,8 @@ public class Bishop extends Piece {
 
     /**
      * Annotation to superclass Piece changing pawns location
-     * @return  ArrayList with new position of piece
+     *
+     * @return ArrayList with new position of piece
      */
     @Override
     public ArrayList allMoves() {

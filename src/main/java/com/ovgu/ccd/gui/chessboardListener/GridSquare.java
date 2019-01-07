@@ -257,9 +257,7 @@ public class GridSquare extends GeometricPrimitiveDrawer
 
     /**
      * sets fill color
-     *
-     * @param: Color
-     *
+     * @param color color
      */
     public void setFillColor(Color color)
     {
@@ -269,8 +267,6 @@ public class GridSquare extends GeometricPrimitiveDrawer
 
     /**
      * returns the fill color value
-     *
-     * @param:
      * @return: fill color
      *
      */
@@ -283,7 +279,7 @@ public class GridSquare extends GeometricPrimitiveDrawer
     /**
      * sets highlight color
      *
-     * @param: Color
+     * @param color
      *
      */
     public void setHighlightColor(Color color)
@@ -295,8 +291,7 @@ public class GridSquare extends GeometricPrimitiveDrawer
     /**
      * returns the highlight color value
      *
-     * @param:
-     * @return: fill color
+     * @return fill color
      *
      */
     public Color getHighlightColor()
