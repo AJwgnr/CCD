@@ -30,7 +30,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoDownOneRight0to3() {
+    public void testTwoDownOneRightInPosX0to3() {
         ArrayList<Square> moves;
         for(int y = ThreePlayerChessboard.A; y <= ThreePlayerChessboard.H; y++) {
             board.setPiece(knight, 0, y);
@@ -70,7 +70,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoDownOneRight4to7() {
+    public void testTwoDownOneRightInPosX4to7() {
         ArrayList<Square> moves;
 
         for(int y = ThreePlayerChessboard.A; y <= ThreePlayerChessboard.D; y++) {
@@ -145,7 +145,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoDownOneRight8to11() {
+    public void testTwoDownOneRightInPosX8to11() {
         ArrayList<Square> moves;
 
         for(int y = ThreePlayerChessboard.E; y <= ThreePlayerChessboard.L; y++) {
@@ -234,7 +234,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoDownOneLeft0to3() {
+    public void testTwoDownOneLeftInPosX0to3() {
         ArrayList<Square> moves;
 
         for(int y = ThreePlayerChessboard.A; y <= ThreePlayerChessboard.H; y++) {
@@ -275,7 +275,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoDownOneLeft4to7() {
+    public void testTwoDownOneLeftInPosX4to7() {
         ArrayList<Square> moves;
 
         for(int y = ThreePlayerChessboard.A; y <= ThreePlayerChessboard.D; y++) {
@@ -378,7 +378,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoDownOneLeft8to11() {
+    public void testTwoDownOneLeftInPosX8to11() {
         ArrayList<Square> moves;
 
         for(int y = ThreePlayerChessboard.E; y <= ThreePlayerChessboard.L; y++) {
@@ -481,7 +481,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoUpOneRight0to3() {
+    public void testTwoUpOneRightInPosX0to3() {
         ArrayList<Square> moves;
 
         for(int y = ThreePlayerChessboard.A; y <= ThreePlayerChessboard.G; y++) {
@@ -536,7 +536,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoUpOneRight4to7() {
+    public void testTwoUpOneRightInPosX4to7() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.B; y <= ThreePlayerChessboard.D; y++) {
@@ -646,7 +646,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoUpOneRight8to11() {
+    public void testTwoUpOneRightInPosX8to11() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.I; y <= ThreePlayerChessboard.K; y++) {
@@ -755,7 +755,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoUpOneLeft0to3() {
+    public void testTwoUpOneLeftInPosX0to3() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.B; y <= ThreePlayerChessboard.H; y++) {
@@ -810,7 +810,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoUpOneLeft4to7() {
+    public void testTwoUpOneLeftInPosX4to7() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.A; y <= ThreePlayerChessboard.C; y++) {
@@ -919,7 +919,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoUpOneLeft8to11() {
+    public void testTwoUpOneLeftInPosX8to11() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.J; y <= ThreePlayerChessboard.L; y++) {
@@ -1028,7 +1028,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoRightOneUp0to3() {
+    public void testTwoRightOneUpInPosX0to3() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.A; y <= ThreePlayerChessboard.F; y++) {
@@ -1085,7 +1085,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoRightOneUp4to7() {
+    public void testTwoRightOneUpInPosX4to7() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.A; y <= ThreePlayerChessboard.B; y++) {
@@ -1140,7 +1140,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoRightOneUp8to11() {
+    public void testTwoRightOneUpInPosX8to11() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.L; y <= ThreePlayerChessboard.K; y++) {
@@ -1219,7 +1219,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoRightOneDown0to3() {
+    public void testTwoRightOneDownInPosX0to3() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.A; y <= ThreePlayerChessboard.F; y++) {
@@ -1238,7 +1238,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoRightOneDown4to7() {
+    public void testTwoRightOneDownInPosX4to7() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.A; y <= ThreePlayerChessboard.B; y++) {
@@ -1293,7 +1293,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoRightOneDown8to11() {
+    public void testTwoRightOneDownInPosX8to11() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.E; y <= ThreePlayerChessboard.L; y++) {
@@ -1346,7 +1346,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoLeftOneUp0to3() {
+    public void testTwoLeftOneUpInPosX0to3() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.A; y <= ThreePlayerChessboard.B; y++) {
@@ -1398,7 +1398,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoLeftOneUp4to7() {
+    public void testTwoLeftOneUpInPosX4to7() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.A; y <= ThreePlayerChessboard.B; y++) {
@@ -1453,7 +1453,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoLeftOneUp8to11() {
+    public void testTwoLeftOneUpInPosX8to11() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.G; y <= ThreePlayerChessboard.H; y++) {
@@ -1526,7 +1526,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoLeftOneDown0to3() {
+    public void testTwoLeftOneDownInPosX0to3() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.A; y <= ThreePlayerChessboard.B; y++) {
@@ -1553,7 +1553,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoLeftOneDown4to7() {
+    public void testTwoLeftOneDownInPosX4to7() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.A; y <= ThreePlayerChessboard.B; y++) {
@@ -1608,7 +1608,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testTwoLeftOneDown8to11() {
+    public void testTwoLeftOneDownInPosX8to11() {
         ArrayList<Square> moves;
 
         for (int y = ThreePlayerChessboard.E; y <= ThreePlayerChessboard.F; y++) {
@@ -1635,7 +1635,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMovesRousette1() throws Exception {
+    public void testMovesInRousette1() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight, 8, ThreePlayerChessboard.E);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -1659,7 +1659,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMovesRousette2() throws Exception {
+    public void testMovesInRousette2() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight, 4, ThreePlayerChessboard.D);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -1688,7 +1688,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMovesRousette3() throws Exception {
+    public void testMovesInRousette3() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight, 3, ThreePlayerChessboard.D);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -1716,7 +1716,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMovesRousette4() throws Exception {
+    public void testMovesInRousette4() throws Exception {
         ArrayList<Square> moves;
 
         board.setPiece(knight, 4, ThreePlayerChessboard.I);
@@ -1745,7 +1745,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMovesRousette5() throws Exception {
+    public void testMovesInRousette5() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight, 8, ThreePlayerChessboard.I);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -1774,7 +1774,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMovesRousette6() throws Exception {
+    public void testMovesInRousette6() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  3, ThreePlayerChessboard.E);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -1802,7 +1802,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMoves0H() throws Exception {
+    public void testMovesInSquare0H() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  0, ThreePlayerChessboard.H);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -1817,7 +1817,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMoves0G() throws Exception {
+    public void testMovesInSquare0G() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  0, ThreePlayerChessboard.G);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -1833,7 +1833,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMoves0F() throws Exception {
+    public void testMovesInSquare0F() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  0, ThreePlayerChessboard.F);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -1850,7 +1850,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMoves1E() throws Exception {
+    public void testMovesInSquare1E() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  1, ThreePlayerChessboard.E);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -1868,7 +1868,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMoves1F() throws Exception {
+    public void testMovesInSquare1F() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  1, ThreePlayerChessboard.F);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -1887,7 +1887,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMoves1G() throws Exception {
+    public void testMovesInSquare1G() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  1, ThreePlayerChessboard.G);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -1905,7 +1905,7 @@ public class KnightMovesTest {
 
 
     @Test
-    public void testMoves1H() throws Exception {
+    public void testMovesInSquare1H() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  1, ThreePlayerChessboard.H);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -1920,9 +1920,8 @@ public class KnightMovesTest {
         board.setPiece(null, 1, ThreePlayerChessboard.H);
     }
 
-
     @Test
-    public void testMoves2H() throws Exception {
+    public void testMovesInSquare2H() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  2, ThreePlayerChessboard.H);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -1938,9 +1937,8 @@ public class KnightMovesTest {
         board.setPiece(null, 2, ThreePlayerChessboard.H);
     }
 
-
     @Test
-    public void testMoves2G() throws Exception {
+    public void testMovesInSquare2G() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  2, ThreePlayerChessboard.G);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -1958,9 +1956,8 @@ public class KnightMovesTest {
         board.setPiece(null, 2, ThreePlayerChessboard.G);
     }
 
-
     @Test
-    public void testMoves2F() throws Exception {
+    public void testMovesInSquare2F() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  2, ThreePlayerChessboard.F);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -1980,9 +1977,8 @@ public class KnightMovesTest {
         board.setPiece(null, 2, ThreePlayerChessboard.F);
     }
 
-
     @Test
-    public void testMoves2E() throws Exception {
+    public void testMovesInSquare2E() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  2, ThreePlayerChessboard.F);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -2003,7 +1999,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMoves3E() throws Exception {
+    public void testMovesInSquare3E() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  3, ThreePlayerChessboard.E);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -2026,7 +2022,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMoves3F() throws Exception {
+    public void testMovesInSquare3F() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  3, ThreePlayerChessboard.F);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -2048,7 +2044,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMoves3G() throws Exception {
+    public void testMovesInSquare3G() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  3, ThreePlayerChessboard.G);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -2067,7 +2063,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMoves3H() throws Exception {
+    public void testMovesInSquare3H() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  3, ThreePlayerChessboard.H);
         moves = new KnightMoves(knight, board).allMoves(true);
@@ -2084,7 +2080,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMoves3EBlockedByPieces() throws Exception {
+    public void testMovesInSquare3EBlockedByPieces() throws Exception {
         ArrayList<Square> moves;
         board.setPiece(knight,  3, ThreePlayerChessboard.E);
         Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
@@ -2109,7 +2105,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMovesIn3FWithPossibleCheck() throws Exception {
+    public void testMovesInSquare3FWithPossibleCheck() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -2126,7 +2122,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMovesIn3FStopCheckByEating() throws Exception {
+    public void testMovesInSquare3FStopCheckByEating() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -2148,7 +2144,7 @@ public class KnightMovesTest {
     }
 
     @Test
-    public void testMovesIn3FStopCheck() throws Exception {
+    public void testMovesInSquare3FStopCheck() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);

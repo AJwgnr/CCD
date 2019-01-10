@@ -16,7 +16,7 @@ public class HorizontalDiagonalTEst {
     Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
 
     @Test
-    public void testLeftHorizontal3A() {
+    public void testLeftHorizontalInSquare3A() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 3, ThreePlayerChessboard.A);
@@ -40,7 +40,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal3B() {
+    public void testLeftHorizontalInSquare3B() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 3, ThreePlayerChessboard.B);
@@ -65,7 +65,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal3C() {
+    public void testLeftHorizontalInSquare3C() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 3, ThreePlayerChessboard.C);
@@ -110,7 +110,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal0E() {
+    public void testLeftHorizontalInSquare0E() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 0, ThreePlayerChessboard.E);
@@ -137,7 +137,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal1E() {
+    public void testLeftHorizontalInSquare1E() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 1, ThreePlayerChessboard.E);
@@ -179,7 +179,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal2E() {
+    public void testLeftHorizontalInSquare2E() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 2, ThreePlayerChessboard.E);
@@ -224,7 +224,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal7D() {
+    public void testLeftHorizontalInSquare7D() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 7, ThreePlayerChessboard.D);
@@ -248,7 +248,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal6D() {
+    public void testLeftHorizontalInSquare6D() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 6, ThreePlayerChessboard.D);
@@ -292,7 +292,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal5D() {
+    public void testLeftHorizontalInSquare5D() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 5, ThreePlayerChessboard.D);
@@ -338,7 +338,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal4L() {
+    public void testLeftHorizontalInSquare4L() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.L);
@@ -362,7 +362,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal4K() {
+    public void testLeftHorizontalInSquare4K() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.K);
@@ -406,7 +406,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal4J() {
+    public void testLeftHorizontalInSquare4J() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.J);
@@ -453,7 +453,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal11I() {
+    public void testLeftHorizontalInSquare11I() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 11, ThreePlayerChessboard.I);
@@ -477,7 +477,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal10I() {
+    public void testLeftHorizontalInSquare10I() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 10, ThreePlayerChessboard.I);
@@ -521,7 +521,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal9I() {
+    public void testLeftHorizontalInSquare9I() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 9, ThreePlayerChessboard.I);
@@ -580,7 +580,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal8H() {
+    public void testLeftHorizontalInSquare8H() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.H);
@@ -604,7 +604,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal8G() {
+    public void testLeftHorizontalInSquare8G() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.G);
@@ -648,7 +648,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal8F() {
+    public void testLeftHorizontalInSquare8F() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.F);
@@ -695,7 +695,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal3E() {
+    public void testLeftHorizontalInSquare3E() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 3, ThreePlayerChessboard.E);
@@ -714,7 +714,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal4D() {
+    public void testLeftHorizontalInSquare4D() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.D);
@@ -733,7 +733,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testLeftHorizontal4I() {
+    public void testLeftHorizontalInSquare4I() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.I);
@@ -752,7 +752,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal0D() {
+    public void testRightHorizontalInSquare0D() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 0, ThreePlayerChessboard.D);
@@ -777,7 +777,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal1D() {
+    public void testRightHorizontalInSquare1D() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 1, ThreePlayerChessboard.D);
@@ -821,7 +821,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal2D() {
+    public void testRightHorizontalInSquare2D() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 2, ThreePlayerChessboard.D);
@@ -868,7 +868,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal3H() {
+    public void testRightHorizontalInSquare3H() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 3, ThreePlayerChessboard.H);
@@ -892,7 +892,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal3G() {
+    public void testRightHorizontalInSquare3G() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 3, ThreePlayerChessboard.G);
@@ -936,7 +936,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal3F() {
+    public void testRightHorizontalInSquare3F() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 3, ThreePlayerChessboard.F);
@@ -984,7 +984,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal11E() {
+    public void testRightHorizontalInSquare11E() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 11, ThreePlayerChessboard.E);
@@ -1008,7 +1008,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal10E() {
+    public void testRightHorizontalInSquare10E() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 10, ThreePlayerChessboard.E);
@@ -1052,7 +1052,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal8L() {
+    public void testRightHorizontalInSquare8L() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.L);
@@ -1076,7 +1076,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal8K() {
+    public void testRightHorizontalInSquare8K() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.K);
@@ -1120,7 +1120,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal8J() {
+    public void testRightHorizontalInSquare8J() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.J);
@@ -1157,7 +1157,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal7I() {
+    public void testRightHorizontalInSquare7I() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 7, ThreePlayerChessboard.I);
@@ -1181,7 +1181,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal6I(){
+    public void testRightHorizontalInSquare6I(){
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 6, ThreePlayerChessboard.I);
@@ -1225,7 +1225,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal5I() {
+    public void testRightHorizontalInSquare5I() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 5, ThreePlayerChessboard.I);
@@ -1272,7 +1272,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal4A() {
+    public void testRightHorizontalInSquare4A() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.A);
@@ -1311,7 +1311,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal4B() {
+    public void testRightHorizontalInSquare4B() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.B);
@@ -1356,7 +1356,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal4C() {
+    public void testRightHorizontalInSquare4C() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.C);
@@ -1404,7 +1404,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal8I() {
+    public void testRightHorizontalInSquare8I() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.I);
@@ -1423,7 +1423,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal4D() {
+    public void testRightHorizontalInSquare4D() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.D);
@@ -1442,7 +1442,7 @@ public class HorizontalDiagonalTEst {
     }
 
     @Test
-    public void testRightHorizontal4I() {
+    public void testRightHorizontalInSquare4I() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.I);
@@ -1462,7 +1462,7 @@ public class HorizontalDiagonalTEst {
 
 
     @Test
-    public void testRightHorizontal9E() {
+    public void testRightHorizontalInSquare9E() {
         IBoard board = new ThreePlayerChessboard();
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ((ThreePlayerChessboard) board).setPiece(bishop, 9, ThreePlayerChessboard.E);
