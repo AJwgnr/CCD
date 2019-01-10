@@ -1903,7 +1903,6 @@ public class KnightMovesTest {
         board.setPiece(null, 1, ThreePlayerChessboard.G);
     }
 
-
     @Test
     public void testMovesInSquare1H() throws Exception {
         ArrayList<Square> moves;
@@ -2077,6 +2076,25 @@ public class KnightMovesTest {
                 )
         );
         board.setPiece(null, 3, ThreePlayerChessboard.H);
+    }
+
+    @Test
+    public void testMovesInSquare4K() throws Exception {
+        ArrayList<Square> moves;
+        board.setPiece(knight,  4, ThreePlayerChessboard.K);
+        moves = new KnightMoves(knight, board).allMoves(true);
+        assertTrue(moves.size() == 6);
+        MatcherAssert.assertThat(
+                moves, hasItems(
+                        new Square(6, ThreePlayerChessboard.L, null),
+                        new Square(9, ThreePlayerChessboard.L, null),
+                        new Square(6, ThreePlayerChessboard.J, null),
+                        new Square(9, ThreePlayerChessboard.J, null),
+                        new Square(5, ThreePlayerChessboard.I, null),
+                        new Square(8, ThreePlayerChessboard.I, null)
+                )
+        );
+        board.setPiece(null, 4, ThreePlayerChessboard.K);
     }
 
     @Test

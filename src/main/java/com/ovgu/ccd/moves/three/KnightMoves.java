@@ -183,8 +183,8 @@ public class KnightMoves implements IMove {
         if (piece.getPosX() + 1 == 5) {
             if (ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.D) {
                 move = new Square(piece.getPosX() - 1, piece.getPosY() - 2, null);
-            } else if (ThreePlayerChessboard.L <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.K) {
-                move = new Square(8, piece.getPosY() - 2, null);
+            } else if (ThreePlayerChessboard.K <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L) {
+                move = null;
             } else {
                 if (ThreePlayerChessboard.I == piece.getPosY()) {
                     move = new Square(8, ThreePlayerChessboard.F, null);
