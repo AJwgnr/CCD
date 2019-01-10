@@ -578,4 +578,32 @@ public class PawnMovesGreyTest {
                 )
         );
     }
+
+    @Test
+    public void testMovesInSquare7J() throws Exception {
+        ThreePlayerChessboard board = new ThreePlayerChessboard();
+        Piece king = PieceFactory.getPiece(board, greyPlayer, Piece.PieceTypes.KING);
+        board.setKingGrey((King) king);
+        board.setPiece(king, 3, ThreePlayerChessboard.F);
+
+        Piece pawn = PieceFactory.getPiece(board, greyPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 7, ThreePlayerChessboard.J);
+
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
+        Assert.assertEquals(0, moves.size());
+    }
+
+    @Test
+    public void testMovesInSquare0A() throws Exception {
+        ThreePlayerChessboard board = new ThreePlayerChessboard();
+        Piece king = PieceFactory.getPiece(board, greyPlayer, Piece.PieceTypes.KING);
+        board.setKingGrey((King) king);
+        board.setPiece(king, 3, ThreePlayerChessboard.F);
+
+        Piece pawn = PieceFactory.getPiece(board, greyPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 0, ThreePlayerChessboard.A);
+
+        ArrayList<Square> moves = new PawnMoves(pawn, board).moves();
+        Assert.assertEquals(0, moves.size());
+    }
 }
