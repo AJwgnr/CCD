@@ -45,6 +45,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	private ChessboardLabeling labeling = null;
 	private ArrayList<Square> possibleMoves = null;
 
+	private Color squareStrikeColor = new Color(230, 0, 0, 100);
 	private Color squareHighlight 	= new Color(50, 250, 100, 100);
     private Color squareFillColorA 	= new Color(153, 102, 51, 255);
     private Color squareFillColorB 	= new Color(255, 230, 153, 255);
@@ -90,9 +91,6 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	 */
 	public void setupSquareColorScheme()
 	{
-        for(Map.Entry<String, GridSquare> square : this.squares.entrySet())
-            square.getValue().setHighlightColor(this.squareHighlight);
-
 		this.squares.get("A1").setFillColor(squareFillColorA);
 		this.squares.get("B1").setFillColor(squareFillColorB);
 		this.squares.get("C1").setFillColor(squareFillColorA);
@@ -1233,7 +1231,17 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 		{
 			try
 			{
-				getSquare(possibleMove.getPosX(), possibleMove.getPosY()).setHighlight(true);
+				// convert to grid square object
+				GridSquare gridSquare = getSquare(possibleMove.getPosX(), possibleMove.getPosY());
+
+				// change highlight color according if there is a piece on the square or not
+				if (gridSquare.getBoardSquare().getPiece() != null)
+					gridSquare.setHighlightColor(this.squareStrikeColor);
+				else
+					gridSquare.setHighlightColor(this.squareHighlight);
+
+				// display the color
+				gridSquare.setHighlight(true);
 			}
 			catch(Exception e)
 			{
