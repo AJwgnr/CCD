@@ -1,24 +1,3 @@
-/*
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Authors:
- * Mateusz Sławomir Lach ( matlak, msl )
- * Damian Marciniak
- */
-
 package com.ovgu.ccd.pieces;
 
 import com.ovgu.ccd.applogic.IBoard;
@@ -41,12 +20,15 @@ import java.util.ArrayList;
  * |_|_|_|X|_|_|_|_|0
  * 0 1 2 3 4 5 6 7
  */
-
 public class Rook extends Piece {
 
-    public static short value = 5;
     boolean wasMotion = false;
 
+    /**
+     *
+     * @param chessboard
+     * @param player
+     */
     protected Rook(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "R";
@@ -74,12 +56,19 @@ public class Rook extends Piece {
         return moves;
     }
 
-    // --changes
 
+    /**
+     *
+     * @return
+     */
     public boolean isWasMotion() {
         return wasMotion;
     }
 
+    /**
+     *
+     * @param wasMotion
+     */
     public void setWasMotion(boolean wasMotion) {
         this.wasMotion = wasMotion;
     }

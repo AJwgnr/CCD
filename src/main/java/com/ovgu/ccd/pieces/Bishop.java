@@ -21,12 +21,13 @@ import java.util.ArrayList;
  * |X|_|_|_|_|_|X|_|0
  * 0 1 2 3 4 5 6 7
  */
-
 public class Bishop extends Piece {
 
-    public static short value = 3;
-
-    protected Bishop(IBoard chessboard, Player player) {
+    /**
+     * @param chessboard
+     * @param player
+     */
+    protected Bishop(final IBoard chessboard, final Player player) {
         super(chessboard, player);
         this.symbol = "B";
         imageWhite = ResourceManager.loadImage("Bishop-W.png");
@@ -38,7 +39,6 @@ public class Bishop extends Piece {
 
     /**
      * Annotation to superclass Piece changing pawns location
-     *
      * @return ArrayList with new position of piece
      */
     @Override

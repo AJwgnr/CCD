@@ -16,30 +16,27 @@ public class PieceFactory {
     private static final String PAWN = "PAWN";
 
     /**
+     *
+     * @param board
+     * @param player
      * @param pieceType
      * @return
      */
-    public static Piece getPiece(IBoard board, Player player, Piece.PieceTypes pieceType) {
+    public static Piece getPiece(final IBoard board, final Player player, final Piece.PieceTypes pieceType) {
         String piece = pieceType.toString();
         switch (piece) {
             case BISHOP:
-                Bishop bishop = new Bishop(board, player);
-                return bishop;
+                return (new Bishop(board, player));
             case KING:
-                King king = new King(board, player);
-                return king;
+                return (new King(board, player));
             case KNIGHT:
-                Knight knight = new Knight(board, player);
-                return knight;
+                return (new Knight(board, player));
             case PAWN:
-                Pawn pawn = new Pawn(board, player);
-                return pawn;
+                return (new Pawn(board, player));
             case QUEEN:
-                Queen queen = new Queen(board, player);
-                return queen;
+                return (new Queen(board, player));
             case ROOK:
-                Rook rook = new Rook(board, player);
-                return rook;
+                return (new Rook(board, player));
             default:
                 throw new IllegalArgumentException("Invalid type of a piece " + piece);
         }

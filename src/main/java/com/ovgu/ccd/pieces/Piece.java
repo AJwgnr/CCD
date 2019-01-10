@@ -26,7 +26,9 @@ import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Player.Colors;
 import com.ovgu.ccd.gui.chessboardListener.Point;
 
-import java.awt.*;
+
+import java.awt.Image;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 /**
@@ -37,7 +39,6 @@ public abstract class Piece {
     public static Image imageBlack;
     public static Image imageWhite;
     public static Image imageGray;
-    public static short value = 0;
     private Square square;
     public Player player;
     public String name;
@@ -50,22 +51,25 @@ public abstract class Piece {
      * @param chessboard
      * @param player
      */
-    protected Piece(IBoard chessboard, Player player) {
+    protected Piece(final IBoard chessboard, final Player player) {
         this.chessboard = chessboard;
         this.setPlayer(player);
         this.name = this.getClass().getSimpleName();
 
     }
 
+    /**
+     *
+     */
     public enum PieceTypes {
         BISHOP, ROOK, KING, KNIGHT, PAWN, QUEEN
     }
 
-    /* Method to draw piece on chessboard
-     * @graph : where to draw
+    /**
+     * Method to draw piece on chessboard
+     * @param g where to draw
      */
-
-    final public void draw(Graphics g) {
+    final public void draw(final Graphics g) {
         Point center = this.chessboard.getChessboardGrid().getSquare(
                 this.square.getPosX(),
                 this.square.getPosY()).center();
@@ -75,6 +79,9 @@ public abstract class Piece {
                 null);
     }
 
+    /**
+     *
+     */
     void setImage() {
         if (this.getPlayer().getColor() == this.getPlayer().getColor().BLACK) {
             image = imageBlack;
@@ -86,7 +93,10 @@ public abstract class Piece {
         orgImage = image;
     }
 
-
+    /**
+     *
+     * @return
+     */
     abstract public ArrayList allMoves();
 
     /**
@@ -96,10 +106,15 @@ public abstract class Piece {
      * @param y y position on chessboard
      * @return true if parameters are out of bounds (array)
      */
-    public boolean outsideOfBoard(int x, int y) {
+    public boolean outsideOfBoard(final int x, final int y) {
         return (x < 0 || x > 7 || y < 0 || y > 7);
     }
 
+    /**
+     *
+     * @param position
+     * @return
+     */
     public boolean canMoveTo(Square position) {
         Piece piece = position.getPiece();
         if (piece != null && piece.name.equals("King")) {
@@ -111,6 +126,11 @@ public abstract class Piece {
         return false;
     }
 
+    /**
+     *
+     * @param otherPiece
+     * @return
+     */
     public boolean otherOwner(Piece otherPiece) {
         if (otherPiece == null) {
             return false;
@@ -118,43 +138,82 @@ public abstract class Piece {
         return player != otherPiece.getPlayer();
     }
 
-
+    /**
+     *
+     * @return
+     */
     public String getSymbol() {
         return this.symbol;
     }
 
+    /**
+     *
+     * @return
+     */
     public Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    /**
+     *
+     * @param player
+     */
+    public void setPlayer(final Player player) {
         this.player = player;
     }
 
+    /**
+     *
+     * @return
+     */
     public Colors getColor() {
         return player.getColor();
     }
 
+    /**
+     *
+     * @return
+     */
     public IBoard getChessboard() {
         return chessboard;
     }
 
-    public void setChessboard(IBoard chessboard) {
+    /**
+     *
+     * @param chessboard
+     */
+    public void setChessboard(final IBoard chessboard) {
         this.chessboard = chessboard;
     }
 
+    /**
+     *
+     * @return
+     */
     public Square getSquare() {
         return square;
     }
 
+    /**
+     *
+     * @param square
+     */
     public void setSquare(Square square) {
         this.square = square;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPosX() {
         return square.getPosX();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPosY() {
         return square.getPosY();
     }

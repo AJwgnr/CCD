@@ -33,9 +33,13 @@ import java.util.ArrayList;
  */
 public class Knight extends Piece {
 
-    public static short value = 3;
 
 
+    /**
+     *
+     * @param chessboard
+     * @param player
+     */
     protected Knight(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "N";

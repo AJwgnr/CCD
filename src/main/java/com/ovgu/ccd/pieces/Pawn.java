@@ -66,13 +66,16 @@ import java.util.ArrayList;
  * |_|_|_|_|_|_|_|_|0
  * 0 1 2 3 4 5 6 7
  */
-
 public class Pawn extends Piece {
 
-    public static short value = 1;
     boolean down;
 
-    protected Pawn(IBoard chessboard, Player player) {
+    /**
+     *
+     * @param chessboard
+     * @param player
+     */
+    protected Pawn(final IBoard chessboard, final Player player) {
         super(chessboard, player);
         this.symbol = "";
         imageWhite = ResourceManager.loadImage("Pawn-W.png");
@@ -97,7 +100,6 @@ public class Pawn extends Piece {
         }
         return moves;
     }
-
 
     void promote(Piece newPiece) {
         throw new UnsupportedOperationException("Not supported yet.");

@@ -1,23 +1,3 @@
-/*
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Authors:
- * Mateusz Sławomir Lach ( matlak, msl )
- * Damian Marciniak
- */
 package com.ovgu.ccd.pieces;
 
 import java.util.Objects;
@@ -32,16 +12,23 @@ public class Square {
     private int boardPosX = -1;
     private int boardPosY = -1;
 
-    // dummy square
-    public Square() {
-    }
 
+    /**
+     *
+     * @param x
+     * @param y
+     * @param piece
+     */
     public Square(int x, int y, Piece piece) {
         this.boardPosX = x;
         this.boardPosY = y;
         this.piece = piece;
     }
 
+    /**
+     *
+     * @param square
+     */
     public Square(Square square) {
         this.boardPosX = square.getPosX();
         this.boardPosY = square.getPosY();
@@ -49,26 +36,44 @@ public class Square {
     }
 
 
-    public void setPosX(int x) {
+    /**
+     *
+     * @param x
+     */
+    public void setPosX(final int x) {
         this.boardPosX = x;
     }
 
 
-    public void setPosY(int y) {
+    /**
+     *
+     * @param y
+     */
+    public void setPosY(final int y) {
         this.boardPosY = y;
     }
 
 
+    /**
+     *
+     * @return
+     */
     public int getPosX() {
         return this.boardPosX;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public int getPosY() {
         return this.boardPosY;
     }
 
 
+    /**
+     *
+     */
     public void print() {
         System.out.println("Square Hashcode:  " + this.hashCode());
         System.out.println("Board Position X: " + this.getPosX());
@@ -81,7 +86,7 @@ public class Square {
     /**
      * @param piece
      */
-    public void setPiece(Piece piece) {
+    public void setPiece(final Piece piece) {
         if (this.piece != null) {
             this.piece.setSquare(null);
         }
@@ -93,12 +98,11 @@ public class Square {
 
     /**
      * checks whether two squares are equal by comparing the x,y corrdinate and checking if there is the same piece on it
-     *
      * @param o
      * @return
      */
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (o == this) return true;
         if (!(o instanceof Square)) return false;
 
@@ -121,14 +125,27 @@ public class Square {
         return piece;
     }
 
+
+    /**
+     *
+     * @return
+     */
     public boolean isEmpty() {
         return piece == null;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isInvalid() {
         return invalid;
     }
 
+    /**
+     *
+     * @param value
+     */
     public void setInvalid(boolean value) {
         this.invalid = value;
     }

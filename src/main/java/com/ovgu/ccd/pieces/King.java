@@ -1,23 +1,3 @@
-/*
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Authors:
- * Mateusz Sławomir Lach ( matlak, msl )
- * Damian Marciniak
- */
 package com.ovgu.ccd.pieces;
 
 /**
@@ -45,11 +25,17 @@ import com.ovgu.ccd.moves.KingMoveFactory;
 
 import java.util.ArrayList;
 
+/**
+ *
+ */
 public class King extends Piece {
 
     private boolean wasMotion = false;
-    public static short value = 99;
 
+    /**
+     * @param chessboard
+     * @param player
+     */
     protected King(IBoard chessboard, Player player) {
         super(chessboard, player);
         this.symbol = "K";
@@ -471,11 +457,18 @@ public class King extends Piece {
         return ret;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public boolean isWasMotion() {
         return wasMotion;
     }
 
+    /**
+     *
+     * @param wasMotion
+     */
     public void setWasMotion(boolean wasMotion) {
         this.wasMotion = wasMotion;
     }
