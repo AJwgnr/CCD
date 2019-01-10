@@ -59,6 +59,19 @@
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.11.0</version>
             </plugin>
+            <plugin>
+                <groupId>org.openclover</groupId>
+                <artifactId>clover-maven-plugin</artifactId>
+                <version>4.3.1</version>
+                <configuration>
+                  <generateHtml>true</generateHtml>
+                  <generateXml>true</generateXml>
+                  <excludes>
+                    <exclude>**/com/ovgu/ccd/gui/**/**.java</exclude>
+                    <exclude>**/resources/**/**.java</exclude>
+                  </excludes>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
