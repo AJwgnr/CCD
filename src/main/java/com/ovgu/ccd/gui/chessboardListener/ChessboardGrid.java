@@ -46,6 +46,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	private ArrayList<Square> possibleMoves = null;
 
 	private Color squareStrikeColor = new Color(230, 0, 0, 100);
+	private Color squareStuckColor 	= new Color(0, 0, 230, 100);
 	private Color squareHighlight 	= new Color(50, 250, 100, 100);
     private Color squareFillColorA 	= new Color(153, 102, 51, 255);
     private Color squareFillColorB 	= new Color(255, 230, 153, 255);
@@ -1227,6 +1228,15 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	public void displayPossibleMoves(GridSquare square)
     {
         this.possibleMoves = square.getBoardSquare().getPiece().allMoves();
+
+        // color when unable to move somewhere
+        if (this.possibleMoves.size() == 0)
+		{
+			square.setHighlightColor(this.squareStuckColor);
+			square.setHighlight(true);
+		}
+
+		// moves possible
         for (Square possibleMove : this.possibleMoves)
 		{
 			try
