@@ -3,8 +3,8 @@ package com.ovgu.ccd.pieces;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
 
-/**
- *
+/** Factory class that creates the different types of chess pieces
+ * and assigns them to a board and a player
  */
 public class PieceFactory {
 
@@ -15,12 +15,11 @@ public class PieceFactory {
     private static final String ROOK = "ROOK";
     private static final String PAWN = "PAWN";
 
-    /**
-     *
-     * @param board
-     * @param player
-     * @param pieceType
-     * @return
+    /** Creates a piece (pieceType) on the provided board for the provided player.
+     * @param board Board to place the piece on
+     * @param player that will get the piece
+     * @param pieceType type of the piece that will be created
+     * @return the create piece
      */
     public static Piece getPiece(final IBoard board, final Player player, final Piece.PieceTypes pieceType) {
         String piece = pieceType.toString();

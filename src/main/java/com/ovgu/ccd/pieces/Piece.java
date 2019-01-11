@@ -1,23 +1,4 @@
-/*
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 
-/*
- * Authors:
- * Mateusz Sławomir Lach ( matlak, msl )
- * Damian Marciniak
- */
 package com.ovgu.ccd.pieces;
 
 
@@ -25,8 +6,6 @@ import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Player.Colors;
 import com.ovgu.ccd.gui.chessboardListener.Point;
-
-
 import java.awt.Image;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -35,17 +14,55 @@ import java.util.ArrayList;
  * Class to represent a piece (any kind) - this class should be extended to represent pawn, bishop etc.
  */
 public abstract class Piece {
-
+    /**
+     *
+     */
     public static Image imageBlack;
+
+    /**
+     *
+     */
     public static Image imageWhite;
+
+    /**
+     *
+     */
     public static Image imageGray;
+
+    /**
+     *
+     */
     private Square square;
+
+    /**
+     *
+     */
     public Player player;
+
+    /**
+     *
+     */
     public String name;
+
+    /**
+     *
+     */
     public Image orgImage;
+
+    /**
+     *
+     */
     public Image image;
+
+    /**
+     *
+     */
     protected String symbol;
-    IBoard chessboard; // <-- this relations isn't in class diagram, but it's necessary :/
+
+    /**
+     *
+     */
+    IBoard chessboard;
 
     /**
      * @param chessboard
@@ -58,10 +75,10 @@ public abstract class Piece {
 
     }
 
-    /**
-     *
-     */
     public enum PieceTypes {
+        /**
+         * Enumeration of the differnt piece names
+         */
         BISHOP, ROOK, KING, KNIGHT, PAWN, QUEEN
     }
 
@@ -83,9 +100,9 @@ public abstract class Piece {
      *
      */
     void setImage() {
-        if (this.getPlayer().getColor() == this.getPlayer().getColor().BLACK) {
+        if (this.getPlayer().getColor() == Colors.BLACK) {
             image = imageBlack;
-        } else if (this.getPlayer().getColor() == this.getPlayer().getColor().WHITE) {
+        } else if (this.getPlayer().getColor() == Colors.WHITE) {
             image = imageWhite;
         } else {
             image = imageGray;
@@ -115,7 +132,7 @@ public abstract class Piece {
      * @param position
      * @return
      */
-    public boolean canMoveTo(Square position) {
+    public boolean canMoveTo(final Square position) {
         Piece piece = position.getPiece();
         if (piece != null && piece.name.equals("King")) {
             return false;
@@ -131,7 +148,7 @@ public abstract class Piece {
      * @param otherPiece
      * @return
      */
-    public boolean otherOwner(Piece otherPiece) {
+    public boolean otherOwner(final Piece otherPiece) {
         if (otherPiece == null) {
             return false;
         }
@@ -198,7 +215,7 @@ public abstract class Piece {
      *
      * @param square
      */
-    public void setSquare(Square square) {
+    public void setSquare(final Square square) {
         this.square = square;
     }
 
