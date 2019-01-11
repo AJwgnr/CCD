@@ -48,8 +48,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
 	private Color squareStrikeColor = new Color(230, 0, 0, 100);
 	private Color squareStuckColor 	= new Color(0, 0, 230, 100);
 	private Color squareHighlight 	= new Color(50, 250, 100, 100);
-  private Color squareFillColorA 	= new Color(153, 102, 51, 255);
-  private Color squareFillColorB 	= new Color(255, 230, 153, 255);
+  	private Color squareFillColorA 	= new Color(153, 102, 51, 255);
+  	private Color squareFillColorB 	= new Color(255, 230, 153, 255);
 
 
     /**
