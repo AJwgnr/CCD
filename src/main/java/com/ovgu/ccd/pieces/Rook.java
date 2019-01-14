@@ -7,8 +7,7 @@ import com.ovgu.ccd.moves.StraightMoveFactory;
 
 import java.util.ArrayList;
 
-/**
- * Class to represent a chess pawn rook
+/**Class to represent a chess pawn rook.
  * Rook can move:
  * |_|_|_|X|_|_|_|_|7
  * |_|_|_|X|_|_|_|_|6
@@ -22,14 +21,15 @@ import java.util.ArrayList;
  */
 public class Rook extends Piece {
 
+    /**
+     */
     boolean wasMotion = false;
 
     /**
-     *
-     * @param chessboard
-     * @param player
+     * @param chessboard board on which the rook is places
+     * @param player player the rook is assigned
      */
-    protected Rook(IBoard chessboard, Player player) {
+    protected Rook(final IBoard chessboard, final Player player) {
         super(chessboard, player);
         this.symbol = "R";
         imageWhite = ResourceManager.loadImage("Rook-W.png");
@@ -39,14 +39,12 @@ public class Rook extends Piece {
     }
 
 
-    /**
-     * Annotation to superclass Piece changing pawns location
-     *
+    /** Determines all possible Moves of this piece.
      * @return ArrayList with new position of piece
      */
     @Override
     public ArrayList allMoves() {
-        ArrayList moves = new ArrayList();
+        ArrayList<Square> moves = new ArrayList<>();
         try {
             moves.addAll(StraightMoveFactory.getMoves(chessboard, this).moves());
         } catch (Exception e) {
@@ -69,7 +67,7 @@ public class Rook extends Piece {
      *
      * @param wasMotion
      */
-    public void setWasMotion(boolean wasMotion) {
+    public void setWasMotion(final boolean wasMotion) {
         this.wasMotion = wasMotion;
     }
 }

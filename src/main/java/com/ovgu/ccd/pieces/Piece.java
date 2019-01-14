@@ -1,6 +1,4 @@
-
 package com.ovgu.ccd.pieces;
-
 
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
@@ -10,17 +8,14 @@ import java.awt.Image;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-/**
- * Class to represent a piece (any kind) - this class should be extended to represent pawn, bishop etc.
+/**Class to represent a piece (any kind) - this class should be extended to represent pawn, bishop etc.
  */
 public abstract class Piece {
     /**
-     *
      */
     public static Image imageBlack;
 
     /**
-     *
      */
     public static Image imageWhite;
 

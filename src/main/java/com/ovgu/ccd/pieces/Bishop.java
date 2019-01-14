@@ -7,8 +7,7 @@ import com.ovgu.ccd.moves.DiagonalMoveFactory;
 
 import java.util.ArrayList;
 
-/**
- * Class to represent a chess pawn bishop
+/** Class to represent a chess pawn bishop.
  * Bishop can move across the chessboard
  * <p>
  * |_|_|_|_|_|_|_|X|7
@@ -24,8 +23,8 @@ import java.util.ArrayList;
 public class Bishop extends Piece {
 
     /**
-     * @param chessboard
-     * @param player
+     * @param chessboard board on which the Bishop is places
+     * @param player player the Bishop is assigned
      */
     protected Bishop(final IBoard chessboard, final Player player) {
         super(chessboard, player);
@@ -37,19 +36,17 @@ public class Bishop extends Piece {
     }
 
 
-    /**
-     * Annotation to superclass Piece changing pawns location
+    /** Determines all possible Moves of this piece.
      * @return ArrayList with new position of piece
      */
     @Override
     public ArrayList allMoves() {
-        ArrayList moves = new ArrayList();
+        ArrayList<Square> moves = new ArrayList<>();
         try {
             moves.addAll(DiagonalMoveFactory.getMoves(chessboard, this).moves());
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return moves;
     }
 

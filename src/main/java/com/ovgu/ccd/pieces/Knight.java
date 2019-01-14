@@ -8,19 +8,16 @@ import com.ovgu.ccd.moves.KnightMoveFactory;
 
 import java.util.ArrayList;
 
-/**
- * Class to represent a chess pawn knight
+/** Class to represent a chess knight.
  */
 public class Knight extends Piece {
 
 
-
     /**
-     *
-     * @param chessboard
-     * @param player
+     * @param chessboard board on which the Bishop is places
+     * @param player player the Bishop is assigned
      */
-    protected Knight(IBoard chessboard, Player player) {
+    protected Knight(final IBoard chessboard, final Player player) {
         super(chessboard, player);
         this.symbol = "N";
         imageWhite = ResourceManager.loadImage("Knight-W.png");
@@ -29,14 +26,12 @@ public class Knight extends Piece {
         this.setImage();
     }
 
-    /**
-     * Annotation to superclass Piece changing pawns location
-     *
-     * @return ArrayList with new possition of pawn
+    /**Determines all possible Moves of this piece.
+     * @return ArrayList with new position of piece
      */
     @Override
     public ArrayList allMoves() {
-        ArrayList moves = new ArrayList();
+        ArrayList<Square> moves = new ArrayList<Square>();
         try {
             moves.addAll(KnightMoveFactory.getMoves(chessboard, this).moves());
         } catch (Exception e) {

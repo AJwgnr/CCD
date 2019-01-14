@@ -8,8 +8,7 @@ import com.ovgu.ccd.moves.QueenMoveFactory;
 
 import java.util.ArrayList;
 
-/**
- * Class to represent a queen piece
+/** Class to represent a queen piece.
  * Queen can move almost in every way:
  * |_|_|_|X|_|_|_|X|7
  * |X|_|_|X|_|_|X|_|6
@@ -25,9 +24,8 @@ public class Queen extends Piece {
 
 
     /**
-     *
-     * @param chessboard
-     * @param player
+     * @param chessboard board on which the Bishop is places
+     * @param player player the Bishop is assigned
      */
     protected Queen(final IBoard chessboard, final Player player) {
         super(chessboard, player);
@@ -38,14 +36,12 @@ public class Queen extends Piece {
         this.setImage();
     }
 
-    /**
-     * Annotation to superclass Piece changing pawns location
+    /** Determines all possible Moves of this piece.
      * @return ArrayList with new position of piece
      */
     @Override
     public ArrayList allMoves() {
-        ArrayList moves = new ArrayList();
-
+        ArrayList<Square> moves = new ArrayList<>();
         try {
             moves.addAll(QueenMoveFactory.getMoves(chessboard, this).moves());
         } catch (Exception e) {
