@@ -13,8 +13,8 @@ import java.util.List;
  */
 public class Circle  extends GeometricPrimitiveDrawer implements GeometricShape {
     private static final long serialVersionUID = -4701817387438983685L;
-    private int radius = 0;
-    private Point center = new Point(0, 0);
+    private int radius;
+    private Point center;
 
 
     /**
@@ -46,7 +46,7 @@ public class Circle  extends GeometricPrimitiveDrawer implements GeometricShape 
      * @param   line    line
      * @return  list of intersection points (0,1,2)
      */
-    public List<Point> findIntersectionPoint(Line line) {
+    public List<Point> findIntersectionPoint(final Line line) {
         double baX = line.getEndPoint().getX() - line.getStartPoint().getX();
         double baY = line.getEndPoint().getY() - line.getStartPoint().getY();
 
@@ -92,7 +92,7 @@ public class Circle  extends GeometricPrimitiveDrawer implements GeometricShape 
      * @param circle other circle
      * @return list of intersection points
      */
-    public List<Point> findIntersectionPoint(Circle circle) {
+    public List<Point> findIntersectionPoint(final Circle circle) {
         Point circleCenter1 = this.center;
         Point circleCenter2 = circle.center;
 
@@ -110,16 +110,16 @@ public class Circle  extends GeometricPrimitiveDrawer implements GeometricShape 
         Point pointOnIntersectionLine = new Point(x, y);
 
         Point intersectionPoint1 = new Point(
-                pointOnIntersectionLine.getX() + heightOfIntersection *
-                        (circleCenter2.getY() - circleCenter1.getY()) / distBetwCenters,
-                pointOnIntersectionLine.getY() - heightOfIntersection *
-                        (circleCenter2.getX() - circleCenter1.getX()) / distBetwCenters);
+                pointOnIntersectionLine.getX() + heightOfIntersection
+                        * (circleCenter2.getY() - circleCenter1.getY()) / distBetwCenters,
+                pointOnIntersectionLine.getY() - heightOfIntersection
+                        * (circleCenter2.getX() - circleCenter1.getX()) / distBetwCenters);
 
         Point intersectionPoint2 = new Point(
-                pointOnIntersectionLine.getX() - heightOfIntersection *
-                        (circleCenter2.getY() - circleCenter1.getY()) / distBetwCenters,
-                pointOnIntersectionLine.getY() + heightOfIntersection *
-                        (circleCenter2.getX() - circleCenter1.getX()) / distBetwCenters);
+                pointOnIntersectionLine.getX() - heightOfIntersection
+                        * (circleCenter2.getY() - circleCenter1.getY()) / distBetwCenters,
+                pointOnIntersectionLine.getY() + heightOfIntersection
+                        * (circleCenter2.getX() - circleCenter1.getX()) / distBetwCenters);
 
         return Arrays.asList(intersectionPoint1, intersectionPoint2);
     }
