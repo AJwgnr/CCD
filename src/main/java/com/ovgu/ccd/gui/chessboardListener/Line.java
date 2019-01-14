@@ -28,9 +28,10 @@ public class Line extends GeometricShape
 
 
     /**
-     * computes area of specific geometric shape
+     * constructor
      *
-     * @return  returns area of specific geometric shape
+     * @param   start   start point for line
+     * @param   end     end point for line
      */
     public Line(final Point start, final Point end) {
         //setLayout(null);
@@ -41,7 +42,8 @@ public class Line extends GeometricShape
 
 
 
-    /** set coordinates of the start point.
+    /**
+     * set coordinates of the start point.
      *
      * @param start
      */
@@ -51,7 +53,9 @@ public class Line extends GeometricShape
 
 
 
-    /**set coordinates of the end point.
+    /**
+     * set coordinates of the end point.
+     *
      * @param end
      */
     public void setEndPoint(final Point end) {
@@ -59,18 +63,32 @@ public class Line extends GeometricShape
     }
 
 
-    // @return: the start point coordinates
+    /**
+     * get start point of the line
+     *
+     * @return  returns start point
+     */
     public Point getStartPoint() {
         return this.start;
     }
 
 
-    // @return: the end point coordinates
+    /**
+     * get end point of the line
+     *
+     * @return  returns end point
+     */
     public Point getEndPoint() {
         return this.end;
     }
 
 
+    /**
+     * computes and returns the intersection point of two lines
+     *
+     * @param   otherLine   the other line to compute the intersection with
+     * @return  intersection point
+     */
     public Point computeIntersectionPoint(final Line otherLine) {
         int a1 = this.end.getY() - this.start.getY();
         int b1 = this.start.getX() - this.end.getX();
@@ -86,6 +104,11 @@ public class Line extends GeometricShape
     }
 
 
+    /**
+     * draw method of the line to let it been drawn
+     *
+     * @param   graphics    Graphic object
+     */
     @Override
     public void draw(final Graphics graphics) {
         graphics.drawLine(this.start.getX(), this.start.getY(), this.end.getX(), this.end.getY());
