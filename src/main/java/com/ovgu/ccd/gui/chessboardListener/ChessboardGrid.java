@@ -37,16 +37,16 @@ import java.util.Map;
 public class ChessboardGrid extends GeometricPrimitiveDrawer {
     private static final long serialVersionUID = 1716287489012384473L;
 
-    private HashMap<String, Point> points = new HashMap<String, Point>();
-    private HashMap<String, GridSquare> squares = new HashMap<String, GridSquare>();
+    private HashMap<String, Point> points = new HashMap<>();
+    private HashMap<String, GridSquare> squares = new HashMap<>();
     private Node<GridSquare> panelRoot = null;
-    private Hexagon hexagon = null;
+    private Hexagon hexagon;
     private ChessboardLabeling labeling = null;
     private ArrayList<Square> possibleMoves = null;
 
-    private Color squareHighlight = new Color(50, 250, 100, 100);
-    private Color squareFillColorA = new Color(153, 102, 51, 255);
-    private Color squareFillColorB = new Color(255, 230, 153, 255);
+    private final Color squareHighlight = new Color(50, 250, 100, 100);
+    private final Color squareFillColorA = new Color(153, 102, 51, 255);
+    private final Color squareFillColorB = new Color(255, 230, 153, 255);
 
 
     /**
@@ -80,7 +80,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
      * setup: square dual color scheme.
      *
      */
-    public void setupSquareColorScheme() {
+    private void setupSquareColorScheme() {
         for (Map.Entry<String, GridSquare> square : this.squares.entrySet())
             square.getValue().setHighlightColor(this.squareHighlight);
 
@@ -745,232 +745,232 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
      */
     private void setupSquareTree() {
         // set whole hexagon as the root node
-        this.panelRoot = new Node<GridSquare>("root", new GridSquare());
+        this.panelRoot = new Node<>("root", new GridSquare());
 
         List<Node<GridSquare>> children = new ArrayList<Node<GridSquare>>();
 
-        children.add(new Node<GridSquare>("Section A", this.squares.get("Section A")));
-        children.add(new Node<GridSquare>("Section B", this.squares.get("Section B")));
-        children.add(new Node<GridSquare>("Section C", this.squares.get("Section C")));
-        children.add(new Node<GridSquare>("Section D", this.squares.get("Section D")));
-        children.add(new Node<GridSquare>("Section E", this.squares.get("Section E")));
-        children.add(new Node<GridSquare>("Section F", this.squares.get("Section F")));
+        children.add(new Node<>("Section A", this.squares.get("Section A")));
+        children.add(new Node<>("Section B", this.squares.get("Section B")));
+        children.add(new Node<>("Section C", this.squares.get("Section C")));
+        children.add(new Node<>("Section D", this.squares.get("Section D")));
+        children.add(new Node<>("Section E", this.squares.get("Section E")));
+        children.add(new Node<>("Section F", this.squares.get("Section F")));
         this.panelRoot.addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("Section A1F7", this.squares.get("Section A1F7")));
-        children.add(new Node<GridSquare>("Section A3F7", this.squares.get("Section A3F7")));
-        children.add(new Node<GridSquare>("Section A1F5", this.squares.get("Section A1F5")));
-        children.add(new Node<GridSquare>("Section A3F5", this.squares.get("Section A3F5")));
+        children.add(new Node<>("Section A1F7", this.squares.get("Section A1F7")));
+        children.add(new Node<>("Section A3F7", this.squares.get("Section A3F7")));
+        children.add(new Node<>("Section A1F5", this.squares.get("Section A1F5")));
+        children.add(new Node<>("Section A3F5", this.squares.get("Section A3F5")));
         this.panelRoot.getChild("Section A").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("Section B1A7", this.squares.get("Section B1A7")));
-        children.add(new Node<GridSquare>("Section B3A7", this.squares.get("Section B3A7")));
-        children.add(new Node<GridSquare>("Section B1A5", this.squares.get("Section B1A5")));
-        children.add(new Node<GridSquare>("Section B3A5", this.squares.get("Section B3A5")));
+        children.add(new Node<>("Section B1A7", this.squares.get("Section B1A7")));
+        children.add(new Node<>("Section B3A7", this.squares.get("Section B3A7")));
+        children.add(new Node<>("Section B1A5", this.squares.get("Section B1A5")));
+        children.add(new Node<>("Section B3A5", this.squares.get("Section B3A5")));
         this.panelRoot.getChild("Section B").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("Section C1B7", this.squares.get("Section C1B7")));
-        children.add(new Node<GridSquare>("Section C3B7", this.squares.get("Section C3B7")));
-        children.add(new Node<GridSquare>("Section C1B5", this.squares.get("Section C1B5")));
-        children.add(new Node<GridSquare>("Section C3B5", this.squares.get("Section C3B5")));
+        children.add(new Node<>("Section C1B7", this.squares.get("Section C1B7")));
+        children.add(new Node<>("Section C3B7", this.squares.get("Section C3B7")));
+        children.add(new Node<>("Section C1B5", this.squares.get("Section C1B5")));
+        children.add(new Node<>("Section C3B5", this.squares.get("Section C3B5")));
         this.panelRoot.getChild("Section C").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("Section D1C7", this.squares.get("Section D1C7")));
-        children.add(new Node<GridSquare>("Section D3C7", this.squares.get("Section D3C7")));
-        children.add(new Node<GridSquare>("Section D1C5", this.squares.get("Section D1C5")));
-        children.add(new Node<GridSquare>("Section D3C5", this.squares.get("Section D3C5")));
+        children.add(new Node<>("Section D1C7", this.squares.get("Section D1C7")));
+        children.add(new Node<>("Section D3C7", this.squares.get("Section D3C7")));
+        children.add(new Node<>("Section D1C5", this.squares.get("Section D1C5")));
+        children.add(new Node<>("Section D3C5", this.squares.get("Section D3C5")));
         this.panelRoot.getChild("Section D").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("Section E1D7", this.squares.get("Section E1D7")));
-        children.add(new Node<GridSquare>("Section E3D7", this.squares.get("Section E3D7")));
-        children.add(new Node<GridSquare>("Section E1D5", this.squares.get("Section E1D5")));
-        children.add(new Node<GridSquare>("Section E3D5", this.squares.get("Section E3D5")));
+        children.add(new Node<>("Section E1D7", this.squares.get("Section E1D7")));
+        children.add(new Node<>("Section E3D7", this.squares.get("Section E3D7")));
+        children.add(new Node<>("Section E1D5", this.squares.get("Section E1D5")));
+        children.add(new Node<>("Section E3D5", this.squares.get("Section E3D5")));
         this.panelRoot.getChild("Section E").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("Section F1E7", this.squares.get("Section F1E7")));
-        children.add(new Node<GridSquare>("Section F3E7", this.squares.get("Section F3E7")));
-        children.add(new Node<GridSquare>("Section F1E5", this.squares.get("Section F1E5")));
-        children.add(new Node<GridSquare>("Section F3E5", this.squares.get("Section F3E5")));
+        children.add(new Node<>("Section F1E7", this.squares.get("Section F1E7")));
+        children.add(new Node<>("Section F3E7", this.squares.get("Section F3E7")));
+        children.add(new Node<>("Section F1E5", this.squares.get("Section F1E5")));
+        children.add(new Node<>("Section F3E5", this.squares.get("Section F3E5")));
         this.panelRoot.getChild("Section F").addChildren(children);
         children.clear();
 
 
-        children.add(new Node<GridSquare>("A1", this.squares.get("A1")));
-        children.add(new Node<GridSquare>("B1", this.squares.get("B1")));
-        children.add(new Node<GridSquare>("A2", this.squares.get("A2")));
-        children.add(new Node<GridSquare>("B2", this.squares.get("B2")));
+        children.add(new Node<>("A1", this.squares.get("A1")));
+        children.add(new Node<>("B1", this.squares.get("B1")));
+        children.add(new Node<>("A2", this.squares.get("A2")));
+        children.add(new Node<>("B2", this.squares.get("B2")));
         this.panelRoot.getNode("Section A1F7").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("C1", this.squares.get("C1")));
-        children.add(new Node<GridSquare>("D1", this.squares.get("D1")));
-        children.add(new Node<GridSquare>("C2", this.squares.get("C2")));
-        children.add(new Node<GridSquare>("D2", this.squares.get("D2")));
+        children.add(new Node<>("C1", this.squares.get("C1")));
+        children.add(new Node<>("D1", this.squares.get("D1")));
+        children.add(new Node<>("C2", this.squares.get("C2")));
+        children.add(new Node<>("D2", this.squares.get("D2")));
         this.panelRoot.getNode("Section A3F7").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("E1", this.squares.get("E1")));
-        children.add(new Node<GridSquare>("F1", this.squares.get("F1")));
-        children.add(new Node<GridSquare>("E2", this.squares.get("E2")));
-        children.add(new Node<GridSquare>("F2", this.squares.get("F2")));
+        children.add(new Node<>("E1", this.squares.get("E1")));
+        children.add(new Node<>("F1", this.squares.get("F1")));
+        children.add(new Node<>("E2", this.squares.get("E2")));
+        children.add(new Node<>("F2", this.squares.get("F2")));
         this.panelRoot.getNode("Section B1A5").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("G1", this.squares.get("G1")));
-        children.add(new Node<GridSquare>("H1", this.squares.get("H1")));
-        children.add(new Node<GridSquare>("G2", this.squares.get("G2")));
-        children.add(new Node<GridSquare>("H2", this.squares.get("H2")));
+        children.add(new Node<>("G1", this.squares.get("G1")));
+        children.add(new Node<>("H1", this.squares.get("H1")));
+        children.add(new Node<>("G2", this.squares.get("G2")));
+        children.add(new Node<>("H2", this.squares.get("H2")));
         this.panelRoot.getNode("Section B1A7").addChildren(children);
         children.clear();
 
 
-        children.add(new Node<GridSquare>("A3", this.squares.get("A3")));
-        children.add(new Node<GridSquare>("B3", this.squares.get("B3")));
-        children.add(new Node<GridSquare>("A4", this.squares.get("A4")));
-        children.add(new Node<GridSquare>("B4", this.squares.get("B4")));
+        children.add(new Node<>("A3", this.squares.get("A3")));
+        children.add(new Node<>("B3", this.squares.get("B3")));
+        children.add(new Node<>("A4", this.squares.get("A4")));
+        children.add(new Node<>("B4", this.squares.get("B4")));
         this.panelRoot.getNode("Section A1F5").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("C3", this.squares.get("C3")));
-        children.add(new Node<GridSquare>("D3", this.squares.get("D3")));
-        children.add(new Node<GridSquare>("C4", this.squares.get("C4")));
-        children.add(new Node<GridSquare>("D4", this.squares.get("D4")));
+        children.add(new Node<>("C3", this.squares.get("C3")));
+        children.add(new Node<>("D3", this.squares.get("D3")));
+        children.add(new Node<>("C4", this.squares.get("C4")));
+        children.add(new Node<>("D4", this.squares.get("D4")));
         this.panelRoot.getNode("Section A3F5").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("E3", this.squares.get("E3")));
-        children.add(new Node<GridSquare>("F3", this.squares.get("F3")));
-        children.add(new Node<GridSquare>("E4", this.squares.get("E4")));
-        children.add(new Node<GridSquare>("F4", this.squares.get("F4")));
+        children.add(new Node<>("E3", this.squares.get("E3")));
+        children.add(new Node<>("F3", this.squares.get("F3")));
+        children.add(new Node<>("E4", this.squares.get("E4")));
+        children.add(new Node<>("F4", this.squares.get("F4")));
         this.panelRoot.getNode("Section B3A5").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("G3", this.squares.get("G3")));
-        children.add(new Node<GridSquare>("H3", this.squares.get("H3")));
-        children.add(new Node<GridSquare>("G4", this.squares.get("G4")));
-        children.add(new Node<GridSquare>("H4", this.squares.get("H4")));
+        children.add(new Node<>("G3", this.squares.get("G3")));
+        children.add(new Node<>("H3", this.squares.get("H3")));
+        children.add(new Node<>("G4", this.squares.get("G4")));
+        children.add(new Node<>("H4", this.squares.get("H4")));
         this.panelRoot.getNode("Section B3A7").addChildren(children);
         children.clear();
 
 
-        children.add(new Node<GridSquare>("A5", this.squares.get("A5")));
-        children.add(new Node<GridSquare>("B5", this.squares.get("B5")));
-        children.add(new Node<GridSquare>("A6", this.squares.get("A6")));
-        children.add(new Node<GridSquare>("B6", this.squares.get("B6")));
+        children.add(new Node<>("A5", this.squares.get("A5")));
+        children.add(new Node<>("B5", this.squares.get("B5")));
+        children.add(new Node<>("A6", this.squares.get("A6")));
+        children.add(new Node<>("B6", this.squares.get("B6")));
         this.panelRoot.getNode("Section F3E7").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("C5", this.squares.get("C5")));
-        children.add(new Node<GridSquare>("D5", this.squares.get("D5")));
-        children.add(new Node<GridSquare>("C6", this.squares.get("C6")));
-        children.add(new Node<GridSquare>("D6", this.squares.get("D6")));
+        children.add(new Node<>("C5", this.squares.get("C5")));
+        children.add(new Node<>("D5", this.squares.get("D5")));
+        children.add(new Node<>("C6", this.squares.get("C6")));
+        children.add(new Node<>("D6", this.squares.get("D6")));
         this.panelRoot.getNode("Section F3E5").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("I5", this.squares.get("I5")));
-        children.add(new Node<GridSquare>("J5", this.squares.get("J5")));
-        children.add(new Node<GridSquare>("I6", this.squares.get("I6")));
-        children.add(new Node<GridSquare>("J6", this.squares.get("J6")));
+        children.add(new Node<>("I5", this.squares.get("I5")));
+        children.add(new Node<>("J5", this.squares.get("J5")));
+        children.add(new Node<>("I6", this.squares.get("I6")));
+        children.add(new Node<>("J6", this.squares.get("J6")));
         this.panelRoot.getNode("Section E3D5").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("K5", this.squares.get("K5")));
-        children.add(new Node<GridSquare>("L5", this.squares.get("L5")));
-        children.add(new Node<GridSquare>("K6", this.squares.get("K6")));
-        children.add(new Node<GridSquare>("L6", this.squares.get("L6")));
+        children.add(new Node<>("K5", this.squares.get("K5")));
+        children.add(new Node<>("L5", this.squares.get("L5")));
+        children.add(new Node<>("K6", this.squares.get("K6")));
+        children.add(new Node<>("L6", this.squares.get("L6")));
         this.panelRoot.getNode("Section E1D5").addChildren(children);
         children.clear();
 
 
-        children.add(new Node<GridSquare>("A7", this.squares.get("A7")));
-        children.add(new Node<GridSquare>("B7", this.squares.get("B7")));
-        children.add(new Node<GridSquare>("A8", this.squares.get("A8")));
-        children.add(new Node<GridSquare>("B8", this.squares.get("B8")));
+        children.add(new Node<>("A7", this.squares.get("A7")));
+        children.add(new Node<>("B7", this.squares.get("B7")));
+        children.add(new Node<>("A8", this.squares.get("A8")));
+        children.add(new Node<>("B8", this.squares.get("B8")));
         this.panelRoot.getNode("Section F1E7").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("C7", this.squares.get("C7")));
-        children.add(new Node<GridSquare>("D7", this.squares.get("D7")));
-        children.add(new Node<GridSquare>("C8", this.squares.get("C8")));
-        children.add(new Node<GridSquare>("D8", this.squares.get("D8")));
+        children.add(new Node<>("C7", this.squares.get("C7")));
+        children.add(new Node<>("D7", this.squares.get("D7")));
+        children.add(new Node<>("C8", this.squares.get("C8")));
+        children.add(new Node<>("D8", this.squares.get("D8")));
         this.panelRoot.getNode("Section F1E5").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("I7", this.squares.get("I7")));
-        children.add(new Node<GridSquare>("J7", this.squares.get("J7")));
-        children.add(new Node<GridSquare>("I8", this.squares.get("I8")));
-        children.add(new Node<GridSquare>("J8", this.squares.get("J8")));
+        children.add(new Node<>("I7", this.squares.get("I7")));
+        children.add(new Node<>("J7", this.squares.get("J7")));
+        children.add(new Node<>("I8", this.squares.get("I8")));
+        children.add(new Node<>("J8", this.squares.get("J8")));
         this.panelRoot.getNode("Section E3D7").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("K7", this.squares.get("K7")));
-        children.add(new Node<GridSquare>("L7", this.squares.get("L7")));
-        children.add(new Node<GridSquare>("K8", this.squares.get("K8")));
-        children.add(new Node<GridSquare>("L8", this.squares.get("L8")));
+        children.add(new Node<>("K7", this.squares.get("K7")));
+        children.add(new Node<>("L7", this.squares.get("L7")));
+        children.add(new Node<>("K8", this.squares.get("K8")));
+        children.add(new Node<>("L8", this.squares.get("L8")));
         this.panelRoot.getNode("Section E1D7").addChildren(children);
         children.clear();
 
 
-        children.add(new Node<GridSquare>("H9", this.squares.get("H9")));
-        children.add(new Node<GridSquare>("G9", this.squares.get("G9")));
-        children.add(new Node<GridSquare>("H10", this.squares.get("H10")));
-        children.add(new Node<GridSquare>("G10", this.squares.get("G10")));
+        children.add(new Node<>("H9", this.squares.get("H9")));
+        children.add(new Node<>("G9", this.squares.get("G9")));
+        children.add(new Node<>("H10", this.squares.get("H10")));
+        children.add(new Node<>("G10", this.squares.get("G10")));
         this.panelRoot.getNode("Section C1B5").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("F9", this.squares.get("F9")));
-        children.add(new Node<GridSquare>("E9", this.squares.get("E9")));
-        children.add(new Node<GridSquare>("F10", this.squares.get("F10")));
-        children.add(new Node<GridSquare>("E10", this.squares.get("E10")));
+        children.add(new Node<>("F9", this.squares.get("F9")));
+        children.add(new Node<>("E9", this.squares.get("E9")));
+        children.add(new Node<>("F10", this.squares.get("F10")));
+        children.add(new Node<>("E10", this.squares.get("E10")));
         this.panelRoot.getNode("Section C3B5").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("I9", this.squares.get("I9")));
-        children.add(new Node<GridSquare>("J9", this.squares.get("J9")));
-        children.add(new Node<GridSquare>("I10", this.squares.get("I10")));
-        children.add(new Node<GridSquare>("J10", this.squares.get("J10")));
+        children.add(new Node<>("I9", this.squares.get("I9")));
+        children.add(new Node<>("J9", this.squares.get("J9")));
+        children.add(new Node<>("I10", this.squares.get("I10")));
+        children.add(new Node<>("J10", this.squares.get("J10")));
         this.panelRoot.getNode("Section D3C5").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("K9", this.squares.get("K9")));
-        children.add(new Node<GridSquare>("L9", this.squares.get("L9")));
-        children.add(new Node<GridSquare>("K10", this.squares.get("K10")));
-        children.add(new Node<GridSquare>("L10", this.squares.get("L10")));
+        children.add(new Node<>("K9", this.squares.get("K9")));
+        children.add(new Node<>("L9", this.squares.get("L9")));
+        children.add(new Node<>("K10", this.squares.get("K10")));
+        children.add(new Node<>("L10", this.squares.get("L10")));
         this.panelRoot.getNode("Section D3C7").addChildren(children);
         children.clear();
 
 
-        children.add(new Node<GridSquare>("H11", this.squares.get("H11")));
-        children.add(new Node<GridSquare>("G11", this.squares.get("G11")));
-        children.add(new Node<GridSquare>("H12", this.squares.get("H12")));
-        children.add(new Node<GridSquare>("G12", this.squares.get("G12")));
+        children.add(new Node<>("H11", this.squares.get("H11")));
+        children.add(new Node<>("G11", this.squares.get("G11")));
+        children.add(new Node<>("H12", this.squares.get("H12")));
+        children.add(new Node<>("G12", this.squares.get("G12")));
         this.panelRoot.getNode("Section C1B7").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("F11", this.squares.get("F11")));
-        children.add(new Node<GridSquare>("E11", this.squares.get("E11")));
-        children.add(new Node<GridSquare>("F12", this.squares.get("F12")));
-        children.add(new Node<GridSquare>("E12", this.squares.get("E12")));
+        children.add(new Node<>("F11", this.squares.get("F11")));
+        children.add(new Node<>("E11", this.squares.get("E11")));
+        children.add(new Node<>("F12", this.squares.get("F12")));
+        children.add(new Node<>("E12", this.squares.get("E12")));
         this.panelRoot.getNode("Section C3B7").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("I11", this.squares.get("I11")));
-        children.add(new Node<GridSquare>("J11", this.squares.get("J11")));
-        children.add(new Node<GridSquare>("I12", this.squares.get("I12")));
-        children.add(new Node<GridSquare>("J12", this.squares.get("J12")));
+        children.add(new Node<>("I11", this.squares.get("I11")));
+        children.add(new Node<>("J11", this.squares.get("J11")));
+        children.add(new Node<>("I12", this.squares.get("I12")));
+        children.add(new Node<>("J12", this.squares.get("J12")));
         this.panelRoot.getNode("Section D1C5").addChildren(children);
         children.clear();
 
-        children.add(new Node<GridSquare>("K11", this.squares.get("K11")));
-        children.add(new Node<GridSquare>("L11", this.squares.get("L11")));
-        children.add(new Node<GridSquare>("K12", this.squares.get("K12")));
-        children.add(new Node<GridSquare>("L12", this.squares.get("L12")));
+        children.add(new Node<>("K11", this.squares.get("K11")));
+        children.add(new Node<>("L11", this.squares.get("L11")));
+        children.add(new Node<>("K12", this.squares.get("K12")));
+        children.add(new Node<>("L12", this.squares.get("L12")));
         this.panelRoot.getNode("Section D1C7").addChildren(children);
         children.clear();
     }
