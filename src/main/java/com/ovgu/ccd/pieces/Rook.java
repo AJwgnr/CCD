@@ -56,7 +56,6 @@ public class Rook extends Piece {
 
 
     /**
-     *
      * @return
      */
     public boolean isWasMotion() {
@@ -64,7 +63,6 @@ public class Rook extends Piece {
     }
 
     /**
-     *
      * @param wasMotion
      */
     public void setWasMotion(final boolean wasMotion) {

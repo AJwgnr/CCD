@@ -22,7 +22,7 @@ import java.util.ArrayList;
  */
 public class Bishop extends Piece {
 
-    /**
+    /** Creates a bishop on the given board for the given player.
      * @param chessboard board on which the Bishop is places
      * @param player player the Bishop is assigned
      */

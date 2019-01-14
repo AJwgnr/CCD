@@ -1,5 +1,12 @@
 package com.ovgu.ccd.pieces;
 
+import com.ovgu.ccd.applogic.IBoard;
+import com.ovgu.ccd.applogic.Player;
+import com.ovgu.ccd.applogic.ResourceManager;
+import com.ovgu.ccd.moves.KingMoveFactory;
+
+import java.util.ArrayList;
+
 /**
  * Class to represent a chess pawn king. King is the most important
  * piece for the game. Loose of king is the and of game.
@@ -17,26 +24,17 @@ package com.ovgu.ccd.pieces;
  * |_|_|_|_|_|_|_|_|0
  * 0 1 2 3 4 5 6 7
  */
-
-import com.ovgu.ccd.applogic.IBoard;
-import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.applogic.ResourceManager;
-import com.ovgu.ccd.moves.KingMoveFactory;
-
-import java.util.ArrayList;
-
-/**
- *
- */
 public class King extends Piece {
 
+    /**
+     */
     private boolean wasMotion = false;
 
-    /**
-     * @param chessboard
-     * @param player
+    /** Initializes a new king piece on the given chessboard for the given player
+     * @param chessboard chessboard  to place the king on
+     * @param player player that the king is assigned to
      */
-    protected King(IBoard chessboard, Player player) {
+    protected King(final IBoard chessboard, final Player player) {
         super(chessboard, player);
         this.symbol = "K";
         imageWhite = ResourceManager.loadImage("King-W.png");
@@ -46,14 +44,12 @@ public class King extends Piece {
 
     }
 
-    /**
-     * Annotation to superclass Piece changing pawns location
-     *
+    /** Determines all possible Moves of this piece.
      * @return ArrayList with new position of piece
      */
     @Override
     public ArrayList allMoves() {
-        ArrayList moves = new ArrayList();
+        ArrayList<Square> moves = new ArrayList<>();
 
         try {
             moves.addAll(KingMoveFactory.getMoves(chessboard, this).moves());
@@ -64,8 +60,7 @@ public class King extends Piece {
         return moves;
     }
 
-    /**
-     * Method to check is the king is checked
+    /**Method to check is the king is checked.
      *
      * @return bool true if king is not save, else returns false
      */
@@ -73,9 +68,7 @@ public class King extends Piece {
         return !isSafe(this.getSquare());
     }
 
-    /**
-     * Method to check is the king is checked or stalemated
-     *
+    /**Method to check is the king is checked or stalemated.
      * @return int 0 if nothing, 1 if checkmate, else returns 2
      */
     public int isCheckmatedOrStalemated() {
@@ -103,13 +96,11 @@ public class King extends Piece {
         }
     }
 
-    /**
-     * Method to check is the king is checked by an opponent
-     *
+    /** Method to check is the king is checked by an opponent.
      * @param s Squere where is a king
      * @return bool true if king is save, else returns false
      */
-    public boolean isSafe(Square s) //A bit confusing code.
+    public boolean isSafe(final Square s) //A bit confusing code.
     {
         // Rook & Queen
         for (int i = s.getPosY() + 1; i <= 7; ++i) //up
@@ -438,12 +429,11 @@ public class King extends Piece {
         return true;
     }
 
-    /**
-     * Method to check will the king be safe when move
+    /** Method to check will the king be safe when move.
      *
      * @return bool true if king is save, else returns false
      */
-    public boolean willBeSafeWhenMoveOtherPiece(Square currentPosition, Square nextPosition) //long name ;)
+    public boolean willBeSafeWhenMoveOtherPiece(final Square currentPosition, final Square nextPosition) //long name ;)
     {
         Piece tmp = nextPosition.getPiece();
         nextPosition.setPiece(currentPosition.getPiece()); // move without redraw
@@ -458,7 +448,6 @@ public class King extends Piece {
     }
 
     /**
-     *
      * @return
      */
     public boolean isWasMotion() {
@@ -466,10 +455,9 @@ public class King extends Piece {
     }
 
     /**
-     *
      * @param wasMotion
      */
-    public void setWasMotion(boolean wasMotion) {
+    public void setWasMotion(final boolean wasMotion) {
         this.wasMotion = wasMotion;
     }
 }

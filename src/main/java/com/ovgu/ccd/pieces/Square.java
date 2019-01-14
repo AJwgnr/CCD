@@ -99,8 +99,8 @@ public class Square {
     }
 
     /**checks whether two squares are equal by comparing the x,y corrdinate and checking if there is the same piece on it.
-     * @param o
-     * @return
+     * @param o square to compare equality
+     * @return boolean if the squares are the same
      */
     @Override
     public boolean equals(final Object o) {

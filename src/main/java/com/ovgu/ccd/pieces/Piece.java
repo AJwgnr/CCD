@@ -60,8 +60,8 @@ public abstract class Piece {
     IBoard chessboard;
 
     /**
-     * @param chessboard
-     * @param player
+     * @param chessboard chessboard to add the piece
+     * @param player player to add the piece
      */
     protected Piece(final IBoard chessboard, final Player player) {
         this.chessboard = chessboard;
@@ -71,14 +71,12 @@ public abstract class Piece {
     }
 
     public enum PieceTypes {
-        /**
-         * Enumeration of the differnt piece names
+        /**Enumeration of the differnt piece names.
          */
         BISHOP, ROOK, KING, KNIGHT, PAWN, QUEEN
     }
 
-    /**
-     * Method to draw piece on chessboard
+    /** Method to draw piece on chessboard.
      * @param g where to draw
      */
     final public void draw(final Graphics g) {
@@ -91,8 +89,7 @@ public abstract class Piece {
                 null);
     }
 
-    /**
-     *
+    /** Sets the image of the piece
      */
     void setImage() {
         if (this.getPlayer().getColor() == Colors.BLACK) {
@@ -105,14 +102,13 @@ public abstract class Piece {
         orgImage = image;
     }
 
-    /**
-     *
-     * @return
+    /** abstract method that returns all possible moves of a piece.
+     * Must be overwritten in the pieces implementations
+     * @return all possible moves of a piece in a list
      */
     abstract public ArrayList allMoves();
 
-    /**
-     * Method is useful for out of bounds protection
+    /**Method is useful for out of bounds protection.
      *
      * @param x x position on chessboard
      * @param y y position on chessboard
@@ -122,10 +118,9 @@ public abstract class Piece {
         return (x < 0 || x > 7 || y < 0 || y > 7);
     }
 
-    /**
-     *
-     * @param position
-     * @return
+    /** Checks wether a piece can move to a square.
+     * @param position sqaure to move
+     * @return boolean if move is possible
      */
     public boolean canMoveTo(final Square position) {
         Piece piece = position.getPiece();
@@ -139,7 +134,6 @@ public abstract class Piece {
     }
 
     /**
-     *
      * @param otherPiece
      * @return
      */
@@ -150,81 +144,71 @@ public abstract class Piece {
         return player != otherPiece.getPlayer();
     }
 
-    /**
-     *
-     * @return
+    /** Gets the symbol of the piece.
+     * @return symbol
      */
     public String getSymbol() {
         return this.symbol;
     }
 
-    /**
-     *
-     * @return
+    /** Gets the player of the piece.
+     * @return player
      */
     public Player getPlayer() {
         return player;
     }
 
-    /**
-     *
-     * @param player
+    /** Sets the player of the piece.
+     * @param player player
      */
     public void setPlayer(final Player player) {
         this.player = player;
     }
 
-    /**
-     *
-     * @return
+    /**Gets the color of the player on the piece.
+     * @return player color on the square
      */
     public Colors getColor() {
         return player.getColor();
     }
 
-    /**
-     *
-     * @return
+    /** Gets the chessboard of the piece.
+     * @return IBOARD chessboard
      */
     public IBoard getChessboard() {
         return chessboard;
     }
 
-    /**
-     *
-     * @param chessboard
+    /** Sets the chessboard of the piece.
+     * @param chessboard chessboard
      */
     public void setChessboard(final IBoard chessboard) {
         this.chessboard = chessboard;
     }
 
-    /**
-     *
-     * @return
+    /** Gets the sqaure of the piece.
+     * @return square
      */
     public Square getSquare() {
         return square;
     }
 
-    /**
-     *
-     * @param square
+    /** Sets the square of the piece.
+     * @param square sqare to set
      */
     public void setSquare(final Square square) {
         this.square = square;
     }
 
-    /**
-     *
-     * @return
+    /**Gets the x position of the square of this piece.
+     * @return x coordinate
      */
     public int getPosX() {
         return square.getPosX();
     }
 
-    /**
-     *
-     * @return
+    /** Gets the x position of the square of this piece.
+     * @return y coordinate
      */
     public int getPosY() {
         return square.getPosY();

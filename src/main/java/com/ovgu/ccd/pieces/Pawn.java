@@ -8,8 +8,7 @@ import com.ovgu.ccd.moves.PawnMoveFactory;
 
 import java.util.ArrayList;
 
-/**
- * Class to represent a pawn piece
+/**Class to represent a pawn piece.
  * Pawn can move only forvard and can beat only across
  * In first move pawn can move 2 sqares
  * pawn can be upgreade to rook, knight, bishop, Queen if it's in the
@@ -48,9 +47,7 @@ import java.util.ArrayList;
  */
 public class Pawn extends Piece {
 
-    boolean down;
-
-    /**
+    /** Creates a pawn on the given chessboard for the given player
      * @param chessboard board on which the pawn is placed
      * @param player player the pawn is assigned
      */
@@ -60,7 +57,6 @@ public class Pawn extends Piece {
         imageWhite = ResourceManager.loadImage("Pawn-W.png");
         imageBlack = ResourceManager.loadImage("Pawn-B.png");
         imageGray = ResourceManager.loadImage("Pawn-G.png");
-
         this.setImage();
     }
 
