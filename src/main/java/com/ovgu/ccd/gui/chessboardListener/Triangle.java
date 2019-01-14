@@ -5,12 +5,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+/**
+ * @author CCD DeepBlue team
+ * @version 1.0
+ * @since
+ */
 public class Triangle extends GeometricShape {
     private static final long serialVersionUID = -7342706080221603266L;
     private HashMap<String, Point> vertices = new HashMap<String, Point>();
     private HashMap<String, Line> lines = new HashMap<String, Line>();
 
 
+    /**
+     * constructor
+     *
+     * @param a vertex a
+     * @param b vertex b
+     * @param c vertex c
+     */
     public Triangle(Point a, Point b, Point c) {
         this.vertices.put("A", a);
         this.vertices.put("B", b);
@@ -20,12 +32,24 @@ public class Triangle extends GeometricShape {
         this.lines.put("CA", new Line(c, a));
     }
 
+
+    /**
+     * draws the lines of the triangle
+     *
+     * @param graphics graphics
+     */
     @Override
     public void draw(Graphics graphics) {
         for (Map.Entry<String, Line> line : lines.entrySet())
             line.getValue().paint(graphics);
     }
 
+
+    /**
+     * computes the area of the triangle
+     *
+     * @return area of the triangle
+     */
     @Override
     public double area() {
         int x1 = this.vertices.get("A").getX();
