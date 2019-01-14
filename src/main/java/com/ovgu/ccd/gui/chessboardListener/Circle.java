@@ -6,26 +6,46 @@ import java.util.Collections;
 import java.util.List;
 
 
+/**
+ * @author CCD DeepBlue team
+ * @version 1.0
+ * @since
+ */
 public class Circle extends GeometricShape {
     private static final long serialVersionUID = -4701817387438983685L;
     private int radius = 0;
     private Point center = new Point(0, 0);
 
-    public Circle() {
 
-    }
-
+    /**
+     * computes the area of the circle
+     *
+     * @return the area of the circle
+     */
     @Override
     public double area() {
         return 0;
     }
 
+
+    /**
+     * constructor
+     *
+     * @param   center  center point of the circle
+     * @param   radius  radius of the circle
+     */
     public Circle(Point center, int radius) {
         this.center = center;
         this.radius = radius;
     }
 
 
+    /**
+     * computes the intersection points between the circle and a given line
+     *
+     * @param   line    line
+     * @return  list of intersection points (0,1,2)
+     */
     public List<Point> findIntersectionPoint(Line line) {
         double baX = line.getEndPoint().getX() - line.getStartPoint().getX();
         double baY = line.getEndPoint().getY() - line.getStartPoint().getY();
@@ -66,6 +86,12 @@ public class Circle extends GeometricShape {
     }
 
 
+    /**
+     * computes the intersection points between two circles
+     *
+     * @param circle other circle
+     * @return list of intersection points
+     */
     public List<Point> findIntersectionPoint(Circle circle) {
         Point circleCenter1 = this.center;
         Point circleCenter2 = circle.center;
@@ -98,6 +124,12 @@ public class Circle extends GeometricShape {
         return Arrays.asList(intersectionPoint1, intersectionPoint2);
     }
 
+
+    /**
+     * drawing method for the circle
+     *
+     * @param graphics graphics
+     */
     @Override
     public void draw(Graphics graphics) {
         graphics.drawOval(this.center.getX() - this.radius,
