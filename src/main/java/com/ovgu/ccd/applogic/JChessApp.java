@@ -55,7 +55,7 @@ public class JChessApp extends SingleFrameApplication {
         ChessboardGrid chessboardGrid = new ChessboardGrid(new Point(550,550),500);
         ChessboardListener listener = new ChessboardListener(chessboardGrid);
         new com.ovgu.ccd.gui.chessboardListener.Window("ChessboardListener",1280,1280, listener.getPanel());
-        ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
+        ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid, listener);
 
         //jcv = new JChessView(this);
         //show(jcv);
