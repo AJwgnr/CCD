@@ -88,9 +88,9 @@ public class Node<T> {
 
 
     /**
-     * adds a list of childs to the current node
+     * returns a list of children to the current node
      *
-     * @param   children    list of children
+     * @return  list of children
      */
     public List<Node<T>> getChildren() {
         return children;
