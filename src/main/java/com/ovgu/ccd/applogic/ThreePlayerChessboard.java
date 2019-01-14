@@ -44,6 +44,8 @@ public class ThreePlayerChessboard implements IBoard {
     public ArrayList<Piece> greyPawns = new ArrayList<>();
 
     private ChessboardGrid chessboardGrid = null;
+    private ChessboardListener chessboardListener = null;
+
 
     /*------------------------------
     #-------------MATRIX------------
@@ -85,21 +87,25 @@ public class ThreePlayerChessboard implements IBoard {
     }
 
     // chessboard with grid structure
-    public ThreePlayerChessboard(ChessboardGrid grid)
+    public ThreePlayerChessboard(ChessboardGrid grid, ChessboardListener listener)
     {
         this.chessboardGrid = grid;
+        this.chessboardListener = listener;
         initPlayers();
         initSquareMatrix();
         setInvalidSquares();
         initPieceStartPositions();
         redrawPieces();
+
+        Player playerArray[] = {this.whitePlayer, this.greyPlayer, this.blackPlayer};
+        this.chessboardListener.setListenerRestrictions(new PlayerSequenceManager(playerArray));
     }
 
     public void initPlayers()
     {
-        this.whitePlayer = new Player("Mr.White", Player.Colors.WHITE.name());
-        this.greyPlayer = new Player("Mr.Grey", Player.Colors.GREY.name());
-        this.blackPlayer = new Player("Mr.Black", Player.Colors.BLACK.name());
+        this.whitePlayer    = new Player("Mr.White", Player.Colors.WHITE.name());
+        this.greyPlayer     = new Player("Mr.Grey", Player.Colors.GREY.name());
+        this.blackPlayer    = new Player("Mr.Black", Player.Colors.BLACK.name());
     }
 
     private void setInvalidSquares()

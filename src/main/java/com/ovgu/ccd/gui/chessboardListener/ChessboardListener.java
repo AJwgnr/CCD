@@ -1,5 +1,6 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
+import com.ovgu.ccd.applogic.PlayerSequenceManager;
 import com.ovgu.ccd.applogic.ThreePlayerChessboard;
 
 import java.awt.BorderLayout;
@@ -11,12 +12,13 @@ import javax.swing.JPanel;
 /**
  * @author  CCD DeepBlue team
  * @version 1.0
- * @since   1.0
+ * @since
  */
 public class ChessboardListener implements MouseListener 
 {
 	private ChessboardGrid grid = null;
 	private GridSquare squareBuffer = null;
+	PlayerSequenceManager sequenceManager = null;
 
 
 	/**
@@ -44,6 +46,34 @@ public class ChessboardListener implements MouseListener
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.add(this.grid);
 		return mainPanel;
+	}
+
+
+	/**
+	 * restricts the chessboard listener to the sequence of moves provided by the PlayerSequenceManager
+	 *
+	 */
+	public void setListenerRestrictions(PlayerSequenceManager sequenceManager)
+	{
+		this.sequenceManager = sequenceManager;
+	}
+
+
+	/**
+	 * checks whether a move is valid or not
+	 *
+	 * @param
+	 * @return 	true - valid
+	 *			false - in-valid
+	 */
+	public boolean isMoveValid(GridSquare square)
+	{
+		if (this.sequenceManager == null)
+			return true;
+		else if (square.getBoardSquare().getPiece() != null
+				&& this.sequenceManager.getCurrentPlayer() == square.getBoardSquare().getPiece().getPlayer())
+			return true;
+		return false;
 	}
 
 
@@ -88,7 +118,7 @@ public class ChessboardListener implements MouseListener
     private void handlePieceInteraction(GridSquare clickedSquare)
 	{
 		// select piece
-		if (this.squareBuffer == null)
+		if (this.squareBuffer == null && isMoveValid(clickedSquare))
 		{
 			this.squareBuffer = clickedSquare;
 			this.grid.displayPossibleMoves(clickedSquare);
@@ -103,6 +133,8 @@ public class ChessboardListener implements MouseListener
 				movePiece(this.squareBuffer, clickedSquare);
 				this.squareBuffer = null;
 				this.grid.stopDisplayingPossibleMoves();
+				if (this.sequenceManager != null)
+					this.sequenceManager.moveDone();
 			}
 
 			// select new piece
