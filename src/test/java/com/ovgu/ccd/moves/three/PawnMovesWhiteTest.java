@@ -163,6 +163,36 @@ public class PawnMovesWhiteTest {
     }
 
     @Test
+    public void testMovesInSquare7I() throws Exception {
+        IBoard board = new ThreePlayerChessboard();
+        Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
+        board.setKingWhite((King) king);
+        board.setPiece(king, 7, ThreePlayerChessboard.L);
+
+        Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 7, ThreePlayerChessboard.I);
+
+        ArrayList<Square> moves = new PawnMoves(pawn, board).allWhiteMoves(true);
+        Assert.assertEquals(0, moves.size());
+    }
+
+
+    @Test
+    public void testMovesInSquare11J() throws Exception {
+        IBoard board = new ThreePlayerChessboard();
+        Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
+        board.setKingWhite((King) king);
+        board.setPiece(king, 7, ThreePlayerChessboard.L);
+
+        Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 11, ThreePlayerChessboard.J);
+
+        ArrayList<Square> moves = new PawnMoves(pawn, board).allWhiteMoves(true);
+        Assert.assertEquals(0, moves.size());
+    }
+
+
+    @Test
     public void testMovesInSquare1ABlockedByPiece() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
