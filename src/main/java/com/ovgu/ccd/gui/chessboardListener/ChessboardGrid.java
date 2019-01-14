@@ -32,7 +32,7 @@ import java.util.Map;
 /**
  * @author CCD DeepBlue team
  * @version 1.0
- * @since 1.0
+ * @since
  */
 public class ChessboardGrid extends GeometricPrimitiveDrawer {
     private static final long serialVersionUID = 1716287489012384473L;
@@ -49,7 +49,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     private Color squareFillColorB = new Color(255, 230, 153, 255);
 
 
-    /**constructor
+    /**
+     * constructor
      *
      * @param center center of the chessboard
      * @param radius radius of the outer hexagon
