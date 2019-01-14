@@ -1,9 +1,12 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JComponent;
+import java.awt.Graphics;
+import java.awt.Color;
 
-
+/**
+ *
+ */
 public abstract class GeometricPrimitiveDrawer extends JComponent {
     private static final long serialVersionUID = -5177239702410583033L;
 
@@ -13,7 +16,10 @@ public abstract class GeometricPrimitiveDrawer extends JComponent {
     }
 
 
-    // draw (auto execution)
+    /**
+     *
+     * @param graphics
+     */
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         graphics.setColor(Color.BLACK);
@@ -21,6 +27,9 @@ public abstract class GeometricPrimitiveDrawer extends JComponent {
     }
 
 
-    // draw primitive
+    /**
+     *
+     * @param graphics
+     */
     public abstract void draw(Graphics graphics);
 }

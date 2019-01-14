@@ -4,42 +4,48 @@ package com.ovgu.ccd.gui.chessboardListener;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ *
+ * @param <T>
+ */
 public class Node<T> {
     private T data = null;
     private List<Node<T>> children = new ArrayList<>();
     private Node<T> parent = null;
     private String name = "";
 
-
-    public Node(T data) {
+    /**
+     *
+     * @param data
+     */
+    public Node(final T data) {
         this.data = data;
     }
 
-    public Node(String name, T data) {
+    public Node(final String name, final T data) {
         this.data = data;
         this.name = name;
     }
 
-    public void addChild(Node<T> child) {
+    public void addChild(final Node<T> child) {
         child.setParent(this);
         this.children.add(child);
     }
 
-    public void addChild(T data) {
+    public void addChild(final T data) {
         Node<T> newChild = new Node<>(data);
         newChild.setParent(this);
         children.add(newChild);
     }
 
-    public void addChildren(List<Node<T>> children) {
+    public void addChildren(final List<Node<T>> children) {
         for (Node<T> t : children) {
             t.setParent(this);
         }
         this.children.addAll(children);
     }
 
-    public boolean contains(Node<T> child) {
+    public boolean contains(final Node<T> child) {
         return children.contains(child);
     }
 
@@ -47,13 +53,13 @@ public class Node<T> {
         return children;
     }
 
-    public Node<T> getNode(String name) {
+    public Node<T> getNode(final String name) {
         if (this.getName().equals(name))
             return this;
         return breadthFirstSearch(this.getChildren(), name);
     }
 
-    public Node<T> getChild(String name) {
+    public Node<T> getChild(final String name) {
         for (Node<T> child : this.getChildren()) {
             if (child.getName().equals(name))
                 return child;
@@ -65,12 +71,12 @@ public class Node<T> {
         return this.name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
 
-    private Node<T> breadthFirstSearch(List<Node<T>> allNodesOnLevel, String targetName) {
+    private Node<T> breadthFirstSearch(final List<Node<T>> allNodesOnLevel, final String targetName) {
         List<Node<T>> children = new ArrayList<Node<T>>();
         for (Node<T> node : allNodesOnLevel) {
             if (node.getName().equals(targetName))
@@ -85,11 +91,11 @@ public class Node<T> {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(final T data) {
         this.data = data;
     }
 
-    public void setParent(Node<T> parent) {
+    public void setParent(final Node<T> parent) {
         this.parent = parent;
     }
 

@@ -2,7 +2,9 @@ package com.ovgu.ccd.gui.chessboardListener;
 
 import java.awt.*;
 
-
+/**
+ *
+ */
 public class Point extends GeometricShape {
     private static final long serialVersionUID = -821761050568399843L;
     private int x = 0;

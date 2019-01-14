@@ -1,12 +1,13 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
-import java.awt.*;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
-
+/**
+ *
+ */
 public class Line extends GeometricShape {
     private static final long serialVersionUID = -516881209755986697L;
-
     private Point start = new Point(0, 0);
     private Point end = new Point(0, 0);
 
@@ -17,21 +18,29 @@ public class Line extends GeometricShape {
 
 
     // constructor
-    public Line(Point start, Point end) {
+    public Line(final Point start, final Point end) {
         //setLayout(null);
         setStartPoint(start);
         setEndPoint(end);
     }
 
 
-    // set coordinates of the start point
-    public void setStartPoint(Point start) {
+
+
+    /** set coordinates of the start point.
+     *
+     * @param start
+     */
+    public void setStartPoint(final Point start) {
         this.start = start;
     }
 
 
-    // set coordinates of the end point
-    public void setEndPoint(Point end) {
+
+    /**set coordinates of the end point.
+     * @param end
+     */
+    public void setEndPoint(final Point end) {
         this.end = end;
     }
 
@@ -56,7 +65,7 @@ public class Line extends GeometricShape {
     }
 
 
-    public Point computeIntersectionPoint(Line otherLine) {
+    public Point computeIntersectionPoint(final Line otherLine) {
         int a1 = this.end.getY() - this.start.getY();
         int b1 = this.start.getX() - this.end.getX();
         int c1 = a1 * this.start.getX() + b1 * this.start.getY();
@@ -87,7 +96,7 @@ public class Line extends GeometricShape {
     }
 
 
-    public boolean isPointOnLine(Point point) {
+    public boolean isPointOnLine(final Point point) {
         if (point.getY() == getSlope() * point.getX() + getIntercept())
             return true;
         else
@@ -95,7 +104,7 @@ public class Line extends GeometricShape {
     }
 
 
-    public float getMinDistanceToPoint(Point point) {
+    public float getMinDistanceToPoint(final Point point) {
         // compute via linear interpolation
         // d = |(p-p1) - (((p-p1)*(p2-p1)) / |p2-p1|^2) * (p2-p1)|
         float lengthLine = (float) Math.pow(this.getLength(), 2);        // |p2-p1|^2
@@ -113,7 +122,7 @@ public class Line extends GeometricShape {
 
     // @param: numOfPoints: sum of points on line without start and end point
     // @return: list of ALL point on line
-    public ArrayList<Point> getEquallyDistributedPoints(int numOfPoints) {
+    public ArrayList<Point> getEquallyDistributedPoints(final int numOfPoints) {
         ArrayList<Point> points = new ArrayList<Point>();
         float distance = (float) this.getLength() / (numOfPoints - 1);
         for (int i = 0; i < numOfPoints; i++)
@@ -123,7 +132,7 @@ public class Line extends GeometricShape {
 
 
     // comuted with linear interpolation
-    public Point getPointAfterDistance(float distance) {
+    private Point getPointAfterDistance(final float distance) {
         if (distance == 0.0f)
             return this.getStartPoint();
         else if (distance == getLength())
@@ -138,7 +147,7 @@ public class Line extends GeometricShape {
 
 
     @Override
-    public void draw(Graphics graphics) {
+    public void draw(final Graphics graphics) {
         graphics.drawLine(this.start.getX(), this.start.getY(), this.end.getX(), this.end.getY());
     }
 }

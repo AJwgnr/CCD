@@ -49,13 +49,12 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     private Color squareFillColorB = new Color(255, 230, 153, 255);
 
 
-    /**
-     * constructor
+    /**constructor
      *
      * @param center center of the chessboard
      * @param radius radius of the outer hexagon
      */
-    public ChessboardGrid(Point center, int radius) {
+    public ChessboardGrid(final Point center, final int radius) {
         this.hexagon = new Hexagon(center, radius);
         this.points = this.hexagon.getVerticesAsMap();
         this.points.put("Center", center);
@@ -63,8 +62,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**
-     * initialization method
+    /**initialization method.
      */
     private void init() {
         setupPoints();
@@ -75,8 +73,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**
-     * setup: square dual color scheme
+    /**setup: square dual color scheme.
      */
     public void setupSquareColorScheme() {
         for (Map.Entry<String, GridSquare> square : this.squares.entrySet())
@@ -192,8 +189,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**
-     * setup: sets all labels for the chessboard gird
+    /**setup: sets all labels for the chessboard grid.
      */
     private void setupLabeling() {
         String[] labels = new String[]{
@@ -207,8 +203,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**
-     * setup: sets all squares, defined by the vertices and the chessboard position (x,y)
+    /**setup: sets all squares, defined by the vertices and the chessboard position (x,y).
      */
     private void setupSquares() {
         this.squares.put("Section A", new GridSquare(
@@ -735,8 +730,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**
-     * setup: puts all squares into a tree structure
+    /**setup: puts all squares into a tree structure.
      */
     private void setupSquareTree() {
         // set whole hexagon as the root node
@@ -971,8 +965,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**
-     * setup: sets all points of the chessboard
+    /*setup: sets all points of the chessboard.
      */
     private void setupPoints() {
         points.put("A4", this.points.get("A").getMeanPointBetween(this.points.get("B")));
@@ -1110,27 +1103,25 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**
-     * get a certain square by its name (hashmap key)
+    /**get a certain square by its name (hashmap key).
      *
      * @param name hashmap key (A1, B2 ..)
      * @return GridSquare
      */
-    public GridSquare getSquare(String name) {
+    public GridSquare getSquare(final String name) {
         if (this.squares.containsKey(name))
             return this.squares.get(name);
         return null;
     }
 
 
-    /**
-     * get a certain square by its chessboard (x.y) position (hashmap key)
+    /**get a certain square by its chessboard (x.y) position (hashmap key).
      *
      * @param boardPosX chessboard x position
      * @param boardPosY chessboard y position
      * @return GridSquare
      */
-    public GridSquare getSquare(int boardPosX, int boardPosY) {
+    public GridSquare getSquare(final int boardPosX, final int boardPosY) {
         for (Map.Entry<String, GridSquare> square : this.squares.entrySet())
             if (square.getValue().hasBoardSquare())
                 if (square.getValue().getBoardSquare().getPosX() == boardPosX &&
@@ -1140,38 +1131,35 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**
-     * get the particular square with the certain point inside
+    /**get the particular square with the certain point inside.
      *
      * @param point point to check for
      * @return GridSquare
      */
-    public GridSquare getSquareWithinPoint(Point point) {
+    public GridSquare getSquareWithinPoint(final Point point) {
         if (this.hexagon.isPointWithinHexagon(point))
             return depthFirstSearch(point);
         return null;
     }
 
 
-    /**
-     * searches in the square tree with depth first like search algorithm
+    /**searches in the square tree with depth first like search algorithm.
      *
      * @param point point to check for
      * @return GridSquare
      */
-    private GridSquare depthFirstSearch(Point point) {
+    private GridSquare depthFirstSearch(final Point point) {
         return searchInTree(this.panelRoot, point);
     }
 
 
-    /**
-     * searches in a certain level of the square tree with depth first like search algorithm
+    /**searches in a certain level of the square tree with depth first like search algorithm.
      *
      * @param parentNode node to check and its children
      * @param point      point to check for
      * @return GridSquare
      */
-    private GridSquare searchInTree(Node<GridSquare> parentNode, Point point) {
+    private GridSquare searchInTree(final Node<GridSquare> parentNode, final Point point) {
         List<Node<GridSquare>> childNodes = parentNode.getChildren();
 
         for (Node<GridSquare> node : childNodes) {
@@ -1186,12 +1174,11 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**
-     * adds all possible moves as squares to a stack
+    /**adds all possible moves as squares to a stack.
      *
      * @param square current square with piece to check for
      */
-    public void displayPossibleMoves(GridSquare square) {
+    public void displayPossibleMoves(final GridSquare square) {
         this.possibleMoves = square.getBoardSquare().getPiece().allMoves();
         for (Square possibleMove : this.possibleMoves) {
             try {
@@ -1204,8 +1191,7 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**
-     * disable displaying possible moves
+    /** disable displaying possible moves.
      */
     public void stopDisplayingPossibleMoves() {
         for (Map.Entry<String, GridSquare> square : this.squares.entrySet())
@@ -1213,13 +1199,12 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**
-     * draws visual objects
+    /**draws visual objects.
      *
      * @param graphics graphics
      */
     @Override
-    public void draw(Graphics graphics) {
+    public void draw(final Graphics graphics) {
         this.labeling.draw(graphics);
 
         for (Map.Entry<String, GridSquare> square : this.squares.entrySet())
