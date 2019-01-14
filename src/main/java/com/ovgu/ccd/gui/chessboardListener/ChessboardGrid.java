@@ -63,7 +63,9 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**initialization method.
+    /**
+     * initialization method
+     *
      */
     private void init() {
         setupPoints();
@@ -74,7 +76,9 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**setup: square dual color scheme.
+    /**
+     * setup: square dual color scheme.
+     *
      */
     public void setupSquareColorScheme() {
         for (Map.Entry<String, GridSquare> square : this.squares.entrySet())
@@ -190,7 +194,9 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**setup: sets all labels for the chessboard grid.
+    /**
+     * setup: sets all labels for the chessboard grid.
+     *
      */
     private void setupLabeling() {
         String[] labels = new String[]{
@@ -204,7 +210,9 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**setup: sets all squares, defined by the vertices and the chessboard position (x,y).
+    /**
+     * setup: sets all squares, defined by the vertices and the chessboard position (x,y).
+     *
      */
     private void setupSquares() {
         this.squares.put("Section A", new GridSquare(
@@ -731,7 +739,9 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**setup: puts all squares into a tree structure.
+    /**
+     * setup: puts all squares into a tree structure.
+     *
      */
     private void setupSquareTree() {
         // set whole hexagon as the root node
@@ -966,7 +976,9 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /*setup: sets all points of the chessboard.
+    /**
+     * setup: sets all points of the chessboard.
+     *
      */
     private void setupPoints() {
         points.put("A4", this.points.get("A").getMeanPointBetween(this.points.get("B")));
@@ -1104,7 +1116,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**get a certain square by its name (hashmap key).
+    /**
+     * get a certain square by its name (hashmap key).
      *
      * @param name hashmap key (A1, B2 ..)
      * @return GridSquare
@@ -1116,7 +1129,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**get a certain square by its chessboard (x.y) position (hashmap key).
+    /**
+     * get a certain square by its chessboard (x.y) position (hashmap key).
      *
      * @param boardPosX chessboard x position
      * @param boardPosY chessboard y position
@@ -1132,7 +1146,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**get the particular square with the certain point inside.
+    /**
+     * get the particular square with the certain point inside.
      *
      * @param point point to check for
      * @return GridSquare
@@ -1144,7 +1159,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**searches in the square tree with depth first like search algorithm.
+    /**
+     * searches in the square tree with depth first like search algorithm.
      *
      * @param point point to check for
      * @return GridSquare
@@ -1154,7 +1170,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**searches in a certain level of the square tree with depth first like search algorithm.
+    /**
+     * searches in a certain level of the square tree with depth first like search algorithm.
      *
      * @param parentNode node to check and its children
      * @param point      point to check for
@@ -1175,7 +1192,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**adds all possible moves as squares to a stack.
+    /**
+     * adds all possible moves as squares to a stack.
      *
      * @param square current square with piece to check for
      */
@@ -1192,7 +1210,9 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /** disable displaying possible moves.
+    /**
+     * disable displaying possible moves.
+     *
      */
     public void stopDisplayingPossibleMoves() {
         for (Map.Entry<String, GridSquare> square : this.squares.entrySet())
@@ -1200,7 +1220,8 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
     }
 
 
-    /**draws visual objects.
+    /**
+     * draws visual objects.
      *
      * @param graphics graphics
      */
