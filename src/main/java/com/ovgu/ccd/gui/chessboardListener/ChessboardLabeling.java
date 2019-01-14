@@ -12,10 +12,11 @@ import java.util.List;
  */
 public class ChessboardLabeling extends GeometricPrimitiveDrawer
 {
-    private Hexagon hexagonForLabeling = null;
+    private Hexagon hexagonForLabeling;
     private List<TextLabel> labels = new ArrayList<TextLabel>();
-    private String[] labelNames = null;
-    private int numOfLabelsPerSide = 8;
+    private String[] labelNames;
+    private int numOfLabelsPerSide;
+    private final float HEXAGON_STRETCH_FACTOR = 1.05f;
 
 
     /**
@@ -24,7 +25,7 @@ public class ChessboardLabeling extends GeometricPrimitiveDrawer
      * @param   chessboardHexagon   hexagon object of the chessboard
      * @param   labels              array of labels to assign
      */
-    public ChessboardLabeling(Hexagon chessboardHexagon, String[] labels) {
+    public ChessboardLabeling(final Hexagon chessboardHexagon, final String[] labels) {
         this.labelNames = labels;
         this.hexagonForLabeling = extendHexagonForLabeling(chessboardHexagon);
         this.numOfLabelsPerSide = getNumOfLabelsPerSide();
@@ -49,10 +50,10 @@ public class ChessboardLabeling extends GeometricPrimitiveDrawer
      * @param   originalHexagon the original parent hexagon
      * @return  the new stretched hexagon
      */
-    private Hexagon extendHexagonForLabeling(Hexagon originalHexagon) {
+    private Hexagon extendHexagonForLabeling(final Hexagon originalHexagon) {
         return new Hexagon(
                 originalHexagon.getCenter(),
-                (int) (originalHexagon.getRadius() * 1.05));
+                (int) (originalHexagon.getRadius() * HEXAGON_STRETCH_FACTOR));
     }
 
 
@@ -62,7 +63,7 @@ public class ChessboardLabeling extends GeometricPrimitiveDrawer
      * @param   graphics    graphics
      */
     @Override
-    public void draw(Graphics graphics) {
+    public void draw(final Graphics graphics) {
         graphics.setColor(Color.BLACK);
         for (TextLabel label : labels)
             label.draw(graphics);
