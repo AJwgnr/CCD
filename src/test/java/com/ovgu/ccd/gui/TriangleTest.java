@@ -19,7 +19,6 @@ public class TriangleTest
 {
     private Triangle triangle = null;
 
-
     /**
      * setup method - this will setup and appropriated environment to work with
      * (this creates a basic triangle object to work with)
