@@ -5,13 +5,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ChessboardLabeling extends GeometricPrimitiveDrawer {
+/**
+ * @author CCD DeepBlue team
+ * @version 1.0
+ * @since
+ */
+public class ChessboardLabeling extends GeometricPrimitiveDrawer
+{
     private Hexagon hexagonForLabeling = null;
     private List<TextLabel> labels = new ArrayList<TextLabel>();
     private String[] labelNames = null;
     private int numOfLabelsPerSide = 8;
 
 
+    /**
+     * constructor
+     *
+     * @param   chessboardHexagon   hexagon object of the chessboard
+     * @param   labels              array of labels to assign
+     */
     public ChessboardLabeling(Hexagon chessboardHexagon, String[] labels) {
         this.labelNames = labels;
         this.hexagonForLabeling = extendHexagonForLabeling(chessboardHexagon);
@@ -20,12 +32,23 @@ public class ChessboardLabeling extends GeometricPrimitiveDrawer {
     }
 
 
+    /**
+     * returns the number of labels per side of the hexagon
+     *
+     * @return number of labels per side
+     */
     private int getNumOfLabelsPerSide() {
         int numOfVertices = this.hexagonForLabeling.getVerticesAsMap().size();
         return (this.labelNames.length + 1) / numOfVertices;
     }
 
 
+    /**
+     * creates a new hexagon with the same center point as the parent one but with increased radius
+     *
+     * @param   originalHexagon the original parent hexagon
+     * @return  the new stretched hexagon
+     */
     private Hexagon extendHexagonForLabeling(Hexagon originalHexagon) {
         return new Hexagon(
                 originalHexagon.getCenter(),
@@ -33,6 +56,11 @@ public class ChessboardLabeling extends GeometricPrimitiveDrawer {
     }
 
 
+    /**
+     * this method draws the labels
+     *
+     * @param   graphics    graphics
+     */
     @Override
     public void draw(Graphics graphics) {
         graphics.setColor(Color.BLACK);
@@ -41,7 +69,13 @@ public class ChessboardLabeling extends GeometricPrimitiveDrawer {
     }
 
 
-    private void assignTextLabels() {
+    /**
+     * assign the text labels to the chessboard
+     * (equally distributed along the sides if the hexagon)
+     *
+     */
+    private void assignTextLabels()
+    {
         // get list of positions
         List<Point> points = new ArrayList<Point>();
         for (Line line : this.hexagonForLabeling.getLinesAsList()) {
