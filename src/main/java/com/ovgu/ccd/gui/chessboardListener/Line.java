@@ -3,13 +3,12 @@ package com.ovgu.ccd.gui.chessboardListener;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-
 /**
  * @author CCD DeepBlue team
  * @version 1.0
  * @since
  */
-public class Line extends GeometricShape
+public class Line extends GeometricPrimitiveDrawer implements GeometricShape
 {
     private static final long serialVersionUID = -516881209755986697L;
     private Point start = new Point(0, 0);
@@ -34,18 +33,14 @@ public class Line extends GeometricShape
      * @param   end     end point for line
      */
     public Line(final Point start, final Point end) {
-        //setLayout(null);
         setStartPoint(start);
         setEndPoint(end);
     }
 
 
-
-
-    /**
-     * set coordinates of the start point.
+    /** set coordinates of the start point.
      *
-     * @param start
+     * @param start start point
      */
     public void setStartPoint(final Point start) {
         this.start = start;
@@ -53,10 +48,9 @@ public class Line extends GeometricShape
 
 
 
-    /**
-     * set coordinates of the end point.
+    /**set coordinates of the end point.
      *
-     * @param end
+     * @param end end point
      */
     public void setEndPoint(final Point end) {
         this.end = end;
@@ -84,6 +78,18 @@ public class Line extends GeometricShape
 
 
     /**
+     * computes the length of the line
+     *
+     * @return  length of the line
+     */
+    public double getLength() {
+        return Math.sqrt(
+                Math.pow(this.end.getX() - this.start.getX(), 2) +
+                        Math.pow(this.end.getY() - this.start.getY(), 2));
+    }
+
+
+    /**
      * computes and returns the intersection point of two lines
      *
      * @param   otherLine   the other line to compute the intersection with
@@ -101,6 +107,41 @@ public class Line extends GeometricShape
         int delta = a1 * b2 - a2 * b1;
 
         return new Point((b2 * c1 - b1 * c2) / delta, (a1 * c2 - a2 * c1) / delta);
+    }
+
+
+    /**
+     * returns a list of points which are equally distributed along the line
+     *
+     * @param    numOfPoints sum of points on line without start and end point
+     * @return   list of ALL point on line
+     */
+    public ArrayList<Point> getEquallyDistributedPoints(final int numOfPoints) {
+        ArrayList<Point> points = new ArrayList<Point>();
+        float distance = (float) this.getLength() / (numOfPoints - 1);
+        for (int i = 0; i < numOfPoints; i++)
+            points.add(getPointAfterDistance(distance * i));
+        return points;
+    }
+
+
+    /**
+     * computes via linear interpolation the point after a certain distance (according to the start point of the line)
+     *
+     * @param    distance   distance from the start point to the target point on the line
+     * @return   point
+     */
+    private Point getPointAfterDistance(final float distance) {
+        if (distance == 0.0f)
+            return this.getStartPoint();
+        else if (distance == getLength())
+            return this.getEndPoint();
+        else {
+            float t = distance / (float) getLength();
+            float x = (1 - t) * this.getStartPoint().getX() + t * this.getEndPoint().getX();
+            float y = (1 - t) * this.getStartPoint().getY() + t * this.getEndPoint().getY();
+            return new Point(x, y);
+        }
     }
 
 

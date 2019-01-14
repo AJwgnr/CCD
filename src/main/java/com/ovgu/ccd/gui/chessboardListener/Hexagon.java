@@ -8,7 +8,8 @@ import java.util.stream.Collectors;
 
 
 // regular hexagon
-public class Hexagon extends GeometricShape {
+public class Hexagon  extends GeometricPrimitiveDrawer implements GeometricShape
+{
     private static final long serialVersionUID = 4539157182258466862L;
 
     private boolean visibility = true;

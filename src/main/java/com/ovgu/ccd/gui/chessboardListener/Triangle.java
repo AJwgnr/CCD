@@ -10,7 +10,7 @@ import java.util.Map;
  * @version 1.0
  * @since
  */
-public class Triangle extends GeometricShape {
+public class Triangle extends GeometricPrimitiveDrawer implements GeometricShape {
     private static final long serialVersionUID = -7342706080221603266L;
     private HashMap<String, Point> vertices = new HashMap<String, Point>();
     private HashMap<String, Line> lines = new HashMap<String, Line>();

@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  *
  */
-public class Point extends GeometricShape {
+public class Point extends GeometricPrimitiveDrawer implements GeometricShape  {
     private static final long serialVersionUID = -821761050568399843L;
     private int x = 0;
     private int y = 0;

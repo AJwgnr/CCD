@@ -11,7 +11,7 @@ import java.util.List;
  * @version 1.0
  * @since
  */
-public class Circle extends GeometricShape {
+public class Circle  extends GeometricPrimitiveDrawer implements GeometricShape {
     private static final long serialVersionUID = -4701817387438983685L;
     private int radius = 0;
     private Point center = new Point(0, 0);
