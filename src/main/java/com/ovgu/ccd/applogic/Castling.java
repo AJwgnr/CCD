@@ -10,7 +10,13 @@ import com.ovgu.ccd.pieces.Square;
  */
 public class Castling {
 
+    /**
+     * King that's being checked
+     */
     private King king;
+    /**
+     * current board
+     */
     private ThreePlayerChessboard board;
 
     /**

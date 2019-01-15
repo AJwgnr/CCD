@@ -66,7 +66,6 @@ public class CheckController {
 
     private boolean isSafePawnDirection() throws Exception {
         ArrayList<Square> moves = new ArrayList<>();
-        List<Square> squares = null;
         List<Piece> pawns = null;
         boolean safe = true;
 
