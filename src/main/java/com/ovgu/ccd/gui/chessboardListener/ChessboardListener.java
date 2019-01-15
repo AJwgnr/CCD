@@ -118,10 +118,15 @@ public class ChessboardListener implements MouseListener
     private void handlePieceInteraction(GridSquare clickedSquare)
 	{
 		// select piece
-		if (this.squareBuffer == null && isMoveValid(clickedSquare))
+		if (this.squareBuffer == null)
 		{
-			this.squareBuffer = clickedSquare;
-			this.grid.displayPossibleMoves(clickedSquare);
+			if (isMoveValid(clickedSquare))
+			{
+				this.squareBuffer = clickedSquare;
+				this.grid.displayPossibleMoves(clickedSquare);
+			}
+			else
+				this.sequenceManager.print();
 		}
 
 		// piece already selected

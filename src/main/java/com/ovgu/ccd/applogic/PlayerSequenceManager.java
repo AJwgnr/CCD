@@ -43,9 +43,20 @@ public class PlayerSequenceManager
      */
     public void moveDone()
     {
-        if (currentPlayerID >= players.length)
+        if (currentPlayerID >= (players.length - 1))
             currentPlayerID = 0;
         else
             currentPlayerID++;
+        this.print();
+    }
+
+
+    /**
+     * simple print method, which outputs the current player in the terminal
+     *
+     */
+    public void print()
+    {
+        System.out.println("Its your turn, " + this.getCurrentPlayer().getName() + " !");
     }
 }
