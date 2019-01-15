@@ -9,15 +9,42 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Class for checking if a king is under "check"
+ */
 public class CheckController {
 
+    /**
+     * current board
+     */
     private ThreePlayerChessboard board;
+    /**
+     * king to be checked
+     */
     private King king;
+    /**
+     * piece that's being moved
+     */
     private Piece piece;
+    /**
+     * current move
+     */
     private Square move;
+    /**
+     * previous position of the piece
+     */
     private Square previousPosition;
+    /**
+     * piece that might have been eaten in the move
+     */
     private Piece eatenPiece;
 
+    /**
+     * @param board current board
+     * @param king king under attack
+     * @param piece that's being moved
+     * @param move to be done
+     */
     public CheckController(ThreePlayerChessboard board, King king, Piece piece, Square move) {
         this.board = board;
         this.king = king;
@@ -33,6 +60,10 @@ public class CheckController {
         }
     }
 
+    /**
+     * @return true if after move the king is not under "check"
+     * @throws Exception in case a move is invalid
+     */
     public boolean isSafe() throws Exception {
         boolean inCheck = false;
 
@@ -46,14 +77,19 @@ public class CheckController {
         return !inCheck;
     }
 
+    /**
+     * applies the corresponding move
+     */
     private void applyMove() {
-        // TODO: castlings...
         if (move != null) {
             board.setPiece(null, piece.getPosX(), piece.getPosY());
             board.setPiece(piece, move.getPosX(), move.getPosY());
         }
     }
 
+    /**
+     * undoes the applied move if any
+     */
     private void undoMove() {
         if (move != null) {
             board.setPiece(null, move.getPosX(), move.getPosY());
@@ -64,6 +100,10 @@ public class CheckController {
         }
     }
 
+    /**
+     * @return true if king is safe from pawns
+     * @throws Exception in case a move is invalid
+     */
     private boolean isSafePawnDirection() throws Exception {
         ArrayList<Square> moves = new ArrayList<>();
         List<Piece> pawns = null;
@@ -116,12 +156,20 @@ public class CheckController {
         return safe;
     }
 
+    /**
+     * @param moves from other players pawns
+     * @return true if none of the provided moves attacks the king
+     */
     private boolean noPawnAttacking(List<Square> moves) {
         return !moves.stream().anyMatch(square -> {
             return square.equals(king.getSquare());
         });
     }
 
+    /**
+     * @return true if no other king is attacking
+     * @throws Exception in case a move is invalid
+     */
     private boolean isaSafeKingDirection() throws Exception {
         ArrayList<Square> moves = new KingMoves(king, board).allMoves(false);
         List<Square> squares = filteredMoves(moves);
@@ -139,6 +187,10 @@ public class CheckController {
         return isSafe;
     }
 
+    /**
+     * @return true if no piece is attacking the king in a straight fashion
+     * @throws Exception in case a move is invalid
+     */
     private boolean isSafeStraightDirection() throws Exception {
         ArrayList<Square> moves = new StraightMoves(king, board).allMoves(false);
         List<Square> squares = filteredMoves(moves);
@@ -155,6 +207,10 @@ public class CheckController {
         return isSafe;
     }
 
+    /**
+     * @return true if no piece is attacking the king in a diagonal fashion
+     * @throws Exception in case a move is invalid
+     */
     private boolean isSafeDiagonalDirection() throws Exception {
         ArrayList<Square> moves = new DiagonalMoves(king, board).allMoves(false);
         List<Square> squares = filteredMoves(moves);
@@ -171,6 +227,10 @@ public class CheckController {
         return isSafe;
     }
 
+    /**
+     * @return true if no knight is attacking the king
+     * @throws Exception in case a move is invalid
+     */
     private boolean isSafeKnightDirection() throws Exception {
         ArrayList<Square> moves = new KnightMoves(king, board).allMoves(false);
         List<Square> squares = filteredMoves(moves);
@@ -187,6 +247,10 @@ public class CheckController {
         return isSafe;
     }
 
+    /**
+     * @param moves from attacking pieces
+     * @return the moves that are possible and belong to pieces from other players
+     */
     private List<Square> filteredMoves(ArrayList<Square> moves) {
         List<Square> result = new ArrayList<>();
 
