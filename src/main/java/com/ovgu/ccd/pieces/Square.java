@@ -82,12 +82,7 @@ public class Square
 
     public void print()
     {
-        System.out.println("Square Hashcode:  " + this.hashCode());
-        System.out.println("Board Position X: " + this.getPosX());
-        System.out.println("Board Position Y: " + this.getPosY());
-
-        if (this.piece != null)
-            System.out.println("Piece:            " + this.getPiece());
+        System.out.println("Board Position: [" + this.getPosX() + " " + this.getPosY() + "]");
     }
 
     /**
