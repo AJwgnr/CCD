@@ -497,7 +497,7 @@ public class PawnMoves implements IMove {
             }
         }
 
-        if (board.validMove(move, piece) && board.getSquare(move.getPosX(), move.getPosY()).isEmpty()) {
+        if (move != null && board.validMove(move, piece) && board.getSquare(move.getPosX(), move.getPosY()).isEmpty()) {
             possibleMoves.add(move);
         }
 
