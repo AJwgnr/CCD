@@ -59,4 +59,26 @@ public class PlayerSequenceManager
     {
         System.out.println("Its your turn, " + this.getCurrentPlayer().getName() + " !");
     }
+
+
+    /**
+     * returns the array of all stored players
+     *
+     * @return array of all players, which are stored
+     */
+    public Player[] getStoredPlayers()
+    {
+        return this.players;
+    }
+
+
+    /**
+     * sets the array of all stored players
+     *
+     * @param   players array of players
+     */
+    public void setPlayers(final Player players[])
+    {
+        this.players = players;
+    }
 }
