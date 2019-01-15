@@ -442,6 +442,11 @@ public class ThreePlayerChessboard implements IBoard {
         this.kingGrey = kingGrey;
     }
 
+    /**
+     * @param player
+     * @param piece
+     * @throws Exception
+     */
     public void activateSpy(Player player, Piece piece) throws Exception {
         new SpyActivator(player, piece, this).activateSpy();
     }
