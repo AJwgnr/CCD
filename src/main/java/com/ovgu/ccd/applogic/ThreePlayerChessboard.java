@@ -7,40 +7,125 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
+/**
+ * Class that implements a board for 3 players
+ */
 public class ThreePlayerChessboard implements IBoard {
+    /**
+     * internal representation of A coordinate
+     */
     public static final int A = 0;
+    /**
+     * internal representation of B coordinate
+     */
     public static final int B = 1;
+    /**
+     * internal representation of C coordinate
+     */
     public static final int C = 2;
+    /**
+     * internal representation of D coordinate
+     */
     public static final int D = 3;
+    /**
+     * internal representation of E coordinate
+     */
     public static final int E = 4;
+    /**
+     * internal representation of F coordinate
+     */
     public static final int F = 5;
+    /**
+     * internal representation of G coordinate
+     */
     public static final int G = 6;
+    /**
+     * internal representation of H coordinate
+     */
     public static final int H = 7;
+    /**
+     * internal representation of I coordinate
+     */
     public static final int I = 8;
+    /**
+     * internal representation of J coordinate
+     */
     public static final int J = 9;
+    /**
+     * internal representation of K coordinate
+     */
     public static final int K = 10;
+    /**
+     * internal representation of L coordinate
+     */
     public static final int L = 11;
 
+    /**
+     * number of columns of the matrix
+     */
     public static final int COLUMNS = 12;
 
+    /**
+     * internal representation of the board
+     */
     private Square[][] matrix = null;
 
+    /**
+     * list of white squares in the middle of the board
+     */
     public ArrayList<Square> WHITE_ROSETTE = new ArrayList<Square>(Arrays.asList(new Square(8, I, null), new Square(4, D, null), new Square(3, E, null)));
+
+    /**
+     * list of black squares in the middle of the board
+     */
     public ArrayList<Square> BLACK_ROSETTE = new ArrayList<Square>(Arrays.asList(new Square(4, I, null), new Square(3, D, null), new Square(8, E, null)));
 
+    /**
+     * white king
+     */
     private King kingWhite;
+    /**
+     * black king
+     */
     private King kingBlack;
+    /**
+     * grey king
+     */
     private King kingGrey;
+    /**
+     * used to keep track of last pawn that moved two squares
+     */
     private Pawn twoSquareMovedPawn = null;
 
+    /**
+     * white player
+     */
     private Player whitePlayer = null;
+    /**
+     * grey player
+     */
     private Player greyPlayer = null;
+    /**
+     * black player
+     */
     private Player blackPlayer = null;
 
+    /**
+     * list of blacks pawns
+     */
     public ArrayList<Piece> blackPawns = new ArrayList<>();
+    /**
+     * list of white pawns
+     */
     public ArrayList<Piece> whitePawns = new ArrayList<>();
+    /**
+     * list of grey pawns
+     */
     public ArrayList<Piece> greyPawns = new ArrayList<>();
 
+    /**
+     * representation of the grid
+     */
     private ChessboardGrid chessboardGrid = null;
 
     /*------------------------------
@@ -75,13 +160,17 @@ public class ThreePlayerChessboard implements IBoard {
     #   ---------------------------
     */
 
-    // empty dummy chessboard
+    /**
+     * creates an empty board
+     */
     public ThreePlayerChessboard() {
         initSquareMatrix();
         setInvalidSquares();
     }
 
-    // chessboard with grid structure
+    /**
+     * @param grid to be used
+     */
     public ThreePlayerChessboard(ChessboardGrid grid) {
         this.chessboardGrid = grid;
         initPlayers();
@@ -91,12 +180,18 @@ public class ThreePlayerChessboard implements IBoard {
         redrawPieces();
     }
 
+    /**
+     * initialize the players
+     */
     public void initPlayers() {
         this.whitePlayer = new Player("Mr.White", Player.Colors.WHITE.name());
         this.greyPlayer = new Player("Mr.Grey", Player.Colors.GREY.name());
         this.blackPlayer = new Player("Mr.Black", Player.Colors.BLACK.name());
     }
 
+    /**
+     * Mark the corresponding squares in the matrix as invalid
+     */
     private void setInvalidSquares() {
         if (matrix != null) {
             for (int i = 0; i <= 3; i++) {
@@ -123,7 +218,9 @@ public class ThreePlayerChessboard implements IBoard {
         }
     }
 
-    // initialize all squares
+    /**
+     * initializes the squares in the matrix
+     */
     private void initSquareMatrix() {
         this.matrix = new Square[COLUMNS][COLUMNS];
         for (int x = 0; x < COLUMNS; x++) {
@@ -136,7 +233,9 @@ public class ThreePlayerChessboard implements IBoard {
         }
     }
 
-    // assign all pieces to their start positions
+    /**
+     * assigns all pieces to their start positions
+     */
     public void initPieceStartPositions() {
         if (this.matrix != null) {
             Piece pawn;
@@ -203,7 +302,9 @@ public class ThreePlayerChessboard implements IBoard {
         }
     }
 
-    // redraw all pieces in matrix
+    /**
+     * redraw all pieces in matrix
+     */
     private void redrawPieces() {
         this.chessboardGrid.redraw();
     }
@@ -251,6 +352,11 @@ public class ThreePlayerChessboard implements IBoard {
                 (matrix[square.getPosX()][square.getPosY()].isEmpty() || occupiedByOther(piece, square)));
     }
 
+    /**
+     * @param square in sextant for which we want the rosette
+     * @return the rosette for the corresponding sextant
+     * @throws Exception in case of an invalid square
+     */
     public Square getCurrentRosette(Square square) throws Exception {
         int x = square.getPosX() + 1;
         int y = square.getPosY();
@@ -277,6 +383,12 @@ public class ThreePlayerChessboard implements IBoard {
         throw new Exception("Invalid square");
     }
 
+    /**
+     * @param square to check if in same sextant as coordinates
+     * @param x_coord coordinate
+     * @param y_coord coordinate
+     * @return true if square and coordinates are in same sextant
+     */
     public boolean inSextant(Square square, int x_coord, int y_coord) {
         return ((1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4 && E <= square.getPosY() && square.getPosY() <= H) && (1 <= (x_coord + 1) && (x_coord + 1) <= 4 && E <= y_coord && y_coord <= H) ||
                 (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12 && E <= square.getPosY() && square.getPosY() <= H) && (9 <= (x_coord + 1) && (x_coord + 1) <= 12 && E <= y_coord && y_coord <= H) ||
@@ -286,6 +398,11 @@ public class ThreePlayerChessboard implements IBoard {
                 (1 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 4 && A <= square.getPosY() && square.getPosY() <= D) && (1 <= (x_coord + 1) && (x_coord + 1) <= 4 && A <= y_coord && y_coord <= D));
     }
 
+    /**
+     * @param square we are using
+     * @return the neighbour square that belongs to the left sextant
+     * @throws Exception in case the square is invalid
+     */
     public Square getLeftSextantSquare(Square square) throws Exception {
         if (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12) {
             if (square.getPosY() == I) {
@@ -316,6 +433,11 @@ public class ThreePlayerChessboard implements IBoard {
         throw new Exception("Invalid square");
     }
 
+    /**
+     * @param square we are using
+     * @return the neighbour square that belongs to the right sextant
+     * @throws Exception in case the square is invalid
+     */
     public Square getRightSextantSquare(Square square) throws Exception {
         if (9 <= (square.getPosX() + 1) && (square.getPosX() + 1) <= 12) {
             if (square.getPosY() == E) {
@@ -344,6 +466,12 @@ public class ThreePlayerChessboard implements IBoard {
         throw new Exception("Invalid square");
     }
 
+    /**
+     * @param square we are using
+     * @param diagonal towards center of board from square
+     * @return the reachable rosette square in current sextant if any
+     * @throws Exception in case of invalid square
+     */
     public Square getSideRosetteTile(Square square, ArrayList<Square> diagonal) throws Exception {
         if ((E <= square.getPosY()) && (square.getPosY() <= H)) {
             if ((1 <= square.getPosX() + 1) && (square.getPosX() + 1 <= 4)) {
@@ -405,6 +533,11 @@ public class ThreePlayerChessboard implements IBoard {
         return null;
     }
 
+    /**
+     * @param piece to be placed
+     * @param x     coordinate where to place it
+     * @param y     coordinate where to place it
+     */
     public void setPiece(Piece piece, int x, int y) {
         if (piece != null && piece.getSquare() != null) {
             Castling cast = new Castling(myKing(piece.getColor()), this);
@@ -420,7 +553,11 @@ public class ThreePlayerChessboard implements IBoard {
         matrix[x][y].setPiece(piece);
     }
 
-
+    /**
+     * @param square we are using
+     * @return a list of squares containing the squares in the rosette that are diagonally reachable
+     * @throws Exception in case of invalid square
+     */
     public ArrayList<Square> getDiagonalCenterPositions(Square square) throws Exception {
         if (WHITE_ROSETTE.contains(new Square(square.getPosX(), square.getPosY(), null))) {
             return WHITE_ROSETTE;
@@ -433,11 +570,21 @@ public class ThreePlayerChessboard implements IBoard {
         throw new Exception("Invalid square");
     }
 
+    /**
+     * @param piece we are moving
+     * @param square to be moved
+     * @return true if square is occupied by other player
+     */
     public boolean occupiedByOther(Piece piece, Square square) {
         Square nextMove = matrix[square.getPosX()][square.getPosY()];
         return (!nextMove.isInvalid() && nextMove.getPiece() != null && nextMove.getPiece().getPlayer() != piece.getPlayer());
     }
 
+    /**
+     * @param piece we are moving
+     * @param square to be moved
+     * @return true if square is occupied by me
+     */
     public boolean occupiedByMe(Piece piece, Square square) {
         if (!(0 <= square.getPosX() && square.getPosX() <= 11 && 0 <= square.getPosY() && square.getPosY() <= 11)) {
             return false;
@@ -472,33 +619,62 @@ public class ThreePlayerChessboard implements IBoard {
         return matrix;
     }
 
+
+    /**
+     * @param places  string with pieces to set on chessboard
+     * @param plWhite reference to white player
+     * @param plBlack reference to black player
+     */
     @Override
     public void setPieces(String places, Player plWhite, Player plBlack) {
     }
 
+    /**
+     * @param x x position on chessboard
+     * @param y y position on chessboard
+     * @return
+     */
     @Override
     public Square getSquareConsideringLabels(int x, int y) {
         return null;
     }
 
+    /**
+     * Method selecting piece in chessboard
+     *
+     * @param sq square to select (when clicked))
+     */
     @Override
     public void select(Square sq) {
     }
 
+    /**
+     * Method set variables active_x_square and active_y_square
+     * to 0 values.
+     */
     @Override
-    public void unselect() {
-    }
+    public void unselect() {}
 
+    /**
+     * @return the width of the component
+     */
     @Override
     public int get_widht() {
         return 1;
     }
 
+    /**
+     * @return the height of the component
+     */
     @Override
     public int get_height() {
         return 1;
     }
 
+    /**
+     * @param includeLables boolean to determine if labels should be included
+     * @return the width of the component including labels
+     */
     @Override
     public int get_widht(boolean includeLables) {
         return 1;
@@ -509,18 +685,39 @@ public class ThreePlayerChessboard implements IBoard {
         return 1;
     }
 
+    /**
+     * @param begin of move
+     * @param end of move
+     */
     @Override
     public void move(Square begin, Square end) {
     }
 
+    /**
+     * @param xFrom from which x move piece
+     * @param yFrom from which y move piece
+     * @param xTo   to which x move piece
+     * @param yTo   to which y move piece
+     */
     @Override
     public void move(int xFrom, int yFrom, int xTo, int yTo) {
     }
 
+    /**
+     * @param begin   start of move
+     * @param end     ond of move
+     * @param refresh if square should be unselected and force a refresh
+     */
     @Override
     public void move(Square begin, Square end, boolean refresh) {
     }
 
+    /**
+     * @param begin               square from which move piece
+     * @param end                 square where we want to move piece         *
+     * @param refresh             chessboard, default: true
+     * @param clearForwardHistory clear move history
+     */
     @Override
     public void move(Square begin, Square end, boolean refresh, boolean clearForwardHistory) {
     }
