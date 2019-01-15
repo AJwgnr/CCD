@@ -69,10 +69,14 @@ public class ChessboardListener implements MouseListener
 	public boolean isMoveValid(GridSquare square)
 	{
 		if (this.sequenceManager == null)
+		{
 			return true;
+		}
 		else if (square.getBoardSquare().getPiece() != null
 				&& this.sequenceManager.getCurrentPlayer() == square.getBoardSquare().getPiece().getPlayer())
+		{
 			return true;
+		}
 		return false;
 	}
 
