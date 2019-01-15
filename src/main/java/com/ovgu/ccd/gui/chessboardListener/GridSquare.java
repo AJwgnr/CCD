@@ -281,8 +281,9 @@ public class GridSquare extends GeometricPrimitiveDrawer {
             graphics.fillPolygon(polygon);
         }
 
-        if (this.highlight) {
-            graphics.setColor(new Color(50, 250, 100, 100));
+        if (this.highlight)
+        {
+            graphics.setColor(this.highlightColor);
             graphics.fillPolygon(polygon);
         }
 

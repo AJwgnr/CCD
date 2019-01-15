@@ -12,8 +12,6 @@ public class PlayerTest {
     private Player.Colors color;
     private Player.PlayerTypes playerType;
 
-
-
     @Before
     public void initObjects(){
         this.name = "TestPlayer";
@@ -30,9 +28,5 @@ public class PlayerTest {
     @Test
     public void testColor(){
         Assert.assertEquals(this.color, this.player.getColor());
-    }
-
-    public void testType(){
-        Assert.assertEquals(this.playerType, this.player.getPlayerType());
     }
 }

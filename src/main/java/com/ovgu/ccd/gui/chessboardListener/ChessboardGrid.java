@@ -33,19 +33,23 @@ import java.util.Map;
  * @author CCD DeepBlue team
  * @version 1.0
  */
-public class ChessboardGrid extends GeometricPrimitiveDrawer {
-    private static final long serialVersionUID = 1716287489012384473L;
 
-    private HashMap<String, Point> points = new HashMap<>();
-    private HashMap<String, GridSquare> squares = new HashMap<>();
-    private Node<GridSquare> panelRoot = null;
-    private Hexagon hexagon;
-    private ChessboardLabeling labeling = null;
-    private ArrayList<Square> possibleMoves = null;
+public class ChessboardGrid extends GeometricPrimitiveDrawer
+{
+	private static final long serialVersionUID = 1716287489012384473L;
+	
+	private HashMap<String, Point> points = new HashMap<String, Point>();
+	private HashMap<String, GridSquare> squares = new HashMap<String, GridSquare>();
+	private Node<GridSquare> panelRoot = null;
+	private Hexagon hexagon = null;
+	private ChessboardLabeling labeling = null;
+	private ArrayList<Square> possibleMoves = null;
 
-    private final Color squareHighlight = new Color(50, 250, 100, 100);
-    private final Color squareFillColorA = new Color(153, 102, 51, 255);
-    private final Color squareFillColorB = new Color(255, 230, 153, 255);
+	private Color squareStrikeColor = new Color(230, 0, 0, 100);
+	private Color squareStuckColor 	= new Color(0, 0, 230, 100);
+	private Color squareHighlight 	= new Color(50, 250, 100, 100);
+  	private Color squareFillColorA 	= new Color(153, 102, 51, 255);
+  	private Color squareFillColorB 	= new Color(255, 230, 153, 255);
 
 
     /**
@@ -1198,14 +1202,37 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer {
      */
     public void displayPossibleMoves(final GridSquare square) {
         this.possibleMoves = square.getBoardSquare().getPiece().allMoves();
-        for (Square possibleMove : this.possibleMoves) {
-            try {
-                getSquare(possibleMove.getPosX(), possibleMove.getPosY()).setHighlight(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("Possible move square is not part of the chessboard grid!");
-            }
-        }
+
+        // color when unable to move somewhere
+        if (this.possibleMoves.size() == 0)
+		{
+			square.setHighlightColor(this.squareStuckColor);
+			square.setHighlight(true);
+		}
+
+		// moves possible
+        for (Square possibleMove : this.possibleMoves)
+		{
+			try
+			{
+				// convert to grid square object
+				GridSquare gridSquare = getSquare(possibleMove.getPosX(), possibleMove.getPosY());
+
+				// change highlight color according if there is a piece on the square or not
+				if (gridSquare.getBoardSquare().getPiece() != null)
+					gridSquare.setHighlightColor(this.squareStrikeColor);
+				else
+					gridSquare.setHighlightColor(this.squareHighlight);
+
+				// display the color
+				gridSquare.setHighlight(true);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				System.out.println("Possible move square is not part of the chessboard grid!");
+			}
+		}
     }
 
 

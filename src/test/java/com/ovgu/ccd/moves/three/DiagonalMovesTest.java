@@ -480,7 +480,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMoves8I() throws Exception {
+    public void testMovesInSquare8I() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -507,7 +507,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMoves2G() throws Exception {
+    public void testMovesInSquare2G() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -536,7 +536,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMoves3F() throws Exception {
+    public void testMovesInSquare3F() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -578,7 +578,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMoves2GBlockedByPieces() throws Exception {
+    public void testMovesInSquare2GBlockedByPieces() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -608,7 +608,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMoves0F() throws Exception {
+    public void testMovesInSquare0F() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -635,7 +635,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMoves11KCanEat() throws Exception {
+    public void testMovesInSquare11KCanEat() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -682,7 +682,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMoves10LBlockedByPiece() throws Exception {
+    public void testMovesInSquare10LBlockedByPiece() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -722,7 +722,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMoves10LCanEat() throws Exception {
+    public void testMovesInSquare10LCanEat() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -763,7 +763,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMoves8HCanEat() throws Exception {
+    public void testMovesInSquare8HCanEat() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -794,7 +794,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMoves2FCanEat() throws Exception {
+    public void testMovesInSquare2FCanEat() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -834,7 +834,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMoves8FCanEat() throws Exception {
+    public void testMovesInSquare8FCanEat() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -866,7 +866,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMoves4J() throws Exception {
+    public void testMovesInSquare4J() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -893,7 +893,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMoves5I() throws Exception {
+    public void testMovesInSquare5I() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -920,7 +920,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMoves4D() throws Exception {
+    public void testMovesInSquare4D() throws Exception {
         IBoard board = new ThreePlayerChessboard();
 
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
@@ -947,7 +947,7 @@ public class DiagonalMovesTest {
 
 
     @Test
-    public void testMoves9I() throws Exception {
+    public void testMovesInSquare9I() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -986,7 +986,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMoves9F() throws Exception {
+    public void testMovesInSquare9F() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -1025,7 +1025,7 @@ public class DiagonalMovesTest {
 
 
     @Test
-    public void testMovesIn3FWithPossibleCheck() throws Exception {
+    public void testMovesInSquare3FWithPossibleCheck() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -1044,7 +1044,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMovesIn3FStopCheck() throws Exception {
+    public void testMovesInSquare3FStopCheck() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -1069,7 +1069,7 @@ public class DiagonalMovesTest {
     }
 
     @Test
-    public void testMovesIn3FStopCheckByEating() throws Exception {
+    public void testMovesInSquare3FStopCheckByEating() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);

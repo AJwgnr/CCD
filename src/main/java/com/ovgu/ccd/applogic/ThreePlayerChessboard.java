@@ -6,7 +6,6 @@ import com.ovgu.ccd.pieces.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
 /**
  * Class that implements a board for 3 players
  */
@@ -127,6 +126,19 @@ public class ThreePlayerChessboard implements IBoard {
      * representation of the grid
      */
     private ChessboardGrid chessboardGrid = null;
+
+    /**
+     * flag to control if white spy was activated
+     */
+    private boolean isWhiteSpyActive = false;
+    /**
+     * flag to control if black spy was activated
+     */
+    private boolean isBlackSpyActive = false;
+    /**
+     * flag to control if grey spy was activated
+     */
+    private boolean isGreySpyActive = false;
 
     /*------------------------------
     #-------------MATRIX------------
@@ -250,11 +262,7 @@ public class ThreePlayerChessboard implements IBoard {
             this.matrix[0][F].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.BISHOP));
             this.matrix[0][G].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.KNIGHT));
             this.matrix[0][H].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.ROOK));
-            for (int i = A; i <= H; i++) {
-                pawn = PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.PAWN);
-                this.matrix[1][i].setPiece(pawn);
-                whitePawns.add(pawn);
-            }
+            setupWhitePawns();
 
             // black player start positions
             this.matrix[7][A].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.ROOK));
@@ -267,16 +275,7 @@ public class ThreePlayerChessboard implements IBoard {
             this.matrix[7][J].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.BISHOP));
             this.matrix[7][K].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KNIGHT));
             this.matrix[7][L].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.ROOK));
-            for (int i = A; i <= D; i++) {
-                pawn = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN);
-                this.matrix[6][i].setPiece(pawn);
-                blackPawns.add(pawn);
-            }
-            for (int i = I; i <= L; i++) {
-                pawn = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN);
-                this.matrix[6][i].setPiece(pawn);
-                blackPawns.add(pawn);
-            }
+            setupBlackPawns();
 
             // gray player start positions
             this.matrix[11][H].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.ROOK));
@@ -289,16 +288,44 @@ public class ThreePlayerChessboard implements IBoard {
             this.matrix[11][J].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.BISHOP));
             this.matrix[11][K].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KNIGHT));
             this.matrix[11][L].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.ROOK));
-            for (int i = E; i <= H; i++) {
-                pawn = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN);
-                this.matrix[10][i].setPiece(pawn);
-                greyPawns.add(pawn);
-            }
-            for (int i = I; i <= L; i++) {
-                pawn = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN);
-                this.matrix[10][i].setPiece(pawn);
-                greyPawns.add(pawn);
-            }
+            setupGreyPawns();
+        }
+    }
+
+    public void setupGreyPawns() {
+        Piece pawn;
+        for (int i = E; i <= H; i++) {
+            pawn = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN);
+            this.matrix[10][i].setPiece(pawn);
+            greyPawns.add(pawn);
+        }
+        for (int i = I; i <= L; i++) {
+            pawn = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN);
+            this.matrix[10][i].setPiece(pawn);
+            greyPawns.add(pawn);
+        }
+    }
+
+    public void setupWhitePawns() {
+        for (int i = A; i <= H; i++) {
+            Piece pawn = PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.PAWN);
+            this.matrix[1][i].setPiece(pawn);
+            whitePawns.add(pawn);
+        }
+    }
+
+    public void setupBlackPawns() {
+        Piece pawn;
+
+        for (int i = A; i <= D; i++) {
+            pawn = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN);
+            this.matrix[6][i].setPiece(pawn);
+            blackPawns.add(pawn);
+        }
+        for (int i = I; i <= L; i++) {
+            pawn = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN);
+            this.matrix[6][i].setPiece(pawn);
+            blackPawns.add(pawn);
         }
     }
 
@@ -384,7 +411,7 @@ public class ThreePlayerChessboard implements IBoard {
     }
 
     /**
-     * @param square to check if in same sextant as coordinates
+     * @param square  to check if in same sextant as coordinates
      * @param x_coord coordinate
      * @param y_coord coordinate
      * @return true if square and coordinates are in same sextant
@@ -467,7 +494,7 @@ public class ThreePlayerChessboard implements IBoard {
     }
 
     /**
-     * @param square we are using
+     * @param square   we are using
      * @param diagonal towards center of board from square
      * @return the reachable rosette square in current sextant if any
      * @throws Exception in case of invalid square
@@ -571,7 +598,7 @@ public class ThreePlayerChessboard implements IBoard {
     }
 
     /**
-     * @param piece we are moving
+     * @param piece  we are moving
      * @param square to be moved
      * @return true if square is occupied by other player
      */
@@ -581,7 +608,7 @@ public class ThreePlayerChessboard implements IBoard {
     }
 
     /**
-     * @param piece we are moving
+     * @param piece  we are moving
      * @param square to be moved
      * @return true if square is occupied by me
      */
@@ -595,6 +622,39 @@ public class ThreePlayerChessboard implements IBoard {
 
     public void setKingGrey(King kingGrey) {
         this.kingGrey = kingGrey;
+    }
+
+    /**
+     * @param player
+     * @param piece
+     * @throws Exception
+     */
+    public void activateSpy(Player player, Piece piece) throws Exception {
+        new SpyActivator(player, piece, this).activateSpy();
+    }
+
+    public boolean isWhiteSpyActive() {
+        return isWhiteSpyActive;
+    }
+
+    public void setWhiteSpyActive(boolean whiteSpyActive) {
+        isWhiteSpyActive = whiteSpyActive;
+    }
+
+    public boolean isBlackSpyActive() {
+        return isBlackSpyActive;
+    }
+
+    public void setBlackSpyActive(boolean blackSpyActive) {
+        isBlackSpyActive = blackSpyActive;
+    }
+
+    public boolean isGreySpyActive() {
+        return isGreySpyActive;
+    }
+
+    public void setGreySpyActive(boolean greySpyActive) {
+        isGreySpyActive = greySpyActive;
     }
 
     @Override
@@ -653,7 +713,8 @@ public class ThreePlayerChessboard implements IBoard {
      * to 0 values.
      */
     @Override
-    public void unselect() {}
+    public void unselect() {
+    }
 
     /**
      * @return the width of the component
@@ -687,7 +748,7 @@ public class ThreePlayerChessboard implements IBoard {
 
     /**
      * @param begin of move
-     * @param end of move
+     * @param end   of move
      */
     @Override
     public void move(Square begin, Square end) {
@@ -725,5 +786,17 @@ public class ThreePlayerChessboard implements IBoard {
     @Override
     public java.awt.Point getTopLeftPoint() {
         return new java.awt.Point();
+    }
+
+    public Player getWhitePlayer () {
+        return whitePlayer;
+    }
+
+    public Player getGreyPlayer () {
+        return greyPlayer;
+    }
+
+    public Player getBlackPlayer () {
+        return blackPlayer;
     }
 }
