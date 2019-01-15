@@ -132,7 +132,7 @@ public class PawnMoves implements IMove {
                 }
             }
         }
-        if (5 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 8) {
+        if (5 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 7) {
             move = new Square(piece.getPosX() + 1, piece.getPosY(), null);
             if (piece.getPosY() != ThreePlayerChessboard.D) {
                 eatMove = new Square(piece.getPosX() + 1, piece.getPosY() + 1, null);
@@ -152,7 +152,7 @@ public class PawnMoves implements IMove {
             }
         }
 
-        if (9 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 12) {
+        if (9 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 11) {
             move = new Square(piece.getPosX() + 1, piece.getPosY(), null);
             if (ThreePlayerChessboard.E <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.F) {
                 eatMove = new Square(piece.getPosX() + 1, piece.getPosY() + 1, null);
@@ -186,7 +186,7 @@ public class PawnMoves implements IMove {
             }
         }
 
-        if (board.validMove(move, piece) && board.getSquare(move.getPosX(), move.getPosY()).isEmpty()) {
+        if (move != null && board.validMove(move, piece) && board.getSquare(move.getPosX(), move.getPosY()).isEmpty()) {
             possibleMoves.add(move);
         }
 
@@ -387,7 +387,7 @@ public class PawnMoves implements IMove {
                 possibleMoves.add(eatMove);
             }
         }
-        if (5 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 8) {
+        if (5 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 7) {
             move = new Square(piece.getPosX() + 1, piece.getPosY(), null);
             if (ThreePlayerChessboard.D == piece.getPosY()) {
                 eatMove = new Square(piece.getPosX() + 1, ThreePlayerChessboard.I, null);
