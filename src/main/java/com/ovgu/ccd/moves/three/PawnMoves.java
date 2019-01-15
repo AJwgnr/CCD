@@ -5,18 +5,30 @@ import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.ThreePlayerChessboard;
 import com.ovgu.ccd.moves.IMove;
-import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class that generates pawn moves
+ */
 public class PawnMoves implements IMove {
-    private Piece piece;
-    private ThreePlayerChessboard board;
+    /**
+     * pawn for which moves are calculated
+     */
+    final private Piece piece;
+    /**
+     * board in which moves are calculated
+     */
+    final private ThreePlayerChessboard board;
 
-    public PawnMoves(Piece piece, IBoard board) {
+    /**
+     * @param piece pawn for which moves are calculated
+     * @param board in which moves are calculated
+     */
+    public PawnMoves(final Piece piece, final IBoard board) {
         this.piece = piece;
         this.board = (ThreePlayerChessboard) board;
     }
@@ -35,9 +47,11 @@ public class PawnMoves implements IMove {
     }
 
 
+    /**
+     * @return possible moves for a white pawn
+     */
     public ArrayList<Square> whiteMoves() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
-        King king = board.myKing(piece.getColor());
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         try {
             possibleMoves.addAll(allWhiteMoves(true));
@@ -48,7 +62,13 @@ public class PawnMoves implements IMove {
         return possibleMoves;
     }
 
-    public ArrayList<Square> allWhiteMoves(boolean withCheck) throws Exception {
+    /**
+     * @param withCheck true if we want to only return the moves
+     *                  for white pawn that don't generate a "check"
+     * @return a list of possible moves
+     * @throws Exception in case a move is invalid
+     */
+    public ArrayList<Square> allWhiteMoves(final boolean withCheck) throws Exception {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
         Square eatMove;
@@ -124,8 +144,8 @@ public class PawnMoves implements IMove {
             }
         }
         if (piece.getPosX() + 1 == 2) {
-            Square twoStepMove = new Square(3, piece.getPosY(), null);
-            Square oneStepMove = new Square(2, piece.getPosY(), null);
+            final Square twoStepMove = new Square(3, piece.getPosY(), null);
+            final Square oneStepMove = new Square(2, piece.getPosY(), null);
             if (board.validMove(oneStepMove, piece) && board.getSquare(oneStepMove.getPosX(), oneStepMove.getPosY()).isEmpty() && board.getSquare(2, twoStepMove.getPosY()).isEmpty()) {
                 if (board.getSquare(twoStepMove.getPosX(), twoStepMove.getPosY()).isEmpty()) {
                     possibleMoves.add(twoStepMove);
@@ -134,18 +154,18 @@ public class PawnMoves implements IMove {
         }
         if (5 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 8) {
             move = new Square(piece.getPosX() + 1, piece.getPosY(), null);
-            if (piece.getPosY() != ThreePlayerChessboard.D) {
-                eatMove = new Square(piece.getPosX() + 1, piece.getPosY() + 1, null);
-            } else {
+            if (piece.getPosY() == ThreePlayerChessboard.D) {
                 eatMove = new Square(piece.getPosX() + 1, ThreePlayerChessboard.I, null);
+            } else {
+                eatMove = new Square(piece.getPosX() + 1, piece.getPosY() + 1, null);
             }
             if (board.validMove(eatMove, piece) && board.occupiedByOther(piece, eatMove)) {
                 possibleMoves.add(eatMove);
             }
-            if (piece.getPosY() != ThreePlayerChessboard.I) {
-                eatMove = new Square(piece.getPosX() + 1, piece.getPosY() - 1, null);
-            } else {
+            if (piece.getPosY() == ThreePlayerChessboard.I) {
                 eatMove = new Square(piece.getPosX() + 1, ThreePlayerChessboard.D, null);
+            } else {
+                eatMove = new Square(piece.getPosX() + 1, piece.getPosY() - 1, null);
             }
             if (board.validMove(eatMove, piece) && board.occupiedByOther(piece, eatMove)) {
                 possibleMoves.add(eatMove);
@@ -190,10 +210,10 @@ public class PawnMoves implements IMove {
             possibleMoves.add(move);
         }
 
-        ArrayList<Square> results = new ArrayList<>();
+        final ArrayList<Square> results = new ArrayList<>();
         if (withCheck) {
-            for (Square s : possibleMoves) {
-                boolean safe = new CheckController(board, board.myKing(piece.getColor()), piece, s).isSafe();
+            for (final Square s : possibleMoves) {
+                final boolean safe = new CheckController(board, board.myKing(piece.getColor()), piece, s).isSafe();
                 if (safe) {
                     results.add(new Square(s.getPosX(), s.getPosY(), null));
                 }
@@ -203,9 +223,11 @@ public class PawnMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return possible moves for a black pawn
+     */
     public ArrayList<Square> blackMoves() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
-        King king = board.myKing(piece.getColor());
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         try {
             possibleMoves.addAll(allBlackMoves(true));
@@ -216,7 +238,13 @@ public class PawnMoves implements IMove {
         return possibleMoves;
     }
 
-    public ArrayList<Square> allBlackMoves(boolean withCheck) throws Exception {
+    /**
+     * @param withCheck true if we want to only return the moves
+     *                  for black pawn that don't generate a "check"
+     * @return a list of possible moves
+     * @throws Exception in case a move is invalid
+     */
+    public ArrayList<Square> allBlackMoves(final boolean withCheck) throws Exception {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
         Square eatMove;
@@ -300,8 +328,8 @@ public class PawnMoves implements IMove {
             }
         }
         if (piece.getPosX() + 1 == 7) {
-            Square twoStepMove = new Square(4, piece.getPosY(), null);
-            Square oneMove = new Square(5, piece.getPosY(), null);
+            final Square twoStepMove = new Square(4, piece.getPosY(), null);
+            final Square oneMove = new Square(5, piece.getPosY(), null);
             if (board.validMove(oneMove, piece) && board.getSquare(oneMove.getPosX(), oneMove.getPosY()).isEmpty() && board.validMove(twoStepMove, piece)) {
                 if (board.getSquare(twoStepMove.getPosX(), twoStepMove.getPosY()).isEmpty()) {
                     possibleMoves.add(twoStepMove);
@@ -344,10 +372,10 @@ public class PawnMoves implements IMove {
         }
 
 
-        ArrayList<Square> results = new ArrayList<>();
+        final ArrayList<Square> results = new ArrayList<>();
         if (withCheck) {
-            for (Square s : possibleMoves) {
-                boolean safe = new CheckController(board, board.myKing(piece.getColor()), piece, s).isSafe();
+            for (final Square s : possibleMoves) {
+                final boolean safe = new CheckController(board, board.myKing(piece.getColor()), piece, s).isSafe();
                 if (safe) {
                     results.add(new Square(s.getPosX(), s.getPosY(), null));
                 }
@@ -357,9 +385,11 @@ public class PawnMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return possible moves for a grey pawn
+     */
     public ArrayList<Square> greyMoves() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
-        King king = board.myKing(piece.getColor());
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         try {
             possibleMoves.addAll(allGreyMoves(true));
@@ -370,7 +400,13 @@ public class PawnMoves implements IMove {
         return possibleMoves;
     }
 
-    public ArrayList<Square> allGreyMoves(boolean withCheck) throws Exception {
+    /**
+     * @param withCheck true if we want to only return the moves
+     *                  for grey pawn that don't generate a "check"
+     * @return a list of possible moves
+     * @throws Exception in case a move is invalid
+     */
+    public ArrayList<Square> allGreyMoves(final boolean withCheck) throws Exception {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
         Square eatMove;
@@ -488,8 +524,8 @@ public class PawnMoves implements IMove {
             }
         }
         if (piece.getPosX() + 1 == 11) {
-            Square twoStepMove = new Square(8, piece.getPosY(), null);
-            Square oneStepMove = new Square(9, piece.getPosY(), null);
+            final Square twoStepMove = new Square(8, piece.getPosY(), null);
+            final Square oneStepMove = new Square(9, piece.getPosY(), null);
             if (board.validMove(oneStepMove, piece) && board.getSquare(oneStepMove.getPosX(), oneStepMove.getPosY()).isEmpty() && board.validMove(twoStepMove, piece)) {
                 if (board.getSquare(twoStepMove.getPosX(), twoStepMove.getPosY()).isEmpty()) {
                     possibleMoves.add(twoStepMove);
@@ -502,10 +538,10 @@ public class PawnMoves implements IMove {
         }
 
 
-        ArrayList<Square> results = new ArrayList<>();
+        final ArrayList<Square> results = new ArrayList<>();
         if (withCheck) {
-            for (Square s : possibleMoves) {
-                boolean safe = new CheckController(board, board.myKing(piece.getColor()), piece, s).isSafe();
+            for (final Square s : possibleMoves) {
+                final boolean safe = new CheckController(board, board.myKing(piece.getColor()), piece, s).isSafe();
                 if (safe) {
                     results.add(new Square(s.getPosX(), s.getPosY(), null));
                 }
