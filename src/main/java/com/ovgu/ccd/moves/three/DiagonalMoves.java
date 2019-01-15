@@ -4,18 +4,29 @@ import com.ovgu.ccd.applogic.CheckController;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.ThreePlayerChessboard;
 import com.ovgu.ccd.moves.IMove;
-import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class that generates diagonal moves
+ */
 public class DiagonalMoves implements IMove {
 
+    /**
+     * piece doing the moves
+     */
     private Piece piece;
+    /**
+     * board in which the moves are calculated
+     */
     private ThreePlayerChessboard board;
 
+    /**
+     * list of squares that are immediately next to the ones in the rosette
+     */
     private ArrayList<Square> NEXT_TO_ROSETTE = new ArrayList<Square>(
             Arrays.asList(
                     new Square(3, ThreePlayerChessboard.F, null),
@@ -33,15 +44,18 @@ public class DiagonalMoves implements IMove {
             )
     );
 
-    public DiagonalMoves(Piece piece, IBoard board) {
+    /**
+     * @param piece for which moves are calculated
+     * @param board in which moves are calculated
+     */
+    public DiagonalMoves(final Piece piece, final IBoard board) {
         this.piece = piece;
         this.board = (ThreePlayerChessboard) board;
     }
 
     @Override
     public ArrayList<Square> moves() throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
-        King king = board.myKing(piece.getColor());
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         try {
             possibleMoves.addAll(allMoves(true));
@@ -52,13 +66,18 @@ public class DiagonalMoves implements IMove {
         return possibleMoves;
     }
 
-    public ArrayList<Square> allMoves(boolean withCheck) throws Exception {
+    /**
+     * @param withCheck true if we want to only return the moves that don't generate a "check"
+     * @return a list of possible moves
+     * @throws Exception in case a move is invalid
+     */
+    public ArrayList<Square> allMoves(final boolean withCheck) throws Exception {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         if (!getSameSextantMoves(piece.getSquare()).isEmpty()) {
             possibleMoves.addAll(getSameSextantMoves(piece.getSquare()));
         }
-        Square currentRosette = board.getCurrentRosette(piece.getSquare());
+        final Square currentRosette = board.getCurrentRosette(piece.getSquare());
 
         // check if rousette is amongst my moves
         if (possibleMoves.contains(currentRosette) || piece.getSquare().equals(currentRosette)) {
@@ -66,11 +85,11 @@ public class DiagonalMoves implements IMove {
         } else {
             // We don't reach the rosette, get reachable rosette, its neighbors and the diagonal moves
             //also, for the reachable rosette, get left or right neighbors
-            ArrayList<Square> diagonal = diagonal(piece.getSquare());
+            final ArrayList<Square> diagonal = diagonal(piece.getSquare());
             if (NEXT_TO_ROSETTE.stream().anyMatch(s -> s.equals(piece.getSquare()))) {
                 diagonal.add(new Square(piece.getPosX(), piece.getPosY(), null));
             }
-            Square side = board.getSideRosetteTile(piece.getSquare(), diagonal);
+            final Square side = board.getSideRosetteTile(piece.getSquare(), diagonal);
             if (side != null && board.validMove(side, piece)) {
                 possibleMoves.addAll(oppositeRosetteDiagonalMoves(side));
             }
@@ -80,10 +99,10 @@ public class DiagonalMoves implements IMove {
         possibleMoves.addAll(rightNeighborSextantMoves(piece.getSquare()));
 
 
-        ArrayList<Square> results = new ArrayList<>();
+        final ArrayList<Square> results = new ArrayList<>();
         if (withCheck) {
-            for (Square s : possibleMoves) {
-                boolean safe = new CheckController(board, board.myKing(piece.getColor()), piece, s).isSafe();
+            for (final Square s : possibleMoves) {
+                final boolean safe = new CheckController(board, board.myKing(piece.getColor()), piece, s).isSafe();
                 if (safe) {
                     results.add(new Square(s.getPosX(), s.getPosY(), null));
                 }
@@ -94,21 +113,11 @@ public class DiagonalMoves implements IMove {
         return new ArrayList<Square>(Arrays.asList(possibleMoves.stream().distinct().toArray(Square[]::new)));
     }
 
-    public boolean leftSextantReachable(Square leftMostSquare) {
-        return leftMostSquare.getPosY() == ThreePlayerChessboard.E || leftMostSquare.getPosY() == ThreePlayerChessboard.I || leftMostSquare.getPosY() == ThreePlayerChessboard.D ||
-                leftMostSquare.getPosX() + 1 == 4 || leftMostSquare.getPosX() + 1 == 5 || leftMostSquare.getPosX() + 1 == 9;
-    }
-
-    public boolean rightSextantReachable(Square rightMostSquare) {
-        return rightMostSquare.getPosY() == ThreePlayerChessboard.E ||
-                rightMostSquare.getPosY() == ThreePlayerChessboard.I ||
-                rightMostSquare.getPosY() == ThreePlayerChessboard.D ||
-                (rightMostSquare.getPosX() + 1 == 4 && rightMostSquare.getPosY() != ThreePlayerChessboard.H) ||
-                rightMostSquare.getPosX() + 1 == 5 || rightMostSquare.getPosX() + 1 == 9;
-    }
-
+    /**
+     * @return  true if the piece is in the central diagonal of the sextant
+     *          we check white diagonals first, black diagonals second
+     */
     public boolean perfectDiagonal() {
-        // white diagonals first, black diagonals second
         return (
                 ((piece.getPosX() + 1) + (piece.getPosY() + 1) == 9) ||
                         (piece.getPosX() == piece.getPosY()) ||
@@ -116,8 +125,12 @@ public class DiagonalMoves implements IMove {
         );
     }
 
-    public ArrayList<Square> getSameSextantMoves(Square square) {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+    /**
+     * @param square in which the piece is placed
+     * @return a list of possible moves in the same sextant
+     */
+    public ArrayList<Square> getSameSextantMoves(final Square square) {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         possibleMoves.addAll(left(square));
         possibleMoves.addAll(right(square));
         possibleMoves.addAll(diagonal(square));
@@ -125,8 +138,8 @@ public class DiagonalMoves implements IMove {
         return new ArrayList<Square>(Arrays.asList(possibleMoves.stream().distinct().toArray(Square[]::new)));
     }
 
-    private ArrayList<Square> left(Square square) {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+    private ArrayList<Square> left(final Square square) {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         for (int i = 1; i <= 3; i++) {
             int xCoord = square.getPosX();
@@ -147,7 +160,7 @@ public class DiagonalMoves implements IMove {
                 yCoord += i;
             }
 
-            Square nextMove = new Square(xCoord, yCoord, null);
+            final Square nextMove = new Square(xCoord, yCoord, null);
             if (board.validMove(nextMove, piece) && board.inSextant(square, xCoord, yCoord)) {
                 possibleMoves.add(nextMove);
                 if (board.occupiedByOther(piece, nextMove)) {
@@ -162,8 +175,8 @@ public class DiagonalMoves implements IMove {
         return possibleMoves;
     }
 
-    private ArrayList<Square> right(Square square) {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+    private ArrayList<Square> right(final Square square) {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         for (int i = 1; i <= 3; i++) {
             int xCoord = square.getPosX();
@@ -181,7 +194,7 @@ public class DiagonalMoves implements IMove {
                 yCoord += i;
             }
 
-            Square nextMove = new Square(xCoord, yCoord, null);
+            final Square nextMove = new Square(xCoord, yCoord, null);
             if (board.validMove(nextMove, piece) && board.inSextant(square, xCoord, yCoord)) {
                 possibleMoves.add(nextMove);
                 if (board.occupiedByOther(piece, nextMove)) {
@@ -196,8 +209,8 @@ public class DiagonalMoves implements IMove {
         return possibleMoves;
     }
 
-    private ArrayList<Square> diagonal(Square square) {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+    private ArrayList<Square> diagonal(final Square square) {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         // going outside in the same diagonal, same sextant
         for (int i = 1; i <= 4; i++) {
@@ -216,7 +229,7 @@ public class DiagonalMoves implements IMove {
                 yCoord += i;
             }
 
-            Square nextMove = new Square(xCoord, yCoord, null);
+            final Square nextMove = new Square(xCoord, yCoord, null);
             if (board.validMove(nextMove, piece) && board.inSextant(square, xCoord, yCoord)) {
                 possibleMoves.add(nextMove);
                 if (board.occupiedByOther(piece, nextMove)) {
@@ -246,7 +259,7 @@ public class DiagonalMoves implements IMove {
                     yCoord -= i;
                 }
 
-                Square nextMove = new Square(xCoord, yCoord, null);
+                final Square nextMove = new Square(xCoord, yCoord, null);
                 if (board.validMove(nextMove, piece) && board.inSextant(square, xCoord, yCoord)) {
                     possibleMoves.add(nextMove);
                     if (board.occupiedByOther(piece, nextMove)) {
@@ -262,14 +275,14 @@ public class DiagonalMoves implements IMove {
         return possibleMoves;
     }
 
-    private ArrayList<Square> oppositeRosetteDiagonalMoves(Square currentRosette) throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+    private ArrayList<Square> oppositeRosetteDiagonalMoves(final Square currentRosette) throws Exception {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         if (board.occupiedByOther(piece, currentRosette)) {
             possibleMoves.add(currentRosette);
         } else {
-            ArrayList<Square> squares = board.getDiagonalCenterPositions(currentRosette);
-            for (Square square : squares) {
+            final ArrayList<Square> squares = board.getDiagonalCenterPositions(currentRosette);
+            for (final Square square : squares) {
                 if (board.validMove(square, piece)) {
                     possibleMoves.add(square);
                     if (board.occupiedByOther(piece, square)) {
@@ -283,10 +296,10 @@ public class DiagonalMoves implements IMove {
         return possibleMoves;
     }
 
-    private ArrayList<Square> leftNeighborSextantMoves(Square square) throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
-        ArrayList<Square> leftSquares = leftToSextant(square);
-        Square leftSide = null, leftMostSquare = null;
+    private ArrayList<Square> leftNeighborSextantMoves(final Square square) throws Exception {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> leftSquares = leftToSextant(square);
+        Square leftMostSquare = null;
 
         if (!leftSquares.isEmpty() && leftSquares.get(leftSquares.size() - 1) != null) {
             leftMostSquare = leftSquares.get(leftSquares.size() - 1);
@@ -301,9 +314,9 @@ public class DiagonalMoves implements IMove {
         return possibleMoves;
     }
 
-    private ArrayList<Square> rightNeighborSextantMoves(Square square) throws Exception {
+    private ArrayList<Square> rightNeighborSextantMoves(final Square square) throws Exception {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
-        Square rightSide = null, rightMostSquare = null;
+        Square rightMostSquare = null;
         ArrayList<Square> rightSquares = rightToSextant(square);
 
         if (!rightSquares.isEmpty() && (rightSquares.get(rightSquares.size() - 1)) != null) {
@@ -317,7 +330,11 @@ public class DiagonalMoves implements IMove {
         return possibleMoves;
     }
 
-    public ArrayList<Square> leftToSextant(Square square) {
+    /**
+     * @param square in which the piece is
+     * @return list of possible moves in the left sextants
+     */
+    public ArrayList<Square> leftToSextant(final Square square) {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         if (1 <= square.getPosX() + 1 && square.getPosX() + 1 <= 4) {
@@ -376,7 +393,11 @@ public class DiagonalMoves implements IMove {
         return possibleMoves;
     }
 
-    public ArrayList<Square> rightToSextant(Square square) {
+    /**
+     * @param square in which the piece is
+     * @return list of possible moves in the right sextants
+     */
+    public ArrayList<Square> rightToSextant(final Square square) {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         if (1 <= square.getPosX() + 1 && square.getPosX() + 1 <= 4) {
@@ -437,7 +458,7 @@ public class DiagonalMoves implements IMove {
         return possibleMoves;
     }
 
-    private ArrayList<Square> upLeft(Square square) {
+    private ArrayList<Square> upLeft(final Square square) {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         int xCoord = square.getPosX();
         int yCoord = square.getPosY();
@@ -505,7 +526,7 @@ public class DiagonalMoves implements IMove {
         return possibleMoves;
     }
 
-    private ArrayList<Square> upRight(Square square) {
+    private ArrayList<Square> upRight(final Square square) {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         int xCoord = square.getPosX();
         int yCoord = square.getPosY();
@@ -543,10 +564,14 @@ public class DiagonalMoves implements IMove {
         return possibleMoves;
     }
 
-    // receives the leftMost square in same sextant
-    public ArrayList<Square> horizontalLeft(Square square) {
+    /**
+     * @param square leftMost square in same sextant
+     * @return list of possible moves in left sextants in a diagonal way
+     */
+    public ArrayList<Square> horizontalLeft(final Square square) {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
-        boolean stop = false, up = false, down = false;
+        boolean up = false;
+        boolean down = false;
         int j = square.getPosY();
         int i = square.getPosX();
         Square nextMove;
@@ -938,12 +963,17 @@ public class DiagonalMoves implements IMove {
         return possibleMoves;
     }
 
-    // receives the rightMost square in same sextant
-    public ArrayList<Square> horizontalRight(Square square) {
+    /**
+     * @param square rightMost square in same sextant
+     * @return list of possible moves in right sextants in a diagonal way
+     */
+    public ArrayList<Square> horizontalRight(final Square square) {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square nextMove;
-        boolean up = false, down = false;
-        int i, j;
+        boolean up = false;
+        boolean down = false;
+        int i;
+        int j;
 
         if (1 <= square.getPosX() + 1 && square.getPosX() + 1 <= 4) {
             if (square.getPosY() == ThreePlayerChessboard.D) {
@@ -965,7 +995,8 @@ public class DiagonalMoves implements IMove {
                 if (up) {
                     i = square.getPosX() + 1;
                     for (j = square.getPosY() + 1; j <= ThreePlayerChessboard.H; j++, i++) {
-                        int posX = i, posY = j;
+                        int posX = i;
+                        int posY = j;
                         if (i == 4) {
                             posX = 8;
                         }
@@ -1028,7 +1059,8 @@ public class DiagonalMoves implements IMove {
                     if (up) {
                         i = 8;
                         for (j = square.getPosY() - 1; i <= 11; j--, i++) {
-                            int posX = i, posY = j;
+                            int posX = i;
+                            int posY = j;
                             if (j == ThreePlayerChessboard.D) {
                                 posY = ThreePlayerChessboard.I;
                             }
@@ -1094,7 +1126,8 @@ public class DiagonalMoves implements IMove {
                 if (up) {
                     j = ThreePlayerChessboard.I;
                     for (i = square.getPosX() - 1; j <= ThreePlayerChessboard.L; j++, i--) {
-                        int posX = i, posY = j;
+                        int posX = i;
+                        int posY = j;
                         if (i == 7) {
                             posX = 4;
                         }
@@ -1157,7 +1190,8 @@ public class DiagonalMoves implements IMove {
                     if (up) {
                         i = 4;
                         for (j = square.getPosY() - 1; i <= 7; j--, i++) {
-                            int posX = i, posY = j;
+                            int posX = i;
+                            int posY = j;
                             if (j == ThreePlayerChessboard.H) {
                                 posY = ThreePlayerChessboard.D;
                             }
