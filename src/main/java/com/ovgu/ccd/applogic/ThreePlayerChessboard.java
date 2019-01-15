@@ -5,7 +5,6 @@ import com.ovgu.ccd.pieces.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
 public class ThreePlayerChessboard implements IBoard {
     public static final int A = 0;
     public static final int B = 1;
@@ -35,6 +34,10 @@ public class ThreePlayerChessboard implements IBoard {
     private Player whitePlayer = null;
     private Player greyPlayer = null;
     private Player blackPlayer = null;
+
+    private boolean isWhiteSpyActive = false;
+    private boolean isBlackSpyActive = false;
+    private boolean isGreySpyActive = false;
 
     public ArrayList<Piece> blackPawns = new ArrayList<>();
     public ArrayList<Piece> whitePawns = new ArrayList<>();
@@ -160,11 +163,7 @@ public class ThreePlayerChessboard implements IBoard {
             this.matrix[0][F].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.BISHOP));
             this.matrix[0][G].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.KNIGHT));
             this.matrix[0][H].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.ROOK));
-            for (int i = A; i <= H; i++) {
-                pawn = PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.PAWN);
-                this.matrix[1][i].setPiece(pawn);
-                whitePawns.add(pawn);
-            }
+            setupWhitePawns();
 
             // black player start positions
             this.matrix[7][A].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.ROOK));
@@ -177,16 +176,7 @@ public class ThreePlayerChessboard implements IBoard {
             this.matrix[7][J].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.BISHOP));
             this.matrix[7][K].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KNIGHT));
             this.matrix[7][L].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.ROOK));
-            for (int i = A; i <= D; i++) {
-                pawn = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN);
-                this.matrix[6][i].setPiece(pawn);
-                blackPawns.add(pawn);
-            }
-            for (int i = I; i <= L; i++) {
-                pawn = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN);
-                this.matrix[6][i].setPiece(pawn);
-                blackPawns.add(pawn);
-            }
+            setupBlackPawns();
 
             // gray player start positions
             this.matrix[11][H].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.ROOK));
@@ -199,16 +189,44 @@ public class ThreePlayerChessboard implements IBoard {
             this.matrix[11][J].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.BISHOP));
             this.matrix[11][K].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KNIGHT));
             this.matrix[11][L].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.ROOK));
-            for (int i = E; i <= H; i++) {
-                pawn = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN);
-                this.matrix[10][i].setPiece(pawn);
-                greyPawns.add(pawn);
-            }
-            for (int i = I; i <= L; i++) {
-                pawn = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN);
-                this.matrix[10][i].setPiece(pawn);
-                greyPawns.add(pawn);
-            }
+            setupGreyPawns();
+        }
+    }
+
+    public void setupGreyPawns() {
+        Piece pawn;
+        for (int i = E; i <= H; i++) {
+            pawn = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN);
+            this.matrix[10][i].setPiece(pawn);
+            greyPawns.add(pawn);
+        }
+        for (int i = I; i <= L; i++) {
+            pawn = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN);
+            this.matrix[10][i].setPiece(pawn);
+            greyPawns.add(pawn);
+        }
+    }
+
+    public void setupWhitePawns(){
+        for (int i = A; i <= H; i++) {
+            Piece pawn = PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.PAWN);
+            this.matrix[1][i].setPiece(pawn);
+            whitePawns.add(pawn);
+        }
+    }
+
+    public void setupBlackPawns() {
+        Piece pawn;
+
+        for (int i = A; i <= D; i++) {
+            pawn = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN);
+            this.matrix[6][i].setPiece(pawn);
+            blackPawns.add(pawn);
+        }
+        for (int i = I; i <= L; i++) {
+            pawn = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN);
+            this.matrix[6][i].setPiece(pawn);
+            blackPawns.add(pawn);
         }
     }
 
@@ -424,6 +442,39 @@ public class ThreePlayerChessboard implements IBoard {
         this.kingGrey = kingGrey;
     }
 
+    /**
+     * @param player
+     * @param piece
+     * @throws Exception
+     */
+    public void activateSpy(Player player, Piece piece) throws Exception {
+        new SpyActivator(player, piece, this).activateSpy();
+    }
+
+    public boolean isWhiteSpyActive() {
+        return isWhiteSpyActive;
+    }
+
+    public void setWhiteSpyActive(boolean whiteSpyActive) {
+        isWhiteSpyActive = whiteSpyActive;
+    }
+
+    public boolean isBlackSpyActive() {
+        return isBlackSpyActive;
+    }
+
+    public void setBlackSpyActive(boolean blackSpyActive) {
+        isBlackSpyActive = blackSpyActive;
+    }
+
+    public boolean isGreySpyActive() {
+        return isGreySpyActive;
+    }
+
+    public void setGreySpyActive(boolean greySpyActive) {
+        isGreySpyActive = greySpyActive;
+    }
+
     @Override
     public Square getSquare(int xCoordinate, int yCoordinate)
     {
@@ -485,4 +536,16 @@ public class ThreePlayerChessboard implements IBoard {
 
     @Override
     public java.awt.Point getTopLeftPoint() { return new java.awt.Point(); }
+
+    public Player getWhitePlayer() {
+        return whitePlayer;
+    }
+
+    public Player getGreyPlayer() {
+        return greyPlayer;
+    }
+
+    public Player getBlackPlayer() {
+        return blackPlayer;
+    }
 }
