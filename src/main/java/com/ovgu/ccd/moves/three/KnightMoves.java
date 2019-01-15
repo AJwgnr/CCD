@@ -4,26 +4,37 @@ import com.ovgu.ccd.applogic.CheckController;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.ThreePlayerChessboard;
 import com.ovgu.ccd.moves.IMove;
-import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class that calculates the moves of a knight
+ */
 public class KnightMoves implements IMove {
-    private Piece piece;
-    private ThreePlayerChessboard board;
+    /**
+     * knight for which moves are calculated
+     */
+    final private Piece piece;
+    /**
+     * board in which moves are calculated
+     */
+    final private ThreePlayerChessboard board;
 
-    public KnightMoves(Piece piece, IBoard board) {
+    /**
+     * @param piece king for which the moves are calculated
+     * @param board in which moves are calculated
+     */
+    public KnightMoves(final Piece piece, final IBoard board) {
         this.piece = piece;
         this.board = (ThreePlayerChessboard) board;
     }
 
     @Override
     public ArrayList<Square> moves() throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
-        King king = board.myKing(piece.getColor());
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         try {
             possibleMoves.addAll(allMoves(true));
@@ -34,8 +45,14 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
-    public ArrayList<Square> allMoves(boolean withCheck) throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+    /**
+     * @param withCheck true if we want to only return the moves
+     *                  that don't generate a "check"
+     * @return a list of possible moves
+     * @throws Exception in case a move is invalid
+     */
+    public ArrayList<Square> allMoves(final boolean withCheck) throws Exception {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         possibleMoves.addAll(twoDownOneRight());
         possibleMoves.addAll(twoDownOneLeft());
         possibleMoves.addAll(twoUpOneRight());
@@ -56,8 +73,8 @@ public class KnightMoves implements IMove {
 
         ArrayList<Square> results = new ArrayList<>();
         if (withCheck) {
-            for (Square move : possibleMoves) {
-                boolean safe = new CheckController(board, board.myKing(piece.getColor()), piece, move).isSafe();
+            for (final Square move : possibleMoves) {
+                final boolean safe = new CheckController(board, board.myKing(piece.getColor()), piece, move).isSafe();
                 if (safe) {
                     results.add(new Square(move.getPosX(), move.getPosY(), null));
                 }
@@ -68,8 +85,11 @@ public class KnightMoves implements IMove {
         return new ArrayList<Square>(Arrays.asList(results.stream().distinct().toArray(Square[]::new)));
     }
 
+    /**
+     * @return moves following one down and two right positions
+     */
     public ArrayList<Square> oneDownTwoRight() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (piece.getPosX() + 1 == 12 || piece.getPosX() + 1 == 1 || piece.getPosX() + 1 == 8) {
@@ -110,10 +130,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
-    ;
-
+    /**
+     * @return moves following one down and two left positions
+     */
     public ArrayList<Square> oneDownTwoLeft() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (piece.getPosX() + 1 == 12 || piece.getPosX() + 1 == 1 || piece.getPosX() + 1 == 8) {
@@ -154,10 +175,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
-    ;
-
+    /**
+     * @return moves following one up and two right positions
+     */
     public ArrayList<Square> oneUpTwoRight() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 3) {
@@ -240,10 +262,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
-    ;
-
+    /**
+     * @return moves following one up and two left positions
+     */
     public ArrayList<Square> oneUpTwoLeft() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 3) {
@@ -327,10 +350,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
-    ;
-
+    /**
+     * @return moves following one right and two up positions
+     */
     public ArrayList<Square> oneRightTwoUp() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 2) {
@@ -423,8 +447,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return moves following one right and two down positions
+     */
     public ArrayList<Square> oneRightTwoDown() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 2) {
@@ -469,10 +496,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
-    ;
-
+    /**
+     * @return moves following one left and two up positions
+     */
     public ArrayList<Square> oneLeftTwoUp() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 4) {
@@ -556,10 +584,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
-    ;
-
+    /**
+     * @return moves following one left and two down positions
+     */
     public ArrayList<Square> oneLeftTwoDown() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 2) {
@@ -604,10 +633,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
-    ;
-
+    /**
+     * @return moves following two down and one right positions
+     */
     public ArrayList<Square> twoDownOneRight() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if ((3 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)) {
@@ -642,8 +672,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return moves following two down and one left positions
+     */
     public ArrayList<Square> twoDownOneLeft() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if ((3 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)) {
@@ -675,8 +708,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return moves following two up and one right positions
+     */
     public ArrayList<Square> twoUpOneRight() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if ((1 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 2)) {
@@ -762,8 +798,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return moves following two up and one left positions
+     */
     public ArrayList<Square> twoUpOneLeft() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if ((1 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 2) && (piece.getPosY() != ThreePlayerChessboard.A)) {
@@ -862,8 +901,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return moves following two right and one up positions
+     */
     public ArrayList<Square> twoRightOneUp() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if ((1 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4) && (piece.getPosY() != ThreePlayerChessboard.G && piece.getPosY() != ThreePlayerChessboard.H)) {
@@ -932,8 +974,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return moves following two right and one down positions
+     */
     public ArrayList<Square> twoRightOneDown() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if ((1 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4) && (piece.getPosY() != ThreePlayerChessboard.G && piece.getPosY() != ThreePlayerChessboard.H)) {
@@ -973,8 +1018,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return moves following two left and one up positions
+     */
     public ArrayList<Square> twoLeftOneUp() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if ((1 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4) && (piece.getPosY() != ThreePlayerChessboard.A && piece.getPosY() != ThreePlayerChessboard.B)) {
@@ -1046,8 +1094,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return moves following two left and one down positions
+     */
     public ArrayList<Square> twoLeftOneDown() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if ((2 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)) {
