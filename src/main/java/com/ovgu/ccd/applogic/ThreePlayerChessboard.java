@@ -632,7 +632,7 @@ public class ThreePlayerChessboard implements IBoard {
     /**
      * @param x x position on chessboard
      * @param y y position on chessboard
-     * @return
+     * @return null
      */
     @Override
     public Square getSquareConsideringLabels(int x, int y) {

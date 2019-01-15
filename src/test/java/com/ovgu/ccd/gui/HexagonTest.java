@@ -13,8 +13,6 @@ import static org.junit.Assert.assertTrue;
  *
  * @author CCD team
  * @version 1.0
- * @since
- * @see
  */
 public class HexagonTest
 {
@@ -25,9 +23,6 @@ public class HexagonTest
      * setup method - this will setup and appropriated environment to work with
      * (this creates a basic hexagon object to work with)
      *
-     * @param
-     * @return
-     * @result
      */
     @Before
     public void setup()
@@ -39,8 +34,6 @@ public class HexagonTest
     /**
      * Test if boolean function if the a point is inside the hexagon or not
      *
-     * @param
-     * @return
      * @result  the point inside the hexagon is correctly specified by the method
      */
     @Test

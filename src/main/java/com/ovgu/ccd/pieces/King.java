@@ -429,8 +429,11 @@ public class King extends Piece {
         return true;
     }
 
+
     /** Method to check will the king be safe when move.
-     *
+
+     * @param currentPosition of the piece
+     * @param nextPosition of the piece
      * @return bool true if king is save, else returns false
      */
     public boolean willBeSafeWhenMoveOtherPiece(final Square currentPosition, final Square nextPosition) //long name ;)
@@ -448,14 +451,14 @@ public class King extends Piece {
     }
 
     /**
-     * @return
+     * @return wasMotion
      */
     public boolean isWasMotion() {
         return wasMotion;
     }
 
     /**
-     * @param wasMotion
+     * @param wasMotion value to set to wasMotion
      */
     public void setWasMotion(final boolean wasMotion) {
         this.wasMotion = wasMotion;

@@ -32,7 +32,6 @@ import java.util.Map;
 /**
  * @author CCD DeepBlue team
  * @version 1.0
- * @since
  */
 public class ChessboardGrid extends GeometricPrimitiveDrawer {
     private static final long serialVersionUID = 1716287489012384473L;

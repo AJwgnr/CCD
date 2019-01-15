@@ -56,14 +56,14 @@ public class Rook extends Piece {
 
 
     /**
-     * @return
+     * @return wasMotion
      */
     public boolean isWasMotion() {
         return wasMotion;
     }
 
     /**
-     * @param wasMotion
+     * @param wasMotion to set wasMotion
      */
     public void setWasMotion(final boolean wasMotion) {
         this.wasMotion = wasMotion;

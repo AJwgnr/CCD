@@ -51,7 +51,7 @@ public class ResourceManager {
     }
 
     /**
-     * @return
+     * @return the instance
      */
     public static ResourceManager getInstance() {
         if (singleton_instance == null) {
@@ -62,21 +62,21 @@ public class ResourceManager {
 
 
     /**
-     * @return
+     * @return the app property
      */
     public Properties getJChessAppPropertie() {
         return jChessAppPropertie;
     }
 
     /**
-     * @return
+     * @return the view property
      */
     public Properties getJChessViewPropertie() {
         return jChessViewPropertie;
     }
 
     /**
-     * @return
+     * @return about box property
      */
     public Properties getJChessAboutBoxPropertie() {
         return jChessAboutBoxPropertie;

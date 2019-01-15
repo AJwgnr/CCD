@@ -12,8 +12,6 @@ import static org.junit.Assert.assertEquals;
  *
  * @author CCD team
  * @version 1.0
- * @since
- * @see
  */
 public class TriangleTest
 {
@@ -23,9 +21,6 @@ public class TriangleTest
      * setup method - this will setup and appropriated environment to work with
      * (this creates a basic triangle object to work with)
      *
-     * @param
-     * @return
-     * @result
      */
     @Before
     public void setup()
@@ -41,8 +36,6 @@ public class TriangleTest
     /**
      * test the triangle area computation
      *
-     * @param
-     * @return
      * @result  the triangle area computation is working properly
      */
     @Test

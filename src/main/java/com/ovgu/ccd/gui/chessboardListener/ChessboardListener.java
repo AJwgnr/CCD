@@ -11,7 +11,6 @@ import java.awt.event.MouseListener;
 /**
  * @author CCD DeepBlue team
  * @version 1.0
- * @since
  */
 public class ChessboardListener implements MouseListener {
     private ChessboardGrid grid = null;

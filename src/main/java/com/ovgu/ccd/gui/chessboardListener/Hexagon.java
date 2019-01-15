@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 /**
  * @author CCD DeepBlue team
  * @version 1.0
- * @since
  */
 public class Hexagon extends GeometricPrimitiveDrawer
 {

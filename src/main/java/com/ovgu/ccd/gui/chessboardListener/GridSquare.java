@@ -11,7 +11,6 @@ import java.util.HashMap;
 /**
  * @author CCD DeepBlue team
  * @version 1.0
- * @since
  */
 public class GridSquare extends GeometricPrimitiveDrawer {
     private HashMap<String, Point> vertices = new HashMap<String, Point>();
@@ -251,7 +250,7 @@ public class GridSquare extends GeometricPrimitiveDrawer {
     /**
      * sets highlight color.
      *
-     * @param color
+     * @param color to highlight the square
      */
     public void setHighlightColor(final Color color) {
         this.highlightColor = color;

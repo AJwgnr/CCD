@@ -134,8 +134,8 @@ public abstract class Piece {
     }
 
     /**
-     * @param otherPiece
-     * @return
+     * @param otherPiece piece to check owner to
+     * @return true if otherPiece has another owner
      */
     public boolean otherOwner(final Piece otherPiece) {
         if (otherPiece == null) {

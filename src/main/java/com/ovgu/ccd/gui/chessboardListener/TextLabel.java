@@ -6,7 +6,6 @@ import java.awt.*;
 /**
  * @author CCD DeepBlue team
  * @version 1.0
- * @since
  */
 public class TextLabel extends GeometricPrimitiveDrawer {
     private String text = "";

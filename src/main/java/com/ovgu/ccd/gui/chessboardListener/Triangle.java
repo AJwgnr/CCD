@@ -8,7 +8,6 @@ import java.util.Map;
 /**
  * @author CCD DeepBlue team
  * @version 1.0
- * @since
  */
 public class Triangle extends GeometricPrimitiveDrawer implements GeometricShape {
     private static final long serialVersionUID = -7342706080221603266L;

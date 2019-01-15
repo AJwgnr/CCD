@@ -8,7 +8,6 @@ import java.util.List;
 /**
  * @author CCD DeepBlue team
  * @version 1.0
- * @since
  */
 public class Node<T> {
     private T data = null;

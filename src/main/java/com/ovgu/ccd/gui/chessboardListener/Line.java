@@ -6,7 +6,6 @@ import java.util.ArrayList;
 /**
  * @author CCD DeepBlue team
  * @version 1.0
- * @since
  */
 public class Line extends GeometricPrimitiveDrawer implements GeometricShape
 {
