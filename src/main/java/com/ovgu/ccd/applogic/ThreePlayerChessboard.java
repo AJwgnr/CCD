@@ -561,4 +561,11 @@ public class ThreePlayerChessboard implements IBoard {
     public Player getBlackPlayer() {
         return blackPlayer;
     }
+
+    /**
+     * @return true if a king was captured
+     */
+    public boolean isGameFinished() {
+        return (kingWhite.getSquare() == null || kingBlack.getSquare() == null || kingGrey.getSquare() == null);
+    }
 }
