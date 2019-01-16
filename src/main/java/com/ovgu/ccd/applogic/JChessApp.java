@@ -16,6 +16,7 @@
 package com.ovgu.ccd.applogic;
 
 import com.ovgu.ccd.gui.JChessView;
+import com.ovgu.ccd.gui.PawnPromotionWindow;
 import com.ovgu.ccd.gui.chessboardListener.ChessboardListener;
 import com.ovgu.ccd.gui.chessboardListener.ChessboardGrid;
 import com.ovgu.ccd.gui.chessboardListener.Point;
@@ -58,6 +59,7 @@ public class JChessApp extends SingleFrameApplication {
         ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
         listener.setListenerRestrictions(new PlayerSequenceManager(board.getAllPlayers()));
 
+        //PawnPromotionWindow p = new PawnPromotionWindow("B");
         //jcv = new JChessView(this);
         //show(jcv);
     }

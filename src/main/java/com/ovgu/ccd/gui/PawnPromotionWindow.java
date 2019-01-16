@@ -21,6 +21,7 @@
 package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.ResourceManager;
+import com.ovgu.ccd.pieces.Piece;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,50 +36,56 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("ALL")
 public class PawnPromotionWindow extends JDialog implements ActionListener
 {
+    private final int    DIALOG_HEIGHT  = 300;
+    private final int    DIALOG_WIDTH   = 300;
+    private final String DIALOG_TITLE   = "Pawn Promotion";
 
-    JButton knightButton;
-    JButton bishopButton;
-    JButton rookButton;
-    JButton queenButton;
-    GridBagLayout gbl;
-    public String result;
-    GridBagConstraints gbc;
+    private JButton knightButton;
+    private JButton bishopButton;
+    private JButton rookButton;
+    private JButton queenButton;
+
+    public String resultPieceName;
+    private JDialog promotionDialog = null;
 
 
     /**
      * @param parent Information about the current piece
-     * @param color The player color
+     * @param colorOfPiece The player color
      */
 
-    public PawnPromotionWindow(Frame parent, String color)
+    public PawnPromotionWindow(String colorOfPiece)
     {
-        super(parent);
-        this.setTitle("Choose piece");
-        this.setMinimumSize(new Dimension(520, 130));
-        this.setSize(new Dimension(520, 130));
-        this.setMaximumSize(new Dimension(520, 130));
-        this.setResizable(false);
-        this.setLayout(new GridLayout(1, 4));
-        //this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        JFrame frame = new JFrame();
+        promotionDialog = new JDialog(frame, DIALOG_TITLE, true);
+        Container pane = promotionDialog.getContentPane();
+        pane.setLayout(new GridLayout(1, 4));
 
-        this.gbl = new GridBagLayout();
-        this.gbc = new GridBagConstraints();
-        this.knightButton = new JButton(new ImageIcon(ResourceManager.loadImage("Knight-" + color + ".png")));
-        this.bishopButton = new JButton(new ImageIcon(ResourceManager.loadImage("Bishop-" + color + ".png")));
-        this.rookButton = new JButton(new ImageIcon(ResourceManager.loadImage("Rook-" + color + ".png")));
-        this.queenButton = new JButton(new ImageIcon(ResourceManager.loadImage("Queen-" + color + ".png")));
-        this.result = "";
+        this.knightButton   = new JButton(
+                new ImageIcon(ResourceManager.loadImage("Knight-" + colorOfPiece + ".png")));
+        this.bishopButton   = new JButton(
+                new ImageIcon(ResourceManager.loadImage("Bishop-" + colorOfPiece + ".png")));
+        this.rookButton     = new JButton(
+                new ImageIcon(ResourceManager.loadImage("Rook-" + colorOfPiece + ".png")));
+        this.queenButton    = new JButton(
+                new ImageIcon(ResourceManager.loadImage("Queen-" + colorOfPiece + ".png")));
 
         this.knightButton.addActionListener(this);
         this.bishopButton.addActionListener(this);
         this.rookButton.addActionListener(this);
         this.queenButton.addActionListener(this);
 
-        this.add(queenButton);
-        this.add(rookButton);
-        this.add(bishopButton);
-        this.add(knightButton);
+        this.promotionDialog.add(queenButton);
+        this.promotionDialog.add(rookButton);
+        this.promotionDialog.add(bishopButton);
+        this.promotionDialog.add(knightButton);
+
+        this.promotionDialog.setSize(DIALOG_WIDTH,DIALOG_HEIGHT);
+        this.promotionDialog.setLocationRelativeTo(null);
+        pack();
+        this.promotionDialog.setVisible(true);
     }
+
 
     /** Method setting the color fo promoted pawn
      * @param color The players color
@@ -91,6 +98,7 @@ public class PawnPromotionWindow extends JDialog implements ActionListener
         this.queenButton.setIcon(new ImageIcon(ResourceManager.loadImage("Queen-" + color + ".png")));
     }
 
+
     /** Method wich is changing a pawn into queen, rook, bishop or knight
      * @param arg0 Capt information about performed action
      */
@@ -98,20 +106,43 @@ public class PawnPromotionWindow extends JDialog implements ActionListener
     {
         if (arg0.getSource() == queenButton)
         {
-            result = "Queen";
+            resultPieceName = "Queen";
         }
         else if (arg0.getSource() == rookButton)
         {
-            result = "Rook";
+            resultPieceName = "Rook";
         }
         else if (arg0.getSource() == bishopButton)
         {
-            result = "Bishop";
+            resultPieceName = "Bishop";
         }
         else //knight
         {
-            result = "Knight";
+            resultPieceName = "Knight";
         }
-        this.setVisible(false);
+        this.promotionDialog.setVisible(false);
+        this.promotionDialog.dispose();
+    }
+
+
+    /**
+     * returns the resultPieceName of the user selection
+     *
+     * @return  selected piece type
+     */
+    public Piece.PieceTypes getResult()
+    {
+        if (this.resultPieceName.equals("Knight")) {
+            return Piece.PieceTypes.KNIGHT;
+        }
+        else if (this.resultPieceName.equals("Queen")) {
+            return Piece.PieceTypes.QUEEN;
+        }
+        else if (this.resultPieceName.equals("Rook")) {
+            return Piece.PieceTypes.ROOK;
+        }
+        else { // bishop
+            return Piece.PieceTypes.BISHOP;
+        }
     }
 }

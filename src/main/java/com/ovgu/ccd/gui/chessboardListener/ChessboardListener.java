@@ -1,7 +1,11 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
+import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.PlayerSequenceManager;
 import com.ovgu.ccd.applogic.ThreePlayerChessboard;
+import com.ovgu.ccd.gui.PawnPromotionWindow;
+import com.ovgu.ccd.pieces.Pawn;
+import com.ovgu.ccd.pieces.Piece;
 
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
@@ -100,17 +104,40 @@ public class ChessboardListener implements MouseListener
 	 * @param target target square
 	 *
 	 */
-	private void movePiece(GridSquare origin, GridSquare target)
-    {
-        if (origin != null && target != null)
-        {
-            if (origin.getBoardSquare().getPiece() != null)
-            {
-            	ThreePlayerChessboard board = (ThreePlayerChessboard) origin.getBoardSquare().getPiece().getChessboard();
-                board.setPiece(origin.getBoardSquare().getPiece(), target.getBoardSquare().getPosX(), target.getBoardSquare().getPosY());
-            }
-        }
-    }
+	private void movePiece(GridSquare origin, GridSquare target) {
+		if (origin != null && target != null) {
+			Piece piece = origin.getBoardSquare().getPiece();
+			if (piece != null) {
+				ThreePlayerChessboard board = (ThreePlayerChessboard) piece.getChessboard();
+				board.setPiece(piece, target.getBoardSquare().getPosX(), target.getBoardSquare().getPosY());
+				checkForPromotion(piece);
+			}
+		}
+	}
+
+
+	/**
+	 * handles promotion
+	 *
+	 */
+	private void checkForPromotion(Piece piece)
+	{
+		if ("Pawn".equals(piece.name) && ((Pawn) piece).canBePromoted()) {
+			String colorOfPiece = "";
+			if (piece.getColor() == Player.Colors.WHITE) {
+				colorOfPiece = "W";
+			}
+			else if (piece.getColor() == Player.Colors.GREY) {
+				colorOfPiece = "G";
+			}
+			else { // black
+				colorOfPiece = "B";
+			}
+
+			PawnPromotionWindow promotion = new PawnPromotionWindow(colorOfPiece);
+			((Pawn)piece).promote(promotion.getResult());
+		}
+	}
 
 
 	/**

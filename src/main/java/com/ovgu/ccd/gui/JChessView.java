@@ -30,7 +30,6 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.io.File;
 import java.util.Properties;
-import java.util.ResourceBundle;
 
 
 /**
@@ -215,7 +214,7 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
     public String showPawnPromotionBox(String color) {
         if (promotionBox == null) {
             JFrame mainFrame = JChessApp.getApplication().getMainFrame();
-            promotionBox = new PawnPromotionWindow(mainFrame, color);
+            promotionBox = new PawnPromotionWindow(color);
             promotionBox.setLocationRelativeTo(mainFrame);
             promotionBox.setModal(true);
 
@@ -223,7 +222,7 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
         promotionBox.setColor(color);
         JChessApp.getApplication().show(promotionBox);
 
-        return promotionBox.result;
+        return promotionBox.resultPieceName;
     }
 
     public String showSaveWindow() {
