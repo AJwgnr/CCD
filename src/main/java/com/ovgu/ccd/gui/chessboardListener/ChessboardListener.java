@@ -2,6 +2,8 @@ package com.ovgu.ccd.gui.chessboardListener;
 
 import com.ovgu.ccd.applogic.PlayerSequenceManager;
 import com.ovgu.ccd.applogic.ThreePlayerChessboard;
+import com.ovgu.ccd.pieces.Pawn;
+import com.ovgu.ccd.pieces.Piece;
 
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
@@ -100,17 +102,24 @@ public class ChessboardListener implements MouseListener
 	 * @param target target square
 	 *
 	 */
-	private void movePiece(GridSquare origin, GridSquare target)
-    {
-        if (origin != null && target != null)
-        {
-            if (origin.getBoardSquare().getPiece() != null)
-            {
-            	ThreePlayerChessboard board = (ThreePlayerChessboard) origin.getBoardSquare().getPiece().getChessboard();
-                board.setPiece(origin.getBoardSquare().getPiece(), target.getBoardSquare().getPosX(), target.getBoardSquare().getPosY());
-            }
-        }
-    }
+	private void movePiece(GridSquare origin, GridSquare target) {
+		if (origin != null && target != null) {
+			Piece piece = origin.getBoardSquare().getPiece();
+			if (piece != null) {
+				ThreePlayerChessboard board = (ThreePlayerChessboard) piece.getChessboard();
+				board.setPiece(piece, target.getBoardSquare().getPosX(), target.getBoardSquare().getPosY());
+
+				if ("Pawn".equals(piece.name) && ((Pawn) piece).canBePromoted()) {
+					//handle promotion
+					//pop up a UI that allows user to select a PieceType from: Queen, Rook, Bishop, Knight
+					//  we can re-use PawnPromotionWindow
+					//call ((Pawn)piece).promote(pieceType)
+					//that's it
+				}
+
+			}
+		}
+	}
 
 
 	/**
