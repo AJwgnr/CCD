@@ -16,7 +16,8 @@ import com.ovgu.ccd.pieces.Piece;
 public class DiagonalMoveFactory {
 
     /**
-     *
+     * Returns the DiagonalMoves for pieces on the provided
+     * chessboard.
      * @param board defines the type of chessboard currently
      *              being used
      * @param piece defines the pieces for which u need
