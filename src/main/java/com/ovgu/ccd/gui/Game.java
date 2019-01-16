@@ -219,7 +219,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
 
     /** Method to get value from loaded txt line
      *  @param line Line which is readed
-     *  @return result String with loaded value
+     *  @return resultPieceName String with loaded value
      *  @throws ReadGameError object class when something goes wrong
      */
     static public String getValue(String line) throws ReadGameError

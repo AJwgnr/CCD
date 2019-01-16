@@ -1,7 +1,9 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
+import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.PlayerSequenceManager;
 import com.ovgu.ccd.applogic.ThreePlayerChessboard;
+import com.ovgu.ccd.gui.PawnPromotionWindow;
 import com.ovgu.ccd.pieces.Pawn;
 import com.ovgu.ccd.pieces.Piece;
 
@@ -108,15 +110,43 @@ public class ChessboardListener implements MouseListener
 			if (piece != null) {
 				ThreePlayerChessboard board = (ThreePlayerChessboard) piece.getChessboard();
 				board.setPiece(piece, target.getBoardSquare().getPosX(), target.getBoardSquare().getPosY());
+				checkForPromotion(piece);
+			}
+		}
+	}
 
-				if ("Pawn".equals(piece.name) && ((Pawn) piece).canBePromoted()) {
-					//handle promotion
-					//pop up a UI that allows user to select a PieceType from: Queen, Rook, Bishop, Knight
-					//  we can re-use PawnPromotionWindow
-					//call ((Pawn)piece).promote(pieceType)
-					//that's it
-				}
 
+	/**
+	 * handles promotion
+	 *
+	 */
+	private void checkForPromotion(Piece piece)
+	{
+		if ("Pawn".equals(piece.name) && ((Pawn) piece).canBePromoted()) {
+			String colorOfPiece = "";
+			if (piece.getColor() == Player.Colors.WHITE) {
+				colorOfPiece = "W";
+			}
+			else if (piece.getColor() == Player.Colors.GREY) {
+				colorOfPiece = "G";
+			}
+			else { // black
+				colorOfPiece = "B";
+			}
+
+			PawnPromotionWindow promotion = new PawnPromotionWindow(colorOfPiece);
+
+			if (promotion.getResult() == PawnPromotionWindow.promotionOptions.BISHOP) {
+				((Pawn)piece).promote(Piece.PieceTypes.BISHOP);
+			}
+			else if (promotion.getResult() == PawnPromotionWindow.promotionOptions.QUEEN) {
+				((Pawn)piece).promote(Piece.PieceTypes.QUEEN);
+			}
+			else if (promotion.getResult() == PawnPromotionWindow.promotionOptions.KNIGHT) {
+				((Pawn)piece).promote(Piece.PieceTypes.KNIGHT);
+			}
+			else { // rook
+				((Pawn)piece).promote(Piece.PieceTypes.ROOK);
 			}
 		}
 	}

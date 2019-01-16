@@ -305,7 +305,7 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
      *
      * @param txt    Where is capt value to equal
      * @param length How long is the string
-     * @return result trimmed String
+     * @return resultPieceName trimmed String
      */
     public String trimString(JTextField txt, int length) {
         String result = new String();
