@@ -59,7 +59,7 @@ public class JChessApp extends SingleFrameApplication {
         ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
         listener.setListenerRestrictions(new PlayerSequenceManager(board.getAllPlayers()));
 
-        PawnPromotionWindow p = new PawnPromotionWindow("B");
+        //PawnPromotionWindow p = new PawnPromotionWindow("B");
         //jcv = new JChessView(this);
         //show(jcv);
     }

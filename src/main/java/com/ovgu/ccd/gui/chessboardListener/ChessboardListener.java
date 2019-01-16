@@ -135,19 +135,7 @@ public class ChessboardListener implements MouseListener
 			}
 
 			PawnPromotionWindow promotion = new PawnPromotionWindow(colorOfPiece);
-
-			if (promotion.getResult() == PawnPromotionWindow.promotionOptions.BISHOP) {
-				((Pawn)piece).promote(Piece.PieceTypes.BISHOP);
-			}
-			else if (promotion.getResult() == PawnPromotionWindow.promotionOptions.QUEEN) {
-				((Pawn)piece).promote(Piece.PieceTypes.QUEEN);
-			}
-			else if (promotion.getResult() == PawnPromotionWindow.promotionOptions.KNIGHT) {
-				((Pawn)piece).promote(Piece.PieceTypes.KNIGHT);
-			}
-			else { // rook
-				((Pawn)piece).promote(Piece.PieceTypes.ROOK);
-			}
+			((Pawn)piece).promote(promotion.getResult());
 		}
 	}
 

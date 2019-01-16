@@ -21,6 +21,7 @@
 package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.ResourceManager;
+import com.ovgu.ccd.pieces.Piece;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,9 +48,6 @@ public class PawnPromotionWindow extends JDialog implements ActionListener
     public String resultPieceName;
     private JDialog promotionDialog = null;
 
-    public enum promotionOptions {
-        KNIGHT, BISHOP, ROOK, QUEEN
-    }
 
     /**
      * @param parent Information about the current piece
@@ -130,21 +128,21 @@ public class PawnPromotionWindow extends JDialog implements ActionListener
     /**
      * returns the resultPieceName of the user selection
      *
-     * @return  selected piece
+     * @return  selected piece type
      */
-    public promotionOptions getResult()
+    public Piece.PieceTypes getResult()
     {
         if (this.resultPieceName.equals("Knight")) {
-            return promotionOptions.KNIGHT;
+            return Piece.PieceTypes.KNIGHT;
         }
         else if (this.resultPieceName.equals("Queen")) {
-            return promotionOptions.QUEEN;
+            return Piece.PieceTypes.QUEEN;
         }
         else if (this.resultPieceName.equals("Rook")) {
-            return promotionOptions.ROOK;
+            return Piece.PieceTypes.ROOK;
         }
         else { // bishop
-            return promotionOptions.BISHOP;
+            return Piece.PieceTypes.BISHOP;
         }
     }
 }
