@@ -7,22 +7,17 @@ import com.ovgu.ccd.moves.three.KingMoves;
 import com.ovgu.ccd.pieces.Piece;
 
 /**
- * This specifically judeges the squares of
- * the chessboard for the King.
+ * Factory that returns the corresponding king moves
+ * depending on the board.
  */
 
 public class KingMoveFactory {
 
     /**
-     * This function returns list moves of the
-     * king with respect to the chessboard
-     * i.e. either three or two player.
-     * @param board defines the board on which the
-     *              movement of the King is to determined
-     * @param piece refers to the King of the board
-     * @return the list of squares of the for the King on the given chessboard.
+     * @param board current board.
+     * @param piece king to be moved.
+     * @return a list of possible moves.
      */
-
     public static IMove getMoves(final IBoard board, final Piece piece) {
         if (board instanceof ThreePlayerChessboard) {
             return new KingMoves(piece, board);

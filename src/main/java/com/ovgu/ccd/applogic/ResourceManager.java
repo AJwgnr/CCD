@@ -51,7 +51,7 @@ public class ResourceManager {
     }
 
     /**
-     * @return
+     * @return the instance
      */
     public static ResourceManager getInstance() {
         if (singleton_instance == null) {
@@ -62,21 +62,21 @@ public class ResourceManager {
 
 
     /**
-     * @return
+     * @return the app property
      */
     public Properties getJChessAppPropertie() {
         return jChessAppPropertie;
     }
 
     /**
-     * @return
+     * @return the view property
      */
     public Properties getJChessViewPropertie() {
         return jChessViewPropertie;
     }
 
     /**
-     * @return
+     * @return about box property
      */
     public Properties getJChessAboutBoxPropertie() {
         return jChessAboutBoxPropertie;
@@ -150,7 +150,6 @@ public class ResourceManager {
         try {
             Properties prop = getConfigFile();
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
-            System.out.println("Load Image from Theme: " + prop.getProperty("THEME"));
             URL imageLink = loader.getResource("theme/" + prop.getProperty("THEME", "default") + "/images/" + name);
             img = tk.getImage(imageLink);
 

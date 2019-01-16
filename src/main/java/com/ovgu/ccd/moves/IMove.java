@@ -5,17 +5,12 @@ import com.ovgu.ccd.pieces.Square;
 import java.util.ArrayList;
 
 /**
- * This interface returns an ArrayList
- * of squares of the chessboard.
- *
- */
-
+* Interface for classes that implement moves.
+*/
 public interface IMove {
-
     /**
-     * This function returns the list of squares of the moves.
-     * @return an ArrayList of the squares of the chessboard
-     * @throws Exception if certain exception occurs then it throws
+     * @return a list of moves.
+     * @throws Exception in case of invalid moves.
      */
     ArrayList<Square> moves() throws Exception;
 }

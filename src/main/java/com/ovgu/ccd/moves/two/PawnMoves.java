@@ -15,8 +15,8 @@ public class PawnMoves implements IMove {
     private Square pieceSquare;
 
     /**
-     * @param piece
-     * @param board
+     * @param piece for which moves are calculated
+     * @param board in which moves are calculated
      */
     public PawnMoves(Piece piece, IBoard board) {
         this.piece = piece;
@@ -25,7 +25,7 @@ public class PawnMoves implements IMove {
     }
 
     /**
-     * @return
+     * @return possible moves
      */
     public ArrayList moves() {
         int immediateYCoordinate;

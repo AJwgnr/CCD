@@ -15,8 +15,6 @@ import static org.junit.Assert.assertTrue;
  *
  * @author CCD team
  * @version 1.0
- * @since
- * @see
  */
 public class GridSquareTest
 {
@@ -27,9 +25,6 @@ public class GridSquareTest
      * setup method - this will setup and appropriated environment to work with
      * (this creates a basic grid square object to work with)
      *
-     * @param
-     * @return
-     * @result
      */
     @Before
     public void setup()
@@ -46,8 +41,6 @@ public class GridSquareTest
     /**
      * test for the grid square area computation
      *
-     * @param
-     * @return
      * @result  the computation of the grid square area is working properly
      */
     @Test
@@ -60,8 +53,6 @@ public class GridSquareTest
     /**
      * test the boolean function if a point is inside a square
      *
-     * @param
-     * @return
      * @result  the point in the center of the grid square is correctly classified as been inside the square
      */
     @Test

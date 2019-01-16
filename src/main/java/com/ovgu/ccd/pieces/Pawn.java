@@ -1,23 +1,3 @@
-/*
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Authors:
- * Mateusz Sławomir Lach ( matlak, msl )
- * Damian Marciniak
- */
 package com.ovgu.ccd.pieces;
 
 
@@ -28,8 +8,7 @@ import com.ovgu.ccd.moves.PawnMoveFactory;
 
 import java.util.ArrayList;
 
-/**
- * Class to represent a pawn piece
+/**Class to represent a pawn piece.
  * Pawn can move only forvard and can beat only across
  * In first move pawn can move 2 sqares
  * pawn can be upgreade to rook, knight, bishop, Queen if it's in the
@@ -66,30 +45,27 @@ import java.util.ArrayList;
  * |_|_|_|_|_|_|_|_|0
  * 0 1 2 3 4 5 6 7
  */
-
 public class Pawn extends Piece {
 
-    public static short value = 1;
-    boolean down;
-
-    protected Pawn(IBoard chessboard, Player player) {
+    /** Creates a pawn on the given chessboard for the given player
+     * @param chessboard board on which the pawn is placed
+     * @param player player the pawn is assigned
+     */
+    protected Pawn(final IBoard chessboard, final Player player) {
         super(chessboard, player);
         this.symbol = "";
         imageWhite = ResourceManager.loadImage("Pawn-W.png");
         imageBlack = ResourceManager.loadImage("Pawn-B.png");
         imageGray = ResourceManager.loadImage("Pawn-G.png");
-
         this.setImage();
     }
 
-    /**
-     * Annotation to superclass Piece changing pawns location
-     *
+    /**Determines all possible Moves of this piece.
      * @return ArrayList with new position of piece
      */
     @Override
     public ArrayList allMoves() {
-        ArrayList moves = new ArrayList();
+        ArrayList<Square> moves = new ArrayList<>();
         try {
             moves.addAll(PawnMoveFactory.getMoves(chessboard, this).moves());
         } catch (Exception e) {
@@ -98,8 +74,10 @@ public class Pawn extends Piece {
         return moves;
     }
 
-
-    void promote(Piece newPiece) {
+    /**Promotes the pawn into a new piece.
+     * @param newPiece piece the pawn should be promoted to
+     */
+    void promote(final Piece newPiece) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

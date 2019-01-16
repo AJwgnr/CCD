@@ -7,8 +7,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
-// regular hexagon
-public class Hexagon extends GeometricShape {
+/**
+ * @author CCD DeepBlue team
+ * @version 1.0
+ */
+public class Hexagon extends GeometricPrimitiveDrawer
+{
     private static final long serialVersionUID = 4539157182258466862L;
 
     private boolean visibility = true;
@@ -17,6 +21,13 @@ public class Hexagon extends GeometricShape {
     private Point center = null;
     private int radius = 0;
 
+
+    /**
+     * constructor
+     *
+     * @param center    center point of the regular hexagon
+     * @param radius    radius of the hexagon - distance from the center to on of the vertices
+     */
     public Hexagon(Point center, int radius) {
         this.radius = radius;
         this.center = center;
@@ -25,7 +36,10 @@ public class Hexagon extends GeometricShape {
     }
 
 
-    // construct the hexagon and computes a list of moves vertices
+    /**
+     * construct the hexagon and computes a list of moves vertices
+     *
+     */
     private void computeVertices() {
         Circle outerCircle = new Circle(this.center, this.radius);
 
@@ -45,6 +59,11 @@ public class Hexagon extends GeometricShape {
         this.vertices.put("B", outerCircle.findIntersectionPoint(constructionCircleRight).get(1));
     }
 
+
+    /**
+     * initializes all lines for the hexagon
+     *
+     */
     private void setupLines() {
         lines.put("AB", new Line(this.vertices.get("A"), this.vertices.get("B")));
         lines.put("BC", new Line(this.vertices.get("B"), this.vertices.get("C")));
@@ -55,38 +74,58 @@ public class Hexagon extends GeometricShape {
     }
 
 
-    public void setVisibility(boolean en) {
-        this.visibility = en;
-        repaint();
-    }
-
-
+    /**
+     * returns the center point of the hexagon
+     *
+     * @return  center point
+     *
+     */
     public Point getCenter() {
         return this.center;
     }
 
 
+    /**
+     * returns the radius of the hexagon
+     *
+     * @return  radius
+     *
+     */
     public int getRadius() {
         return this.radius;
     }
 
+
+    /**
+     * returns a list of all vertices
+     *
+     * @return  vertices list
+     *
+     */
     public List<Line> getLinesAsList() {
         return this.lines.values().stream().collect(Collectors.toList());
     }
 
-    public HashMap<String, Line> getLinesAsMap() {
-        return this.lines;
-    }
 
-    public List<Point> getVerticesAsList() {
-        return this.vertices.values().stream().collect(Collectors.toList());
-    }
-
+    /**
+     * returns a hashmap of all vertices
+     *
+     * @return  vertices hashmap
+     *
+     */
     public HashMap<String, Point> getVerticesAsMap() {
         return this.vertices;
     }
 
 
+    /**
+     * checks whether a point is inside the hexagon or not
+     *
+     * @param point point to check for
+     * @return  true - is inside
+     *          false - not inside
+     *
+     */
     public boolean isPointWithinHexagon(Point point) {
         // check whether the point lies inside or outside the radius circle
         float radiusPointToCenter = Math.abs(point.getDistanceTo(this.center));
@@ -97,16 +136,17 @@ public class Hexagon extends GeometricShape {
     }
 
 
+    /**
+     * draws the hexagon with all its lines
+     *
+     * @param graphics graphics
+     *
+     */
     @Override
     public void draw(Graphics graphics) {
         if (this.visibility) {
             for (Map.Entry<String, Line> line : lines.entrySet())
                 line.getValue().paint(graphics);
         }
-    }
-
-    @Override
-    public double area() {
-        return 0;
     }
 }

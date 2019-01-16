@@ -7,24 +7,17 @@ import com.ovgu.ccd.moves.three.DiagonalMoves;
 import com.ovgu.ccd.pieces.Piece;
 
 /**
- * Class is used to provide the DiagonalMoves for the pieces
- * on the chess board whether it is ThreePlayer
- * or TwoPlayer chessboard by returning the DiagonalMoves
- * of the respective chessboard.
+ * Factory that returns the corresponding diagonal moves
+ * depending on the board.
  */
 
 public class DiagonalMoveFactory {
 
     /**
-     * Returns the DiagonalMoves for pieces on the provided
-     * chessboard.
-     * @param board defines the type of chessboard currently
-     *              being used
-     * @param piece defines the pieces for which u need
-     *              to decide the move on the given chessbord
-     * @return the DiagonalMoves of a piece on the given ChessBoard
+     * @param board current board.
+     * @param piece to be moved.
+     * @return a list of possible diagonal moves.
      */
-
     public static IMove getMoves(final IBoard board, final Piece piece) {
         if (board instanceof ThreePlayerChessboard) {
             return new DiagonalMoves(piece, board);

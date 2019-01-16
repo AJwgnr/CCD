@@ -13,8 +13,8 @@ public class StraightMoves implements IMove {
     private Chessboard board;
 
     /**
-     * @param piece
-     * @param board
+     * @param piece for which moves are calculated
+     * @param board in which moves are calculated
      */
     public StraightMoves(Piece piece, IBoard board) {
         this.piece = piece;

@@ -5,14 +5,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ChessboardLabeling extends GeometricPrimitiveDrawer {
-    private Hexagon hexagonForLabeling = null;
+/**
+ * @author CCD DeepBlue team
+ * @version 1.0
+ */
+public class ChessboardLabeling extends GeometricPrimitiveDrawer
+{
+    private Hexagon hexagonForLabeling;
     private List<TextLabel> labels = new ArrayList<TextLabel>();
-    private String[] labelNames = null;
-    private int numOfLabelsPerSide = 8;
+    private String[] labelNames;
+    private int numOfLabelsPerSide;
+    private final float HEXAGON_STRETCH_FACTOR = 1.05f;
 
 
-    public ChessboardLabeling(Hexagon chessboardHexagon, String[] labels) {
+    /**
+     * constructor
+     *
+     * @param   chessboardHexagon   hexagon object of the chessboard
+     * @param   labels              array of labels to assign
+     */
+    public ChessboardLabeling(final Hexagon chessboardHexagon, final String[] labels) {
         this.labelNames = labels;
         this.hexagonForLabeling = extendHexagonForLabeling(chessboardHexagon);
         this.numOfLabelsPerSide = getNumOfLabelsPerSide();
@@ -20,28 +32,50 @@ public class ChessboardLabeling extends GeometricPrimitiveDrawer {
     }
 
 
+    /**
+     * returns the number of labels per side of the hexagon
+     *
+     * @return number of labels per side
+     */
     private int getNumOfLabelsPerSide() {
         int numOfVertices = this.hexagonForLabeling.getVerticesAsMap().size();
         return (this.labelNames.length + 1) / numOfVertices;
     }
 
 
-    private Hexagon extendHexagonForLabeling(Hexagon originalHexagon) {
+    /**
+     * creates a new hexagon with the same center point as the parent one but with increased radius
+     *
+     * @param   originalHexagon the original parent hexagon
+     * @return  the new stretched hexagon
+     */
+    private Hexagon extendHexagonForLabeling(final Hexagon originalHexagon) {
         return new Hexagon(
                 originalHexagon.getCenter(),
-                (int) (originalHexagon.getRadius() * 1.05));
+                (int) (originalHexagon.getRadius() * HEXAGON_STRETCH_FACTOR));
     }
 
 
+    /**
+     * this method draws the labels
+     *
+     * @param   graphics    graphics
+     */
     @Override
-    public void draw(Graphics graphics) {
+    public void draw(final Graphics graphics) {
         graphics.setColor(Color.BLACK);
         for (TextLabel label : labels)
             label.draw(graphics);
     }
 
 
-    private void assignTextLabels() {
+    /**
+     * assign the text labels to the chessboard
+     * (equally distributed along the sides if the hexagon)
+     *
+     */
+    private void assignTextLabels()
+    {
         // get list of positions
         List<Point> points = new ArrayList<Point>();
         for (Line line : this.hexagonForLabeling.getLinesAsList()) {

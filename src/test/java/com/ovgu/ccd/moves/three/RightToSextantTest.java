@@ -22,7 +22,7 @@ public class RightToSextantTest {
     Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
 
     @Test
-    public void testrightToSextant3H() {
+    public void testRightToSextantInSquare3H() {
         board.setPiece(bishop, 3, ThreePlayerChessboard.H);
         ArrayList<Square> moves;
 
@@ -31,7 +31,7 @@ public class RightToSextantTest {
     }
 
     @Test
-    public void testrightToSextant2H() {
+    public void testRightToSextantInSquare2H() {
         board.setPiece(bishop, 2, ThreePlayerChessboard.H);
         ArrayList<Square> moves;
 
@@ -46,7 +46,7 @@ public class RightToSextantTest {
     }
 
     @Test
-    public void testrightToSextant3D() {
+    public void testRightToSextantInSquare3D() {
         board.setPiece(bishop, 3, ThreePlayerChessboard.D);
         ArrayList<Square> moves;
 
@@ -55,7 +55,7 @@ public class RightToSextantTest {
     }
 
     @Test
-    public void testrightToSextant0C() {
+    public void testRightToSextantInSquare0C() {
         board.setPiece(bishop, 0, ThreePlayerChessboard.C);
         ArrayList<Square> moves;
 
@@ -70,7 +70,7 @@ public class RightToSextantTest {
     }
 
     @Test
-    public void testrightToSextant5A() {
+    public void testRightToSextantInSquare5A() {
         board.setPiece(bishop, 5, ThreePlayerChessboard.A);
         ArrayList<Square> moves;
 
@@ -85,7 +85,7 @@ public class RightToSextantTest {
     }
 
     @Test
-    public void testrightToSextant4A() {
+    public void testRightToSextantInSquare4A() {
         board.setPiece(bishop, 4, ThreePlayerChessboard.A);
         ArrayList<Square> moves;
 
@@ -94,7 +94,7 @@ public class RightToSextantTest {
     }
 
     @Test
-    public void testrightToSextant7I() {
+    public void testRightToSextantInSquare7I() {
         board.setPiece(bishop, 7, ThreePlayerChessboard.I);
         ArrayList<Square> moves;
 
@@ -103,7 +103,7 @@ public class RightToSextantTest {
     }
 
     @Test
-    public void testrightToSextant7J() {
+    public void testRightToSextantInSquare7J() {
         board.setPiece(bishop, 7, ThreePlayerChessboard.J);
         ArrayList<Square> moves;
 
@@ -118,7 +118,7 @@ public class RightToSextantTest {
     }
 
     @Test
-    public void testrightToSextant8L() {
+    public void testRightToSextantInSquare8L() {
         board.setPiece(bishop, 8, ThreePlayerChessboard.L);
         ArrayList<Square> moves;
 
@@ -127,7 +127,7 @@ public class RightToSextantTest {
     }
 
     @Test
-    public void testrightToSextant9L() {
+    public void testRightToSextantInSquare9L() {
         board.setPiece(bishop, 9, ThreePlayerChessboard.L);
         ArrayList<Square> moves;
 
@@ -142,7 +142,7 @@ public class RightToSextantTest {
     }
 
     @Test
-    public void testrightToSextant11E() {
+    public void testRightToSextantInSquare11E() {
         board.setPiece(bishop, 11, ThreePlayerChessboard.E);
         ArrayList<Square> moves;
 
@@ -151,7 +151,7 @@ public class RightToSextantTest {
     }
 
     @Test
-    public void testrightToSextant11F() {
+    public void testRightToSextantInSquare11F() {
         board.setPiece(bishop, 11, ThreePlayerChessboard.F);
         ArrayList<Square> moves;
 
@@ -166,7 +166,7 @@ public class RightToSextantTest {
     }
 
     @Test
-    public void testrightToSextant2G() {
+    public void testRightToSextantInSquare2G() {
         board.setPiece(bishop, 2, ThreePlayerChessboard.G);
         ArrayList<Square> moves;
 
@@ -181,7 +181,7 @@ public class RightToSextantTest {
     }
 
     @Test
-    public void testrightToSextant9I() {
+    public void testRightToSextantInSquare9I() {
         board.setPiece(bishop, 9, ThreePlayerChessboard.I);
         ArrayList<Square> moves;
 
@@ -196,7 +196,7 @@ public class RightToSextantTest {
     }
 
     @Test
-    public void testrightToSextant8F() {
+    public void testRightToSextantInSquare8F() {
         board.setPiece(bishop, 8, ThreePlayerChessboard.F);
         ArrayList<Square> moves;
 

@@ -19,7 +19,7 @@ public class StraightMovesTest {
     Player blackPlayer = new Player("John", Player.Colors.BLACK.name());
 
     @Test
-    public void testMovesIn3E() throws Exception {
+    public void testHorizontalMovesInSquare3E() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
         board.setPiece(rook, 3, ThreePlayerChessboard.E);
@@ -54,7 +54,7 @@ public class StraightMovesTest {
 
 
     @Test
-    public void testMovesIn2G() throws Exception {
+    public void testHorizontalMovesInSquare2G() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
         board.setPiece(rook, 2, ThreePlayerChessboard.G);
@@ -88,7 +88,7 @@ public class StraightMovesTest {
     }
 
     @Test
-    public void testMovesIn9J() throws Exception {
+    public void testHorizontalMovesInSquare9J() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
         board.setPiece(rook, 9, ThreePlayerChessboard.J);
@@ -123,7 +123,7 @@ public class StraightMovesTest {
 
 
     @Test
-    public void testMovesIn3EBlockedByPieces() throws Exception {
+    public void testHorizontalMovesInSquare3EBlockedByPieces() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
 
@@ -160,7 +160,7 @@ public class StraightMovesTest {
 
 
     @Test
-    public void testMovesIn0HBlockedByPieces() throws Exception {
+    public void testHorizontalMovesInSquare0HBlockedByPieces() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
 
@@ -194,7 +194,7 @@ public class StraightMovesTest {
 
 
     @Test
-    public void testMovesIn0HBlockedByPiecesCanEat() throws Exception {
+    public void testHorizontalMovesInSquare0HBlockedByPiecesCanEat() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
@@ -229,7 +229,7 @@ public class StraightMovesTest {
     }
 
     @Test
-    public void testMovesIn10EBlockedByPiecesCanEatBothSides() throws Exception {
+    public void testHorizontalMovesInSquare10EBlockedByPiecesCanEatBothSides() throws Exception {
         IBoard board = new ThreePlayerChessboard();
 
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
@@ -267,7 +267,7 @@ public class StraightMovesTest {
     }
 
     @Test
-    public void testMovesIn0EBlockedByPiecesCanEatBothSides() throws Exception {
+    public void testHorizontalMovesInSquare0EBlockedByPiecesCanEatBothSides() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
 
@@ -307,7 +307,7 @@ public class StraightMovesTest {
     }
 
     @Test
-    public void testMovesIn10JBlockedByPiecesCanEatBothSides() throws Exception {
+    public void testHorizontalMovesInSquare10JBlockedByPiecesCanEatBothSides() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
 
@@ -347,7 +347,7 @@ public class StraightMovesTest {
     }
 
     @Test
-    public void testMovesIn6JBlockedByPiecesCanEatBothSides() throws Exception {
+    public void testHorizontalMovesInSquare6JBlockedByPiecesCanEatBothSides() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
         board.setPiece(rook, 6, ThreePlayerChessboard.J);
@@ -382,7 +382,7 @@ public class StraightMovesTest {
     }
 
     @Test
-    public void testMovesIn3FWithPossibleCheck() throws Exception {
+    public void testHorizontalMovesInSquare3FWithPossibleCheck() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
@@ -406,7 +406,7 @@ public class StraightMovesTest {
     }
 
     @Test
-    public void testMovesIn3FStopCheck() throws Exception {
+    public void testHorizontalMovesInSquare3FStopCheck() throws Exception {
         IBoard board = new ThreePlayerChessboard();
         Piece rook = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.ROOK);
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);

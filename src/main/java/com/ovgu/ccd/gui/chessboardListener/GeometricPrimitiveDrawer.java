@@ -1,19 +1,32 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JComponent;
+import java.awt.Graphics;
+import java.awt.Color;
 
 
-public abstract class GeometricPrimitiveDrawer extends JComponent {
+/**
+ * @author CCD DeepBlue team
+ * @version 1.0
+ */
+public abstract class GeometricPrimitiveDrawer extends JComponent
+{
     private static final long serialVersionUID = -5177239702410583033L;
 
-    // redraw panel elements
+    /**
+     * redraw panel elements
+     *
+     */
     public void redraw() {
         repaint();
     }
 
 
-    // draw (auto execution)
+    /**
+     * draws the elements
+     *
+     * @param graphics graphics
+     */
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         graphics.setColor(Color.BLACK);
@@ -21,6 +34,10 @@ public abstract class GeometricPrimitiveDrawer extends JComponent {
     }
 
 
-    // draw primitive
+    /**
+     * will be called in paintComponent() and can be used to define certain things to draw
+     *
+     * @param graphics graphics
+     */
     public abstract void draw(Graphics graphics);
 }

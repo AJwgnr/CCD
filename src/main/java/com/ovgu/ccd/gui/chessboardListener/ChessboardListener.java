@@ -11,7 +11,6 @@ import java.awt.event.MouseListener;
 /**
  * @author CCD DeepBlue team
  * @version 1.0
- * @since 1.0
  */
 public class ChessboardListener implements MouseListener {
     private ChessboardGrid grid = null;
@@ -23,7 +22,7 @@ public class ChessboardListener implements MouseListener {
      *
      * @param grid chessboard gird to listen to
      */
-    public ChessboardListener(ChessboardGrid grid) {
+    public ChessboardListener(final ChessboardGrid grid) {
         this.grid = grid;
         this.grid.addMouseListener(this);
     }
@@ -48,7 +47,7 @@ public class ChessboardListener implements MouseListener {
      * @param e mouse event -> clicked point
      * @return GridSquare
      */
-    private GridSquare getClickedSquare(MouseEvent e) {
+    private GridSquare getClickedSquare(final MouseEvent e) {
         return grid.getSquareWithinPoint(new Point(e.getX(), e.getY()));
     }
 
@@ -59,7 +58,7 @@ public class ChessboardListener implements MouseListener {
      * @param origin start square
      * @param target target square
      */
-    private void movePiece(GridSquare origin, GridSquare target) {
+    private void movePiece(final GridSquare origin, final GridSquare target) {
         if (origin != null && target != null) {
             if (origin.getBoardSquare().getPiece() != null) {
                 ThreePlayerChessboard board = (ThreePlayerChessboard) origin.getBoardSquare().getPiece().getChessboard();
@@ -74,7 +73,7 @@ public class ChessboardListener implements MouseListener {
      *
      * @param clickedSquare clicked square
      */
-    private void handlePieceInteraction(GridSquare clickedSquare) {
+    private void handlePieceInteraction(final GridSquare clickedSquare) {
         // select piece
         if (this.squareBuffer == null) {
             this.squareBuffer = clickedSquare;
@@ -91,9 +90,9 @@ public class ChessboardListener implements MouseListener {
             }
 
             // select new piece
-            else if (clickedSquare.getBoardSquare().getPiece() != null &&
-                    this.squareBuffer.getBoardSquare().getPiece().getColor() ==
-                            clickedSquare.getBoardSquare().getPiece().getColor()) {
+            else if (clickedSquare.getBoardSquare().getPiece() != null
+                    && this.squareBuffer.getBoardSquare().getPiece().getColor()
+                    == clickedSquare.getBoardSquare().getPiece().getColor()) {
                 this.grid.stopDisplayingPossibleMoves();
                 this.squareBuffer = clickedSquare;
                 this.grid.displayPossibleMoves(clickedSquare);
@@ -107,7 +106,7 @@ public class ChessboardListener implements MouseListener {
      *
      * @param e mouse event -> clicked point
      */
-    private void handleChessboardClicks(MouseEvent e) {
+    private void handleChessboardClicks(final MouseEvent e) {
         GridSquare clickedSquare = getClickedSquare(e);
         if (clickedSquare != null) {
             clickedSquare.getBoardSquare().print();
@@ -121,30 +120,30 @@ public class ChessboardListener implements MouseListener {
 
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(final MouseEvent e) {
         handleChessboardClicks(e);
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(final MouseEvent e) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseExited(final MouseEvent e) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(final MouseEvent e) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
         // TODO Auto-generated method stub
 
     }

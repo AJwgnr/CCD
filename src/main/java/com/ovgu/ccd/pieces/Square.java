@@ -1,87 +1,94 @@
-/*
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Authors:
- * Mateusz Sławomir Lach ( matlak, msl )
- * Damian Marciniak
- */
 package com.ovgu.ccd.pieces;
 
 import java.util.Objects;
 
 
-/**
- * Class to represent a chessboard square
+/**Class to represent a chessboard square.
  */
 public class Square {
+    /**default parameter if the square is invalid.
+     */
     private boolean invalid = false;
-    private Piece piece = null;
-    private int boardPosX = -1;
-    private int boardPosY = -1;
+    /** default piece on the square.
+     */
+    private Piece piece;
+    /**Default x position.
+     */
+    private int boardPosX;
+    /**Default y position.
+     */
+    private int boardPosY;
 
-    // dummy square
-    public Square() {
-    }
 
-    public Square(int x, int y, Piece piece) {
+    /**Creates a new square with a given piece.
+     * @param x x position on the board
+     * @param y y position on the board
+     * @param piece piece to place on the board
+     */
+    public Square(final int x, final int y, final Piece piece) {
         this.boardPosX = x;
         this.boardPosY = y;
         this.piece = piece;
     }
 
-    public Square(Square square) {
+    /** Initializes a sqaure with a given square.
+     * @param square exisiting sqaure to initialiaze new square
+     */
+    public Square(final Square square) {
         this.boardPosX = square.getPosX();
         this.boardPosY = square.getPosY();
         this.piece = square.getPiece();
+        this.invalid = square.isInvalid();
     }
 
 
-    public void setPosX(int x) {
+    /**Sets the x position of the square.
+     * @param x x coordinate on the board
+     */
+    public void setPosX(final int x) {
         this.boardPosX = x;
     }
 
 
-    public void setPosY(int y) {
+    /**Sets the y position of the square.
+     * @param y y coordinate of the board
+     */
+    public void setPosY(final int y) {
         this.boardPosY = y;
     }
 
 
+    /**Gets the x position of the square.
+     * @return x position
+     */
     public int getPosX() {
         return this.boardPosX;
     }
 
-
+    /**Gets the x coordinate of the square.
+     * @return y position
+     */
     public int getPosY() {
         return this.boardPosY;
     }
 
 
+    /** Prints the information about the square.
+     */
     public void print() {
         System.out.println("Square Hashcode:  " + this.hashCode());
         System.out.println("Board Position X: " + this.getPosX());
         System.out.println("Board Position Y: " + this.getPosY());
 
-        if (this.piece != null)
+        if (this.piece != null) {
             System.out.println("Piece:            " + this.getPiece());
+        }
     }
 
-    /**
-     * @param piece
+    /** Sets a piece on the square.
+     * @param piece Piece to place on the square
      */
-    public void setPiece(Piece piece) {
+    public void setPiece(final Piece piece) {
         if (this.piece != null) {
             this.piece.setSquare(null);
         }
@@ -91,14 +98,12 @@ public class Square {
         }
     }
 
-    /**
-     * checks whether two squares are equal by comparing the x,y corrdinate and checking if there is the same piece on it
-     *
-     * @param o
-     * @return
+    /**checks whether two squares are equal by comparing the x,y corrdinate and checking if there is the same piece on it.
+     * @param o square to compare equality
+     * @return boolean if the squares are the same
      */
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (o == this) return true;
         if (!(o instanceof Square)) return false;
 
@@ -107,29 +112,40 @@ public class Square {
         return square.getPosX() == getPosX() && square.getPosY() == getPosY();
     }
 
+    /** Calculates the hash of the sqare.
+     * @return hashcode as int
+     */
     @Override
     public int hashCode() {
         return Objects.hash(100 * this.boardPosX + this.boardPosY);
     }
 
-    /**
-     * Retrieve the piece on the square
-     *
-     * @return
+    /**Retrieve the piece on the square.     *
+     * @return piece on the square
      */
     public Piece getPiece() {
         return piece;
     }
 
+
+    /** Checks wether the square is empty (no piece on it).
+     * @return boolean if square is empty
+     */
     public boolean isEmpty() {
-        return piece == null;
+        return this.piece == null;
     }
 
+    /** Checks wether the square is invalid.
+     * @return boolean
+     */
     public boolean isInvalid() {
         return invalid;
     }
 
-    public void setInvalid(boolean value) {
+    /** Sets the invalid attribute of the sqaure.
+     * @param value boolean value to set
+     */
+    public void setInvalid(final boolean value) {
         this.invalid = value;
     }
 }

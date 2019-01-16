@@ -14,8 +14,6 @@ import static junit.framework.TestCase.assertEquals;
  *
  * @author CCD team
  * @version 1.0
- * @since
- * @see
  */
 public class ChessboardGridTest
 {
@@ -26,9 +24,6 @@ public class ChessboardGridTest
      * setup method - this will setup and appropriated environment to work with
      * (it creates a basic grid structure)
      *
-     * @param
-     * @return
-     * @result
      */
     @Before
     public void setup()
@@ -40,8 +35,6 @@ public class ChessboardGridTest
     /**
      * This test method tests if the get-square-x-position is working properly.
      *
-     * @param
-     * @return
      * @result  get square method returns the right square according to (x,y) position
      *          and the x position was correctly stored
      */
@@ -55,8 +48,6 @@ public class ChessboardGridTest
     /**
      * This test method tests if the get-square-y-position is working properly.
      *
-     * @param
-     * @return
      * @result  get square method returns the right square according to (x,y) position
      *          and the y position was correctly stored
      */
@@ -70,8 +61,6 @@ public class ChessboardGridTest
     /**
      * Checks if the the center point of a square (1,1) is properly stated to be inside the square.
      *
-     * @param
-     * @return
      * @result  get square method is working
      *          the center method returns a point inside the square
      *          and the method, which returns the square according to a point is working properly too
@@ -88,8 +77,6 @@ public class ChessboardGridTest
     /**
      * Checks if the the center point of a square (1,1) is properly stated to be inside the square.
      *
-     * @param
-     * @return
      * @result  the chessboard grid is colored alternately
      */
     @Test

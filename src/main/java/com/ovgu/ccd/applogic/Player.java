@@ -27,9 +27,21 @@ import java.io.Serializable;
  * Represents a Player in the Chess Game
  */
 public class Player implements Serializable {
+    /**
+     * name of the player
+     */
     private String name;
+    /**
+     * color of the player
+     */
     private Colors color;
+    /**
+     * player type
+     */
     private PlayerTypes playerType;
+    /**
+     * whether the player is going down in direction
+     */
     private boolean goDown;
 
     /**
@@ -49,8 +61,8 @@ public class Player implements Serializable {
 
 
     /**
-     * @param name
-     * @param color
+     * @param name of the player
+     * @param color of the player
      */
 
     public Player(String name, String color) {
@@ -61,14 +73,14 @@ public class Player implements Serializable {
 
 
     /**
-     * @return
+     * @return goDown
      */
     public boolean isGoDown() {
         return goDown;
     }
 
     /**
-     * @param goDown
+     * @param goDown value to set
      */
     public void setGoDown(boolean goDown) {
         this.goDown = goDown;
@@ -97,7 +109,7 @@ public class Player implements Serializable {
     /**
      * sets the color of the player Instance
      *
-     * @param color
+     * @param color to set
      */
     public void setColor(Colors color) {
         this.color = color;

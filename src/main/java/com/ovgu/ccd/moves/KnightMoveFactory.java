@@ -7,7 +7,7 @@ import com.ovgu.ccd.moves.three.KnightMoves;
 import com.ovgu.ccd.pieces.Piece;
 
 /**
- * This is basically used for the Knight
+ * This is basically used for returning the Knight
  * in determining the list of squares on
  * the chessboard used for Knight.
  */
@@ -17,9 +17,9 @@ public class KnightMoveFactory {
     /**
      * Returns a list of squares of the of given
      * chessboard for the Knight.
-     * @param board defines which chessboard is currently used
-     * @param piece refers the Knight of the chess game
-     * @return the list of squares
+     * @param board defines which chessboard is currently used.
+     * @param piece refers the Knight of the chess game.
+     * @return the list of squares.
      */
 
     public static IMove getMoves(final IBoard board, final Piece piece) {
