@@ -4,6 +4,7 @@ package com.ovgu.ccd.pieces;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.ResourceManager;
+import com.ovgu.ccd.applogic.ThreePlayerChessboard;
 import com.ovgu.ccd.moves.PawnMoveFactory;
 
 import java.util.ArrayList;
@@ -75,9 +76,32 @@ public class Pawn extends Piece {
     }
 
     /**Promotes the pawn into a new piece.
-     * @param newPiece piece the pawn should be promoted to
+     * @param newPieceType piece the pawn should be promoted to
      */
-    void promote(final Piece newPiece) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void promote(final PieceTypes newPieceType) {
+        ThreePlayerChessboard board = (ThreePlayerChessboard) chessboard;
+        if (getColor() == Player.Colors.WHITE) {
+            board.whitePawns.remove(this);
+        } else if (getColor() == Player.Colors.BLACK) {
+            board.blackPawns.remove(this);
+        } else {
+            board.greyPawns.remove(this);
+        }
+
+        Piece newPiece = PieceFactory.getPiece(chessboard, player, newPieceType);
+        getSquare().setPiece(newPiece);
+    }
+
+    /**
+     * @return true if it can be promoted
+     */
+    public boolean canBePromoted() {
+        if (getColor() == Player.Colors.WHITE) {
+            return (getPosX() == 7 || getPosX() == 11);
+        } else if (getColor() == Player.Colors.BLACK) {
+            return (getPosX() == 0 || getPosX() == 11);
+        } else {
+            return (getPosX() == 0 || getPosX() == 7);
+        }
     }
 }

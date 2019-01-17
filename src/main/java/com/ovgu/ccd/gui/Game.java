@@ -205,7 +205,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener {
     /**
      * Method to get value from loaded txt line
      *
-     * @param line Line which is readed
+     * @param line Line which is read
      * @return result String with loaded value
      * @throws ReadGameError object class when something goes wrong
      */

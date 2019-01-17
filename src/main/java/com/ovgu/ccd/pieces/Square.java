@@ -72,17 +72,11 @@ public class Square {
         return this.boardPosY;
     }
 
-
     /** Prints the information about the square.
      */
-    public void print() {
-        System.out.println("Square Hashcode:  " + this.hashCode());
-        System.out.println("Board Position X: " + this.getPosX());
-        System.out.println("Board Position Y: " + this.getPosY());
-
-        if (this.piece != null) {
-            System.out.println("Piece:            " + this.getPiece());
-        }
+    public void print()
+    {
+        System.out.println("Board Position: [" + this.getPosX() + " " + this.getPosY() + "]");
     }
 
     /** Sets a piece on the square.
