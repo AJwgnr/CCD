@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 public class GameoverWindow extends JDialog
 {
     private final int    DIALOG_HEIGHT  = 500;
-    private final int    DIALOG_WIDTH   = 500;
+    private final int    DIALOG_WIDTH   = 800;
     private final String DIALOG_TITLE   = "Gameover";
 
     private JDialog gameoverDialog = null;
@@ -35,7 +35,7 @@ public class GameoverWindow extends JDialog
         JLabel jLabel = new JLabel("Congratulations, " + nameOfWinner + ", you won the game!");
         jLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));
         panel.add(jLabel);
-        this.gameoverDialog.getContentPane().add(panel, BorderLayout.CENTER);
+        this.gameoverDialog.getContentPane().add(panel, BorderLayout.NORTH);
         this.gameoverDialog.setSize(DIALOG_WIDTH,DIALOG_HEIGHT);
         this.gameoverDialog.setLocationRelativeTo(null);
         pack();
