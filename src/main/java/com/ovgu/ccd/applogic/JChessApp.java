@@ -15,6 +15,8 @@
 
 package com.ovgu.ccd.applogic;
 
+import com.ovgu.ccd.gui.Fireworks;
+import com.ovgu.ccd.gui.GameoverWindow;
 import com.ovgu.ccd.gui.JChessView;
 import com.ovgu.ccd.gui.PawnPromotionWindow;
 import com.ovgu.ccd.gui.chessboardListener.ChessboardListener;
@@ -59,9 +61,10 @@ public class JChessApp extends SingleFrameApplication {
         ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
         listener.setListenerRestrictions(new PlayerSequenceManager(board.getAllPlayers()));
 
-        //PawnPromotionWindow p = new PawnPromotionWindow("B");
         //jcv = new JChessView(this);
         //show(jcv);
+
+        new GameoverWindow("Johann");
     }
 
     /**
