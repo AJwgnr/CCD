@@ -1,5 +1,7 @@
 package com.ovgu.ccd.gui;
 
+import com.ovgu.ccd.applogic.Player;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,15 +32,17 @@ public class Fireworks extends JPanel implements ActionListener
     private static int X_CENTER[] = new int[ARRAY_LENGTH];
     private static int Y_CENTER[] = new int[ARRAY_LENGTH];
     private static Color colors[] = new Color[ARRAY_LENGTH];
+
     private int x1;
     private int moveX;
     private int index;
     private int color_index;
     private Timer timer;
+    private Robot robot = null;
+
     private List<Integer> xx = new ArrayList<>();
     private List<Integer> yy = new ArrayList<>();
 
-    private Robot robot = null;
 
     /**
      * constructor
@@ -46,17 +50,23 @@ public class Fireworks extends JPanel implements ActionListener
      */
     public Fireworks()
     {
-        x1 = index = color_index = 0;
+        x1 = 0;
+        index = 0;
+        color_index = 0;
         moveX = 3;
-        try{
+
+        try
+        {
             this.robot = new Robot();
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
+
         timer = new Timer(DELAY, this);
         timer.start();
+
         X_CENTER[0]=100;
         Y_CENTER[0]=100;
 
@@ -86,7 +96,8 @@ public class Fireworks extends JPanel implements ActionListener
      * @param arg0  action event
      */
     @Override
-    public void actionPerformed(ActionEvent arg0) {
+    public void actionPerformed(ActionEvent arg0)
+    {
         x1 += moveX;
         if (x1 == 0 || x1 >= FIREWORK_RADIUS) {
             x1=0;
