@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class FullBoardTest {
 
@@ -17,25 +17,25 @@ public class FullBoardTest {
         ThreePlayerChessboard board = new ThreePlayerChessboard();
         board.initPlayers();
         board.initPieceStartPositions();
-        ArrayList<Square> moves = new ArrayList<>();
+        ArrayList<Square> moves;
 
         Bishop rightWhiteBishop = (Bishop) board.getSquare(0, ThreePlayerChessboard.F).getPiece();
 
         moves = rightWhiteBishop.allMoves();
-        assertTrue(moves.size() == 0);
+        assertEquals(moves.size(), 0);
 
         Pawn whitePawn = (Pawn) board.getSquare(1, ThreePlayerChessboard.E).getPiece();
         board.setPiece(whitePawn, 3, ThreePlayerChessboard.E);
 
         moves = rightWhiteBishop.allMoves();
-        assertTrue(moves.size() == 5);
+        assertEquals(moves.size(), 5);
 
         whitePawn = (Pawn) board.getSquare(1, ThreePlayerChessboard.D).getPiece();
         board.setPiece(whitePawn, 3, ThreePlayerChessboard.D);
 
         Bishop leftWhiteBishop = (Bishop) board.getSquare(0, ThreePlayerChessboard.C).getPiece();
         moves = leftWhiteBishop.allMoves();
-        assertTrue(moves.size() == 5);
+        assertEquals(moves.size(), 5);
 
         Pawn blackPawn = (Pawn) board.getSquare(6, ThreePlayerChessboard.D).getPiece();
         board.setPiece(blackPawn, 4, ThreePlayerChessboard.D);
@@ -45,7 +45,7 @@ public class FullBoardTest {
 
         Bishop rightBlackBishop = (Bishop) board.getSquare(7, ThreePlayerChessboard.C).getPiece();
         moves = rightBlackBishop.allMoves();
-        assertTrue(moves.size() == 7);
+        assertEquals(moves.size(), 7);
 
         blackPawn = (Pawn) board.getSquare(6, ThreePlayerChessboard.I).getPiece();
         board.setPiece(blackPawn, 4, ThreePlayerChessboard.I);
@@ -54,6 +54,6 @@ public class FullBoardTest {
 
         Bishop leftBlackBishop = (Bishop) board.getSquare(7, ThreePlayerChessboard.J).getPiece();
         moves = leftBlackBishop.allMoves();
-        assertTrue(moves.size() == 7);
+        assertEquals(moves.size(), 7);
     }
 }

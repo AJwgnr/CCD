@@ -40,7 +40,7 @@ public class Bishop extends Piece {
      * @return ArrayList with new position of piece
      */
     @Override
-    public ArrayList allMoves() {
+    public ArrayList<Square> allMoves() {
         ArrayList<Square> moves = new ArrayList<>();
         try {
             moves.addAll(DiagonalMoveFactory.getMoves(chessboard, this).moves());
