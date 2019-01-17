@@ -46,6 +46,10 @@ public class ThreePlayerChessboard implements IBoard {
     private ChessboardGrid chessboardGrid = null;
 
 
+    public ArrayList<Piece> blackPieces = new ArrayList<>();
+    public ArrayList<Piece> whitePieces = new ArrayList<>();
+    public ArrayList<Piece> greyPieces = new ArrayList<>();
+
     /*------------------------------
     #-------------MATRIX------------
     #-------------------------------
@@ -164,44 +168,88 @@ public class ThreePlayerChessboard implements IBoard {
     {
         if (this.matrix != null)
         {
-            Piece pawn;
+            Piece piece;
             // white player start positions
-            this.matrix[0][A].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.ROOK));
-            this.matrix[0][B].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.KNIGHT));
-            this.matrix[0][C].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.BISHOP));
-            this.matrix[0][D].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.QUEEN));
+            piece = PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.ROOK);
+            this.matrix[0][A].setPiece(piece);
+            whitePieces.add(piece);
+            piece = PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.KNIGHT);
+            this.matrix[0][B].setPiece(piece);
+            whitePieces.add(piece);
+            piece = PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.BISHOP);
+            this.matrix[0][C].setPiece(piece);
+            whitePieces.add(piece);
+            piece = PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.QUEEN);
+            this.matrix[0][D].setPiece(piece);
+            whitePieces.add(piece);
             King whiteKing = (King) PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.KING);
             this.matrix[0][E].setPiece(whiteKing);
+            whitePieces.add(whiteKing);
             setKingWhite(whiteKing);
-            this.matrix[0][F].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.BISHOP));
-            this.matrix[0][G].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.KNIGHT));
-            this.matrix[0][H].setPiece(PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.ROOK));
+            piece = PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.BISHOP);
+            this.matrix[0][F].setPiece(piece);
+            whitePieces.add(piece);
+            piece = PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.KNIGHT);
+            this.matrix[0][G].setPiece(piece);
+            whitePieces.add(piece);
+            piece = PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.ROOK);
+            this.matrix[0][H].setPiece(piece);
+            whitePieces.add(piece);
             setupWhitePawns();
 
             // black player start positions
-            this.matrix[7][A].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.ROOK));
-            this.matrix[7][B].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KNIGHT));
-            this.matrix[7][C].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.BISHOP));
-            this.matrix[7][D].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.QUEEN));
+            piece = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.ROOK);
+            this.matrix[7][A].setPiece(piece);
+            blackPieces.add(piece);
+            piece = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KNIGHT);
+            this.matrix[7][B].setPiece(piece);
+            blackPieces.add(piece);
+            piece = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.BISHOP);
+            this.matrix[7][C].setPiece(piece);
+            blackPieces.add(piece);
+            piece = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.QUEEN);
+            this.matrix[7][D].setPiece(piece);
+            blackPieces.add(piece);
             King blackKing = (King) PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KING);
             this.matrix[7][I].setPiece(blackKing);
+            blackPieces.add(blackKing);
             setKingBlack(blackKing);
-            this.matrix[7][J].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.BISHOP));
-            this.matrix[7][K].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KNIGHT));
-            this.matrix[7][L].setPiece(PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.ROOK));
+            piece = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.BISHOP);
+            this.matrix[7][J].setPiece(piece);
+            blackPieces.add(piece);
+            piece = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.KNIGHT);
+            this.matrix[7][K].setPiece(piece);
+            blackPieces.add(piece);
+            piece = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.ROOK);
+            this.matrix[7][L].setPiece(piece);
+            blackPieces.add(piece);
             setupBlackPawns();
 
             // gray player start positions
-            this.matrix[11][H].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.ROOK));
-            this.matrix[11][G].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KNIGHT));
-            this.matrix[11][F].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.BISHOP));
-            this.matrix[11][E].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.QUEEN));
+            piece = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.ROOK);
+            this.matrix[11][H].setPiece(piece);
+            greyPieces.add(piece);
+            piece = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KNIGHT);
+            this.matrix[11][G].setPiece(piece);
+            greyPieces.add(piece);
+            piece = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.BISHOP);
+            this.matrix[11][F].setPiece(piece);
+            greyPieces.add(piece);
+            piece = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.QUEEN);
+            this.matrix[11][E].setPiece(piece);
+            greyPieces.add(piece);
             King greyKing = (King) PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KING);
             this.matrix[11][I].setPiece(greyKing);
             setKingGrey(greyKing);
-            this.matrix[11][J].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.BISHOP));
-            this.matrix[11][K].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KNIGHT));
-            this.matrix[11][L].setPiece(PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.ROOK));
+            piece = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.BISHOP);
+            this.matrix[11][J].setPiece(piece);
+            greyPieces.add(piece);
+            piece = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.KNIGHT);
+            this.matrix[11][K].setPiece(piece);
+            greyPieces.add(piece);
+            piece = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.ROOK);
+            this.matrix[11][L].setPiece(piece);
+            greyPieces.add(piece);
             setupGreyPawns();
         }
     }
@@ -212,11 +260,13 @@ public class ThreePlayerChessboard implements IBoard {
             pawn = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN);
             this.matrix[10][i].setPiece(pawn);
             greyPawns.add(pawn);
+            greyPieces.add(pawn);
         }
         for (int i = I; i <= L; i++) {
             pawn = PieceFactory.getPiece(this, this.greyPlayer, Piece.PieceTypes.PAWN);
             this.matrix[10][i].setPiece(pawn);
             greyPawns.add(pawn);
+            greyPieces.add(pawn);
         }
     }
 
@@ -225,6 +275,7 @@ public class ThreePlayerChessboard implements IBoard {
             Piece pawn = PieceFactory.getPiece(this, this.whitePlayer, Piece.PieceTypes.PAWN);
             this.matrix[1][i].setPiece(pawn);
             whitePawns.add(pawn);
+            whitePieces.add(pawn);
         }
     }
 
@@ -235,11 +286,13 @@ public class ThreePlayerChessboard implements IBoard {
             pawn = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN);
             this.matrix[6][i].setPiece(pawn);
             blackPawns.add(pawn);
+            blackPieces.add(pawn);
         }
         for (int i = I; i <= L; i++) {
             pawn = PieceFactory.getPiece(this, this.blackPlayer, Piece.PieceTypes.PAWN);
             this.matrix[6][i].setPiece(pawn);
             blackPawns.add(pawn);
+            blackPieces.add(pawn);
         }
     }
 
@@ -565,7 +618,12 @@ public class ThreePlayerChessboard implements IBoard {
     /**
      * @return true if a king was captured
      */
-    public boolean isGameFinished() {
-        return (kingWhite.getSquare() == null || kingBlack.getSquare() == null || kingGrey.getSquare() == null);
+    public boolean isGameFinished() throws Exception {
+        return (kingWhite.getSquare() == null ||
+                kingBlack.getSquare() == null ||
+                kingGrey.getSquare() == null  ||
+                new CheckMateController(this, kingWhite).isCheckMate() ||
+                new CheckMateController(this, kingBlack).isCheckMate() ||
+                new CheckMateController(this, kingGrey).isCheckMate());
     }
 }

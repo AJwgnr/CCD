@@ -197,10 +197,14 @@ public class ChessboardListener implements MouseListener
 	{
 		Piece piece = clickedSquare.getBoardSquare().getPiece();
 		ThreePlayerChessboard board = (ThreePlayerChessboard) piece.getChessboard();
-		if (board.isGameFinished())
-		{
-			String nameOfPlayer = piece.getPlayer().getName();
-			new GameoverWindow(nameOfPlayer);
+		try {
+			if (board.isGameFinished())
+			{
+				String nameOfPlayer = piece.getPlayer().getName();
+				new GameoverWindow(nameOfPlayer);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
