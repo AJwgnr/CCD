@@ -10,6 +10,15 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * This test class is for testing the entire
+ * ThreePlayerChessboard with respect to all
+ * the pieces.
+ *
+ * @author CCD team
+ * @version 1.0
+ */
+
 public class FullBoardTest {
 
     @Test
