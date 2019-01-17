@@ -221,6 +221,29 @@ public class ChessboardListener implements MouseListener
             if (clickedSquare.getBoardSquare().getPiece() != null || this.squareBuffer != null)
             	handlePieceInteraction(clickedSquare);
 
+            // check for check situation
+			ThreePlayerChessboard board = (ThreePlayerChessboard) clickedSquare.getBoardSquare().getPiece().getChessboard();
+			if (board.myKing(Player.Colors.WHITE).isChecked() == true)
+			{
+				GridSquare square = this.grid.getSquare(
+						board.myKing(Player.Colors.WHITE).getPosX(),
+						board.myKing(Player.Colors.WHITE).getPosY());
+				this.grid.displayCheckSituation(square);
+			}
+			else if (board.myKing(Player.Colors.GREY).isChecked() == true)
+			{
+				GridSquare square = this.grid.getSquare(
+						board.myKing(Player.Colors.GREY).getPosX(),
+						board.myKing(Player.Colors.GREY).getPosY());
+				this.grid.displayCheckSituation(square);
+			}
+			else if (board.myKing(Player.Colors.BLACK).isChecked() == true)
+			{
+				GridSquare square = this.grid.getSquare(
+						board.myKing(Player.Colors.BLACK).getPosX(),
+						board.myKing(Player.Colors.BLACK).getPosY());
+				this.grid.displayCheckSituation(square);
+			}
             this.grid.redraw();
         }
     }
