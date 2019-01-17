@@ -3,6 +3,7 @@ package com.ovgu.ccd.gui.chessboardListener;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.PlayerSequenceManager;
 import com.ovgu.ccd.applogic.ThreePlayerChessboard;
+import com.ovgu.ccd.gui.GameoverWindow;
 import com.ovgu.ccd.gui.PawnPromotionWindow;
 import com.ovgu.ccd.pieces.Pawn;
 import com.ovgu.ccd.pieces.Piece;
@@ -169,6 +170,7 @@ public class ChessboardListener implements MouseListener
 				movePiece(this.squareBuffer, clickedSquare);
 				this.squareBuffer = null;
 				this.grid.stopDisplayingPossibleMoves();
+				this.checkForGameover(clickedSquare);
 				if (this.sequenceManager != null)
 					this.sequenceManager.moveDone();
 			}
@@ -182,6 +184,23 @@ public class ChessboardListener implements MouseListener
 				this.squareBuffer = clickedSquare;
 				this.grid.displayPossibleMoves(clickedSquare);
 			}
+		}
+	}
+
+
+	/**
+	 * this method checks for a gameover situation after the move finished
+	 *
+	 * @param clickedSquare the clicked Square after the moved is completed
+	 */
+	private void checkForGameover(GridSquare clickedSquare)
+	{
+		Piece piece = clickedSquare.getBoardSquare().getPiece();
+		ThreePlayerChessboard board = (ThreePlayerChessboard) piece.getChessboard();
+		if (board.isGameFinished())
+		{
+			String nameOfPlayer = piece.getPlayer().getName();
+			new GameoverWindow(nameOfPlayer);
 		}
 	}
 
