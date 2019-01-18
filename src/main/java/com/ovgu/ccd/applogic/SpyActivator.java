@@ -89,6 +89,7 @@ public class SpyActivator {
         this.player = player;
         this.piece = piece;
         this.board = board;
+
     }
 
     /**
@@ -125,6 +126,8 @@ public class SpyActivator {
                 } else {
                     board.blackPawns.remove(piece);
                 }
+
+
                 board.whitePawns.add(piece);
                 board.setWhiteSpyActive(true);
             }
@@ -138,6 +141,7 @@ public class SpyActivator {
                 } else {
                     board.whitePawns.remove(piece);
                 }
+
                 board.blackPawns.add(piece);
                 board.setBlackSpyActive(true);
             }
@@ -156,5 +160,6 @@ public class SpyActivator {
             }
         }
         piece.setPlayer(player);
+        piece.setImage();
     }
 }

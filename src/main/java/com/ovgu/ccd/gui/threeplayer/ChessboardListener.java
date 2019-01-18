@@ -23,6 +23,8 @@ public class ChessboardListener implements MouseListener
 	private ChessboardGrid grid = null;
 	private GridSquare squareBuffer = null;
 	PlayerSequenceManager sequenceManager = null;
+	private JButton spyActivator = null;
+	private Piece clickedPieceWaitingForSpy = null;
 
 
 	/**
@@ -35,6 +37,11 @@ public class ChessboardListener implements MouseListener
 	{
 		this.grid = grid;
 		this.grid.addMouseListener(this);
+		this.spyActivator = new JButton("Activate spy");
+		this.spyActivator.addMouseListener(this);
+		this.spyActivator.setLayout(null);
+		spyActivator.setBounds(200,15,200,200);
+
 	}
 
 
@@ -47,8 +54,10 @@ public class ChessboardListener implements MouseListener
 	public JPanel getPanel()
 	{
 		JPanel mainPanel = new JPanel();
-		mainPanel.setLayout(new BorderLayout());
+		//mainPanel.setSize(700,700);
+		mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.PAGE_AXIS));
 		mainPanel.add(this.grid);
+		mainPanel.add(spyActivator);
 		return mainPanel;
 	}
 
@@ -60,6 +69,7 @@ public class ChessboardListener implements MouseListener
 	public void setListenerRestrictions(PlayerSequenceManager sequenceManager)
 	{
 		this.sequenceManager = sequenceManager;
+
 	}
 
 
@@ -148,13 +158,18 @@ public class ChessboardListener implements MouseListener
 	 */
     private void handlePieceInteraction(GridSquare clickedSquare)
 	{
-		// select piece
+		// select piece (no piece selected yet)
 		if (this.squareBuffer == null)
 		{
+				//sstore piece as sleection for spy
+				this.clickedPieceWaitingForSpy = clickedSquare.getBoardSquare().getPiece();
+
+
 			if (isMoveValid(clickedSquare))
 			{
 				this.squareBuffer = clickedSquare;
 				this.grid.displayPossibleMoves(clickedSquare);
+				this.clickedPieceWaitingForSpy =  null;
 			}
 			else
 				this.sequenceManager.print();
@@ -208,30 +223,53 @@ public class ChessboardListener implements MouseListener
 	}
 
 
+
+
+
+
+
 	/**
 	 * handles chessboard clicks
 	 *
 	 * @param e mouse event -> clicked point
 	 *
 	 */
-	private void handleChessboardClicks(MouseEvent e)
-    {
-		GridSquare clickedSquare = getClickedSquare(e);
-        if(clickedSquare != null)
-        {
-        	clickedSquare.getBoardSquare().print();
-
-            if (clickedSquare.getBoardSquare().getPiece() != null || this.squareBuffer != null)
-                handlePieceInteraction(clickedSquare);
-
-            this.grid.redraw();
-        }
-    }
-
-
-    @Override
+	@Override
     public void mouseClicked(final MouseEvent e) {
-        handleChessboardClicks(e);
+		//clicked Spy Button
+		if(e.getSource().equals(this.spyActivator)){
+
+
+
+
+
+
+			//already selected a piece
+			if(this.clickedPieceWaitingForSpy != null){
+				ThreePlayerChessboard board = (ThreePlayerChessboard) this.clickedPieceWaitingForSpy.getChessboard();
+				try {
+					//try to activate spy
+					board.activateSpy(this.sequenceManager.getCurrentPlayer(),this.clickedPieceWaitingForSpy);
+					this.clickedPieceWaitingForSpy = null;
+					if (this.sequenceManager != null)
+						this.sequenceManager.moveDone();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+
+			}
+			//clicked on the grid
+		}else if(e.getSource().equals(grid)) {
+
+			GridSquare clickedSquare = getClickedSquare(e);
+			if (clickedSquare != null) {
+				clickedSquare.getBoardSquare().print();
+
+				if (clickedSquare.getBoardSquare().getPiece() != null || this.squareBuffer != null)
+					handlePieceInteraction(clickedSquare);
+			}
+		}
+		this.grid.redraw();
     }
 
     @Override

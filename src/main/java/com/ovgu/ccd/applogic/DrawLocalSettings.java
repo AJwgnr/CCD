@@ -66,7 +66,7 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
 
     private void initUiComponents(JDialog parent) {
         this.parent = parent;
-
+        this.parent.setTitle("Create a new game :)");
         this.gridBagLayout = new GridBagLayout();
         this.gridBagConstraints = new GridBagConstraints();
         this.okButton = new JButton(Settings.lang("ok"));
@@ -144,9 +144,9 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
         this.gridBagConstraints.gridwidth = 1;
         this.gridBagLayout.setConstraints(time4Game, gridBagConstraints);
         this.add(time4Game);
-        this.gridBagConstraints.gridx = 1;
-        this.gridBagConstraints.gridy = 12;
-        this.gridBagConstraints.gridwidth = 0;
+        this.gridBagConstraints.gridx = 2;
+        this.gridBagConstraints.gridy = 11;
+        this.gridBagConstraints.gridwidth = 1;
         this.gridBagLayout.setConstraints(okButton, gridBagConstraints);
         this.add(okButton);
 
@@ -226,6 +226,7 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
                     //launch two person game
                     newGUI = JChessApp.jcv.addNewTwoPlayerTab(this.firstName.getText() + " vs " + this.secondName.getText());
                     sett = newGUI.settings;//sett LOCAL settings variable
+                    sett.gameType = Settings.gameTypes.LOCAL;
                     pl1 = sett.getPlayerOne();//set LOCAL player variable
                     pl2 = sett.getPlayerTwo();//set LOCAL player variable
 

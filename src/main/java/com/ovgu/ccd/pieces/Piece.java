@@ -125,7 +125,7 @@ public abstract class Piece {
 
     /** Sets the image of the piece
      */
-void setImage() {
+ public void setImage() {
         if (this.getPlayer().getColor() == Colors.BLACK) {
             image = imageBlack;
         } else if (this.getPlayer().getColor() == Colors.WHITE) {
@@ -197,6 +197,7 @@ void setImage() {
      */
     public void setPlayer(final Player player) {
         this.player = player;
+
     }
 
     /**Gets the color of the player on the piece.

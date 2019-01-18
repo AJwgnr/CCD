@@ -141,7 +141,7 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
 
     public Game addNewThreePlayerTab(String title) {
 
-        ChessboardGrid chessboardGrid = new ChessboardGrid(new Point(400,400),500);
+        ChessboardGrid chessboardGrid = new ChessboardGrid(new Point(500,420),450);
         ChessboardListener listener = new ChessboardListener(chessboardGrid);
         //Window window = new com.ovgu.ccd.gui.threeplayer.Window("ChessboardListener",1280,1280, listener.getPanel());
         ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
@@ -277,10 +277,10 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
         statusAnimationLabel = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
 
-        mainPanel.setMaximumSize(new java.awt.Dimension(800, 600));
-        mainPanel.setMinimumSize(new java.awt.Dimension(800, 600));
+        mainPanel.setMaximumSize(new java.awt.Dimension(1920, 1080));
+        mainPanel.setMinimumSize(new java.awt.Dimension(1000, 800));
         mainPanel.setName("mainPanel"); // NOI18N
-        mainPanel.setPreferredSize(new java.awt.Dimension(800, 600));
+        mainPanel.setPreferredSize(new java.awt.Dimension(1000, 800));
 
         gamesPane.setName("gamesPane"); // NOI18N
 
