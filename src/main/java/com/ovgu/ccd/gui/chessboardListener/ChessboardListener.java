@@ -223,26 +223,50 @@ public class ChessboardListener implements MouseListener
 
             // check for check situation
 			ThreePlayerChessboard board = (ThreePlayerChessboard) clickedSquare.getBoardSquare().getPiece().getChessboard();
-			if (board.myKing(Player.Colors.WHITE).isChecked() == true)
+			if (board.myKing(Player.Colors.WHITE).isChecked() == true
+					|| board.myKing(Player.Colors.WHITE).isCheckmatedOrStalemated() == 1)
 			{
 				GridSquare square = this.grid.getSquare(
 						board.myKing(Player.Colors.WHITE).getPosX(),
 						board.myKing(Player.Colors.WHITE).getPosY());
 				this.grid.displayCheckSituation(square);
 			}
-			else if (board.myKing(Player.Colors.GREY).isChecked() == true)
+			else
+			{
+				GridSquare square = this.grid.getSquare(
+						board.myKing(Player.Colors.WHITE).getPosX(),
+						board.myKing(Player.Colors.WHITE).getPosY());
+				this.grid.StopDisplayCheckSituation(square);
+			}
+			if (board.myKing(Player.Colors.GREY).isChecked() == true
+					|| board.myKing(Player.Colors.GREY).isCheckmatedOrStalemated() == 1)
 			{
 				GridSquare square = this.grid.getSquare(
 						board.myKing(Player.Colors.GREY).getPosX(),
 						board.myKing(Player.Colors.GREY).getPosY());
 				this.grid.displayCheckSituation(square);
 			}
-			else if (board.myKing(Player.Colors.BLACK).isChecked() == true)
+			else
+			{
+				GridSquare square = this.grid.getSquare(
+						board.myKing(Player.Colors.GREY).getPosX(),
+						board.myKing(Player.Colors.GREY).getPosY());
+				this.grid.StopDisplayCheckSituation(square);
+			}
+			if (board.myKing(Player.Colors.BLACK).isChecked() == true
+					|| board.myKing(Player.Colors.BLACK).isCheckmatedOrStalemated() == 1)
 			{
 				GridSquare square = this.grid.getSquare(
 						board.myKing(Player.Colors.BLACK).getPosX(),
 						board.myKing(Player.Colors.BLACK).getPosY());
 				this.grid.displayCheckSituation(square);
+			}
+			else
+			{
+				GridSquare square = this.grid.getSquare(
+						board.myKing(Player.Colors.BLACK).getPosX(),
+						board.myKing(Player.Colors.BLACK).getPosY());
+				this.grid.StopDisplayCheckSituation(square);
 			}
             this.grid.redraw();
         }
