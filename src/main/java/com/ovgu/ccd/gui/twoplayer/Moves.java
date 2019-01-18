@@ -49,7 +49,7 @@ public class Moves extends AbstractTableModel {
     private int rowsNum = 0;
     private String[] names = new String[]
             {
-                    Settings.lang("white"), Settings.lang("black"), "ThirdPlayer"
+                    Settings.lang("white"), Settings.lang("black")
             };
     private MyDefaultTableModel tableModel;
     private JScrollPane scrollPane;
@@ -75,7 +75,6 @@ public class Moves extends AbstractTableModel {
 
         this.tableModel.addColumn(this.names[0]);
         this.tableModel.addColumn(this.names[1]);
-        this.tableModel.addColumn(this.names[2]);
         this.addTableModelListener(null);
         this.tableModel.addTableModelListener(null);
         this.scrollPane.setAutoscrolls(true);

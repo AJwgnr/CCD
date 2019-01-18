@@ -40,7 +40,6 @@ public class GameClock extends JPanel implements Runnable {
 
     private Clock playerOneClock;
     private Clock playerTwoClock;
-    private Clock playerThreeClock;
 
     private Clock runningClock;
 
@@ -86,7 +85,6 @@ public class GameClock extends JPanel implements Runnable {
         int time = this.settings.getTimeForGame();
         this.playerOneClock = new Clock(time);
         this.playerTwoClock = new Clock(time);
-        this.playerThreeClock = new Clock(time);
         this.setPlayers(this.settings.getPlayerTwo(), this.settings.getPlayerOne(), this.settings.getPlayerThree());
     }
 
@@ -109,42 +107,30 @@ public class GameClock extends JPanel implements Runnable {
      * Method of drawing graphical background of clock
      */
     private void drawBackground() {
+
+
+
+
+
         Graphics gr = this.background.getGraphics();
         Graphics2D g2d = (Graphics2D) gr;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         Font font = new Font("Serif", Font.ITALIC, 20);
 
-        //create fields for names
         g2d.setColor(Color.WHITE);
         g2d.fillRect(5, 30, 80, 30);
         g2d.setFont(font);
 
         g2d.setColor(Color.BLACK);
-        g2d.fillRect(85, 30, 80, 30);
-        g2d.setFont(font);
-
-        g2d.setColor(Color.WHITE);
-        g2d.fillRect(165, 30, 80, 30);
-        g2d.setFont(font);
-
-
+        g2d.fillRect(85, 30, 90, 30);
         g2d.drawRect(5, 30, 170, 30);
         g2d.drawRect(5, 60, 170, 30);
-        g2d.drawRect(85, 30, 170, 30);
-        g2d.drawRect(85, 60, 170, 30);
-        g2d.drawRect(165, 30, 170, 30);
-        g2d.drawRect(165, 60, 170, 30);
-
         g2d.drawLine(85, 30, 85, 90);
-        font = new Font("Serif", Font.ITALIC, 50);
-        g2d.setColor(Color.WHITE);
-        //Write names of player
-
-        //Write names in created rectangles
+        font = new Font("Serif", Font.ITALIC, 16);
         g2d.drawString(settings.getPlayerOne().getName(), 10, 50);
+        g2d.setColor(Color.WHITE);
         g2d.drawString(settings.getPlayerTwo().getName(), 100, 50);
-        g2d.drawString(settings.getPlayerThree().getName(), 190, 50);
         this.bufferedGraphics = this.background.getGraphics();
     }
 
@@ -159,7 +145,7 @@ public class GameClock extends JPanel implements Runnable {
         super.paint(g);
         playerOneClockString = this.playerOneClock.prepareString();
         playerTwoClockString = this.playerTwoClock.prepareString();
-        playerThreeClockString = this.playerThreeClock.prepareString();
+
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(this.background, 0, 0, this);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -174,7 +160,6 @@ public class GameClock extends JPanel implements Runnable {
         g2d.fillRect(85, 30, 90, 30);
         g2d.drawRect(5, 30, 170, 30);
         g2d.drawRect(5, 60, 170, 30);
-        g2d.drawRect(85, 30, 170, 30);
         g2d.drawLine(85, 30, 85, 90);
         font = new Font("Serif", Font.ITALIC, 14);
         g2d.drawImage(this.background, 0, 0, this);
@@ -182,13 +167,12 @@ public class GameClock extends JPanel implements Runnable {
         g.drawString(settings.getPlayerOne().getName(), 10, 50);
         g.setColor(Color.WHITE);
         g.drawString(settings.getPlayerTwo().getName(), 100, 50);
-        g2d.drawString(settings.getPlayerThree().getName(), 190, 50);
         g2d.setFont(font);
         g.setColor(Color.BLACK);
 
         g2d.drawString(playerOneClockString, 10, 80);
         g2d.drawString(playerTwoClockString, 100, 80);
-        g2d.drawString(playerThreeClockString, 190, 80);
+
     }
 
     /**
@@ -227,11 +211,10 @@ public class GameClock extends JPanel implements Runnable {
         if (p1.getColor() == p1.getColor().WHITE) {
             this.playerOneClock.setPlayer(p1);
             this.playerTwoClock.setPlayer(p2);
-            this.playerThreeClock.setPlayer(p3);
+
         } else {
             this.playerOneClock.setPlayer(p2);
             this.playerTwoClock.setPlayer(p1);
-            this.playerThreeClock.setPlayer(p3);
         }
     }
 

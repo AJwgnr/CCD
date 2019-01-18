@@ -61,7 +61,7 @@ public class JChessApp extends SingleFrameApplication {
         jcv = new JChessView(this);
         show(jcv);
 
-        new GameoverWindow("Johann");
+        //new GameoverWindow("Johann");
     }
 
     /**
