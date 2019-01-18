@@ -1,8 +1,7 @@
-package com.ovgu.ccd.gui.chessboardListener;
+package com.ovgu.ccd.gui.threeplayer;
 
 import java.awt.*;
 import java.util.ArrayList;
-import javax.swing.JComponent;
 
 
 public class Line extends GeometricShape

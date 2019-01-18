@@ -1,8 +1,8 @@
 package com.ovgu.ccd.gui;
 
 
-import com.ovgu.ccd.gui.chessboardListener.Hexagon;
-import com.ovgu.ccd.gui.chessboardListener.Point;
+import com.ovgu.ccd.gui.threeplayer.Hexagon;
+import com.ovgu.ccd.gui.threeplayer.Point;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;

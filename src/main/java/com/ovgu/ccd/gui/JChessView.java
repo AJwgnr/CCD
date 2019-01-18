@@ -15,9 +15,11 @@
 
 package com.ovgu.ccd.gui;
 
-import com.ovgu.ccd.applogic.JChessApp;
-import com.ovgu.ccd.applogic.ResourceManager;
-import com.ovgu.ccd.applogic.Settings;
+import com.ovgu.ccd.applogic.*;
+import com.ovgu.ccd.gui.threeplayer.ChessboardGrid;
+import com.ovgu.ccd.gui.threeplayer.ChessboardListener;
+import com.ovgu.ccd.gui.threeplayer.Point;
+import com.ovgu.ccd.gui.twoplayer.Game;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.FrameView;
 import org.jdesktop.application.SingleFrameApplication;
@@ -133,9 +135,23 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
 
     }
 
-    public Game addNewTab(String title) {
+    public Game addNewTwoPlayerTab(String title) {
         Game newGUI = new Game();
         this.gamesPane.addTab(title, newGUI);
+        return newGUI;
+    }
+
+    public Game addNewThreePlayerTab(String title) {
+
+        ChessboardGrid chessboardGrid = new ChessboardGrid(new Point(400,400),500);
+        ChessboardListener listener = new ChessboardListener(chessboardGrid);
+        //Window window = new com.ovgu.ccd.gui.threeplayer.Window("ChessboardListener",1280,1280, listener.getPanel());
+        ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
+        listener.setListenerRestrictions(new PlayerSequenceManager(board.getAllPlayers()));
+
+
+        Game newGUI = new Game();
+        this.gamesPane.addTab(title, listener.getPanel());
         return newGUI;
     }
 
@@ -516,7 +532,7 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    protected Game getActiveTabGame() throws ArrayIndexOutOfBoundsException {
+    public Game getActiveTabGame() throws ArrayIndexOutOfBoundsException {
         Game activeGame = (Game) this.gamesPane.getComponentAt(this.gamesPane.getSelectedIndex());
         return activeGame;
     }

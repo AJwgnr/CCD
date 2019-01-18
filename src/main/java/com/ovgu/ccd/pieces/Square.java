@@ -20,11 +20,6 @@
  */
 package com.ovgu.ccd.pieces;
 
-import com.ovgu.ccd.gui.chessboardListener.Line;
-import com.ovgu.ccd.gui.chessboardListener.Point;
-import com.ovgu.ccd.gui.chessboardListener.Triangle;
-
-import java.util.HashMap;
 import java.util.Objects;
 
 

@@ -18,14 +18,13 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.gui;
+package com.ovgu.ccd.gui.twoplayer;
 
 import com.ovgu.ccd.applogic.Player.Colors;
 import com.ovgu.ccd.applogic.JChessApp;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.applogic.Settings;
-import com.ovgu.ccd.gui.twoplayer.Moves;
 import com.ovgu.ccd.gui.twoplayer.Moves.castling;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.gui.threeplayer.ChessboardGrid;

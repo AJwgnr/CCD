@@ -1,4 +1,4 @@
-package com.ovgu.ccd.gui.chessboardListener;
+package com.ovgu.ccd.gui.threeplayer;
 
 
 import java.util.ArrayList;

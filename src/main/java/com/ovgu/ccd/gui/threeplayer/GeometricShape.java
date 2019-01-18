@@ -1,4 +1,4 @@
-package com.ovgu.ccd.gui.chessboardListener;
+package com.ovgu.ccd.gui.threeplayer;
 
 public abstract class GeometricShape extends GeometricPrimitiveDrawer
 {

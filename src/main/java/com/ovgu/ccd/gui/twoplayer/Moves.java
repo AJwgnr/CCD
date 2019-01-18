@@ -18,7 +18,7 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.gui;
+package com.ovgu.ccd.gui.twoplayer;
 
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;

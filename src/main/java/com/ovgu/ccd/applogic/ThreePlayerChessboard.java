@@ -1,6 +1,6 @@
 package com.ovgu.ccd.applogic;
 
-import com.ovgu.ccd.gui.chessboardListener.*;
+import com.ovgu.ccd.gui.threeplayer.*;
 import com.ovgu.ccd.pieces.*;
 import java.util.ArrayList;
 import java.util.Arrays;
