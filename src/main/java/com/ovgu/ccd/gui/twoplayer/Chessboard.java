@@ -25,9 +25,10 @@ import com.ovgu.ccd.applogic.JChessApp;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.applogic.Settings;
-import com.ovgu.ccd.gui.Moves.castling;
+import com.ovgu.ccd.gui.twoplayer.Moves;
+import com.ovgu.ccd.gui.twoplayer.Moves.castling;
 import com.ovgu.ccd.applogic.IBoard;
-import com.ovgu.ccd.gui.chessboardListener.ChessboardGrid;
+import com.ovgu.ccd.gui.threeplayer.ChessboardGrid;
 import com.ovgu.ccd.moves.Move;
 import com.ovgu.ccd.pieces.*;
 

@@ -170,7 +170,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener
             System.out.println("Error reading file: " + err);
             return;
         }
-        Game newGUI = JChessApp.jcv.addNewTab(whiteName + " vs. " + blackName);
+        Game newGUI = JChessApp.jcv.addNewTwoPlayerTab(whiteName + " vs. " + blackName);
         Settings locSetts = newGUI.settings;
         locSetts.getPlayerTwo().setName(blackName);
         locSetts.getPlayerOne().setName(whiteName);
