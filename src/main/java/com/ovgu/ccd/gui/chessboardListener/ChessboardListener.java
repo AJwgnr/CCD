@@ -169,7 +169,6 @@ public class ChessboardListener implements MouseListener
 				movePiece(this.squareBuffer, clickedSquare);
 				this.squareBuffer = null;
 				this.grid.stopDisplayingPossibleMoves();
-				this.checkForGameover(clickedSquare);
 				if (this.sequenceManager != null)
 					this.sequenceManager.moveDone();
 			}
@@ -225,6 +224,7 @@ public class ChessboardListener implements MouseListener
                 handlePieceInteraction(clickedSquare);
 
             this.grid.redraw();
+			this.checkForGameover(clickedSquare);
         }
     }
 
