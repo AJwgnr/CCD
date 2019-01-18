@@ -52,7 +52,6 @@ public class JChessAboutBox extends JDialog {
     private void initComponents() {
 
 
-
         closeButton = new javax.swing.JButton();
         javax.swing.JLabel appTitleLabel = new javax.swing.JLabel();
         javax.swing.JLabel versionLabel = new javax.swing.JLabel();

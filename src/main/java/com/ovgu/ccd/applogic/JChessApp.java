@@ -14,8 +14,9 @@
  */
 
 package com.ovgu.ccd.applogic;
-
+import com.ovgu.ccd.gui.GameoverWindow;
 import com.ovgu.ccd.gui.JChessView;
+
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -38,6 +39,7 @@ public class JChessApp extends SingleFrameApplication {
 
     /**
      * Main method launching the application.
+     * @param   args    arguments
      */
     public static void main(String[] args) {
         launch(JChessApp.class, args);
@@ -49,7 +51,7 @@ public class JChessApp extends SingleFrameApplication {
     @Override
     protected void startup() {
 /*
-        ChessboardGrid chessboardGrid = new ChessboardGrid(new Point(550,550),500);
+        ChessboardGrid chessboardGrid = new ChessboardGrid(new Point(550, 550), 500);
         ChessboardListener listener = new ChessboardListener(chessboardGrid);
         new com.ovgu.ccd.gui.threeplayer.Window("ChessboardListener",1280,1280, listener.getPanel());
         ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
@@ -58,6 +60,8 @@ public class JChessApp extends SingleFrameApplication {
 
         jcv = new JChessView(this);
         show(jcv);
+
+        new GameoverWindow("Johann");
     }
 
     /**

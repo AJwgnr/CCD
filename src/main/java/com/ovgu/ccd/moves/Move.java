@@ -1,21 +1,3 @@
-/*
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Author: Mateusz Sławomir Lach ( matlak, msl )
- */
 package com.ovgu.ccd.moves;
 
 import com.ovgu.ccd.gui.twoplayer.Chessboard;
@@ -28,16 +10,49 @@ import com.ovgu.ccd.pieces.Square;
  */
 public class Move {
 
+    /**
+     * where the move starts from
+     */
     private Square from = null;
+    /**
+     * where the move ends
+     */
     private Square to = null;
+    /**
+     * piece that was moved
+     */
     private Piece movedPiece = null;
+    /**
+     * piece that was taken in the move
+     */
     private Piece takenPiece = null;
+    /**
+     * piece that was promoted
+     */
     private Piece promotedTo = null;
+    /**
+     * flag to check if it was an en passant move
+     */
     private boolean wasEnPassant = false;
+    /**
+     * castling move
+     */
     private castling castlingMove = castling.none;
+    /**
+     * flag to check if a pawn was moved 2 squares
+     */
     private boolean wasPawnTwoFieldsMove = false;
 
-    public Move(Square from, Square to, Piece movedPiece, Piece takenPiece, castling castlingMove, boolean wasEnPassant, Piece promotedPiece) {
+    /**
+     * @param from where move starts
+     * @param to where move ends
+     * @param movedPiece piece that was moved
+     * @param takenPiece during the move
+     * @param castlingMove possible casting
+     * @param wasEnPassant if it was an en passant move
+     * @param promotedPiece during the move
+     */
+    public Move(final Square from, final Square to, final Piece movedPiece, final Piece takenPiece, final castling castlingMove, final boolean wasEnPassant, final Piece promotedPiece) {
         this.setFrom(from);
         this.setTo(to);
         this.setMovedPiece(movedPiece);
@@ -45,22 +60,22 @@ public class Move {
         this.setCastlingMove(castlingMove);
         this.setWasEnPassant(wasEnPassant);
 
-        if (movedPiece.name.equals("Pawn") && Math.abs(to.getPosY() - from.getPosY()) == 2) {
+        if ("Pawn".equals(movedPiece.name) && Math.abs(to.getPosY() - from.getPosY()) == 2) {
             this.setWasPawnTwoFieldsMove(true);
-        } else if (movedPiece.name.equals("Pawn") && to.getPosY() == Chessboard.bottom || to.getPosY() == Chessboard.top && promotedPiece != null) {
+        } else if ("Pawn".equals(movedPiece.name) && to.getPosY() == Chessboard.bottom || to.getPosY() == Chessboard.top && promotedPiece != null) {
             this.setPromotedTo(promotedPiece);
         }
     }
 
     /**
-     * @return
+     * @return square from where the move was originated
      */
     public Square getFrom() {
         return this.from;
     }
 
     /**
-     * @return
+     * @return square to where the move was done
      */
     public Square getTo() {
         return this.to;
@@ -71,114 +86,114 @@ public class Move {
     }
 
     /**
-     * @return
+     * @return the taken piece
      */
     public Piece getTakenPiece() {
         return this.takenPiece;
     }
 
     /**
-     * @return
+     * @return if it was an en passant move
      */
     public boolean wasEnPassant() {
         return this.isWasEnPassant();
     }
 
     /**
-     * @return
+     * @return if a pawn was moved two squares
      */
     public boolean wasPawnTwoFieldsMove() {
         return this.isWasPawnTwoFieldsMove();
     }
 
     /**
-     * @return
+     * @return the castling
      */
     public castling getCastlingMove() {
         return this.castlingMove;
     }
 
     /**
-     * @return
+     * @return the promoted piece
      */
     public Piece getPromotedPiece() {
         return this.getPromotedTo();
     }
 
     /**
-     * @param from
+     * @param from square where the move was originated
      */
-    private void setFrom(Square from) {
+    private void setFrom(final Square from) {
         this.from = from;
     }
 
     /**
-     * @param to
+     * @param to square where the move ends
      */
-    private void setTo(Square to) {
+    private void setTo(final Square to) {
         this.to = to;
     }
 
     /**
-     * @param movedPiece
+     * @param movedPiece piece that was moved
      */
-    private void setMovedPiece(Piece movedPiece) {
+    private void setMovedPiece(final Piece movedPiece) {
         this.movedPiece = movedPiece;
     }
 
     /**
-     * @param takenPiece
+     * @param takenPiece piece to be taken
      */
-    private void setTakenPiece(Piece takenPiece) {
+    private void setTakenPiece(final Piece takenPiece) {
         this.takenPiece = takenPiece;
     }
 
     /**
-     * @return
+     * @return promoted piece
      */
     public Piece getPromotedTo() {
         return promotedTo;
     }
 
     /**
-     * @param promotedTo
+     * @param promotedTo piece
      */
-    private void setPromotedTo(Piece promotedTo) {
+    private void setPromotedTo(final Piece promotedTo) {
         this.promotedTo = promotedTo;
     }
 
     /**
-     * @return
+     * @return true if move was en passant
      */
     public boolean isWasEnPassant() {
         return wasEnPassant;
     }
 
     /**
-     * @param wasEnPassant
+     * @param wasEnPassant boolean that determines it
      */
-    private void setWasEnPassant(boolean wasEnPassant) {
+    private void setWasEnPassant(final boolean wasEnPassant) {
         this.wasEnPassant = wasEnPassant;
     }
 
     /**
-     * @param castlingMove
+     * @param castlingMove castling move
      */
-    private void setCastlingMove(castling castlingMove) {
+    private void setCastlingMove(final castling castlingMove) {
         this.castlingMove = castlingMove;
     }
 
     /**
-     * @return
+     * @return true if a pawn was moved two squares
      */
     public boolean isWasPawnTwoFieldsMove() {
         return wasPawnTwoFieldsMove;
     }
 
     /**
-     * @param wasPawnTwoFieldsMove
+     * @param wasPawnTwoFieldsMove sets the flag
      */
-    private void setWasPawnTwoFieldsMove(boolean wasPawnTwoFieldsMove) {
+    private void setWasPawnTwoFieldsMove(final boolean wasPawnTwoFieldsMove) {
         this.wasPawnTwoFieldsMove = wasPawnTwoFieldsMove;
     }
 }

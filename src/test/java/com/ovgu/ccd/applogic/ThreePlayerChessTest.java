@@ -6,6 +6,7 @@ import com.ovgu.ccd.pieces.PieceFactory;
 import com.ovgu.ccd.pieces.Square;
 import org.junit.Test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class ThreePlayerChessTest {
@@ -250,5 +251,56 @@ public class ThreePlayerChessTest {
         assertTrue(rook.getSquare().equals(new Square(11, ThreePlayerChessboard.J, null)));
         assertTrue(king.getSquare().equals(new Square(11, ThreePlayerChessboard.K, null)));
         assertTrue(board.getSquare(11, ThreePlayerChessboard.L).getPiece() == null);
+    }
+
+    @Test
+    public void testIsGameFinished() throws Exception {
+        ThreePlayerChessboard board = new ThreePlayerChessboard();
+
+
+        King whiteKing = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
+        board.setKingWhite(whiteKing);
+
+        King blackKing = (King) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.KING);
+        board.setKingBlack(blackKing);
+
+        King greyKing = (King) PieceFactory.getPiece(board, greyPlayer, Piece.PieceTypes.KING);
+        board.setKingGrey(greyKing);
+
+        assertTrue(board.isGameFinished());
+
+        board.setPiece(whiteKing, 0, ThreePlayerChessboard.E);
+        assertTrue(board.isGameFinished());
+
+        board.setPiece(blackKing, 7, ThreePlayerChessboard.I);
+        assertTrue(board.isGameFinished());
+
+        board.setPiece(greyKing, 11, ThreePlayerChessboard.I);
+        assertFalse(board.isGameFinished());
+    }
+
+    @Test
+    public void testSetPieceCapturingKing() throws Exception {
+        ThreePlayerChessboard board = new ThreePlayerChessboard();
+
+        King whiteKing = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
+        board.setKingWhite(whiteKing);
+        board.setPiece(whiteKing, 0, ThreePlayerChessboard.E);
+
+        King blackKing = (King) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.KING);
+        board.setKingBlack(blackKing);
+        board.setPiece(blackKing, 7, ThreePlayerChessboard.I);
+
+        King greyKing = (King) PieceFactory.getPiece(board, greyPlayer, Piece.PieceTypes.KING);
+        board.setKingGrey(greyKing);
+        board.setPiece(greyKing, 11, ThreePlayerChessboard.I);
+
+        Piece pawn = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 6, ThreePlayerChessboard.I);
+
+        board.setPiece(pawn,7, ThreePlayerChessboard.I);
+
+        assertTrue(board.getKingBlack().getSquare() == null);
+        assertTrue(board.isGameFinished());
     }
 }

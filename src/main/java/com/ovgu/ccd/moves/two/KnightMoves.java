@@ -14,8 +14,8 @@ public class KnightMoves implements IMove {
     private Square pieceSquare;
 
     /**
-     * @param piece
-     * @param board
+     * @param piece for which moves are calculated
+     * @param board in which moves are calculated
      */
     public KnightMoves(Piece piece, IBoard board) {
         this.piece = piece;

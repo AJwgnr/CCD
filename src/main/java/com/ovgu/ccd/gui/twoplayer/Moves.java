@@ -65,7 +65,7 @@ public class Moves extends AbstractTableModel {
         initUiComponents(game);
     }
 
-    public void initUiComponents(Game game){
+    public void initUiComponents(Game game) {
         this.tableModel = new MyDefaultTableModel();
         this.table = new JTable(this.tableModel);
         this.scrollPane = new JScrollPane(this.table);
@@ -378,18 +378,14 @@ public class Moves extends AbstractTableModel {
             int xTo = 9;
             int yTo = 9;
             boolean pieceFound = false;
-            if(locMove.length() <= 3)
-            {
+            if (locMove.length() <= 3) {
                 Square[][] squares = this.game.chessboard.getSquares();
                 xTo = locMove.charAt(from) - 97;//from ASCII
                 yTo = Chessboard.bottom - (locMove.charAt(from + 1) - 49);//from ASCII    
-                for(int i=0; i<squares.length && !pieceFound; i++)
-                {
-                    for(int j=0; j<squares[i].length && !pieceFound; j++)
-                    {
+                for (int i = 0; i < squares.length && !pieceFound; i++) {
+                    for (int j = 0; j < squares[i].length && !pieceFound; j++) {
 
-                        if(squares[i][j].getPiece() == null || this.game.getActivePlayer().getColor() != squares[i][j].getPiece().player.getColor())
-                        {
+                        if (squares[i][j].getPiece() == null || this.game.getActivePlayer().getColor() != squares[i][j].getPiece().player.getColor()) {
                             continue;
                         }
                         ArrayList pieceMoves = squares[i][j].getPiece().allMoves();
@@ -513,7 +509,7 @@ public class Moves extends AbstractTableModel {
         return str;
     }
 
-   public enum castling {
+    public enum castling {
         none, shortCastling, longCastling
     }
 }

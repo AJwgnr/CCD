@@ -18,8 +18,8 @@ public class HorizontalMoves {
 
 
     /**
-     * @param piece
-     * @param board
+     * @param piece for which moves are calculated
+     * @param board in which moves are calculated
      */
     public HorizontalMoves(Piece piece, IBoard board) {
         this.piece = piece;
@@ -28,7 +28,7 @@ public class HorizontalMoves {
     }
 
     /**
-     * @return
+     * @return list of possible moves
      */
     public ArrayList all() {
         ArrayList moves = new ArrayList();
@@ -66,8 +66,8 @@ public class HorizontalMoves {
     }
 
     /**
-     * @param nextPosition
-     * @return
+     * @param nextPosition for the piece after the move
+     * @return if the move is valid
      */
     private boolean validMove(Square nextPosition) {
         return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(pieceSquare, nextPosition);

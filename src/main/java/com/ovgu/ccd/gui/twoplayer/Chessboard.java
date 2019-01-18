@@ -20,13 +20,9 @@
  */
 package com.ovgu.ccd.gui.twoplayer;
 
+import com.ovgu.ccd.applogic.*;
 import com.ovgu.ccd.applogic.Player.Colors;
-import com.ovgu.ccd.applogic.JChessApp;
-import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.applogic.ResourceManager;
-import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.twoplayer.Moves.castling;
-import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.gui.threeplayer.ChessboardGrid;
 import com.ovgu.ccd.moves.Move;
 import com.ovgu.ccd.pieces.*;
@@ -571,9 +567,7 @@ public class Chessboard extends JPanel implements IBoard {
                     Pawn pawn = (Pawn) last.getTakenPiece();
                     this.squares[end.getPosX()][begin.getPosY()].setPiece(pawn);
                     pawn.setSquare(this.squares[end.getPosX()][begin.getPosY()]);
-                }
-                else if (moved.name.equals("Pawn") && last.getPromotedPiece() != null)
-                {
+                } else if (moved.name.equals("Pawn") && last.getPromotedPiece() != null) {
                     Piece promoted = this.squares[end.getPosX()][end.getPosY()].getPiece();
 
                     promoted.setSquare(null);
@@ -817,8 +811,7 @@ public class Chessboard extends JPanel implements IBoard {
     }
 
     @Override
-    public Square getSquare(int xCoordinate, int yCoordinate)
-    {
+    public Square getSquare(int xCoordinate, int yCoordinate) {
         return getSquares()[xCoordinate][yCoordinate];
     }
 

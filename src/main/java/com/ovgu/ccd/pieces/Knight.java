@@ -1,42 +1,23 @@
-/*
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Authors:
- * Mateusz Sławomir Lach ( matlak, msl )
- * Damian Marciniak
- */
 package com.ovgu.ccd.pieces;
 
 
-import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
+import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.moves.KnightMoveFactory;
 
 import java.util.ArrayList;
 
-/**
- * Class to represent a chess pawn knight
+/** Class to represent a chess knight.
  */
 public class Knight extends Piece {
 
-    public static short value = 3;
 
-
-    protected Knight(IBoard chessboard, Player player) {
+    /**
+     * @param chessboard board on which the Bishop is places
+     * @param player player the Bishop is assigned
+     */
+    protected Knight(final IBoard chessboard, final Player player) {
         super(chessboard, player);
         this.symbol = "N";
         imageWhite = ResourceManager.loadImage("Knight-W.png");
@@ -45,14 +26,12 @@ public class Knight extends Piece {
         this.setImage();
     }
 
-    /**
-     * Annotation to superclass Piece changing pawns location
-     *
-     * @return ArrayList with new possition of pawn
+    /**Determines all possible Moves of this piece.
+     * @return ArrayList with new position of piece
      */
     @Override
     public ArrayList allMoves() {
-        ArrayList moves = new ArrayList();
+        ArrayList<Square> moves = new ArrayList<Square>();
         try {
             moves.addAll(KnightMoveFactory.getMoves(chessboard, this).moves());
         } catch (Exception e) {

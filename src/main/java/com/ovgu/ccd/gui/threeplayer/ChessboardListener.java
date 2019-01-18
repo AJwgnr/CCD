@@ -3,20 +3,20 @@ package com.ovgu.ccd.gui.threeplayer;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.PlayerSequenceManager;
 import com.ovgu.ccd.applogic.ThreePlayerChessboard;
+import com.ovgu.ccd.gui.GameoverWindow;
 import com.ovgu.ccd.gui.PawnPromotionWindow;
 import com.ovgu.ccd.pieces.Pawn;
 import com.ovgu.ccd.pieces.Piece;
 
-import java.awt.BorderLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JPanel;
 
 
 /**
- * @author  CCD DeepBlue team
+ * @author CCD DeepBlue team
  * @version 1.0
- * @since
  */
 public class ChessboardListener implements MouseListener 
 {
@@ -169,6 +169,7 @@ public class ChessboardListener implements MouseListener
 				movePiece(this.squareBuffer, clickedSquare);
 				this.squareBuffer = null;
 				this.grid.stopDisplayingPossibleMoves();
+				this.checkForGameover(clickedSquare);
 				if (this.sequenceManager != null)
 					this.sequenceManager.moveDone();
 			}
@@ -187,6 +188,27 @@ public class ChessboardListener implements MouseListener
 
 
 	/**
+	 * this method checks for a gameover situation after the move finished
+	 *
+	 * @param clickedSquare the clicked Square after the moved is completed
+	 */
+	private void checkForGameover(GridSquare clickedSquare)
+	{
+		Piece piece = clickedSquare.getBoardSquare().getPiece();
+		ThreePlayerChessboard board = (ThreePlayerChessboard) piece.getChessboard();
+		try {
+			if (board.isGameFinished())
+			{
+				String nameOfPlayer = piece.getPlayer().getName();
+				new GameoverWindow(nameOfPlayer);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	/**
 	 * handles chessboard clicks
 	 *
 	 * @param e mouse event -> clicked point
@@ -197,43 +219,42 @@ public class ChessboardListener implements MouseListener
 		GridSquare clickedSquare = getClickedSquare(e);
         if(clickedSquare != null)
         {
-            clickedSquare.getBoardSquare().print();
+        	clickedSquare.getBoardSquare().print();
 
             if (clickedSquare.getBoardSquare().getPiece() != null || this.squareBuffer != null)
-            	handlePieceInteraction(clickedSquare);
+                handlePieceInteraction(clickedSquare);
 
             this.grid.redraw();
         }
     }
 
 
-	@Override
-	public void mouseClicked(MouseEvent e)
-	{
+    @Override
+    public void mouseClicked(final MouseEvent e) {
         handleChessboardClicks(e);
-	}
+    }
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void mouseEntered(final MouseEvent e) {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void mouseExited(final MouseEvent e) {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
+
+    @Override
+    public void mousePressed(final MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void mouseReleased(final MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
 }

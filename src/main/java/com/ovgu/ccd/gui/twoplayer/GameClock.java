@@ -21,8 +21,8 @@
 package com.ovgu.ccd.gui.twoplayer;
 
 import com.ovgu.ccd.applogic.Clock;
-import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.applogic.Player;
+import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.twoplayer.Game;
 
 import javax.swing.*;
@@ -216,7 +216,6 @@ public class GameClock extends JPanel implements Runnable {
 
 
     /**
-     *
      * @param p1
      * @param p2
      * @param p3

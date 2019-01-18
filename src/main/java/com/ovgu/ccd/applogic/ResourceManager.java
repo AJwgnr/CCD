@@ -51,8 +51,7 @@ public class ResourceManager {
     }
 
     /**
-     *
-     * @return
+     * @return the instance
      */
     public static ResourceManager getInstance() {
         if (singleton_instance == null) {
@@ -63,24 +62,21 @@ public class ResourceManager {
 
 
     /**
-     *
-     * @return
+     * @return the app property
      */
     public Properties getJChessAppPropertie() {
         return jChessAppPropertie;
     }
 
     /**
-     *
-     * @return
+     * @return the view property
      */
     public Properties getJChessViewPropertie() {
         return jChessViewPropertie;
     }
 
     /**
-     *
-     * @return
+     * @return about box property
      */
     public Properties getJChessAboutBoxPropertie() {
         return jChessAboutBoxPropertie;
@@ -106,7 +102,7 @@ public class ResourceManager {
             System.out.println("Error loading external config file.");
         }
 
-        if(!loaded) { // load internal config.txt if external config.txt file not found
+        if (!loaded) { // load internal config.txt if external config.txt file not found
             try (InputStream resourceStream = loader.getResourceAsStream(CONFIG_FILE_PATH)) {
                 prop.load(resourceStream);
                 System.out.println("Internal config-file successfully loaded!");
@@ -154,7 +150,6 @@ public class ResourceManager {
         try {
             Properties prop = getConfigFile();
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
-            System.out.println("Load Image from Theme: " + prop.getProperty("THEME"));
             URL imageLink = loader.getResource("theme/" + prop.getProperty("THEME", "default") + "/images/" + name);
             img = tk.getImage(imageLink);
 

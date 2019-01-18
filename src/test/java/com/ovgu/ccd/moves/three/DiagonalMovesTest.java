@@ -5,106 +5,121 @@ import com.ovgu.ccd.applogic.ThreePlayerChessboard;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.pieces.*;
 import org.hamcrest.MatcherAssert;
-import org.junit.Assert;
 import org.junit.Test;
 import java.util.ArrayList;
 import static org.hamcrest.CoreMatchers.hasItems;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
+/**
+ * Test class for testing DiagonalMoves
+ * on the ThreePlayerChessboard.
+ *
+ * @author CCD team
+ * @version 1.0
+ */
 
 public class DiagonalMovesTest {
 
-    Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
-    Player blackPlayer = new Player("John", Player.Colors.BLACK.name());
+    private Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
+    private Player blackPlayer = new Player("John", Player.Colors.BLACK.name());
 
+    /**
+     * This tests all the diagonal moves of
+     * the Bishop on a ThreePlayerChessboard.
+     */
     @Test
     public void testPerfectDiagonal() {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
+
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
 
         //White diagonals
-        ((ThreePlayerChessboard) board).setPiece(bishop, 0,  ThreePlayerChessboard.H);
+        threePlayerChessboard.setPiece(bishop, 0,  ThreePlayerChessboard.H);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,1,  ThreePlayerChessboard.G);
+        threePlayerChessboard.setPiece(bishop,1,  ThreePlayerChessboard.G);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,2,  ThreePlayerChessboard.F);
+        threePlayerChessboard.setPiece(bishop,2,  ThreePlayerChessboard.F);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,3,  ThreePlayerChessboard.E);
+        threePlayerChessboard.setPiece(bishop,3,  ThreePlayerChessboard.E);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,8,  ThreePlayerChessboard.I);
+        threePlayerChessboard.setPiece(bishop,8,  ThreePlayerChessboard.I);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,9,  ThreePlayerChessboard.J);
+        threePlayerChessboard.setPiece(bishop,9,  ThreePlayerChessboard.J);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,10, ThreePlayerChessboard.K);
+        threePlayerChessboard.setPiece(bishop,10, ThreePlayerChessboard.K);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,11, ThreePlayerChessboard.L);
+        threePlayerChessboard.setPiece(bishop,11, ThreePlayerChessboard.L);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,7,  ThreePlayerChessboard.A);
+        threePlayerChessboard.setPiece(bishop,7,  ThreePlayerChessboard.A);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,6,  ThreePlayerChessboard.B);
+        threePlayerChessboard.setPiece(bishop,6,  ThreePlayerChessboard.B);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,5,  ThreePlayerChessboard.C);
+        threePlayerChessboard.setPiece(bishop,5,  ThreePlayerChessboard.C);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,4,  ThreePlayerChessboard.D);
+        threePlayerChessboard.setPiece(bishop,4,  ThreePlayerChessboard.D);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
         //Black diagonals
-        ((ThreePlayerChessboard) board).setPiece(bishop,0,  ThreePlayerChessboard.A);
+        threePlayerChessboard.setPiece(bishop,0,  ThreePlayerChessboard.A);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,1,  ThreePlayerChessboard.B);
+        threePlayerChessboard.setPiece(bishop,1,  ThreePlayerChessboard.B);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,2,  ThreePlayerChessboard.C);
+        threePlayerChessboard.setPiece(bishop,2,  ThreePlayerChessboard.C);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,3,  ThreePlayerChessboard.D);
+        threePlayerChessboard.setPiece(bishop,3,  ThreePlayerChessboard.D);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,4,  ThreePlayerChessboard.I);
+        threePlayerChessboard.setPiece(bishop,4,  ThreePlayerChessboard.I);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,5,  ThreePlayerChessboard.J);
+        threePlayerChessboard.setPiece(bishop,5,  ThreePlayerChessboard.J);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,6,  ThreePlayerChessboard.K);
+        threePlayerChessboard.setPiece(bishop,6,  ThreePlayerChessboard.K);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,7,  ThreePlayerChessboard.L);
+        threePlayerChessboard.setPiece(bishop,7,  ThreePlayerChessboard.L);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,8,  ThreePlayerChessboard.E);
+        threePlayerChessboard.setPiece(bishop,8,  ThreePlayerChessboard.E);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,9,  ThreePlayerChessboard.F);
+        threePlayerChessboard.setPiece(bishop,9,  ThreePlayerChessboard.F);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,10, ThreePlayerChessboard.G);
+        threePlayerChessboard.setPiece(bishop,10, ThreePlayerChessboard.G);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
 
-        ((ThreePlayerChessboard) board).setPiece(bishop,11, ThreePlayerChessboard.H);
+        threePlayerChessboard.setPiece(bishop,11, ThreePlayerChessboard.H);
         assertTrue(new DiagonalMoves(bishop, board).perfectDiagonal());
     }
 
     @Test
     public void testSameSextantMovesTopRight() {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.I);
+        threePlayerChessboard.setPiece(bishop, 8, ThreePlayerChessboard.I);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -113,11 +128,11 @@ public class DiagonalMovesTest {
                         new Square(11, ThreePlayerChessboard.L, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 8, ThreePlayerChessboard.I);
+        threePlayerChessboard.setPiece(null, 8, ThreePlayerChessboard.I);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 9, ThreePlayerChessboard.J);
+        threePlayerChessboard.setPiece(bishop, 9, ThreePlayerChessboard.J);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 5);
+        assertEquals(moves.size(), 5);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -128,11 +143,11 @@ public class DiagonalMovesTest {
                         new Square(10, ThreePlayerChessboard.I, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 9, ThreePlayerChessboard.J);
+        threePlayerChessboard.setPiece(null, 9, ThreePlayerChessboard.J);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 10, ThreePlayerChessboard.K);
+        threePlayerChessboard.setPiece(bishop, 10, ThreePlayerChessboard.K);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 5);
+        assertEquals(moves.size(), 5);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -144,11 +159,11 @@ public class DiagonalMovesTest {
 
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 10, ThreePlayerChessboard.K);
+        threePlayerChessboard.setPiece(null, 10, ThreePlayerChessboard.K);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 11, ThreePlayerChessboard.L);
+        threePlayerChessboard.setPiece(bishop, 11, ThreePlayerChessboard.L);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -157,11 +172,11 @@ public class DiagonalMovesTest {
                         new Square(8, ThreePlayerChessboard.I, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 11, ThreePlayerChessboard.L);
+        threePlayerChessboard.setPiece(null, 11, ThreePlayerChessboard.L);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 10, ThreePlayerChessboard.I);
+        threePlayerChessboard.setPiece(bishop, 10, ThreePlayerChessboard.I);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -170,11 +185,11 @@ public class DiagonalMovesTest {
                         new Square(11, ThreePlayerChessboard.J, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 10, ThreePlayerChessboard.I);
+        threePlayerChessboard.setPiece(null, 10, ThreePlayerChessboard.I);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 11, ThreePlayerChessboard.J);
+        threePlayerChessboard.setPiece(bishop, 11, ThreePlayerChessboard.J);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -183,11 +198,11 @@ public class DiagonalMovesTest {
                         new Square(9, ThreePlayerChessboard.L, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 11, ThreePlayerChessboard.J);
+        threePlayerChessboard.setPiece(null, 11, ThreePlayerChessboard.J);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.K);
+        threePlayerChessboard.setPiece(bishop, 8, ThreePlayerChessboard.K);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -196,11 +211,11 @@ public class DiagonalMovesTest {
                         new Square(10, ThreePlayerChessboard.I, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 8, ThreePlayerChessboard.K);
+        threePlayerChessboard.setPiece(null, 8, ThreePlayerChessboard.K);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 9, ThreePlayerChessboard.L);
+        threePlayerChessboard.setPiece(bishop, 9, ThreePlayerChessboard.L);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -209,11 +224,11 @@ public class DiagonalMovesTest {
                         new Square(11, ThreePlayerChessboard.J, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 9, ThreePlayerChessboard.L);
+        threePlayerChessboard.setPiece(null, 9, ThreePlayerChessboard.L);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.L);
+        threePlayerChessboard.setPiece(bishop, 8, ThreePlayerChessboard.L);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -222,11 +237,11 @@ public class DiagonalMovesTest {
                         new Square(11, ThreePlayerChessboard.I, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 8, ThreePlayerChessboard.L);
+        threePlayerChessboard.setPiece(null, 8, ThreePlayerChessboard.L);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 10, ThreePlayerChessboard.L);
+        threePlayerChessboard.setPiece(bishop, 10, ThreePlayerChessboard.L);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -235,11 +250,11 @@ public class DiagonalMovesTest {
                         new Square(8, ThreePlayerChessboard.J, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 10, ThreePlayerChessboard.L);
+        threePlayerChessboard.setPiece(null, 10, ThreePlayerChessboard.L);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 9, ThreePlayerChessboard.K);
+        threePlayerChessboard.setPiece(bishop, 9, ThreePlayerChessboard.K);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 5);
+        assertEquals(moves.size(), 5);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -250,11 +265,11 @@ public class DiagonalMovesTest {
                         new Square(11, ThreePlayerChessboard.I, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 9, ThreePlayerChessboard.K);
+        threePlayerChessboard.setPiece(null, 9, ThreePlayerChessboard.K);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 11, ThreePlayerChessboard.K);
+        threePlayerChessboard.setPiece(bishop, 11, ThreePlayerChessboard.K);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -263,11 +278,11 @@ public class DiagonalMovesTest {
                         new Square(10, ThreePlayerChessboard.L, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 11, ThreePlayerChessboard.K);
+        threePlayerChessboard.setPiece(null, 11, ThreePlayerChessboard.K);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.J);
+        threePlayerChessboard.setPiece(bishop, 8, ThreePlayerChessboard.J);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -276,11 +291,11 @@ public class DiagonalMovesTest {
                         new Square(9, ThreePlayerChessboard.I, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 8, ThreePlayerChessboard.J);
+        threePlayerChessboard.setPiece(null, 8, ThreePlayerChessboard.J);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 10, ThreePlayerChessboard.J);
+        threePlayerChessboard.setPiece(bishop, 10, ThreePlayerChessboard.J);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 5);
+        assertEquals(moves.size(), 5);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -291,11 +306,11 @@ public class DiagonalMovesTest {
                         new Square(11, ThreePlayerChessboard.I, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 10, ThreePlayerChessboard.J);
+        threePlayerChessboard.setPiece(null, 10, ThreePlayerChessboard.J);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 9, ThreePlayerChessboard.I);
+        threePlayerChessboard.setPiece(bishop, 9, ThreePlayerChessboard.I);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -304,11 +319,11 @@ public class DiagonalMovesTest {
                         new Square(8, ThreePlayerChessboard.J, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 9, ThreePlayerChessboard.I);
+        threePlayerChessboard.setPiece(null, 9, ThreePlayerChessboard.I);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 11, ThreePlayerChessboard.I);
+        threePlayerChessboard.setPiece(bishop, 11, ThreePlayerChessboard.I);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -317,11 +332,11 @@ public class DiagonalMovesTest {
                         new Square(8, ThreePlayerChessboard.L, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 11, ThreePlayerChessboard.I);
+        threePlayerChessboard.setPiece(null, 11, ThreePlayerChessboard.I);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 3, ThreePlayerChessboard.E);
+        threePlayerChessboard.setPiece(bishop, 3, ThreePlayerChessboard.E);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -330,11 +345,11 @@ public class DiagonalMovesTest {
                         new Square(0, ThreePlayerChessboard.H, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 3, ThreePlayerChessboard.E);
+        threePlayerChessboard.setPiece(null, 3, ThreePlayerChessboard.E);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 0, ThreePlayerChessboard.H);
+        threePlayerChessboard.setPiece(bishop, 0, ThreePlayerChessboard.H);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -343,11 +358,11 @@ public class DiagonalMovesTest {
                         new Square(3, ThreePlayerChessboard.E, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 0, ThreePlayerChessboard.H);
+        threePlayerChessboard.setPiece(null, 0, ThreePlayerChessboard.H);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.E);
+        threePlayerChessboard.setPiece(bishop, 8, ThreePlayerChessboard.E);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -356,11 +371,11 @@ public class DiagonalMovesTest {
                         new Square(9, ThreePlayerChessboard.F, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 8, ThreePlayerChessboard.E);
+        threePlayerChessboard.setPiece(null, 8, ThreePlayerChessboard.E);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 11, ThreePlayerChessboard.H);
+        threePlayerChessboard.setPiece(bishop, 11, ThreePlayerChessboard.H);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -369,11 +384,11 @@ public class DiagonalMovesTest {
                         new Square(8, ThreePlayerChessboard.E, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 11, ThreePlayerChessboard.H);
+        threePlayerChessboard.setPiece(null, 11, ThreePlayerChessboard.H);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 3, ThreePlayerChessboard.D);
+        threePlayerChessboard.setPiece(bishop, 3, ThreePlayerChessboard.D);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -382,11 +397,11 @@ public class DiagonalMovesTest {
                         new Square(0, ThreePlayerChessboard.A, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 3, ThreePlayerChessboard.D);
+        threePlayerChessboard.setPiece(null, 3, ThreePlayerChessboard.D);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 0, ThreePlayerChessboard.A);
+        threePlayerChessboard.setPiece(bishop, 0, ThreePlayerChessboard.A);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -395,11 +410,11 @@ public class DiagonalMovesTest {
                         new Square(3, ThreePlayerChessboard.D, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 0, ThreePlayerChessboard.A);
+        threePlayerChessboard.setPiece(null, 0, ThreePlayerChessboard.A);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.D);
+        threePlayerChessboard.setPiece(bishop, 4, ThreePlayerChessboard.D);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -408,11 +423,11 @@ public class DiagonalMovesTest {
                         new Square(7, ThreePlayerChessboard.A, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 4, ThreePlayerChessboard.D);
+        threePlayerChessboard.setPiece(null, 4, ThreePlayerChessboard.D);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 7, ThreePlayerChessboard.A);
+        threePlayerChessboard.setPiece(bishop, 7, ThreePlayerChessboard.A);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -421,11 +436,11 @@ public class DiagonalMovesTest {
                         new Square(4, ThreePlayerChessboard.D, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 7, ThreePlayerChessboard.A);
+        threePlayerChessboard.setPiece(null, 7, ThreePlayerChessboard.A);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.I);
+        threePlayerChessboard.setPiece(bishop, 4, ThreePlayerChessboard.I);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -434,11 +449,11 @@ public class DiagonalMovesTest {
                         new Square(7, ThreePlayerChessboard.L, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 4, ThreePlayerChessboard.I);
+        threePlayerChessboard.setPiece(null, 4, ThreePlayerChessboard.I);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 7, ThreePlayerChessboard.L);
+        threePlayerChessboard.setPiece(bishop, 7, ThreePlayerChessboard.L);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -447,12 +462,12 @@ public class DiagonalMovesTest {
                         new Square(4, ThreePlayerChessboard.I, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 7, ThreePlayerChessboard.L);
+        threePlayerChessboard.setPiece(null, 7, ThreePlayerChessboard.L);
 
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.F);
+        threePlayerChessboard.setPiece(bishop, 8, ThreePlayerChessboard.F);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -461,11 +476,11 @@ public class DiagonalMovesTest {
                         new Square(10, ThreePlayerChessboard.H, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 8, ThreePlayerChessboard.F);
+        threePlayerChessboard.setPiece(null, 8, ThreePlayerChessboard.F);
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 9, ThreePlayerChessboard.F);
+        threePlayerChessboard.setPiece(bishop, 9, ThreePlayerChessboard.F);
         moves = new DiagonalMoves(bishop, board).getSameSextantMoves(bishop.getSquare());
-        assertTrue(moves.size() == 5);
+        assertEquals(moves.size(), 5);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -476,21 +491,22 @@ public class DiagonalMovesTest {
                         new Square(8, ThreePlayerChessboard.G, null)
                 )
         );
-        ((ThreePlayerChessboard) board).setPiece(null, 9, ThreePlayerChessboard.F);
+        threePlayerChessboard.setPiece(null, 9, ThreePlayerChessboard.F);
     }
 
     @Test
     public void testMovesInSquare8I() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.I);
+        threePlayerChessboard.setPiece(bishop, 8, ThreePlayerChessboard.I);
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 16);
+        assertEquals(moves.size(), 16);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -509,6 +525,7 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare2G() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
@@ -516,9 +533,9 @@ public class DiagonalMovesTest {
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 2, ThreePlayerChessboard.G);
+        threePlayerChessboard.setPiece(bishop, 2, ThreePlayerChessboard.G);
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 20);
+        assertEquals(moves.size(), 20);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -538,6 +555,7 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare3F() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
@@ -545,9 +563,9 @@ public class DiagonalMovesTest {
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 3, ThreePlayerChessboard.F);
+        threePlayerChessboard.setPiece(bishop, 3, ThreePlayerChessboard.F);
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 22);
+        assertEquals(moves.size(), 22);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -580,6 +598,7 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare2GBlockedByPieces() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
@@ -587,7 +606,7 @@ public class DiagonalMovesTest {
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 2, ThreePlayerChessboard.G);
+        threePlayerChessboard.setPiece(bishop, 2, ThreePlayerChessboard.G);
         Piece pawn1 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         board.setPiece(pawn1, 1, ThreePlayerChessboard.H);
         Piece pawn2 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
@@ -596,7 +615,7 @@ public class DiagonalMovesTest {
         board.setPiece(pawn3, 0, ThreePlayerChessboard.E);
 
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -610,6 +629,7 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare0F() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
@@ -617,9 +637,9 @@ public class DiagonalMovesTest {
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 0, ThreePlayerChessboard.F);
+        threePlayerChessboard.setPiece(bishop, 0, ThreePlayerChessboard.F);
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 7);
+        assertEquals(moves.size(), 7);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -637,6 +657,7 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare11KCanEat() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
@@ -644,7 +665,7 @@ public class DiagonalMovesTest {
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 11, ThreePlayerChessboard.K);
+        threePlayerChessboard.setPiece(bishop, 11, ThreePlayerChessboard.K);
         Piece pawn1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
         board.setPiece(pawn1, 1, ThreePlayerChessboard.B);
         Piece pawn2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
@@ -653,7 +674,7 @@ public class DiagonalMovesTest {
         board.setPiece(pawn3, 11, ThreePlayerChessboard.H);
 
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 16);
+        assertEquals(moves.size(), 16);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -684,6 +705,7 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare10LBlockedByPiece() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
@@ -691,7 +713,7 @@ public class DiagonalMovesTest {
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 10, ThreePlayerChessboard.L);
+        threePlayerChessboard.setPiece(bishop, 10, ThreePlayerChessboard.L);
         Piece pawn1 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         board.setPiece(pawn1, 4, ThreePlayerChessboard.I);
         Piece pawn2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
@@ -710,7 +732,7 @@ public class DiagonalMovesTest {
         board.setPiece(pawn8, 11, ThreePlayerChessboard.H);
 
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 3);
+        assertEquals(moves.size(), 3);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -724,6 +746,7 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare10LCanEat() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
@@ -731,7 +754,7 @@ public class DiagonalMovesTest {
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 10, ThreePlayerChessboard.L);
+        threePlayerChessboard.setPiece(bishop, 10, ThreePlayerChessboard.L);
         Piece pawn1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
         board.setPiece(pawn1, 4, ThreePlayerChessboard.I);
         Piece pawn2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
@@ -750,7 +773,7 @@ public class DiagonalMovesTest {
         board.setPiece(pawn8, 11, ThreePlayerChessboard.H);
 
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 4);
+        assertEquals(moves.size(), 4);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -765,6 +788,7 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare8HCanEat() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
@@ -772,14 +796,14 @@ public class DiagonalMovesTest {
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.H);
+        threePlayerChessboard.setPiece(bishop, 8, ThreePlayerChessboard.H);
         Piece pawn1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
         board.setPiece(pawn1, 10, ThreePlayerChessboard.F);
         Piece pawn2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
         board.setPiece(pawn2, 11, ThreePlayerChessboard.E);
 
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 6);
+        assertEquals(moves.size(), 6);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -796,6 +820,7 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare2FCanEat() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
@@ -803,7 +828,7 @@ public class DiagonalMovesTest {
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 2, ThreePlayerChessboard.F);
+        threePlayerChessboard.setPiece(bishop, 2, ThreePlayerChessboard.F);
         Piece pawn1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
         board.setPiece(pawn1, 6, ThreePlayerChessboard.B);
         Piece pawn2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
@@ -814,7 +839,7 @@ public class DiagonalMovesTest {
         board.setPiece(pawn4, 0, ThreePlayerChessboard.H);
 
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 11);
+        assertEquals(moves.size(), 11);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -836,6 +861,7 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare8FCanEat() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
@@ -843,14 +869,14 @@ public class DiagonalMovesTest {
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 8, ThreePlayerChessboard.F);
+        threePlayerChessboard.setPiece(bishop, 8, ThreePlayerChessboard.F);
         Piece pawn1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
         board.setPiece(pawn1, 10, ThreePlayerChessboard.I);
         Piece pawn2 = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
         board.setPiece(pawn2, 1, ThreePlayerChessboard.C);
 
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 18);
+        assertEquals(moves.size(), 18);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -868,6 +894,7 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare4J() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
@@ -875,9 +902,9 @@ public class DiagonalMovesTest {
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.J);
+        threePlayerChessboard.setPiece(bishop, 4, ThreePlayerChessboard.J);
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 21);
+        assertEquals(moves.size(), 21);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -895,6 +922,7 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare5I() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
@@ -902,9 +930,9 @@ public class DiagonalMovesTest {
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 5, ThreePlayerChessboard.I);
+        threePlayerChessboard.setPiece(bishop, 5, ThreePlayerChessboard.I);
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 21);
+        assertEquals(moves.size(), 21);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -922,7 +950,7 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare4D() throws Exception {
         IBoard board = new ThreePlayerChessboard();
-
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
@@ -930,9 +958,9 @@ public class DiagonalMovesTest {
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 4, ThreePlayerChessboard.D);
+        threePlayerChessboard.setPiece(bishop, 4, ThreePlayerChessboard.D);
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 16);
+        assertEquals(moves.size(), 16);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -949,6 +977,7 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare9I() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
@@ -956,7 +985,7 @@ public class DiagonalMovesTest {
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 9, ThreePlayerChessboard.I);
+        threePlayerChessboard.setPiece(bishop, 9, ThreePlayerChessboard.I);
         Piece pawn1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
         board.setPiece(pawn1, 10, ThreePlayerChessboard.J);
         Piece pawn2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
@@ -969,7 +998,7 @@ public class DiagonalMovesTest {
         board.setPiece(pawn5, 0, ThreePlayerChessboard.A);
 
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 17);
+        assertEquals(moves.size(), 17);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -988,6 +1017,7 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare9F() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 11, ThreePlayerChessboard.L);
@@ -995,7 +1025,7 @@ public class DiagonalMovesTest {
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
         ArrayList<Square> moves;
 
-        ((ThreePlayerChessboard) board).setPiece(bishop, 9, ThreePlayerChessboard.F);
+        threePlayerChessboard.setPiece(bishop, 9, ThreePlayerChessboard.F);
         Piece pawn1 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
         board.setPiece(pawn1, 10, ThreePlayerChessboard.E);
         Piece pawn2 = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
@@ -1007,7 +1037,7 @@ public class DiagonalMovesTest {
 
 
         moves = new DiagonalMoves(bishop, board).allMoves(true);
-        assertTrue(moves.size() == 11);
+        assertEquals(moves.size(), 11);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -1027,39 +1057,41 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare3FWithPossibleCheck() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 3, ThreePlayerChessboard.F);
         ArrayList<Square> moves;
 
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
-        ((ThreePlayerChessboard) board).setPiece(bishop, 3, ThreePlayerChessboard.G);
+        threePlayerChessboard.setPiece(bishop, 3, ThreePlayerChessboard.G);
 
         Piece rook = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.ROOK);
         board.setPiece(rook, 3, ThreePlayerChessboard.H);
 
         moves = new DiagonalMoves(bishop, board).moves();
 
-        assertTrue(moves.size() == 0);
+        assertEquals(moves.size(), 0);
     }
 
     @Test
     public void testMovesInSquare3FStopCheck() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 3, ThreePlayerChessboard.F);
         ArrayList<Square> moves;
 
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
-        ((ThreePlayerChessboard) board).setPiece(bishop, 2, ThreePlayerChessboard.H);
+        threePlayerChessboard.setPiece(bishop, 2, ThreePlayerChessboard.H);
 
         Piece rook = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.ROOK);
         board.setPiece(rook, 3, ThreePlayerChessboard.H);
 
         moves = new DiagonalMoves(bishop, board).moves();
 
-        assertTrue(moves.size() == 1);
+        assertEquals(moves.size(), 1);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
@@ -1071,20 +1103,21 @@ public class DiagonalMovesTest {
     @Test
     public void testMovesInSquare3FStopCheckByEating() throws Exception {
         IBoard board = new ThreePlayerChessboard();
+        ThreePlayerChessboard threePlayerChessboard = (ThreePlayerChessboard) board;
         Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
         board.setKingWhite((King) king);
         board.setPiece(king, 3, ThreePlayerChessboard.F);
         ArrayList<Square> moves;
 
         Bishop bishop = (Bishop) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.BISHOP);
-        ((ThreePlayerChessboard) board).setPiece(bishop, 2, ThreePlayerChessboard.G);
+        threePlayerChessboard.setPiece(bishop, 2, ThreePlayerChessboard.G);
 
         Piece rook = PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.ROOK);
         board.setPiece(rook, 3, ThreePlayerChessboard.H);
 
         moves = new DiagonalMoves(bishop, board).moves();
 
-        assertTrue(moves.size() == 1);
+        assertEquals(moves.size(), 1);
         MatcherAssert.assertThat(
                 moves,
                 hasItems(
