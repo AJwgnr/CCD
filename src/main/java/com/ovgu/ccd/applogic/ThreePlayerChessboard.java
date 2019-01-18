@@ -184,6 +184,26 @@ public class ThreePlayerChessboard implements IBoard {
         setInvalidSquares();
     }
 
+    /**List of black pawns.
+     * @return list of black pawns on board
+     */
+    public ArrayList<Piece> getBlackPawns() {
+        return blackPawns;
+    }
+
+    /**List of white pawns.
+     * @return list of white pawns on board
+     */
+    public ArrayList<Piece> getWhitePawns() {
+        return whitePawns;
+    }
+    /**List of grey pawns.
+     * @return list of grey pawns on board
+     */
+    public ArrayList<Piece> getGreyPawns() {
+        return greyPawns;
+    }
+
     /**
      * @param grid to be used
      */

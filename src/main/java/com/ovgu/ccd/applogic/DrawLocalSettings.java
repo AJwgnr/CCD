@@ -256,8 +256,6 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(this, Settings.lang("fill_names"));
             }
 
-
-
             this.parent.setVisible(false);//hide parent
 
         }

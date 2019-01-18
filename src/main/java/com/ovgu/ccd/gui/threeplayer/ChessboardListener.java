@@ -239,8 +239,7 @@ public class ChessboardListener implements MouseListener
 		//clicked Spy Button
 		if(e.getSource().equals(this.spyActivator)){
 
-
-
+			
 
 
 
