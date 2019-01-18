@@ -14,18 +14,15 @@
  */
 
 package com.ovgu.ccd.applogic;
-
-import com.ovgu.ccd.gui.Fireworks;
 import com.ovgu.ccd.gui.GameoverWindow;
 import com.ovgu.ccd.gui.JChessView;
-import com.ovgu.ccd.gui.PawnPromotionWindow;
+
 import com.ovgu.ccd.gui.chessboardListener.ChessboardListener;
 import com.ovgu.ccd.gui.chessboardListener.ChessboardGrid;
 import com.ovgu.ccd.gui.chessboardListener.Point;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
-import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -45,6 +42,7 @@ public class JChessApp extends SingleFrameApplication {
 
     /**
      * Main method launching the application.
+     * @param   args    arguments
      */
     public static void main(String[] args) {
         launch(JChessApp.class, args);
@@ -55,9 +53,9 @@ public class JChessApp extends SingleFrameApplication {
      */
     @Override
     protected void startup() {
-        ChessboardGrid chessboardGrid = new ChessboardGrid(new Point(550,550),500);
+        ChessboardGrid chessboardGrid = new ChessboardGrid(new Point(550, 550), 500);
         ChessboardListener listener = new ChessboardListener(chessboardGrid);
-        new com.ovgu.ccd.gui.chessboardListener.Window("ChessboardListener",1280,1280, listener.getPanel());
+        new com.ovgu.ccd.gui.chessboardListener.Window("ChessboardListener", 1280, 1280, listener.getPanel());
         ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
         listener.setListenerRestrictions(new PlayerSequenceManager(board.getAllPlayers()));
 

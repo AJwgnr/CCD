@@ -8,16 +8,15 @@ import com.ovgu.ccd.gui.PawnPromotionWindow;
 import com.ovgu.ccd.pieces.Pawn;
 import com.ovgu.ccd.pieces.Piece;
 
-import java.awt.BorderLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JPanel;
 
 
 /**
- * @author  CCD DeepBlue team
+ * @author CCD DeepBlue team
  * @version 1.0
- * @since
  */
 public class ChessboardListener implements MouseListener 
 {
@@ -220,43 +219,42 @@ public class ChessboardListener implements MouseListener
 		GridSquare clickedSquare = getClickedSquare(e);
         if(clickedSquare != null)
         {
-            clickedSquare.getBoardSquare().print();
+        	clickedSquare.getBoardSquare().print();
 
             if (clickedSquare.getBoardSquare().getPiece() != null || this.squareBuffer != null)
-            	handlePieceInteraction(clickedSquare);
+                handlePieceInteraction(clickedSquare);
 
             this.grid.redraw();
         }
     }
 
 
-	@Override
-	public void mouseClicked(MouseEvent e)
-	{
+    @Override
+    public void mouseClicked(final MouseEvent e) {
         handleChessboardClicks(e);
-	}
+    }
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void mouseEntered(final MouseEvent e) {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void mouseExited(final MouseEvent e) {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
+
+    @Override
+    public void mousePressed(final MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void mouseReleased(final MouseEvent e) {
+        // TODO Auto-generated method stub
+
+    }
 }

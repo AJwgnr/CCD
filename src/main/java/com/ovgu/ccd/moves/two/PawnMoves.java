@@ -15,8 +15,8 @@ public class PawnMoves implements IMove {
     private Square pieceSquare;
 
     /**
-     * @param piece
-     * @param board
+     * @param piece for which moves are calculated
+     * @param board in which moves are calculated
      */
     public PawnMoves(Piece piece, IBoard board) {
         this.piece = piece;
@@ -25,7 +25,7 @@ public class PawnMoves implements IMove {
     }
 
     /**
-     * @return
+     * @return possible moves
      */
     public ArrayList moves() {
         int immediateYCoordinate;
@@ -45,8 +45,7 @@ public class PawnMoves implements IMove {
         }
 
         moves.addAll(regularMove(immediateYCoordinate));
-        if (piece.getPlayer().isGoDown() && pieceSquare.getPosY() == 1 || !piece.getPlayer().isGoDown() && pieceSquare.getPosY() == 6)
-        {
+        if (piece.getPlayer().isGoDown() && pieceSquare.getPosY() == 1 || !piece.getPlayer().isGoDown() && pieceSquare.getPosY() == 6) {
             moves.addAll(regularMove(twoPositionsYCoordinate));
         }
 
@@ -88,8 +87,7 @@ public class PawnMoves implements IMove {
 
         Square nextPosition = board.getSquare(nextXCoordinate, nextYCoordinate);
         if (piece.canMoveTo(nextPosition) && piece.otherOwner(nextPosition.getPiece())
-            && board.myKing(piece.getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(pieceSquare, nextPosition))
-        {
+                && board.myKing(piece.getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(pieceSquare, nextPosition)) {
             list.add(nextPosition);
         }
 
@@ -107,10 +105,10 @@ public class PawnMoves implements IMove {
 
         Square otherPiecePosition = board.getSquare(nextXCoordinate, pieceSquare.getPosY());
         if (otherPiecePosition.getPiece() != null && piece.otherOwner(otherPiecePosition.getPiece())
-            && !otherPiecePosition.getPiece().name.equals("King")
-            && board.myKing(piece.getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(pieceSquare, nextPosition)
-            && board.getTwoSquareMovedPawn() != null
-            && otherPiecePosition == board.getTwoSquareMovedPawn().getSquare()) {
+                && !otherPiecePosition.getPiece().name.equals("King")
+                && board.myKing(piece.getPlayer().getColor()).willBeSafeWhenMoveOtherPiece(pieceSquare, nextPosition)
+                && board.getTwoSquareMovedPawn() != null
+                && otherPiecePosition == board.getTwoSquareMovedPawn().getSquare()) {
             list.add(nextPosition);
         }
 
