@@ -221,57 +221,44 @@ public class ChessboardListener implements MouseListener
             if (clickedSquare.getBoardSquare().getPiece() != null || this.squareBuffer != null)
             	handlePieceInteraction(clickedSquare);
 
-            // check for check situation
 			ThreePlayerChessboard board = (ThreePlayerChessboard) clickedSquare.getBoardSquare().getPiece().getChessboard();
-			if (board.myKing(Player.Colors.WHITE).isChecked() == true
-					|| board.myKing(Player.Colors.WHITE).isCheckmatedOrStalemated() == 1)
-			{
-				GridSquare square = this.grid.getSquare(
-						board.myKing(Player.Colors.WHITE).getPosX(),
-						board.myKing(Player.Colors.WHITE).getPosY());
-				this.grid.displayCheckSituation(square);
-			}
-			else
-			{
-				GridSquare square = this.grid.getSquare(
-						board.myKing(Player.Colors.WHITE).getPosX(),
-						board.myKing(Player.Colors.WHITE).getPosY());
-				this.grid.StopDisplayCheckSituation(square);
-			}
-			if (board.myKing(Player.Colors.GREY).isChecked() == true
-					|| board.myKing(Player.Colors.GREY).isCheckmatedOrStalemated() == 1)
-			{
-				GridSquare square = this.grid.getSquare(
-						board.myKing(Player.Colors.GREY).getPosX(),
-						board.myKing(Player.Colors.GREY).getPosY());
-				this.grid.displayCheckSituation(square);
-			}
-			else
-			{
-				GridSquare square = this.grid.getSquare(
-						board.myKing(Player.Colors.GREY).getPosX(),
-						board.myKing(Player.Colors.GREY).getPosY());
-				this.grid.StopDisplayCheckSituation(square);
-			}
-			if (board.myKing(Player.Colors.BLACK).isChecked() == true
-					|| board.myKing(Player.Colors.BLACK).isCheckmatedOrStalemated() == 1)
-			{
-				GridSquare square = this.grid.getSquare(
-						board.myKing(Player.Colors.BLACK).getPosX(),
-						board.myKing(Player.Colors.BLACK).getPosY());
-				this.grid.displayCheckSituation(square);
-			}
-			else
-			{
-				GridSquare square = this.grid.getSquare(
-						board.myKing(Player.Colors.BLACK).getPosX(),
-						board.myKing(Player.Colors.BLACK).getPosY());
-				this.grid.StopDisplayCheckSituation(square);
-			}
-            this.grid.redraw();
+			this.checkForCheckSituation(board);
+			this.grid.redraw();
         }
     }
 
+
+	/**
+	 * check whether a players king is in a check situation
+	 * if so then a certain highlight color will be displayed
+	 * (checks every king in game)
+	 *
+	 * @param board	chessboard to get all kings
+	 */
+	private void checkForCheckSituation(final ThreePlayerChessboard board)
+	{
+		Player.Colors colors[] = {
+				Player.Colors.WHITE,
+				Player.Colors.GREY,
+				Player.Colors.BLACK,
+		};
+
+		for (int i = 0; i < colors.length; i++)
+		{
+			GridSquare square = this.grid.getSquare(
+					board.myKing(colors[i]).getPosX(),
+					board.myKing(colors[i]).getPosY());
+			if (board.myKing(colors[i]).isChecked() == true
+					|| board.myKing(colors[i]).isCheckmatedOrStalemated() == 1)
+			{
+				this.grid.displayCheckSituation(square);
+			}
+			else
+			{
+				this.grid.StopDisplayCheckSituation(square);
+			}
+		}
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e)
