@@ -33,7 +33,7 @@ public class Queen extends Piece {
         imageWhite = ResourceManager.loadImage("Queen-W.png");
         imageBlack = ResourceManager.loadImage("Queen-B.png");
         imageGray = ResourceManager.loadImage("Queen-G.png");
-        this.setImage();
+        this.setImage(false);
     }
 
     /** Determines all possible Moves of this piece.

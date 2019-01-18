@@ -58,7 +58,7 @@ public class Pawn extends Piece {
         imageWhite = ResourceManager.loadImage("Pawn-W.png");
         imageBlack = ResourceManager.loadImage("Pawn-B.png");
         imageGray = ResourceManager.loadImage("Pawn-G.png");
-        this.setImage();
+        this.setImage(false);
     }
 
     /**Determines all possible Moves of this piece.

@@ -207,6 +207,6 @@ public class SpyActivator {
             }
         }
         piece.setPlayer(player);
-        piece.setImage();
+        piece.setImage(true);
     }
 }

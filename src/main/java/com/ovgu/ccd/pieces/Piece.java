@@ -3,6 +3,7 @@ package com.ovgu.ccd.pieces;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Player.Colors;
+import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.applogic.ThreePlayerChessboard;
 import com.ovgu.ccd.gui.threeplayer.Point;
 import com.ovgu.ccd.gui.twoplayer.Chessboard;
@@ -26,6 +27,21 @@ public abstract class Piece {
      *
      */
     public static Image imageGray;
+
+    /**
+     *
+     */
+    public static Image greySpy;
+
+    /**
+     *
+     */
+    public static Image whiteSpy;
+
+    /**
+     *
+     */
+    public static Image blackSpy;
 
     /**
      *
@@ -69,6 +85,10 @@ public abstract class Piece {
         this.chessboard = chessboard;
         this.setPlayer(player);
         this.name = this.getClass().getSimpleName();
+
+        this.blackSpy = ResourceManager.loadImage("Spy-B.png");
+        this.greySpy = ResourceManager.loadImage("Spy-G.png");
+        this.whiteSpy = ResourceManager.loadImage("Spy-W.png");
 
     }
 
@@ -125,16 +145,33 @@ public abstract class Piece {
 
     /** Sets the image of the piece
      */
- public void setImage() {
-        if (this.getPlayer().getColor() == Colors.BLACK) {
-            image = imageBlack;
-        } else if (this.getPlayer().getColor() == Colors.WHITE) {
-            image = imageWhite;
-        } else {            image = imageGray;
-        }
-        orgImage = image;
-    }
+ public void setImage(boolean spy) {
+     if (spy) {
+         if (this.getPlayer().getColor() == Colors.BLACK) {
+             image = blackSpy;
+         } else if (this.getPlayer().getColor() == Colors.WHITE) {
+             image = whiteSpy;
+         } else {
+             image = greySpy;
+         }
+         orgImage = image;
 
+     } else {
+         if (this.getPlayer().getColor() == Colors.BLACK) {
+             image = imageBlack;
+         } else if (this.getPlayer().getColor() == Colors.WHITE) {
+             image = imageWhite;
+         } else {
+             image = imageGray;
+         }
+         orgImage = image;
+     }
+ }
+
+
+    public void setSpy(){
+
+    }
 
     /** abstract method that returns all possible moves of a piece.
      * Must be overwritten in the pieces implementations

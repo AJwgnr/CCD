@@ -32,7 +32,7 @@ public class Bishop extends Piece {
         imageWhite = ResourceManager.loadImage("Bishop-W.png");
         imageBlack = ResourceManager.loadImage("Bishop-B.png");
         imageGray = ResourceManager.loadImage("Bishop-G.png");
-        this.setImage();
+        this.setImage(false);
     }
 
 
