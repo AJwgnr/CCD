@@ -1,15 +1,15 @@
 package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.AudioPlayer;
-
 import javax.swing.*;
 import java.awt.*;
 
 
 /**
- * Class with creates the gameover window at the end of the game.
+ * Class with creates the gameover window at the end of the game
  */
-public class GameoverWindow extends JDialog {
+public class GameoverWindow extends JDialog
+{
     private static final String CONGRATULATIONS_STR1 = "Congratulations, ";
     private static final String CONGRATULATIONS_STR2 = ", you won the game!";
     private static final String FONT = "Tahoma";

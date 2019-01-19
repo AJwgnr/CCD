@@ -1,28 +1,32 @@
 package com.ovgu.ccd.gui;
 
-import javax.swing.*;
+import com.ovgu.ccd.applogic.Player;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.awt.Robot;
+import javax.swing.*;
 
 
 /**
  * Panel in which you can see fireworks.
- * <p>
+ *
  * This class has been created based on code snippets from:
  * https://harryjoy.me/2012/04/13/fireworks-in-swing/
+ *
  */
-public class Fireworks extends JPanel implements ActionListener {
-    private static final long serialVersionUID = 5053650234847311814L;
-    private static final int DELAY = 10;
-    private static final int DIVIDER = 180;
-    private static final int MULTIPLY_FACTOR = 36;
-    private static final int LINE_LENGTH = 2;
-    private static final int FIREWORK_RADIUS = 75;
-    private static final int ARRAY_LENGTH = 5;
+public class Fireworks extends JPanel implements ActionListener
+{
+    private static final long serialVersionUID  = 5053650234847311814L;
+    private static final int DELAY              = 10;
+    private static final int DIVIDER            = 180;
+    private static final int MULTIPLY_FACTOR    = 36;
+    private static final int LINE_LENGTH        = 2;
+    private static final int FIREWORK_RADIUS    = 75;
+    private static final int ARRAY_LENGTH       = 5;
 
     private static int X_CENTER[] = new int[ARRAY_LENGTH];
     private static int Y_CENTER[] = new int[ARRAY_LENGTH];
@@ -41,16 +45,21 @@ public class Fireworks extends JPanel implements ActionListener {
 
     /**
      * constructor
+     *
      */
-    public Fireworks() {
+    public Fireworks()
+    {
         x1 = 0;
         index = 0;
         color_index = 0;
         moveX = 3;
-
-        try {
+        
+        try
+        {
             this.robot = new Robot();
-        } catch (Exception e) {
+        }
+        catch(Exception e)
+        {
             e.printStackTrace();
         }
 
@@ -111,7 +120,8 @@ public class Fireworks extends JPanel implements ActionListener {
      * @param g graphics
      */
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g)
+    {
         super.paintComponent(g);
         Graphics2D graphics2d = (Graphics2D) g;
         Stroke stroke = new BasicStroke(

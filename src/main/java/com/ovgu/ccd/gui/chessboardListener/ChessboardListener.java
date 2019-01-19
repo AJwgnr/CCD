@@ -1,8 +1,6 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
-import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.applogic.PlayerSequenceManager;
-import com.ovgu.ccd.applogic.ThreePlayerChessboard;
+import com.ovgu.ccd.applogic.*;
 import com.ovgu.ccd.gui.GameoverWindow;
 import com.ovgu.ccd.gui.PawnPromotionWindow;
 import com.ovgu.ccd.pieces.Pawn;
@@ -169,6 +167,7 @@ public class ChessboardListener implements MouseListener
 				movePiece(this.squareBuffer, clickedSquare);
 				this.squareBuffer = null;
 				this.grid.stopDisplayingPossibleMoves();
+				this.checkForGameover(clickedSquare);
 				if (this.sequenceManager != null)
 					this.sequenceManager.moveDone();
 			}
@@ -226,14 +225,52 @@ public class ChessboardListener implements MouseListener
             	handlePieceInteraction(clickedSquare);
 			}
 
-            this.grid.redraw();
+			ThreePlayerChessboard board = (ThreePlayerChessboard) clickedSquare.getBoardSquare().getPiece().getChessboard();
+			this.checkForCheckSituation(board);
+			this.grid.redraw();
 			this.checkForGameover(clickedSquare);
         }
     }
 
 
-    @Override
-    public void mouseClicked(final MouseEvent e) {
+	/**
+	 * check whether a players king is in a check situation
+	 * if so then a certain highlight color will be displayed
+	 * (checks every king in game)
+	 *
+	 * @param board	chessboard to get all kings
+	 */
+	private void checkForCheckSituation(final ThreePlayerChessboard board)
+	{
+		Player.Colors colors[] = {
+				Player.Colors.WHITE,
+				Player.Colors.GREY,
+				Player.Colors.BLACK,
+		};
+
+		for (int i = 0; i < colors.length; i++)
+		{
+			GridSquare square = this.grid.getSquare(
+					board.myKing(colors[i]).getPosX(),
+					board.myKing(colors[i]).getPosY());
+			try {
+				if (!new CheckController(board, board.myKing(colors[i]), board.myKing(colors[i]), null).isSafe()
+						|| new CheckMateController(board, board.myKing(colors[i])).isCheckMate()) {
+					this.grid.displayCheckSituation(square);
+				}
+				else {
+					this.grid.StopDisplayCheckSituation(square);
+				}
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e)
+	{
         handleChessboardClicks(e);
     }
 
