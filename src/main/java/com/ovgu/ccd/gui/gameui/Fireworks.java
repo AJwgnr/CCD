@@ -13,6 +13,7 @@ import java.util.Random;
  * <p>
  * This class has been created based on code snippets from:
  * https://harryjoy.me/2012/04/13/fireworks-in-swing/
+ *
  */
 public class Fireworks extends JPanel implements ActionListener {
     private static final long serialVersionUID = 5053650234847311814L;

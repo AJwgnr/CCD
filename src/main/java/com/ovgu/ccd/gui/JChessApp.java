@@ -16,6 +16,8 @@
 package com.ovgu.ccd.gui;
 import com.ovgu.ccd.gui.gameui.JChessView;
 
+import com.ovgu.ccd.gui.gameui.JChessView;
+import com.ovgu.ccd.gui.threeplayer.ChessboardListener;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -38,7 +40,8 @@ public class JChessApp extends SingleFrameApplication {
 
     /**
      * Main method launching the application.
-     * @param   args    arguments
+     *
+     * @param args arguments
      */
     public static void main(String[] args) {
         launch(JChessApp.class, args);

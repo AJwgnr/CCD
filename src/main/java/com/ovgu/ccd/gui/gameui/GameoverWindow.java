@@ -1,5 +1,7 @@
 package com.ovgu.ccd.gui.gameui;
 
+import com.ovgu.ccd.applogic.AudioPlayer;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -18,6 +20,7 @@ public class GameoverWindow extends JDialog {
 
 
     /**Creates the game over window after a player was chess mate.
+     * constructor
      *
      * @param nameOfWinner the name of the player, who won the game
      */
@@ -31,6 +34,11 @@ public class GameoverWindow extends JDialog {
         this.gameoverDialog.setLocationRelativeTo(null);
         pack();
         this.gameoverDialog.setVisible(true);
+
+        // call of the audio file
+        AudioPlayer ap = new AudioPlayer("firework.wav");
+        ap.play();
+        ap.stop(12000);
     }
 
 

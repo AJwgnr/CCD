@@ -69,6 +69,8 @@ class SpyInCheck extends Exception {
  */
 public class SpyActivator {
 
+    private AudioPlayer ap = null;
+
     /**
      * Player that is activating its spy
      */
@@ -91,6 +93,7 @@ public class SpyActivator {
         this.player = player;
         this.piece = piece;
         this.board = board;
+        this.ap =  new AudioPlayer("spy.wav");
 
     }
 
@@ -205,6 +208,8 @@ public class SpyActivator {
                 board.setGreySpyActive(true);
             }
         }
+        ap.play();
+        ap.stop(3000);
         piece.setPlayer(player);
         piece.setImage(true);
     }
