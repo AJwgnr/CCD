@@ -9,7 +9,7 @@ import java.io.InputStream;
  * This helps in playing audio files.
  */
 
-final public class AudioPlayer {
+public class AudioPlayer {
 
     /**
      * Stores the current position.

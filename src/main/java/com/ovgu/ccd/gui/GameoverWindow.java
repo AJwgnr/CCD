@@ -7,7 +7,7 @@ import java.awt.*;
 
 
 /**
- * Class with creates the gameover window at the end of the game
+ * Class with creates the gameover window at the end of the game.
  */
 public class GameoverWindow extends JDialog {
     private static final String CONGRATULATIONS_STR1 = "Congratulations, ";
