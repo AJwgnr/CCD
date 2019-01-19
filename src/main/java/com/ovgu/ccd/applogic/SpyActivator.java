@@ -125,7 +125,6 @@ public class SpyActivator {
                 }
             }
 
-
         } else if (player.getColor() == Player.Colors.GREY) {
 
             for (Piece p : possibleSpies) {

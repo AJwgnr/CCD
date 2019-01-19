@@ -24,7 +24,7 @@ import com.ovgu.ccd.applogic.*;
 import com.ovgu.ccd.applogic.Player.Colors;
 import com.ovgu.ccd.gui.twoplayer.Moves.castling;
 import com.ovgu.ccd.gui.threeplayer.ChessboardGrid;
-import com.ovgu.ccd.moves.Move;
+import com.ovgu.ccd.moves.two.MoveHistoryEntry;
 import com.ovgu.ccd.pieces.*;
 
 import javax.swing.*;
@@ -501,7 +501,7 @@ public class Chessboard extends JPanel implements IBoard {
     public boolean redo(boolean refresh) {
         if (this.settings.gameType == Settings.gameTypes.LOCAL) //redo only for LOCAL game
         {
-            Move first = this.moves_history.redo();
+            MoveHistoryEntry first = this.moves_history.redo();
 
             Square from = null;
             Square to = null;
@@ -532,7 +532,7 @@ public class Chessboard extends JPanel implements IBoard {
 
     public synchronized boolean undo(boolean refresh) //undo last move
     {
-        Move last = this.moves_history.undo();
+        MoveHistoryEntry last = this.moves_history.undo();
 
 
         if (last != null && last.getFrom() != null) {
@@ -575,7 +575,7 @@ public class Chessboard extends JPanel implements IBoard {
                 }
 
                 //check one more move back for en passant
-                Move oneMoveEarlier = this.moves_history.getLastMoveFromHistory();
+                MoveHistoryEntry oneMoveEarlier = this.moves_history.getLastMoveFromHistory();
                 if (oneMoveEarlier != null && oneMoveEarlier.wasPawnTwoFieldsMove()) {
                     Piece canBeTakenEnPassant = this.squares[oneMoveEarlier.getTo().getPosX()][oneMoveEarlier.getTo().getPosY()].getPiece();
                     if (canBeTakenEnPassant.name.equals("Pawn")) {

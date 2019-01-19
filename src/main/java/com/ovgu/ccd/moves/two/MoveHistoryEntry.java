@@ -1,4 +1,4 @@
-package com.ovgu.ccd.moves;
+package com.ovgu.ccd.moves.two;
 
 import com.ovgu.ccd.gui.twoplayer.Chessboard;
 import com.ovgu.ccd.gui.twoplayer.Moves.castling;
@@ -8,7 +8,7 @@ import com.ovgu.ccd.pieces.Square;
 /**
  * Represents a move done by a player
  */
-public class Move {
+public class MoveHistoryEntry {
 
     /**
      * where the move starts from
@@ -52,7 +52,7 @@ public class Move {
      * @param wasEnPassant if it was an en passant move
      * @param promotedPiece during the move
      */
-    public Move(final Square from, final Square to, final Piece movedPiece, final Piece takenPiece, final castling castlingMove, final boolean wasEnPassant, final Piece promotedPiece) {
+    public MoveHistoryEntry(final Square from, final Square to, final Piece movedPiece, final Piece takenPiece, final castling castlingMove, final boolean wasEnPassant, final Piece promotedPiece) {
         this.setFrom(from);
         this.setTo(to);
         this.setMovedPiece(movedPiece);

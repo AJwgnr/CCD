@@ -1,5 +1,6 @@
 package com.ovgu.ccd.gui.threeplayer;
 
+import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.PlayerSequenceManager;
 import com.ovgu.ccd.applogic.ThreePlayerChessboard;
@@ -25,6 +26,7 @@ public class ChessboardListener implements MouseListener
 	PlayerSequenceManager sequenceManager = null;
 	private JButton spyActivator = null;
 	private Piece clickedPieceWaitingForSpy = null;
+	private IBoard board = null;
 
 
 	/**

@@ -301,7 +301,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener {
     }
 
     /**
-     * Method to simulate Move to check if it's correct etc. (usable for NETWORK game).
+     * Method to simulate MoveHistoryEntry to check if it's correct etc. (usable for NETWORK game).
      *
      * @param beginX from which X (on chessboard) move starts
      * @param beginY from which Y (on chessboard) move starts

@@ -22,7 +22,7 @@ package com.ovgu.ccd.gui.twoplayer;
 
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;
-import com.ovgu.ccd.moves.Move;
+import com.ovgu.ccd.moves.two.MoveHistoryEntry;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
@@ -42,8 +42,8 @@ import java.util.Stack;
 @SuppressWarnings("ALL")
 public class Moves extends AbstractTableModel {
 
-    protected Stack<Move> moveBackStack = new Stack<Move>();
-    protected Stack<Move> moveForwardStack = new Stack<Move>();
+    protected Stack<MoveHistoryEntry> moveBackStack = new Stack<MoveHistoryEntry>();
+    protected Stack<MoveHistoryEntry> moveForwardStack = new Stack<MoveHistoryEntry>();
     private ArrayList<String> move = new ArrayList<String>();
     private int columnsNum = 3;
     private int rowsNum = 0;
@@ -267,7 +267,7 @@ public class Moves extends AbstractTableModel {
         this.scrollPane.scrollRectToVisible(new Rectangle(0, this.scrollPane.getHeight() - 2, 1, 1));
 
         if (registerInHistory) {
-            this.moveBackStack.add(new Move(new Square(begin), new Square(end), begin.getPiece(), end.getPiece(), castlingMove, wasEnPassant, promotedPiece));
+            this.moveBackStack.add(new MoveHistoryEntry(new Square(begin), new Square(end), begin.getPiece(), end.getPiece(), castlingMove, wasEnPassant, promotedPiece));
         }
     }
 
@@ -414,18 +414,18 @@ public class Moves extends AbstractTableModel {
         }
     }
 
-    public synchronized Move getLastMoveFromHistory() {
+    public synchronized MoveHistoryEntry getLastMoveFromHistory() {
         try {
-            Move last = this.moveBackStack.get(this.moveBackStack.size() - 1);
+            MoveHistoryEntry last = this.moveBackStack.get(this.moveBackStack.size() - 1);
             return last;
         } catch (java.lang.ArrayIndexOutOfBoundsException exc) {
             return null;
         }
     }
 
-    public synchronized Move getNextMoveFromHistory() {
+    public synchronized MoveHistoryEntry getNextMoveFromHistory() {
         try {
-            Move next = this.moveForwardStack.get(this.moveForwardStack.size() - 1);
+            MoveHistoryEntry next = this.moveForwardStack.get(this.moveForwardStack.size() - 1);
             return next;
         } catch (java.lang.ArrayIndexOutOfBoundsException exc) {
             return null;
@@ -433,9 +433,9 @@ public class Moves extends AbstractTableModel {
 
     }
 
-    public synchronized Move undo() {
+    public synchronized MoveHistoryEntry undo() {
         try {
-            Move last = this.moveBackStack.pop();
+            MoveHistoryEntry last = this.moveBackStack.pop();
             if (last != null) {
                 if (this.game.settings.gameType == Settings.gameTypes.LOCAL) //moveForward / redo available only for LOCAL game
                 {
@@ -465,10 +465,10 @@ public class Moves extends AbstractTableModel {
         }
     }
 
-    public synchronized Move redo() {
+    public synchronized MoveHistoryEntry redo() {
         try {
             if (this.game.settings.gameType == Settings.gameTypes.LOCAL) {
-                Move first = this.moveForwardStack.pop();
+                MoveHistoryEntry first = this.moveForwardStack.pop();
                 this.moveBackStack.push(first);
 
                 return first;
