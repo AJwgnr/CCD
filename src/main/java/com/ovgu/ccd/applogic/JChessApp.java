@@ -14,11 +14,10 @@
  */
 
 package com.ovgu.ccd.applogic;
-import com.ovgu.ccd.gui.GameoverWindow;
-import com.ovgu.ccd.gui.JChessView;
 
-import com.ovgu.ccd.gui.chessboardListener.ChessboardListener;
+import com.ovgu.ccd.gui.JChessView;
 import com.ovgu.ccd.gui.chessboardListener.ChessboardGrid;
+import com.ovgu.ccd.gui.chessboardListener.ChessboardListener;
 import com.ovgu.ccd.gui.chessboardListener.Point;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
@@ -42,7 +41,8 @@ public class JChessApp extends SingleFrameApplication {
 
     /**
      * Main method launching the application.
-     * @param   args    arguments
+     *
+     * @param args arguments
      */
     public static void main(String[] args) {
         launch(JChessApp.class, args);
