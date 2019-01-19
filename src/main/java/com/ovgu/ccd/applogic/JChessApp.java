@@ -57,7 +57,7 @@ public class JChessApp extends SingleFrameApplication {
         ChessboardGrid chessboardGrid = new ChessboardGrid(
                 new Point(
                         screenSize.width / 2, screenSize.height / 2),
-                screenSize.height / 2);
+                (screenSize.height / 2) - 30);
         ChessboardListener listener = new ChessboardListener(chessboardGrid);
         new com.ovgu.ccd.gui.chessboardListener.Window(
                 "ChessboardListener", listener.getPanel());
