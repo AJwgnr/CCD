@@ -23,6 +23,7 @@ public class ChessboardListener implements MouseListener
 	private ChessboardGrid grid = null;
 	private GridSquare squareBuffer = null;
 	PlayerSequenceManager sequenceManager = null;
+	ThreePlayerChessboard board = null;
 
 
 	/**
@@ -108,8 +109,7 @@ public class ChessboardListener implements MouseListener
 		if (origin != null && target != null) {
 			Piece piece = origin.getBoardSquare().getPiece();
 			if (piece != null) {
-				ThreePlayerChessboard board = (ThreePlayerChessboard) piece.getChessboard();
-				board.setPiece(piece, target.getBoardSquare().getPosX(), target.getBoardSquare().getPosY());
+				this.board.setPiece(piece, target.getBoardSquare().getPosX(), target.getBoardSquare().getPosY());
 				checkForPromotion(piece);
 			}
 		}
@@ -195,9 +195,8 @@ public class ChessboardListener implements MouseListener
 	private void checkForGameover(GridSquare clickedSquare)
 	{
 		Piece piece = clickedSquare.getBoardSquare().getPiece();
-		ThreePlayerChessboard board = (ThreePlayerChessboard) piece.getChessboard();
 		try {
-			if (board.isGameFinished())
+			if (this.board.isGameFinished())
 			{
 				String nameOfPlayer = piece.getPlayer().getName();
 				new GameoverWindow(nameOfPlayer);
@@ -221,8 +220,12 @@ public class ChessboardListener implements MouseListener
         {
         	clickedSquare.getBoardSquare().print();
 
-            if (clickedSquare.getBoardSquare().getPiece() != null || this.squareBuffer != null)
-                handlePieceInteraction(clickedSquare);
+            if (clickedSquare.getBoardSquare().getPiece() != null || this.squareBuffer != null) {
+				if (this.board == null) {
+					this.board = (ThreePlayerChessboard) clickedSquare.getBoardSquare().getPiece().getChessboard();
+				}
+            	handlePieceInteraction(clickedSquare);
+			}
 
 			ThreePlayerChessboard board = (ThreePlayerChessboard) clickedSquare.getBoardSquare().getPiece().getChessboard();
 			this.checkForCheckSituation(board);

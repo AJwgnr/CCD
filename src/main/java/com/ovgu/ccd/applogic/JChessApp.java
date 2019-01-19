@@ -46,7 +46,7 @@ public class JChessApp extends SingleFrameApplication {
      *
      * @param args arguments
      */
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         launch(JChessApp.class, args);
     }
 
@@ -55,11 +55,17 @@ public class JChessApp extends SingleFrameApplication {
      */
     @Override
     protected void startup() {
-        ChessboardGrid chessboardGrid = new ChessboardGrid(new Point(550, 550), 500);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        ChessboardGrid chessboardGrid = new ChessboardGrid(
+                new Point(
+                        screenSize.width / 2, screenSize.height / 2),
+                (screenSize.height / 2) - 30);
         ChessboardListener listener = new ChessboardListener(chessboardGrid);
-        new com.ovgu.ccd.gui.chessboardListener.Window("ChessboardListener", 1280, 1280, listener.getPanel());
+        new com.ovgu.ccd.gui.chessboardListener.Window(
+                "ChessboardListener", listener.getPanel());
         ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
-        listener.setListenerRestrictions(new PlayerSequenceManager(board.getAllPlayers()));
+        listener.setListenerRestrictions(
+                new PlayerSequenceManager(board.getAllPlayers()));
 
         //jcv = new JChessView(this);
         //show(jcv);
@@ -73,6 +79,6 @@ public class JChessApp extends SingleFrameApplication {
      * builder, so this additional configuration is not needed.
      */
     @Override
-    protected void configureWindow(Window root) {
+    protected void configureWindow(final Window root) {
     }
 }
