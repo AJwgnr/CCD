@@ -719,6 +719,7 @@ public class ThreePlayerChessboard implements IBoard {
      */
     public void activateSpy(Player player, Piece piece) throws Exception {
         new SpyActivator(player, piece, this).activateSpy();
+        this.redrawPieces();
     }
 
     public boolean isWhiteSpyActive() {

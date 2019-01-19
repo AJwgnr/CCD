@@ -1,9 +1,6 @@
 package com.ovgu.ccd.gui.threeplayer;
 
-import com.ovgu.ccd.applogic.IBoard;
-import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.applogic.PlayerSequenceManager;
-import com.ovgu.ccd.applogic.ThreePlayerChessboard;
+import com.ovgu.ccd.applogic.*;
 import com.ovgu.ccd.gui.gameui.GameoverWindow;
 import com.ovgu.ccd.gui.gameui.PawnPromotionWindow;
 import com.ovgu.ccd.pieces.Pawn;
@@ -24,8 +21,9 @@ public class ChessboardListener implements MouseListener
 	private GridSquare squareBuffer = null;
 	PlayerSequenceManager sequenceManager = null;
 	private JButton spyActivator = null;
+	ThreePlayerChessboard board = null;
 	private Piece clickedPieceWaitingForSpy = null;
-	private IBoard board = null;
+
 
 
 	/**
@@ -119,8 +117,7 @@ public class ChessboardListener implements MouseListener
 		if (origin != null && target != null) {
 			Piece piece = origin.getBoardSquare().getPiece();
 			if (piece != null) {
-				ThreePlayerChessboard board = (ThreePlayerChessboard) piece.getChessboard();
-				board.setPiece(piece, target.getBoardSquare().getPosX(), target.getBoardSquare().getPosY());
+				this.board.setPiece(piece, target.getBoardSquare().getPosX(), target.getBoardSquare().getPosY());
 				checkForPromotion(piece);
 			}
 		}
@@ -185,6 +182,7 @@ public class ChessboardListener implements MouseListener
 				movePiece(this.squareBuffer, clickedSquare);
 				this.squareBuffer = null;
 				this.grid.stopDisplayingPossibleMoves();
+				this.checkForGameover(clickedSquare);
 				if (this.sequenceManager != null)
 					this.sequenceManager.moveDone();
 			}
@@ -210,9 +208,8 @@ public class ChessboardListener implements MouseListener
 	private void checkForGameover(GridSquare clickedSquare)
 	{
 		Piece piece = clickedSquare.getBoardSquare().getPiece();
-		ThreePlayerChessboard board = (ThreePlayerChessboard) piece.getChessboard();
 		try {
-			if (board.isGameFinished())
+			if (this.board.isGameFinished())
 			{
 				String nameOfPlayer = piece.getPlayer().getName();
 				new GameoverWindow(nameOfPlayer);
@@ -237,14 +234,14 @@ public class ChessboardListener implements MouseListener
 	@Override
     public void mouseClicked(final MouseEvent e) {
 		//clicked Spy Button
-		if(e.getSource().equals(this.spyActivator)){
+		if (e.getSource().equals(this.spyActivator)) {
 
 			//already selected a piece
-			if(this.clickedPieceWaitingForSpy != null){
+			if (this.clickedPieceWaitingForSpy != null) {
 				ThreePlayerChessboard board = (ThreePlayerChessboard) this.clickedPieceWaitingForSpy.getChessboard();
 				try {
 					//try to activate spy
-					board.activateSpy(this.sequenceManager.getCurrentPlayer(),this.clickedPieceWaitingForSpy);
+					board.activateSpy(this.sequenceManager.getCurrentPlayer(), this.clickedPieceWaitingForSpy);
 					this.clickedPieceWaitingForSpy = null;
 					this.grid.redraw();
 					if (this.sequenceManager != null)
@@ -255,20 +252,63 @@ public class ChessboardListener implements MouseListener
 
 			}
 			//clicked on the grid
-		}else if(e.getSource().equals(grid)) {
+		} else if (e.getSource().equals(grid)) {
 
 			GridSquare clickedSquare = getClickedSquare(e);
 			if (clickedSquare != null) {
 				clickedSquare.getBoardSquare().print();
 
-				if (clickedSquare.getBoardSquare().getPiece() != null || this.squareBuffer != null)
+				if (clickedSquare.getBoardSquare().getPiece() != null || this.squareBuffer != null) {
+					if (this.board == null) {
+						this.board = (ThreePlayerChessboard) clickedSquare.getBoardSquare().getPiece().getChessboard();
+					}
 					handlePieceInteraction(clickedSquare);
-			this.checkForGameover(clickedSquare);
+				}
+				ThreePlayerChessboard board = (ThreePlayerChessboard) clickedSquare.getBoardSquare().getPiece().getChessboard();
+				this.checkForCheckSituation(board);
+				this.grid.redraw();
+				this.checkForGameover(clickedSquare);
 			}
 		}
 		this.grid.redraw();
+	}
 
-    }
+	/**
+	 * check whether a players king is in a check situation
+	 * if so then a certain highlight color will be displayed
+	 * (checks every king in game)
+	 *
+	 * @param board	chessboard to get all kings
+	 */
+	private void checkForCheckSituation(final ThreePlayerChessboard board)
+	{
+		Player.Colors colors[] = {
+				Player.Colors.WHITE,
+				Player.Colors.GREY,
+				Player.Colors.BLACK,
+		};
+
+		for (int i = 0; i < colors.length; i++)
+		{
+			GridSquare square = this.grid.getSquare(
+					board.myKing(colors[i]).getPosX(),
+					board.myKing(colors[i]).getPosY());
+			try {
+				if (!new CheckController(board, board.myKing(colors[i]), board.myKing(colors[i]), null).isSafe()
+						|| new CheckMateController(board, board.myKing(colors[i])).isCheckMate()) {
+					this.grid.displayCheckSituation(square);
+				}
+				else {
+					this.grid.StopDisplayCheckSituation(square);
+				}
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+
 
     @Override
     public void mouseEntered(final MouseEvent e) {

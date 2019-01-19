@@ -74,7 +74,7 @@ public class JChessView extends FrameView implements ComponentListener {
 
         ChessboardGrid chessboardGrid = new ChessboardGrid(new Point(500, 420), 450);
         ChessboardListener listener = new ChessboardListener(chessboardGrid);
-        //Window window = new com.ovgu.ccd.gui.threeplayer.Window("ChessboardListener",1280,1280, listener.getPanel());
+        Window window = new com.ovgu.ccd.gui.threeplayer.Window("ChessboardListener", listener.getPanel());
         ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
         listener.setListenerRestrictions(new PlayerSequenceManager(board.getAllPlayers()));
         this.gamesPane.addTab(title, listener.getPanel());

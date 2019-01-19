@@ -239,8 +239,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener {
         if (activePlayer.getPlayerType() != Player.PlayerTypes.LOCALUSER) {
             this.blockedChessboard = true;
         }
-        //dirty hacks starts over here :)
-        //to fix rendering artefacts on first run
+
         Game activeGame = JChessApp.jcv.getActiveTabGame();
         if (activeGame != null && JChessApp.jcv.getNumberOfOpenedTabs() == 0) {
             activeGame.chessboard.resizeChessboard(activeGame.chessboard.get_height(false));
