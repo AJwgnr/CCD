@@ -1,8 +1,6 @@
 package com.ovgu.ccd.gui.chessboardListener;
 
-import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.applogic.PlayerSequenceManager;
-import com.ovgu.ccd.applogic.ThreePlayerChessboard;
+import com.ovgu.ccd.applogic.*;
 import com.ovgu.ccd.gui.GameoverWindow;
 import com.ovgu.ccd.gui.PawnPromotionWindow;
 import com.ovgu.ccd.pieces.Pawn;
@@ -255,14 +253,17 @@ public class ChessboardListener implements MouseListener
 			GridSquare square = this.grid.getSquare(
 					board.myKing(colors[i]).getPosX(),
 					board.myKing(colors[i]).getPosY());
-			if (board.myKing(colors[i]).isChecked() == true
-					|| board.myKing(colors[i]).isCheckmatedOrStalemated() == 1)
-			{
-				this.grid.displayCheckSituation(square);
+			try {
+				if (!new CheckController(board, board.myKing(colors[i]), board.myKing(colors[i]), null).isSafe()
+						|| new CheckMateController(board, board.myKing(colors[i])).isCheckMate()) {
+					this.grid.displayCheckSituation(square);
+				}
+				else {
+					this.grid.StopDisplayCheckSituation(square);
+				}
 			}
-			else
-			{
-				this.grid.StopDisplayCheckSituation(square);
+			catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 	}
