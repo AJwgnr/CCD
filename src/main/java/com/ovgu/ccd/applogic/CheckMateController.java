@@ -46,7 +46,6 @@ public class CheckMateController {
             pieces = board.greyPieces;
         }
 
-
         for (Piece p: pieces) {
             if (p.getSquare() != null) {
                 ArrayList<Square> moves = p.allMoves();
