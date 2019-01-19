@@ -14,8 +14,7 @@
  */
 
 package com.ovgu.ccd.applogic;
-import com.ovgu.ccd.gui.GameoverWindow;
-import com.ovgu.ccd.gui.JChessView;
+import com.ovgu.ccd.gui.gameui.JChessView;
 
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;

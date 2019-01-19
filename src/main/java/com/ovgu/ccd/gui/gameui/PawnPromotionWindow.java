@@ -18,7 +18,7 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.gui;
+package com.ovgu.ccd.gui.gameui;
 
 import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.pieces.Piece;
@@ -28,8 +28,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Class responsible for promotion of a pawn.
+/** Class responsible for promotion of a pawn.
  * When pawn reach the end of the chessboard it can be change to rook,
  * bishop, queen or knight. For what pawn is promoted decideds player.
  */
@@ -49,7 +48,7 @@ public class PawnPromotionWindow extends JDialog implements ActionListener
     private JDialog promotionDialog = null;
 
 
-    /**
+    /** Creates a window for choosing a piece for promotion.
      * @param parent Information about the current piece
      * @param color  The player color
      */
@@ -122,8 +121,7 @@ public class PawnPromotionWindow extends JDialog implements ActionListener
     }
 
 
-    /**
-     * returns the resultPieceName of the user selection
+    /**returns the resultPieceName of the user selection.
      *
      * @return  selected piece type
      */

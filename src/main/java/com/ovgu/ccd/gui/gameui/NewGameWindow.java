@@ -18,30 +18,26 @@
  *
  * Created on 2009-10-20, 15:11:49
  */
-package com.ovgu.ccd.gui;
+package com.ovgu.ccd.gui.gameui;
 
-import com.ovgu.ccd.applogic.DrawLocalSettings;
 import com.ovgu.ccd.applogic.Settings;
 
 import javax.swing.*;
 
-/**
- * @author donmateo
+/** Creates a dialog for creating a new game.
  */
 public class NewGameWindow extends JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane jTabbedPane1;
 
-    /**
-     * Creates new form NewGameWindow
+    /**Creates new form for creating a new local game.
      */
     public NewGameWindow() {
         initComponents();
-
         this.setSize(400, 700);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        this.jTabbedPane1.addTab(Settings.lang("local_game"), new DrawLocalSettings(this));
+        this.jTabbedPane1.addTab(Settings.lang("local_game"), new NewGameSettings(this));
 
     }
 

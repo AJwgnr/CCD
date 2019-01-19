@@ -18,7 +18,7 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.gui;
+package com.ovgu.ccd.gui.gameui;
 
 import com.ovgu.ccd.applogic.JChessApp;
 import com.ovgu.ccd.applogic.ResourceManager;
@@ -37,7 +37,7 @@ public class JChessTabbedPane extends JTabbedPane implements MouseListener, Imag
     private Image unclickedAddIcon = null;
     private Rectangle addIconRect = null;
 
-    JChessTabbedPane() {
+    public JChessTabbedPane() {
         super();
         this.closeIcon = new TabbedPaneIcon(this.closeIcon);
         this.unclickedAddIcon = ResourceManager.loadImage("add-tab-icon.png");
@@ -65,10 +65,7 @@ public class JChessTabbedPane extends JTabbedPane implements MouseListener, Imag
     }
 
     private void showNewGameWindow() {
-        if (JChessApp.jcv.newGameFrame == null) {
-            JChessApp.jcv.newGameFrame = new NewGameWindow();
-        }
-        JChessApp.getApplication().show(JChessApp.jcv.newGameFrame);
+            JChessApp.jcv.createNewGameFrame();
     }
 
     @Override

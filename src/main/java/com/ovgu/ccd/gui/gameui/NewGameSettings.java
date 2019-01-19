@@ -17,8 +17,11 @@
  * Authors:
  * Mateusz Sławomir Lach ( matlak, msl )
  */
-package com.ovgu.ccd.applogic;
+package com.ovgu.ccd.gui.gameui;
 
+import com.ovgu.ccd.applogic.JChessApp;
+import com.ovgu.ccd.applogic.Player;
+import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.twoplayer.Game;
 
 import javax.swing.*;
@@ -31,7 +34,7 @@ import java.awt.event.TextEvent;
 /**
  * Class responsible for drawing the fold with LOCAL game settings
  */
-public class DrawLocalSettings extends JPanel implements ActionListener {
+public class NewGameSettings extends JPanel implements ActionListener {
 
     private JDialog parent;//needet to close NEWGAME window
     private ButtonGroup oponentChoos;//group 4 radio buttons
@@ -57,7 +60,7 @@ public class DrawLocalSettings extends JPanel implements ActionListener {
             };
 
 
-    public DrawLocalSettings(JDialog parent) {
+    public NewGameSettings(JDialog parent) {
         super();
         //this.setA//choose oponent
         initUiComponents(parent);

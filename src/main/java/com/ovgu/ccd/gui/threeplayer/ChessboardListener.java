@@ -4,13 +4,12 @@ import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.PlayerSequenceManager;
 import com.ovgu.ccd.applogic.ThreePlayerChessboard;
-import com.ovgu.ccd.gui.GameoverWindow;
-import com.ovgu.ccd.gui.PawnPromotionWindow;
+import com.ovgu.ccd.gui.gameui.GameoverWindow;
+import com.ovgu.ccd.gui.gameui.PawnPromotionWindow;
 import com.ovgu.ccd.pieces.Pawn;
 import com.ovgu.ccd.pieces.Piece;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 

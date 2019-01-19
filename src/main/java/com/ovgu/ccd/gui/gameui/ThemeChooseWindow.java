@@ -18,7 +18,7 @@
  * Mateusz Sławomir Lach ( matlak, msl )
  * Damian Marciniak
  */
-package com.ovgu.ccd.gui;
+package com.ovgu.ccd.gui.gameui;
 
 import com.ovgu.ccd.applogic.JChessApp;
 import com.ovgu.ccd.applogic.ResourceManager;
@@ -40,6 +40,9 @@ import java.util.Collections;
 import java.util.Properties;
 import java.util.Vector;
 
+/**
+ *
+ */
 @SuppressWarnings("ALL")
 public class ThemeChooseWindow extends JDialog implements ActionListener, ListSelectionListener {
 
@@ -52,6 +55,11 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
     JButton okButton;
 
 
+    /**
+     *
+     * @param parent
+     * @throws Exception
+     */
     public ThemeChooseWindow(Frame parent) throws Exception {
         super(parent);
 
@@ -117,6 +125,10 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
         this.setModal(true);
     }
 
+    /**
+     * 
+     * @param event
+     */
     @Override
     public void valueChanged(ListSelectionEvent event) {
         String element = this.themesList.getModel().getElementAt(this.themesList.getSelectedIndex()).toString();

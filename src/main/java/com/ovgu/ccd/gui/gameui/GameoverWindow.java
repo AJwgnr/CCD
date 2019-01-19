@@ -1,4 +1,4 @@
-package com.ovgu.ccd.gui;
+package com.ovgu.ccd.gui.gameui;
 
 import javax.swing.*;
 import java.awt.*;

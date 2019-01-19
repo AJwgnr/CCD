@@ -85,7 +85,6 @@ public abstract class Piece {
         this.chessboard = chessboard;
         this.setPlayer(player);
         this.name = this.getClass().getSimpleName();
-
         this.blackSpy = ResourceManager.loadImage("Spy-B.png");
         this.greySpy = ResourceManager.loadImage("Spy-G.png");
         this.whiteSpy = ResourceManager.loadImage("Spy-W.png");
@@ -168,10 +167,6 @@ public abstract class Piece {
      }
  }
 
-
-    public void setSpy(){
-
-    }
 
     /** abstract method that returns all possible moves of a piece.
      * Must be overwritten in the pieces implementations

@@ -1,6 +1,4 @@
-package com.ovgu.ccd.gui;
-
-import com.ovgu.ccd.applogic.Player;
+package com.ovgu.ccd.gui.gameui;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
