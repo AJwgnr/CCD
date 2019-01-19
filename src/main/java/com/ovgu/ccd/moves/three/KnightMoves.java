@@ -1,29 +1,40 @@
 package com.ovgu.ccd.moves.three;
 
 import com.ovgu.ccd.applogic.CheckController;
-import com.ovgu.ccd.applogic.ThreePlayerChessboard;
 import com.ovgu.ccd.applogic.IBoard;
+import com.ovgu.ccd.applogic.ThreePlayerChessboard;
 import com.ovgu.ccd.moves.IMove;
-import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class that calculates the moves of a knight
+ */
 public class KnightMoves implements IMove {
-    private Piece piece;
-    private ThreePlayerChessboard board;
+    /**
+     * knight for which moves are calculated
+     */
+    final private Piece piece;
+    /**
+     * board in which moves are calculated
+     */
+    final private ThreePlayerChessboard board;
 
-    public KnightMoves(Piece piece, IBoard board) {
+    /**
+     * @param piece king for which the moves are calculated
+     * @param board in which moves are calculated
+     */
+    public KnightMoves(final Piece piece, final IBoard board) {
         this.piece = piece;
         this.board = (ThreePlayerChessboard) board;
     }
 
     @Override
     public ArrayList<Square> moves() throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
-        King king = board.myKing(piece.getColor());
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         try {
             possibleMoves.addAll(allMoves(true));
@@ -34,8 +45,14 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
-    public ArrayList<Square> allMoves(boolean withCheck) throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+    /**
+     * @param withCheck true if we want to only return the moves
+     *                  that don't generate a "check"
+     * @return a list of possible moves
+     * @throws Exception in case a move is invalid
+     */
+    public ArrayList<Square> allMoves(final boolean withCheck) throws Exception {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         possibleMoves.addAll(twoDownOneRight());
         possibleMoves.addAll(twoDownOneLeft());
         possibleMoves.addAll(twoUpOneRight());
@@ -56,8 +73,8 @@ public class KnightMoves implements IMove {
 
         ArrayList<Square> results = new ArrayList<>();
         if (withCheck) {
-            for (Square move : possibleMoves) {
-                boolean safe = new CheckController(board, board.myKing(piece.getColor()), piece, move).isSafe();
+            for (final Square move : possibleMoves) {
+                final boolean safe = new CheckController(board, board.myKing(piece.getColor()), piece, move).isSafe();
                 if (safe) {
                     results.add(new Square(move.getPosX(), move.getPosY(), null));
                 }
@@ -68,12 +85,19 @@ public class KnightMoves implements IMove {
         return new ArrayList<Square>(Arrays.asList(results.stream().distinct().toArray(Square[]::new)));
     }
 
-    public ArrayList<Square> oneDownTwoRight(){
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+    /**
+     * @return moves following one down and two right positions
+     */
+    public ArrayList<Square> oneDownTwoRight() {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if (piece.getPosX() + 1 == 12 || piece.getPosX() + 1 == 1 || piece.getPosX() + 1 == 8) { return possibleMoves; }
-        if (piece.getPosY() == ThreePlayerChessboard.A || piece.getPosY() == ThreePlayerChessboard.H || piece.getPosY() == ThreePlayerChessboard.L) { return possibleMoves; }
+        if (piece.getPosX() + 1 == 12 || piece.getPosX() + 1 == 1 || piece.getPosX() + 1 == 8) {
+            return possibleMoves;
+        }
+        if (piece.getPosY() == ThreePlayerChessboard.A || piece.getPosY() == ThreePlayerChessboard.H || piece.getPosY() == ThreePlayerChessboard.L) {
+            return possibleMoves;
+        }
 
         if ((2 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)) {
             move = new Square(piece.getPosX() - 1, piece.getPosY() + 2, null);
@@ -104,14 +128,21 @@ public class KnightMoves implements IMove {
             possibleMoves.add(move);
         }
         return possibleMoves;
-    };
+    }
 
-    public ArrayList<Square> oneDownTwoLeft(){
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+    /**
+     * @return moves following one down and two left positions
+     */
+    public ArrayList<Square> oneDownTwoLeft() {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if (piece.getPosX() + 1 == 12 || piece.getPosX() + 1 == 1 || piece.getPosX() + 1 == 8) { return possibleMoves; }
-        if (piece.getPosY() == ThreePlayerChessboard.A || piece.getPosY() == ThreePlayerChessboard.H || piece.getPosY() == ThreePlayerChessboard.L) { return possibleMoves; }
+        if (piece.getPosX() + 1 == 12 || piece.getPosX() + 1 == 1 || piece.getPosX() + 1 == 8) {
+            return possibleMoves;
+        }
+        if (piece.getPosY() == ThreePlayerChessboard.A || piece.getPosY() == ThreePlayerChessboard.H || piece.getPosY() == ThreePlayerChessboard.L) {
+            return possibleMoves;
+        }
 
         if ((2 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)) {
             move = new Square(piece.getPosX() - 1, piece.getPosY() - 2, null);
@@ -142,10 +173,13 @@ public class KnightMoves implements IMove {
             possibleMoves.add(move);
         }
         return possibleMoves;
-    };
+    }
 
-    public ArrayList<Square> oneUpTwoRight(){
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+    /**
+     * @return moves following one up and two right positions
+     */
+    public ArrayList<Square> oneUpTwoRight() {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 3) {
@@ -228,10 +262,13 @@ public class KnightMoves implements IMove {
             possibleMoves.add(move);
         }
         return possibleMoves;
-    };
+    }
 
-    public ArrayList<Square> oneUpTwoLeft(){
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+    /**
+     * @return moves following one up and two left positions
+     */
+    public ArrayList<Square> oneUpTwoLeft() {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 3) {
@@ -313,10 +350,13 @@ public class KnightMoves implements IMove {
             possibleMoves.add(move);
         }
         return possibleMoves;
-    };
+    }
 
-    public ArrayList<Square> oneRightTwoUp(){
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+    /**
+     * @return moves following one right and two up positions
+     */
+    public ArrayList<Square> oneRightTwoUp() {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 2) {
@@ -412,8 +452,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
-    public ArrayList<Square> oneRightTwoDown(){
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+    /**
+     * @return moves following one right and two down positions
+     */
+    public ArrayList<Square> oneRightTwoDown() {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 2) {
@@ -456,10 +499,13 @@ public class KnightMoves implements IMove {
             possibleMoves.add(move);
         }
         return possibleMoves;
-    };
+    }
 
-    public ArrayList<Square> oneLeftTwoUp(){
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+    /**
+     * @return moves following one left and two up positions
+     */
+    public ArrayList<Square> oneLeftTwoUp() {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 4) {
@@ -552,10 +598,13 @@ public class KnightMoves implements IMove {
             possibleMoves.add(move);
         }
         return possibleMoves;
-    };
+    }
 
-    public ArrayList<Square> oneLeftTwoDown(){
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+    /**
+     * @return moves following one left and two down positions
+     */
+    public ArrayList<Square> oneLeftTwoDown() {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 2) {
@@ -598,10 +647,13 @@ public class KnightMoves implements IMove {
             possibleMoves.add(move);
         }
         return possibleMoves;
-    };
+    }
 
+    /**
+     * @return moves following two down and one right positions
+     */
     public ArrayList<Square> twoDownOneRight() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if ((3 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)) {
@@ -613,19 +665,19 @@ public class KnightMoves implements IMove {
             if (piece.getPosY() == ThreePlayerChessboard.I) {
                 move = new Square(piece.getPosX() + 2, ThreePlayerChessboard.D, null);
             } else {
-                if (piece.getPosY() != ThreePlayerChessboard.A){
-                    move = new Square(piece.getPosX() +2,piece.getPosY() - 1, null);
+                if (piece.getPosY() != ThreePlayerChessboard.A) {
+                    move = new Square(piece.getPosX() + 2, piece.getPosY() - 1, null);
                 }
             }
         }
         if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 12)) {
             if ((ThreePlayerChessboard.F <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.H)) {
-                move = new Square(piece.getPosX() +2,piece.getPosY() - 1, null);
+                move = new Square(piece.getPosX() + 2, piece.getPosY() - 1, null);
             }
-            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.K){
-                move = new Square(piece.getPosX() +2,piece.getPosY() + 1, null);
+            if (ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.K) {
+                move = new Square(piece.getPosX() + 2, piece.getPosY() + 1, null);
             }
-            if (piece.getPosY() ==ThreePlayerChessboard.E) {
+            if (piece.getPosY() == ThreePlayerChessboard.E) {
                 move = new Square(piece.getPosX() + 2, ThreePlayerChessboard.I, null);
             }
         }
@@ -636,8 +688,11 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return moves following two down and one left positions
+     */
     public ArrayList<Square> twoDownOneLeft() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if ((3 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)) {
@@ -646,16 +701,16 @@ public class KnightMoves implements IMove {
 
         if ((5 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 6)) {
             move = new Square(piece.getPosX() + 2, piece.getPosY() + 1, null);
-            if ( piece.getPosY() ==ThreePlayerChessboard.D) {
+            if (piece.getPosY() == ThreePlayerChessboard.D) {
                 move = new Square(piece.getPosX() + 2, ThreePlayerChessboard.I, null);
             }
         }
-        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 10)){
+        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 10)) {
             if ((ThreePlayerChessboard.E <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.G)) {
-                move = new Square(piece.getPosX() + 2,piece.getPosY() + 1, null);
+                move = new Square(piece.getPosX() + 2, piece.getPosY() + 1, null);
             }
             if ((ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.L)) {
-                move = new Square(piece.getPosX() + 2,piece.getPosY() - 1, null);
+                move = new Square(piece.getPosX() + 2, piece.getPosY() - 1, null);
             }
             if (piece.getPosY() == ThreePlayerChessboard.I) {
                 move = new Square(piece.getPosX() + 2, ThreePlayerChessboard.E, null);
@@ -665,10 +720,13 @@ public class KnightMoves implements IMove {
         if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
-                
+
         return possibleMoves;
     }
 
+    /**
+     * @return moves following two up and one right positions
+     */
     public ArrayList<Square> twoUpOneRight() {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
@@ -768,83 +826,86 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return moves following two up and one left positions
+     */
     public ArrayList<Square> twoUpOneLeft() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if ((1 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 2) && (piece.getPosY() != ThreePlayerChessboard.A)){
-            move = new Square(piece.getPosX() +2,piece.getPosY() -1, null);
+        if ((1 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 2) && (piece.getPosY() != ThreePlayerChessboard.A)) {
+            move = new Square(piece.getPosX() + 2, piece.getPosY() - 1, null);
         }
-        if ((3 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)){
-            if (piece.getPosY() ==ThreePlayerChessboard.E){
-                move = new Square(piece.getPosX() +6, ThreePlayerChessboard.I, null);
+        if ((3 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)) {
+            if (piece.getPosY() == ThreePlayerChessboard.E) {
+                move = new Square(piece.getPosX() + 6, ThreePlayerChessboard.I, null);
             }
-            if (ThreePlayerChessboard.B <= piece.getPosY() &&piece.getPosY() <=ThreePlayerChessboard.D){
-                move = new Square(piece.getPosX() +2,piece.getPosY() -1, null);
+            if (ThreePlayerChessboard.B <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.D) {
+                move = new Square(piece.getPosX() + 2, piece.getPosY() - 1, null);
             }
-            if ((ThreePlayerChessboard.F <= piece.getPosY()) &&( piece.getPosY() <=ThreePlayerChessboard.H)){
-                move = new Square(piece.getPosX() +6,piece.getPosY() -1, null);
+            if ((ThreePlayerChessboard.F <= piece.getPosY()) && (piece.getPosY() <= ThreePlayerChessboard.H)) {
+                move = new Square(piece.getPosX() + 6, piece.getPosY() - 1, null);
             }
         }
-        if ((5 <= (piece.getPosX() + 1)) && ((piece.getPosX() + 1) <= 8)){
-            if ((ThreePlayerChessboard.A <= piece.getPosY() &&piece.getPosY() <=ThreePlayerChessboard.C)){
-                if (( piece.getPosX() +1) ==6){
-                    move = new Square(3,piece.getPosY() +1, null);
-                } else{
-                    if (( piece.getPosX() +1) ==5){
-                        move = new Square(2,piece.getPosY() +1, null);
-                    } else{
-                        move = new Square(piece.getPosX() -2,piece.getPosY() +1, null);
+        if ((5 <= (piece.getPosX() + 1)) && ((piece.getPosX() + 1) <= 8)) {
+            if ((ThreePlayerChessboard.A <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.C)) {
+                if ((piece.getPosX() + 1) == 6) {
+                    move = new Square(3, piece.getPosY() + 1, null);
+                } else {
+                    if ((piece.getPosX() + 1) == 5) {
+                        move = new Square(2, piece.getPosY() + 1, null);
+                    } else {
+                        move = new Square(piece.getPosX() - 2, piece.getPosY() + 1, null);
                     }
 
                 }
             }
 
-            if ((ThreePlayerChessboard.I <= piece.getPosY() &&piece.getPosY() <=ThreePlayerChessboard.K)){
-                if (( piece.getPosX() +1) ==6){
-                    move = new Square(8,piece.getPosY() +1, null);
-                } else{
-                    if (( piece.getPosX() +1) ==5){
-                        move = new Square(9,piece.getPosY() +1, null);
-                    } else{
-                        move = new Square(piece.getPosX() -2,piece.getPosY() +1, null);
+            if ((ThreePlayerChessboard.I <= piece.getPosY() && piece.getPosY() <= ThreePlayerChessboard.K)) {
+                if ((piece.getPosX() + 1) == 6) {
+                    move = new Square(8, piece.getPosY() + 1, null);
+                } else {
+                    if ((piece.getPosX() + 1) == 5) {
+                        move = new Square(9, piece.getPosY() + 1, null);
+                    } else {
+                        move = new Square(piece.getPosX() - 2, piece.getPosY() + 1, null);
                     }
                 }
             }
 
-            if (piece.getPosY() == ThreePlayerChessboard.D){
-                if (8 == ( piece.getPosX() +1)){
+            if (piece.getPosY() == ThreePlayerChessboard.D) {
+                if (8 == (piece.getPosX() + 1)) {
                     move = new Square(5, ThreePlayerChessboard.I, null);
                 }
-                if (7 == ( piece.getPosX() +1)){
+                if (7 == (piece.getPosX() + 1)) {
                     move = new Square(4, ThreePlayerChessboard.I, null);
                 }
-                if (6 == ( piece.getPosX() +1)){
+                if (6 == (piece.getPosX() + 1)) {
                     move = new Square(3, ThreePlayerChessboard.E, null);
                 }
-                if (5 == ( piece.getPosX() +1)){
+                if (5 == (piece.getPosX() + 1)) {
                     move = new Square(2, ThreePlayerChessboard.E, null);
                 }
             }
         }
         if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 12) && (piece.getPosY() != ThreePlayerChessboard.H)) {
             if (piece.getPosY() == ThreePlayerChessboard.I) {
-                if (12 == (piece.getPosX() +1)) {
-                    move = new Square(piece.getPosX() -2, ThreePlayerChessboard.E, null);
+                if (12 == (piece.getPosX() + 1)) {
+                    move = new Square(piece.getPosX() - 2, ThreePlayerChessboard.E, null);
                 }
-                if (11 == (piece.getPosX() +1)) {
-                    move = new Square(piece.getPosX() -2, ThreePlayerChessboard.E, null);
+                if (11 == (piece.getPosX() + 1)) {
+                    move = new Square(piece.getPosX() - 2, ThreePlayerChessboard.E, null);
                 }
-                if (10 == (piece.getPosX() +1)) {
+                if (10 == (piece.getPosX() + 1)) {
                     move = new Square(4, ThreePlayerChessboard.D, null);
                 }
-                if (9 == (piece.getPosX() +1)) {
+                if (9 == (piece.getPosX() + 1)) {
                     move = new Square(5, ThreePlayerChessboard.D, null);
                 }
             } else {
                 if ((ThreePlayerChessboard.J <= piece.getPosY()) && (piece.getPosY() <= ThreePlayerChessboard.L)) {
-                    if (piece.getPosX() +1 >= 11){
-                        move = new Square(piece.getPosX() -2,piece.getPosY() -1, null);
+                    if (piece.getPosX() + 1 >= 11) {
+                        move = new Square(piece.getPosX() - 2, piece.getPosY() - 1, null);
                     } else {
                         if (piece.getPosX() + 1 == 10) {
                             move = new Square(4, piece.getPosY() - 1, null);
@@ -853,10 +914,10 @@ public class KnightMoves implements IMove {
                         }
                     }
                 } else {
-                    if (piece.getPosX() +1 >= 11){
-                        move = new Square(piece.getPosX() -2,piece.getPosY() +1, null);
+                    if (piece.getPosX() + 1 >= 11) {
+                        move = new Square(piece.getPosX() - 2, piece.getPosY() + 1, null);
                     } else {
-                        move = new Square(piece.getPosX() -6,piece.getPosY() +1, null);
+                        move = new Square(piece.getPosX() - 6, piece.getPosY() + 1, null);
                     }
                 }
             }
@@ -868,6 +929,9 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return moves following two right and one up positions
+     */
     public ArrayList<Square> twoRightOneUp() {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
@@ -942,38 +1006,41 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return moves following two right and one down positions
+     */
     public ArrayList<Square> twoRightOneDown() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if ((1 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4) && (piece.getPosY() != ThreePlayerChessboard.G && piece.getPosY() != ThreePlayerChessboard.H)) {
-            move = new Square(piece.getPosX() -1,piece.getPosY() +2, null);
+            move = new Square(piece.getPosX() - 1, piece.getPosY() + 2, null);
         }
 
         if ((5 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 7) && (piece.getPosY() != ThreePlayerChessboard.A && piece.getPosY() != ThreePlayerChessboard.B)) {
             if (piece.getPosY() == ThreePlayerChessboard.C || piece.getPosY() == ThreePlayerChessboard.D) {
-                move = new Square(piece.getPosX() +1,piece.getPosY() -2, null);
+                move = new Square(piece.getPosX() + 1, piece.getPosY() - 2, null);
             }
             if (piece.getPosY() == ThreePlayerChessboard.I || piece.getPosY() == ThreePlayerChessboard.J) {
-                move = new Square(piece.getPosX() +1,piece.getPosY() -6, null);
+                move = new Square(piece.getPosX() + 1, piece.getPosY() - 6, null);
             }
             if (piece.getPosY() == ThreePlayerChessboard.K || piece.getPosY() == ThreePlayerChessboard.L) {
-                move = new Square(piece.getPosX() +1,piece.getPosY() -2, null);
+                move = new Square(piece.getPosX() + 1, piece.getPosY() - 2, null);
             }
         }
 
-        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 11) && (piece.getPosY() != ThreePlayerChessboard.K && piece.getPosY() != ThreePlayerChessboard.L)){
+        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 11) && (piece.getPosY() != ThreePlayerChessboard.K && piece.getPosY() != ThreePlayerChessboard.L)) {
             if (piece.getPosY() == ThreePlayerChessboard.I || piece.getPosY() == ThreePlayerChessboard.J) {
-                move = new Square(piece.getPosX() +1,piece.getPosY() +2, null);
+                move = new Square(piece.getPosX() + 1, piece.getPosY() + 2, null);
             }
             if (piece.getPosY() == ThreePlayerChessboard.E) {
-                move = new Square(piece.getPosX() +1, ThreePlayerChessboard.J, null);
+                move = new Square(piece.getPosX() + 1, ThreePlayerChessboard.J, null);
             }
             if (piece.getPosY() == ThreePlayerChessboard.F) {
-                move = new Square(piece.getPosX() +1, ThreePlayerChessboard.I, null);
+                move = new Square(piece.getPosX() + 1, ThreePlayerChessboard.I, null);
             }
             if (piece.getPosY() == ThreePlayerChessboard.G || piece.getPosY() == ThreePlayerChessboard.H) {
-                move = new Square(piece.getPosX() +1,piece.getPosY() -2, null);
+                move = new Square(piece.getPosX() + 1, piece.getPosY() - 2, null);
             }
         }
 
@@ -983,67 +1050,70 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return moves following two left and one up positions
+     */
     public ArrayList<Square> twoLeftOneUp() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if ((1 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4) && (piece.getPosY() != ThreePlayerChessboard.A && piece.getPosY() != ThreePlayerChessboard.B)){
-            if ( piece.getPosX() +1 <= 3){
-                move = new Square(piece.getPosX() +1,piece.getPosY() -2, null);
-            } else{
-                if (piece.getPosY() == ThreePlayerChessboard.G || piece.getPosY() ==ThreePlayerChessboard.H){
-                    move = new Square(8, piece.getPosY() -2, null);
+        if ((1 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4) && (piece.getPosY() != ThreePlayerChessboard.A && piece.getPosY() != ThreePlayerChessboard.B)) {
+            if (piece.getPosX() + 1 <= 3) {
+                move = new Square(piece.getPosX() + 1, piece.getPosY() - 2, null);
+            } else {
+                if (piece.getPosY() == ThreePlayerChessboard.G || piece.getPosY() == ThreePlayerChessboard.H) {
+                    move = new Square(8, piece.getPosY() - 2, null);
                 } else {
-                    move = new Square(4, piece.getPosY() -2, null);
+                    move = new Square(4, piece.getPosY() - 2, null);
                 }
             }
         }
         if ((5 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 8) && (piece.getPosY() != ThreePlayerChessboard.K && piece.getPosY() != ThreePlayerChessboard.L)) {
             if (piece.getPosY() == ThreePlayerChessboard.A || piece.getPosY() == ThreePlayerChessboard.B) {
-                move = new Square(piece.getPosX() -1,piece.getPosY() +2, null);
+                move = new Square(piece.getPosX() - 1, piece.getPosY() + 2, null);
             }
             if (piece.getPosY() == ThreePlayerChessboard.C || piece.getPosY() == ThreePlayerChessboard.D) {
-                if ( piece.getPosX() +1 >= 6){
-                    move = new Square(piece.getPosX() -1,piece.getPosY() +6, null);
+                if (piece.getPosX() + 1 >= 6) {
+                    move = new Square(piece.getPosX() - 1, piece.getPosY() + 6, null);
                 } else {
-                    move = new Square(8,piece.getPosY() +6, null);
+                    move = new Square(8, piece.getPosY() + 6, null);
                 }
             }
             if (piece.getPosY() == ThreePlayerChessboard.I || piece.getPosY() == ThreePlayerChessboard.J) {
-                if (piece.getPosX() +1 >= 6){
-                    move = new Square(piece.getPosX() -1,piece.getPosY() +2, null);
+                if (piece.getPosX() + 1 >= 6) {
+                    move = new Square(piece.getPosX() - 1, piece.getPosY() + 2, null);
                 } else {
-                    move = new Square(8,piece.getPosY() +2, null);
+                    move = new Square(8, piece.getPosY() + 2, null);
                 }
             }
         }
         if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 12) && (piece.getPosY() != ThreePlayerChessboard.H && piece.getPosY() != ThreePlayerChessboard.G)) {
-            if (piece.getPosY() == ThreePlayerChessboard.L || piece.getPosY() == ThreePlayerChessboard.K){
-                if (piece.getPosX() +1 >= 10) {
-                    move = new Square(piece.getPosX() -1,piece.getPosY() -2, null);
+            if (piece.getPosY() == ThreePlayerChessboard.L || piece.getPosY() == ThreePlayerChessboard.K) {
+                if (piece.getPosX() + 1 >= 10) {
+                    move = new Square(piece.getPosX() - 1, piece.getPosY() - 2, null);
                 } else {
-                    move = new Square(4,piece.getPosY() -2, null);
+                    move = new Square(4, piece.getPosY() - 2, null);
                 }
             }
             if (piece.getPosY() == ThreePlayerChessboard.F || piece.getPosY() == ThreePlayerChessboard.E) {
-                if (piece.getPosX() +1 >= 10){
-                    move = new Square(piece.getPosX() -1,piece.getPosY() +2, null);
+                if (piece.getPosX() + 1 >= 10) {
+                    move = new Square(piece.getPosX() - 1, piece.getPosY() + 2, null);
                 } else {
-                    move = new Square(3,piece.getPosY() +2, null);
+                    move = new Square(3, piece.getPosY() + 2, null);
                 }
             }
 
-            if (piece.getPosY() == ThreePlayerChessboard.J || piece.getPosY() == ThreePlayerChessboard.I){
-                if (piece.getPosY() ==ThreePlayerChessboard.J) {
-                    if (piece.getPosX() +1 >= 10){
-                        move = new Square(piece.getPosX() -1, ThreePlayerChessboard.E, null);
-                    } else{
+            if (piece.getPosY() == ThreePlayerChessboard.J || piece.getPosY() == ThreePlayerChessboard.I) {
+                if (piece.getPosY() == ThreePlayerChessboard.J) {
+                    if (piece.getPosX() + 1 >= 10) {
+                        move = new Square(piece.getPosX() - 1, ThreePlayerChessboard.E, null);
+                    } else {
                         move = new Square(3, ThreePlayerChessboard.E, null);
                     }
                 } else {
-                if (piece.getPosX() +1 >= 10){
-                        move = new Square(piece.getPosX() -1, ThreePlayerChessboard.F, null);
-                    } else{
+                    if (piece.getPosX() + 1 >= 10) {
+                        move = new Square(piece.getPosX() - 1, ThreePlayerChessboard.F, null);
+                    } else {
                         move = new Square(3, ThreePlayerChessboard.F, null);
                     }
                 }
@@ -1056,31 +1126,34 @@ public class KnightMoves implements IMove {
         return possibleMoves;
     }
 
+    /**
+     * @return moves following two left and one down positions
+     */
     public ArrayList<Square> twoLeftOneDown() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if ((2 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 4)) {
-            move = new Square(piece.getPosX() -1,piece.getPosY() -2, null);
+            move = new Square(piece.getPosX() - 1, piece.getPosY() - 2, null);
         }
         if ((5 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 7)) {
             if (piece.getPosY() == ThreePlayerChessboard.C || piece.getPosY() == ThreePlayerChessboard.D) {
-                move = new Square(piece.getPosX() +1,piece.getPosY() +6, null);
+                move = new Square(piece.getPosX() + 1, piece.getPosY() + 6, null);
             } else {
-                move = new Square(piece.getPosX() +1,piece.getPosY() +2, null);
+                move = new Square(piece.getPosX() + 1, piece.getPosY() + 2, null);
             }
         }
-        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 12) && (piece.getPosY() != ThreePlayerChessboard.G && piece.getPosY() != ThreePlayerChessboard.H)){
+        if ((9 <= piece.getPosX() + 1) && (piece.getPosX() + 1 <= 12) && (piece.getPosY() != ThreePlayerChessboard.G && piece.getPosY() != ThreePlayerChessboard.H)) {
             if (piece.getPosY() == ThreePlayerChessboard.E || piece.getPosY() == ThreePlayerChessboard.F) {
-                move = new Square(piece.getPosX() +1,piece.getPosY() +2, null);
+                move = new Square(piece.getPosX() + 1, piece.getPosY() + 2, null);
             } else {
-                if (piece.getPosY() == ThreePlayerChessboard.L || piece.getPosY() == ThreePlayerChessboard.K){
-                    move = new Square(piece.getPosX() +1,piece.getPosY() -2, null);
-                } else{
+                if (piece.getPosY() == ThreePlayerChessboard.L || piece.getPosY() == ThreePlayerChessboard.K) {
+                    move = new Square(piece.getPosX() + 1, piece.getPosY() - 2, null);
+                } else {
                     if (piece.getPosY() == ThreePlayerChessboard.J) {
-                        move = new Square(piece.getPosX() +1, ThreePlayerChessboard.E, null);
-                    } else{
-                        move = new Square(piece.getPosX() +1, ThreePlayerChessboard.F, null);
+                        move = new Square(piece.getPosX() + 1, ThreePlayerChessboard.E, null);
+                    } else {
+                        move = new Square(piece.getPosX() + 1, ThreePlayerChessboard.F, null);
                     }
                 }
             }
@@ -1089,7 +1162,7 @@ public class KnightMoves implements IMove {
         if (move != null && board.validMove(move, piece)) {
             possibleMoves.add(move);
         }
-        
+
         return possibleMoves;
     }
 }

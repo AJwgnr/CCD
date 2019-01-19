@@ -7,12 +7,25 @@ import com.ovgu.ccd.pieces.Square;
 
 import java.util.ArrayList;
 
+/**
+ * Class that generates queen moves
+ */
 public class QueenMoves implements IMove {
 
-    private Piece piece;
-    private IBoard board;
+    /**
+     * queen for which moves are calculated
+     */
+    final private Piece piece;
+    /**
+     * board in which moves are calculated
+     */
+    final private IBoard board;
 
-    public QueenMoves(Piece piece, IBoard board) {
+    /**
+     * @param piece queen for which moves are calculated
+     * @param board in which moves are calculated
+     */
+    public QueenMoves(final Piece piece, final IBoard board) {
         this.piece = piece;
         this.board = board;
     }
@@ -20,7 +33,7 @@ public class QueenMoves implements IMove {
 
     @Override
     public ArrayList<Square> moves() throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         possibleMoves.addAll(new DiagonalMoves(piece, board).moves());
         possibleMoves.addAll(new StraightMoves(piece, board).moves());
 

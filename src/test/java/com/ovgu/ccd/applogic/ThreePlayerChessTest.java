@@ -254,7 +254,7 @@ public class ThreePlayerChessTest {
     }
 
     @Test
-    public void testIsGameFinished() {
+    public void testIsGameFinished() throws Exception {
         ThreePlayerChessboard board = new ThreePlayerChessboard();
 
 
@@ -280,7 +280,7 @@ public class ThreePlayerChessTest {
     }
 
     @Test
-    public void testSetPieceCapturingKing(){
+    public void testSetPieceCapturingKing() throws Exception {
         ThreePlayerChessboard board = new ThreePlayerChessboard();
 
         King whiteKing = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);

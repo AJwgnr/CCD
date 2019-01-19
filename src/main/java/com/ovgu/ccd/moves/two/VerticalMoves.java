@@ -17,8 +17,8 @@ public class VerticalMoves {
     private Square pieceSquare;
 
     /**
-     * @param piece
-     * @param board
+     * @param piece for which moves are calculated
+     * @param board in which moves are calculated
      */
     public VerticalMoves(Piece piece, IBoard board) {
         this.piece = piece;
@@ -27,7 +27,7 @@ public class VerticalMoves {
     }
 
     /**
-     * @return
+     * @return possible moves
      */
     public ArrayList all() {
         ArrayList moves = new ArrayList();
@@ -65,8 +65,8 @@ public class VerticalMoves {
     }
 
     /**
-     * @param nextPosition
-     * @return
+     * @param nextPosition for the piece after move
+     * @return true if the move is valid
      */
     private boolean validMove(Square nextPosition) {
         return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(pieceSquare, nextPosition);

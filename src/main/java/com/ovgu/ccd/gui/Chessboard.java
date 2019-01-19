@@ -20,13 +20,9 @@
  */
 package com.ovgu.ccd.gui;
 
+import com.ovgu.ccd.applogic.*;
 import com.ovgu.ccd.applogic.Player.Colors;
-import com.ovgu.ccd.applogic.JChessApp;
-import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.applogic.ResourceManager;
-import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.Moves.castling;
-import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.gui.chessboardListener.ChessboardGrid;
 import com.ovgu.ccd.moves.Move;
 import com.ovgu.ccd.pieces.*;
@@ -47,7 +43,6 @@ public class Chessboard extends JPanel implements IBoard {
 
     public static final int top = 0;
     public static final int bottom = 7;
-    private Square[][] squares;//squares of chessboard
     //public Graphics graph;
     public static final int img_x = 5;//image x position (used in JChessView class!)
     public static final int img_y = img_x;//image y position (used in JChessView class!)
@@ -60,13 +55,14 @@ public class Chessboard extends JPanel implements IBoard {
     private static Image sel_square = org_sel_square;//image of highlited square
     private static Image able_square = org_able_square;//image of square where piece can go
     public Square activeSquare;
+    public Pawn twoSquareMovedPawn2 = null;
+    private Square[][] squares;//squares of chessboard
     private King kingWhite;
     private King kingBlack;
     //----------------------------
     //For En passant:
     //|-> Pawn whose in last turn moved two square
     private Pawn twoSquareMovedPawn = null;
-    public Pawn twoSquareMovedPawn2 = null;
     private Image upDownLabel = null;
     private Image LeftRightLabel = null;
     private Point topLeft = new Point(0, 0);
@@ -120,16 +116,14 @@ public class Chessboard extends JPanel implements IBoard {
     @Override
     public void setPieces(String places, Player plWhite, Player plBlack) {
 
-        if (places.equals("")) //if NEWGAME
-        {
+        if (places.equals("")) { //if NEWGAME
             if (this.settings.upsideDown) {
                 this.setPieces4NewGame(true, plWhite, plBlack);
             } else {
                 this.setPieces4NewGame(false, plWhite, plBlack);
             }
 
-        } else //if loadedGame
-        {
+        } else { //if loadedGame
             return;
         }
     }/*--endOf-setPieces--*/
@@ -143,8 +137,7 @@ public class Chessboard extends JPanel implements IBoard {
         /* WHITE PIECES */
         Player player = plBlack;
         Player player1 = plWhite;
-        if (upsideDown) //if white on Top
-        {
+        if (upsideDown) { //if white on Top
             player = plWhite;
             player1 = plBlack;
         }
@@ -221,8 +214,7 @@ public class Chessboard extends JPanel implements IBoard {
      */
     @Override
     public Square getSquareConsideringLabels(int x, int y) {
-        if ((x > this.get_height()) || (y > this.get_widht())) //test if click is out of chessboard
-        {
+        if ((x > this.get_height()) || (y > this.get_widht())) { //test if click is out of chessboard
             System.out.println("click out of chessboard.");
             return null;
         }
@@ -233,12 +225,10 @@ public class Chessboard extends JPanel implements IBoard {
         double square_x = x / square_height;//count which field in X was clicked
         double square_y = y / square_height;//count which field in Y was clicked
 
-        if (square_x > (int) square_x) //if X is more than X parsed to Integer
-        {
+        if (square_x > (int) square_x) { //if X is more than X parsed to Integer
             square_x = (int) square_x + 1;//parse to integer and increment
         }
-        if (square_y > (int) square_y) //if X is more than X parsed to Integer
-        {
+        if (square_y > (int) square_y) { //if X is more than X parsed to Integer
             square_y = (int) square_y + 1;//parse to integer and increment
         }
         //Square newActiveSquare = this.squares[(int)square_x-1][(int)square_y-1];//4test
@@ -571,9 +561,7 @@ public class Chessboard extends JPanel implements IBoard {
                     Pawn pawn = (Pawn) last.getTakenPiece();
                     this.squares[end.getPosX()][begin.getPosY()].setPiece(pawn);
                     pawn.setSquare(this.squares[end.getPosX()][begin.getPosY()]);
-                }
-                else if (moved.name.equals("Pawn") && last.getPromotedPiece() != null)
-                {
+                } else if (moved.name.equals("Pawn") && last.getPromotedPiece() != null) {
                     Piece promoted = this.squares[end.getPosX()][end.getPosY()].getPiece();
 
                     promoted.setSquare(null);
@@ -817,8 +805,7 @@ public class Chessboard extends JPanel implements IBoard {
     }
 
     @Override
-    public Square getSquare(int xCoordinate, int yCoordinate)
-    {
+    public Square getSquare(int xCoordinate, int yCoordinate) {
         return getSquares()[xCoordinate][yCoordinate];
     }
 

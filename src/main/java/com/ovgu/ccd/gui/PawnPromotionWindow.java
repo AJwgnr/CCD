@@ -28,11 +28,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/** Class responsible for promotion of a pawn.
+/**
+ * Class responsible for promotion of a pawn.
  * When pawn reach the end of the chessboard it can be change to rook,
  * bishop, queen or knight. For what pawn is promoted decideds player.
  */
-
 @SuppressWarnings("ALL")
 public class PawnPromotionWindow extends JDialog implements ActionListener
 {
@@ -51,9 +51,8 @@ public class PawnPromotionWindow extends JDialog implements ActionListener
 
     /**
      * @param parent Information about the current piece
-     * @param colorOfPiece The player color
+     * @param color  The player color
      */
-
     public PawnPromotionWindow(String colorOfPiece)
     {
         JFrame frame = new JFrame();
@@ -86,12 +85,10 @@ public class PawnPromotionWindow extends JDialog implements ActionListener
         this.promotionDialog.setVisible(true);
     }
 
-
     /** Method setting the color fo promoted pawn
      * @param color The players color
      */
-    public void setColor(String color)
-    {
+    public void setColor(String color) {
         this.knightButton.setIcon(new ImageIcon(ResourceManager.loadImage("Knight-" + color + ".png")));
         this.bishopButton.setIcon(new ImageIcon(ResourceManager.loadImage("Bishop-" + color + ".png")));
         this.rookButton.setIcon(new ImageIcon(ResourceManager.loadImage("Rook-" + color + ".png")));

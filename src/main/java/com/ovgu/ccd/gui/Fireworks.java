@@ -1,7 +1,6 @@
 package com.ovgu.ccd.gui;
 
 import com.ovgu.ccd.applogic.Player;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,7 +53,7 @@ public class Fireworks extends JPanel implements ActionListener
         index = 0;
         color_index = 0;
         moveX = 3;
-
+        
         try
         {
             this.robot = new Robot();
@@ -67,20 +66,20 @@ public class Fireworks extends JPanel implements ActionListener
         timer = new Timer(DELAY, this);
         timer.start();
 
-        X_CENTER[0]=100;
-        Y_CENTER[0]=100;
+        X_CENTER[0] = 100;
+        Y_CENTER[0] = 100;
 
-        X_CENTER[1]=200;
-        Y_CENTER[1]=200;
+        X_CENTER[1] = 200;
+        Y_CENTER[1] = 200;
 
-        X_CENTER[2]=300;
-        Y_CENTER[2]=300;
+        X_CENTER[2] = 300;
+        Y_CENTER[2] = 300;
 
-        X_CENTER[3]=300;
-        Y_CENTER[3]=100;
+        X_CENTER[3] = 300;
+        Y_CENTER[3] = 100;
 
-        X_CENTER[4]=100;
-        Y_CENTER[4]=300;
+        X_CENTER[4] = 100;
+        Y_CENTER[4] = 300;
 
         colors[0] = Color.ORANGE;
         colors[1] = Color.BLUE;
@@ -91,16 +90,15 @@ public class Fireworks extends JPanel implements ActionListener
 
 
     /**
-     *  creates firework explosions with randomly assigned positions and colors
+     * creates firework explosions with randomly assigned positions and colors
      *
-     * @param arg0  action event
+     * @param arg0 action event
      */
     @Override
-    public void actionPerformed(ActionEvent arg0)
-    {
+    public void actionPerformed(ActionEvent arg0) {
         x1 += moveX;
         if (x1 == 0 || x1 >= FIREWORK_RADIUS) {
-            x1=0;
+            x1 = 0;
             Random random = new Random();
             index = random.nextInt(ARRAY_LENGTH);
             color_index = random.nextInt(ARRAY_LENGTH);
@@ -128,11 +126,11 @@ public class Fireworks extends JPanel implements ActionListener
         Graphics2D graphics2d = (Graphics2D) g;
         Stroke stroke = new BasicStroke(
                 3, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND,
-                5, new float[]{9},  0);
+                5, new float[]{9}, 0);
         graphics2d.setStroke(stroke);
         graphics2d.setColor(colors[color_index]);
         for (int i = 0; i < xx.size(); i++) {
-            graphics2d.drawLine(xx.get(i),yy.get(i),xx.get(i)+LINE_LENGTH,yy.get(i)+LINE_LENGTH);
+            graphics2d.drawLine(xx.get(i), yy.get(i), xx.get(i) + LINE_LENGTH, yy.get(i) + LINE_LENGTH);
         }
     }
 }
