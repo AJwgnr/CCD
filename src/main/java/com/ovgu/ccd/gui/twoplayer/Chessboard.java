@@ -436,7 +436,7 @@ public class Chessboard extends JPanel implements IBoard {
                         color = "B";
                     }
 
-                    String newPiece = JChessApp.jcv.showPawnPromotionBox(color); //return name of new piece
+                    String newPiece = JChessApp.jcv.setPawnPromotionBox(color); //return name of new piece
 
                     if (newPiece.equals("Queen")) // transform pawn to queen
                     {

@@ -174,7 +174,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener {
         newGUI.moves.setMoves(tempStr);
         newGUI.blockedChessboard = false;
         newGUI.chessboard.repaint();
-        //newGUI.chessboard.draw();
+        newGUI.chessboard.draw();
     }
 
     /**

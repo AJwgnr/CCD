@@ -56,13 +56,18 @@ public class NewGameSettings extends JPanel implements ActionListener {
     private JComboBox time4Game;
 
 
+    /** Responsible for handling the creation of a new game.
+     * @param parent
+     */
     public NewGameSettings(JDialog parent) {
         super();
-        //this.setA//choose oponent
         initUiComponents(parent);
     }
 
 
+    /** Creates ui components for drawing the form for creating a new game.
+     * @param parent
+     */
     private void initUiComponents(JDialog parent) {
         this.parent = parent;
         this.parent.setTitle("Create a new game :)");
@@ -200,11 +205,13 @@ public class NewGameSettings extends JPanel implements ActionListener {
             Player pl2 = null;//set LOCAL player variable
             Player pl3 = null;//set LOCAL player variable
 
+
             if (this.firstName.getText().length() != 0 && this.secondName.getText().length() != 0) {
                 if (this.thirdName.getText().length() != 0) {
                     //launch three player game
-                    newGUI = JChessApp.jcv.addNewThreePlayerTab(this.firstName.getText() + " vs " + this.secondName.getText() + " vs " + this.thirdName.getText());
-                    sett = newGUI.settings;//sett LOCAL settings variable
+                    JChessApp.jcv.addNewThreePlayerTab(this.firstName.getText() + " vs " + this.secondName.getText() + " vs " + this.thirdName.getText());
+
+                   /* sett = newGUI.settings;//sett LOCAL settings variable
                     pl1 = sett.getPlayerOne();//set LOCAL player variable
                     pl2 = sett.getPlayerTwo();//set LOCAL player variable
                     pl3 = sett.getPlayerThree();//set LOCAL player variable
@@ -216,7 +223,7 @@ public class NewGameSettings extends JPanel implements ActionListener {
 
                     pl1.setType(Player.PlayerTypes.LOCALUSER);//set type of player
                     pl2.setType(Player.PlayerTypes.LOCALUSER);//set type of player
-                    pl3.setType(Player.PlayerTypes.LOCALUSER);//set type of player
+                    pl3.setType(Player.PlayerTypes.LOCALUSER);//set type of player*/
 
                 } else {
                     //launch two person game

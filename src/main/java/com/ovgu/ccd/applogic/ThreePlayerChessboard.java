@@ -3,6 +3,7 @@ package com.ovgu.ccd.applogic;
 import com.ovgu.ccd.gui.threeplayer.*;
 import com.ovgu.ccd.pieces.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -419,7 +420,8 @@ public class ThreePlayerChessboard implements IBoard {
      * redraw all pieces in matrix
      */
     private void redrawPieces() {
-        this.chessboardGrid.draw(this.chessboardGrid.getGraphics());
+            this.chessboardGrid.draw(this.chessboardGrid.getGraphics());
+
     }
 
     @Override

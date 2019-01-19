@@ -6,6 +6,7 @@ import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.gui.threeplayer.ChessboardGrid;
 import com.ovgu.ccd.gui.threeplayer.ChessboardListener;
 import com.ovgu.ccd.gui.threeplayer.Point;
+import com.ovgu.ccd.gui.threeplayer.Window;
 import com.ovgu.ccd.gui.twoplayer.Game;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.FrameView;
@@ -56,17 +57,13 @@ public class JChessView extends FrameView implements ComponentListener {
         return newGUI;
     }
 
-    public Game addNewThreePlayerTab(String title) {
-
+    public void addNewThreePlayerTab(String title) {
         ChessboardGrid chessboardGrid = new ChessboardGrid(new Point(500, 420), 450);
         ChessboardListener listener = new ChessboardListener(chessboardGrid);
         //Window window = new com.ovgu.ccd.gui.threeplayer.Window("ChessboardListener",1280,1280, listener.getPanel());
         ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
         listener.setListenerRestrictions(new PlayerSequenceManager(board.getAllPlayers()));
-
-        Game newGUI = new Game();
         this.gamesPane.addTab(title, listener.getPanel());
-        return newGUI;
     }
 
 
