@@ -20,9 +20,9 @@
  */
 package com.ovgu.ccd.gui.gameui;
 
-import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.applogic.ResourceManager;
 import com.ovgu.ccd.applogic.Settings;
+import com.ovgu.ccd.gui.JChessApp;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -40,7 +40,8 @@ import java.util.Collections;
 import java.util.Properties;
 import java.util.Vector;
 
-/** Creates a ui for choosing a new theme and implements logic for changing it.
+/**
+ * Creates a ui for choosing a new theme and implements logic for changing it.
  */
 @SuppressWarnings("ALL")
 public class ThemeChooseWindow extends JDialog implements ActionListener, ListSelectionListener {
@@ -54,7 +55,9 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
     JButton okButton;
 
 
-    /** Creates a frame for choosing a theme.
+    /**
+     * Creates a frame for choosing a theme.
+     *
      * @param parent
      * @throws Exception
      */
@@ -123,7 +126,9 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
         this.setModal(true);
     }
 
-    /** Invoked when slection is changed
+    /**
+     * Invoked when slection is changed
+     *
      * @param event change event
      */
     @Override

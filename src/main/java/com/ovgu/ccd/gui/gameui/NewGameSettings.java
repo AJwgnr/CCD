@@ -19,9 +19,9 @@
  */
 package com.ovgu.ccd.gui.gameui;
 
-import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;
+import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.gui.twoplayer.Game;
 
 import javax.swing.*;
@@ -36,28 +36,24 @@ import java.awt.event.TextEvent;
  */
 public class NewGameSettings extends JPanel implements ActionListener {
 
+    String times[] =
+            {
+                    "1", "3", "5", "8", "10", "15", "20", "25", "30", "60", "120"
+            };
     private JDialog parent;//needet to close NEWGAME window
-    private ButtonGroup oponentChoos;//group 4 radio buttons
-
     //Player names
     private JTextField firstName;
     private JTextField secondName;
     private JTextField thirdName;
-
+    //Player labels
     private JLabel firstNameLab;
     private JLabel secondNameLab;
     private JLabel thirdNameLab;
-
-
     private GridBagLayout gridBagLayout;
     private GridBagConstraints gridBagConstraints;
     private JButton okButton;
     private JCheckBox timeGame;
     private JComboBox time4Game;
-    String times[] =
-            {
-                    "1", "3", "5", "8", "10", "15", "20", "25", "30", "60", "120"
-            };
 
 
     public NewGameSettings(JDialog parent) {
@@ -84,8 +80,6 @@ public class NewGameSettings extends JPanel implements ActionListener {
         this.firstNameLab = new JLabel(Settings.lang("first_player_name") + ": ");
         this.secondNameLab = new JLabel(Settings.lang("second_player_name") + ": ");
         this.thirdNameLab = new JLabel(Settings.lang("third_player_name") + ": ");
-
-        this.oponentChoos = new ButtonGroup();
 
 
         this.timeGame = new JCheckBox(Settings.lang("time_game_min"));

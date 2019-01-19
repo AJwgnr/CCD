@@ -24,14 +24,16 @@ import com.ovgu.ccd.applogic.Settings;
 
 import javax.swing.*;
 
-/** Creates a dialog for creating a new game.
+/**
+ * Creates a dialog for creating a new game.
  */
 public class NewGameWindow extends JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane jTabbedPane1;
 
-    /**Creates new form for creating a new local game.
+    /**
+     * Creates new form for creating a new local game.
      */
     public NewGameWindow() {
         initComponents();

@@ -1,25 +1,21 @@
 package com.ovgu.ccd.gui.gameui;
 
-import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.applogic.Settings;
+import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.gui.twoplayer.Game;
-
 
 import javax.swing.*;
 import java.io.File;
 
 
-
-
 public class JChessViewController {
+    private final Icon[] busyIcons = new Icon[15];
     JChessView jcv;
-    public JChessViewController(JChessView view){
+    private int busyIconIndex = 0;
+    public JChessViewController(JChessView view) {
         this.jcv = view;
     }
 
-
-    private final Icon[] busyIcons = new Icon[15];
-    private int busyIconIndex = 0;
     /**
      * @param title
      * @return
@@ -31,7 +27,7 @@ public class JChessViewController {
 
     }
 
-    public void newGame(){
+    public void newGame() {
         jcv.createNewGameFrame();
     }
 
@@ -60,7 +56,7 @@ public class JChessViewController {
         return "";
     }
 
-    public void closeGame(){
+    public void closeGame() {
         this.jcv.getFrame().dispose();
     }
 
@@ -87,30 +83,29 @@ public class JChessViewController {
      */
     public void moveForwardItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_moveForwardItemActionPerformed
     {//GEN-HEADEREND:event_moveForwardItemActionPerformed
-       /** // TODO add your handling code here:
-        if (gui != null && gui.game != null) {
-            gui.game.redo();
-        } else {
-            try {
-                Game activeGame = this.getActiveTabGame();
-                if (!activeGame.redo()) {
-                    // TODO change
-                    JOptionPane.showMessageDialog(null, "W pamieci brak ruchow do przodu!");
-                }
-            } catch (java.lang.ArrayIndexOutOfBoundsException exc) {
-                // TODO change
-                JOptionPane.showMessageDialog(null, "Brak aktywnej karty!");
-            } catch (UnsupportedOperationException exc) {
-                JOptionPane.showMessageDialog(null, exc.getMessage());
-            }
-        }**/
+        /** // TODO add your handling code here:
+         if (gui != null && gui.game != null) {
+         gui.game.redo();
+         } else {
+         try {
+         Game activeGame = this.getActiveTabGame();
+         if (!activeGame.redo()) {
+         // TODO change
+         JOptionPane.showMessageDialog(null, "W pamieci brak ruchow do przodu!");
+         }
+         } catch (java.lang.ArrayIndexOutOfBoundsException exc) {
+         // TODO change
+         JOptionPane.showMessageDialog(null, "Brak aktywnej karty!");
+         } catch (UnsupportedOperationException exc) {
+         JOptionPane.showMessageDialog(null, exc.getMessage());
+         }
+         }**/
     }
 
     /**
      * @param evt
      */
-    public void rewindToBeginActionPerformed(java.awt.event.ActionEvent evt)
-    {
+    public void rewindToBeginActionPerformed(java.awt.event.ActionEvent evt) {
       /*  try {
             Game activeGame = this.getActiveTabGame();
             if (!activeGame.rewindToBegin()) {
@@ -128,8 +123,7 @@ public class JChessViewController {
     /**
      * @param evt
      */
-    public void rewindToEndActionPerformed(java.awt.event.ActionEvent evt)
-    {
+    public void rewindToEndActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             Game activeGame = this.getActiveTabGame();
             if (!activeGame.rewindToEnd()) {
@@ -145,8 +139,7 @@ public class JChessViewController {
     }
 
 
-    public void moveBackItemActionPerformed(java.awt.event.ActionEvent evt)
-    {/*
+    public void moveBackItemActionPerformed(java.awt.event.ActionEvent evt) {/*
         if (gui != null && gui.game != null) {
             gui.game.undo();
         } else {
@@ -167,14 +160,11 @@ public class JChessViewController {
     }
 
 
-
-    public void newGameItemActionPerformed(java.awt.event.ActionEvent evt)
-    {
+    public void newGameItemActionPerformed(java.awt.event.ActionEvent evt) {
         newGame();
     }
 
-    public void saveGameItemActionPerformed(java.awt.event.ActionEvent evt)
-    {
+    public void saveGameItemActionPerformed(java.awt.event.ActionEvent evt) {
         if (this.jcv.getGamesPane().getTabCount() == 0) {
             JOptionPane.showMessageDialog(null, Settings.lang("save_not_called_for_tab"));
             return;
@@ -210,9 +200,8 @@ public class JChessViewController {
         }
     }
 
-    public void loadGameItemActionPerformed (java.awt.event.ActionEvent
-                                                        evt)
-    {
+    public void loadGameItemActionPerformed(java.awt.event.ActionEvent
+                                                    evt) {
         JFileChooser fc = new JFileChooser();
         int retVal = fc.showOpenDialog(this.jcv.getGamesPane());
         if (retVal == JFileChooser.APPROVE_OPTION) {
@@ -223,8 +212,7 @@ public class JChessViewController {
         }
     }
 
-    public void themeSettingsMenuItemActionPerformed(java.awt.event.ActionEvent evt)
-    {
+    public void themeSettingsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             ThemeChooseWindow choose = new ThemeChooseWindow(this.jcv.getFrame());
             JChessApp.getApplication().show(choose);

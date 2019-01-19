@@ -5,22 +5,27 @@ import com.ovgu.ccd.applogic.ResourceManager;
 import javax.swing.*;
 import java.util.Properties;
 
-/** Creates the menu bar and all menuitems with their correspoding listeners
+/**
+ * Creates the menu bar and all menuitems with their correspoding listeners
  */
 public class MenuView {
-    /** Menubar containing all menu options
+    /**
+     * Menubar containing all menu options
      */
     private JMenuBar menuBar;
-    /** reference to the controller for menu interactions
+    /**
+     * reference to the controller for menu interactions
      */
     private JChessViewController jChessViewController;
-    /** property access
+    /**
+     * property access
      */
     private Properties properties = ResourceManager.getInstance().getJChessViewPropertie();
 
 
-
-    /** Creates game menu bar and add the listener to the jchessviewcontroller class
+    /**
+     * Creates game menu bar and add the listener to the jchessviewcontroller class
+     *
      * @param jChessViewController
      */
     public MenuView(JChessViewController jChessViewController) {
@@ -30,14 +35,17 @@ public class MenuView {
     }
 
 
-    /** Returns the menu Bar of the game
+    /**
+     * Returns the menu Bar of the game
+     *
      * @return JMenuBar
      */
     public JMenuBar getMenuBar() {
         return this.menuBar;
     }
 
-    /**Creates and fills the menu bar.
+    /**
+     * Creates and fills the menu bar.
      */
     private void fillGameMenuBar() {
         menuBar.setName("menuBar"); // NOI18N
@@ -48,7 +56,9 @@ public class MenuView {
         menuBar.add(createHelpMenuTab());
     }
 
-    /** Creates items in help file tab.
+    /**
+     * Creates items in help file tab.
+     *
      * @return file menu tab
      */
     private JMenu createFileMenuTab() {
@@ -100,7 +110,9 @@ public class MenuView {
         return fileMenu;
     }
 
-    /** Creates items in game menu tab.
+    /**
+     * Creates items in game menu tab.
+     *
      * @return game menu tab
      */
     private JMenu createGameMenuTab() {
@@ -165,7 +177,9 @@ public class MenuView {
         return gameMenu;
     }
 
-    /** Creates items in help menu tab.
+    /**
+     * Creates items in help menu tab.
+     *
      * @return help menu tab
      */
     private JMenu createHelpMenuTab() {
@@ -186,7 +200,9 @@ public class MenuView {
         return helpMenu;
     }
 
-    /** Creates items in options menu tab.
+    /**
+     * Creates items in options menu tab.
+     *
      * @return options menu tab
      */
     private JMenu createOptionsMenuTab() {

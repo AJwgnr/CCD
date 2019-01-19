@@ -20,8 +20,8 @@
  */
 package com.ovgu.ccd.gui.gameui;
 
-import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.applogic.ResourceManager;
+import com.ovgu.ccd.gui.JChessApp;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,6 +29,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.ImageObserver;
 
+/**Tabbed pane that contains all running games.
+ */
 public class JChessTabbedPane extends JTabbedPane implements MouseListener, ImageObserver {
 
     private TabbedPaneIcon closeIcon;
@@ -36,9 +38,13 @@ public class JChessTabbedPane extends JTabbedPane implements MouseListener, Imag
     private Image clickedAddIcon = null;
     private Image unclickedAddIcon = null;
     private Rectangle addIconRect = null;
+    private JChessViewController jChessViewController = null;
 
-    public JChessTabbedPane() {
+    /**Creates an empty tabbed pane.
+     */
+    public JChessTabbedPane(JChessViewController jChessViewController) {
         super();
+        this.jChessViewController = jChessViewController;
         this.closeIcon = new TabbedPaneIcon(this.closeIcon);
         this.unclickedAddIcon = ResourceManager.loadImage("add-tab-icon.png");
         this.clickedAddIcon = ResourceManager.loadImage("clicked-add-tab-icon.png");
@@ -47,12 +53,21 @@ public class JChessTabbedPane extends JTabbedPane implements MouseListener, Imag
         super.addMouseListener(this);
     }
 
+    /** Adds a tab to the tabbedPane.
+     * @param title title of the new tab
+     * @param component swing component that is added to the tab
+     */
     @Override
     public void addTab(String title, Component component) {
         this.addTab(title, component, null);
     }
 
-    public void addTab(String title, Component component, Icon closeIcon) {
+    /** Adds a tab to the tabbedPane (with special closing icon).
+     * @param title title of the new tab
+     * @param component swing component that is added to the tab
+     * @param closeIcon specific icon for closing
+     */
+    private void addTab(String title, Component component, Icon closeIcon) {
         super.addTab(title, new TabbedPaneIcon(closeIcon), component);
         System.out.println("Present number of tabs: " + this.getTabCount());
         this.updateAddIconRect();
@@ -64,10 +79,15 @@ public class JChessTabbedPane extends JTabbedPane implements MouseListener, Imag
     public void mousePressed(MouseEvent e) {
     }
 
+
     private void showNewGameWindow() {
-            JChessApp.jcv.createNewGameFrame();
+      this.jChessViewController.newGame();
     }
 
+    /**
+     * Handles interaction with the tabbedPane bar to allow creating/deleting games from there.
+     * @param e
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         Rectangle rect;

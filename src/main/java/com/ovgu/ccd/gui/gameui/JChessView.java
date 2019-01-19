@@ -15,7 +15,8 @@
 
 package com.ovgu.ccd.gui.gameui;
 
-import com.ovgu.ccd.applogic.*;
+import com.ovgu.ccd.applogic.PlayerSequenceManager;
+import com.ovgu.ccd.applogic.ThreePlayerChessboard;
 import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.gui.threeplayer.ChessboardGrid;
 import com.ovgu.ccd.gui.threeplayer.ChessboardListener;
@@ -71,7 +72,7 @@ public class JChessView extends FrameView implements ComponentListener {
 
     public Game addNewThreePlayerTab(String title) {
 
-        ChessboardGrid chessboardGrid = new ChessboardGrid(new Point(500,420),450);
+        ChessboardGrid chessboardGrid = new ChessboardGrid(new Point(500, 420), 450);
         ChessboardListener listener = new ChessboardListener(chessboardGrid);
         //Window window = new com.ovgu.ccd.gui.threeplayer.Window("ChessboardListener",1280,1280, listener.getPanel());
         ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
@@ -114,14 +115,15 @@ public class JChessView extends FrameView implements ComponentListener {
     }
 
 
-    /** Creates all UI elements for the chess hosting game and also the control the click handling
+    /**
+     * Creates all UI elements for the chess hosting game and also the control the click handling
      */
     private void initUiComponents() {
         mainPanel = new JPanel();
         statusPanel = new JPanel();
         statusMessageLabel = new JLabel();
         statusAnimationLabel = new JLabel();
-        gamesPane = new JChessTabbedPane();
+        gamesPane = new JChessTabbedPane(jChessViewController);
         menuView = new MenuView(jChessViewController);
 
 
@@ -310,23 +312,23 @@ public class JChessView extends FrameView implements ComponentListener {
         return promotionBox;
     }
 
-    public void createNewGameFrame(){
-        if(this.newGameFrame == null) {
+    public void createNewGameFrame() {
+        if (this.newGameFrame == null) {
             this.newGameFrame = new NewGameWindow();
         }
         JChessApp.getApplication().show(this.newGameFrame);
     }
 
-    public void setAboutBox(){
+    public void setAboutBox() {
         JFrame mainFrame = JChessApp.getApplication().getMainFrame();
-        if(this.aboutBox == null) {
+        if (this.aboutBox == null) {
             this.aboutBox = new JChessAboutBox(mainFrame);
             aboutBox.setLocationRelativeTo(mainFrame);
         }
         JChessApp.getApplication().show(aboutBox);
     }
 
-    public String setPawnPromotionBox (String color){
+    public String setPawnPromotionBox(String color) {
         if (promotionBox == null) {
             JFrame mainFrame = JChessApp.getApplication().getMainFrame();
             promotionBox = new PawnPromotionWindow(color);

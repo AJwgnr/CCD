@@ -1,21 +1,24 @@
 package com.ovgu.ccd.gui.gameui;
 
-import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.applogic.ResourceManager;
+import com.ovgu.ccd.gui.JChessApp;
 import org.jdesktop.application.Action;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Properties;
 
-/** Creates the About Box
+/**
+ * Creates the About Box
  */
 public class JChessAboutBox extends JDialog {
 
     private javax.swing.JButton closeButton;
     private Properties jChessAboutBoxProperty;
 
-    /** Creates an AboutBox and adds it to the parent swing component.
+    /**
+     * Creates an AboutBox and adds it to the parent swing component.
+     *
      * @param parent oarent swing container
      */
     public JChessAboutBox(final Frame parent) {
