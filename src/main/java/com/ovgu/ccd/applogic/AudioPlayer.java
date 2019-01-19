@@ -23,7 +23,6 @@ final public class AudioPlayer {
      */
     public AudioPlayer() {
         // TODO Auto-generated constructor stub
-        //initAudioPlayer();
         try {
             String mFileName = "success.wav";
 
