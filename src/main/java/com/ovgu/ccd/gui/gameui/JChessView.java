@@ -13,6 +13,7 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.SingleFrameApplication;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
@@ -58,6 +59,19 @@ public class JChessView extends FrameView implements ComponentListener {
     }
 
     public void addNewThreePlayerTab(String title) {
+       /* Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        ChessboardGrid chessboardGrid = new ChessboardGrid(new com.ovgu.ccd.gui.threeplayer.Point(
+                screenSize.width / 2, screenSize.height / 2),
+                (screenSize.height / 2) - 30);
+        ChessboardListener listener = new ChessboardListener(chessboardGrid);
+        new com.ovgu.ccd.gui.threeplayer.Window("ChessboardListener", listener.getPanel());
+        ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
+        listener.setListenerRestrictions(
+                new PlayerSequenceManager(board.getAllPlayers()));
+        this.gamesPane.addTab(title, listener.getPanel());*/
+
+
+
         ChessboardGrid chessboardGrid = new ChessboardGrid(new Point(500, 420), 450);
         ChessboardListener listener = new ChessboardListener(chessboardGrid);
         //Window window = new com.ovgu.ccd.gui.threeplayer.Window("ChessboardListener",1280,1280, listener.getPanel());

@@ -9,45 +9,61 @@ import java.awt.*;
  * @author CCD DeepBlue team
  * @version 1.0
  */
-public class Window
-{
-    private static final int MIN_WINDOW_WIDTH = 512;
-    private static final int MIN_WINDOW_HEIGHT = 512;
-    private static final int MAX_WINDOW_WIDTH = 1280;
-    private static final int MAX_WINDOW_HEIGHT = 1280;
-
+public class Window {
+    /**
+     * Dimension provides the screensize.
+     */
+    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    /**
+     * Sets the maximum window width from the screensize.
+     */
+    private final int MAX_WINDOW_WIDTH = this.getDefaultWindowWidth();
+    /**
+     * Sets the maximum window height from the screensize.
+     */
+    private final int MAX_WINDOW_HEIGHT = this.getDefaultWindowHeight();
+    /**
+     * Sets the minimum window width from the screensize.
+     */
+    private final int MIN_WINDOW_WIDTH = MAX_WINDOW_WIDTH / 2;
+    /**
+     * Sets the minimum window height from the screensize.
+     */
+    private final int MIN_WINDOW_HEIGHT = MAX_WINDOW_HEIGHT / 2;
+    /**
+     * Variable for the frame.
+     */
     private JFrame frame = null;
+    /**
+     * Sets the window name.
+     */
     private String windowName = "Default Name";
-    private int windowHeight = 100;
-    private int windowWidth = 100;
 
 
     /**
-     * constructor
+     * The parameterized constructor.
      *
-     * @param   name    name of window
-     * @param   width   width of the window
-     * @param   height  height of the window
-     * @param   panel   add panel to window
+     * @param name  name of window
+     * @param panel add panel to window
      */
-    public Window(String name, int width, int height, JPanel panel) {
+    public Window(final String name, final JPanel panel) {
         setWindowName(name);
-        setWindowWidth(width);
-        setWindowHeight(height);
         createWindow();
         addPanel(panel);
     }
 
 
     /**
-     * creates JFrame object with given parameter
-     *
+     * creates JFrame object with given parameter.
      */
     private void createWindow() {
         frame = new JFrame(this.windowName);
-        frame.setPreferredSize(new Dimension(this.windowWidth, this.windowHeight));
-        frame.setMinimumSize(new Dimension(MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT));
-        frame.setMaximumSize(new Dimension(MAX_WINDOW_WIDTH, MAX_WINDOW_HEIGHT));
+        frame.setPreferredSize(new Dimension(
+                this.MAX_WINDOW_WIDTH, this.MAX_WINDOW_HEIGHT));
+        frame.setMinimumSize(new Dimension(
+                MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT));
+        frame.setMaximumSize(new Dimension(
+                MAX_WINDOW_WIDTH, MAX_WINDOW_HEIGHT));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
         frame.pack();
@@ -57,96 +73,41 @@ public class Window
 
 
     /**
-     * adds a panel to the window
+     * adds a panel to the window.
      *
-     * @param   panel   panel to add
+     * @param panel panel to add.
      */
-    public void addPanel(JPanel panel) {
-        if (panel != null)
+    private void addPanel(final JPanel panel) {
+        if (panel != null) {
             frame.add(panel);
+        }
     }
 
 
     /**
-     * sets the window width
+     * sets the window name.
      *
-     * @param   width   width of the window
+     * @param name name of the window
      */
-    public void setWindowWidth(int width) {
-        if (width > 0)
-            this.windowWidth = width;
-    }
-
-
-    /**
-     * sets the window height
-     *
-     * @param   height   height of the window
-     */
-    public void setWindowHeight(int height) {
-        if (height > 0)
-            this.windowHeight = height;
-    }
-
-
-    /**
-     * sets the window name
-     *
-     * @param   name   name of the window
-     */
-    public void setWindowName(String name) {
+    private void setWindowName(final String name) {
         this.windowName = name;
     }
 
-
     /**
-     * sets the parameter "exit on close" of the JFrame object
+     * returns the default width of the window.
      *
-     * @param   en   true - enable the setting
-     *               false - disable the setting
+     * @return width of the window
      */
-    public void setExitOnClose(boolean en) {
-        if (en)
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    private int getDefaultWindowWidth() {
+        return this.screenSize.width;
     }
 
-
     /**
-     * returns the name of the window
+     * returns the default height of the window.
      *
-     * @return  name of the window
+     * @return height of the window
      */
-    public String getWindowName() {
-        return this.windowName;
-    }
-
-
-    /**
-     * returns the width of the window
-     *
-     * @return  width of the window
-     */
-    public int getWindowWidth() {
-        return this.windowWidth;
-    }
-
-
-    /**
-     * returns the height of the window
-     *
-     * @return  height of the window
-     */
-    public int getWindowHeight() {
-        return this.windowHeight;
-    }
-
-
-    /**
-     * returns the JFrame object
-     *
-     * @return  JFrame object
-     */
-    public JFrame getFrame() {
-        return frame;
+    private int getDefaultWindowHeight() {
+        return this.screenSize.height;
     }
 }
