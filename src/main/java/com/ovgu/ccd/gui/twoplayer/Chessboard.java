@@ -22,6 +22,7 @@ package com.ovgu.ccd.gui.twoplayer;
 
 import com.ovgu.ccd.applogic.*;
 import com.ovgu.ccd.applogic.Player.Colors;
+import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.gui.twoplayer.Moves.castling;
 import com.ovgu.ccd.gui.threeplayer.ChessboardGrid;
 import com.ovgu.ccd.moves.two.MoveHistoryEntry;

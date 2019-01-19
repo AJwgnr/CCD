@@ -19,7 +19,7 @@
  */
 package com.ovgu.ccd.gui.gameui;
 
-import com.ovgu.ccd.applogic.JChessApp;
+import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.twoplayer.Game;

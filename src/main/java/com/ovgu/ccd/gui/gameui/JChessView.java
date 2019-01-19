@@ -16,6 +16,7 @@
 package com.ovgu.ccd.gui.gameui;
 
 import com.ovgu.ccd.applogic.*;
+import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.gui.threeplayer.ChessboardGrid;
 import com.ovgu.ccd.gui.threeplayer.ChessboardListener;
 import com.ovgu.ccd.gui.threeplayer.Point;

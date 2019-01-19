@@ -13,7 +13,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ovgu.ccd.applogic;
+package com.ovgu.ccd.gui;
 import com.ovgu.ccd.gui.gameui.JChessView;
 
 import org.jdesktop.application.Application;

@@ -31,7 +31,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.ovgu.ccd.applogic.JChessApp</mainClass>
+                            <mainClass>com.ovgu.ccd.gui.JChessApp</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

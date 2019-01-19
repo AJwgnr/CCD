@@ -20,7 +20,7 @@
  */
 package com.ovgu.ccd.gui.gameui;
 
-import com.ovgu.ccd.applogic.JChessApp;
+import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.applogic.ResourceManager;
 
 import javax.swing.*;

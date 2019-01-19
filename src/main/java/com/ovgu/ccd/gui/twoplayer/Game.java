@@ -20,7 +20,7 @@
  */
 package com.ovgu.ccd.gui.twoplayer;
 
-import com.ovgu.ccd.applogic.JChessApp;
+import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.pieces.King;
@@ -69,7 +69,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener {
         chessboard.addMouseListener(this);
         chessboard.setLocation(new Point(0, 0));
         this.add(chessboard);
-        //this.chessboard.
+
         gameClock = new GameClock(this);
         gameClock.setSize(new Dimension(300, 100));
         gameClock.setLocation(new Point(500, 0));
