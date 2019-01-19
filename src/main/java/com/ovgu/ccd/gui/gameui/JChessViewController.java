@@ -103,7 +103,6 @@ public class JChessViewController {
          }
          }**/
     }
-
     /**
      * @param evt
      */
@@ -140,7 +139,6 @@ public class JChessViewController {
         }
     }
 
-
     public void moveBackItemActionPerformed(java.awt.event.ActionEvent evt) {/*
         if (gui != null && gui.game != null) {
             gui.game.undo();
@@ -160,7 +158,6 @@ public class JChessViewController {
         }
 */
     }
-
 
     public void newGameItemActionPerformed(java.awt.event.ActionEvent evt) {
         newGame();
@@ -226,6 +223,4 @@ public class JChessViewController {
             System.out.println("Something wrong creating window - perhaps themeList is null");
         }
     }
-
-
 }

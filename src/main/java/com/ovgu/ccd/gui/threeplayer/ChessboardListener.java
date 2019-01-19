@@ -267,6 +267,7 @@ public class ChessboardListener implements MouseListener
 			}
 		}
 		this.grid.redraw();
+
     }
 
     @Override

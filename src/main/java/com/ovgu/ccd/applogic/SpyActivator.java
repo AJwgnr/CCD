@@ -149,6 +149,7 @@ public class SpyActivator {
     public void activateSpy() throws Exception {
         if (piece == null) {
             throw new NoPieceForSpy("The piece is null");
+
         }
         if (piece != null && !"Pawn".equals(piece.name)) {
             throw new SpyCanOnlyBeAPawn("Spy can only be a pawn");
@@ -176,9 +177,10 @@ public class SpyActivator {
                     board.blackPawns.remove(piece);
                 }
 
-
                 board.whitePawns.add(piece);
                 board.setWhiteSpyActive(true);
+                ap.play();
+                ap.stop(3000);
             }
         } else if (player.getColor() == Player.Colors.BLACK) {
             if ((piece.getPosX() + 1 == 11 && piece.getColor() == Player.Colors.GREY) ||
@@ -193,6 +195,8 @@ public class SpyActivator {
 
                 board.blackPawns.add(piece);
                 board.setBlackSpyActive(true);
+                ap.play();
+                ap.stop(3000);
             }
         } else {
             if ((piece.getPosX() + 1 == 2 && piece.getColor() == Player.Colors.WHITE) ||
@@ -206,10 +210,11 @@ public class SpyActivator {
                 }
                 board.greyPawns.add(piece);
                 board.setGreySpyActive(true);
+                ap.play();
+                ap.stop(3000);
             }
         }
-        ap.play();
-        ap.stop(3000);
+
         piece.setPlayer(player);
         piece.setImage(true);
     }

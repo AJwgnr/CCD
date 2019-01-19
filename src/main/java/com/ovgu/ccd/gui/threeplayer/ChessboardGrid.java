@@ -1258,4 +1258,6 @@ public class ChessboardGrid extends GeometricPrimitiveDrawer
         for (Map.Entry<String, GridSquare> square : this.squares.entrySet())
             square.getValue().draw(graphics);
     }
+
+
 }
