@@ -419,7 +419,7 @@ public class ThreePlayerChessboard implements IBoard {
      * redraw all pieces in matrix
      */
     private void redrawPieces() {
-        this.chessboardGrid.redraw();
+        this.chessboardGrid.draw(this.chessboardGrid.getGraphics());
     }
 
     @Override
