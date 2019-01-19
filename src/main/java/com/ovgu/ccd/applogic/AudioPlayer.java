@@ -21,15 +21,13 @@ public class AudioPlayer {
      * This fetches the audio file from the location
      * and set it for playing.
      */
-    public AudioPlayer() {
+    public AudioPlayer(String mFileName) {
         // TODO Auto-generated constructor stub
         try {
-            String mFileName = "success.wav";
-
             ClassLoader mClassLoader = getClass().getClassLoader();
 
             InputStream mInputFile = new BufferedInputStream(
-                    mClassLoader.getResourceAsStream(mFileName));
+                    mClassLoader.getResourceAsStream("sound/" + mFileName));
 
             // create AudioInputStream object
             AudioInputStream mAudioInputStream = AudioSystem

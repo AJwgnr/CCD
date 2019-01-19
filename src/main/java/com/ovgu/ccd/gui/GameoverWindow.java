@@ -37,7 +37,7 @@ public class GameoverWindow extends JDialog {
         this.gameoverDialog.setVisible(true);
 
         // call of the audio file
-        AudioPlayer ap = new AudioPlayer();
+        AudioPlayer ap = new AudioPlayer("firework.wav");
         ap.play();
         ap.stop(12000);
     }
