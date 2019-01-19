@@ -10,8 +10,10 @@ import java.io.File;
 
 public class JChessViewController {
     private final Icon[] busyIcons = new Icon[15];
-    JChessView jcv;
+    private JChessView jcv;
     private int busyIconIndex = 0;
+
+
     public JChessViewController(JChessView view) {
         this.jcv = view;
     }

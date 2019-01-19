@@ -1,18 +1,3 @@
-/*
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 package com.ovgu.ccd.gui.gameui;
 
 import com.ovgu.ccd.applogic.PlayerSequenceManager;
@@ -35,8 +20,6 @@ import java.awt.event.ComponentListener;
  * The application's main frame.
  */
 public class JChessView extends FrameView implements ComponentListener {
-    // End of variables declaration//GEN-END:variables
-    //private JTabbedPaneWithIcon gamesPane;
     private JDialog newGameFrame;
     private JDialog aboutBox;
 
@@ -56,6 +39,10 @@ public class JChessView extends FrameView implements ComponentListener {
     private JChessViewController jChessViewController;
 
 
+    /**
+     *
+     * @param app
+     */
     public JChessView(SingleFrameApplication app) {
         super(app);
         this.jChessViewController = new JChessViewController(this);
@@ -192,6 +179,7 @@ public class JChessView extends FrameView implements ComponentListener {
         setMenuBar(menuView.getMenuBar());
         setStatusBar(statusPanel);
     }
+
 
     private void moveBackItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_moveBackItemActionPerformed
     {//GEN-HEADEREND:event_moveBackItemActionPerformed

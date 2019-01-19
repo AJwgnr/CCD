@@ -32,8 +32,6 @@ public class Settings implements Serializable {
 
     private static ResourceBundle loc = null;
     public int timeForGame;
-    public boolean runningChat;
-    public boolean runningGameClock;
     public boolean timeLimitSet;//tel us if player choose time 4 game or it's infinity
     public boolean upsideDown;
     public gameModes gameMode;
