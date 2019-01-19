@@ -66,6 +66,7 @@ public class Window {
                 MAX_WINDOW_WIDTH, MAX_WINDOW_HEIGHT));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
