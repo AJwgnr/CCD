@@ -126,7 +126,7 @@ public class ThemeChooseWindow extends JDialog implements ActionListener, ListSe
     }
 
     /**
-     * 
+     *
      * @param event
      */
     @Override

@@ -84,9 +84,14 @@ public class MenuView {
                 jChessViewController.saveGameItemActionPerformed(evt);
             }
         });
-        //Doesnt Work -> TODO: Maybe this needs be changed
-        //exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
+
         exitMenuItem.setName("exitMenuItem"); // NOI18N
+        exitMenuItem.setText("Exit"); // NOI18N
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jChessViewController.closeGame();
+            }
+        });
 
         fileMenu.add(loadGameItem);
         fileMenu.add(saveGameItem);
@@ -170,7 +175,7 @@ public class MenuView {
         helpMenu.setText(properties.getProperty("helpMenu.text")); // NOI18N
         helpMenu.setName("helpMenu"); // NOI18N
 
-        aboutMenuItem.setText(properties.getProperty("aboutMenuItem.text")); // NOI18N
+        aboutMenuItem.setText("About"); // NOI18N
         aboutMenuItem.setName("aboutMenuItem"); // NOI18N
         aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

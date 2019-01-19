@@ -60,6 +60,9 @@ public class JChessViewController {
         return "";
     }
 
+    public void closeGame(){
+        this.jcv.getFrame().dispose();
+    }
 
     /**
      * @param evt
@@ -82,7 +85,6 @@ public class JChessViewController {
     /**
      * @param evt
      */
-
     public void moveForwardItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_moveForwardItemActionPerformed
     {//GEN-HEADEREND:event_moveForwardItemActionPerformed
        /** // TODO add your handling code here:
