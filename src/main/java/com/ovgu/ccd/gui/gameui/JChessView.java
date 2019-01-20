@@ -129,7 +129,10 @@ public class JChessView extends FrameView implements ComponentListener {
         setStatusBar(statusPanel);
     }
 
-
+    /**
+     * Gets the controller of the main application
+     * @return controller
+     */
     public JChessViewController getController(){
         return this.jChessViewController;
     }
