@@ -217,7 +217,7 @@ public class King extends Piece {
             if (this.chessboard.getSquare(h, i).getPiece() == null || this.chessboard.getSquare(h, i).getPiece() == this) //if on this sqhuare isn't piece
             {
                 continue;
-            } else if (this.chessboard.getSquare(h, i).getPiece().getPlayer() != this.getPlayer()) //if isn't our piece
+            } else if (this.chessboard.getSquare(h, i).getPiece().getPlayer() != this.getPlayer()) //if isn't our pigit ece
             {
                 if (this.chessboard.getSquare(h, i).getPiece().name.equals("Bishop")
                         || this.chessboard.getSquare(h, i).getPiece().name.equals("Queen")) {
