@@ -267,11 +267,10 @@ public class ChessboardListener implements MouseListener
 						this.board = (ThreePlayerChessboard) clickedSquare.getBoardSquare().getPiece().getChessboard();
 					}
 					handlePieceInteraction(clickedSquare);
+					this.checkForCheckSituation(board);
+					this.grid.redraw();
+					this.checkForGameover(clickedSquare);
 				}
-				ThreePlayerChessboard board = (ThreePlayerChessboard) clickedSquare.getBoardSquare().getPiece().getChessboard();
-				this.checkForCheckSituation(board);
-				this.grid.redraw();
-				this.checkForGameover(clickedSquare);
 			}
 		}
 		this.grid.redraw();
