@@ -691,9 +691,9 @@ public class ThreePlayerChessboard implements IBoard {
     }
 
     /**
-     * @param player
-     * @param piece
-     * @throws Exception
+     * @param player activating spy
+     * @param piece to be activated
+     * @throws Exception in case of invalid spy conditions
      */
     public void activateSpy(Player player, Piece piece) throws Exception {
         new SpyActivator(player, piece, this).activateSpy();
@@ -866,8 +866,10 @@ public class ThreePlayerChessboard implements IBoard {
         return blackPlayer;
     }
 
+
     /**
      * @return true if a king was captured
+     * @throws Exception in case of invalid check mate conditions
      */
     public boolean isGameFinished() throws Exception {
         return (kingWhite.getSquare() == null ||

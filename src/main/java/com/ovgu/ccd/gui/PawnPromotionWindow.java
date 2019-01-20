@@ -50,8 +50,7 @@ public class PawnPromotionWindow extends JDialog implements ActionListener
 
 
     /**
-     * @param parent Information about the current piece
-     * @param color  The player color
+     * @param colorOfPiece  The player color
      */
     public PawnPromotionWindow(String colorOfPiece)
     {

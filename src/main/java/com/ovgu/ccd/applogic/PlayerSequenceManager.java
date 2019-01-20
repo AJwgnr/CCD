@@ -6,7 +6,6 @@ package com.ovgu.ccd.applogic;
  *
  * @author  CCD DeepBlue team
  * @version 1.0
- * @since
  */
 public class PlayerSequenceManager
 {
