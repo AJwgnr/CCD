@@ -248,7 +248,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener {
         }
         chessboard.repaint();
         this.repaint();
-        //dirty hacks ends over here :)
+
     }
 
     /**
