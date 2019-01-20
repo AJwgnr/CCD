@@ -69,8 +69,6 @@ class SpyInCheck extends Exception {
  */
 public class SpyActivator {
 
-    private AudioPlayer ap = null;
-
     /**
      * Player that is activating its spy
      */
@@ -93,8 +91,6 @@ public class SpyActivator {
         this.player = player;
         this.piece = piece;
         this.board = board;
-        this.ap =  new AudioPlayer("spy.wav");
-
     }
 
 
@@ -179,8 +175,6 @@ public class SpyActivator {
 
                 board.whitePawns.add(piece);
                 board.setWhiteSpyActive(true);
-                ap.play();
-                ap.stop(3000);
             }
         } else if (player.getColor() == Player.Colors.BLACK) {
             if ((piece.getPosX() + 1 == 11 && piece.getColor() == Player.Colors.GREY) ||
@@ -195,8 +189,6 @@ public class SpyActivator {
 
                 board.blackPawns.add(piece);
                 board.setBlackSpyActive(true);
-                ap.play();
-                ap.stop(3000);
             }
         } else {
             if ((piece.getPosX() + 1 == 2 && piece.getColor() == Player.Colors.WHITE) ||
@@ -210,8 +202,6 @@ public class SpyActivator {
                 }
                 board.greyPawns.add(piece);
                 board.setGreySpyActive(true);
-                ap.play();
-                ap.stop(3000);
             }
         }
 

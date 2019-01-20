@@ -420,8 +420,12 @@ public class ThreePlayerChessboard implements IBoard {
      * redraw all pieces in matrix
      */
     private void redrawPieces() {
+        if (this.chessboardGrid.getGraphics() != null) {
             this.chessboardGrid.draw(this.chessboardGrid.getGraphics());
-
+        }
+        else {
+            System.out.println("Unable to draw pieces (graphic reference is null)!");
+        }
     }
 
     @Override

@@ -60,14 +60,14 @@ public class SpyActivatorTest {
     }
 
     @Test(expected = SpyAlreadyActive.class)
-    public void alreadyActivatedSpy() throws Exception {
+    public void testAlreadyActivatedSpy() throws Exception {
         Piece pawn = board.whitePawns.get(0);
         board.setWhiteSpyActive(true);
         new SpyActivator(whitePlayer, pawn, board).activateSpy();
     }
 
     @Test
-    public void activateWhiteSpy() throws Exception {
+    public void testActivateWhiteSpy() throws Exception {
         Piece pawn = board.blackPawns.get(0);
         board.setPiece(pawn, pawn.getPosX() - 2, pawn.getPosY());
         new SpyActivator(whitePlayer, pawn, board).activateSpy();
@@ -79,7 +79,7 @@ public class SpyActivatorTest {
     }
 
     @Test
-    public void activateBlackSpy() throws Exception {
+    public void testActivateBlackSpy() throws Exception {
         Piece pawn = board.whitePawns.get(0);
         board.setPiece(pawn, pawn.getPosX() + 2, pawn.getPosY());
         new SpyActivator(blackPlayer, pawn, board).activateSpy();
@@ -91,7 +91,7 @@ public class SpyActivatorTest {
     }
 
     @Test
-    public void activateGreySpy() throws Exception {
+    public void testActivateGreySpy() throws Exception {
         Piece pawn = board.blackPawns.get(0);
         board.setPiece(pawn, pawn.getPosX() - 2, pawn.getPosY());
         new SpyActivator(greyPlayer, pawn, board).activateSpy();

@@ -244,10 +244,14 @@ public class ChessboardListener implements MouseListener
 					board.activateSpy(this.sequenceManager.getCurrentPlayer(), this.clickedPieceWaitingForSpy);
 					this.clickedPieceWaitingForSpy = null;
 					this.grid.redraw();
+					AudioPlayer ap = new AudioPlayer("spy.wav");
+					ap.play();
+					ap.stop(3000);
+
 					if (this.sequenceManager != null)
 						this.sequenceManager.moveDone();
 				} catch (Exception e1) {
-					e1.printStackTrace();
+					//e1.printStackTrace();
 				}
 
 			}
