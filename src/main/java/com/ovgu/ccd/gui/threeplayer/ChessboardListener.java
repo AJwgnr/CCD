@@ -251,7 +251,8 @@ public class ChessboardListener implements MouseListener
 					if (this.sequenceManager != null)
 						this.sequenceManager.moveDone();
 				} catch (Exception e1) {
-					//e1.printStackTrace();
+
+					JOptionPane.showMessageDialog(null, e1.getMessage(),"Spy error", JOptionPane.ERROR_MESSAGE);
 				}
 
 			}

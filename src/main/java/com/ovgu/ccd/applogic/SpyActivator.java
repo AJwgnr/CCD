@@ -95,49 +95,6 @@ public class SpyActivator {
 
 
     /**
-     *
-     * @return
-     */
-    public ArrayList getPossibleSpies() {
-        ArrayList<Piece> possibleSpies = null;
-        possibleSpies.addAll(board.getGreyPawns());
-        possibleSpies.addAll(board.getBlackPawns());
-        possibleSpies.addAll(board.getWhitePawns());
-
-
-        if (player.getColor() == Player.Colors.BLACK) {
-
-            for (Piece p : possibleSpies) {
-                if ((piece.getPosX() + 1 == 11 && piece.getColor() == Player.Colors.GREY) ||
-                        (piece.getPosX() + 1 == 2 && piece.getColor() == Player.Colors.WHITE)) {
-                    possibleSpies.remove(p);
-                }
-            }
-
-        } else if (player.getColor() == Player.Colors.WHITE) {
-
-
-            for (Piece p : possibleSpies) {
-                if ((piece.getPosX() + 1 == 11 && piece.getColor() == Player.Colors.GREY) ||
-                        (piece.getPosX() + 1 == 7 && piece.getColor() == Player.Colors.BLACK)) {
-                    possibleSpies.remove(p);
-                }
-            }
-
-        } else if (player.getColor() == Player.Colors.GREY) {
-
-            for (Piece p : possibleSpies) {
-                if ((piece.getPosX() + 1 == 2 && piece.getColor() == Player.Colors.WHITE) ||
-                        (piece.getPosX() + 1 == 7 && piece.getColor() == Player.Colors.BLACK)) {
-                    possibleSpies.remove(p);
-                }
-            }
-        }
-        return possibleSpies;
-    }
-
-
-    /**
      * Activates a spy
      *
      * @throws Exception
