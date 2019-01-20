@@ -19,6 +19,7 @@
  */
 package com.ovgu.ccd.gui.gameui;
 
+import com.ovgu.ccd.applogic.GameCreator;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.JChessApp;
@@ -209,25 +210,13 @@ public class NewGameSettings extends JPanel implements ActionListener {
             if (this.firstName.getText().length() != 0 && this.secondName.getText().length() != 0) {
                 if (this.thirdName.getText().length() != 0) {
                     //launch three player game
-                    JChessApp.jcv.addNewThreePlayerTab(this.firstName.getText() + " vs " + this.secondName.getText() + " vs " + this.thirdName.getText());
-
-                   /* sett = newGUI.settings;//sett LOCAL settings variable
-                    pl1 = sett.getPlayerOne();//set LOCAL player variable
-                    pl2 = sett.getPlayerTwo();//set LOCAL player variable
-                    pl3 = sett.getPlayerThree();//set LOCAL player variable
-
-                    pl1.setName(this.firstName.getText());//set name of player
-                    pl2.setName(this.secondName.getText());//set name of player
-                    pl3.setName(this.thirdName.getText());
-
-
-                    pl1.setType(Player.PlayerTypes.LOCALUSER);//set type of player
-                    pl2.setType(Player.PlayerTypes.LOCALUSER);//set type of player
-                    pl3.setType(Player.PlayerTypes.LOCALUSER);//set type of player*/
+                   // JChessApp.jcv.addNewThreePlayerTab(this.firstName.getText() + " vs " + this.secondName.getText() + " vs " + this.thirdName.getText());
+                    new GameCreator().createThreePlayerChess(this.firstName.getText() + " vs " + this.secondName.getText() + " vs " + this.thirdName.getText());
 
                 } else {
                     //launch two person game
-                    newGUI = JChessApp.jcv.addNewTwoPlayerTab(this.firstName.getText() + " vs " + this.secondName.getText());
+                    //newGUI = JChessApp.jcv.addNewTwoPlayerTab(this.firstName.getText() + " vs " + this.secondName.getText());
+                    newGUI = new GameCreator().createTwoPlayerChess(this.firstName.getText() + " vs " + this.secondName.getText());
                     sett = newGUI.settings;//sett LOCAL settings variable
                     sett.gameType = Settings.gameTypes.LOCAL;
                     pl1 = sett.getPlayerOne();//set LOCAL player variable
@@ -248,9 +237,6 @@ public class NewGameSettings extends JPanel implements ActionListener {
                     newGUI.gameClock.start();
 
 
-                    //    System.out.println("****************\nStarting new game: " + pl1.getName() + " vs. " + pl2.getName() + " vs. " + pl3.getName()
-                    //         + "\ntime 4 game: " + sett.timeForGame + "\ntime limit set: " + sett.timeLimitSet
-                    //       + "\nwhite on top?: " + sett.upsideDown + "\n****************");//4test
                     newGUI.newGame();//start new Game
                     newGUI.chessboard.repaint();
                     newGUI.chessboard.draw();

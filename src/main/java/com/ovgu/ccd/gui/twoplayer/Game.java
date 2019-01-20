@@ -20,6 +20,7 @@
  */
 package com.ovgu.ccd.gui.twoplayer;
 
+import com.ovgu.ccd.applogic.GameCreator;
 import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Settings;
@@ -160,7 +161,8 @@ public class Game extends JPanel implements MouseListener, ComponentListener {
             System.out.println("Error reading file: " + err);
             return;
         }
-        Game newGUI = JChessApp.jcv.addNewTwoPlayerTab(whiteName + " vs. " + blackName);
+        //Game newGUI = JChessApp.jcv.addNewTwoPlayerTab(whiteName + " vs. " + blackName);
+        Game newGUI = new GameCreator().createTwoPlayerChess(whiteName + " vs. " + blackName);
         Settings locSetts = newGUI.settings;
         locSetts.getPlayerTwo().setName(blackName);
         locSetts.getPlayerOne().setName(whiteName);
@@ -238,13 +240,6 @@ public class Game extends JPanel implements MouseListener, ComponentListener {
         activePlayer = settings.getPlayerOne();
         if (activePlayer.getPlayerType() != Player.PlayerTypes.LOCALUSER) {
             this.blockedChessboard = true;
-        }
-
-        Game activeGame = JChessApp.jcv.getActiveTabGame();
-        if (activeGame != null && JChessApp.jcv.getNumberOfOpenedTabs() == 0) {
-            activeGame.chessboard.resizeChessboard(activeGame.chessboard.get_height(false));
-            activeGame.chessboard.repaint();
-            activeGame.repaint();
         }
         chessboard.repaint();
         this.repaint();

@@ -1,5 +1,6 @@
 package com.ovgu.ccd.gui.gameui;
 
+import com.ovgu.ccd.applogic.GameCreator;
 import com.ovgu.ccd.applogic.Settings;
 import com.ovgu.ccd.gui.JChessApp;
 import com.ovgu.ccd.gui.twoplayer.Game;
@@ -15,25 +16,20 @@ public class JChessViewController {
     private JChessView jcv;
     private int busyIconIndex = 0;
 
+
     /**Constructor with the correspoding view.
      * @param view Corresponding view that should be controlled.
      */
-    public JChessViewController(JChessView view) {
+    public JChessViewController(final JChessView view) {
         this.jcv = view;
     }
 
-    /**
-     * @param title
-     * @return
+    /**Adds a new game (jpanel) to the application.
+     * @param title Title of the tab
      */
-    public Game addNewTab(String title) {
-        Game newGUI = new Game();
-        jcv.getGamesPane().addTab(title, newGUI);
-        return newGUI;
-
+    public void addNewTab(final String title, final JPanel gamePanel) {
+        this.jcv.getGamesPane().addTab(title, gamePanel);
     }
-
-
 
 
     /**
@@ -73,53 +69,19 @@ public class JChessViewController {
         this.jcv.getFrame().dispose();
     }
 
-    /**
-     * @param evt
-     */
-    public void moveBackItemMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_moveBackItemMouseClicked
-    {//GEN-HEADEREND:event_moveBackItemMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_moveBackItemMouseClicked
 
     /**
-     * @param evt
+     * Creates a new game window
+     * @param evt mouse click
      */
-    public void moveForwardItemMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_moveForwardItemMouseClicked
-    {//GEN-HEADEREND:event_moveForwardItemMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_moveForwardItemMouseClicked
-
-    /**
-     * @param evt
-     */
-    public void moveForwardItemActionPerformed(java.awt.event.ActionEvent evt)
-    {
-        /** // TODO add your handling code here:
-         }**/
-    }
-    /**
-     * @param evt
-     */
-    public void rewindToBeginActionPerformed(java.awt.event.ActionEvent evt) {
-      /*
-        } */
-    }
-
-    /**
-     * @param evt
-     */
-    public void rewindToEndActionPerformed(java.awt.event.ActionEvent evt) {
-
-    }
-
-    public void moveBackItemActionPerformed(java.awt.event.ActionEvent evt) {
-
-    }
-
     public void newGameItemActionPerformed(java.awt.event.ActionEvent evt) {
-        newGame();
+        this.newGame();
     }
 
+    /**
+     * Saves the current game
+     * @param evt mouse click
+     */
     public void saveGameItemActionPerformed(java.awt.event.ActionEvent evt) {
         if (this.jcv.getGamesPane().getTabCount() == 0) {
             JOptionPane.showMessageDialog(null, Settings.lang("save_not_called_for_tab"));
@@ -156,6 +118,10 @@ public class JChessViewController {
         }
     }
 
+    /**
+     * Loads a new game from disk.
+     * @param evt mouse click
+     */
     public void loadGameItemActionPerformed(java.awt.event.ActionEvent
                                                     evt) {
         JFileChooser fc = new JFileChooser();
@@ -168,6 +134,9 @@ public class JChessViewController {
         }
     }
 
+    /**Shows the them view to choose a new theme.
+     * @param evt mouse click on menu
+     */
     public void themeSettingsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             ThemeChooseWindow choose = new ThemeChooseWindow(this.jcv.getFrame());
@@ -179,5 +148,46 @@ public class JChessViewController {
             );
             System.out.println("Something wrong creating window - perhaps themeList is null");
         }
+    }
+
+    /**
+     * @param evt
+     */
+    public void moveBackItemMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_moveBackItemMouseClicked
+    {//GEN-HEADEREND:event_moveBackItemMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_moveBackItemMouseClicked
+
+    /**
+     * @param evt
+     */
+    public void moveForwardItemMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_moveForwardItemMouseClicked
+    {//GEN-HEADEREND:event_moveForwardItemMouseClicked
+
+    }//GEN-LAST:event_moveForwardItemMouseClicked
+
+    /**
+     * @param evt
+     */
+    public void moveForwardItemActionPerformed(java.awt.event.ActionEvent evt)
+    {
+
+    }
+    /**
+     * @param evt
+     */
+    public void rewindToBeginActionPerformed(java.awt.event.ActionEvent evt) {
+
+    }
+
+    /**
+     * @param evt
+     */
+    public void rewindToEndActionPerformed(java.awt.event.ActionEvent evt) {
+
+    }
+
+    public void moveBackItemActionPerformed(java.awt.event.ActionEvent evt) {
+
     }
 }

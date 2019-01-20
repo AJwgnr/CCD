@@ -50,24 +50,6 @@ public class JChessView extends FrameView implements ComponentListener {
     }
 
 
-    public Game addNewTwoPlayerTab(String title) {
-        Game newGUI = new Game();
-        this.gamesPane.addTab(title, newGUI);
-        return newGUI;
-    }
-
-    public void addNewThreePlayerTab(String title) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        ChessboardGrid chessboardGrid = new ChessboardGrid(new com.ovgu.ccd.gui.threeplayer.Point(
-                screenSize.width / 2, screenSize.height / 2.5),
-                (screenSize.height / 2) - 100);
-        ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
-        ChessboardListener listener = new ChessboardListener(chessboardGrid);
-
-        listener.setListenerRestrictions(new PlayerSequenceManager(board.getAllPlayers()));
-        this.gamesPane.addTab(title, listener.getPanel());
-    }
-
 
     /**Creates all UI elements for the chess game and also the control for the click handling.
      */
@@ -148,20 +130,72 @@ public class JChessView extends FrameView implements ComponentListener {
     }
 
 
-
-    public void componentResized(ComponentEvent e) {
-        System.out.println("jchessView resized!!;");
-        throw new UnsupportedOperationException("Not supported yet.");
+    public JChessViewController getController(){
+        return this.jChessViewController;
     }
+
+    /**Creates a new window for starting a new game.
+     */
+    public void createNewGameFrame() {
+        if (this.newGameFrame == null) {
+            this.newGameFrame = new NewGameWindow();
+        }
+        JChessApp.getApplication().show(this.newGameFrame);
+    }
+
+    /**Creates and shows the about box of the game.
+     */
+    public void setAboutBox() {
+        JFrame mainFrame = JChessApp.getApplication().getMainFrame();
+        if (this.aboutBox == null) {
+            this.aboutBox = new JChessAboutBox(mainFrame);
+            aboutBox.setLocationRelativeTo(mainFrame);
+        }
+        JChessApp.getApplication().show(aboutBox);
+    }
+
+    /** Creates the pawn promotion box
+     * @param color player color to create the window for
+     * @return name of the choosen piece
+     */
+    public String setPawnPromotionBox(final String color) {
+        if (promotionBox == null) {
+            JFrame mainFrame = JChessApp.getApplication().getMainFrame();
+            promotionBox = new PawnPromotionWindow(color);
+            promotionBox.setLocationRelativeTo(mainFrame);
+            promotionBox.setModal(true);
+        }
+        promotionBox.setColor(color);
+        JChessApp.getApplication().show(promotionBox);
+        return promotionBox.getName();
+    }
+
+    /** Get gamespane with all games.
+     * @return the gamespane of the view.
+     */
+    public JTabbedPane getGamesPane() {
+        return gamesPane;
+    }
+
+
 
     public Game getActiveTabGame() throws ArrayIndexOutOfBoundsException {
         Game activeGame = (Game) this.gamesPane.getComponentAt(this.gamesPane.getSelectedIndex());
         return activeGame;
     }
 
+    /**Get number of opened tabs
+     * @return number of tabs
+     */
     public int getNumberOfOpenedTabs() {
         return this.gamesPane.getTabCount();
     }
+
+
+    public void componentResized(ComponentEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 
     public void componentMoved(ComponentEvent e) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -175,42 +209,5 @@ public class JChessView extends FrameView implements ComponentListener {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-
-    public JTabbedPane getGamesPane() {
-        return gamesPane;
-    }
-
-    public void createNewGameFrame() {
-        if (this.newGameFrame == null) {
-            this.newGameFrame = new NewGameWindow();
-        }
-        JChessApp.getApplication().show(this.newGameFrame);
-    }
-
-    public void setAboutBox() {
-        JFrame mainFrame = JChessApp.getApplication().getMainFrame();
-        if (this.aboutBox == null) {
-            this.aboutBox = new JChessAboutBox(mainFrame);
-            aboutBox.setLocationRelativeTo(mainFrame);
-        }
-        JChessApp.getApplication().show(aboutBox);
-    }
-
-    /**
-     *
-     * @param color
-     * @return
-     */
-    public String setPawnPromotionBox(String color) {
-        if (promotionBox == null) {
-            JFrame mainFrame = JChessApp.getApplication().getMainFrame();
-            promotionBox = new PawnPromotionWindow(color);
-            promotionBox.setLocationRelativeTo(mainFrame);
-            promotionBox.setModal(true);
-        }
-        promotionBox.setColor(color);
-        JChessApp.getApplication().show(promotionBox);
-        return promotionBox.getName();
-    }
 
 }
