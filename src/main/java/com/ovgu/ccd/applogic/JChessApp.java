@@ -15,6 +15,8 @@
 
 package com.ovgu.ccd.applogic;
 
+import com.ovgu.ccd.gui.Fireworks;
+import com.ovgu.ccd.gui.GameoverWindow;
 import com.ovgu.ccd.gui.JChessView;
 import com.ovgu.ccd.gui.chessboardListener.ChessboardGrid;
 import com.ovgu.ccd.gui.chessboardListener.ChessboardListener;
