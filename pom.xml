@@ -31,7 +31,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.ovgu.ccd.applogic.JChessApp</mainClass>
+                            <mainClass>com.ovgu.ccd.gui.JChessApp</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -64,12 +64,12 @@
                 <artifactId>clover-maven-plugin</artifactId>
                 <version>4.3.1</version>
                 <configuration>
-                  <generateHtml>true</generateHtml>
-                  <generateXml>true</generateXml>
-                  <excludes>
-                    <exclude>**/com/ovgu/ccd/gui/**/**.java</exclude>
-                    <exclude>**/resources/**/**.java</exclude>
-                  </excludes>
+                    <generateHtml>true</generateHtml>
+                    <generateXml>true</generateXml>
+                    <excludes>
+                        <exclude>**/com/ovgu/ccd/gui/**/**.java</exclude>
+                        <exclude>**/resources/**/**.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
         </plugins>

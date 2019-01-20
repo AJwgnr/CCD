@@ -23,7 +23,7 @@ public class Knight extends Piece {
         imageWhite = ResourceManager.loadImage("Knight-W.png");
         imageBlack = ResourceManager.loadImage("Knight-B.png");
         imageGray = ResourceManager.loadImage("Knight-G.png");
-        this.setImage();
+        this.setImage(false);
     }
 
     /**Determines all possible Moves of this piece.

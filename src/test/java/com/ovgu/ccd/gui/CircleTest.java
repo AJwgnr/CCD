@@ -1,8 +1,8 @@
 package com.ovgu.ccd.gui;
 
-import com.ovgu.ccd.gui.chessboardListener.Circle;
-import com.ovgu.ccd.gui.chessboardListener.Line;
-import com.ovgu.ccd.gui.chessboardListener.Point;
+import com.ovgu.ccd.gui.threeplayer.Circle;
+import com.ovgu.ccd.gui.threeplayer.Line;
+import com.ovgu.ccd.gui.threeplayer.Point;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.List;

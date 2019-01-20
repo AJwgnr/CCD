@@ -1,6 +1,6 @@
 package com.ovgu.ccd.applogic;
 
-import com.ovgu.ccd.gui.JChessView;
+import com.ovgu.ccd.gui.gameui.JChessView;
 
 import java.awt.*;
 import java.io.*;

@@ -1,8 +1,7 @@
 package com.ovgu.ccd.gui;
 
-import com.ovgu.ccd.gui.chessboardListener.GridSquare;
-import com.ovgu.ccd.gui.chessboardListener.Point;
-import com.ovgu.ccd.pieces.Square;
+import com.ovgu.ccd.gui.threeplayer.GridSquare;
+import com.ovgu.ccd.gui.threeplayer.Point;
 import org.junit.Before;
 import org.junit.Test;
 

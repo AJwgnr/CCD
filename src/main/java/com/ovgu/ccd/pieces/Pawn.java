@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * |_|_|_|_|_|_|_|_|0
  * 0 1 2 3 4 5 6 7
  * <p>
- * Move of a pawn:
+ * MoveHistoryEntry of a pawn:
  * |_|_|_|_|_|_|_|_|7
  * |_|_|_|_|_|_|_|_|6
  * |_|_|_|_|_|_|_|_|5
@@ -58,7 +58,7 @@ public class Pawn extends Piece {
         imageWhite = ResourceManager.loadImage("Pawn-W.png");
         imageBlack = ResourceManager.loadImage("Pawn-B.png");
         imageGray = ResourceManager.loadImage("Pawn-G.png");
-        this.setImage();
+        this.setImage(false);
     }
 
     /**Determines all possible Moves of this piece.

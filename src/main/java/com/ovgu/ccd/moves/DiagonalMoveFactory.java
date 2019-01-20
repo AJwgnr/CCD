@@ -2,7 +2,7 @@ package com.ovgu.ccd.moves;
 
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.ThreePlayerChessboard;
-import com.ovgu.ccd.gui.Chessboard;
+import com.ovgu.ccd.gui.twoplayer.Chessboard;
 import com.ovgu.ccd.moves.three.DiagonalMoves;
 import com.ovgu.ccd.pieces.Piece;
 

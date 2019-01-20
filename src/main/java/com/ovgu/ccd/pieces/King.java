@@ -40,7 +40,7 @@ public class King extends Piece {
         imageWhite = ResourceManager.loadImage("King-W.png");
         imageBlack = ResourceManager.loadImage("King-B.png");
         imageGray = ResourceManager.loadImage("King-G.png");
-        this.setImage();
+        this.setImage(false);
 
     }
 

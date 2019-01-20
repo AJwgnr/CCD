@@ -1,6 +1,6 @@
 package com.ovgu.ccd.applogic;
 
-import com.ovgu.ccd.gui.chessboardListener.ChessboardGrid;
+import com.ovgu.ccd.gui.threeplayer.ChessboardGrid;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Pawn;
 import com.ovgu.ccd.pieces.Piece;

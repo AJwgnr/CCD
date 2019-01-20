@@ -2,6 +2,8 @@ package com.ovgu.ccd.applogic;
 
 import com.ovgu.ccd.pieces.Piece;
 
+import java.util.ArrayList;
+
 /**
  * Exception for when there is no piece
  */
@@ -91,6 +93,7 @@ public class SpyActivator {
         this.board = board;
     }
 
+
     /**
      * Activates a spy
      *
@@ -99,6 +102,7 @@ public class SpyActivator {
     public void activateSpy() throws Exception {
         if (piece == null) {
             throw new NoPieceForSpy("The piece is null");
+
         }
         if (piece != null && !"Pawn".equals(piece.name)) {
             throw new SpyCanOnlyBeAPawn("Spy can only be a pawn");
@@ -125,6 +129,7 @@ public class SpyActivator {
                 } else {
                     board.blackPawns.remove(piece);
                 }
+
                 board.whitePawns.add(piece);
                 board.setWhiteSpyActive(true);
             }
@@ -138,6 +143,7 @@ public class SpyActivator {
                 } else {
                     board.whitePawns.remove(piece);
                 }
+
                 board.blackPawns.add(piece);
                 board.setBlackSpyActive(true);
             }
@@ -155,6 +161,8 @@ public class SpyActivator {
                 board.setGreySpyActive(true);
             }
         }
+
         piece.setPlayer(player);
+        piece.setImage(true);
     }
 }

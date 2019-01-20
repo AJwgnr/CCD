@@ -3,9 +3,13 @@ package com.ovgu.ccd.pieces;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.Player;
 import com.ovgu.ccd.applogic.Player.Colors;
-import com.ovgu.ccd.gui.chessboardListener.Point;
-import java.awt.Image;
-import java.awt.Graphics;
+import com.ovgu.ccd.applogic.ResourceManager;
+import com.ovgu.ccd.applogic.ThreePlayerChessboard;
+import com.ovgu.ccd.gui.threeplayer.Point;
+import com.ovgu.ccd.gui.twoplayer.Chessboard;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**Class to represent a piece (any kind) - this class should be extended to represent pawn, bishop etc.
@@ -23,6 +27,21 @@ public abstract class Piece {
      *
      */
     public static Image imageGray;
+
+    /**
+     *
+     */
+    public static Image greySpy;
+
+    /**
+     *
+     */
+    public static Image whiteSpy;
+
+    /**
+     *
+     */
+    public static Image blackSpy;
 
     /**
      *
@@ -55,7 +74,6 @@ public abstract class Piece {
     protected String symbol;
 
     /**
-     *
      */
     IBoard chessboard;
 
@@ -67,6 +85,9 @@ public abstract class Piece {
         this.chessboard = chessboard;
         this.setPlayer(player);
         this.name = this.getClass().getSimpleName();
+        this.blackSpy = ResourceManager.loadImage("Spy-B.png");
+        this.greySpy = ResourceManager.loadImage("Spy-G.png");
+        this.whiteSpy = ResourceManager.loadImage("Spy-W.png");
 
     }
 
@@ -80,27 +101,72 @@ public abstract class Piece {
      * @param g where to draw
      */
     final public void draw(final Graphics g) {
-        Point center = this.chessboard.getChessboardGrid().getSquare(
-                this.square.getPosX(),
-                this.square.getPosY()).center();
-        g.drawImage(orgImage,
-                center.getX() - (orgImage.getWidth(null) / 2),
-                center.getY() - (orgImage.getHeight(null) / 2),
-                null);
+        if ((this.chessboard) instanceof ThreePlayerChessboard) {
+            Point center = this.chessboard.getChessboardGrid().getSquare(
+                    this.square.getPosX(),
+                    this.square.getPosY()).center();
+            g.drawImage(orgImage,
+                    center.getX() - (orgImage.getWidth(null) / 2),
+                    center.getY() - (orgImage.getHeight(null) / 2),
+                    null);
+
+        } else if ((this.chessboard) instanceof Chessboard) {
+
+            try {
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                java.awt.Point topLeft = this.chessboard.getTopLeftPoint();
+                int height = this.chessboard.get_square_height();
+                int x = (this.square.getPosX() * height) + topLeft.x;
+                int y = (this.square.getPosY() * height) + topLeft.y;
+                float addX = (height - image.getWidth(null)) / 2;
+                float addY = (height - image.getHeight(null)) / 2;
+                if (image != null && g != null) {
+                    Image tempImage = orgImage;
+                    BufferedImage resized = new BufferedImage(height, height, BufferedImage.TYPE_INT_ARGB_PRE);
+                    Graphics2D imageGr = (Graphics2D) resized.createGraphics();
+                    imageGr.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                    imageGr.drawImage(tempImage, 0, 0, height, height, null);
+                    imageGr.dispose();
+                    image = resized.getScaledInstance(height, height, 0);
+                    g2d.drawImage(image, x, y, null);
+                } else {
+                    System.out.println("image is null!");
+                }
+
+            } catch (java.lang.NullPointerException exc) {
+                System.out.println("Something wrong when painting piece: " + exc.getMessage());
+            }
+        }
+
     }
+
 
     /** Sets the image of the piece
      */
-    void setImage() {
-        if (this.getPlayer().getColor() == Colors.BLACK) {
-            image = imageBlack;
-        } else if (this.getPlayer().getColor() == Colors.WHITE) {
-            image = imageWhite;
-        } else {
-            image = imageGray;
-        }
-        orgImage = image;
-    }
+ public void setImage(boolean spy) {
+     if (spy) {
+         if (this.getPlayer().getColor() == Colors.BLACK) {
+             image = blackSpy;
+         } else if (this.getPlayer().getColor() == Colors.WHITE) {
+             image = whiteSpy;
+         } else {
+             image = greySpy;
+         }
+         orgImage = image;
+
+     } else {
+         if (this.getPlayer().getColor() == Colors.BLACK) {
+             image = imageBlack;
+         } else if (this.getPlayer().getColor() == Colors.WHITE) {
+             image = imageWhite;
+         } else {
+             image = imageGray;
+         }
+         orgImage = image;
+     }
+ }
+
 
     /** abstract method that returns all possible moves of a piece.
      * Must be overwritten in the pieces implementations
@@ -163,6 +229,7 @@ public abstract class Piece {
      */
     public void setPlayer(final Player player) {
         this.player = player;
+
     }
 
     /**Gets the color of the player on the piece.

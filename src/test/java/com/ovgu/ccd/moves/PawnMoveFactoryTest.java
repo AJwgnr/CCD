@@ -1,9 +1,9 @@
 package com.ovgu.ccd.moves;
 
 import com.ovgu.ccd.applogic.*;
-import com.ovgu.ccd.gui.Chessboard;
-import com.ovgu.ccd.gui.Game;
-import com.ovgu.ccd.gui.Moves;
+import com.ovgu.ccd.gui.twoplayer.Chessboard;
+import com.ovgu.ccd.gui.twoplayer.Game;
+import com.ovgu.ccd.gui.twoplayer.Moves;
 import com.ovgu.ccd.moves.two.PawnMoves;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.PieceFactory;

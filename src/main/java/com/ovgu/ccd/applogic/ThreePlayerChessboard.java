@@ -1,8 +1,9 @@
 package com.ovgu.ccd.applogic;
 
-import com.ovgu.ccd.gui.chessboardListener.ChessboardGrid;
+import com.ovgu.ccd.gui.threeplayer.*;
 import com.ovgu.ccd.pieces.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -182,6 +183,26 @@ public class ThreePlayerChessboard implements IBoard {
     public ThreePlayerChessboard() {
         initSquareMatrix();
         setInvalidSquares();
+    }
+
+    /**List of black pawns.
+     * @return list of black pawns on board
+     */
+    public ArrayList<Piece> getBlackPawns() {
+        return blackPawns;
+    }
+
+    /**List of white pawns.
+     * @return list of white pawns on board
+     */
+    public ArrayList<Piece> getWhitePawns() {
+        return whitePawns;
+    }
+    /**List of grey pawns.
+     * @return list of grey pawns on board
+     */
+    public ArrayList<Piece> getGreyPawns() {
+        return greyPawns;
     }
 
     /**
@@ -399,7 +420,12 @@ public class ThreePlayerChessboard implements IBoard {
      * redraw all pieces in matrix
      */
     private void redrawPieces() {
-        this.chessboardGrid.draw(this.chessboardGrid.getGraphics());
+        if (this.chessboardGrid.getGraphics() != null) {
+            this.chessboardGrid.draw(this.chessboardGrid.getGraphics());
+        }
+        else {
+            System.out.println("Unable to draw pieces (graphic reference is null)!");
+        }
     }
 
     @Override
@@ -697,6 +723,7 @@ public class ThreePlayerChessboard implements IBoard {
      */
     public void activateSpy(Player player, Piece piece) throws Exception {
         new SpyActivator(player, piece, this).activateSpy();
+        this.redrawPieces();
     }
 
     public boolean isWhiteSpyActive() {

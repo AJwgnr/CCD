@@ -1,7 +1,7 @@
 package com.ovgu.ccd.pieces;
 
 import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.gui.Chessboard;
+import com.ovgu.ccd.gui.twoplayer.Chessboard;
 import org.junit.Assert;
 import org.junit.Test;
 
