@@ -54,7 +54,7 @@ public class ChessboardListener implements MouseListener
 
 	/**
 	 * restricts the chessboard listener to the sequence of moves provided by the PlayerSequenceManager
-	 *
+	 * @param sequenceManager sequence manager
 	 */
 	public void setListenerRestrictions(PlayerSequenceManager sequenceManager)
 	{
@@ -65,7 +65,7 @@ public class ChessboardListener implements MouseListener
 	/**
 	 * checks whether a move is valid or not
 	 *
-	 * @param
+	 * @param square of the move
 	 * @return 	true - valid
 	 *			false - in-valid
 	 */
