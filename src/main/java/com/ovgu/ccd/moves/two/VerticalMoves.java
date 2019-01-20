@@ -1,7 +1,7 @@
 package com.ovgu.ccd.moves.two;
 
 import com.ovgu.ccd.applogic.IBoard;
-import com.ovgu.ccd.gui.Chessboard;
+import com.ovgu.ccd.gui.twoplayer.Chessboard;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
 
@@ -14,18 +14,20 @@ public class VerticalMoves {
 
     private Piece piece;
     private Chessboard board;
+    private Square pieceSquare;
 
     /**
-     * @param piece
-     * @param board
+     * @param piece for which moves are calculated
+     * @param board in which moves are calculated
      */
     public VerticalMoves(Piece piece, IBoard board) {
         this.piece = piece;
         this.board = (Chessboard) board;
+        this.pieceSquare = piece.getSquare();
     }
 
     /**
-     * @return
+     * @return possible moves
      */
     public ArrayList all() {
         ArrayList moves = new ArrayList();
@@ -63,10 +65,10 @@ public class VerticalMoves {
     }
 
     /**
-     * @param nextPosition
-     * @return
+     * @param nextPosition for the piece after move
+     * @return true if the move is valid
      */
     private boolean validMove(Square nextPosition) {
-        return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(piece.getSquare(), nextPosition);
+        return board.myKing(piece.getColor()).willBeSafeWhenMoveOtherPiece(pieceSquare, nextPosition);
     }
 }

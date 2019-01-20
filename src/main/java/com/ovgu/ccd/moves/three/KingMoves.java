@@ -1,8 +1,6 @@
 package com.ovgu.ccd.moves.three;
 
-import com.ovgu.ccd.applogic.Player;
-import com.ovgu.ccd.applogic.ThreePlayerChessboard;
-import com.ovgu.ccd.applogic.IBoard;
+import com.ovgu.ccd.applogic.*;
 import com.ovgu.ccd.moves.IMove;
 import com.ovgu.ccd.pieces.King;
 import com.ovgu.ccd.pieces.Piece;
@@ -11,17 +9,48 @@ import com.ovgu.ccd.pieces.Square;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class that generates king moves
+ */
 public class KingMoves implements IMove {
-    private Piece piece;
-    private ThreePlayerChessboard board;
+    /**
+     * king for which moves are calculated
+     */
+    final private Piece piece;
+    /**
+     * board in which moves are calculated
+     */
+    final private ThreePlayerChessboard board;
 
-    public KingMoves(Piece piece, IBoard board) {
+    /**
+     * @param piece king for which moves are calculated
+     * @param board in which moves are calculated
+     */
+    public KingMoves(final Piece piece, final IBoard board) {
         this.piece = piece;
         this.board = (ThreePlayerChessboard) board;
     }
 
     @Override
     public ArrayList<Square> moves() throws Exception {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
+
+        try {
+            possibleMoves.addAll(allMoves(true));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new ArrayList<Square>(Arrays.asList(possibleMoves.stream().distinct().toArray(Square[]::new)));
+    }
+
+    /**
+     * @param withCheck true if we want to only return the moves
+     *                 that don't generate a "check"
+     * @return a list of possible moves
+     * @throws Exception in case a move is invalid
+     */
+    public ArrayList<Square> allMoves(final boolean withCheck) throws Exception {
         ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
         possibleMoves.addAll(rightHorizontalMoves());
@@ -33,11 +62,21 @@ public class KingMoves implements IMove {
         possibleMoves.addAll(rosetteMoves());
         possibleMoves.addAll(castlingMoves());
 
+        final ArrayList<Square> results = new ArrayList<>();
+        if (withCheck) {
+            for (final Square s : possibleMoves) {
+                final boolean safe = new CheckController(board, board.myKing(piece.getColor()), piece, s).isSafe();
+                if (safe) {
+                    results.add(new Square(s.getPosX(), s.getPosY(), null));
+                }
+            }
+            possibleMoves = results;
+        }
         return new ArrayList<Square>(Arrays.asList(possibleMoves.stream().distinct().toArray(Square[]::new)));
     }
 
     private ArrayList<Square> rightHorizontalMoves() throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 4) {
@@ -75,7 +114,7 @@ public class KingMoves implements IMove {
     }
 
     private ArrayList<Square> leftHorizontalMoves() throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
 
@@ -114,7 +153,7 @@ public class KingMoves implements IMove {
     }
 
     private ArrayList<Square> upwardsMove() throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (1 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 3) {
@@ -158,7 +197,7 @@ public class KingMoves implements IMove {
     }
 
     private ArrayList<Square> downwardsMove() throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         if (2 <= piece.getPosX() + 1 && piece.getPosX() + 1 <= 4) {
@@ -178,7 +217,7 @@ public class KingMoves implements IMove {
     }
 
     private ArrayList<Square> leftDiagonalMoves() throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         // downwards
@@ -281,7 +320,7 @@ public class KingMoves implements IMove {
     }
 
     private ArrayList<Square> rightDiagonalMoves() throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
         // downwards
@@ -383,12 +422,12 @@ public class KingMoves implements IMove {
     }
 
     private ArrayList<Square> rosetteMoves() throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
 
-        Square current = new Square(piece.getPosX(), piece.getPosY(), null);
+        final Square current = new Square(piece.getPosX(), piece.getPosY(), null);
         if (board.getCurrentRosette(current).equals(current)) {
-            ArrayList<Square> squares = board.getDiagonalCenterPositions(current);
-            for (Square square : squares) {
+            final ArrayList<Square> squares = board.getDiagonalCenterPositions(current);
+            for (final Square square : squares) {
                 if (board.validMove(square, piece)) {
                     possibleMoves.add(square);
                 }
@@ -398,10 +437,10 @@ public class KingMoves implements IMove {
     }
 
     private ArrayList<Square> castlingMoves() throws Exception {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
         Square move = null;
 
-        if (board.leftCastlingPossible((King) piece)) {
+        if (new Castling((King) piece, board).leftCastlingPossible()) {
             if (piece.getColor() == Player.Colors.WHITE) {
                 move = new Square(0, ThreePlayerChessboard.B, null);
             } else if (piece.getColor() == Player.Colors.BLACK) {
@@ -415,7 +454,7 @@ public class KingMoves implements IMove {
             possibleMoves.add(move);
         }
 
-        if (board.rightCastlingPossible((King) piece)) {
+        if (new Castling((King) piece, board).rightCastlingPossible()) {
             if (piece.getColor() == Player.Colors.WHITE) {
                 move = new Square(0, ThreePlayerChessboard.G, null);
             } else if (piece.getColor() == Player.Colors.BLACK) {
@@ -429,5 +468,7 @@ public class KingMoves implements IMove {
             possibleMoves.add(move);
         }
         return possibleMoves;
-    };
+    }
+
+    ;
 }

@@ -1,7 +1,7 @@
 package com.ovgu.ccd.moves.two;
 
 import com.ovgu.ccd.applogic.IBoard;
-import com.ovgu.ccd.gui.Chessboard;
+import com.ovgu.ccd.gui.twoplayer.Chessboard;
 import com.ovgu.ccd.moves.IMove;
 import com.ovgu.ccd.pieces.Piece;
 import com.ovgu.ccd.pieces.Square;
@@ -13,8 +13,8 @@ public class StraightMoves implements IMove {
     private Chessboard board;
 
     /**
-     * @param piece
-     * @param board
+     * @param piece for which moves are calculated
+     * @param board in which moves are calculated
      */
     public StraightMoves(Piece piece, IBoard board) {
         this.piece = piece;

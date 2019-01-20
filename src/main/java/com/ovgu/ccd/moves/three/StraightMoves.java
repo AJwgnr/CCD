@@ -1,5 +1,6 @@
 package com.ovgu.ccd.moves.three;
 
+import com.ovgu.ccd.applogic.CheckController;
 import com.ovgu.ccd.applogic.IBoard;
 import com.ovgu.ccd.applogic.ThreePlayerChessboard;
 import com.ovgu.ccd.moves.IMove;
@@ -9,19 +10,52 @@ import com.ovgu.ccd.pieces.Square;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class that generates straight moves
+ */
 public class StraightMoves implements IMove {
 
-    private Piece piece;
-    private ThreePlayerChessboard board;
+    /**
+     * moves for which straight moves are calculated
+     */
+    final private Piece piece;
+    /**
+     * board in which moves are calculated
+     */
+    final private ThreePlayerChessboard board;
 
-    public StraightMoves(Piece piece, IBoard board) {
+    /**
+     * @param piece for which moves are calculated
+     * @param board in which moves are calculated
+     */
+    public StraightMoves(final Piece piece, final IBoard board) {
         this.piece = piece;
         this.board = (ThreePlayerChessboard) board;
     }
 
+    @Override
     public ArrayList<Square> moves() {
-        ArrayList<Square> possibleMoves = new ArrayList<Square>();
-        Square currentSquare = piece.getSquare();
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
+
+        try {
+            possibleMoves.addAll(allMoves(true));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return possibleMoves;
+    }
+
+    /**
+     * @param withCheck true if we want to only return the moves
+     *                 that don't generate a "check"
+     * @return a list of possible moves
+     * @throws Exception in case a move is invalid
+     */
+    public ArrayList<Square> allMoves(final boolean withCheck) throws Exception {
+        final ArrayList<Square> possibleMoves = new ArrayList<Square>();
+        final Square currentSquare = piece.getSquare();
         Square nextMove = null;
 
         if (1 <= currentSquare.getPosX() + 1 && currentSquare.getPosX() + 1 <= 4) {
@@ -29,7 +63,7 @@ public class StraightMoves implements IMove {
                 nextMove = new Square(i, currentSquare.getPosY(), null);
                 if (!nextMove.equals(currentSquare)) {
                     if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                        && !board.occupiedByOther(piece, nextMove)) {
+                            && !board.occupiedByOther(piece, nextMove)) {
                         break;
                     }
                     if (board.validMove(nextMove, piece)) {
@@ -44,7 +78,7 @@ public class StraightMoves implements IMove {
                 nextMove = new Square(i, currentSquare.getPosY(), null);
                 if (!nextMove.equals(currentSquare)) {
                     if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                        && !board.occupiedByOther(piece, nextMove)) {
+                            && !board.occupiedByOther(piece, nextMove)) {
                         break;
                     }
                     if (board.validMove(nextMove, piece)) {
@@ -62,7 +96,7 @@ public class StraightMoves implements IMove {
                 nextMove = new Square(i, currentSquare.getPosY(), null);
                 if (!nextMove.equals(currentSquare)) {
                     if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                        && !board.occupiedByOther(piece, nextMove)) {
+                            && !board.occupiedByOther(piece, nextMove)) {
                         break;
                     }
                     if (board.validMove(nextMove, piece)) {
@@ -77,7 +111,7 @@ public class StraightMoves implements IMove {
                 nextMove = new Square(i, currentSquare.getPosY(), null);
                 if (!nextMove.equals(currentSquare)) {
                     if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                        && !board.occupiedByOther(piece, nextMove)) {
+                            && !board.occupiedByOther(piece, nextMove)) {
                         break;
                     }
                     if (board.validMove(nextMove, piece)) {
@@ -94,7 +128,7 @@ public class StraightMoves implements IMove {
                         nextMove = new Square(i, currentSquare.getPosY(), null);
                         if (!nextMove.equals(currentSquare)) {
                             if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                                && !board.occupiedByOther(piece, nextMove)) {
+                                    && !board.occupiedByOther(piece, nextMove)) {
                                 break;
                             }
                             if (board.validMove(nextMove, piece)) {
@@ -110,7 +144,7 @@ public class StraightMoves implements IMove {
                         nextMove = new Square(i, currentSquare.getPosY(), null);
                         if (!nextMove.equals(currentSquare)) {
                             if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                                && !board.occupiedByOther(piece, nextMove)) {
+                                    && !board.occupiedByOther(piece, nextMove)) {
                                 break;
                             }
                             if (board.validMove(nextMove, piece)) {
@@ -130,7 +164,7 @@ public class StraightMoves implements IMove {
                 nextMove = new Square(i, currentSquare.getPosY(), null);
                 if (!nextMove.equals(currentSquare)) {
                     if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                        && !board.occupiedByOther(piece, nextMove)) {
+                            && !board.occupiedByOther(piece, nextMove)) {
                         break;
                     }
                     if (board.validMove(nextMove, piece)) {
@@ -145,7 +179,7 @@ public class StraightMoves implements IMove {
                 nextMove = new Square(i, currentSquare.getPosY(), null);
                 if (!nextMove.equals(currentSquare)) {
                     if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                        && !board.occupiedByOther(piece, nextMove)) {
+                            && !board.occupiedByOther(piece, nextMove)) {
                         break;
                     }
                     if (board.validMove(nextMove, piece)) {
@@ -156,13 +190,13 @@ public class StraightMoves implements IMove {
                     }
                 }
             }
-            if (nextMove != null && nextMove.getPosX() == 8  && board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty() || currentSquare.getPosX() == 8) {
+            if (nextMove != null && nextMove.getPosX() == 8 && board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty() || currentSquare.getPosX() == 8) {
                 if (ThreePlayerChessboard.E <= currentSquare.getPosY() && currentSquare.getPosY() <= ThreePlayerChessboard.H) {
                     for (int i = 3; i >= 0; i--) {
                         nextMove = new Square(i, currentSquare.getPosY(), null);
                         if (!nextMove.equals(currentSquare)) {
                             if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                                && !board.occupiedByOther(piece, nextMove)) {
+                                    && !board.occupiedByOther(piece, nextMove)) {
                                 break;
                             }
                             if (board.validMove(nextMove, piece)) {
@@ -178,7 +212,7 @@ public class StraightMoves implements IMove {
                         nextMove = new Square(i, currentSquare.getPosY(), null);
                         if (!nextMove.equals(currentSquare)) {
                             if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                                && !board.occupiedByOther(piece, nextMove)) {
+                                    && !board.occupiedByOther(piece, nextMove)) {
                                 break;
                             }
                             if (board.validMove(nextMove, piece)) {
@@ -198,7 +232,7 @@ public class StraightMoves implements IMove {
                 nextMove = new Square(currentSquare.getPosX(), i, null);
                 if (!nextMove.equals(currentSquare)) {
                     if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                        && !board.occupiedByOther(piece, nextMove)) {
+                            && !board.occupiedByOther(piece, nextMove)) {
                         break;
                     }
                     if (board.validMove(nextMove, piece)) {
@@ -214,7 +248,7 @@ public class StraightMoves implements IMove {
                 nextMove = new Square(currentSquare.getPosX(), i, null);
                 if (!nextMove.equals(currentSquare)) {
                     if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                        && !board.occupiedByOther(piece, nextMove)) {
+                            && !board.occupiedByOther(piece, nextMove)) {
                         break;
                     }
                     if (board.validMove(nextMove, piece)) {
@@ -233,7 +267,7 @@ public class StraightMoves implements IMove {
                     nextMove = new Square(currentSquare.getPosX(), i, null);
                     if (!nextMove.equals(currentSquare)) {
                         if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                            && !board.occupiedByOther(piece, nextMove)) {
+                                && !board.occupiedByOther(piece, nextMove)) {
                             break;
                         }
                         if (board.validMove(nextMove, piece)) {
@@ -248,7 +282,7 @@ public class StraightMoves implements IMove {
                     nextMove = new Square(currentSquare.getPosX(), i, null);
                     if (!nextMove.equals(currentSquare)) {
                         if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                            && !board.occupiedByOther(piece, nextMove)) {
+                                && !board.occupiedByOther(piece, nextMove)) {
                             break;
                         }
                         if (board.validMove(nextMove, piece)) {
@@ -259,12 +293,12 @@ public class StraightMoves implements IMove {
                         }
                     }
                 }
-                if (nextMove != null && nextMove.getPosY() == ThreePlayerChessboard.E  && board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty() || currentSquare.getPosY() == ThreePlayerChessboard.E) {
+                if (nextMove != null && nextMove.getPosY() == ThreePlayerChessboard.E && board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty() || currentSquare.getPosY() == ThreePlayerChessboard.E) {
                     for (int i = ThreePlayerChessboard.I; i <= ThreePlayerChessboard.L; i++) {
                         nextMove = new Square(currentSquare.getPosX(), i, null);
                         if (!nextMove.equals(currentSquare)) {
                             if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                                && !board.occupiedByOther(piece, nextMove)) {
+                                    && !board.occupiedByOther(piece, nextMove)) {
                                 break;
                             }
                             if (board.validMove(nextMove, piece)) {
@@ -282,7 +316,7 @@ public class StraightMoves implements IMove {
                     nextMove = new Square(currentSquare.getPosX(), i, null);
                     if (!nextMove.equals(currentSquare)) {
                         if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                            && !board.occupiedByOther(piece, nextMove)) {
+                                && !board.occupiedByOther(piece, nextMove)) {
                             break;
                         }
                         if (board.validMove(nextMove, piece)) {
@@ -297,7 +331,7 @@ public class StraightMoves implements IMove {
                     nextMove = new Square(currentSquare.getPosX(), i, null);
                     if (!nextMove.equals(currentSquare)) {
                         if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                            && !board.occupiedByOther(piece, nextMove)) {
+                                && !board.occupiedByOther(piece, nextMove)) {
                             break;
                         }
                         if (board.validMove(nextMove, piece)) {
@@ -309,13 +343,13 @@ public class StraightMoves implements IMove {
                     }
                 }
                 if (nextMove != null && nextMove.getPosY() == ThreePlayerChessboard.I &&
-                    board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty() ||
-                    currentSquare.getPosY() == ThreePlayerChessboard.I) {
+                        board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty() ||
+                        currentSquare.getPosY() == ThreePlayerChessboard.I) {
                     for (int i = ThreePlayerChessboard.E; i <= ThreePlayerChessboard.H; i++) {
                         nextMove = new Square(currentSquare.getPosX(), i, null);
                         if (!nextMove.equals(currentSquare)) {
                             if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                                && !board.occupiedByOther(piece, nextMove)) {
+                                    && !board.occupiedByOther(piece, nextMove)) {
                                 break;
                             }
                             if (board.validMove(nextMove, piece)) {
@@ -336,7 +370,7 @@ public class StraightMoves implements IMove {
                     nextMove = new Square(currentSquare.getPosX(), i, null);
                     if (!nextMove.equals(currentSquare)) {
                         if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                            && !board.occupiedByOther(piece, nextMove)) {
+                                && !board.occupiedByOther(piece, nextMove)) {
                             break;
                         }
                         if (board.validMove(nextMove, piece)) {
@@ -351,7 +385,7 @@ public class StraightMoves implements IMove {
                     nextMove = new Square(currentSquare.getPosX(), i, null);
                     if (!nextMove.equals(currentSquare)) {
                         if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                            && !board.occupiedByOther(piece, nextMove)) {
+                                && !board.occupiedByOther(piece, nextMove)) {
                             break;
                         }
                         if (board.validMove(nextMove, piece)) {
@@ -363,13 +397,13 @@ public class StraightMoves implements IMove {
                     }
                 }
                 if (nextMove != null && nextMove.getPosY() == ThreePlayerChessboard.D &&
-                    board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                    || currentSquare.getPosY() == ThreePlayerChessboard.D) {
+                        board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
+                        || currentSquare.getPosY() == ThreePlayerChessboard.D) {
                     for (int i = ThreePlayerChessboard.I; i <= ThreePlayerChessboard.L; i++) {
                         nextMove = new Square(currentSquare.getPosX(), i, null);
                         if (!nextMove.equals(currentSquare)) {
                             if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                                && !board.occupiedByOther(piece, nextMove)) {
+                                    && !board.occupiedByOther(piece, nextMove)) {
                                 break;
                             }
                             if (board.validMove(nextMove, piece)) {
@@ -387,7 +421,7 @@ public class StraightMoves implements IMove {
                     nextMove = new Square(currentSquare.getPosX(), i, null);
                     if (!nextMove.equals(currentSquare)) {
                         if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                            && !board.occupiedByOther(piece, nextMove)) {
+                                && !board.occupiedByOther(piece, nextMove)) {
                             break;
                         }
                         if (board.validMove(nextMove, piece)) {
@@ -402,7 +436,7 @@ public class StraightMoves implements IMove {
                     nextMove = new Square(currentSquare.getPosX(), i, null);
                     if (!nextMove.equals(currentSquare)) {
                         if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                            && !board.occupiedByOther(piece, nextMove)) {
+                                && !board.occupiedByOther(piece, nextMove)) {
                             break;
                         }
                         if (board.validMove(nextMove, piece)) {
@@ -414,13 +448,13 @@ public class StraightMoves implements IMove {
                     }
                 }
                 if (nextMove != null && nextMove.getPosY() == ThreePlayerChessboard.I &&
-                    board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                    || currentSquare.getPosY() == ThreePlayerChessboard.I) {
+                        board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
+                        || currentSquare.getPosY() == ThreePlayerChessboard.I) {
                     for (int i = ThreePlayerChessboard.D; i >= ThreePlayerChessboard.A; i--) {
                         nextMove = new Square(currentSquare.getPosX(), i, null);
                         if (!nextMove.equals(currentSquare)) {
                             if (!board.getSquare(nextMove.getPosX(), nextMove.getPosY()).isEmpty()
-                                && !board.occupiedByOther(piece, nextMove)) {
+                                    && !board.occupiedByOther(piece, nextMove)) {
                                 break;
                             }
                             if (board.validMove(nextMove, piece)) {
@@ -435,6 +469,18 @@ public class StraightMoves implements IMove {
             }
         }
 
-        return new ArrayList<Square>(Arrays.asList(possibleMoves.stream().distinct().toArray(Square[]::new)));
+        ArrayList<Square> results = new ArrayList<>();
+        if (withCheck) {
+            for (final Square move : possibleMoves) {
+                final boolean safe = new CheckController(board, board.myKing(piece.getColor()), piece, move).isSafe();
+                if (safe) {
+                    results.add(new Square(move.getPosX(), move.getPosY(), null));
+                }
+            }
+        } else {
+            results = possibleMoves;
+        }
+
+        return new ArrayList<Square>(Arrays.asList(results.stream().distinct().toArray(Square[]::new)));
     }
 }

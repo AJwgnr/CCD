@@ -1,8 +1,10 @@
 package com.ovgu.ccd.pieces;
 
-import com.ovgu.ccd.gui.Chessboard;
-import com.ovgu.ccd.gui.Game;
-import com.ovgu.ccd.gui.Moves;
+import com.ovgu.ccd.applogic.IBoard;
+import com.ovgu.ccd.applogic.ThreePlayerChessboard;
+import com.ovgu.ccd.gui.twoplayer.Chessboard;
+import com.ovgu.ccd.gui.twoplayer.Game;
+import com.ovgu.ccd.gui.twoplayer.Moves;
 import org.junit.Before;
 import com.ovgu.ccd.applogic.Player;
 import org.junit.Test;
@@ -12,6 +14,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 public class PawnTest {
@@ -20,6 +23,7 @@ public class PawnTest {
     Chessboard board = new Chessboard(game.settings, new Moves(game));
     Player whitePlayer = new Player("John", Player.Colors.WHITE.name());
     Player blackPlayer = new Player("John", Player.Colors.BLACK.name());
+    Player greyPlayer = new Player("John", Player.Colors.GREY.name());
     King blackKing = (King) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.KING);
     King whiteKing = (King) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
 
@@ -185,5 +189,52 @@ public class PawnTest {
                         new Square(4,2, null)
                 )
         );
+    }
+
+    @Test
+    public void testPromote() {
+        IBoard board = new ThreePlayerChessboard();
+        Piece king = PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.KING);
+        board.setKingWhite((King) king);
+        board.setPiece(king, 3, ThreePlayerChessboard.F);
+
+        Pawn pawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(pawn, 7, ThreePlayerChessboard.A);
+        Square square = pawn.getSquare();
+
+        pawn.promote(Piece.PieceTypes.BISHOP);
+
+        assertTrue(square.getPiece().getPlayer() == whitePlayer);
+        assertTrue(square.getPiece().getSymbol() == "B");
+        assertTrue(!((ThreePlayerChessboard) board).whitePawns.contains(pawn));
+    }
+
+    @Test
+    public void testCanBePromoted() {
+        IBoard board = new ThreePlayerChessboard();
+
+        Pawn whitePawn = (Pawn) PieceFactory.getPiece(board, whitePlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(whitePawn, 7, ThreePlayerChessboard.A);
+        assertTrue(whitePawn.canBePromoted());
+        board.setPiece(whitePawn, 11, ThreePlayerChessboard.K);
+        assertTrue(whitePawn.canBePromoted());
+        board.setPiece(whitePawn, 6, ThreePlayerChessboard.A);
+        assertTrue(!whitePawn.canBePromoted());
+
+        Pawn blackPawn = (Pawn) PieceFactory.getPiece(board, blackPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(blackPawn, 0, ThreePlayerChessboard.A);
+        assertTrue(blackPawn.canBePromoted());
+        board.setPiece(blackPawn, 11, ThreePlayerChessboard.K);
+        assertTrue(blackPawn.canBePromoted());
+        board.setPiece(blackPawn, 6, ThreePlayerChessboard.A);
+        assertTrue(!blackPawn.canBePromoted());
+
+        Pawn greyPawn = (Pawn) PieceFactory.getPiece(board, greyPlayer, Piece.PieceTypes.PAWN);
+        board.setPiece(greyPawn, 0, ThreePlayerChessboard.A);
+        assertTrue(greyPawn.canBePromoted());
+        board.setPiece(greyPawn, 7, ThreePlayerChessboard.A);
+        assertTrue(greyPawn.canBePromoted());
+        board.setPiece(greyPawn, 11, ThreePlayerChessboard.K);
+        assertTrue(!greyPawn.canBePromoted());
     }
 }

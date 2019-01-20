@@ -1,9 +1,9 @@
 package com.ovgu.ccd.pieces;
 
 import com.ovgu.ccd.applogic.Settings;
-import com.ovgu.ccd.gui.Chessboard;
-import com.ovgu.ccd.gui.Game;
-import com.ovgu.ccd.gui.Moves;
+import com.ovgu.ccd.gui.twoplayer.Chessboard;
+import com.ovgu.ccd.gui.twoplayer.Game;
+import com.ovgu.ccd.gui.twoplayer.Moves;
 import org.hamcrest.MatcherAssert;
 import org.junit.Before;
 import com.ovgu.ccd.applogic.Player;
@@ -78,6 +78,7 @@ public class BishopTest {
                         new Square(6,0, null)
                 )
         );
+        board.setPiece(null, 3, 3);
     }
 
 
@@ -100,6 +101,7 @@ public class BishopTest {
                         new Square(7,0, null)
                 )
         );
+        board.setPiece(null, 0, 7);
     }
 
     @Test
@@ -139,6 +141,11 @@ public class BishopTest {
                         new Square(2,2, null)
                 )
         );
+        board.setPiece(null, 3, 3);
+        board.setPiece(null, 1, 5);
+        board.setPiece(null, 5, 5);
+        board.setPiece(null, 5, 1);
+        board.setPiece(null, 1, 1);
     }
 
 }
