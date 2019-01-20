@@ -5,66 +5,6 @@ import com.ovgu.ccd.pieces.Piece;
 import java.util.ArrayList;
 
 /**
- * Exception for when there is no piece
- */
-class NoPieceForSpy extends Exception {
-    /**
-     * @param message
-     */
-    public NoPieceForSpy(String message) {
-        super(message);
-    }
-}
-
-/**
- * Exception for when a spy was already activated
- */
-class SpyAlreadyActive extends Exception {
-    /**
-     * @param message
-     */
-    public SpyAlreadyActive(String message) {
-        super(message);
-    }
-}
-
-/**
- * Exception for when the piece is different from a Pawn
- */
-class SpyCanOnlyBeAPawn extends Exception {
-    /**
-     * @param message
-     */
-    public SpyCanOnlyBeAPawn(String message) {
-        super(message);
-    }
-}
-
-/**
- * Exception for when the Pawn is in the initial position
- */
-class SpyCantBeInInitialPosition extends Exception {
-    /**
-     * @param message
-     */
-    public SpyCantBeInInitialPosition(String message) {
-        super(message);
-    }
-}
-
-/**
- * Exception for when the king is in check
- */
-class SpyInCheck extends Exception {
-    /**
-     * @param message
-     */
-    public SpyInCheck(String message) {
-        super(message);
-    }
-}
-
-/**
  * Class in charge of activating the spy
  */
 public class SpyActivator {
