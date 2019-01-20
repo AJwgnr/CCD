@@ -81,6 +81,7 @@ public class MenuView {
         loadGameItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         loadGameItem.setText(properties.getProperty("loadGameItem.text")); // NOI18N
         loadGameItem.setName("loadGameItem"); // NOI18N
+        loadGameItem.setEnabled(false);
         loadGameItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jChessViewController.loadGameItemActionPerformed(evt);
@@ -89,6 +90,7 @@ public class MenuView {
         saveGameItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         saveGameItem.setText(properties.getProperty("saveGameItem.text")); // NOI18N
         saveGameItem.setName("saveGameItem"); // NOI18N
+        saveGameItem.setEnabled(false);
         saveGameItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jChessViewController.saveGameItemActionPerformed(evt);
@@ -128,6 +130,7 @@ public class MenuView {
         moveBackItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
         moveBackItem.setText(properties.getProperty("moveBackItem.text")); // NOI18N
         moveBackItem.setName("moveBackItem"); // NOI18N
+        moveBackItem.setEnabled(false);
         moveBackItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jChessViewController.moveBackItemMouseClicked(evt);
@@ -142,6 +145,7 @@ public class MenuView {
         moveForwardItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
         moveForwardItem.setText(properties.getProperty("moveForwardItem.text")); // NOI18N
         moveForwardItem.setName("moveForwardItem"); // NOI18N
+        moveForwardItem.setEnabled(false);
         moveForwardItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jChessViewController.moveForwardItemMouseClicked(evt);
@@ -155,6 +159,7 @@ public class MenuView {
         rewindToBeginItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         rewindToBeginItem.setText(properties.getProperty("rewindToBegin.text")); // NOI18N
         rewindToBeginItem.setName("rewindToBegin"); // NOI18N
+        rewindToBeginItem.setEnabled(false);
         rewindToBeginItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jChessViewController.rewindToBeginActionPerformed(evt);
@@ -164,6 +169,7 @@ public class MenuView {
         rewindToEndItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         rewindToEndItem.setText(properties.getProperty("rewindToEnd.text")); // NOI18N
         rewindToEndItem.setName("rewindToEnd"); // NOI18N
+        rewindToEndItem.setEnabled(false);
         rewindToEndItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jChessViewController.rewindToEndActionPerformed(evt);

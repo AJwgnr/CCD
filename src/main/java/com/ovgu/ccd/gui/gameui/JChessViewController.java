@@ -8,12 +8,16 @@ import javax.swing.*;
 import java.io.File;
 
 
+/**Controller that handles the interaction with the game (Like creating new game dialogs).
+ */
 public class JChessViewController {
     private final Icon[] busyIcons = new Icon[15];
     private JChessView jcv;
     private int busyIconIndex = 0;
 
-
+    /**Constructor with the correspoding view.
+     * @param view Corresponding view that should be controlled.
+     */
     public JChessViewController(JChessView view) {
         this.jcv = view;
     }
@@ -29,9 +33,7 @@ public class JChessViewController {
 
     }
 
-    public void newGame() {
-        jcv.createNewGameFrame();
-    }
+
 
 
     /**
@@ -45,20 +47,29 @@ public class JChessViewController {
     }
 
 
-    public void showAboutBox() {
+    /**Creates a dialog for creating a new game.
+     */
+    protected void newGame() {
+        jcv.createNewGameFrame();
+    }
+
+    /**Creates or shows the about box of the game
+     */
+    protected void showAboutBox() {
         jcv.setAboutBox();
     }
 
-
-    public String showPawnPromotionBox(String color) {
+    /**Shows the pawn promotion box.
+     * @param color color of the player to show the promotion box
+     * @return name of the piece to create
+     */
+    protected String showPawnPromotionBox(String color) {
         return (jcv.setPawnPromotionBox(color));
     }
 
-    public String showSaveWindow() {
-        return "";
-    }
-
-    public void closeGame() {
+    /** Ends the application.
+     */
+    protected void closeGame() {
         this.jcv.getFrame().dispose();
     }
 
@@ -68,7 +79,6 @@ public class JChessViewController {
     public void moveBackItemMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_moveBackItemMouseClicked
     {//GEN-HEADEREND:event_moveBackItemMouseClicked
         // TODO add your handling code here:
-
     }//GEN-LAST:event_moveBackItemMouseClicked
 
     /**
@@ -77,47 +87,21 @@ public class JChessViewController {
     public void moveForwardItemMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_moveForwardItemMouseClicked
     {//GEN-HEADEREND:event_moveForwardItemMouseClicked
         // TODO add your handling code here:
-
     }//GEN-LAST:event_moveForwardItemMouseClicked
 
     /**
      * @param evt
      */
-    public void moveForwardItemActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_moveForwardItemActionPerformed
-    {//GEN-HEADEREND:event_moveForwardItemActionPerformed
+    public void moveForwardItemActionPerformed(java.awt.event.ActionEvent evt)
+    {
         /** // TODO add your handling code here:
-         if (gui != null && gui.game != null) {
-         gui.game.redo();
-         } else {
-         try {
-         Game activeGame = this.getActiveTabGame();
-         if (!activeGame.redo()) {
-         // TODO change
-         JOptionPane.showMessageDialog(null, "W pamieci brak ruchow do przodu!");
-         }
-         } catch (java.lang.ArrayIndexOutOfBoundsException exc) {
-         // TODO change
-         JOptionPane.showMessageDialog(null, "Brak aktywnej karty!");
-         } catch (UnsupportedOperationException exc) {
-         JOptionPane.showMessageDialog(null, exc.getMessage());
-         }
          }**/
     }
     /**
      * @param evt
      */
     public void rewindToBeginActionPerformed(java.awt.event.ActionEvent evt) {
-      /*  try {
-            Game activeGame = this.getActiveTabGame();
-            if (!activeGame.rewindToBegin()) {
-                // TODO change
-                JOptionPane.showMessageDialog(null, "W pamieci brak ruchow do przodu!");
-            }
-        } catch (ArrayIndexOutOfBoundsException exc) {
-            // TODO change
-            JOptionPane.showMessageDialog(null, "Brak aktywnej karty!");
-        } catch (UnsupportedOperationException exc) {
-            JOptionPane.showMessageDialog(null, exc.getMessage());
+      /*
         } */
     }
 
@@ -125,38 +109,11 @@ public class JChessViewController {
      * @param evt
      */
     public void rewindToEndActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            Game activeGame = this.getActiveTabGame();
-            if (!activeGame.rewindToEnd()) {
-                // TODO change
-                JOptionPane.showMessageDialog(null, "W pamieci brak ruchow wstecz!");
-            }
-        } catch (ArrayIndexOutOfBoundsException exc) {
-            // TODO change
-            JOptionPane.showMessageDialog(null, "Brak aktywnej karty!");
-        } catch (UnsupportedOperationException exc) {
-            JOptionPane.showMessageDialog(null, exc.getMessage());
-        }
+
     }
 
-    public void moveBackItemActionPerformed(java.awt.event.ActionEvent evt) {/*
-        if (gui != null && gui.game != null) {
-            gui.game.undo();
-        } else {
-            try {
-                Game activeGame = this.getActiveTabGame();
-                if (!activeGame.undo()) {
-                    // TODO change
-                    JOptionPane.showMessageDialog(null, "Nie da sie cofnac!");
-                }
-            } catch (java.lang.ArrayIndexOutOfBoundsException exc) {
-                // TODO change
-                JOptionPane.showMessageDialog(null, "Brak aktywnej karty!");
-            } catch (UnsupportedOperationException exc) {
-                JOptionPane.showMessageDialog(null, exc.getMessage());
-            }
-        }
-*/
+    public void moveBackItemActionPerformed(java.awt.event.ActionEvent evt) {
+
     }
 
     public void newGameItemActionPerformed(java.awt.event.ActionEvent evt) {

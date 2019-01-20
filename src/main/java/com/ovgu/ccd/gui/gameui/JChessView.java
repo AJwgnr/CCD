@@ -40,9 +40,8 @@ public class JChessView extends FrameView implements ComponentListener {
 
     private JChessViewController jChessViewController;
 
-    /**
-     *
-     * @param app
+    /** Creates the main frame of the application as single frame application
+     * @param app single frame application
      */
     public JChessView(SingleFrameApplication app) {
         super(app);
@@ -70,8 +69,7 @@ public class JChessView extends FrameView implements ComponentListener {
     }
 
 
-    /**
-     * Creates all UI elements for the chess hosting game and also the control the click handling
+    /**Creates all UI elements for the chess game and also the control for the click handling.
      */
     private void initUiComponents() {
         mainPanel = new JPanel();
@@ -143,6 +141,7 @@ public class JChessView extends FrameView implements ComponentListener {
         );
 
 
+        //set all components and add the menu
         setComponent(mainPanel);
         setMenuBar(menuView.getMenuBar());
         setStatusBar(statusPanel);
@@ -177,20 +176,8 @@ public class JChessView extends FrameView implements ComponentListener {
     }
 
 
-    public JDialog getNewGameFrame() {
-        return newGameFrame;
-    }
-
-    public JDialog getAboutBox() {
-        return aboutBox;
-    }
-
     public JTabbedPane getGamesPane() {
         return gamesPane;
-    }
-
-    public PawnPromotionWindow getPromotionBox() {
-        return promotionBox;
     }
 
     public void createNewGameFrame() {
@@ -209,6 +196,11 @@ public class JChessView extends FrameView implements ComponentListener {
         JChessApp.getApplication().show(aboutBox);
     }
 
+    /**
+     *
+     * @param color
+     * @return
+     */
     public String setPawnPromotionBox(String color) {
         if (promotionBox == null) {
             JFrame mainFrame = JChessApp.getApplication().getMainFrame();

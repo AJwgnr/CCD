@@ -55,16 +55,7 @@ public class JChessApp extends SingleFrameApplication {
      */
     @Override
     protected void startup() {
-        /*Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        ChessboardGrid chessboardGrid = new ChessboardGrid(new com.ovgu.ccd.gui.threeplayer.Point(
-                        screenSize.width / 2, screenSize.height / 2),
-                (screenSize.height / 2) - 30);
-        ChessboardListener listener = new ChessboardListener(chessboardGrid);
-        new com.ovgu.ccd.gui.threeplayer.Window("ChessboardListener", listener.getPanel());
-        ThreePlayerChessboard board = new ThreePlayerChessboard(chessboardGrid);
-        listener.setListenerRestrictions(
-                new PlayerSequenceManager(board.getAllPlayers()));
-*/
+        //launch application
         jcv = new JChessView(this);
         show(jcv);
     }
