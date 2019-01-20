@@ -141,9 +141,8 @@ public class ResourceManager {
 
     /**Method load image by a given name with extension.
      * @param name string of image to load for ex. "chessboard.jpg"
-     * @returns image or null if cannot load
+     * @return image or null if cannot load
      * */
-
     public static Image loadImage(String name) {
         Image img = null;
         URL url = null;

@@ -29,8 +29,10 @@ public class CheckMateController {
         this.king = king;
     }
 
+
     /**
      * @return whether the king is in check mate
+     * @throws Exception in case of an invalid move
      */
     public boolean isCheckMate() throws Exception {
         CheckController check = new CheckController(board, king, king, null);

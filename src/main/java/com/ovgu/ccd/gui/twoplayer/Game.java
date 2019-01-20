@@ -301,6 +301,7 @@ public class Game extends JPanel implements MouseListener, ComponentListener {
      * @param beginY from which Y (on chessboard) move starts
      * @param endX   to   which X (on chessboard) move go
      * @param endY   to   which Y (on chessboard) move go
+     * @return if we can simulate the move
      */
     public boolean simulateMove(int beginX, int beginY, int endX, int endY) {
         try {

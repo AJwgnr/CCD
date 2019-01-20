@@ -85,7 +85,7 @@ public class SpyActivator {
     /**
      * @param player that is activating spy
      * @param piece to be activated
-     * @param board
+     * @param board current board
      */
     public SpyActivator(Player player, Piece piece, ThreePlayerChessboard board) {
         this.player = player;
@@ -97,7 +97,7 @@ public class SpyActivator {
     /**
      * Activates a spy
      *
-     * @throws Exception
+     * @throws Exception in case of invalid piece, in check or pawn in initial position
      */
     public void activateSpy() throws Exception {
         if (piece == null) {

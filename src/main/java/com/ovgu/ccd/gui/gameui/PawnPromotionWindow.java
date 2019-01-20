@@ -48,9 +48,8 @@ public class PawnPromotionWindow extends JDialog implements ActionListener {
 
     /**
      * Creates a window for choosing a piece for promotion.
+     * @param colorOfPiece  The player color
      *
-     * @param parent Information about the current piece
-     * @param color  The player color
      */
     public PawnPromotionWindow(String colorOfPiece) {
         JFrame frame = new JFrame();
@@ -84,7 +83,7 @@ public class PawnPromotionWindow extends JDialog implements ActionListener {
     }
 
     /**
-     * Method setting the color fo promoted pawn
+     * Method setting the color for the promoted pawn
      *
      * @param color The players color
      */
